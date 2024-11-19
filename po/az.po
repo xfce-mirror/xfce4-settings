@@ -1,0 +1,2818 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce4-settings.master package.
+# 
+# Translators:
+# Əmrə Türkoğlu Tutsaq <mdyos@inbox.ru>, 2022
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce4-settings\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
+"PO-Revision-Date: 2013-07-02 20:47+0000\n"
+"Last-Translator: Əmrə Türkoğlu Tutsaq <mdyos@inbox.ru>, 2022\n"
+"Language-Team: Azerbaijani (http://app.transifex.com/xfce/xfce4-settings/language/az/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: az\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: common/display-name.c:2644
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr "Bilinməyən"
+
+#. TRANSLATORS: an externally connected display, where %s is either the
+#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
+#: common/display-name.c:2697 dialogs/color-settings/color-device.c:66
+msgid "Monitor"
+msgstr "Monitor"
+
+#: common/display-name.c:2700
+msgid "Television"
+msgstr "Televiziya"
+
+#: common/display-name.c:2704
+msgid "Digital display"
+msgstr "Sayısal göstərən"
+
+#: common/xfce-randr.c:291 dialogs/display-settings/display-settings-x11.c:702
+msgid "Unable to query the version of the RandR extension being used"
+msgstr "İşlədilən RandR artırmasının sürümünü soruşmaq olmur"
+
+#: common/xfce-randr.c:573
+#: dialogs/display-settings/display-settings-wayland.c:350
+msgid "Laptop"
+msgstr "Dizüstü"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:66
+#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:4
+msgid "Accessibility"
+msgstr "Əlçatanlıq"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:85
+#: dialogs/appearance-settings/appearance-dialog.glade:142
+#: dialogs/color-settings/color-dialog.glade:65
+#: dialogs/display-settings/display-dialog.glade:290
+#: dialogs/display-settings/minimal-display-dialog.glade:368
+#: dialogs/display-settings/profile-changed-dialog.glade:34
+#: dialogs/display-settings/main.c:3490
+#: dialogs/keyboard-settings/keyboard-dialog.glade:181
+#: dialogs/mime-settings/xfce-mime-window.c:194
+#: dialogs/mouse-settings/mouse-dialog.glade:195
+#: xfce4-settings-editor/main.c:185
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:235
+msgid "_Close"
+msgstr "_Bağla"
+
+#. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
+#: dialogs/accessibility-settings/accessibility-dialog.glade:100
+#: dialogs/appearance-settings/appearance-dialog.glade:126
+#: dialogs/color-settings/color-dialog.glade:80
+#: dialogs/display-settings/display-dialog.glade:274
+#: dialogs/keyboard-settings/keyboard-dialog.glade:196
+#: dialogs/mime-settings/xfce-mime-window.c:197
+#: dialogs/mouse-settings/mouse-dialog.glade:179
+#: xfce4-settings-editor/main.c:184
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:224
+msgid "_Help"
+msgstr "_Yardım"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:156
+msgid ""
+"When enabled, the session manager will start the required applications for "
+"screen readers and magnifiers."
+msgstr "Oturum yönəldəni açıq ikən, göstərici oxuyucuları və böyüdücülərini üçün gərəkli uyğulamaları başladacaq."
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:173
+msgid "_Enable assistive technologies"
+msgstr "Yardımçı texnolojiləri  _aç"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:195
+msgid "Start With Session"
+msgstr "Oturumla Başla"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:230
+msgid "Assistive technologies will be available the next time you login"
+msgstr "Yardımçı texnolojilər sonrakı girişinizdə əlçatan olacaq"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:269
+msgid "No AT-SPI provider was found on your system"
+msgstr "AT-SPİ sağlayıcısı sisteminizdə tapılmadı"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:292
+msgid "Assistive _Technologies"
+msgstr "Yardımçı _Texnolojilər"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:332
+msgid ""
+"When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
+" be held down (they can be pressed and then released) when multiple keys "
+"would normally need to be pressed at the same time."
+msgstr "Açı, "
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:355
+msgid "_Use sticky keys"
+msgstr "Yapışqan düymələri _işlət"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:383
+msgid "_Lock sticky keys"
+msgstr "Yapışqan düymələri _açarla"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:387
+msgid ""
+"When selected, modifier keys (such as Control, Alt, and Shift) will remain "
+"locked in the pressed state until pressed again"
+msgstr "Seçilmişkən, (Control, Alt, Shift kimi) dəyişim düymələri bir daha basılana kimi basılmış durumunda tutulacaq"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:400
+msgid "Disable sticky keys if two keys are _pressed"
+msgstr "İki düymə basılarkən yapışqan düymələri bağla"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:404
+msgid ""
+"When selected, the \"sticky keys\" feature will be disabled if two keys are "
+"pressed simultaneously"
+msgstr "Seçilmişkən, iki düymə bir anda basıldığında \"yapışqan düymələr\" özəlliyi etkisiz ediləcək"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:439
+msgid "Sticky Keys"
+msgstr "Yapışqan Düymələr"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:469
+msgid ""
+"To help prevent accidental keystrokes, slow keys requires that a key is held"
+" for a certain minimum amount of time before the keystroke will be accepted."
+msgstr "Yanlış düymə basılışlarını əngəlləmək üçün yavaş düymələr, düymə basılışlarının alınışına kimi kəsinləşmiş az bir sürə içində tutuluşunu istəyir."
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:492
+msgid "Use slow _keys"
+msgstr "Yavaş _düymələri işlət"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:521
+msgid "Acceptance _delay:"
+msgstr "Alınış _gecikməsi:"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:535
+msgid ""
+"The amount of time, in milliseconds, that must elapse before a keystroke "
+"will be accepted"
+msgstr "Düymə basılışının alınışı öncəsi keçilməsi gərəkli olan millisaniyəli sürə"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:571
+msgid "Slow Keys"
+msgstr "Yavaş Düymələr"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:601
+msgid ""
+"To help prevent accidental multiple keystrokes, bounce keys imposes a "
+"minimum delay between keystrokes."
+msgstr "Çoxsayılı düymə basılışlarının qarşısını almaq üçün, sıçrama düymələri, düymə basılışıları arasına ənazlıq gecikmə yükləyir."
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:624
+msgid "Use _bounce keys"
+msgstr "S_ıçrama düymələrini işlət"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:653
+msgid "K_eystroke delay:"
+msgstr "Düymə basılışı gecikməsi:"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:667
+msgid "The amount of time, in milliseconds, required between keystrokes"
+msgstr "Düymə basılışları arasında millisaniyə ilə qoyulmuş sürə kəsiyi"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:703
+msgid "Bounce Keys"
+msgstr "Sıçrama Düymələri"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:729
+msgid "Keyboa_rd"
+msgstr "Düy_məlik"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:769
+msgid ""
+"When enabled, the mouse pointer can be controlled using the keyboard number "
+"pad."
+msgstr "Açıq ikən, düyməliyin sayı alanını işlədərək siçak göstəricisini yönəltmək olar."
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:792
+msgid "_Use mouse emulation"
+msgstr "Siçan yamsılayışını _işlət"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:796
+msgid ""
+"When selected, the mouse pointer can be controlled using the keyboard number"
+" pad"
+msgstr "Seçilmiş ikən, düyməliyin sayı alanını işlədərək siçan imləcini yönəltmək olar."
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:824
+#: dialogs/accessibility-settings/accessibility-dialog.glade:894
+#: dialogs/accessibility-settings/accessibility-dialog.glade:936
+msgid "msec"
+msgstr "msan"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:835
+msgid ""
+"The time, in milliseconds, between the initial key press and first repeated "
+"motion event"
+msgstr "Millisaniyə ilə ölçülən, düymənin ilk basılışı ilə ilk yenələnən eyləm arasındakı sürə"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:852
+msgid "_Acceleration delay:"
+msgstr "_Sürətlənmə gücikməsi:"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:865
+msgid "R_epeat interval:"
+msgstr "Y_enələniş aralışığı:"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:877
+msgid "The time, in milliseconds, between repeated motion events"
+msgstr "Yenələnən eyləmlər arasındakı millisaniyə sürə dilimi"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:906
+msgid "Acceleration t_ime:"
+msgstr "Sürətlənmə a_nı:"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:918
+msgid "The time, in milliseconds, to get to maximum speed"
+msgstr "Yüksək sürətə çatılacaq millisaniyəli an"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:948
+msgid "Ma_ximum speed:"
+msgstr "Yü_ksək sürət:"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:960
+msgid "The maximum pointer speed after acceleration"
+msgstr "Sürətlənmədən sonrakı imləcin ən yüksək sürəti"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:978
+msgid "pixels/sec"
+msgstr "piksel/san"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:990
+msgid "Acceleration _profile:"
+msgstr "Sürətlənmə çi_zimi:"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:1002
+msgid "The ramp used to reach maximum pointer speed"
+msgstr "İmləcin ən yüksək sürətinə çatmaq üçün işlədilən sürüşgən"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:1048
+msgid "Mouse Emulation"
+msgstr "Siçan Yamsılaması"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:1078
+msgid ""
+"Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
+"mouse pointer's current location."
+msgstr "Siçan imləcinin indiki yerləşiminin görsəl geri bildirimini almaq üçün xfce4-find-cursor düyməlik qısayolu birləşdir."
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:1095
+msgid "Show location of pointer on keypress"
+msgstr "Düymə basılışında imləcin yerini göstər"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:1117
+msgid "Find Cursor"
+msgstr "İmləci Tap"
+
+#: dialogs/accessibility-settings/accessibility-dialog.glade:1143
+msgid "_Mouse"
+msgstr "_Siçan"
+
+#: dialogs/accessibility-settings/main.c:38
+#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
+#: xfce4-settings-editor/main.c:44
+msgid "Settings manager socket"
+msgstr "Ayarlar yönətməni yuvası"
+
+#: dialogs/accessibility-settings/main.c:38
+#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
+#: xfce4-settings-editor/main.c:44
+msgid "SOCKET ID"
+msgstr "YUVA TN:"
+
+#: dialogs/accessibility-settings/main.c:39
+#: dialogs/appearance-settings/main.c:89 dialogs/color-settings/main.c:42
+#: dialogs/display-settings/main.c:108 dialogs/keyboard-settings/main.c:37
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:87
+#: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
+#: xfsettingsd/main.c:93
+msgid "Version information"
+msgstr "Sürüm bilgisi"
+
+#: dialogs/accessibility-settings/main.c:193
+#: dialogs/appearance-settings/main.c:1690 dialogs/color-settings/main.c:1464
+#: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
+#: dialogs/mime-settings/main.c:78
+#: dialogs/mime-settings/xfce-mime-helper-main.c:148
+#: dialogs/mouse-settings/main.c:2196 xfce4-settings-editor/main.c:118
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
+#: xfsettingsd/main.c:280
+#, c-format
+msgid "Type '%s --help' for usage."
+msgstr "İşləniş üçün '%s --help' yazın."
+
+#: dialogs/accessibility-settings/main.c:212
+#: dialogs/appearance-settings/main.c:1709 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
+#: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
+#: xfsettingsd/main.c:258
+msgid "The Xfce development team. All rights reserved."
+msgstr "Xfce gəliştirici birliyi. Bütün özgülər qorunur."
+
+#: dialogs/accessibility-settings/main.c:213
+#: dialogs/appearance-settings/main.c:1710 dialogs/color-settings/main.c:1484
+#: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
+#: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
+#: xfsettingsd/main.c:259
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "Böcəkləri <%s> yerinə bildirmənizi istərdik."
+
+#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:5
+msgid "Improve keyboard and mouse accessibility"
+msgstr "Düyməlik ilə siçanın əlçatımlığını yaxşılaşdır"
+
+#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:6
+msgid ""
+"assistive;technologies;keys;sticky;bounce;emulation;screen "
+"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
+msgstr "yardımçı;texnologiyalar;düymələr;yapışqan;sıçrayış;yamsılanış;göstərici oxuyucuları;böyüdücülər;a11y;i18n;l10n;AT-SPI;ATK;əngəllilik"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:39
+#: dialogs/appearance-settings/main.c:1597 dialogs/display-settings/main.c:86
+#: dialogs/display-settings/main.c:94
+#: dialogs/mouse-settings/mouse-dialog.glade:63
+msgid "None"
+msgstr "Heç Nə"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:42
+msgid "Slight"
+msgstr "Yüngül"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:45
+msgid "Medium"
+msgstr "Orta"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:48
+msgid "Full"
+msgstr "Bütün"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:59
+msgid "Icons"
+msgstr "İmgələr"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:62
+msgid "Text"
+msgstr "Yazı"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:65
+msgid "Text under icons"
+msgstr "İmgə altı yazı"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:68
+msgid "Text next to icons"
+msgstr "İmgə yanı yazı"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:82
+msgid "1x (no scaling)"
+msgstr "1x (ölçəkləniş yoxdur)"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:86
+msgid "2x"
+msgstr "2x"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:107
+#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
+msgid "Appearance"
+msgstr "Görünüş"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:205
+#: dialogs/appearance-settings/appearance-dialog.glade:315
+#: dialogs/color-settings/color-dialog.glade:374
+#: dialogs/keyboard-settings/keyboard-dialog.glade:636
+#: dialogs/keyboard-settings/keyboard-dialog.glade:970
+#: xfce4-settings-editor/xfce-settings-editor-box.c:364
+msgid "_Add"
+msgstr "_Artır"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:238
+msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
+msgstr ""
+
+#: dialogs/appearance-settings/appearance-dialog.glade:272
+msgid "St_yle"
+msgstr "Sə_pki"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:348
+msgid "_Icons"
+msgstr "_İmgələr"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:388
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr "Bu yazı biçimi, işlədən arayüzü yazısı çizilərkən varsayılan yazı biçimi kimi işlənəcəkdir"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:390
+msgid "Select a default font"
+msgstr "Varsayılan yazı biçimini seç"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:399
+msgid "Default Fon_t"
+msgstr "Varsayılan _Yazı biçimi"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:431
+msgid ""
+"This font will be used as the default monospace font, for example by "
+"terminal emulators."
+msgstr "Bu yazı biçimi, örənyin terminal yamsılayıcıları üçün, təkaralıqlı yazı biçimi kimi işlənəcək"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:433
+msgid "Select a default monospace font"
+msgstr "Varsayılan təkaralıqlı yazı biçimi seç"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:442
+msgid "Default _Monospace Font"
+msgstr "Varsayılan _Təkaralıqlı Yazı Biçimi Seç"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:477
+msgid "_Enable anti-aliasing"
+msgstr "Yumuşalışını _aç"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:481
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr "Yumuşalış ya da yazı biçimi yumuşaldanı, göstəricidəki yazının görünüşünü yaxşılaşdırır"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:509
+msgid "Hintin_g:"
+msgstr "A_tmaca:"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:521
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw"
+" the font; pick whichever looks best according to personal preference"
+msgstr "Bir çox yazı biçimi, daha yaxşı çizilişi üçün artıq ipucular sağlayan bilgi içərir; özünüzə daha uyğun gördüyünüz görünüşü seçin"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:541
+msgid "Sub-_pixel order:"
+msgstr "Alt-_piksel sırası:"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:553
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr "Doğru alt-piksel sırasının seçimi, yazı biçiminin nitəliyini TFT ya da LCD göstəricisində qat-qat artıra bilər"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:591
+msgid "Rendering"
+msgstr "İşləyici"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:623
+msgid "Custom _DPI setting:"
+msgstr "Özəl _DPİ qayarları:"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:627
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too "
+"small"
+msgstr "Yazı səpkiləri çox böyük ya da çox kiçik görünərsə, sezilmiş monitorun çözünürlüyünü dəyiş"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:664
+msgid "DPI"
+msgstr "DPİ"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:690
+msgid "_Fonts"
+msgstr "_Yazı Səpkiləri"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:733
+msgid "Show images on _buttons"
+msgstr "Görsəlləri _düymələrdə göstər"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:737
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "İmgələrin düymələrdə yazı ilə yan-yana olub-olmamasını bəlirlə"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:750
+msgid "Show images in _menus"
+msgstr "Görsəlləri seçi_mlərdə göstər"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:754
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "İmgələrin seçimlərdə yazı ilə yan-yana olub-olmamasını bəlirlə"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:767
+msgid "Enable e_ditable accelerators"
+msgstr "Düzəldiləbilən sürətləndiriciləri aç"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:771
+msgid ""
+"If selected, keyboard shortcuts for menu items can be changed by hovering "
+"the mouse over the menu item and pressing the new key combination for the "
+"shortcut"
+msgstr "Seçildiyində, seçmə ögələri üçün düyməlik qısayolları, siçanı seçmə ögəsinin üzərinə gətirib, qısayol üçün yeni düymə birgəliyi basılaraq dəyişdirilə bilər "
+
+#: dialogs/appearance-settings/appearance-dialog.glade:784
+msgid "Enable header bars in dialo_gs"
+msgstr ""
+
+#: dialogs/appearance-settings/appearance-dialog.glade:788
+msgid ""
+"Defines whether GTK dialogs may place widgets such as buttons in the "
+"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
+"opened dialogs."
+msgstr ""
+
+#: dialogs/appearance-settings/appearance-dialog.glade:807
+msgid "Menus and Buttons"
+msgstr "Seçimlər ilə Düymələr"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:839
+msgid "Enable _event sounds"
+msgstr "Etginlik _səslərini aç"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:843
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr "Etginlik səslərini bütünlüklə aç/bağla (\"Canberra\" dəstəyi gərəklidir)"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:856
+msgid "Enable input feedbac_k sounds"
+msgstr "Giriş geribəsləmə səslərini aç"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:860
+msgid ""
+"Specify whether mouse clicks and other user input will cause event sounds to"
+" play"
+msgstr "Siçan tıklarının, başqa işlədən yeritmələrinin etginlik səsləri çıxaracağını bəlirlə "
+
+#: dialogs/appearance-settings/appearance-dialog.glade:879
+msgid "Event sounds"
+msgstr "Etginlik səsləri"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:908
+msgid "Adjust the system-wide display scaling"
+msgstr "Sistem-genli göstərən ölçəkliyini ayarla"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:926
+msgid "_Window Scaling"
+msgstr "_Pəncərə Ölçəkliyi"
+
+#: dialogs/appearance-settings/appearance-dialog.glade:954
+msgid "Setti_ngs"
+msgstr "_Ayarlar"
+
+#: dialogs/appearance-settings/main.c:335
+msgid "Failed to display Xfwm4 Settings"
+msgstr ""
+
+#. If the theme has no cache, mention this in the tooltip
+#: dialogs/appearance-settings/main.c:629
+#, c-format
+msgid ""
+"Warning: this icon theme has no cache file. You can create this by running "
+"<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
+msgstr ""
+
+#. If the theme is known to be incomplete (does not follow fd.org standards),
+#. mention this in the tooltip
+#: dialogs/appearance-settings/main.c:636
+msgid "Warning: this icon theme is incomplete. Some icons will be missing."
+msgstr ""
+
+#. These actually are no full themes by purpose
+#: dialogs/appearance-settings/main.c:641
+msgid ""
+"Warning: this icon theme is incomplete. It only provides a base set of icons"
+" from which other themes can inherit."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1248
+msgid "File is too large, installation aborted"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1253
+msgid "Failed to create temporary directory"
+msgstr "Keçici dizin yaratmaq alınmadı"
+
+#: dialogs/appearance-settings/main.c:1258
+msgid "Failed to extract archive"
+msgstr "Arxivdən çıxarış alınmadı"
+
+#: dialogs/appearance-settings/main.c:1263
+msgid "Unknown format, only archives and directories are supported"
+msgstr "Bilinməyən biçim, ancaq arxivlər, dizinlər dəstəklənir"
+
+#: dialogs/appearance-settings/main.c:1268
+msgid "Not a valid theme package"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1273
+#, c-format
+msgid "An unknown error, exit code is %d"
+msgstr "Bilinməyən yanlış, çıxış kodu %d"
+
+#: dialogs/appearance-settings/main.c:1280
+msgid "Failed to install theme"
+msgstr "Qonu qurulumu alınmadı"
+
+#: dialogs/appearance-settings/main.c:1334
+#, c-format
+msgid "Install %s theme"
+msgstr "%s qonusunu quraşdır"
+
+#. Create cancel button
+#: dialogs/appearance-settings/main.c:1336
+#: dialogs/color-settings/color-dialog.glade:529
+#: dialogs/color-settings/main.c:127
+#: dialogs/keyboard-settings/command-dialog.c:113
+#: dialogs/keyboard-settings/command-dialog.c:275
+#: dialogs/keyboard-settings/keyboard-dialog.glade:71
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:567
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+msgid "_Cancel"
+msgstr "_Dayandır"
+
+#: dialogs/appearance-settings/main.c:1337
+#: dialogs/keyboard-settings/command-dialog.c:276
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
+msgid "_Open"
+msgstr "_Aç"
+
+#: dialogs/appearance-settings/main.c:1601
+msgid "RGB"
+msgstr "QYG (RGB)"
+
+#: dialogs/appearance-settings/main.c:1605
+msgid "BGR"
+msgstr "BGR (GYQ)"
+
+#: dialogs/appearance-settings/main.c:1609
+msgid "Vertical RGB"
+msgstr "Dikək QYG"
+
+#: dialogs/appearance-settings/main.c:1613
+msgid "Vertical BGR"
+msgstr "Dikək GYQ"
+
+#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:5
+msgid "Customize the look of your desktop"
+msgstr "İş qoyağınızın görünüşünü özəlləşdirin"
+
+#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:6
+msgid ""
+"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
+"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
+"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
+msgstr "qonular;işlədən arayüzü; səpkilər;imgələr;yazı səpkiləri;yumuşaltma;ipuculama;alt-piksel;altpiksel;işləyiş;renderləmə;ClearType;DPI;RGB;QYG;BGR;GYQ;seçmə sürətləndiriciləri;düyməlik qısayolları;etkinliklər;səslər;pəncərə ölçəklənişi;HiDPI;Retina göstərəni;"
+
+#. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
+#: dialogs/color-settings/color-device.c:69
+msgid "Scanner"
+msgstr "Darayıcı"
+
+#. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
+#: dialogs/color-settings/color-device.c:72
+msgid "Camera"
+msgstr "Kamera"
+
+#. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
+#: dialogs/color-settings/color-device.c:75
+msgid "Printer"
+msgstr "Basğıçı"
+
+#. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
+#: dialogs/color-settings/color-device.c:78
+msgid "Webcam"
+msgstr "Tor kamerası"
+
+#. TRANSLATORS: This refers to the TFT display on a laptop
+#: dialogs/color-settings/color-device.c:96
+msgid "Laptop Screen"
+msgstr "Dizüstü Göstəricisi"
+
+#. TRANSLATORS: This refers to the embedded webcam on a laptop
+#: dialogs/color-settings/color-device.c:105
+msgid "Built-in Webcam"
+msgstr "İç Tor Kamerası"
+
+#: dialogs/color-settings/color-device.c:198
+#, c-format
+msgid "Enable color management for %s"
+msgstr "%s üçün tüs yönətimini aç"
+
+#: dialogs/color-settings/color-dialog.glade:46
+#: dialogs/color-settings/xfce4-color-settings.desktop.in:4
+msgid "Color Profiles"
+msgstr "Tüs Cizgiləri"
+
+#: dialogs/color-settings/color-dialog.glade:151
+msgid "<b>No devices found.</b>"
+msgstr "<b>Qurğu tapılmadı.</b>"
+
+#: dialogs/color-settings/color-dialog.glade:221
+msgid "Model:"
+msgstr "Model:"
+
+#: dialogs/color-settings/color-dialog.glade:233
+msgid "Colorspace:"
+msgstr "Tüs Aralığı:"
+
+#: dialogs/color-settings/color-dialog.glade:256
+msgid "Vendor:"
+msgstr "Ürətici:"
+
+#: dialogs/color-settings/color-dialog.glade:280
+msgid "Calibrate"
+msgstr "Kalibirlə"
+
+#: dialogs/color-settings/color-dialog.glade:337
+msgid "<b>No profiles for the selected device.</b>"
+msgstr "<b>Seçilmiş qurğu üçün cızıq yoxdur.</b>"
+
+#: dialogs/color-settings/color-dialog.glade:378
+msgid "Add a profile to the currently selected device"
+msgstr "İndi seçilmiş qurğu üçün cızıq artır"
+
+#: dialogs/color-settings/color-dialog.glade:390
+#: dialogs/keyboard-settings/keyboard-dialog.glade:666
+#: dialogs/keyboard-settings/keyboard-dialog.glade:1002
+msgid "_Remove"
+msgstr "_Sil"
+
+#: dialogs/color-settings/color-dialog.glade:394
+msgid "Delete the currently selected profile"
+msgstr "İndi seçilmiş cızığı sil"
+
+#: dialogs/color-settings/color-dialog.glade:409
+#: dialogs/color-settings/color-dialog.glade:617
+msgid "Show detailed information about the selected profile"
+msgstr "Seçilmiş cızıq ilə bağlı ayrıntılı bilgi göstər"
+
+#: dialogs/color-settings/color-dialog.glade:432
+msgid "Enable"
+msgstr "Aç"
+
+#: dialogs/color-settings/color-dialog.glade:436
+msgid "Enable the selected profile"
+msgstr "Seçilmiş cızığı aç"
+
+#: dialogs/color-settings/color-dialog.glade:511
+msgid "Add Profile to Device"
+msgstr "Qurğuya Cızıq Artır"
+
+#: dialogs/color-settings/color-dialog.glade:543
+#: dialogs/keyboard-settings/command-dialog.c:117
+#: dialogs/keyboard-settings/keyboard-dialog.glade:86
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:568
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
+msgid "_OK"
+msgstr "_Oldu"
+
+#: dialogs/color-settings/color-dialog.glade:602
+msgid "Import color profile files (*.icc)"
+msgstr "Tüs cızıq düzümlərini içəri al (*.icc)"
+
+#. TRANSLATORS: standard spaces are well known colorspaces like
+#. * sRGB, AdobeRGB and ProPhotoRGB
+#: dialogs/color-settings/color-profile.c:97
+msgid "Standard Space"
+msgstr "Standart Ara"
+
+#. TRANSLATORS: test profiles do things like changing the screen
+#. * a different color, or swap the red and green channels
+#: dialogs/color-settings/color-profile.c:103
+msgid "Test Profile"
+msgstr "Sınaq Cızığı"
+
+#. TRANSLATORS: automatic profiles are generated automatically
+#. * by the color management system based on manufacturing data,
+#. * for instance the default monitor profile is created from the
+#. * primaries specified in the monitor EDID
+#: dialogs/color-settings/color-profile.c:111
+msgctxt "Automatically generated profile"
+msgid "Automatic"
+msgstr "Özü edən"
+
+#. TRANSLATORS: the profile quality - low quality profiles take
+#. * much less time to generate but may be a poor reflection of the
+#. * device capability
+#: dialogs/color-settings/color-profile.c:121
+msgctxt "Profile quality"
+msgid "Low Quality"
+msgstr "Aşağı Nitəlik"
+
+#. TRANSLATORS: the profile quality
+#: dialogs/color-settings/color-profile.c:126
+msgctxt "Profile quality"
+msgid "Medium Quality"
+msgstr "Orta Nitəlik"
+
+#. TRANSLATORS: the profile quality - high quality profiles take
+#. * a *long* time, and have the best calibration and
+#. * characterisation data.
+#: dialogs/color-settings/color-profile.c:133
+msgctxt "Profile quality"
+msgid "High Quality"
+msgstr "Yüksək Nitəlik"
+
+#. TRANSLATORS: this default RGB space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: dialogs/color-settings/color-profile.c:150
+msgctxt "Colorspace fallback"
+msgid "Default RGB"
+msgstr "Varsayılan QYG (RQB)"
+
+#. TRANSLATORS: this default CMYK space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: dialogs/color-settings/color-profile.c:157
+msgctxt "Colorspace fallback"
+msgid "Default CMYK"
+msgstr "Varsayılan CMYK"
+
+#. TRANSLATORS: this default gray space is used for printers that
+#. * do not have additional printer profiles specified in the PPD
+#: dialogs/color-settings/color-profile.c:164
+msgctxt "Colorspace fallback"
+msgid "Default Gray"
+msgstr "Varsayılan Boz"
+
+#. TRANSLATORS: an ICC profile is a file containing colorspace data
+#: dialogs/color-settings/main.c:126
+msgid "Select ICC Profile File"
+msgstr "ICC Cızıq Düzümünü Seç"
+
+#: dialogs/color-settings/main.c:128
+msgid "_Import"
+msgstr "_İçəri al"
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: dialogs/color-settings/main.c:139
+msgid "Supported ICC profiles"
+msgstr "Dəstəklənən ICC cızıqları"
+
+#. TRANSLATORS: filter name on the file->open dialog
+#: dialogs/color-settings/main.c:146
+msgid "All files"
+msgstr "Bütün düzümlər"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile has been auto-generated for this hardware
+#: dialogs/color-settings/main.c:189
+msgid "Default: "
+msgstr "Varsayılan:"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile his a standard space like AdobeRGB
+#: dialogs/color-settings/main.c:196
+msgid "Colorspace: "
+msgstr "Tüs Aralığı:"
+
+#. TRANSLATORS: this is a profile prefix to signify the
+#. * profile is a test profile
+#: dialogs/color-settings/main.c:203
+msgid "Test profile: "
+msgstr "Sınaq cızığı:"
+
+#: dialogs/color-settings/main.c:238
+msgid "Compatible Profiles"
+msgstr "Uyumlu Cızıqlar"
+
+#: dialogs/color-settings/main.c:517
+#, c-format
+msgid "Add Color Profile to %s"
+msgstr ""
+
+#: dialogs/color-settings/main.c:517
+msgid "Device"
+msgstr "Qurğu"
+
+#: dialogs/color-settings/main.c:861 dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:863
+msgid "Unknown"
+msgstr "Bilinməyən"
+
+#: dialogs/color-settings/xfce4-color-settings.desktop.in:5
+msgid "Set color profiles"
+msgstr "Tüs cızıqlarını ayarla"
+
+#: dialogs/color-settings/xfce4-color-settings.desktop.in:6
+msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
+msgstr "tüs;rəng;ayarlar;yönətim;göstərən;monitorlar;basğıçılar;tor kameraları;darayıcılar;"
+
+#: dialogs/display-settings/confirmation-dialog.glade:13
+msgid "<b><big>Would you like to keep this configuration?</big></b>"
+msgstr ""
+
+#: dialogs/display-settings/confirmation-dialog.glade:15
+msgid ""
+"The previous configuration will be restored in <b>10 seconds</b> if you do "
+"not reply to this question."
+msgstr ""
+
+#: dialogs/display-settings/confirmation-dialog.glade:29
+msgid "Keep this configuration"
+msgstr "Quruluşu saxla"
+
+#: dialogs/display-settings/confirmation-dialog.glade:44
+msgid "Restore the previous configuration"
+msgstr "Öncəki quruluşu qaytar"
+
+#: dialogs/display-settings/display-dialog.glade:61
+msgid "Never"
+msgstr "Heç vaxt"
+
+#: dialogs/display-settings/display-dialog.glade:65
+msgid "When a display is connected"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:69
+msgid "When a display is disconnected"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:73
+msgid "Always"
+msgstr "Sürəkli"
+
+#: dialogs/display-settings/display-dialog.glade:87
+msgid "Do nothing"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:91
+msgid "Show dialog"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:95
+msgid "Mirror"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:99
+msgid "Extend"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:157
+msgid "The primary display can be configured to show:"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:171
+#: dialogs/display-settings/main.c:1739
+msgid "Xfce Panel"
+msgstr "Xfce Paneli"
+
+#: dialogs/display-settings/display-dialog.glade:184
+msgid "Desktop icons"
+msgstr "İş qoyağı imgələri"
+
+#: dialogs/display-settings/display-dialog.glade:197
+msgid "Notifications"
+msgstr "Bİldirişlər"
+
+#: dialogs/display-settings/display-dialog.glade:207
+#: dialogs/display-settings/display-dialog.glade:222
+#: dialogs/display-settings/display-dialog.glade:237
+msgid "Configure..."
+msgstr "Quruluşla..."
+
+#: dialogs/display-settings/display-dialog.glade:255
+#: dialogs/display-settings/xfce-display-settings.desktop.in:4
+msgid "Display"
+msgstr "Göstərən"
+
+#: dialogs/display-settings/display-dialog.glade:362
+msgid "_Mirror displays"
+msgstr "_Güzgü göstərənlər"
+
+#: dialogs/display-settings/display-dialog.glade:461
+msgid "Primary Display:"
+msgstr "Başlıca Göstərən:"
+
+#: dialogs/display-settings/display-dialog.glade:487
+msgid "R_esolution:"
+msgstr "Çö_zünürlük"
+
+#: dialogs/display-settings/display-dialog.glade:513
+msgid "Refresh _rate:"
+msgstr "Yeniləniş _tezliyi:"
+
+#: dialogs/display-settings/display-dialog.glade:539
+msgid "Ro_tation:"
+msgstr "Dö_nüş:"
+
+#: dialogs/display-settings/display-dialog.glade:563
+msgid "Ref_lection:"
+msgstr "_Yansıma:"
+
+#: dialogs/display-settings/display-dialog.glade:603
+msgid "A_pply"
+msgstr "_Uyğula"
+
+#: dialogs/display-settings/display-dialog.glade:631
+msgid "_Scale:"
+msgstr "_Ölçək:"
+
+#: dialogs/display-settings/display-dialog.glade:669
+msgid "_General"
+msgstr "_Başlıca"
+
+#: dialogs/display-settings/display-dialog.glade:689
+msgid "<b>Profiles</b>"
+msgstr "<b>Cızıqlar</b>"
+
+#: dialogs/display-settings/display-dialog.glade:705
+msgid "<b>Connecting Displays</b>"
+msgstr "<b>Göstərənlər Qoşulur</b>"
+
+#: dialogs/display-settings/display-dialog.glade:755
+msgid "Delete the currently selected display profile."
+msgstr "İndiki seçilmiş göstərən çızığını sil."
+
+#: dialogs/display-settings/display-dialog.glade:768
+msgid "Apply"
+msgstr "Uyğula"
+
+#: dialogs/display-settings/display-dialog.glade:772
+msgid "Apply the currently selected display profile."
+msgstr "İndi seçilmiş göstərən cızığını uyğula."
+
+#: dialogs/display-settings/display-dialog.glade:788
+msgid "Create a new display profile."
+msgstr "Yeni göstərən cızığı yaradın."
+
+#: dialogs/display-settings/display-dialog.glade:804
+msgid "Update an existing profile."
+msgstr "Var olan cızığı güncəlləyin."
+
+#: dialogs/display-settings/display-dialog.glade:837
+msgid "First try to automatically enable a profile:"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:869
+msgid "When a display is connected:"
+msgstr ""
+
+#: dialogs/display-settings/display-dialog.glade:882
+msgid "Show popup windows to identify displays"
+msgstr "Göstərənləri tanımlamaq üçün açılır pəncərələri göstər"
+
+#: dialogs/display-settings/display-dialog.glade:908
+msgid "<b>Identifying Displays</b>"
+msgstr "<b>Göstərən Tanımlanır</b>"
+
+#: dialogs/display-settings/display-dialog.glade:946
+#: dialogs/display-settings/minimal-display-dialog.glade:354
+msgid "_Advanced"
+msgstr "_Gəlişmiş"
+
+#: dialogs/display-settings/display-dialog.glade:998
+msgid "<b>Profile Name</b>"
+msgstr "<b>Çizilim Adı</b>"
+
+#: dialogs/display-settings/display-dialog.glade:1021
+msgid "Create"
+msgstr "Yarat"
+
+#: dialogs/display-settings/display-dialog.glade:1056
+msgid "A profile of this name already exists."
+msgstr "Bu cızıq adı artıq var."
+
+#: dialogs/display-settings/minimal-display-dialog.glade:16
+msgid "Extend right"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:19
+msgid "Extend left"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:22
+msgid "Extend up"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:25
+msgid "Extend down"
+msgstr ""
+
+#: dialogs/display-settings/minimal-display-dialog.glade:37
+msgid "Displays"
+msgstr "Göstərənlər"
+
+#: dialogs/display-settings/minimal-display-dialog.glade:92
+#: dialogs/display-settings/minimal-display-dialog.glade:93
+msgid "Only Display 1"
+msgstr "Ancaq Göstərən 1"
+
+#: dialogs/display-settings/minimal-display-dialog.glade:145
+#: dialogs/display-settings/minimal-display-dialog.glade:146
+msgid "Mirror Displays"
+msgstr "Yansıyan Göstərənlər"
+
+#: dialogs/display-settings/minimal-display-dialog.glade:201
+msgid "Extend to the right"
+msgstr "Sağa Genişlət"
+
+#: dialogs/display-settings/minimal-display-dialog.glade:262
+#: dialogs/display-settings/minimal-display-dialog.glade:263
+msgid "Only Display 2"
+msgstr "Ancaq Göstərən 2"
+
+#: dialogs/display-settings/profile-changed-dialog.glade:12
+msgid "Update Display Profile"
+msgstr "Göstərən Cızığını Güncəllə"
+
+#: dialogs/display-settings/profile-changed-dialog.glade:51
+msgid "_Update"
+msgstr "Gü_ncəllə"
+
+#: dialogs/display-settings/profile-changed-dialog.glade:109
+msgid ""
+"<big><b>You have made changes to your previously active profile</b></big>"
+msgstr "<big><b>Öncəki işlək cızığınızda dəyişimlər etmisiniz</b></big>"
+
+#: dialogs/display-settings/profile-changed-dialog.glade:124
+msgid ""
+"If you don't update the profile your changes will be lost upon restarting "
+"your session or disconnecting or connecting a display."
+msgstr "Cızığınızı güncəlləməsəz, oturumu yenidən başladınca ya ad göstərən bağlantısını kəsincə ya da qoşarkən dəyişimlər yox olacaq."
+
+#: dialogs/display-settings/main.c:58
+#, c-format
+msgid "Only %s (1)"
+msgstr ""
+
+#: dialogs/display-settings/main.c:59
+#, c-format
+msgid "Only %s (2)"
+msgstr ""
+
+#: dialogs/display-settings/main.c:87
+msgid "Left"
+msgstr "Sol"
+
+#: dialogs/display-settings/main.c:88
+msgid "Inverted"
+msgstr "Tərsinə"
+
+#: dialogs/display-settings/main.c:89
+msgid "Right"
+msgstr "Sağ"
+
+#: dialogs/display-settings/main.c:95
+msgid "Horizontal"
+msgstr "Yatay"
+
+#: dialogs/display-settings/main.c:96
+msgid "Vertical"
+msgstr "Dikək"
+
+#: dialogs/display-settings/main.c:97
+msgid "Horizontal and Vertical"
+msgstr "Yatay ilə Dikək"
+
+#: dialogs/display-settings/main.c:109
+msgid "Minimal interface to set up an external output"
+msgstr "Çöl çıxışı ayarlamaq üçün düşük arayüz"
+
+#: dialogs/display-settings/main.c:282
+#, c-format
+msgid ""
+"The previous configuration will be restored in <b>%i seconds</b> if you do "
+"not reply to this question."
+msgstr ""
+
+#. Insert the mode
+#: dialogs/display-settings/main.c:644
+#, c-format
+msgid "%.2f Hz"
+msgstr ""
+
+#: dialogs/display-settings/main.c:973
+msgid ""
+"The last active output must not be disabled, the system would be unusable."
+msgstr "Sonuncu işlək çıxış söndürülə bilməz, sistem işlənilməz olar."
+
+#: dialogs/display-settings/main.c:974
+msgid "Selected output not disabled"
+msgstr "Seçilmiş çıxış söndürülməyib"
+
+#: dialogs/display-settings/main.c:1322
+#, c-format
+msgid "Update changed display profile '%s'?"
+msgstr ""
+
+#: dialogs/display-settings/main.c:1327
+#, c-format
+msgid "_Update '%s'"
+msgstr ""
+
+#: dialogs/display-settings/main.c:1674
+#, c-format
+msgid "Do you want to delete the display profile '%s'?"
+msgstr ""
+
+#: dialogs/display-settings/main.c:1677
+msgid "Delete Profile"
+msgstr ""
+
+#: dialogs/display-settings/main.c:1678
+msgid "Once a display profile is deleted it cannot be restored."
+msgstr ""
+
+#: dialogs/display-settings/main.c:1678
+#: dialogs/mime-settings/xfce-mime-chooser.c:135
+#: dialogs/mime-settings/xfce-mime-chooser.c:380
+#: dialogs/mime-settings/xfce-mime-window.c:1184
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
+msgid "Cancel"
+msgstr "Dayandır"
+
+#: dialogs/display-settings/main.c:1679
+msgid "Delete"
+msgstr ""
+
+#: dialogs/display-settings/main.c:1765
+#, c-format
+msgid "%d Xfce Panel"
+msgid_plural "%d Xfce Panels"
+msgstr[0] ""
+msgstr[1] ""
+
+#: dialogs/display-settings/main.c:2550
+msgid ""
+"Select a monitor to change its properties; drag it to rearrange its "
+"placement."
+msgstr ""
+
+#: dialogs/display-settings/main.c:2649 dialogs/display-settings/main.c:2682
+#, c-format
+msgid "(%i, %i)"
+msgstr ""
+
+#. Translators:  this is the feature where what you see on your laptop's
+#. * screen is the same as your external monitor.  Here, "Mirror" is being
+#. * used as an adjective, not as a verb.  For example, the Spanish
+#. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
+#: dialogs/display-settings/main.c:2899
+msgid "Mirror Screens"
+msgstr ""
+
+#: dialogs/display-settings/main.c:2949
+msgid "(Disabled)"
+msgstr ""
+
+#: dialogs/display-settings/main.c:3484
+msgid "ATI Settings"
+msgstr ""
+
+#: dialogs/display-settings/main.c:3489
+msgid "Unable to start the Xfce Display Settings"
+msgstr ""
+
+#: dialogs/display-settings/main.c:3497
+msgid "Unable to launch the proprietary driver settings"
+msgstr ""
+
+#: dialogs/display-settings/xfce-display-settings.desktop.in:5
+msgid "Configure screen settings and layout"
+msgstr ""
+
+#: dialogs/display-settings/xfce-display-settings.desktop.in:6
+msgid ""
+"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
+msgstr ""
+
+#: dialogs/display-settings/display-settings.c:464
+msgid "Display:"
+msgstr "Göstərən:"
+
+#: dialogs/display-settings/display-settings.c:472
+msgid "Resolution:"
+msgstr "Çözünürlük:"
+
+#: dialogs/display-settings/display-settings-wayland.c:1008
+msgid ""
+"Your compositor does not seem to support the wlr-output-management protocol"
+msgstr ""
+
+#. Set dialog title and icon
+#: dialogs/keyboard-settings/command-dialog.c:109
+msgid "Shortcut Command"
+msgstr ""
+
+#: dialogs/keyboard-settings/command-dialog.c:139
+msgid "Enter the command you want to trigger with a shortcut."
+msgstr ""
+
+#. We are editing an existing shortcut
+#: dialogs/keyboard-settings/command-dialog.c:157
+msgid "Shortcut:"
+msgstr ""
+
+#: dialogs/keyboard-settings/command-dialog.c:182
+msgid "Comm_and:"
+msgstr "_Göstəriş"
+
+#: dialogs/keyboard-settings/command-dialog.c:207
+msgid "Use _startup notification"
+msgstr "_Başlanış bildirişini işlət"
+
+#: dialogs/keyboard-settings/command-dialog.c:253
+msgid "The command may not be empty."
+msgstr ""
+
+#: dialogs/keyboard-settings/command-dialog.c:273
+msgid "Select command"
+msgstr ""
+
+#: dialogs/keyboard-settings/command-dialog.c:281
+#: dialogs/mime-settings/xfce-mime-chooser.c:387
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:431
+msgid "All Files"
+msgstr "Bütün Düzümlər"
+
+#: dialogs/keyboard-settings/command-dialog.c:286
+#: dialogs/mime-settings/xfce-mime-chooser.c:392
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:436
+msgid "Executable Files"
+msgstr "Çalışdırılabilən Düzümlər"
+
+#: dialogs/keyboard-settings/command-dialog.c:301
+#: dialogs/mime-settings/xfce-mime-chooser.c:407
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:451
+msgid "Perl Scripts"
+msgstr "Perl Betikləri"
+
+#: dialogs/keyboard-settings/command-dialog.c:307
+#: dialogs/mime-settings/xfce-mime-chooser.c:413
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:457
+msgid "Python Scripts"
+msgstr "'Python' Betikləri"
+
+#: dialogs/keyboard-settings/command-dialog.c:313
+#: dialogs/mime-settings/xfce-mime-chooser.c:419
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:463
+msgid "Ruby Scripts"
+msgstr "'Ruby' Betikləri"
+
+#: dialogs/keyboard-settings/command-dialog.c:319
+#: dialogs/mime-settings/xfce-mime-chooser.c:425
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:469
+msgid "Shell Scripts"
+msgstr "Şell Betikləri"
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:53
+msgid "Keyboard layout selection"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:162
+#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
+msgid "Keyboard"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:252
+msgid "Restore num l_ock state on startup"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:267
+#: dialogs/mouse-settings/mouse-dialog.glade:726
+#: dialogs/mouse-settings/mouse-dialog.glade:953
+msgid "General"
+msgstr "Topluca"
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:301
+msgid "_Enable key repeat"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:305
+msgid ""
+"When selected, pressing and holding down a key emits the same character over"
+" and over again"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:333
+msgid "_Repeat delay:"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:347
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:363
+msgid "Repe_at speed:"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:377
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:405
+msgid "Typing Settings"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:438
+msgid "Show _blinking"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:442
+msgid "Specify whether or not the text cursor blinks"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:470
+msgid "Blink _delay:"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:484
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:512
+msgid "Cursor"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:534
+msgid "_Test area:"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:575
+msgid "Beha_vior"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:593
+msgid "Define shortcuts for la_unching applications:"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:651
+#: dialogs/keyboard-settings/keyboard-dialog.glade:986
+#: xfce4-settings-editor/xfce-settings-editor-box.c:377
+msgid "_Edit"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:692
+msgid "Reset to _Defaults"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:732
+msgid "A_pplication Shortcuts"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:762
+msgid "<b>Use system defaults</b>"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:817
+msgid "_Keyboard model"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:861
+msgid "Change la_yout option"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:899
+msgid "Co_mpose key"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:1043
+msgid "Move currently selected item up by one row"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:1063
+msgid "Move currently selected item down by one row"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:1096
+msgid "Key_board layout"
+msgstr ""
+
+#: dialogs/keyboard-settings/keyboard-dialog.glade:1123
+msgid "_Layout"
+msgstr ""
+
+#: dialogs/keyboard-settings/main.c:80
+msgid "Unable to initialize GTK+."
+msgstr "GTK+ hazırlanışı alınmır"
+
+#: dialogs/keyboard-settings/main.c:106
+#, c-format
+msgid "Failed to connect to xfconf daemon. Reason: %s"
+msgstr ""
+
+#: dialogs/keyboard-settings/main.c:117
+msgid "Could not create the settings dialog."
+msgstr ""
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:434
+msgid "Command"
+msgstr ""
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:442
+msgid "Shortcut"
+msgstr "Qısayol"
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
+msgid "Layout"
+msgstr ""
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:520
+msgid "Variant"
+msgstr ""
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1289
+msgid ""
+"This will reset all shortcuts to their default values. Do you really want to"
+" do this?"
+msgstr ""
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+msgid "Reset to Defaults"
+msgstr ""
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
+msgid "No"
+msgstr "Yox"
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
+msgid "Yes"
+msgstr "Hə"
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1373
+msgid "The system defaults will be restored next time you log in."
+msgstr ""
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1375
+msgid "Warning"
+msgstr "Uayrı"
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:5
+msgid "Edit keyboard settings and application shortcuts"
+msgstr ""
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
+msgid "numlock;keyboard;layout;shortcuts;"
+msgstr ""
+
+#: dialogs/mime-settings/main.c:115
+msgid "Could not create the mime dialog."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:129
+msgid "Select Application"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:137
+#: dialogs/mime-settings/xfce-mime-chooser.c:381
+msgid "Open"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:205
+msgid "Use a c_ustom command:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:206
+msgid ""
+"Use a custom command for an application that is not available from the above"
+" application list."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:224
+msgid "_Browse..."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:378
+msgid "Select an Application"
+msgstr "Uyğulamanı Seç"
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:527
+msgid "None available"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:575
+msgid "Recommended Applications"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:594
+msgid "Other Applications"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:614
+#, c-format
+msgid "Open <i>%s</i> and other files of type \"%s\" with:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:619
+#, c-format
+msgid ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
+"with:"
+msgid_plural ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
+" with:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: dialogs/mime-settings/xfce-mime-chooser.c:659
+#, c-format
+msgid "Failed to add new application \"%s\""
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:141
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:148
+msgid "Press left mouse button to change the selected application."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:147
+msgid "Application Chooser Button"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:334
+msgid "No application selected"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
+msgid "Failed to set default Web Browser"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
+msgid "Failed to set default Mail Reader"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
+msgid "Failed to set default File Manager"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+msgid "Failed to set default Terminal Emulator"
+msgstr ""
+
+#. allocate the chooser
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
+msgid "Select application"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
+msgid "Choose a custom Web Browser"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
+msgid "Choose a custom Mail Reader"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
+msgid "Choose a custom File Manager"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
+msgid "Choose a custom Terminal Emulator"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+msgid ""
+"Specify the application you want to use\n"
+"as default Web Browser for Xfce:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:541
+msgid ""
+"Specify the application you want to use\n"
+"as default Mail Reader for Xfce:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
+msgid ""
+"Specify the application you want to use\n"
+"as default File Manager for Xfce:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
+msgid ""
+"Specify the application you want to use\n"
+"as default Terminal Emulator for Xfce:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:607
+msgid "Browse the file system to choose a custom command."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:757
+msgid "_Other..."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:758
+msgid "Use a custom application which is not included in the above list."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:114
+msgid "Choose Preferred Application"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
+msgid ""
+"Please choose your preferred Web\n"
+"Browser now and click OK to proceed."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
+msgid ""
+"Please choose your preferred Mail Reader\n"
+"now and click OK to proceed."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
+msgid ""
+"Please choose your preferred File Manager\n"
+"now and click OK to proceed."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
+msgid ""
+"Please choose your preferred Terminal\n"
+"Emulator now and click OK to proceed."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:29
+msgid "Failed to execute default Web Browser"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:30
+msgid "Failed to execute default Mail Reader"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:31
+msgid "Failed to execute default File Manager"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:32
+msgid "Failed to execute default Terminal Emulator"
+msgstr ""
+
+#. Enable permanently dismissing this error.
+#: dialogs/mime-settings/xfce-mime-helper-main.c:74
+msgid "Do _not show this message again"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:105
+msgid "Print version information and exit"
+msgstr "Sürüm bilgisini yazdır, çıx"
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+msgid ""
+"Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
+" one of the following values."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
+msgid "TYPE [PARAMETER]"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
+msgid ""
+"Query the default helper of TYPE, where TYPE is one of the following values."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:137
+msgid ""
+"The following TYPEs are supported for the --launch and --query commands:\n"
+"\n"
+"  WebBrowser       - The preferred Web Browser.\n"
+"  MailReader       - The preferred Mail Reader.\n"
+"  FileManager      - The preferred File Manager.\n"
+"  TerminalEmulator - The preferred Terminal Emulator."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:176
+#: dialogs/mime-settings/xfce-mime-helper-main.c:251
+#, c-format
+msgid "Invalid helper type \"%s\""
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:235
+#, c-format
+msgid ""
+"%s (Xfce %s)\n"
+"\n"
+"Copyright (c) 2003-2006\n"
+"        os-cillation e.K. All rights reserved.\n"
+"\n"
+"Written by Benedikt Meurer <benny@xfce.org>.\n"
+"\n"
+"Built with Gtk+-%d.%d.%d, running Gtk+-%d.%d.%d.\n"
+"\n"
+"Please report bugs to <%s>.\n"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:263
+#, c-format
+msgid "No helper defined for \"%s\"."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper.c:433
+msgid "No command specified"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper.c:813
+#: dialogs/mime-settings/xfce-mime-helper.c:852
+#: dialogs/mime-settings/xfce-mime-helper.c:949
+#: dialogs/mime-settings/xfce-mime-helper.c:988
+#, c-format
+msgid "Failed to open %s for writing"
+msgstr "%s yazı üçün açılmadı"
+
+#: dialogs/mime-settings/xfce-mime-window.c:192
+#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:4
+msgid "Default Applications"
+msgstr ""
+
+#. Internet
+#: dialogs/mime-settings/xfce-mime-window.c:215
+msgid "_Internet"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:228
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+msgid "Web Browser"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:236
+msgid ""
+"The default Web Browser will be used to open hyperlinks and display help "
+"contents."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:254
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+msgid "Mail Reader"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:262
+msgid ""
+"The default Mail Reader will be used to compose emails when you click on "
+"email addresses."
+msgstr ""
+
+#. Utilities
+#: dialogs/mime-settings/xfce-mime-window.c:276
+msgid "_Utilities"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:289
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+msgid "File Manager"
+msgstr "Düzüm Yönəldəni"
+
+#: dialogs/mime-settings/xfce-mime-window.c:297
+msgid ""
+"The default File Manager will be used to browse the contents of folders."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:315
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+msgid "Terminal Emulator"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:323
+msgid ""
+"The default Terminal Emulator will be used to run commands that require a "
+"CLI environment."
+msgstr ""
+
+#. Mimes
+#: dialogs/mime-settings/xfce-mime-window.c:337
+msgid "_Others"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:347
+msgid "_Filter:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:355
+msgid "Clear filter"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:385
+msgid "Open with..."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:434
+msgid "MIME Type"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:462
+msgid "Status"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:482
+msgid "Default Application"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:658
+#: dialogs/mime-settings/xfce-mime-window.c:827
+msgid "User Set"
+msgstr ""
+
+#. sort the names but keep Default on top
+#: dialogs/mime-settings/xfce-mime-window.c:660
+#: dialogs/mime-settings/xfce-mime-window.c:827
+#: dialogs/mouse-settings/main.c:413 dialogs/mouse-settings/main.c:415
+#: dialogs/mouse-settings/main.c:478
+msgid "Default"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:750
+#, c-format
+msgid "%d MIME type found"
+msgid_plural "%d MIME types found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:872
+#, c-format
+msgid "Failed to set application \"%s\" for mime type \"%s\"."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:981
+#, c-format
+msgid "%d MIME type selected"
+msgid_plural "%d MIME types selected"
+msgstr[0] ""
+msgstr[1] ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:1177
+msgid ""
+"This will remove your custom mime-association and restore the system-wide "
+"default."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:1179
+#, c-format
+msgid "Are you sure you want to reset content type \"%s\" to its default value?"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:1183
+msgid "Question"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:1185
+#: dialogs/mime-settings/xfce-mime-window.c:1257
+msgid "Reset to Default"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:1252
+msgid "Choose Application..."
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:5
+msgid "Associate preferred applications with MIME types"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:6
+msgid ""
+"file;type;extension;association;open with;web browser;mail reader;file "
+"manager;terminal emulator;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
+msgid "Browse the file system"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
+msgid "Read your email"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
+msgid "Use the command line"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
+msgid "Browse the web"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/alacritty.desktop.in.in:6
+msgid "Alacritty"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/aterm.desktop.in.in:6
+msgid "aterm"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/balsa.desktop.in.in:6
+msgid "Balsa"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/brave.desktop.in.in:7
+msgid "Brave"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/caja.desktop.in.in:6
+msgid "Caja File Manager"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/chromium.desktop.in.in:7
+msgid "Chromium"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in:6
+msgid "Debian Sensible Browser"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in:6
+msgid "Debian X Terminal Emulator"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/dillo.desktop.in.in:6
+msgid "Dillo"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/encompass.desktop.in.in:6
+msgid "Encompass"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/epiphany.desktop.in.in:6
+msgid "Epiphany Web Browser"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/eterm.desktop.in.in:6
+msgid "Enlightened Terminal Emulator"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/evolution.desktop.in.in:6
+msgid "Evolution"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/firefox.desktop.in.in:6
+msgid "Mozilla Firefox"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/galeon.desktop.in.in:6
+msgid "Galeon Web Browser"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/geary.desktop.in.in:6
+msgid "Geary"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/google-chrome.desktop.in.in:7
+msgid "Google Chrome"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in:6
+msgid "GNOME Terminal"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/icecat.desktop.in.in:6
+msgid "Icecat"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/icedove.desktop.in.in:6
+msgid "Icedove"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/iceweasel.desktop.in.in:6
+msgid "Iceweasel"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/jumanji.desktop.in.in:6
+msgid "Jumanji"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/kitty.desktop.in.in:6
+msgid "kitty"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/kmail.desktop.in.in:6
+msgid "KMail"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/konqueror.desktop.in.in:6
+msgid "Konqueror Web Browser"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/links.desktop.in.in:6
+msgid "Links Text Browser"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/lynx.desktop.in.in:6
+msgid "Lynx Text Browser"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/midori.desktop.in.in:7
+msgid "Midori"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in:6
+msgid "Mozilla Browser"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in:6
+msgid "Mozilla Mail"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/mutt.desktop.in.in:6
+msgid "Mutt"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/nautilus.desktop.in.in:6
+msgid "Nautilus"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in:6
+msgid "Netscape Navigator"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/nxterm.desktop.in.in:6
+msgid "NXterm"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/opera-browser.desktop.in.in:6
+msgid "Opera Browser"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/pcmanfm.desktop.in.in:7
+msgid "PCMan File Manager"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in:6
+msgid "PCManFM-Qt File Manager"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/qterminal.desktop.in.in:6
+msgid "QTerminal"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/qtfm.desktop.in.in:6
+msgid "qtFM"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/qupzilla.desktop.in.in:6
+msgid "QupZilla"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/rodent.desktop.in.in:6
+msgid "Rodent File Manager"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/rox-filer.desktop.in.in:6
+msgid "ROX-Filer"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/sakura.desktop.in.in:6
+msgid "Sakura"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/surf.desktop.in.in:6
+msgid "Surf"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/sylpheed.desktop.in.in:6
+msgid "Sylpheed"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in:6
+msgid "Claws Mail"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/terminator.desktop.in.in:6
+msgid "Terminator"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/thunar.desktop.in.in:7
+msgid "Thunar"
+msgstr "Thunar"
+
+#: dialogs/mime-settings/helpers/thunderbird.desktop.in.in:6
+msgid "Mozilla Thunderbird"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/urxvt.desktop.in.in:6
+msgid "RXVT Unicode"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/vimprobable2.desktop.in.in:6
+msgid "Vimprobable2"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/w3m.desktop.in.in:6
+msgid "W3M Text Browser"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in:6
+msgid "Xfce Terminal"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/xfe.desktop.in.in:6
+msgid "Xfe File Manager"
+msgstr ""
+
+#: dialogs/mime-settings/helpers/xterm.desktop.in.in:6
+msgid "X Terminal"
+msgstr ""
+
+#: dialogs/mouse-settings/main.c:85
+msgid "Active device in the dialog"
+msgstr ""
+
+#: dialogs/mouse-settings/main.c:85
+msgid "DEVICE NAME"
+msgstr ""
+
+#. pixel value for some of the scales in the dialog
+#: dialogs/mouse-settings/main.c:167
+#, c-format
+msgid "%g px"
+msgstr ""
+
+#. miliseconds value for some of the scales in the dialog
+#: dialogs/mouse-settings/main.c:177
+#, c-format
+msgid "%g ms"
+msgstr ""
+
+#. seconds value for some of the scales in the dialog
+#: dialogs/mouse-settings/main.c:188
+#, c-format
+msgid "%.1f s"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:67
+msgid "Use bottom areas as left, middle or right buttons"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:71
+msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:92
+msgid "Disabled"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:96
+msgid "Edge scrolling"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:100
+msgid "Two-finger scrolling"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:104
+msgid "Circular scrolling"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:126
+msgid "Pen (absolute)"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:130
+msgid "Mouse (relative)"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:144
+msgid "None (right-handed)"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:148
+msgid "Half (left-handed)"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:152
+msgid "Clockwise"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:156
+msgid "Counterclockwise"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:162
+#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
+msgid "Mouse and Touchpad"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:237
+msgid "De_vice:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:314
+msgid "Le_ft-handed"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:331
+msgid "Ri_ght-handed"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:355
+msgid "Reverse scroll d_irection"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:359
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:372
+msgid "Allow high _resolution scrolling (experimental)"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:376
+msgid ""
+"Only supported on some mice (mostly Logitech) and requires driver support. "
+"On supported devices makes scrolling more precise."
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:395
+msgid "Buttons"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:428
+msgid "_Reset to Defaults"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:432
+msgid ""
+"Set the acceleration and sensitivity for the selected device to the default "
+"values"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:448
+msgid "Sensitivit_y:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:461
+msgid "Acceleratio_n:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:473
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:488
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:502
+msgid "Adaptive pointer acceleration"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:505
+msgid ""
+"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
+"current speed of the device into account when deciding on acceleration. "
+"Custom acceleration profile is not supported via xfce4-settings."
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:525
+msgid "Pointer Speed"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:544
+msgid "B_uttons and Feedback"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:578
+#: dialogs/mouse-settings/mouse-dialog.glade:595
+msgid "Disable touchpad _while typing"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:582
+#: dialogs/mouse-settings/mouse-dialog.glade:599
+msgid ""
+"When selected, the touchpad will be disabled when the keyboard is being used"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:624
+msgid "Duratio_n:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:659
+msgid "Tap touchpad to clic_k"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:682
+msgid "Click m_ethod:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:767
+msgid "Scrolling _mode:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:805
+msgid "Enable hori_zontal scrolling"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:827
+msgid "Scrolling"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:850
+msgid "T_ouchpad"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:888
+msgid "Trac_king mode:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:901
+msgid "_Rotation:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:976
+msgid "Tab_let"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:997
+msgid "_Devices"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1034
+msgid "Th_reshold:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1048
+msgid ""
+"The number of pixels the pointer must move before a drag operation will "
+"start"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1067
+msgid "Drag and Drop"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1103
+msgid "Ti_me:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1117
+msgid ""
+"Two mouse clicks in less than this length of time (in milliseconds) will be "
+"considered a double click"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1133
+msgid "D_istance:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1147
+msgid ""
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1166
+msgid "Double Click"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1188
+msgid "_Behavior"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1253
+msgid "Cursor si_ze:"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1287
+msgid "Size"
+msgstr ""
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1327
+msgid "Preview"
+msgstr "Önizləm"
+
+#: dialogs/mouse-settings/mouse-dialog.glade:1356
+msgid "_Theme"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
+msgid "Configure pointer device behavior and appearance"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:6
+msgid ""
+"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
+msgstr ""
+
+#: xfce4-settings-editor/main.c:182
+#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
+msgid "Settings Editor"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:277
+msgid "Channel"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:327
+msgid "Property"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:335
+msgid "Type"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:342
+msgid "Locked"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:349
+msgid "Value"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:369
+msgid "New property"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:382
+msgid "Edit selected property"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:390
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1076
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1578
+msgid "_Reset"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:395
+msgid "Reset selected property"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:501
+#: xfce4-settings-editor/xfce-settings-editor-box.c:594
+#: xfce4-settings-editor/xfce-settings-editor-box.c:712
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:83
+msgid "Empty"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:504
+msgid "Array"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:509
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:84
+msgid "String"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:517
+msgid "Integer"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:520
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:85
+msgid "Boolean"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:523
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:87
+msgid "Double"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:851
+msgid "Resetting a channel will permanently remove those custom settings."
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:859
+msgid "_Reset Channel"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:860
+#, c-format
+msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:935
+msgid "reset"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:992
+#, c-format
+msgid "Monitor %s"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
+msgid "Clear"
+msgstr "Təmizlə"
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
+msgid "Close"
+msgstr "Bağla"
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1033
+#, c-format
+msgid "start monitoring channel \"%s\""
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1082
+msgid "_Monitor"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1092
+msgid "Refresh"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1575
+msgid "Resetting a property will permanently remove those custom settings."
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1579
+#, c-format
+msgid "Are you sure you want to reset property \"%s\"?"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
+msgid "Int"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:88
+msgid "Unsigned Int"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:89
+msgid "Int64"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+msgid "Unsigned Int64"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:135
+msgid "New Property"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
+msgid "Save"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:153
+msgid "_Property:"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:167
+msgid "_Type:"
+msgstr ""
+
+#. strings
+#. integers
+#. bool
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:196
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:206
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:217
+msgid "_Value:"
+msgstr ""
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:372
+msgid "Property names must start with a '/' character"
+msgstr "Özəllik adları '/' simvolu ilə başlamalıdır"
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:383
+msgid "The root element ('/') is not a valid property name"
+msgstr "Kök ögənin ('/') keçərli özəllik adı yoxdur"
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:400
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Özəllik adları ancaq  A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' , '>' kimi ASCII simvollarını, eləcə də '/' ayırıcısını içərməlidir"
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:414
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "Özəl adlar iki ya da daha çox ardıcıl '/' simvolu ola bilməz"
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:428
+msgid "Property names cannot end with a '/' character"
+msgstr "Özəllik adları '/' simvolu ilə bitə bilməz"
+
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:641
+msgid "Edit Property"
+msgstr ""
+
+#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:4
+msgid "Graphical settings editor for Xfconf"
+msgstr ""
+
+#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:5
+msgid "registry;regedit;configuration file;"
+msgstr ""
+
+#: xfce4-settings-manager/main.c:40
+msgid "Settings dialog to show"
+msgstr ""
+
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:228
+msgid "All _Settings"
+msgstr ""
+
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:427
+msgid "Settings"
+msgstr ""
+
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:925
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:937
+#, c-format
+msgid "Unable to start \"%s\""
+msgstr ""
+
+#: xfce4-settings-manager/xfce-settings-manager.desktop.in:3
+msgid "Settings Manager"
+msgstr "Ayarları Yönəldən"
+
+#: xfce4-settings-manager/xfce-settings-manager.desktop.in:4
+msgid "Graphical Settings Manager for Xfce"
+msgstr ""
+
+#: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
+msgid "control;panel;center;system;settings;personalize;hardware;"
+msgstr ""
+
+#: xfsettingsd/accessibility.c:413
+msgid "Sticky keys are enabled"
+msgstr ""
+
+#: xfsettingsd/accessibility.c:415
+msgid "Sticky keys are disabled"
+msgstr ""
+
+#: xfsettingsd/accessibility.c:417
+msgid "Sticky keys"
+msgstr ""
+
+#: xfsettingsd/accessibility.c:422
+msgid "Slow keys are enabled"
+msgstr ""
+
+#: xfsettingsd/accessibility.c:424
+msgid "Slow keys are disabled"
+msgstr ""
+
+#: xfsettingsd/accessibility.c:426
+msgid "Slow keys"
+msgstr ""
+
+#: xfsettingsd/accessibility.c:431
+msgid "Bounce keys are enabled"
+msgstr ""
+
+#: xfsettingsd/accessibility.c:433
+msgid "Bounce keys are disabled"
+msgstr ""
+
+#: xfsettingsd/accessibility.c:435
+msgid "Bounce keys"
+msgstr ""
+
+#: xfsettingsd/keyboard-shortcuts.c:240
+#, c-format
+msgid "Failed to launch shortcut \"%s\""
+msgstr ""
+
+#: xfsettingsd/main.c:94
+msgid "Fork to the background"
+msgstr ""
+
+#: xfsettingsd/main.c:95
+msgid "Do not wait for a window manager on startup"
+msgstr "Açılışda pəncərə yönətmənini gözləmə"
+
+#: xfsettingsd/main.c:96
+msgid "Replace running xsettings daemon (if any)"
+msgstr ""
+
+#. value in xfconf isn't a string, so make a default one
+#: xfsettingsd/workspaces.c:322 xfsettingsd/workspaces.c:379
+#, c-format
+msgid "Workspace %d"
+msgstr ""
+
+#: xfsettingsd/xfsettingsd.desktop.in:4
+msgid "Xfce Settings Daemon"
+msgstr ""
+
+#: xfsettingsd/xfsettingsd.desktop.in:5
+msgid "The Xfce Settings Daemon"
+msgstr ""
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr ""
