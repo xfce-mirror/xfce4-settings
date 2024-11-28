@@ -12,7 +12,7 @@
 # Henrique P. Machado <zehrique@gmail.com>, 2008
 # Lucas Wilm <lucaswilm@gmail.com>, 2020-2021
 # Luis Borges <roninborges@gmail.com>, 2019
-# Michael Martins, 2018-2020,2022-2023
+# Michael Martins, 2018-2020,2022-2024
 # Rafael Fontenelle <rffontenelle@gmail.com>, 2014
 # Rafael Fontenelle <rffontenelle@gmail.com>, 2019,2024
 # secipolla <secipolla@gmail.com>, 2011
@@ -23,9 +23,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: The Cat, 2023-2024\n"
+"Last-Translator: Michael Martins, 2018-2020,2022-2024\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/xfce/xfce4-settings/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -598,7 +598,7 @@ msgstr "Falha ao mostrar as definições do Xfwm4"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
-msgstr ""
+msgstr "Aviso: este tema de ícones não possui arquivo de cache. Você pode criar isso executando <i>gtk-update-icon-cache -f -t %s/</i> em um terminal."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
@@ -908,7 +908,7 @@ msgstr "Perfis Compatíveis"
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "Adicionar perfil de cor a %s"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -1855,7 +1855,7 @@ msgid "_Internet"
 msgstr "_Internet"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Navegador web"
 
@@ -1866,7 +1866,7 @@ msgid ""
 msgstr "O navegador web padrão será usado para abrir hiperlinks e exibir conteúdos de ajuda."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Cliente de e-mail"
 
@@ -1882,7 +1882,7 @@ msgid "_Utilities"
 msgstr "_Utilitários"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Gerenciador de arquivos"
 
@@ -1892,7 +1892,7 @@ msgid ""
 msgstr "O gerenciador de arquivos padrão será usado para navegar pelo conteúdo das pastas."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Emulador de terminal"
 
@@ -1999,19 +1999,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "arquivo;tipo;extensão;associação;abrir com;navegador web;cliente de e-mail;gerenciador de arquivos;emulador de terminal;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "Navegar pelo sistema de arquivos"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "Ler seu e-mail"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "Usar a linha de comando"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "Navegar pela web"
 
@@ -2815,3 +2831,7 @@ msgstr "Daemon de configurações do Xfce"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "O daemon de configurações do Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr ""
