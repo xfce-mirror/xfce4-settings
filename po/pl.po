@@ -259,7 +259,7 @@ msgstr "Określa maksymalną prędkość ruchu kursora myszy po przyspieszeniu"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:978
 msgid "pixels/sec"
-msgstr "pikseli/s"
+msgstr "px/s"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:990
 msgid "Acceleration _profile:"
@@ -444,7 +444,7 @@ msgstr "_Domyślna"
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
-msgstr "Ta czcionka będzie używana jako domyślna czcionka o stałej szerokości znaków, np. w emulatorach terminala."
+msgstr "Określa domyślną czcionkę o stałej szerokości znaków używaną m.in. w emulatorach terminala"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:433
 msgid "Select a default monospace font"
@@ -591,7 +591,7 @@ msgstr "Nie udało się wyświetlić ustawień Xfwm4"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
-msgstr "Ostrzeżenie: ten styl ikon nie posiada pliku pamięci podręcznej. Można utworzyć go za pomocą polecenia <i>gtk-update-icon-cache -f -t %s/</i> w emulatorze terminala."
+msgstr "Ostrzeżenie: ten styl ikon nie ma pliku pamięci podręcznej. Można utworzyć go za pomocą polecenia <i>gtk-update-icon-cache -f -t %s/</i> w emulatorze terminala."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
@@ -604,7 +604,7 @@ msgstr "Ostrzeżenie: ten styl ikon jest niekompletny. Brakuje niektórych ikon.
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
-msgstr "Ostrzeżenie: ten styl ikon jest niekompletny. Zapewnia tylko podstawowy zestaw ikon, z którego mogą dziedziczyć inne style."
+msgstr "Ostrzeżenie: ten styl ikon jest niekompletny. Zapewnia tylko podstawowy zestaw ikon, z którego mogą dziedziczyć inne style."
 
 #: dialogs/appearance-settings/main.c:1248
 msgid "File is too large, installation aborted"
@@ -767,7 +767,7 @@ msgstr "Usuń aktualnie wybrany profil"
 #: dialogs/color-settings/color-dialog.glade:409
 #: dialogs/color-settings/color-dialog.glade:617
 msgid "Show detailed information about the selected profile"
-msgstr "Pokazuj szczegółowe informacje o wybranym profilu"
+msgstr "Pokazuj szczegółowe informacje o wybranym profilu"
 
 #: dialogs/color-settings/color-dialog.glade:432
 msgid "Enable"
@@ -1261,7 +1261,7 @@ msgstr[3] "%d paneli Xfce"
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
-msgstr "Proszę wybrać ekran, aby zmienić jego właściwości; przenieść, aby zmienić jego położenie."
+msgstr "Wybierz ekran, aby zmienić jego właściwości; przeciągnij go, aby zmienić jego położenie."
 
 #: dialogs/display-settings/main.c:2649 dialogs/display-settings/main.c:2682
 #, c-format
@@ -1321,7 +1321,7 @@ msgstr "Dodawanie skrótu"
 
 #: dialogs/keyboard-settings/command-dialog.c:139
 msgid "Enter the command you want to trigger with a shortcut."
-msgstr "Proszę wprowadzić polecenie wykonywane za pomocą skrótu."
+msgstr "Wprowadź polecenie wykonywane za pomocą skrótu."
 
 #. We are editing an existing shortcut
 #: dialogs/keyboard-settings/command-dialog.c:157
@@ -1423,7 +1423,7 @@ msgstr "P_rędkość:"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:377
 msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "Określa prędkość, z jaką będą wprowadzane znaki po wciśnięciu i przytrzymaniu klawisza"
+msgstr "Określa prędkość, z jaką będą wprowadzane znaki po wciśnięciu i przytrzymaniu klawisza"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:405
 msgid "Typing Settings"
@@ -1493,11 +1493,11 @@ msgstr "Klawisz _składania znaków"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:1043
 msgid "Move currently selected item up by one row"
-msgstr "Przemieszcza wybrany element o jeden wiersz w górę"
+msgstr "Przemieszcza wybrany element o jeden wiersz w górę"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:1063
 msgid "Move currently selected item down by one row"
-msgstr "Przemieszcza wybrany element o jeden wiersz w dół"
+msgstr "Przemieszcza wybrany element o jeden wiersz w dół"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:1096
 msgid "Key_board layout"
@@ -1779,7 +1779,7 @@ msgstr "Wypisuje informacje o wersji i kończy"
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
-msgstr "Uruchamia domyślny program określonego typu z opcjonalnymi parametrami"
+msgstr "Uruchamia domyślny program określonego typu z opcjonalnymi parametrami"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:106
 #: dialogs/mime-settings/xfce-mime-helper-main.c:107
@@ -1789,7 +1789,7 @@ msgstr "TYP [PARAMETR...]"
 #: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
-msgstr "Wysyła zapytanie do domyślnego pomocnika TYP, gdzie TYP jest jedną z poniższych wartości."
+msgstr "Wysyła zapytanie do domyślnego pomocnika TYP, gdzie TYP jest jedną z poniższych wartości."
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:137
 msgid ""
@@ -1799,7 +1799,7 @@ msgid ""
 "  MailReader       - The preferred Mail Reader.\n"
 "  FileManager      - The preferred File Manager.\n"
 "  TerminalEmulator - The preferred Terminal Emulator."
-msgstr "Następujące TYPY są obłsugiwane w poleceniach --launch oraz --query:\n\n  WebBrowser       – Preferowana przeglądarka internetowa.\n  MailReader       – Preferowany program pocztowy.\n  FileManager      – Preferowany menedżer plików.\n  TerminalEmulator – Preferowany emulator terminala."
+msgstr "Następujące TYPY są obłsugiwane w poleceniach --launch oraz --query:\n\n  WebBrowser       – Preferowana przeglądarka internetowa.\n  MailReader       – Preferowany program pocztowy.\n  FileManager      – Preferowany menedżer plików.\n  TerminalEmulator – Preferowany emulator terminala."
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:176
 #: dialogs/mime-settings/xfce-mime-helper-main.c:251
@@ -1858,7 +1858,7 @@ msgstr "Przeglądarka internetowa"
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
-msgstr "Domyślna przeglądarka internetowa będzie używana do otwierania hiperłączy i wyświetlania treści pomocy."
+msgstr "Domyślna przeglądarka internetowa będzie używana do otwierania hiperłączy i wyświetlania treści pomocy."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
@@ -2399,7 +2399,7 @@ msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
-msgstr "Przełącza między adaptacyjnym a płaskim profilem przyspieszenia. Adaptacyjny przy podejmowaniu decyzji o przyspieszeniu bierze pod uwagę aktualną prędkość urządzenia. Niestandardowy profil przyspieszenia nie jest obsługiwany przez xfce4-settings."
+msgstr "Przełącza między adaptacyjnym a płaskim profilem przyspieszenia. Adaptacyjny przy podejmowaniu decyzji o przyspieszeniu bierze pod uwagę aktualną prędkość urządzenia. Niestandardowy profil przyspieszenia nie jest obsługiwany przez xfce4-settings."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:525
 msgid "Pointer Speed"
