@@ -830,7 +830,7 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
                     switch (format)
                     {
                         case 8: allocated_data = (guchar *) g_new (guchar, array->len); break;
-#ifdef  __FreeBSD__
+#ifdef __FreeBSD__
                         case 16: allocated_data = (guchar *) g_new (u_short, array->len); break;
                         case 32: allocated_data = (guchar *) g_new (u_long, array->len); break;
 #else
