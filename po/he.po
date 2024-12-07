@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2020-2024\n"
 "Language-Team: Hebrew (http://app.transifex.com/xfce/xfce4-settings/language/he/)\n"
@@ -903,7 +903,7 @@ msgstr "פרופילים מתאימים"
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "הוסף פרופיל צבע ל %s"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -1850,7 +1850,7 @@ msgid "_Internet"
 msgstr "_אינטרנט"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "דפדפן רשת"
 
@@ -1861,7 +1861,7 @@ msgid ""
 msgstr "דפדפן הרשת ברירת המחדל ישמש לפתיחת היפרלינקים ולהצגת תכני עזרה."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "קורא דואר"
 
@@ -1877,7 +1877,7 @@ msgid "_Utilities"
 msgstr "_עזרים"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "מנהל קבצים"
 
@@ -1887,7 +1887,7 @@ msgid ""
 msgstr "מנהל הקבצים ברירת המחדל ישמש לדפדוף בתוכן של תיקיות."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "מדמה מסוף"
 
@@ -1994,19 +1994,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "file;type;extension;association;open with;web browser;mail reader;file manager;terminal emulator;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "סייר במערכת הקבצים"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr "email;mail;inbox;message;communication;"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "קרא את הדוא״ל שלך"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr "terminal;command line;shell;console;xfce;"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "השתמש בשורת הפקודה"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr "internet;web;browser;surf;explore;xfce;"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "סייר ברשת"
 
@@ -2810,3 +2826,7 @@ msgstr "Xfce Settings Daemon"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "תהליך רקע הגדרות של Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr "settings;daemon;xfce;configuration;preferences;system;manage;"
