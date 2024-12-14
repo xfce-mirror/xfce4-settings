@@ -826,8 +826,8 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
                     switch (format)
                     {
                         case 8: allocated_data = (guchar *) g_new (guchar, array->len); break;
-                        case 16: allocated_data = (guchar *) g_new (ushort, array->len); break;
-                        case 32: allocated_data = (guchar *) g_new (ulong, array->len); break;
+                        case 16: allocated_data = (guchar *) g_new (gushort, array->len); break;
+                        case 32: allocated_data = (guchar *) g_new (gulong, array->len); break;
                         default: allocated_data = NULL;
                     }
                     XFree (data.c);
