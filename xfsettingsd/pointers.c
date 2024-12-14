@@ -33,10 +33,6 @@
 #include <libinput-properties.h>
 #endif /* HAVE_LIBINPUT */
 
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-
 #include <locale.h>
 
 #define MAX_DENOMINATOR (100.00)
@@ -830,13 +826,8 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
                     switch (format)
                     {
                         case 8: allocated_data = (guchar *) g_new (guchar, array->len); break;
-#ifdef __FreeBSD__
-                        case 16: allocated_data = (guchar *) g_new (u_short, array->len); break;
-                        case 32: allocated_data = (guchar *) g_new (u_long, array->len); break;
-#else
-                        case 16: allocated_data = (guchar *) g_new (ushort, array->len); break;
-                        case 32: allocated_data = (guchar *) g_new (ulong, array->len); break;
-#endif
+                        case 16: allocated_data = (guchar *) g_new (gushort, array->len); break;
+                        case 32: allocated_data = (guchar *) g_new (gulong, array->len); break;
                         default: allocated_data = NULL;
                     }
                     XFree (data.c);
