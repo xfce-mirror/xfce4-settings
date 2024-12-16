@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: scootergrisen, 2016-2024\n"
 "Language-Team: Danish (http://app.transifex.com/xfce/xfce4-settings/language/da/)\n"
@@ -586,20 +586,20 @@ msgstr "Kunne ikke vise Xfwm4-indstillinger"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
-msgstr ""
+msgstr "Advarsel: ikontemaet har ingen mellemlagringsfil. Du kan oprette den ved at køre <i>gtk-update-icon-cache -f -t %s/</i> i en terminalemulator."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
 #: dialogs/appearance-settings/main.c:636
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
-msgstr ""
+msgstr "Advarsel: ikontemaet er ikke komplet. Nogle ikoner vil mangle."
 
 #. These actually are no full themes by purpose
 #: dialogs/appearance-settings/main.c:641
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
-msgstr ""
+msgstr "Advarsel: ikontemaet er ikke komplet. Det indeholder kun et grundlæggende sæt ikoner hvorfra andre temaer kan nedarve."
 
 #: dialogs/appearance-settings/main.c:1248
 msgid "File is too large, installation aborted"
@@ -896,7 +896,7 @@ msgstr "Kompatible profiler"
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "Tilføj farveprofil til %s"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -1247,8 +1247,8 @@ msgstr "Slet"
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Xfce-panel"
+msgstr[1] "%d Xfce-paneler"
 
 #: dialogs/display-settings/main.c:2550
 msgid ""
@@ -1841,7 +1841,7 @@ msgid "_Internet"
 msgstr "_Internet"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Webbrowser"
 
@@ -1852,7 +1852,7 @@ msgid ""
 msgstr "Standardwebbrowseren bruges til at åbne hyperlinks og vise hjælp-indhold."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Postlæser"
 
@@ -1868,7 +1868,7 @@ msgid "_Utilities"
 msgstr "_Redskaber"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Filhåndtering"
 
@@ -1878,7 +1878,7 @@ msgid ""
 msgstr "Standardfilhåndteringen bruges til at gennemse mappernes indhold."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Terminalemulator"
 
@@ -1983,19 +1983,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "fil;type;endelse;tilknytning;åbn med;webbrowser;postlæser;filhåndtering;terminalemulator;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "Gennemsøg filsystemet"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "Læs dine e-mail"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "Brug kommandolinjen"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "Gennemse webbet"
 
@@ -2799,3 +2815,7 @@ msgstr "Xfce-indstillingsdæmon"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "Xfce-indstillingsdæmonen"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr ""
