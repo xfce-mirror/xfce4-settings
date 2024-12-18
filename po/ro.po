@@ -5,16 +5,17 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2022
+# Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-03 00:47+0100\n"
+"POT-Creation-Date: 2023-05-30 00:50+0200\n"
 "PO-Revision-Date: 2022-12-22 11:33+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>, 2022\n"
-"Language-Team: Romanian (https://www.transifex.com/xfce/teams/16840/ro/)\n"
+"Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024\n"
+"Language-Team: Romanian (https://app.transifex.com/xfce/teams/16840/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -99,6 +100,8 @@ msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr ""
+"Când este activată, administratorul de sesiune va porni aplicațiile necesare"
+" pentru cititoarele de ecran și lupe."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "_Enable assistive technologies"
@@ -111,6 +114,8 @@ msgstr "Pornește cu Sesiune"
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Assistive technologies will be available the next time you login"
 msgstr ""
+"Facilitățile de accesibilitate vor fi disponibile data viitoare când vă "
+"autentificați"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "No AT-SPI provider was found on your system"
@@ -126,6 +131,9 @@ msgid ""
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr ""
+"Când este activată, tastele modificatoare (cum ar fi Control, Alt și Shift) "
+"nu trebuie să fie ținute apăsate (pot fi apăsate și apoi eliberate) atunci "
+"când, în mod normal, ar trebui apăsate mai multe taste în același timp."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Use sticky keys"
@@ -165,6 +173,9 @@ msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr ""
+"Pentru a preveni apăsarea accidentală a tastelor, tastele lente necesită ca "
+"o tastă să fie ținută apăsată pentru o anumită perioadă minimă de timp "
+"înainte ca apăsarea tastei să fie acceptată."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Use slow _keys"
@@ -191,6 +202,8 @@ msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr ""
+"Pentru a preveni apăsarea accidentală a mai multor taste, tastele „de "
+"respingere” impun o întârziere minimă între apăsările de taste."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "Use _bounce keys"
@@ -217,6 +230,8 @@ msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr ""
+"Când este activată, cursorul mauseului poate fi controlat cu ajutorul "
+"blocului numeric al tastaturii."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "_Use mouse emulation"
@@ -292,10 +307,12 @@ msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr ""
+"Asociați o comandă rapidă de la tastatură la xfce4-find-cursor pentru a "
+"obține un răspuns vizual al locației curente a cursorului mausului."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
 msgid "Show location of pointer on keypress"
-msgstr ""
+msgstr "Afișează locația cursorului de maus la apăsarea tastei"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "Find Cursor"
@@ -306,37 +323,37 @@ msgid "_Mouse"
 msgstr "_Maus"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/appearance-settings/main.c:104
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:49
 msgid "Settings manager socket"
 msgstr "Socket al managerului opțiunilor"
 
 #: ../dialogs/accessibility-settings/main.c:46
-#: ../dialogs/appearance-settings/main.c:105
+#: ../dialogs/appearance-settings/main.c:104
 #: ../dialogs/color-settings/main.c:48 ../dialogs/display-settings/main.c:140
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
-#: ../dialogs/mouse-settings/main.c:87 ../xfce4-settings-editor/main.c:49
+#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
 msgstr "ID SOCKET"
 
 #: ../dialogs/accessibility-settings/main.c:47
-#: ../dialogs/appearance-settings/main.c:106
+#: ../dialogs/appearance-settings/main.c:105
 #: ../dialogs/color-settings/main.c:49 ../dialogs/display-settings/main.c:141
 #: ../dialogs/keyboard-settings/main.c:41 ../dialogs/mime-settings/main.c:45
-#: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:50
+#: ../dialogs/mouse-settings/main.c:89 ../xfce4-settings-editor/main.c:50
 #: ../xfce4-settings-manager/main.c:43 ../xfsettingsd/main.c:102
 msgid "Version information"
 msgstr "Detalii despre versiune"
 
 #: ../dialogs/accessibility-settings/main.c:200
-#: ../dialogs/appearance-settings/main.c:1401
+#: ../dialogs/appearance-settings/main.c:1396
 #: ../dialogs/color-settings/main.c:1379
 #: ../dialogs/display-settings/main.c:4359
 #: ../dialogs/keyboard-settings/main.c:78 ../dialogs/mime-settings/main.c:83
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:158
-#: ../dialogs/mouse-settings/main.c:1892 ../xfce4-settings-editor/main.c:120
+#: ../dialogs/mouse-settings/main.c:1889 ../xfce4-settings-editor/main.c:120
 #: ../xfce4-settings-manager/main.c:64 ../xfsettingsd/main.c:242
 #: ../xfsettingsd/main.c:280
 #, c-format
@@ -344,21 +361,21 @@ msgid "Type '%s --help' for usage."
 msgstr "Încercați „%s --help” pentru detalii de utilizare."
 
 #: ../dialogs/accessibility-settings/main.c:219
-#: ../dialogs/appearance-settings/main.c:1420
+#: ../dialogs/appearance-settings/main.c:1415
 #: ../dialogs/color-settings/main.c:1396
 #: ../dialogs/display-settings/main.c:4378
 #: ../dialogs/keyboard-settings/main.c:94 ../dialogs/mime-settings/main.c:102
-#: ../dialogs/mouse-settings/main.c:1911 ../xfce4-settings-editor/main.c:139
+#: ../dialogs/mouse-settings/main.c:1908 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Echipa de dezvoltare Xfce. Toate drepturile sunt rezervate."
 
 #: ../dialogs/accessibility-settings/main.c:220
-#: ../dialogs/appearance-settings/main.c:1421
+#: ../dialogs/appearance-settings/main.c:1416
 #: ../dialogs/color-settings/main.c:1397
 #: ../dialogs/display-settings/main.c:4379
 #: ../dialogs/keyboard-settings/main.c:95 ../dialogs/mime-settings/main.c:103
-#: ../dialogs/mouse-settings/main.c:1912 ../xfce4-settings-editor/main.c:140
+#: ../dialogs/mouse-settings/main.c:1909 ../xfce4-settings-editor/main.c:140
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
@@ -375,7 +392,7 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1276
+#: ../dialogs/appearance-settings/main.c:1271
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
 msgid "None"
@@ -411,7 +428,7 @@ msgstr "Text lângă iconițe"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "1x (no scaling)"
-msgstr ""
+msgstr "1x (fără scalare)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 #: ../dialogs/display-settings/display-dialog.glade.h:4
@@ -461,14 +478,16 @@ msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr ""
+"Acest font va fi utilizat ca font mono-spațial implicit, de exemplu de "
+"emulatoarele de terminale."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Select a default monospace font"
-msgstr ""
+msgstr "Selectați un font mono-spațial implicit"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Default _Monospace Font"
-msgstr ""
+msgstr "Font monospațial implicit"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "_Enable anti-aliasing"
@@ -605,11 +624,11 @@ msgstr "Evenimente sonore"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
 msgid "Adjust the system-wide display scaling"
-msgstr ""
+msgstr "Reglați scalarea afișării la nivelul întregului sistem"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:50
 msgid "_Window Scaling"
-msgstr ""
+msgstr "Scalarea _ferestrelor"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:51
 msgid "Setti_ngs"
@@ -625,43 +644,43 @@ msgstr ""
 "Puteți să-l creați executând comanda <i>gtk-update-icon-cache %s/%s/</i> "
 "într-un terminal."
 
-#: ../dialogs/appearance-settings/main.c:973
+#: ../dialogs/appearance-settings/main.c:968
 #, c-format
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:978
+#: ../dialogs/appearance-settings/main.c:973
 msgid "Failed to create temporary directory"
 msgstr "Nu s-a putut crea directorul temporar"
 
-#: ../dialogs/appearance-settings/main.c:983
+#: ../dialogs/appearance-settings/main.c:978
 msgid "Failed to extract archive"
 msgstr "Nu s-a putut extrage arhiva"
 
-#: ../dialogs/appearance-settings/main.c:988
+#: ../dialogs/appearance-settings/main.c:983
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Format necunoscut, există suport doar pentru arhive și directoare"
 
-#: ../dialogs/appearance-settings/main.c:993
+#: ../dialogs/appearance-settings/main.c:988
 msgid "Not a valid theme package"
 msgstr ""
 
-#: ../dialogs/appearance-settings/main.c:998
+#: ../dialogs/appearance-settings/main.c:993
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Eroare necunoscută, codul de ieșire este %d"
 
-#: ../dialogs/appearance-settings/main.c:1005
+#: ../dialogs/appearance-settings/main.c:1000
 msgid "Failed to install theme"
 msgstr "Nu s-a putut instala tema"
 
-#: ../dialogs/appearance-settings/main.c:1059
+#: ../dialogs/appearance-settings/main.c:1054
 #, c-format
 msgid "Install %s theme"
 msgstr ""
 
 #. Create cancel button
-#: ../dialogs/appearance-settings/main.c:1063
+#: ../dialogs/appearance-settings/main.c:1058
 #: ../dialogs/color-settings/color-dialog.glade.h:18
 #: ../dialogs/color-settings/main.c:130
 #: ../dialogs/keyboard-settings/command-dialog.c:116
@@ -673,25 +692,25 @@ msgstr ""
 msgid "_Cancel"
 msgstr "_Renunță"
 
-#: ../dialogs/appearance-settings/main.c:1065
+#: ../dialogs/appearance-settings/main.c:1060
 #: ../dialogs/keyboard-settings/command-dialog.c:281
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:429
 msgid "_Open"
 msgstr "_Deschide"
 
-#: ../dialogs/appearance-settings/main.c:1280
+#: ../dialogs/appearance-settings/main.c:1275
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1284
+#: ../dialogs/appearance-settings/main.c:1279
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1288
+#: ../dialogs/appearance-settings/main.c:1283
 msgid "Vertical RGB"
 msgstr "RGB vertical"
 
-#: ../dialogs/appearance-settings/main.c:1292
+#: ../dialogs/appearance-settings/main.c:1287
 msgid "Vertical BGR"
 msgstr "BGR vertical"
 
@@ -734,12 +753,12 @@ msgstr "Ecran laptop"
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
 #: ../dialogs/color-settings/color-device.c:102
 msgid "Built-in Webcam"
-msgstr ""
+msgstr "Cameră web încorporată"
 
 #: ../dialogs/color-settings/color-device.c:195
 #, c-format
 msgid "Enable color management for %s"
-msgstr ""
+msgstr "Activează gestionarea culorilor pentru %s"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
@@ -748,7 +767,7 @@ msgstr "Profile de Culori"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:4
 msgid "<b>No devices found.</b>"
-msgstr ""
+msgstr "<b>Nu s-au găsit dispozitive.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:5
 msgid "Model:"
@@ -756,7 +775,7 @@ msgstr "Model:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:6
 msgid "Colorspace:"
-msgstr ""
+msgstr "Spațiu de culoare:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:7
 msgid "Vendor:"
@@ -768,11 +787,11 @@ msgstr "Calibrează"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:9
 msgid "<b>No profiles for the selected device.</b>"
-msgstr ""
+msgstr "<b>Nu există profiluri pentru dispozitivul selectat.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:11
 msgid "Add a profile to the currently selected device"
-msgstr ""
+msgstr "Adaugă un profil la dispozitivul selectat în prezent"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
@@ -781,23 +800,23 @@ msgstr "_Elimină"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:13
 msgid "Delete the currently selected profile"
-msgstr ""
+msgstr "Șterge profilul selectat"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:14
 msgid "Show detailed information about the selected profile"
-msgstr ""
+msgstr "Afișează informații detaliate despre profilul selectat"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:15
 msgid "Enable"
-msgstr ""
+msgstr "Activează"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:16
 msgid "Enable the selected profile"
-msgstr ""
+msgstr "Activează profilul selectat"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:17
 msgid "Add Profile to Device"
-msgstr ""
+msgstr "Adaugă profilul la dispozitiv"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:19
 #: ../dialogs/keyboard-settings/command-dialog.c:120
@@ -809,19 +828,19 @@ msgstr "_OK"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:20
 msgid "Import color profile files (*.icc)"
-msgstr ""
+msgstr "Importați fișiere de profil de culoare (*.icc)"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
 #: ../dialogs/color-settings/color-profile.c:94
 msgid "Standard Space"
-msgstr ""
+msgstr "Spațiu standard"
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
 #: ../dialogs/color-settings/color-profile.c:99
 msgid "Test Profile"
-msgstr ""
+msgstr "Profil de test"
 
 #. TRANSLATORS: automatic profiles are generated automatically
 #. * by the color management system based on manufacturing data,
@@ -838,13 +857,13 @@ msgstr "Automată"
 #: ../dialogs/color-settings/color-profile.c:115
 msgctxt "Profile quality"
 msgid "Low Quality"
-msgstr ""
+msgstr "Calitate redusă"
 
 #. TRANSLATORS: the profile quality
 #: ../dialogs/color-settings/color-profile.c:119
 msgctxt "Profile quality"
 msgid "Medium Quality"
-msgstr ""
+msgstr "Calitate medie"
 
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
@@ -852,42 +871,42 @@ msgstr ""
 #: ../dialogs/color-settings/color-profile.c:125
 msgctxt "Profile quality"
 msgid "High Quality"
-msgstr ""
+msgstr "Calitate înaltă"
 
 #. TRANSLATORS: this default RGB space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:140
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
-msgstr ""
+msgstr "RGB implicit"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
-msgstr ""
+msgstr "CMYK implicit"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:152
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
-msgstr ""
+msgstr "Gri implicit"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
 #: ../dialogs/color-settings/main.c:128
 msgid "Select ICC Profile File"
-msgstr ""
+msgstr "Selectați fișierul de profil ICC"
 
 #: ../dialogs/color-settings/main.c:131
 msgid "_Import"
-msgstr ""
+msgstr "_Import"
 
 #. TRANSLATORS: filter name on the file->open dialog
 #: ../dialogs/color-settings/main.c:142
 msgid "Supported ICC profiles"
-msgstr ""
+msgstr "Profilele ICC acceptate"
 
 #. TRANSLATORS: filter name on the file->open dialog
 #: ../dialogs/color-settings/main.c:149
@@ -898,23 +917,23 @@ msgstr "Toate fișierele"
 #. * profile has been auto-generated for this hardware
 #: ../dialogs/color-settings/main.c:191
 msgid "Default: "
-msgstr ""
+msgstr "Implicit: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
 #: ../dialogs/color-settings/main.c:197
 msgid "Colorspace: "
-msgstr ""
+msgstr "Spațiu de culoare: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
 #: ../dialogs/color-settings/main.c:203
 msgid "Test profile: "
-msgstr ""
+msgstr "Profil de test: "
 
 #: ../dialogs/color-settings/main.c:238
 msgid "Compatible Profiles"
-msgstr ""
+msgstr "Profiluri compatibile"
 
 #: ../dialogs/color-settings/main.c:825 ../dialogs/color-settings/main.c:826
 #: ../dialogs/color-settings/main.c:827
@@ -923,7 +942,7 @@ msgstr "Nu se cunoaște"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
 msgid "Set color profiles"
-msgstr ""
+msgstr "Configurați profilurile de culoare"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
@@ -981,19 +1000,19 @@ msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "The primary display is currently configured to show:"
-msgstr ""
+msgstr "Ecranul principal este configurat în prezent pentru a afișa:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Xfce Panel"
-msgstr ""
+msgstr "Panou Xfce"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Desktop icons"
-msgstr ""
+msgstr "Pictograme birou"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "Notifications"
-msgstr ""
+msgstr "Notificări"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "Configure..."
@@ -1054,11 +1073,11 @@ msgstr "<b>Profile</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:30
 msgid "<b>Connecting Displays</b>"
-msgstr ""
+msgstr "<b>Conectarea ecranelor</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:31
 msgid "Delete the currently selected display profile."
-msgstr ""
+msgstr "Șterge profilul de afișare selectat în prezent."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:32
 msgid "Apply"
@@ -1066,19 +1085,20 @@ msgstr "Aplică"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:33
 msgid "Apply the currently selected display profile."
-msgstr ""
+msgstr "Aplică profilul de afișare selectat în prezent."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:34
 msgid "Create a new display profile."
-msgstr ""
+msgstr "Creați un nou profil de afișare."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:35
 msgid "Update an existing profile."
-msgstr ""
+msgstr "Actualizați un profil existent."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:36
 msgid "Automatically enable profiles when new display is connected"
 msgstr ""
+"Activarea automată a profilurilor atunci când este conectat un nou ecran"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:37
 msgid "When new displays are connected:"
@@ -1086,11 +1106,11 @@ msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:38
 msgid "Show popup windows to identify displays"
-msgstr ""
+msgstr "Afișează ferestre emergente pentru a identifica ecranele"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:39
 msgid "<b>Identifying Displays</b>"
-msgstr ""
+msgstr "<b>Identificarea ecranelor</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:40
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
@@ -1099,7 +1119,7 @@ msgstr "_Avansat"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:41
 msgid "<b>Profile Name</b>"
-msgstr ""
+msgstr "<b>Numele profilului</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:42
 msgid "Create"
@@ -1107,7 +1127,7 @@ msgstr "Crează"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:43
 msgid "A profile of this name already exists."
-msgstr ""
+msgstr "Un profil cu acest nume există deja."
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
@@ -1135,22 +1155,25 @@ msgstr "buton radio"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
 msgid "Update Display Profile"
-msgstr ""
+msgstr "Actualizează profilul de afișare"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
 msgid "_Update"
-msgstr ""
+msgstr "Act_ualizare"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:4
 msgid ""
 "<big><b>You have made changes to your previously active profile</b></big>"
 msgstr ""
+"<big><b>Ați făcut modificări în profilul dvs. activ anterior</b></big>"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
 msgstr ""
+"Dacă nu actualizați profilul, modificările vor fi pierdute la repornirea "
+"sesiunii sau la deconectarea sau conectarea unui ecran."
 
 #: ../dialogs/display-settings/main.c:108
 msgid "Left"
@@ -1214,22 +1237,22 @@ msgstr "Ieșirea selectată nu poate fi dezactivată"
 
 #: ../dialogs/display-settings/main.c:1645
 msgid "Profiles matching the currently connected displays"
-msgstr ""
+msgstr "Profiluri care corespund ecranelor conectate în prezent"
 
 #: ../dialogs/display-settings/main.c:1851
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr ""
+msgstr "Actualizarea a schimbat profilul de afișare „%s”?"
 
 #: ../dialogs/display-settings/main.c:1856
 #, c-format
 msgid "_Update '%s'"
-msgstr ""
+msgstr "Act_ualizează „%s”"
 
 #: ../dialogs/display-settings/main.c:2144
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr ""
+msgstr "Doriți să ștergeți profilul de afișare „%s”?"
 
 #: ../dialogs/display-settings/main.c:2146
 msgid "Delete Profile"
@@ -1238,6 +1261,7 @@ msgstr "Ștergere Profil"
 #: ../dialogs/display-settings/main.c:2149
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr ""
+"Odată ce un profil de afișare este șters, acesta nu mai poate fi restaurat."
 
 #: ../dialogs/display-settings/main.c:2150
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -1254,7 +1278,7 @@ msgstr "Șterge"
 #: ../dialogs/display-settings/main.c:2256
 #, c-format
 msgid "%d Xfce Panels"
-msgstr ""
+msgstr "%d panouri Xfce"
 
 #: ../dialogs/display-settings/main.c:3293
 msgid ""
@@ -1285,12 +1309,12 @@ msgstr "(Dezactivat)"
 #: ../dialogs/display-settings/main.c:4196
 #, c-format
 msgid "Only %s (1)"
-msgstr ""
+msgstr "Doar %s (1)"
 
 #: ../dialogs/display-settings/main.c:4207
 #, c-format
 msgid "Only %s (2)"
-msgstr ""
+msgstr "Doar %s (2)"
 
 #: ../dialogs/display-settings/main.c:4392
 #: ../dialogs/display-settings/main.c:4429
@@ -1578,7 +1602,7 @@ msgstr ""
 
 #: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
-msgstr ""
+msgstr "Nu s-a putut crea fereastra de dialog mime."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
@@ -1966,8 +1990,8 @@ msgstr "Personalizată"
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:650
 #: ../dialogs/mime-settings/xfce-mime-window.c:812
-#: ../dialogs/mouse-settings/main.c:401 ../dialogs/mouse-settings/main.c:403
-#: ../dialogs/mouse-settings/main.c:466
+#: ../dialogs/mouse-settings/main.c:398 ../dialogs/mouse-settings/main.c:400
+#: ../dialogs/mouse-settings/main.c:463
 msgid "Default"
 msgstr "Implicită"
 
@@ -2257,28 +2281,28 @@ msgstr "Managerul de fișiere Xfe"
 msgid "X Terminal"
 msgstr "Terminalul Xterm"
 
-#: ../dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:87
 msgid "Active device in the dialog"
 msgstr "Dispozitiv activ în fereastră"
 
-#: ../dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:87
 msgid "DEVICE NAME"
 msgstr "NUMELE DISPOZITIVULUI"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:146
+#: ../dialogs/mouse-settings/main.c:145
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:156
+#: ../dialogs/mouse-settings/main.c:155
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:167
+#: ../dialogs/mouse-settings/main.c:166
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
