@@ -392,6 +392,8 @@ msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr ""
+"asistență;tehnologii;taste;lipicios;respingere;emulare;cititoare de "
+"ecran;lupe;a11y;i18n;l10n;AT-SPI;ATK;deficiență;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1119
@@ -660,7 +662,7 @@ msgstr "Nu s-a putut instala tema"
 #: ../dialogs/appearance-settings/main.c:975
 #, c-format
 msgid "Install %s theme"
-msgstr ""
+msgstr "Instalează tema %s"
 
 #. Create cancel button
 #: ../dialogs/appearance-settings/main.c:979
@@ -707,6 +709,10 @@ msgid ""
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 msgstr ""
+"teme;interfață utilizator;stiluri;pictograme;fonturi;anti-"
+"alias;hinting;subpixel;subpixel;redare "
+"fonturi;ClearType;DPI;RGB;BGR;acceleratoare de meniu;comenzi rapide de la "
+"tastatură;eveniment;sunete;scalare fereastră;HiDPI;afișare Retina;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
@@ -930,6 +936,8 @@ msgstr "Configurați profilurile de culoare"
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr ""
+"culoare;opțiuni;configurări;administrare;gestionare;afișare;ecrane;monitoare;imprimante;camere"
+" web;scanere;"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "Confirmation"
@@ -957,11 +965,11 @@ msgstr ""
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "1.5x"
-msgstr ""
+msgstr "1.5x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "Custom:"
-msgstr ""
+msgstr "Personalizat:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "The primary display is currently configured to show:"
@@ -1018,7 +1026,7 @@ msgstr "A_plică"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "_Scale:"
-msgstr ""
+msgstr "_Scalare:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "X:"
@@ -1304,6 +1312,8 @@ msgstr "Configurați opțiunile pentru ecrane și monitoare"
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr ""
+"afișare;configurări;opțiuni;ecran;rezoluție;rată de "
+"reîmprospătare;rotație;extern;proiectoare;monitoare;LCD;CRT;HiDPI;"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
@@ -1470,7 +1480,7 @@ msgstr "_Scurtături pentru programe"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
-msgstr ""
+msgstr "<b>Utilizați valorile implicite ale sistemului</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
@@ -1565,7 +1575,7 @@ msgstr "Editați opțiunile de tastatură și combinațiile de taste"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
 msgid "numlock;keyboard;layout;shortcuts;"
-msgstr ""
+msgstr "blocare numere;numlock;tastatură;aranjament;comenzi rapide;"
 
 #: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
@@ -1771,7 +1781,7 @@ msgstr "Nu s-a putut porni emulatorul de terminal implicit"
 #. Enable permanently dismissing this error.
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:86
 msgid "Do _not show this message again"
-msgstr ""
+msgstr "_Nu mai arăta acest mesaj"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:116
 msgid "Print version information and exit"
@@ -1882,6 +1892,8 @@ msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr ""
+"Navigatorul web implicit va fi utilizat pentru a deschide hiperlegături și a"
+" afișa conținutul de ajutor."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:256
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1893,6 +1905,8 @@ msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr ""
+"Clientul de poștă electronică implicit va fi utilizat pentru a compune "
+"mesaje atunci când faceți clic pe adresele de poștă electronică."
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:283
@@ -1908,6 +1922,8 @@ msgstr "Manager de fișiere"
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr ""
+"Gestionarul de fișiere implicit va fi utilizat pentru a răsfoi conținutul "
+"dosarelor."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:327
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
@@ -1919,6 +1935,8 @@ msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr ""
+"Emulatorul de terminal implicit va fi utilizat pentru a executa comenzi care"
+" necesită un mediu CLI."
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:354
@@ -2004,13 +2022,15 @@ msgstr "Selectați un program…"
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
-msgstr ""
+msgstr "Asociază aplicațiile preferate cu tipurile MIME"
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
 msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
 msgstr ""
+"fișier;tip;extensie;asociere;deschis cu;navigator web;cititor de poștă "
+"electronică;gestionar de fișiere;emulator de terminal;"
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -2166,7 +2186,7 @@ msgstr "Managerul de fișiere PCMan"
 
 #: ../dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in.h:1
 msgid "PCManFM-Qt File Manager"
-msgstr ""
+msgstr "Gestionarul de fișiere PCManFM-Qt"
 
 #: ../dialogs/mime-settings/helpers/qterminal.desktop.in.in.h:1
 msgid "QTerminal"
@@ -2500,6 +2520,8 @@ msgstr "Configurați aspectul și comportamentul indicatorului de tip cursor"
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr ""
+"configurări;opțiuni;butoane;derulare;direcție;cursor;indicator;viteză;dublu "
+"clic;temă;rotiță;"
 
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
@@ -2714,7 +2736,7 @@ msgstr "Editor grafic al opțiunilor Xfconf"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
 msgid "registry;regedit;configuration file;"
-msgstr ""
+msgstr "registru;regedit;fișier de configurare;"
 
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
@@ -2740,11 +2762,12 @@ msgstr "Manager de opțiuni"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Graphical Settings Manager for Xfce"
-msgstr ""
+msgstr "Gestionar de opțiuni grafice pentru Xfce 4"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr ""
+"control;panou;centru;sistem;configurări;opțiuni;personalizare;hardware;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
@@ -2807,7 +2830,7 @@ msgstr "Spațiul de lucru %d"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
 msgid "Xfce Settings Daemon"
-msgstr ""
+msgstr "Demon de opțiuni Xfce"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:2
 msgid "The Xfce Settings Daemon"
