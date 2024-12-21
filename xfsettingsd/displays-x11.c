@@ -618,7 +618,7 @@ screen_on_event (gpointer data)
     else
     {
         gint action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT);
-        if (action != ACTION_ON_NEW_OUTPUT_DO_NOTHING)
+        if (action != ACTION_ON_NEW_OUTPUT_DO_NOTHING || old_outputs->len == 0)
         {
             gboolean changed = FALSE;
 
