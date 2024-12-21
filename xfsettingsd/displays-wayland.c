@@ -518,12 +518,16 @@ manager_listener (XfceWlrOutputManager *manager,
             xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_NEW_OUTPUT, output->name);
             output->new = FALSE;
 
+            if (helper->previous_n_outputs == 0)
+            {
+                output->enabled = TRUE;
+            }
             /* do nothing or dialog */
-            if (action <= ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
+            else if (action <= ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
             {
                 output->enabled = FALSE;
             }
-            if (action == ACTION_ON_NEW_OUTPUT_MIRROR)
+            else if (action == ACTION_ON_NEW_OUTPUT_MIRROR)
             {
                 output->enabled = TRUE;
                 output->x = 0;
