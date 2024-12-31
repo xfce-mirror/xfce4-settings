@@ -362,6 +362,7 @@ manager_head (void *data,
     output->wl_head = head;
     output->new = TRUE;
     output->scale = wl_fixed_from_double (1.0);
+    output->manager = manager;
     g_ptr_array_add (manager->outputs, output);
     zwlr_output_head_v1_add_listener (head, &head_listener, output);
     if (manager->initialized)
