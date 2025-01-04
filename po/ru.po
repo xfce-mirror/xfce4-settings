@@ -17,14 +17,15 @@
 # ivmazurenko <ivmazurenko@yandex.ru>, 2020
 # ndvio, 2022
 # Sergey Alyoshin <alyoshin.s@gmail.com>, 2013-2016,2018,2020-2021
+# vladiruzz, 2025
 # Темак, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Andrei Stepanov, 2022-2024\n"
+"Last-Translator: vladiruzz, 2025\n"
 "Language-Team: Russian (http://app.transifex.com/xfce/xfce4-settings/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -597,7 +598,7 @@ msgstr "Не удалось отобразить Настройки Xfwm4"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
-msgstr ""
+msgstr "Внимание: эта тема значков не имеет кэш-файла. Вы можете создать его, выполнив в терминале: <i>gtk-update-icon-cache -f -t %s/</i>."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
@@ -907,7 +908,7 @@ msgstr "Совместимые профили"
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "Добавить цветовой профиль к %s"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -1856,7 +1857,7 @@ msgid "_Internet"
 msgstr "_Интернет"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Браузер"
 
@@ -1867,7 +1868,7 @@ msgid ""
 msgstr "Для открытия гиперссылок и просмотра справки будет использован веб-браузер по умолчанию."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Почтовик"
 
@@ -1883,7 +1884,7 @@ msgid "_Utilities"
 msgstr "_Утилиты"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Проводник"
 
@@ -1893,7 +1894,7 @@ msgid ""
 msgstr "Для просмотра содержимого каталогов будет использован файловый менеджер по умолчанию."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Терминал"
 
@@ -2002,19 +2003,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "файл;тип;расширение;ассоциация;связать;открыть с;веб-браузер;почта;почтовая программа;файловый менеджер;терминал;эмулятор терминала;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr "файл;менеджер;проводник;обзор;файловая система;каталог;папка;xfce"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "Просмотреть файловую систему"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr "электронная почта;почта;входящая почта;сообщение;коммуникация;"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "Читать электронную почту"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr "терминал;командная строка;оболочка;консоль;xfce;"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "Использовать командную строку"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr "интернет;веб;браузер;просматривать;исследовать;xfce;"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "Обозревать сеть"
 
@@ -2818,3 +2835,7 @@ msgstr "Служба диспетчера настроек Xfce"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "Служба диспетчера настроек Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr "настройки;демон;xfce;конфигурация;предпочтения;система;управление;"
