@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Dušan Kazik <prescott66@gmail.com>, 2015-2021
-# Slavko <linux@slavino.sk>, 2015,2018
+# Slavko <linux@slavino.sk>, 2015,2018,2025
 # 7dcd6f74323fe8d9c477949ff8fcbb1c_c427b63 <3fcd202e3dfab15fda15b8e88e54d449_7173>, 2011-2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>, 2015-2021\n"
+"Last-Translator: Slavko <linux@slavino.sk>, 2015,2018,2025\n"
 "Language-Team: Slovak (http://app.transifex.com/xfce/xfce4-settings/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -349,7 +349,7 @@ msgstr "Zlepšite prístupnosť klávesnice a myši"
 msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-msgstr ""
+msgstr "assistive;technologies;keys;sticky;bounce;emulation;screen readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
 #: dialogs/appearance-settings/main.c:1597 dialogs/display-settings/main.c:86
@@ -410,7 +410,7 @@ msgstr "_Pridať"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:238
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
-msgstr ""
+msgstr "Nastaviť zodpovedajúcu <a href=\"xfwm4-settings:\">tému Xfwm4</a>, ak existuje"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:272
 msgid "St_yle"
@@ -528,14 +528,14 @@ msgstr "Ak vyberiete, môžete zmeniť klávesové skratky položiek ponuky prej
 
 #: dialogs/appearance-settings/appearance-dialog.glade:784
 msgid "Enable header bars in dialo_gs"
-msgstr ""
+msgstr "Zapnúť záhlavie dialó_gov"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:788
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
-msgstr ""
+msgstr "Udáva, či dialógy GTK môžu umiestniť prvka, napr. tlačidlá, v záhlaví dialógu. Zapína aj Dekorácie na strane klienta. Ovplyvňuje len novo otvorené dialógy."
 
 #: dialogs/appearance-settings/appearance-dialog.glade:807
 msgid "Menus and Buttons"
@@ -577,7 +577,7 @@ msgstr "_Nastavenia"
 
 #: dialogs/appearance-settings/main.c:335
 msgid "Failed to display Xfwm4 Settings"
-msgstr ""
+msgstr "Nepodarilo sa zobraziť Nastavenia Xfwm4"
 
 #. If the theme has no cache, mention this in the tooltip
 #: dialogs/appearance-settings/main.c:629
@@ -585,24 +585,24 @@ msgstr ""
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
-msgstr ""
+msgstr "Upozornenie: táto téma ikon nemá súbor vyrovnávacej pamäte. Môžete ho vytvoriť spustením <i>gtk-update-icon-cache -f -t %s/</i> v okne emulátora terminálu."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
 #: dialogs/appearance-settings/main.c:636
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
-msgstr ""
+msgstr "Upozornenie: táto téma ikon nie je kompletná. Niektoré ikonu budú chýbať."
 
 #. These actually are no full themes by purpose
 #: dialogs/appearance-settings/main.c:641
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
-msgstr ""
+msgstr "Upozornenie: táto téma ikon nie je kompletná. Poskytuje len základnú sadu ikon, z ktorých môžu dediť iné témy."
 
 #: dialogs/appearance-settings/main.c:1248
 msgid "File is too large, installation aborted"
-msgstr ""
+msgstr "Súbor je príliš veľký, inštalácia zrušená"
 
 #: dialogs/appearance-settings/main.c:1253
 msgid "Failed to create temporary directory"
@@ -618,7 +618,7 @@ msgstr "Neznámy formát, podporované sú len archívy a priečinky"
 
 #: dialogs/appearance-settings/main.c:1268
 msgid "Not a valid theme package"
-msgstr ""
+msgstr "Nie je platný balík témy"
 
 #: dialogs/appearance-settings/main.c:1273
 #, c-format
@@ -678,7 +678,7 @@ msgid ""
 "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr ""
+msgstr "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: dialogs/color-settings/color-device.c:69
@@ -895,7 +895,7 @@ msgstr "Kompatibilné profily"
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "Pridať farebný profil zariadeniu %s"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -938,11 +938,11 @@ msgstr "Nikdy"
 
 #: dialogs/display-settings/display-dialog.glade:65
 msgid "When a display is connected"
-msgstr ""
+msgstr "Keď je displej pripojený"
 
 #: dialogs/display-settings/display-dialog.glade:69
 msgid "When a display is disconnected"
-msgstr ""
+msgstr "Keď je displej odipojený"
 
 #: dialogs/display-settings/display-dialog.glade:73
 msgid "Always"
@@ -954,19 +954,19 @@ msgstr "Neurobiť nič"
 
 #: dialogs/display-settings/display-dialog.glade:91
 msgid "Show dialog"
-msgstr ""
+msgstr "Zobraziť dialóg"
 
 #: dialogs/display-settings/display-dialog.glade:95
 msgid "Mirror"
-msgstr ""
+msgstr "Zrkadliť"
 
 #: dialogs/display-settings/display-dialog.glade:99
 msgid "Extend"
-msgstr ""
+msgstr "Rozšíriť"
 
 #: dialogs/display-settings/display-dialog.glade:157
 msgid "The primary display can be configured to show:"
-msgstr ""
+msgstr "Primárny displej možno nastaviť na zobrazenie:"
 
 #: dialogs/display-settings/display-dialog.glade:171
 #: dialogs/display-settings/main.c:1739
@@ -1058,11 +1058,11 @@ msgstr "Aktualizovať existujúci profil."
 
 #: dialogs/display-settings/display-dialog.glade:837
 msgid "First try to automatically enable a profile:"
-msgstr ""
+msgstr "Najprv skúsiť automaticky zapnúť profil:"
 
 #: dialogs/display-settings/display-dialog.glade:869
 msgid "When a display is connected:"
-msgstr ""
+msgstr "Keď je displej pripojený:"
 
 #: dialogs/display-settings/display-dialog.glade:882
 msgid "Show popup windows to identify displays"
@@ -1091,19 +1091,19 @@ msgstr "Profil s týmto názvom už existuje."
 
 #: dialogs/display-settings/minimal-display-dialog.glade:16
 msgid "Extend right"
-msgstr ""
+msgstr "Rozšíriť vpravo"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:19
 msgid "Extend left"
-msgstr ""
+msgstr "Rozšíriť vľavo"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:22
 msgid "Extend up"
-msgstr ""
+msgstr "Rozšíriť hore"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:25
 msgid "Extend down"
-msgstr ""
+msgstr "Rozšíriť dole"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
@@ -1196,7 +1196,7 @@ msgstr "Ak neodpoviete na túto otázku, predošlé nastavenie bude obnovené o 
 #: dialogs/display-settings/main.c:644
 #, c-format
 msgid "%.2f Hz"
-msgstr ""
+msgstr "%.2f Hz"
 
 #: dialogs/display-settings/main.c:973
 msgid ""
@@ -1246,10 +1246,10 @@ msgstr "Odstrániť"
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d panel Xfce"
+msgstr[1] "%d panely Xfce"
+msgstr[2] "%d panelov Xfce"
+msgstr[3] "%d panela Xfce"
 
 #: dialogs/display-settings/main.c:2550
 msgid ""
@@ -1306,7 +1306,7 @@ msgstr "Rozlíšenie:"
 #: dialogs/display-settings/display-settings-wayland.c:1008
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
-msgstr ""
+msgstr "Zdá sa, že Váš kompozitor nepodporuje protokol wlr-output-management"
 
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:109
@@ -1620,10 +1620,10 @@ msgid ""
 msgid_plural ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
 " with:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Otvoriť <i>%s</i>, iný súbor typu „%s” a  iný %d zvolený typ MIME pomocou:"
+msgstr[1] "Otvoriť <i>%s</i>, iné súbory typu „%s” a  iné %dzvolené typy MIME pomocou:"
+msgstr[2] "Otvoriť <i>%s</i>, iné súbory typu „%s” a %d iné zvolené typy MIME pomocou:"
+msgstr[3] "Otvoriť <i>%s</i>, iné súbory typu „%s” a %d iné zvolené typy MIME pomocou:"
 
 #: dialogs/mime-settings/xfce-mime-chooser.c:659
 #, c-format
@@ -1844,7 +1844,7 @@ msgid "_Internet"
 msgstr "_Internet"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Internetový prehliadač"
 
@@ -1855,7 +1855,7 @@ msgid ""
 msgstr "Predvolený webový prehliadač bude použitý na otváranie hyperodkazov a zobrazovanie obsahu pomocníka."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "E-mailový klient"
 
@@ -1871,7 +1871,7 @@ msgid "_Utilities"
 msgstr "_Nástroje"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Správca súborov"
 
@@ -1881,7 +1881,7 @@ msgid ""
 msgstr "Predvolený správca súborov bude použitý na prehliadanie obsahu priečinkov."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Emulátor terminálu"
 
@@ -1951,10 +1951,10 @@ msgstr "Nastavenie aplikácie \"%s\" pre typ súboru \"%s\" zlyhalo."
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Zvolený %d typ MIME"
+msgstr[1] "Zvolené %d typy MIME"
+msgstr[2] "Zvolených %d typov MIME"
+msgstr[3] "Zvolený %d typu MIME"
 
 #: dialogs/mime-settings/xfce-mime-window.c:1177
 msgid ""
@@ -1990,25 +1990,41 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "súbor;typ;prípona;priradenie;otvoriť s;otvoriť pomocou;webový;prehliadač;čítač;pošty;správca;súborov;emulátor;terminálu;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "Prehliadať systém súborov"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr "email;mail;inbox;message;communication;"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "Prečítať poštu"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr "terminal;command line;shell;console;xfce;"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "Použiť príkazový riadok"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr "internet;web;browser;surf;explore;xfce;"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "Prehliadať internet"
 
 #: dialogs/mime-settings/helpers/alacritty.desktop.in.in:6
 msgid "Alacritty"
-msgstr ""
+msgstr "Alacritty"
 
 #: dialogs/mime-settings/helpers/aterm.desktop.in.in:6
 msgid "aterm"
@@ -2096,7 +2112,7 @@ msgstr "Jumanji"
 
 #: dialogs/mime-settings/helpers/kitty.desktop.in.in:6
 msgid "kitty"
-msgstr ""
+msgstr "kitty"
 
 #: dialogs/mime-settings/helpers/kmail.desktop.in.in:6
 msgid "KMail"
@@ -2254,11 +2270,11 @@ msgstr "%.1f s"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:67
 msgid "Use bottom areas as left, middle or right buttons"
-msgstr ""
+msgstr "Použiť spodný priestor ako ľavé, pravé alebo stredné tlačidlo"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:71
 msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
-msgstr ""
+msgstr "Kliknúť 1, 2 alebo 3 prstami ako ľavý, pravý alebo stredný klik"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:92
 msgid "Disabled"
@@ -2327,13 +2343,13 @@ msgstr "Ak je táto voľba povolená, bude koliesko myši pracovať opačne"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:372
 msgid "Allow high _resolution scrolling (experimental)"
-msgstr ""
+msgstr "Povoliť posun s vysokým _rozlíšením (experimentálne)"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:376
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
-msgstr ""
+msgstr "Podporované len niektorými myšami (väčšinou Logitech) a vyžaduje podporu ovládačom. Na podporovaných zariadeniach robí posun oveľa presnejší."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:395
 msgid "Buttons"
@@ -2370,14 +2386,14 @@ msgstr "Počet pixelov, o ktoré sa musí kurzor v krátkom časovom úseku posu
 
 #: dialogs/mouse-settings/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
-msgstr ""
+msgstr "Adaptívne zrýchľovanie ukazovateľa"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:505
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
-msgstr ""
+msgstr "Prepína medzi adaptívnym a rovnakým profilom zrýchľovania. Adaptívny berie pri určení zrýchlenia do úvahy aktuálnu rýchlosť zariadenia. Vlastný profil zrýchlenia nie je v xfce4-settings podporovaný."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:525
 msgid "Pointer Speed"
@@ -2408,7 +2424,7 @@ msgstr "Poklep_anie na touchpad ako klik myšou"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:682
 msgid "Click m_ethod:"
-msgstr ""
+msgstr "_Metóda kliknutia:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:767
 msgid "Scrolling _mode:"
@@ -2806,3 +2822,7 @@ msgstr "Démon nastavení prostredia Xfce"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "Démon nastavenia Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr "settings;daemon;xfce;configuration;preferences;system;manage;"
