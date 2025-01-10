@@ -460,7 +460,7 @@ xfce_display_settings_x11_get_output (XfceDisplaySettings *settings,
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
     XfceOutput *output = g_new0 (XfceOutput, 1);
     const XfceRRMode *xfrr_modes, *xfrr_mode, *preferred;
-    gint n_modes;
+    gint n_modes = 0;
 
     output->id = output_id;
     output->friendly_name = randr->friendly_name[output_id];
