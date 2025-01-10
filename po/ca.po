@@ -5,7 +5,7 @@
 # Translators:
 # Adrián Laviós <registres@lavios.cat>, 2013
 # Adrián Laviós <registres@lavios.cat>, 2013
-# Davidmp <medipas@gmail.com>, 2015
+# Davidmp <medipas@gmail.com>, 2015,2025
 # Oscar Perez <oscarpc@gmail.com>, 2023
 # Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2016-2021
 # Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2016
@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Oscar Perez <oscarpc@gmail.com>, 2023\n"
+"Last-Translator: Davidmp <medipas@gmail.com>, 2015,2025\n"
 "Language-Team: Catalan (http://app.transifex.com/xfce/xfce4-settings/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -588,20 +588,20 @@ msgstr "Error en mostrar els ajustaments de Xfwm4"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
-msgstr ""
+msgstr "Avís: aquest tema d'icona no té cap fitxer de memòria cau. Podeu crear-lo executant <i>gtk-update-icon-cache -f -t %s/</i> en un emulador de terminal."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
 #: dialogs/appearance-settings/main.c:636
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
-msgstr ""
+msgstr "Avís: aquest tema d'icones està incomplet. N'hi faltaran algunes."
 
 #. These actually are no full themes by purpose
 #: dialogs/appearance-settings/main.c:641
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
-msgstr ""
+msgstr "Avís: aquest tema d'icones està incomplet. Només proporciona un conjunt base d'icones que poden heretar altres temes."
 
 #: dialogs/appearance-settings/main.c:1248
 msgid "File is too large, installation aborted"
@@ -898,7 +898,7 @@ msgstr "Perfils compatibles"
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "Afegeix un perfil de color a %s"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -941,11 +941,11 @@ msgstr "Mai"
 
 #: dialogs/display-settings/display-dialog.glade:65
 msgid "When a display is connected"
-msgstr ""
+msgstr "Quan es connecta una pantalla"
 
 #: dialogs/display-settings/display-dialog.glade:69
 msgid "When a display is disconnected"
-msgstr ""
+msgstr "Quan es desconnecta una pantalla"
 
 #: dialogs/display-settings/display-dialog.glade:73
 msgid "Always"
@@ -969,7 +969,7 @@ msgstr "Estén"
 
 #: dialogs/display-settings/display-dialog.glade:157
 msgid "The primary display can be configured to show:"
-msgstr ""
+msgstr "La pantalla principal es pot configurar per mostrar:"
 
 #: dialogs/display-settings/display-dialog.glade:171
 #: dialogs/display-settings/main.c:1739
@@ -1061,11 +1061,11 @@ msgstr "Actualitza un perfil existent."
 
 #: dialogs/display-settings/display-dialog.glade:837
 msgid "First try to automatically enable a profile:"
-msgstr ""
+msgstr "Primer intenteu activar automàticament un perfil:"
 
 #: dialogs/display-settings/display-dialog.glade:869
 msgid "When a display is connected:"
-msgstr ""
+msgstr "Quan es connecti una pantalla:"
 
 #: dialogs/display-settings/display-dialog.glade:882
 msgid "Show popup windows to identify displays"
@@ -1094,19 +1094,19 @@ msgstr "Ja existeix un perfil amb aquest nom."
 
 #: dialogs/display-settings/minimal-display-dialog.glade:16
 msgid "Extend right"
-msgstr ""
+msgstr "Expandeix cap a la dreta"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:19
 msgid "Extend left"
-msgstr ""
+msgstr "Expandeix cap a l'esquerra"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:22
 msgid "Extend up"
-msgstr ""
+msgstr "Expandeix amunt"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:25
 msgid "Extend down"
-msgstr ""
+msgstr "Expandeix avall"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
@@ -1249,8 +1249,8 @@ msgstr "Suprimeix"
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d tauler de l'Xfce"
+msgstr[1] "%d taulers de l'Xfce"
 
 #: dialogs/display-settings/main.c:2550
 msgid ""
@@ -1843,7 +1843,7 @@ msgid "_Internet"
 msgstr "_Internet"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Navegador web"
 
@@ -1854,7 +1854,7 @@ msgid ""
 msgstr "El navegador web predeterminat que s'utilitzarà per obrir els hiperenllaços i per visualitzar el contingut de l'ajuda."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Client de correu"
 
@@ -1870,7 +1870,7 @@ msgid "_Utilities"
 msgstr "_Utilitats"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Gestor de fitxers"
 
@@ -1880,7 +1880,7 @@ msgid ""
 msgstr "El gestor de fitxers predeterminat que s'utilitzarà per visualitzar el contingut de les carpetes."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Emulador de terminal"
 
@@ -1985,19 +1985,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "fitxer;tipus;extensió;associació;obre amb;navegador web;lector de correu;gestor de fitxers;emulador de terminal;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr "fitxer;administrador;explorador;explora;sistema de fitxers;directori;carpeta;xfce;"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "Navegueu pel sistema de fitxers"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr "correu electrònic; correu; safata d'entrada; missatge; comunicació;"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "Llegiu el vostre correu electrònic"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr "terminal;línia d'ordres;shell;consola;xfce;"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "Utilitzeu la línia d'ordres"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr "internet;web;navegador;navegar;explorar;xfce;"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "Navegueu pel web"
 
@@ -2801,3 +2817,7 @@ msgstr "Dimoni del gestor d'ajusts de Xfce"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "El dimoni gestor d'ajustaments de Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr "ajusts;dimoni;xfce;configuració;preferències;sistema;gestió;"
