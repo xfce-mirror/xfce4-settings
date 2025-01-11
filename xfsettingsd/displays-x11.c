@@ -30,6 +30,7 @@
 #include "common/xfce-randr.h"
 
 #include <X11/extensions/Xrandr.h>
+#include <X11/extensions/dpms.h>
 #include <gdk/gdkx.h>
 #include <libxfce4ui/libxfce4ui.h>
 
@@ -533,10 +534,33 @@ screen_on_event (gpointer data)
     XfceDisplaysHelperX11 *helper = XFCE_DISPLAYS_HELPER_X11 (data);
     XfconfChannel *channel = xfce_displays_helper_get_channel (XFCE_DISPLAYS_HELPER (helper));
     GPtrArray *old_outputs;
+    CARD16 dpms_mode;
+    BOOL dpms_enabled;
+
+    if (!DPMSInfo (gdk_x11_get_default_xdisplay (), &dpms_mode, &dpms_enabled))
+    {
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Cannot get DPMSInfo: handling RRScreenChangeNotify event");
+    }
+    else if (!dpms_enabled)
+    {
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "DPMS disabled: handling RRScreenChangeNotify event");
+    }
+    else if (dpms_mode == DPMSModeOn)
+    {
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "DPMS enabled but DPMSModeOn: handling RRScreenChangeNotify event");
+    }
+    else
+    {
+        GSource *source = g_main_context_find_source_by_id (NULL, helper->screen_on_event_id);
+        if (g_source_get_name (source) == NULL)
+        {
+            g_source_set_name (source, "xfsettingsd-RRScreenChangeNotify");
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "DPMS enabled and DPMSModeOff: delaying RRScreenChangeNotify event");
+        }
+        return TRUE;
+    }
 
     helper->screen_on_event_id = 0;
-
-    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "RRScreenChangeNotify event received.");
 
     old_outputs = g_ptr_array_ref (helper->outputs);
     xfce_displays_helper_x11_reload (helper);
