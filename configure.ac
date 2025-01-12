@@ -21,6 +21,7 @@ m4_define([libxfce4ui_min_version], [4.19.5])
 m4_define([xfconf_min_version], [4.13.0])
 
 m4_define([libx11_min_version], [1.6.7])
+m4_define([libxext_min_version], [1.0.0])
 m4_define([fontconfig_min_version], [2.6.0])
 m4_define([xi_min_version], [1.2.0])
 m4_define([inputproto_min_version], [1.4.0])
@@ -134,6 +135,7 @@ XDT_CHECK_OPTIONAL_FEATURE([X11],
                            [x11],
                            [
                              XDT_FEATURE_DEPENDENCY([LIBX11], [x11], [libx11_min_version])
+                             XDT_FEATURE_DEPENDENCY([LIBXEXT], [xext], [libxext_min_version])
                              XDT_FEATURE_DEPENDENCY([GDK_X11], [gdk-x11-3.0], [gtk_min_version])
                              XDT_FEATURE_DEPENDENCY([GTK_X11], [gtk+-x11-3.0], [gtk_min_version])
                              XDT_FEATURE_DEPENDENCY([LIBXFCE4KBD_PRIVATE], [libxfce4kbd-private-3], [libxfce4ui_min_version])
