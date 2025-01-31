@@ -1,5 +1,6 @@
 SUBDIRS = \
-	appearance-settings
+	appearance-settings \
+	mime-settings
 
 if ENABLE_X11
 SUBDIRS += \
@@ -11,11 +12,6 @@ endif
 if ENABLE_DISPLAY_SETTINGS
 SUBDIRS += \
 	display-settings
-endif
-
-if HAVE_GIO_UNIX
-SUBDIRS += \
-	mime-settings
 endif
 
 if HAVE_COLORD

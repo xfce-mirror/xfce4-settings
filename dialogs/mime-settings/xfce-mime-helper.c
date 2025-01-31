@@ -23,9 +23,7 @@
 #include "xfce-mime-helper-utils.h"
 #include "xfce-mime-helper.h"
 
-#ifdef HAVE_GIO_UNIX
 #include <gio/gdesktopappinfo.h>
-#endif
 
 #ifdef ENABLE_X11
 #include <gdk/gdkx.h>
@@ -864,9 +862,7 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
       mimetypes = xfce_rc_read_list_entry (desktop_file, "X-XFCE-MimeType", ";");
       if (mimetypes != NULL)
         {
-#ifdef HAVE_GIO_UNIX
           GDesktopAppInfo *info = g_desktop_app_info_new (filename);
-#endif
 
           xfce_rc_set_group (rc, "Default Applications");
 
@@ -883,22 +879,18 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
                 xfce_rc_write_entry (rc, mimetypes[i], entry);
                 g_free (entry);
 
-#ifdef HAVE_GIO_UNIX
                 if (info != NULL)
                   {
                     g_app_info_set_as_default_for_type (G_APP_INFO (info),
                                                         mimetypes[i],
                                                         NULL);
                   }
-#endif
               }
           g_strfreev (mimetypes);
-#ifdef HAVE_GIO_UNIX
           if (info != NULL)
             {
               g_object_unref (info);
             }
-#endif
         }
 
       xfce_rc_close (desktop_file);

@@ -118,6 +118,7 @@ dnl ***********************************
 XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [gtk_min_version])
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GIO], [gio-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GIO_UNIX], [gio-unix-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GARCON], [garcon-1], [garcon_min_version])
@@ -210,12 +211,6 @@ dnl *** Optional support for colord ***
 dnl **************************************
 XDT_CHECK_OPTIONAL_PACKAGE([COLORD], [colord], [colord_min_version],
                            [colord], [colord support])
-
-dnl *********************
-dnl *** Mime settings ***
-dnl *********************
-XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0], [glib_min_version],
-                           [gio-unix], [Mime settings])
 
 dnl ****************************************
 dnl *** Optional support for Libcanberra ***
@@ -315,6 +310,5 @@ if test x"$ENABLE_DISPLAY_SETTINGS" = x"yes"; then
 echo "* UPower support:                   ${UPOWERGLIB_FOUND:-no}"
 fi
 echo "* Colord support:                   ${COLORD_FOUND:-no}"
-echo "* Mime settings (gio-unix) support: ${GIO_UNIX_FOUND:-no}"
 echo "* Sounds settings support:          $enable_sound_settings"
 echo
