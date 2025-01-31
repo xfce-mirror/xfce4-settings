@@ -31,9 +31,7 @@ m4_define([libnotify_min_version], [0.7.8])
 m4_define([colord_min_version], [1.0.2])
 m4_define([xcursor_min_version], [1.1.0])
 m4_define([xorg_libinput_min_version], [0.6.0])
-m4_define([libxklavier_min_version], [0.3.0])
-m4_define([libxklavier4_min_version], [4.0])
-m4_define([libxklavier5_min_version], [5.0])
+m4_define([libxklavier_min_version], [5.0])
 
 m4_define([wayland_min_version], [1.20])
 
@@ -168,8 +166,6 @@ XDT_CHECK_OPTIONAL_PACKAGE([XRANDR], [xrandr], [xrandr_min_version], [xrandr], [
 XDT_CHECK_OPTIONAL_PACKAGE([XCURSOR], [xcursor], [xcursor_min_version], [xcursor], [Cursor themes support])
 XDT_CHECK_OPTIONAL_PACKAGE([LIBINPUT], [xorg-libinput], [xorg_libinput_min_version], [xorg-libinput], [libinput Xorg driver support])
 XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER], [libxklavier], [libxklavier_min_version], [libxklavier], [Keyboard layout selection])
-XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER4], [libxklavier], [libxklavier4_min_version], [libxklavier], [Keyboard layout selection])
-XDT_CHECK_OPTIONAL_PACKAGE([LIBXKLAVIER5], [libxklavier], [libxklavier5_min_version], [libxklavier], [Keyboard layout selection])
 XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [libnotify_min_version], [libnotify], [Notification support])
 
 if test x"$ENABLE_WAYLAND" = x"yes"; then
