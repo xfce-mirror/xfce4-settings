@@ -133,7 +133,9 @@ EXTRA_DIST = \
 	display-dialog.glade \
 	minimal-display-dialog.glade \
 	profile-changed-dialog.glade \
-	identity-popup.glade
+	identity-popup.glade \
+	meson.build \
+	$(NULL)
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
