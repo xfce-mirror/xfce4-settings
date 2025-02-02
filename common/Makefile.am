@@ -62,3 +62,7 @@ libxfce4_settings_la_LIBADD += \
 endif
 
 endif # ENABLE_DISPLAY_SETTINGS
+
+EXTRA_DIST = \
+	meson.build \
+	$(NULL)

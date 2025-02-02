@@ -1,0 +1,90 @@
+option(
+  'x11',
+  type: 'feature',
+  value: 'auto',
+  description: 'Support for the X11 windowing system',
+)
+
+option(
+  'wayland',
+  type: 'feature',
+  value: 'auto',
+  description: 'Support for the Wayland windowing system',
+)
+
+option(
+  'libnotify',
+  type: 'feature',
+  value: 'auto',
+  description: 'Libnotify support (X11 only)',
+)
+
+option(
+  'libxklavier',
+  type: 'feature',
+  value: 'auto',
+  description: 'Libxklavier support (X11 only)',
+)
+
+option(
+  'xcursor',
+  type: 'feature',
+  value: 'auto',
+  description: 'Xcursor support (X11 only)',
+)
+
+option(
+  'xorg-libinput',
+  type: 'feature',
+  value: 'auto',
+  description: 'Xorg-libinput support (X11 only)',
+)
+
+option(
+  'xrandr',
+  type: 'feature',
+  value: 'auto',
+  description: 'Xrandr support (X11 only)',
+)
+
+option(
+  'gtk-layer-shell',
+  type: 'feature',
+  value: 'auto',
+  description: 'Gtk Layer Shell support (Wayland only)',
+)
+
+option(
+  'upower',
+  type: 'feature',
+  value: 'disabled',
+  description: 'Upower support (Requires Wayland or xrandr support)',
+)
+
+option(
+  'colord',
+  type: 'feature',
+  value: 'auto',
+  description: 'Colord support',
+)
+
+option(
+  'pnp-ids-path',
+  type: 'string',
+  value: '',
+  description: 'Path to pnp.ids (default: ${datadir}/hwdata/pnp.ids)',
+)
+
+option(
+  'helper-path-prefix',
+  type: 'string',
+  value: '',
+  description: 'Path prefix under which helper executables will be installed (default: $libdir)',
+)
+
+option(
+  'sound-settings',
+  type: 'boolean',
+  value: false,
+  description: 'Enable sound XSETTINGS in GUI (from libcanberra)',
+)

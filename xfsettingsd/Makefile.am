@@ -3,7 +3,7 @@ AM_CPPFLAGS = \
 	-DDATADIR=\"$(datadir)\" \
 	-DBINDIR=\"$(bindir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \
-	-DSYSCONFIGDIR=\"$(sysconfdir)\" \
+	-DSYSCONFDIR=\"$(sysconfdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-DG_LOG_DOMAIN=\"xfsettingsd\" \
 	$(PLATFORM_CPPFLAGS)
@@ -218,7 +218,9 @@ BUILT_SOURCES = \
 EXTRA_DIST = \
 	$(settings_DATA) \
 	$(autostart_in_files) \
-	gtk-settings-exported.xml
+	gtk-settings-exported.xml \
+	meson.build \
+	$(NULL)
 
 DISTCLEANFILES = \
 	$(autostart_DATA) \
