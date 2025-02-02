@@ -21,6 +21,9 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #include "gtk-decorations.h"
 #include "gtk-settings.h"
@@ -56,7 +59,7 @@
 #include <locale.h>
 
 #define XFSETTINGS_DBUS_NAME "org.xfce.SettingsDaemon"
-#define XFSETTINGS_DESKTOP_FILE (SYSCONFIGDIR "/xdg/autostart/xfsettingsd.desktop")
+#define XFSETTINGS_DESKTOP_FILE (SYSCONFDIR "/xdg/autostart/xfsettingsd.desktop")
 
 #define UNREF_GOBJECT(obj) \
     if (obj) \
@@ -253,7 +256,7 @@ main (gint argc,
     /* check if we should print version information */
     if (G_UNLIKELY (opt_version))
     {
-        g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
+        g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, VERSION_FULL, xfce_version_string ());
         g_print ("%s\n", "Copyright (c) 2008-2024");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);

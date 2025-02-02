@@ -20,6 +20,9 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #include "mouse-dialog_ui.h"
 
@@ -2159,7 +2162,7 @@ mouse_settings_dialog_response (GtkWidget *dialog,
 {
     if (response_id == GTK_RESPONSE_HELP)
         xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "mouse",
-                                            NULL, XFCE4_SETTINGS_VERSION_SHORT);
+                                            NULL, VERSION_SHORT);
     else
         gtk_main_quit ();
 }
@@ -2210,7 +2213,7 @@ main (gint argc,
     /* print version information */
     if (G_UNLIKELY (opt_version))
     {
-        g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, PACKAGE_VERSION, xfce_version_string ());
+        g_print ("%s %s (Xfce %s)\n\n", G_LOG_DOMAIN, VERSION_FULL, xfce_version_string ());
         g_print ("%s\n", "Copyright (c) 2004-2024");
         g_print ("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print (_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);

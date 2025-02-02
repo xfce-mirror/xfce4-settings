@@ -55,6 +55,7 @@ AC_INIT([xfce4-settings], [xdt_version], [https://gitlab.xfce.org/xfce/xfce4-set
 AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_REVISION([xdt_version_build])
+AC_DEFINE([VERSION_FULL], [PACKAGE_VERSION], [Alias for VERSION and PACKAGE_VERSION for meson compatibility])
 
 dnl ***************************
 dnl *** Initialize automake ***
@@ -110,7 +111,7 @@ AM_GNU_GETTEXT_VERSION([0.19.8])
 dnl ***********************************
 dnl *** Version string for the docs ***
 dnl ***********************************
-AC_DEFINE([XFCE4_SETTINGS_VERSION_SHORT], [xfce4_settings_version_short], [Short version string of xfce4-settings])
+AC_DEFINE([VERSION_SHORT], [xfce4_settings_version_short], [Short version string of xfce4-settings])
 
 dnl ***********************************
 dnl *** Check for required packages ***
