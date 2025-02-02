@@ -39,6 +39,7 @@ desktop_in_in_files =							\
 	netscape-navigator.desktop.in.in			\
 	nxterm.desktop.in.in						\
 	opera-browser.desktop.in.in					\
+	opera-mailer.desktop.in.in					\
 	pcmanfm.desktop.in.in						\
 	pcmanfm-qt.desktop.in.in					\
 	qterminal.desktop.in.in						\
