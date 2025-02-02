@@ -18,3 +18,8 @@ if HAVE_COLORD
 SUBDIRS += \
 	color-settings
 endif
+
+EXTRA_DIST = \
+	display-settings/meson.build \
+	meson.build \
+	$(NULL)

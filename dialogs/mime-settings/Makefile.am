@@ -62,8 +62,6 @@ xfce4_mime_settings_LDADD = \
 	$(EXO_LIBS) \
 	$(XFCONF_LIBS)
 
-xfce4_mime_helperdir = $(HELPER_PATH_PREFIX)/xfce4
-
 xfce4_mime_helper_SOURCES = \
 	$(xfce4_mime_helper_built_sources) \
 	$(xfce4_mime_helper_headers) \
@@ -77,14 +75,12 @@ xfce4_mime_helper_SOURCES = \
 	xfce-mime-helper-main.c
 
 xfce4_mime_helper_CFLAGS = \
-	$(GTK3_CFLAGS) \
 	$(GIO_UNIX_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(EXO_CFLAGS)
 
 xfce4_mime_helper_LDADD = \
-	$(GTK3_LIBS) \
 	$(GIO_UNIX_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
@@ -139,5 +135,6 @@ DISTCLEANFILES = \
 endif
 
 EXTRA_DIST = \
-	$(desktop_in_files)
-
+	$(desktop_in_files) \
+	meson.build \
+	$(NULL)
