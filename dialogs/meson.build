@@ -49,6 +49,7 @@ foreach dir : dirs
     dependencies: [
       gtk,
       libxfce4ui,
+      libxfce4util,
       xfconf,
       x11_deps,
       colord,

@@ -39,6 +39,7 @@ xfce4_accessibility_settings_SOURCES = \
 xfce4_accessibility_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
+	$(LIBXFCE4UTIL_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
 	-DGTK_DISABLE_SINGLE_INCLUDES \
@@ -55,6 +56,7 @@ xfce4_accessibility_settings_LDFLAGS = \
 xfce4_accessibility_settings_LDADD = \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
+	$(LIBXFCE4UTIL_LIBS) \
 	$(XFCONF_LIBS)
 
 if MAINTAINER_MODE

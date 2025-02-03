@@ -18,6 +18,7 @@ xfce4_appearance_settings_CFLAGS = \
 	$(GTHREAD_CFLAGS) \
 	$(GTK_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
+	$(LIBXFCE4UTIL_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
 	-DGTK_DISABLE_SINGLE_INCLUDES \
@@ -35,6 +36,7 @@ xfce4_appearance_settings_LDADD = \
 	$(GTHREAD_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
+	$(LIBXFCE4UTIL_LIBS) \
 	$(XFCONF_LIBS)
 
 xfce4_appearance_scriptsdir = $(HELPER_PATH_PREFIX)/xfce4/settings
