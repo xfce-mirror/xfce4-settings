@@ -730,7 +730,7 @@ mouse_settings_get_libinput_accel (Display *xdisplay,
                                    XDevice *device,
                                    gdouble *val)
 {
-    propdata_t pdata[1];
+    propdata_t pdata[1] = { 0 };
     Atom float_type;
 
     float_type = XInternAtom (xdisplay, "FLOAT", False);
@@ -753,7 +753,7 @@ mouse_settings_get_libinput_boolean (Display *xdisplay,
                                      const gchar *prop_name,
                                      gboolean *val)
 {
-    propdata_t pdata[1];
+    propdata_t pdata[1] = { 0 };
 
     if (mouse_settings_get_device_prop (xdisplay, device, prop_name, XA_INTEGER, 1, &pdata[0]))
     {
@@ -773,7 +773,7 @@ mouse_settings_get_libinput_click_method (Display *xdisplay,
                                           const gchar *prop_name,
                                           LibinputClickMethod *click_method)
 {
-    propdata_t pdata[2];
+    propdata_t pdata[2] = { 0 };
 
     if (mouse_settings_get_device_prop (xdisplay, device, prop_name, XA_INTEGER, 2, &pdata[0]))
     {
@@ -797,7 +797,7 @@ mouse_settings_get_libinput_accel_profile (Display *xdisplay,
                                            const gchar *prop_name,
                                            LibinputAccelProfile *accel_profile)
 {
-    propdata_t pdata[3] = {};
+    propdata_t pdata[3] = { 0 };
     gboolean ok = FALSE;
 
     ok = mouse_settings_get_device_prop (xdisplay, device, prop_name, XA_INTEGER, 3, &pdata[0]);
@@ -1605,7 +1605,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                 }
                 else if (props[i] == libinput_scroll_methods_prop)
                 {
-                    propdata_t pdata[3];
+                    propdata_t pdata[3] = { 0 };
                     gboolean success;
 
                     success = mouse_settings_get_device_prop (xdisplay,
