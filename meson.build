@@ -76,7 +76,7 @@ x11_deps += dependency('xi', version: dependency_versions['libxi'], required: ge
 wayland_deps = []
 wayland_deps += dependency('gdk-wayland-3.0', version: dependency_versions['gtk'], required: get_option('wayland'))
 wayland_deps += dependency('wayland-client', version: dependency_versions['wayland'], required: get_option('wayland'))
-wayland_deps += dependency('wayland-scanner', version: dependency_versions['wayland'], required: get_option('wayland'))
+wayland_deps += dependency('wayland-scanner', version: dependency_versions['wayland'], required: get_option('wayland'), native: true)
 wayland_scanner = wayland_deps[-1]
 
 feature_cflags = []
