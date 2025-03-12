@@ -1375,6 +1375,7 @@ show_confirmation_dialog (gpointer data)
     {
         /* Update Default */
         xfce_display_settings_save (settings, "Default");
+        xfconf_channel_set_string (channel, "/ActiveProfile", "Default");
     }
     else
     {
