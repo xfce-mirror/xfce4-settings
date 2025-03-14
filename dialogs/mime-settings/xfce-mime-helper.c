@@ -851,7 +851,7 @@ xfce_mime_helper_database_set_default (XfceMimeHelperDatabase *database,
       return FALSE;
     }
 
-  /* open the exo desktop file to read the mimetypes the file supports */
+  /* open the xfce desktop file to read the mimetypes the file supports */
   path = g_build_filename ("applications", filename, NULL);
   desktop_file = xfce_rc_config_open (XFCE_RESOURCE_DATA, path, TRUE);
   g_free (path);
@@ -981,7 +981,7 @@ xfce_mime_helper_database_clear_default (XfceMimeHelperDatabase *database,
       return FALSE;
     }
 
-  /* open the exo desktop file to read the mimetypes the file supports */
+  /* open the xfce desktop file to read the mimetypes the file supports */
   path = g_build_filename ("applications", filename, NULL);
   desktop_file = xfce_rc_config_open (XFCE_RESOURCE_DATA, path, TRUE);
   g_free (path);
