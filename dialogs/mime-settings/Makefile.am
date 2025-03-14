@@ -39,7 +39,6 @@ xfce4_mime_settings_CFLAGS = \
 	$(GIO_CFLAGS) \
 	$(GIO_UNIX_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
-	$(EXO_CFLAGS) \
 	$(XFCONF_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
 	-DGTK_DISABLE_SINGLE_INCLUDES \
@@ -59,7 +58,6 @@ xfce4_mime_settings_LDADD = \
 	$(GIO_UNIX_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
-	$(EXO_LIBS) \
 	$(XFCONF_LIBS)
 
 xfce4_mime_helper_SOURCES = \
@@ -76,15 +74,17 @@ xfce4_mime_helper_SOURCES = \
 
 xfce4_mime_helper_CFLAGS = \
 	$(GIO_UNIX_CFLAGS) \
+	$(GTK_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(LIBXFCE4UI_CFLAGS) \
-	$(EXO_CFLAGS)
+	$(NULL)
 
 xfce4_mime_helper_LDADD = \
 	$(GIO_UNIX_LIBS) \
+	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
-	$(EXO_LIBS)
+	$(NULL)
 
 desktopdir = $(datadir)/applications
 desktop_in_files = \
@@ -110,7 +110,7 @@ xfce-mime-helper-enum-types.h: stamp-xfce-mime-helper-enum-types.h
 	@true
 stamp-xfce-mime-helper-enum-types.h: $(xfce_mime_helper_headers) Makefile
 	$(AM_V_GEN) ( cd $(srcdir) && glib-mkenums \
-		--fhead "#ifndef __XFCE_MIME_HELPER_ENUM_TYPES_H__\n#define __XFCE_MIME_HELPER_ENUM_TYPES_H__\n#include <exo/exo.h>\nG_BEGIN_DECLS\n" \
+		--fhead "#ifndef __XFCE_MIME_HELPER_ENUM_TYPES_H__\n#define __XFCE_MIME_HELPER_ENUM_TYPES_H__\n#include <libxfce4ui/libxfce4ui.h>\nG_BEGIN_DECLS\n" \
 		--fprod "/* enumerations from \"@filename@\" */\n" \
 		--vhead "GType @enum_name@_get_type (void) G_GNUC_CONST;\n#define XFCE_MIME_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n" \
 		--ftail "G_END_DECLS\n\n#endif /* !__XFCE_MIME_HELPER_ENUM_TYPES_H__ */" \

@@ -6,5 +6,5 @@ Name=Mutt
 StartupNotify=false
 X-XFCE-Binaries=mutt;
 X-XFCE-Category=MailReader
-X-XFCE-Commands=exo-open --launch TerminalEmulator %B;
-X-XFCE-CommandsWithParameter=exo-open --launch TerminalEmulator @HELPERDIR@/xfce4-compose-mail mutt %B "mailto:%s";
+X-XFCE-Commands=xfce-open --launch TerminalEmulator %B;
+X-XFCE-CommandsWithParameter=xfce-open --launch TerminalEmulator @HELPERDIR@/xfce4-compose-mail mutt %B "mailto:%s";

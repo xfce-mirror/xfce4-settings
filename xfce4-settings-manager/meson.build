@@ -18,7 +18,6 @@ executable(
   ],
   dependencies: [
     gtk,
-    exo,
     garcon,
     libxfce4ui,
     libxfce4util,

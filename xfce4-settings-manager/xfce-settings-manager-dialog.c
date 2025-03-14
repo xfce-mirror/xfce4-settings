@@ -25,7 +25,6 @@
 
 #include "xfce-settings-manager-dialog.h"
 
-#include <exo/exo.h>
 #include <garcon/garcon.h>
 #include <gdk/gdkkeysyms.h>
 #include <libxfce4ui/libxfce4ui.h>
@@ -330,7 +329,7 @@ xfce_settings_manager_dialog_style_updated (GtkWidget *widget)
 
     context = gtk_widget_get_style_context (dialog->category_viewport);
     gtk_style_context_add_class (context, "view");
-    gtk_style_context_add_class (context, "exoiconview");
+    gtk_style_context_add_class (context, "xfceiconview");
     xfce_settings_manager_dialog_set_hover_style (dialog);
 }
 
@@ -353,12 +352,12 @@ xfce_settings_manager_dialog_set_hover_style (XfceSettingsManagerDialog *dialog)
     gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &color);
     color_text = gdk_rgba_to_string (&color);
     /* Set a fake underline with box-shadow and use gtk to highlight the icon of the cell renderer */
-    css_string = g_strdup_printf (".exoiconview.view *:hover { -gtk-icon-effect: highlight; box-shadow: inset 0 -1px 1px %s;"
-                                  "                            border-left: 1px solid transparent; border-right: 1px solid transparent; }",
+    css_string = g_strdup_printf (".xfceiconview.view *:hover { -gtk-icon-effect: highlight; box-shadow: inset 0 -1px 1px %s;"
+                                  "                             border-left: 1px solid transparent; border-right: 1px solid transparent; }",
                                   color_text);
     gtk_css_provider_load_from_data (dialog->css_provider, css_string, -1, NULL);
     screen = gdk_screen_get_default ();
-    /* As we don't have the individual ExoIconView widgets here, we set this provider for the whole screen.
+    /* As we don't have the individual XfceIconView widgets here, we set this provider for the whole screen.
        This is fairly unproblematic as nobody uses the CSS class exiconview. */
     gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (dialog->css_provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     g_free (css_string);
@@ -444,13 +443,13 @@ xfce_settings_manager_dialog_iconview_find (gconstpointer a,
 
 
 static gboolean
-xfce_settings_manager_dialog_iconview_keynav_failed (ExoIconView *current_view,
+xfce_settings_manager_dialog_iconview_keynav_failed (XfceIconView *current_view,
                                                      GtkDirectionType direction,
                                                      XfceSettingsManagerDialog *dialog)
 {
     GList *li;
     GtkTreePath *path;
-    ExoIconView *new_view;
+    XfceIconView *new_view;
     gboolean result = FALSE;
     GtkTreeModel *model;
     GtkTreeIter iter;
@@ -486,23 +485,23 @@ xfce_settings_manager_dialog_iconview_keynav_failed (ExoIconView *current_view,
             return FALSE;
 
         category = li->data;
-        new_view = EXO_ICON_VIEW (category->iconview);
+        new_view = XFCE_ICON_VIEW (category->iconview);
 
-        if (exo_icon_view_get_cursor (current_view, &path, NULL))
+        if (xfce_icon_view_get_cursor (current_view, &path, NULL))
         {
-            col_old = exo_icon_view_get_item_column (current_view, path);
+            col_old = xfce_icon_view_get_item_column (current_view, path);
             gtk_tree_path_free (path);
 
             dist_prev = 1000;
             sel_path = NULL;
 
-            model = exo_icon_view_get_model (new_view);
+            model = xfce_icon_view_get_model (new_view);
             if (gtk_tree_model_get_iter_first (model, &iter))
             {
                 do
                 {
                     path = gtk_tree_model_get_path (model, &iter);
-                    col_new = exo_icon_view_get_item_column (new_view, path);
+                    col_new = xfce_icon_view_get_item_column (new_view, path);
                     dist_new = ABS (col_new - col_old);
 
                     if ((direction == GTK_DIR_UP && dist_new <= dist_prev)
@@ -524,7 +523,7 @@ xfce_settings_manager_dialog_iconview_keynav_failed (ExoIconView *current_view,
             if (G_LIKELY (sel_path != NULL))
             {
                 /* move cursor, grab-focus will handle the selection */
-                exo_icon_view_set_cursor (new_view, sel_path, NULL, FALSE);
+                xfce_icon_view_set_cursor (new_view, sel_path, NULL, FALSE);
                 xfce_settings_manager_dialog_scroll_to_item (GTK_WIDGET (new_view), dialog);
                 gtk_tree_path_free (sel_path);
 
@@ -557,17 +556,17 @@ xfce_settings_manager_dialog_query_tooltip (GtkWidget *iconview,
 
     if (keyboard_mode)
     {
-        if (!exo_icon_view_get_cursor (EXO_ICON_VIEW (iconview), &path, NULL))
+        if (!xfce_icon_view_get_cursor (XFCE_ICON_VIEW (iconview), &path, NULL))
             return FALSE;
     }
     else
     {
-        path = exo_icon_view_get_path_at_pos (EXO_ICON_VIEW (iconview), x, y);
+        path = xfce_icon_view_get_path_at_pos (XFCE_ICON_VIEW (iconview), x, y);
         if (G_UNLIKELY (path == NULL))
             return FALSE;
     }
 
-    model = exo_icon_view_get_model (EXO_ICON_VIEW (iconview));
+    model = xfce_icon_view_get_model (XFCE_ICON_VIEW (iconview));
     if (gtk_tree_model_get_iter (model, &iter, path))
     {
         gtk_tree_model_get_value (model, &iter, COLUMN_MENU_ITEM, &value);
@@ -598,19 +597,19 @@ xfce_settings_manager_dialog_iconview_focus (GtkWidget *iconview,
     if (event->in)
     {
         /* a mouse click will have focus, tab events not */
-        if (!exo_icon_view_get_cursor (EXO_ICON_VIEW (iconview), &path, NULL))
+        if (!xfce_icon_view_get_cursor (XFCE_ICON_VIEW (iconview), &path, NULL))
         {
             path = gtk_tree_path_new_from_indices (0, -1);
-            exo_icon_view_set_cursor (EXO_ICON_VIEW (iconview), path, NULL, FALSE);
+            xfce_icon_view_set_cursor (XFCE_ICON_VIEW (iconview), path, NULL, FALSE);
             xfce_settings_manager_dialog_scroll_to_item (iconview, dialog);
         }
 
-        exo_icon_view_select_path (EXO_ICON_VIEW (iconview), path);
+        xfce_icon_view_select_path (XFCE_ICON_VIEW (iconview), path);
         gtk_tree_path_free (path);
     }
     else
     {
-        exo_icon_view_unselect_all (EXO_ICON_VIEW (iconview));
+        xfce_icon_view_unselect_all (XFCE_ICON_VIEW (iconview));
     }
 
     return FALSE;
@@ -706,7 +705,7 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget *entry,
             category = li->data;
 
             /* update model filters */
-            model = exo_icon_view_get_model (EXO_ICON_VIEW (category->iconview));
+            model = xfce_icon_view_get_model (XFCE_ICON_VIEW (category->iconview));
             gtk_tree_model_filter_refilter (GTK_TREE_MODEL_FILTER (model));
 
             /* set visibility of the category */
@@ -756,7 +755,7 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget *entry,
             category = li->data;
             if (gtk_widget_get_visible (category->box))
             {
-                model = exo_icon_view_get_model (EXO_ICON_VIEW (category->iconview));
+                model = xfce_icon_view_get_model (XFCE_ICON_VIEW (category->iconview));
                 n_visible_items += gtk_tree_model_iter_n_children (model, NULL);
 
                 /* stop searching if there are more then 1 items */
@@ -777,13 +776,13 @@ xfce_settings_manager_dialog_entry_key_press (GtkWidget *entry,
             if (n_visible_items == 1)
             {
                 /* activate this one item */
-                exo_icon_view_item_activated (EXO_ICON_VIEW (category->iconview), path);
+                xfce_icon_view_item_activated (XFCE_ICON_VIEW (category->iconview), path);
             }
             else
             {
                 /* select first item in view */
-                exo_icon_view_set_cursor (EXO_ICON_VIEW (category->iconview),
-                                          path, NULL, FALSE);
+                xfce_icon_view_set_cursor (XFCE_ICON_VIEW (category->iconview),
+                                           path, NULL, FALSE);
                 gtk_widget_grab_focus (category->iconview);
             }
             gtk_tree_path_free (path);
@@ -945,7 +944,7 @@ xfce_settings_manager_dialog_spawn (XfceSettingsManagerDialog *dialog,
 
 
 static void
-xfce_settings_manager_dialog_item_activated (ExoIconView *iconview,
+xfce_settings_manager_dialog_item_activated (XfceIconView *iconview,
                                              GtkTreePath *path,
                                              XfceSettingsManagerDialog *dialog)
 {
@@ -953,7 +952,7 @@ xfce_settings_manager_dialog_item_activated (ExoIconView *iconview,
     GtkTreeIter iter;
     GarconMenuItem *item;
 
-    model = exo_icon_view_get_model (iconview);
+    model = xfce_icon_view_get_model (iconview);
     if (gtk_tree_model_get_iter (model, &iter, path))
     {
         gtk_tree_model_get (model, &iter, COLUMN_MENU_ITEM, &item, -1);
@@ -1008,10 +1007,10 @@ xfce_settings_manager_dialog_scroll_to_item (GtkWidget *iconview,
     GtkAdjustment *adjustment;
     gdouble lower, upper;
 
-    if (exo_icon_view_get_cursor (EXO_ICON_VIEW (iconview), &path, NULL))
+    if (xfce_icon_view_get_cursor (XFCE_ICON_VIEW (iconview), &path, NULL))
     {
         /* get item row */
-        row = exo_icon_view_get_item_row (EXO_ICON_VIEW (iconview), path);
+        row = xfce_icon_view_get_item_row (XFCE_ICON_VIEW (iconview), path);
         gtk_tree_path_free (path);
 
         /* estimated row height */
@@ -1040,7 +1039,7 @@ xfce_settings_manager_dialog_key_press_event (GtkWidget *iconview,
 {
     gboolean result;
 
-    /* let exo handle the selection first */
+    /* let libxfce4ui handle the selection first */
     result = GTK_WIDGET_CLASS (G_OBJECT_GET_CLASS (iconview))->key_press_event (iconview, event);
 
     /* make sure the selected item is visible */
@@ -1119,13 +1118,13 @@ xfce_settings_manager_dialog_add_category (XfceSettingsManagerDialog *dialog,
     gtk_box_pack_start (GTK_BOX (vbox), separator, FALSE, TRUE, 0);
     gtk_widget_show (separator);
 
-    category->iconview = iconview = exo_icon_view_new_with_model (GTK_TREE_MODEL (filter));
+    category->iconview = iconview = xfce_icon_view_new_with_model (GTK_TREE_MODEL (filter));
     gtk_container_add (GTK_CONTAINER (vbox), iconview);
-    exo_icon_view_set_orientation (EXO_ICON_VIEW (iconview), GTK_ORIENTATION_HORIZONTAL);
-    exo_icon_view_set_margin (EXO_ICON_VIEW (iconview), 0);
-    exo_icon_view_set_single_click (EXO_ICON_VIEW (iconview), TRUE);
-    exo_icon_view_set_enable_search (EXO_ICON_VIEW (iconview), FALSE);
-    exo_icon_view_set_item_width (EXO_ICON_VIEW (iconview), TEXT_WIDTH + ICON_WIDTH);
+    xfce_icon_view_set_orientation (XFCE_ICON_VIEW (iconview), GTK_ORIENTATION_HORIZONTAL);
+    xfce_icon_view_set_margin (XFCE_ICON_VIEW (iconview), 0);
+    xfce_icon_view_set_single_click (XFCE_ICON_VIEW (iconview), TRUE);
+    xfce_icon_view_set_enable_search (XFCE_ICON_VIEW (iconview), FALSE);
+    xfce_icon_view_set_item_width (XFCE_ICON_VIEW (iconview), TEXT_WIDTH + ICON_WIDTH);
     xfce_settings_manager_dialog_set_hover_style (dialog);
     gtk_widget_show (iconview);
 
