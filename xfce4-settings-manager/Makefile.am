@@ -19,7 +19,6 @@ xfce4_settings_manager_CFLAGS = \
 	$(LIBXFCE4UI_CFLAGS) \
 	$(GARCON_CFLAGS) \
 	$(XFCONF_CFLAGS) \
-	$(EXO_CFLAGS) \
 	$(PLATFORM_CFLAGS) \
 	-DGTK_DISABLE_SINGLE_INCLUDES \
 	-DGSEAL_ENABLE
@@ -33,7 +32,6 @@ xfce4_settings_manager_LDADD = \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(XFCONF_LIBS) \
-	$(EXO_LIBS) \
 	$(GARCON_LIBS)
 
 menudir = $(sysconfdir)/xdg/menus

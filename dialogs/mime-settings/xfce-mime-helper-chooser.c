@@ -104,7 +104,7 @@ xfce_mime_helper_chooser_class_init (XfceMimeHelperChooserClass *klass)
                                                       "Helper category",
                                                       XFCE_MIME_TYPE_MIME_HELPER_CATEGORY,
                                                       XFCE_MIME_HELPER_WEBBROWSER,
-                                                      EXO_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT));
 
   /**
    * XfceMimeHelperChooser:is-valid:
@@ -118,7 +118,7 @@ xfce_mime_helper_chooser_class_init (XfceMimeHelperChooserClass *klass)
                                                          "Is valid",
                                                          "Is valid",
                                                          FALSE,
-                                                         EXO_PARAM_READABLE));
+                                                         G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 }
 
 
@@ -363,7 +363,7 @@ menu_activate (GtkWidget *item,
   g_return_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser));
 
   /* determine the helper for the item */
-  helper = g_object_get_data (G_OBJECT (item), I_ ("exo-helper"));
+  helper = g_object_get_data (G_OBJECT (item), I_ ("xfce-helper"));
   if (G_LIKELY (helper != NULL))
     {
       if (!xfce_mime_helper_database_set_default (chooser->database, chooser->category, helper, &error))
@@ -636,7 +636,7 @@ menu_activate_other (GtkWidget *item,
           gtk_widget_hide (dialog);
 
           /* use menu_activate() to set the custom application as default */
-          g_object_set_data_full (G_OBJECT (item), I_ ("exo-helper"), helper, g_object_unref);
+          g_object_set_data_full (G_OBJECT (item), I_ ("xfce-helper"), helper, g_object_unref);
           menu_activate (item, chooser);
         }
     }
@@ -740,7 +740,7 @@ xfce_mime_helper_chooser_toggled (XfceMimeHelperChooser *chooser,
         }
 
       /* finish setting up the menu item and add it */
-      g_object_set_data_full (G_OBJECT (item), I_ ("exo-helper"), helper, g_object_unref);
+      g_object_set_data_full (G_OBJECT (item), I_ ("xfce-helper"), helper, g_object_unref);
       g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (menu_activate), chooser);
       gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
       gtk_widget_show_all (item);
