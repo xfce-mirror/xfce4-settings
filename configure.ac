@@ -10,6 +10,7 @@ dnl ***************************
 dnl *** Version information ***
 dnl ***************************
 XDT_VERSION_INIT([4.20.1], [git])
+m4_define([copyright_year], [2025])
 
 dnl minimum required versions
 m4_define([glib_min_version], [2.72.0])
@@ -47,12 +48,15 @@ m4_append([xfce4_settings_version_short], ["])
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2008-2025
+AC_COPYRIGHT([Copyright (c) 2008-copyright_year()
         The Xfce development team. All rights reserved.])
 AC_INIT([xfce4-settings], [xdt_version], [https://gitlab.xfce.org/xfce/xfce4-settings])
 AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_REVISION([xdt_version_build])
+COPYRIGHT_YEAR=copyright_year()
+AC_DEFINE_UNQUOTED([COPYRIGHT_YEAR], ["$COPYRIGHT_YEAR"], [Copyright year])
+AC_SUBST([COPYRIGHT_YEAR])
 
 dnl ***************************
 dnl *** Initialize automake ***
