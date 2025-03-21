@@ -11,6 +11,7 @@ bin_PROGRAMS = \
 	xfce4-appearance-settings
 
 xfce4_appearance_settings_SOURCES = \
+	$(top_srcdir)/common/xfce4-settings-resources.c \
 	main.c \
 	$(NULL)
 
@@ -33,7 +34,6 @@ xfce4_appearance_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_appearance_settings_LDADD = \
-	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTHREAD_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
