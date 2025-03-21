@@ -22,11 +22,7 @@
 #include "config.h"
 #endif
 
-#include "confirmation-dialog_ui.h"
-#include "display-dialog_ui.h"
 #include "display-settings.h"
-#include "minimal-display-dialog_ui.h"
-#include "profile-changed-dialog_ui.h"
 #include "scrollarea.h"
 
 #include "common/display-profiles.h"
@@ -305,9 +301,7 @@ display_setting_timed_confirmation (XfceDisplaySettings *settings)
     /* Lock the main UI */
     main_dialog = gtk_builder_get_object (builder, "display-dialog");
 
-    if (gtk_builder_add_from_string (builder, confirmation_dialog_ui,
-                                     confirmation_dialog_ui_length, &error)
-        != 0)
+    if (gtk_builder_add_from_resource (builder, "/org/xfce/settings/confirmation-dialog.glade", &error) != 0)
     {
         GObject *dialog;
         ConfirmationDialog *confirmation_dialog;
@@ -1303,9 +1297,7 @@ display_settings_dialog_response (GtkDialog *dialog,
             GError *error = NULL;
             gint profile_response_id = 2;
 
-            if (gtk_builder_add_from_string (profile_changed_builder, profile_changed_dialog_ui,
-                                             profile_changed_dialog_ui_length, &error)
-                != 0)
+            if (gtk_builder_add_from_resource (profile_changed_builder, "/org/xfce/settings/profile-changed-dialog.glade", &error) != 0)
             {
                 GObject *profile_changed_dialog, *label, *button;
                 const char *str;
@@ -3052,9 +3044,7 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
     GtkWidget *scroll_area;
 
     /* Load the Gtk user-interface file */
-    if (gtk_builder_add_from_string (builder, display_dialog_ui,
-                                     display_dialog_ui_length, &error)
-        != 0)
+    if (gtk_builder_add_from_resource (builder, "/org/xfce/settings/display-dialog.glade", &error) != 0)
     {
         xfce_display_settings_set_outputs (settings);
 
@@ -3342,9 +3332,7 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
     GObject *label;
     GError *error = NULL;
 
-    if (gtk_builder_add_from_string (builder, minimal_display_dialog_ui,
-                                     minimal_display_dialog_ui_length, &error)
-        != 0)
+    if (gtk_builder_add_from_resource (builder, "/org/xfce/settings/minimal-display-dialog.glade", &error) != 0)
     {
         gchar *only_display1_label;
 

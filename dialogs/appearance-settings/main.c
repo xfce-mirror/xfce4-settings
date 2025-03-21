@@ -21,8 +21,6 @@
 #include "config.h"
 #endif
 
-#include "appearance-dialog_ui.h"
-
 #include <cairo-gobject.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
@@ -1751,7 +1749,7 @@ main (gint argc,
 
         /* load the gtk user interface file*/
         builder = gtk_builder_new ();
-        if (gtk_builder_add_from_string (builder, appearance_dialog_ui, appearance_dialog_ui_length, &error) != 0)
+        if (gtk_builder_add_from_resource (builder, "/org/xfce/settings/appearance-dialog.glade", &error) != 0)
         {
             /* connect signal to monitor the channel */
             g_signal_connect (G_OBJECT (xsettings_channel), "property-changed",

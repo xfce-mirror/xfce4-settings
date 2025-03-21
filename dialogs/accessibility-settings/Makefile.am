@@ -34,7 +34,7 @@ xfce4_find_cursor_LDADD = \
 
 xfce4_accessibility_settings_SOURCES = \
 	main.c \
-	accessibility-dialog_ui.h
+	$(NULL)
 
 xfce4_accessibility_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -54,20 +54,11 @@ xfce4_accessibility_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_accessibility_settings_LDADD = \
+	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(XFCONF_LIBS)
-
-if MAINTAINER_MODE
-
-BUILT_SOURCES = \
-	accessibility-dialog_ui.h
-
-accessibility-dialog_ui.h: accessibility-dialog.glade
-	xdt-csource --static --strip-comments --strip-content --name=accessibility_dialog_ui $< >$@
-
-endif
 
 desktopdir = $(datadir)/applications
 desktop_in_files = xfce4-accessibility-settings.desktop.in
@@ -78,7 +69,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	accessibility-dialog.glade
+	$(NULL)
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

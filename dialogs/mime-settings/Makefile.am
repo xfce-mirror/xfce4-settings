@@ -102,10 +102,11 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 %.desktop: %.desktop.in
 	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
-if MAINTAINER_MODE
 DISTCLEANFILES = \
 	stamp-xfce-mime-helper-enum-types.h \
-	$(xfce4_mime_helper_built_sources)
+	$(xfce4_mime_helper_built_sources) \
+	$(desktop_DATA) \
+	$(NULL)
 
 BUILT_SOURCES = \
 	$(xfce4_mime_helper_built_sources)
@@ -133,10 +134,6 @@ xfce-mime-helper-enum-types.c: $(xfce_mime_helper_headers) Makefile
 		$(xfce_mime_helper_headers) ) >> xgen-eetc \
 	&& cp xgen-eetc xfce-mime-helper-enum-types.c \
 	&& rm -f xgen-eetc
-else
-DISTCLEANFILES = \
-	$(desktop_DATA)
-endif
 
 EXTRA_DIST = \
 	$(desktop_in_files)

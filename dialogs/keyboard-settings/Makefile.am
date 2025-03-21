@@ -16,7 +16,7 @@ xfce4_keyboard_settings_SOURCES = \
 	xfce-keyboard-settings.h \
 	command-dialog.c \
 	command-dialog.h \
-	keyboard-dialog_ui.h
+	$(NULL)
 
 xfce4_keyboard_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -38,22 +38,13 @@ xfce4_keyboard_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_keyboard_settings_LDADD = \
+	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTK_LIBS) \
 	$(LIBXKLAVIER_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(LIBXFCE4KBD_PRIVATE_LIBS) \
 	$(EXO_LIBS) \
 	$(XFCONF_LIBS)
-
-if MAINTAINER_MODE
-
-BUILT_SOURCES = \
-	keyboard-dialog_ui.h
-
-keyboard-dialog_ui.h: keyboard-dialog.glade
-	xdt-csource --static --strip-comments --strip-content --name=keyboard_dialog_ui $< >$@
-
-endif
 
 desktopdir = $(datadir)/applications
 desktop_in_files = xfce-keyboard-settings.desktop.in
@@ -64,7 +55,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	keyboard-dialog.glade
+	$(NULL)
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
