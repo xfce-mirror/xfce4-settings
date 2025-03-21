@@ -23,25 +23,6 @@ if enable_display_settings
     ]
   endif
 
-  ui_names = [
-    'confirmation-dialog',
-    'display-dialog',
-    'identity-popup',
-    'minimal-display-dialog',
-    'profile-changed-dialog',
-  ]
-  foreach ui_name : ui_names
-    ui_h = '@0@_ui.h'.format(ui_name)
-    ui_xml = '@0@.glade'.format(ui_name)
-    ui_id = fs.stem(ui_h).underscorify()
-    dialog_sources += custom_target(
-      ui_h,
-      input: ui_xml,
-      output: ui_h,
-      command: [xdt_csource, '--static', '--strip-comments', '--strip-content', '--name=' + ui_id, '--output=@OUTPUT@', '@INPUT@'],
-    )
-  endforeach
-
   executable(
     'xfce4-display-settings',
     dialog_sources,
