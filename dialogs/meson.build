@@ -24,16 +24,6 @@ foreach dir : dirs
     sources = run_command('sh', '-c', 'echo @0@'.format(dir) / '*.[ch]', check: true).stdout().strip().split(' ')
   endif
 
-  ui_h = '@0@-dialog_ui.h'.format(name)
-  ui_xml = '@0@-dialog.glade'.format(name)
-  ui_id = fs.stem(ui_h).underscorify()
-  sources += custom_target(
-    ui_h,
-    input: dir / ui_xml,
-    output: ui_h,
-    command: [xdt_csource, '--static', '--strip-comments', '--strip-content', '--name=' + ui_id, '--output=@OUTPUT@', '@INPUT@'],
-  )
-
   bin = 'xfce4-@0@'.format(dir)
   executable(
     bin,
@@ -57,6 +47,9 @@ foreach dir : dirs
       xcursor,
       xorg_libinput,
       libm,
+    ],
+    link_with: [
+      libsettings_common,
     ],
     install: true,
     install_dir: get_option('prefix') / get_option('bindir'),
