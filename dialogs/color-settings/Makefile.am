@@ -10,6 +10,7 @@ bin_PROGRAMS = \
 	xfce4-color-settings
 
 xfce4_color_settings_SOURCES = \
+	$(top_srcdir)/common/resources/xfce4-settings-resources.c \
 	main.c \
 	color-device.c \
 	color-device.h \
@@ -35,7 +36,6 @@ xfce4_color_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_color_settings_LDADD = \
-	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTK_LIBS) \
 	$(COLORD_LIBS) \
 	$(LIBXFCE4UI_LIBS) \

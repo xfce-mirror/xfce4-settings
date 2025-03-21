@@ -10,6 +10,7 @@ bin_PROGRAMS = \
 	xfce4-mouse-settings
 
 xfce4_mouse_settings_SOURCES = \
+	$(top_srcdir)/common/resources/xfce4-settings-resources.c \
 	main.c \
 	$(NULL)
 
@@ -35,7 +36,6 @@ xfce4_mouse_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_mouse_settings_LDADD = \
-	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \

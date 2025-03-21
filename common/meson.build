@@ -3,12 +3,6 @@ libsettings_common_sources = [
   'debug.h',
 ]
 
-libsettings_common_sources += gnome.compile_resources(
-  'xfce4-settings-resources',
-  'resources' / 'xfce4-settings.gresource.xml',
-  source_dir: 'resources',
-)
-
 if enable_display_settings
   libsettings_common_sources += [
     'display-name.c',
@@ -56,4 +50,10 @@ libsettings_common = static_library(
     libm,
   ],
   install: false,
+)
+
+xfce4_settings_resources_c = gnome.compile_resources(
+  'xfce4-settings-resources',
+  'resources' / 'xfce4-settings.gresource.xml',
+  source_dir: 'resources',
 )

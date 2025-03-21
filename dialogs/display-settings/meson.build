@@ -26,7 +26,10 @@ if enable_display_settings
   executable(
     'xfce4-display-settings',
     dialog_sources,
-    sources: xfce_revision_h,
+    sources: [
+      xfce_revision_h,
+      xfce4_settings_resources_c,
+    ],
     c_args: [
       '-DG_LOG_DOMAIN="@0@"'.format('xfce4-display-settings'),
     ],

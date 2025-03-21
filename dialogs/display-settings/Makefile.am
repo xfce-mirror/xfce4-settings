@@ -10,6 +10,7 @@ bin_PROGRAMS = \
 	xfce4-display-settings
 
 xfce4_display_settings_SOURCES = \
+	$(top_srcdir)/common/resources/xfce4-settings-resources.c \
 	main.c \
 	scrollarea.c \
 	scrollarea.h \
