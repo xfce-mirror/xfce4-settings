@@ -25,7 +25,6 @@
 #endif
 
 #include "command-dialog.h"
-#include "keyboard-dialog_ui.h"
 #include "xfce-keyboard-settings.h"
 
 #include <gdk/gdkx.h>
@@ -293,9 +292,7 @@ xfce_keyboard_settings_init (XfceKeyboardSettings *settings)
   g_signal_connect (settings->priv->provider, "shortcut-removed",
                     G_CALLBACK (xfce_keyboard_settings_shortcut_removed), settings);
 
-  if (gtk_builder_add_from_string (GTK_BUILDER (settings), keyboard_dialog_ui,
-                                   keyboard_dialog_ui_length, &error)
-      == 0)
+  if (gtk_builder_add_from_resource (GTK_BUILDER (settings), "/org/xfce/settings/keyboard-dialog.glade", &error) == 0)
     {
       g_error ("Failed to load the UI file: %s.", error->message);
       g_error_free (error);

@@ -15,7 +15,7 @@ xfce4_color_settings_SOURCES = \
 	color-device.h \
 	color-profile.c \
 	color-profile.h \
-	color-dialog_ui.h
+	$(NULL)
 
 xfce4_color_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -35,21 +35,12 @@ xfce4_color_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_color_settings_LDADD = \
+	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTK_LIBS) \
 	$(COLORD_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(NULL)
-
-if MAINTAINER_MODE
-
-BUILT_SOURCES = \
-	color-dialog_ui.h
-
-color-dialog_ui.h: color-dialog.glade
-	xdt-csource --static --strip-comments --strip-content --name=color_dialog_ui $< >$@
-
-endif
 
 desktopdir = $(datadir)/applications
 desktop_in_files = xfce4-color-settings.desktop.in
@@ -60,7 +51,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	color-dialog.glade
+	$(NULL)
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

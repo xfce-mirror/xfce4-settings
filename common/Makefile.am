@@ -1,5 +1,3 @@
-if ENABLE_DISPLAY_SETTINGS
-
 AM_CPPFLAGS = \
 	-I${top_srcdir}	\
 	-DPNP_IDS=\"$(PNP_IDS)\" \
@@ -8,14 +6,15 @@ AM_CPPFLAGS = \
 noinst_LTLIBRARIES = \
 	libxfce4-settings.la
 
+libxfce4_settings_built_sources = \
+	xfce4-settings-resources.c \
+	$(NULL)
+
 libxfce4_settings_la_SOURCES = \
+	$(libxfce4_settings_built_sources) \
 	debug.c \
 	debug.h \
-	display-name.c \
-	display-profiles.c \
-	display-profiles.h \
-	edid-parse.c \
-	edid.h
+	$(NULL)
 
 libxfce4_settings_la_CFLAGS = \
 	$(GLIB_CFLAGS) \
@@ -33,6 +32,15 @@ libxfce4_settings_la_LIBADD = \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(XFCONF_LIBS)
+
+if ENABLE_DISPLAY_SETTINGS
+
+libxfce4_settings_la_SOURCES += \
+	display-name.c \
+	display-profiles.c \
+	display-profiles.h \
+	edid-parse.c \
+	edid.h
 
 if HAVE_XRANDR
 libxfce4_settings_la_SOURCES += \
@@ -63,6 +71,34 @@ endif
 
 endif # ENABLE_DISPLAY_SETTINGS
 
+libxfce4_settings_resources_deps = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir $(srcdir)/resources $(srcdir)/resources/xfce4-settings.gresource.xml)
+ 
+xfce4-settings-resources.c: $(srcdir)/resources/xfce4-settings.gresource.xml $(libxfce4_settings_resources_deps) Makefile
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir)/resources --generate-source $<
+
+BUILT_SOURCES = \
+	$(libxfce4_settings_built_sources) \
+	$(NULL)
+
+DISTCLEANFILES = \
+	$(libxfce4_settings_built_sources) \
+	$(NULL)
+
+resources = \
+	resources/accessibility-dialog.glade \
+	resources/appearance-dialog.glade \
+	resources/color-dialog.glade \
+	resources/confirmation-dialog.glade \
+	resources/display-dialog.glade \
+	resources/identity-popup.glade \
+	resources/keyboard-dialog.glade \
+	resources/minimal-display-dialog.glade \
+	resources/mouse-dialog.glade \
+	resources/profile-changed-dialog.glade \
+	resources/xfce4-settings.gresource.xml \
+	$(NULL)
+
 EXTRA_DIST = \
 	meson.build \
+	$(resources) \
 	$(NULL)

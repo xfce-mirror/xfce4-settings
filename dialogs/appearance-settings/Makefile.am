@@ -12,7 +12,7 @@ bin_PROGRAMS = \
 
 xfce4_appearance_settings_SOURCES = \
 	main.c \
-	appearance-dialog_ui.h
+	$(NULL)
 
 xfce4_appearance_settings_CFLAGS = \
 	$(GTHREAD_CFLAGS) \
@@ -33,6 +33,7 @@ xfce4_appearance_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_appearance_settings_LDADD = \
+	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTHREAD_LIBS) \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
@@ -41,16 +42,6 @@ xfce4_appearance_settings_LDADD = \
 
 xfce4_appearance_scriptsdir = $(HELPER_PATH_PREFIX)/xfce4/settings
 xfce4_appearance_scripts_SCRIPTS = appearance-install-theme
-
-if MAINTAINER_MODE
-
-BUILT_SOURCES = \
-	appearance-dialog_ui.h
-
-appearance-dialog_ui.h: appearance-dialog.glade
-	xdt-csource --static --strip-comments --strip-content --name=appearance_dialog_ui $< >$@
-
-endif
 
 desktopdir = $(datadir)/applications
 desktop_in_files = xfce-ui-settings.desktop.in
@@ -62,7 +53,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 EXTRA_DIST = \
 	$(desktop_in_files) \
 	appearance-install-theme \
-	appearance-dialog.glade
+	$(NULL)
 
 DISTCLEANFILES = \
 	$(desktop_DATA)

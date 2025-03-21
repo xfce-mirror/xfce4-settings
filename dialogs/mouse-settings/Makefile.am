@@ -11,7 +11,7 @@ bin_PROGRAMS = \
 
 xfce4_mouse_settings_SOURCES = \
 	main.c \
-	mouse-dialog_ui.h
+	$(NULL)
 
 xfce4_mouse_settings_CFLAGS = \
 	$(GTK_CFLAGS) \
@@ -35,6 +35,7 @@ xfce4_mouse_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_mouse_settings_LDADD = \
+	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
@@ -51,16 +52,6 @@ xfce4_mouse_settings_LDADD += \
 	$(XCURSOR_LIBS)
 endif
 
-if MAINTAINER_MODE
-
-BUILT_SOURCES = \
-	mouse-dialog_ui.h
-
-mouse-dialog_ui.h: mouse-dialog.glade
-	xdt-csource --static --strip-comments --strip-content --name=mouse_dialog_ui $< >$@
-
-endif
-
 desktopdir = $(datadir)/applications
 desktop_in_files = xfce-mouse-settings.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
@@ -70,7 +61,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	mouse-dialog.glade
+	$(NULL)
 
 DISTCLEANFILES = \
 	$(desktop_DATA)
