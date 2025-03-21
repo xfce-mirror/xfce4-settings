@@ -11,6 +11,7 @@ bin_PROGRAMS = \
 	xfce4-keyboard-settings
 
 xfce4_keyboard_settings_SOURCES = \
+	$(top_srcdir)/common/xfce4-settings-resources.c \
 	main.c \
 	xfce-keyboard-settings.c \
 	xfce-keyboard-settings.h \
@@ -38,7 +39,6 @@ xfce4_keyboard_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_keyboard_settings_LDADD = \
-	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTK_LIBS) \
 	$(LIBXKLAVIER_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
