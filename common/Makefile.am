@@ -6,12 +6,7 @@ AM_CPPFLAGS = \
 noinst_LTLIBRARIES = \
 	libxfce4-settings.la
 
-libxfce4_settings_built_sources = \
-	xfce4-settings-resources.c \
-	$(NULL)
-
 libxfce4_settings_la_SOURCES = \
-	$(libxfce4_settings_built_sources) \
 	debug.c \
 	debug.h \
 	$(NULL)
@@ -77,11 +72,11 @@ xfce4-settings-resources.c: $(srcdir)/resources/xfce4-settings.gresource.xml $(l
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir)/resources --generate-source $<
 
 BUILT_SOURCES = \
-	$(libxfce4_settings_built_sources) \
+	xfce4-settings-resources.c \
 	$(NULL)
 
 DISTCLEANFILES = \
-	$(libxfce4_settings_built_sources) \
+	$(BUILT_SOURCES) \
 	$(NULL)
 
 resources = \

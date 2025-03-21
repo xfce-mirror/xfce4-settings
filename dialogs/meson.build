@@ -28,7 +28,10 @@ foreach dir : dirs
   executable(
     bin,
     sources,
-    sources: xfce_revision_h,
+    sources: [
+      xfce_revision_h,
+      xfce4_settings_resources_c,
+    ],
     c_args: [
       '-DG_LOG_DOMAIN="@0@"'.format('bin'),
       '-DHELPERDIR="@0@"'.format(helper_path_prefix),
@@ -47,9 +50,6 @@ foreach dir : dirs
       xcursor,
       xorg_libinput,
       libm,
-    ],
-    link_with: [
-      libsettings_common,
     ],
     install: true,
     install_dir: get_option('prefix') / get_option('bindir'),

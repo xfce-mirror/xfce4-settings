@@ -33,6 +33,7 @@ xfce4_find_cursor_LDADD = \
 	$(XFCONF_LIBS)
 
 xfce4_accessibility_settings_SOURCES = \
+	$(top_srcdir)/common/xfce4-settings-resources.c \
 	main.c \
 	$(NULL)
 
@@ -54,7 +55,6 @@ xfce4_accessibility_settings_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 xfce4_accessibility_settings_LDADD = \
-	$(top_builddir)/common/libxfce4-settings.la \
 	$(GTK_LIBS) \
 	$(LIBXFCE4UI_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
