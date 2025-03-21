@@ -56,8 +56,6 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 #
 # Build sources
 #
-if MAINTAINER_MODE
-
 xfce-settings-marshal.h: xfce-settings-marshal.list Makefile
 	$(AM_V_GEN) glib-genmarshal --prefix=_xfce_settings_marshal --internal --header $< > $@
 
@@ -71,13 +69,6 @@ DISTCLEANFILES = \
 
 BUILT_SOURCES = \
 	$(xfce4_settings_editor_built_sources)
-
-else
-
-DISTCLEANFILES = \
-	$(desktop_DATA)
-
-endif
 
 EXTRA_DIST = \
 	xfce-settings-marshal.list \

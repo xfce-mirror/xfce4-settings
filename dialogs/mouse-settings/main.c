@@ -24,8 +24,6 @@
 #include "xfce-revision.h"
 #endif
 
-#include "mouse-dialog_ui.h"
-
 #include "xfsettingsd/pointers-defines.h"
 
 #include <cairo-gobject.h>
@@ -2273,9 +2271,7 @@ main (gint argc,
     {
         /* load the Gtk+ user-interface file */
         builder = gtk_builder_new ();
-        if (gtk_builder_add_from_string (builder, mouse_dialog_ui,
-                                         mouse_dialog_ui_length, &error)
-            != 0)
+        if (gtk_builder_add_from_resource (builder, "/org/xfce/settings/mouse-dialog.glade", &error) != 0)
         {
             /* lock */
             locked++;

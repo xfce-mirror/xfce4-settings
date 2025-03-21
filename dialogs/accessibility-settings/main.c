@@ -24,8 +24,6 @@
 #include "xfce-revision.h"
 #endif
 
-#include "accessibility-dialog_ui.h"
-
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
@@ -245,9 +243,7 @@ main (gint argc,
 
     /* load the Gtk user-interface file */
     builder = gtk_builder_new ();
-    if (gtk_builder_add_from_string (builder, accessibility_dialog_ui,
-                                     accessibility_dialog_ui_length, &error)
-        != 0)
+    if (gtk_builder_add_from_resource (builder, "/org/xfce/settings/accessibility-dialog.glade", &error) != 0)
     {
         /* Configure widgets */
         accessibility_settings_dialog_configure_widgets (builder);

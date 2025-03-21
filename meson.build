@@ -54,7 +54,6 @@ libxfce4ui = dependency('libxfce4ui-2', version: dependency_versions['libxfce4ui
 libxfce4util = dependency('libxfce4util-1.0', version: dependency_versions['xfce4'])
 xfconf = dependency('libxfconf-0', version: dependency_versions['xfconf'])
 
-xdt_csource = find_program('xdt-csource', required: true)
 xmllint = find_program('xmllint', required: true)
 sed = find_program('sed', required: true)
 

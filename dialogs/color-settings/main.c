@@ -25,7 +25,6 @@
 #endif
 
 #include "color-device.h"
-#include "color-dialog_ui.h"
 #include "color-profile.h"
 
 #include <libxfce4ui/libxfce4ui.h>
@@ -1496,7 +1495,7 @@ main (gint argc,
 
     /* load the Gtk user-interface file */
     builder = gtk_builder_new ();
-    if (gtk_builder_add_from_string (builder, color_dialog_ui, color_dialog_ui_length, &error) != 0)
+    if (gtk_builder_add_from_resource (builder, "/org/xfce/settings/color-dialog.glade", &error) != 0)
     {
         /* Initialize the dialog */
         settings = color_settings_dialog_init (builder);

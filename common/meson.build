@@ -1,7 +1,16 @@
+libsettings_common_sources = [
+  'debug.c',
+  'debug.h',
+]
+
+libsettings_common_sources += gnome.compile_resources(
+  'xfce4-settings-resources',
+  'resources' / 'xfce4-settings.gresource.xml',
+  source_dir: 'resources',
+)
+
 if enable_display_settings
-  libsettings_common_sources = [
-    'debug.c',
-    'debug.h',
+  libsettings_common_sources += [
     'display-name.c',
     'display-profiles.c',
     'display-profiles.h',
@@ -24,27 +33,27 @@ if enable_display_settings
       'xfce-wlr-output-manager.h',
     ]
   endif
-
-  libsettings_common = static_library(
-    'settings-common',
-    libsettings_common_sources,
-    c_args: [
-      '-DG_LOG_DOMAIN="@0@"'.format('libsettings-common'),
-      '-DPNP_IDS="@0@"'.format('pnp_ids_path'),
-    ],
-    include_directories: [
-      include_directories('..'),
-    ],
-    dependencies: [
-      glib,
-      gtk,
-      libxfce4util,
-      xfconf,
-      x11_deps,
-      xrandr,
-      wayland_deps,
-      libm,
-    ],
-    install: false,
-  )
 endif
+
+libsettings_common = static_library(
+  'settings-common',
+  libsettings_common_sources,
+  c_args: [
+    '-DG_LOG_DOMAIN="@0@"'.format('libsettings-common'),
+    '-DPNP_IDS="@0@"'.format('pnp_ids_path'),
+  ],
+  include_directories: [
+    include_directories('..'),
+  ],
+  dependencies: [
+    glib,
+    gtk,
+    libxfce4util,
+    xfconf,
+    x11_deps,
+    xrandr,
+    wayland_deps,
+    libm,
+  ],
+  install: false,
+)
