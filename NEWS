@@ -1,3 +1,33 @@
+4.21.0 (2025-03-23)
+======
+- build: Fix resource not found at runtime
+- build: Automate copyright year management
+- build: Replace xdt-csource with glib-compile-resources
+- build: Define xfce4 min version >= 4.18
+- Replace deprecated exo with libxfce4ui 4.21.0
+- display-settings: Add missing update of /ActiveProfile
+- Revert "settings-manager: Add xfce4-about"
+- Update copyright year
+- meson-build: Use SPDX license expression
+- meson-build: Specify wayland-scanner as a native dependency
+- meson-build: Update debug/optimization flag management
+- build: Add missing dep flags
+- Add meson build
+- scan-build: Fix core.uninitialized.Assign
+- build: Install missing helper opera-mailer.desktop
+- build: Make gio-unix mandatory
+- build: Simplify libxklavier version management
+- Bump xfconf min version
+- x11: displays: Delay RRScreenChangeNotify handling when DPMSModeOff
+- build: Fix -Wmaybe-uninitialized
+- xfsettingsd: Fix error handling in main()
+- xfsettingsd: Don't disable DPI setting by default
+- wayland: common: Add missing struct member initialization
+- displays: Always enable first output
+- Translation Updates:
+  Albanian, Basque, Catalan, Danish, Estonian, Hungarian, Romanian,
+  Russian, Slovak, Spanish, Ukrainian
+
 4.20.0 (2024-12-15)
 ======
 - xfsettingsd: Fix ushort and ulong types on FreeBSD
