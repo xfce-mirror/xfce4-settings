@@ -43,7 +43,7 @@
 
 /* some messages belonging to parts of code common to X11/Wayland implementations
  * that are not easy to share in the parent class */
-#define WARNING_MESSAGE_UNKNOWN_MODE "Unknown mode '%s @ %.1f' for output %s, aborting."
+#define WARNING_MESSAGE_UNKNOWN_MODE "Unknown mode '%s @ %.2f' for output %s, aborting."
 #define WARNING_MESSAGE_ALL_DISABLED "Stored Xfconf properties disable all outputs, aborting."
 #define DEBUG_MESSAGE_TOGGLING_INTERNAL "Toggling internal output %s."
 #define DEBUG_MESSAGE_DISABLING_INTERNAL "%s will be disabled."
