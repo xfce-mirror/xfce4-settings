@@ -34,7 +34,7 @@ foreach dir : dirs
     ],
     c_args: [
       '-DG_LOG_DOMAIN="@0@"'.format('bin'),
-      '-DHELPERDIR="@0@"'.format(helper_path_prefix),
+      '-DHELPERDIR="@0@"'.format(helper_path_prefix / 'xfce4' / 'settings'),
     ],
     include_directories: [
       include_directories('..'),

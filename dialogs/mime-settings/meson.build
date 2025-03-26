@@ -108,7 +108,7 @@ helpers = run_command('sh', '-c', 'echo helpers' / '*.desktop.in.in', check: tru
 foreach helper_in_in : helpers
   helper_in = configure_file(
     configuration: configuration_data({
-      'HELPERDIR': helper_path_prefix,
+      'HELPERDIR': helper_path_prefix / 'xfce4',
     }),
     input: helper_in_in,
     output: fs.stem(helper_in_in),
