@@ -20,6 +20,8 @@
 #include "config.h"
 #endif
 
+#include "common/debug.h"
+
 #include <gtk/gtk.h>
 #include <xfconf/xfconf.h>
 

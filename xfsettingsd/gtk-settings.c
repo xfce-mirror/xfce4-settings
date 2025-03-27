@@ -24,6 +24,8 @@
 #include "gtk-settings.h"
 #include "xsettings-properties.h"
 
+#include "common/debug.h"
+
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <xfconf/xfconf.h>
@@ -368,11 +370,17 @@ xfce_gtk_settings_helper_gsettings_changed (GSettings *gsettings,
     id = g_strdup_printf ("%s.%s", schema, key);
     data = g_hash_table_lookup (helper->xfconf_data, id);
     g_free (id);
-    g_free (schema);
 
     /* not a synchronized id */
     if (data == NULL)
+    {
+        g_free (schema);
         return;
+    }
+
+    xfsettings_dbg (XFSD_DEBUG_GTK_SETTINGS,
+                    "GSettings schema:key '%s:%s' changed, syncing with Xfconf property '%s'",
+                    schema, key, data->property);
 
     variant = g_settings_get_value (gsettings, key);
     g_dbus_gvariant_to_gvalue (variant, &value);
@@ -387,6 +395,7 @@ xfce_gtk_settings_helper_gsettings_changed (GSettings *gsettings,
 
     g_value_unset (&value);
     g_variant_unref (variant);
+    g_free (schema);
 }
 
 
@@ -408,6 +417,10 @@ xfce_gtk_settings_helper_channel_property_changed (XfconfChannel *channel,
     /* not a synchronized property */
     if (data == NULL)
         return;
+
+    xfsettings_dbg (XFSD_DEBUG_GTK_SETTINGS,
+                    "Xfconf property '%s' changed, syncing with GSettings schema:key '%s:%s'",
+                    property, data->schema, data->key);
 
     class = G_OBJECT_GET_CLASS (gtk_settings_get_default ());
     pspec = g_object_class_find_property (class, data->gtksetting);
