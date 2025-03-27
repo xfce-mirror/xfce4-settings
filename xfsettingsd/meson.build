@@ -177,6 +177,9 @@ shared_module(
     gtk,
     xfconf,
   ],
+  link_with: [
+    libsettings_common,
+  ],
   install: true,
   install_dir: get_option('prefix') / get_option('libdir') / 'gtk-3.0' / 'modules'
 )

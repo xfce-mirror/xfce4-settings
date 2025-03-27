@@ -37,6 +37,7 @@ typedef enum
     XFSD_DEBUG_ACCESSIBILITY = 1 << 7,
     XFSD_DEBUG_POINTERS = 1 << 8,
     XFSD_DEBUG_DISPLAYS = 1 << 9,
+    XFSD_DEBUG_GTK_SETTINGS = 1 << 10,
 } XfsdDebugDomain;
 
 void

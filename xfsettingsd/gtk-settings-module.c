@@ -20,6 +20,8 @@
 #include "config.h"
 #endif
 
+#include "common/debug.h"
+
 #include <gtk/gtk.h>
 #include <xfconf/xfconf.h>
 
@@ -82,6 +84,11 @@ property_changed (XfconfChannel *channel,
     if (pspec != NULL)
     {
         const GValue *default_value = g_param_spec_get_default_value (pspec);
+
+        xfsettings_dbg (XFSD_DEBUG_GTK_SETTINGS,
+                        "Xfconf property '%s' changed, syncing with GtkSettings property '%s'",
+                        property, g_param_spec_get_name (pspec));
+
         if (G_VALUE_TYPE (value) == G_TYPE_INVALID)
             g_object_set_property (G_OBJECT (settings), setting, default_value);
         else

@@ -169,6 +169,7 @@ libxfsettingsd_gtk_settings_sync_la_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 libxfsettingsd_gtk_settings_sync_la_LIBADD = \
+	$(top_builddir)/common/libxfce4-settings.la \
 	$(GMODULE_LIBS) \
 	$(GTK_LIBS) \
 	$(XFCONF_LIBS)
