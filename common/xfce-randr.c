@@ -105,16 +105,10 @@ xfce_randr_list_supported_modes (XRRScreenResources *resources,
         {
             if (output_info->modes[n] == resources->modes[m].id)
             {
-                gdouble v_total = resources->modes[m].vTotal;
-                if (resources->modes[m].modeFlags & RR_DoubleScan)
-                    v_total *= 2.0;
-                if (resources->modes[m].modeFlags & RR_Interlace)
-                    v_total /= 2.0;
-
                 modes[n].width = resources->modes[m].width;
                 modes[n].height = resources->modes[m].height;
-                modes[n].rate = (gdouble) resources->modes[m].dotClock
-                                / ((gdouble) resources->modes[m].hTotal * v_total);
+                modes[n].rate = xfce_randr_calculate_refresh_rate (resources->modes[m]);
+                modes[n].flags = resources->modes[m].modeFlags;
 
                 break;
             }
@@ -434,6 +428,10 @@ xfce_randr_save_output (XfceRandr *randr,
     g_snprintf (property, sizeof (property), "/%s/%s/RefreshRate", scheme,
                 randr->priv->output_info[output]->name);
     xfconf_channel_set_double (channel, property, mode->rate);
+
+    g_snprintf (property, sizeof (property), "/%s/%s/ModeFlags", scheme,
+                randr->priv->output_info[output]->name);
+    xfconf_channel_set_uint64 (channel, property, mode->flags);
 
     /* convert the rotation into degrees */
     switch (randr->rotation[output] & XFCE_RANDR_ROTATIONS_MASK)
@@ -799,4 +797,18 @@ xfce_randr_mode_height (XfceRandr *randr,
         return round (mode->width * randr->scalex[output]);
     else
         return round (mode->height * randr->scaley[output]);
+}
+
+
+
+gdouble
+xfce_randr_calculate_refresh_rate (XRRModeInfo mode)
+{
+    gdouble v_total = mode.vTotal;
+    if (mode.modeFlags & RR_DoubleScan)
+        v_total *= 2.0;
+    if (mode.modeFlags & RR_Interlace)
+        v_total /= 2.0;
+
+    return mode.dotClock / ((gdouble) mode.hTotal * v_total);
 }

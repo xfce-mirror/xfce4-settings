@@ -801,6 +801,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     gdouble output_rate, rate;
     gdouble scale;
     RRMode valid_mode;
+    XRRModeFlags mode_flags;
     Rotation rot;
     gint x, y, n, m, int_value;
     gboolean active;
@@ -914,6 +915,13 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     else
         output_rate = 0.0;
 
+    g_snprintf (property, sizeof (property), MODE_FLAGS_PROP, scheme, output->info->name);
+    value = g_hash_table_lookup (saved_outputs, property);
+    if (value == NULL || !G_VALUE_HOLDS_UINT64 (value))
+        mode_flags = 0;
+    else
+        mode_flags = g_value_get_uint64 (value);
+
     /* scaling */
     g_snprintf (property, sizeof (property), SCALE_PROP, scheme, output->info->name);
     value = g_hash_table_lookup (saved_outputs, property);
@@ -950,8 +958,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
                 continue;
 
             /* calculate the refresh rate */
-            rate = (gdouble) helper->resources->modes[m].dotClock
-                   / ((gdouble) helper->resources->modes[m].hTotal * (gdouble) helper->resources->modes[m].vTotal);
+            rate = xfce_randr_calculate_refresh_rate (helper->resources->modes[m]);
 
             /* construct a string equivalent to the mode generated in displays */
             /* property is the resources mode translated into display panel name */
@@ -959,7 +966,8 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
                         helper->resources->modes[m].height);
 
             /* find the mode corresponding to the saved values */
-            if (rint (rate * 100) == rint (output_rate * 100)
+            if ((mode_flags == 0 || mode_flags == helper->resources->modes[m].modeFlags)
+                && rint (rate * 100) == rint (output_rate * 100)
                 && (g_strcmp0 (property, str_value) == 0))
             {
                 valid_mode = helper->resources->modes[m].id;

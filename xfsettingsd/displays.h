@@ -37,6 +37,7 @@
 #define SCALE_PROP OUTPUT_FMT "/Scale"
 #define SCALEX_PROP OUTPUT_FMT "/Scale/X"
 #define RRATE_PROP OUTPUT_FMT "/RefreshRate"
+#define MODE_FLAGS_PROP OUTPUT_FMT "/ModeFlags"
 #define POSX_PROP OUTPUT_FMT "/Position/X"
 #define POSY_PROP OUTPUT_FMT "/Position/Y"
 #define NOTIFY_PROP "/Notify"

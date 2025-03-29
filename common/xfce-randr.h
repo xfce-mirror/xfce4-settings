@@ -47,6 +47,7 @@ struct _XfceRRMode
     guint width;
     guint height;
     gdouble rate;
+    XRRModeFlags flags;
 };
 
 struct _XfceOutputPosition
@@ -143,6 +144,9 @@ guint
 xfce_randr_mode_height (XfceRandr *randr,
                         guint output,
                         const XfceRRMode *mode);
+
+gdouble
+xfce_randr_calculate_refresh_rate (XRRModeInfo mode);
 
 G_END_DECLS
 
