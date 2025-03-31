@@ -34,7 +34,7 @@ libsettings_common = static_library(
   libsettings_common_sources,
   c_args: [
     '-DG_LOG_DOMAIN="@0@"'.format('libsettings-common'),
-    '-DPNP_IDS="@0@"'.format('pnp_ids_path'),
+    '-DPNP_IDS="@0@"'.format(pnp_ids_path),
   ],
   include_directories: [
     include_directories('..'),
