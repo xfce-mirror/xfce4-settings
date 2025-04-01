@@ -2595,6 +2595,10 @@ read_pnp_ids (void)
                 name = line + 4;
                 g_hash_table_insert (pnp_ids, code, name);
             }
+            else
+            {
+                g_free (line);
+            }
         }
         g_free (lines);
         g_free (contents);
