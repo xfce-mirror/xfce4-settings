@@ -65,8 +65,8 @@ save_window_size (GtkWidget *dialog,
     {
         /* save window size */
         gtk_window_get_size (GTK_WINDOW (dialog), &width, &height);
-        xfconf_channel_set_int (channel, "/last/window-width", width),
-            xfconf_channel_set_int (channel, "/last/window-height", height);
+        xfconf_channel_set_int (channel, "/last/window-width", width);
+        xfconf_channel_set_int (channel, "/last/window-height", height);
         xfconf_channel_set_int (channel, "/last/paned-position", paned_pos);
     }
 }
