@@ -46,7 +46,7 @@ msgstr "ციფრული ეკრანი"
 
 #: common/xfce-randr.c:291 dialogs/display-settings/display-settings-x11.c:702
 msgid "Unable to query the version of the RandR extension being used"
-msgstr ""
+msgstr "შეუძლებელია გამოყენებული RandR გაფართოების ვერსიის გამოთხოვნა"
 
 #: common/xfce-randr.c:573
 #: dialogs/display-settings/display-settings-wayland.c:350
@@ -103,10 +103,11 @@ msgstr "სესიით დაწყება"
 #: dialogs/accessibility-settings/accessibility-dialog.glade:230
 msgid "Assistive technologies will be available the next time you login"
 msgstr ""
+"დამხმარე ტექნოლოგიები ხელმისაწვდომი იქნება სისტემაში შემდეგი შემოსვლისას"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:269
 msgid "No AT-SPI provider was found on your system"
-msgstr ""
+msgstr "თქვენს სისტემაში AT-SPI პროვაიდერი აღმოჩენილი არაა"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:292
 msgid "Assistive _Technologies"
@@ -135,7 +136,7 @@ msgstr ""
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:400
 msgid "Disable sticky keys if two keys are _pressed"
-msgstr ""
+msgstr "წებოვანი ღილაკების გამორთვა, როცა ორ _ღილაკს დააწვებით"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:404
 msgid ""
@@ -235,7 +236,7 @@ msgstr "გამ_ეორების ინტერვალი:"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:877
 msgid "The time, in milliseconds, between repeated motion events"
-msgstr ""
+msgstr "დრო მილიწამშებში გამეორებულ მოძრაობის მოვლენებს შორის"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:906
 msgid "Acceleration t_ime:"
@@ -243,7 +244,7 @@ msgstr "აჩქარების დრო:"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:918
 msgid "The time, in milliseconds, to get to maximum speed"
-msgstr ""
+msgstr "დრო მილიწამებში მაქსიმალური სიჩქარის მისაღწევად"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:948
 msgid "Ma_ximum speed:"
@@ -251,7 +252,7 @@ msgstr "მაქსიმალური სიჩქარე:"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:960
 msgid "The maximum pointer speed after acceleration"
-msgstr ""
+msgstr "კურსორის მაქს. სიჩქარე აჩქარების შემდეგ"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:978
 msgid "pixels/sec"
@@ -263,7 +264,7 @@ msgstr "აჩქარების პროფილი:"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:1002
 msgid "The ramp used to reach maximum pointer speed"
-msgstr ""
+msgstr "პანდუსი მაქსიმალური კურსორის სიჩქარის მისაღწევად"
 
 #: dialogs/accessibility-settings/accessibility-dialog.glade:1048
 msgid "Mouse Emulation"
@@ -344,13 +345,17 @@ msgstr "გთხოვთ, შეცდომების შესახებ
 
 #: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:5
 msgid "Improve keyboard and mouse accessibility"
-msgstr ""
+msgstr "კლავიატურისა და თაგუნას ხელმისაწვდომობის გაუმჯობესება"
 
 #: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:6
 msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr ""
+"assistive;technologies;keys;sticky;bounce;emulation;screen "
+"readers;magnifiers;a11y;i18n;l10n;AT-"
+"SPI;ATK;impairment;დამხმარე;ტექნოლოგიები;წებოვანი;ღილაკები;ეკრანის "
+"წამკითხველი;"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:39
 #: dialogs/appearance-settings/main.c:1601 dialogs/display-settings/main.c:86
@@ -443,11 +448,11 @@ msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:433
 msgid "Select a default monospace font"
-msgstr ""
+msgstr "აირჩიეთ ნაგულისხმევი მონოგანივი ფონტი"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:442
 msgid "Default _Monospace Font"
-msgstr ""
+msgstr "ნაგულისხმევი _მონოგანივი ფონტი"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:477
 msgid "_Enable anti-aliasing"
@@ -518,7 +523,7 @@ msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:767
 msgid "Enable e_ditable accelerators"
-msgstr ""
+msgstr "ჩასწორ_ებადი მალსახმობების ჩართვა"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:771
 msgid ""
@@ -529,7 +534,7 @@ msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:784
 msgid "Enable header bars in dialo_gs"
-msgstr ""
+msgstr "სათაურის ზოლების ჩართვა დიალო_გებში"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:788
 msgid ""
@@ -544,7 +549,7 @@ msgstr "მენიუები და ღილაკები"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:839
 msgid "Enable _event sounds"
-msgstr ""
+msgstr "მოვლენის ხმ_ების ჩართვა"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:843
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
@@ -552,7 +557,7 @@ msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:856
 msgid "Enable input feedbac_k sounds"
-msgstr ""
+msgstr "შეყვანის უ_კუკავშირის ხმების ჩართვა"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:860
 msgid ""
@@ -562,15 +567,15 @@ msgstr ""
 
 #: dialogs/appearance-settings/appearance-dialog.glade:879
 msgid "Event sounds"
-msgstr ""
+msgstr "მოვლენის ხმები"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:908
 msgid "Adjust the system-wide display scaling"
-msgstr ""
+msgstr "მასშტაბის გასწორება მთელი სისტემისთვის"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:926
 msgid "_Window Scaling"
-msgstr ""
+msgstr "ფანჯრის _გადიდება"
 
 #: dialogs/appearance-settings/appearance-dialog.glade:954
 msgid "Setti_ngs"
@@ -578,7 +583,7 @@ msgstr "პარამეტრები"
 
 #: dialogs/appearance-settings/main.c:339
 msgid "Failed to display Xfwm4 Settings"
-msgstr ""
+msgstr "Xfwm4-ის პარამეტრების ჩვენება ჩავარდა"
 
 #. If the theme has no cache, mention this in the tooltip
 #: dialogs/appearance-settings/main.c:633
@@ -603,7 +608,7 @@ msgstr ""
 
 #: dialogs/appearance-settings/main.c:1252
 msgid "File is too large, installation aborted"
-msgstr ""
+msgstr "ფაილი მეტისმეტად დიდია. დაყენება შეწყდა"
 
 #: dialogs/appearance-settings/main.c:1257
 msgid "Failed to create temporary directory"
@@ -611,20 +616,20 @@ msgstr "დროებითი კატალოგის შექმნა 
 
 #: dialogs/appearance-settings/main.c:1262
 msgid "Failed to extract archive"
-msgstr ""
+msgstr "არქივის გაშლა ჩავარდა"
 
 #: dialogs/appearance-settings/main.c:1267
 msgid "Unknown format, only archives and directories are supported"
-msgstr ""
+msgstr "უცნობი ფორმატი. მხარდაჭერილია, მხოლოდ, არქივები და საქაღალდეები"
 
 #: dialogs/appearance-settings/main.c:1272
 msgid "Not a valid theme package"
-msgstr ""
+msgstr "არ წარმოადგენს სწორ თემის პაკეტს"
 
 #: dialogs/appearance-settings/main.c:1277
 #, c-format
 msgid "An unknown error, exit code is %d"
-msgstr ""
+msgstr "აღმოჩენილია უცნობი შეცდომა. გასვლის კოდია %d"
 
 #: dialogs/appearance-settings/main.c:1284
 msgid "Failed to install theme"
@@ -633,7 +638,7 @@ msgstr "თემის დაყენება ვერ მოხერხდ
 #: dialogs/appearance-settings/main.c:1338
 #, c-format
 msgid "Install %s theme"
-msgstr ""
+msgstr "%s თემის დაყენება"
 
 #. Create cancel button
 #: dialogs/appearance-settings/main.c:1340
@@ -672,7 +677,7 @@ msgstr "ვერტიკალური BGR"
 
 #: dialogs/appearance-settings/xfce-ui-settings.desktop.in:5
 msgid "Customize the look of your desktop"
-msgstr ""
+msgstr "მოირგეთ თქვენი სამუშაო მაგიდის გარეგნობა"
 
 #: dialogs/appearance-settings/xfce-ui-settings.desktop.in:6
 msgid ""
@@ -680,6 +685,10 @@ msgid ""
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 msgstr ""
+"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
+"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
+"shortcuts;event;sounds;window scaling;HiDPI;Retina "
+"display;ეკრანი;ჩვენება;ინტერფეისი;თემა;მოგლუვება;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: dialogs/color-settings/color-device.c:69
@@ -762,7 +771,7 @@ msgstr "ამჯამად არჩეული პროფილის წ
 #: dialogs/color-settings/color-dialog.glade:409
 #: dialogs/color-settings/color-dialog.glade:617
 msgid "Show detailed information about the selected profile"
-msgstr ""
+msgstr "დეტალური ინფორმაციის ჩვენება მონიშნული პროფილის შესახებ"
 
 #: dialogs/color-settings/color-dialog.glade:432
 msgid "Enable"
@@ -786,7 +795,7 @@ msgstr "კარგი"
 
 #: dialogs/color-settings/color-dialog.glade:602
 msgid "Import color profile files (*.icc)"
-msgstr ""
+msgstr "ფერის პროფილის ფაილების (*.icc) შემოტანა"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
@@ -891,12 +900,12 @@ msgstr "საცდელი პროფილი: "
 
 #: dialogs/color-settings/main.c:238
 msgid "Compatible Profiles"
-msgstr ""
+msgstr "თავსებადი პროფილები"
 
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "ფერის პროფილის დამატება %s-ზე"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -909,15 +918,16 @@ msgstr "უცნობი"
 
 #: dialogs/color-settings/xfce4-color-settings.desktop.in:5
 msgid "Set color profiles"
-msgstr ""
+msgstr "ფერის პროფილების დაყენება"
 
 #: dialogs/color-settings/xfce4-color-settings.desktop.in:6
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr ""
+"color;settings;management;display;monitors;printers;webcams;scanners;ფერი;მართვა;პრინტერი;სკანერი;ეკრანი;"
 
 #: dialogs/display-settings/confirmation-dialog.glade:13
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
-msgstr ""
+msgstr "<b><big>გნებავთ, შეინარჩუნოთ ეს კონფიგურაცია?</big></b>"
 
 #: dialogs/display-settings/confirmation-dialog.glade:15
 msgid ""
@@ -927,11 +937,11 @@ msgstr ""
 
 #: dialogs/display-settings/confirmation-dialog.glade:29
 msgid "Keep this configuration"
-msgstr ""
+msgstr "ამ კონფიგურაციის შენარჩუნება"
 
 #: dialogs/display-settings/confirmation-dialog.glade:44
 msgid "Restore the previous configuration"
-msgstr ""
+msgstr "წინა კონფიგურაციის აღდგენა"
 
 #: dialogs/display-settings/display-dialog.glade:61
 msgid "Never"
@@ -939,11 +949,11 @@ msgstr "არასოდეს"
 
 #: dialogs/display-settings/display-dialog.glade:65
 msgid "When a display is connected"
-msgstr ""
+msgstr "როცა ეკრანი მიერთებულია"
 
 #: dialogs/display-settings/display-dialog.glade:69
 msgid "When a display is disconnected"
-msgstr ""
+msgstr "როცა ეკრანი გამოერთებულია"
 
 #: dialogs/display-settings/display-dialog.glade:73
 msgid "Always"
@@ -967,7 +977,7 @@ msgstr "გაფართოება"
 
 #: dialogs/display-settings/display-dialog.glade:157
 msgid "The primary display can be configured to show:"
-msgstr ""
+msgstr "ძირითადი ეკრანი შეგიძლიათ, მოირგოთ, რომ აჩვენოს:"
 
 #: dialogs/display-settings/display-dialog.glade:171
 #: dialogs/display-settings/main.c:1739
@@ -995,7 +1005,7 @@ msgstr "ეკრანი"
 
 #: dialogs/display-settings/display-dialog.glade:362
 msgid "_Mirror displays"
-msgstr ""
+msgstr "ანარეკლი _ეკრანები"
 
 #: dialogs/display-settings/display-dialog.glade:461
 msgid "Primary Display:"
@@ -1035,7 +1045,7 @@ msgstr "<b>პროფილები</b>"
 
 #: dialogs/display-settings/display-dialog.glade:705
 msgid "<b>Connecting Displays</b>"
-msgstr ""
+msgstr "<b>ეკრანების მიერთება</b>"
 
 #: dialogs/display-settings/display-dialog.glade:755
 msgid "Delete the currently selected display profile."
@@ -1047,7 +1057,7 @@ msgstr "გამოყენება"
 
 #: dialogs/display-settings/display-dialog.glade:772
 msgid "Apply the currently selected display profile."
-msgstr ""
+msgstr "ამჟამად მონიშნული ეკრანის პროფილის გადატარება."
 
 #: dialogs/display-settings/display-dialog.glade:788
 msgid "Create a new display profile."
@@ -1059,19 +1069,19 @@ msgstr "არსებული პროფილის განახლე�
 
 #: dialogs/display-settings/display-dialog.glade:837
 msgid "First try to automatically enable a profile:"
-msgstr ""
+msgstr "ჯერ ცდა, ავტომატურად ჩაირთოს პროფილი:"
 
 #: dialogs/display-settings/display-dialog.glade:869
 msgid "When a display is connected:"
-msgstr ""
+msgstr "როცა ეკრანი მიერთებულია:"
 
 #: dialogs/display-settings/display-dialog.glade:882
 msgid "Show popup windows to identify displays"
-msgstr ""
+msgstr "მხტუნარა ფანჯრების ჩვენება ეკრანების იდენტიფიკაციისას"
 
 #: dialogs/display-settings/display-dialog.glade:908
 msgid "<b>Identifying Displays</b>"
-msgstr ""
+msgstr "<b>მიმდინარეობს ეკრანების იდენტიფიკაცია</b>"
 
 #: dialogs/display-settings/display-dialog.glade:946
 #: dialogs/display-settings/minimal-display-dialog.glade:354
@@ -1092,19 +1102,19 @@ msgstr "პროფილი ამ სახელით უკვე არ�
 
 #: dialogs/display-settings/minimal-display-dialog.glade:16
 msgid "Extend right"
-msgstr ""
+msgstr "გაფართოება მარჯვნივ"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:19
 msgid "Extend left"
-msgstr ""
+msgstr "გაფართოება მარცხნივ"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:22
 msgid "Extend up"
-msgstr ""
+msgstr "გაფართოება მაღლა"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:25
 msgid "Extend down"
-msgstr ""
+msgstr "გაფართოება დაბლა"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
@@ -1113,21 +1123,21 @@ msgstr "ეკრანები"
 #: dialogs/display-settings/minimal-display-dialog.glade:92
 #: dialogs/display-settings/minimal-display-dialog.glade:93
 msgid "Only Display 1"
-msgstr ""
+msgstr "მხოლოდ ეკრანზე 1"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:145
 #: dialogs/display-settings/minimal-display-dialog.glade:146
 msgid "Mirror Displays"
-msgstr ""
+msgstr "ანარეკლი ეკრანები"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:201
 msgid "Extend to the right"
-msgstr ""
+msgstr "გაფართოება მარჯვნივ"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:262
 #: dialogs/display-settings/minimal-display-dialog.glade:263
 msgid "Only Display 2"
-msgstr ""
+msgstr "მხოლოდ ეკრანზე 2"
 
 #: dialogs/display-settings/profile-changed-dialog.glade:12
 msgid "Update Display Profile"
@@ -1151,12 +1161,12 @@ msgstr ""
 #: dialogs/display-settings/main.c:58
 #, c-format
 msgid "Only %s (1)"
-msgstr ""
+msgstr "მხოლოდ %s (1)"
 
 #: dialogs/display-settings/main.c:59
 #, c-format
 msgid "Only %s (2)"
-msgstr ""
+msgstr "მხოლოდ %s (2)"
 
 #: dialogs/display-settings/main.c:87
 msgid "Left"
@@ -1184,7 +1194,7 @@ msgstr "ჰორიზონტალური და ვერტიკალ�
 
 #: dialogs/display-settings/main.c:109
 msgid "Minimal interface to set up an external output"
-msgstr ""
+msgstr "მინიმალური ინტერფეისი გარე გამოტანის მოსარგებად"
 
 #: dialogs/display-settings/main.c:282
 #, c-format
@@ -1206,22 +1216,22 @@ msgstr ""
 
 #: dialogs/display-settings/main.c:974
 msgid "Selected output not disabled"
-msgstr ""
+msgstr "მონიშნული გამოტანა გათიშული არაა"
 
 #: dialogs/display-settings/main.c:1322
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr ""
+msgstr "განვაახლო შეცვლილი ეკრანის პროფილი '%s'?"
 
 #: dialogs/display-settings/main.c:1327
 #, c-format
 msgid "_Update '%s'"
-msgstr ""
+msgstr "'%s'-ის _განახლება"
 
 #: dialogs/display-settings/main.c:1674
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr ""
+msgstr "გნებავთ, წაშალოთ ეკრანის პროფილი '%s'?"
 
 #: dialogs/display-settings/main.c:1677
 msgid "Delete Profile"
@@ -1229,7 +1239,7 @@ msgstr "პროფილის წაშლა"
 
 #: dialogs/display-settings/main.c:1678
 msgid "Once a display profile is deleted it cannot be restored."
-msgstr ""
+msgstr "როცა ეკრანის პროფილს წაშლით, მას ვეღარ აღადგენთ."
 
 #: dialogs/display-settings/main.c:1678
 #: dialogs/mime-settings/xfce-mime-chooser.c:135
@@ -1247,8 +1257,8 @@ msgstr "წაშლა"
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Xfce-ის პანელი"
+msgstr[1] "%d Xfce-ის პანელი"
 
 #: dialogs/display-settings/main.c:2550
 msgid ""
@@ -1275,24 +1285,25 @@ msgstr "(გათიშულია)"
 
 #: dialogs/display-settings/main.c:3484
 msgid "ATI Settings"
-msgstr ""
+msgstr "ATI-ის მორგება"
 
 #: dialogs/display-settings/main.c:3489
 msgid "Unable to start the Xfce Display Settings"
-msgstr ""
+msgstr "Xfce-ის ეკრანის მორგების დაწყება შეუძლებელია"
 
 #: dialogs/display-settings/main.c:3497
 msgid "Unable to launch the proprietary driver settings"
-msgstr ""
+msgstr "დახურული დრაივერის პარამეტრების გაშვება შეუძლებელია"
 
 #: dialogs/display-settings/xfce-display-settings.desktop.in:5
 msgid "Configure screen settings and layout"
-msgstr ""
+msgstr "ეკრანის პარამეტრებისა და განლაგების მორგება"
 
 #: dialogs/display-settings/xfce-display-settings.desktop.in:6
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr ""
+"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;ეკრანი;მორგება;გაფართოება;განახლებისსიხსირე;ტრიალი;გარე;პროექტორი;"
 
 #: dialogs/display-settings/display-settings.c:464
 msgid "Display:"
@@ -1314,7 +1325,7 @@ msgstr "მალსახმობის ბრძანება"
 
 #: dialogs/keyboard-settings/command-dialog.c:139
 msgid "Enter the command you want to trigger with a shortcut."
-msgstr ""
+msgstr "შეიყვანეთ ბრძანება, რომელიც გნებავთ, მალსახმობმა გაუშვას."
 
 #. We are editing an existing shortcut
 #: dialogs/keyboard-settings/command-dialog.c:157
@@ -1331,7 +1342,7 @@ msgstr "_გაშვების გაფრთხილების გამ
 
 #: dialogs/keyboard-settings/command-dialog.c:253
 msgid "The command may not be empty."
-msgstr ""
+msgstr "ბრძანება შეიძლება, ცარიელი არ იყოს."
 
 #: dialogs/keyboard-settings/command-dialog.c:273
 msgid "Select command"
@@ -1384,7 +1395,7 @@ msgstr "კლავიატურა"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:252
 msgid "Restore num l_ock state on startup"
-msgstr ""
+msgstr "NumLock-ის მდგ_ომარეობის აღდგენა გაშვებისას"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:267
 #: dialogs/mouse-settings/mouse-dialog.glade:726
@@ -1394,7 +1405,7 @@ msgstr "ზოგადი"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:301
 msgid "_Enable key repeat"
-msgstr ""
+msgstr "ღილაკის გამეორების დაშვ_ება"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:305
 msgid ""
@@ -1420,19 +1431,19 @@ msgstr ""
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:405
 msgid "Typing Settings"
-msgstr ""
+msgstr "აკრეფის პარამეტრები"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:438
 msgid "Show _blinking"
-msgstr ""
+msgstr "_ციმციმის ჩვენება"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:442
 msgid "Specify whether or not the text cursor blinks"
-msgstr ""
+msgstr "მიუთითებთ, ციმციმებს თუ არა ტექსტური კურსორი"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:470
 msgid "Blink _delay:"
-msgstr ""
+msgstr "ციმციმის _დაყოვნება:"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:484
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
@@ -1444,7 +1455,7 @@ msgstr "კურსორი"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:534
 msgid "_Test area:"
-msgstr ""
+msgstr "_შემოწმების ადგილი:"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:575
 msgid "Beha_vior"
@@ -1452,7 +1463,7 @@ msgstr "ქცევა"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:593
 msgid "Define shortcuts for la_unching applications:"
-msgstr ""
+msgstr "აღწერეთ მალსახმობები აპლიკაციების გასა_შვებად:"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:651
 #: dialogs/keyboard-settings/keyboard-dialog.glade:986
@@ -1470,27 +1481,27 @@ msgstr "პროგრამების მალსახმობები"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:762
 msgid "<b>Use system defaults</b>"
-msgstr ""
+msgstr "<b>სისტემის ნაგულისხმევების გამოყენება</b>"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:817
 msgid "_Keyboard model"
-msgstr ""
+msgstr "_კლავიატურის მოდელი"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:861
 msgid "Change la_yout option"
-msgstr ""
+msgstr "გან_ლაგების პარამეტრის შეცვლა"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:899
 msgid "Co_mpose key"
-msgstr ""
+msgstr "გაგზავნის _ღილაკი"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:1043
 msgid "Move currently selected item up by one row"
-msgstr ""
+msgstr "მონიშნული ელემენტის აწევა ერთი მწკრივით"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:1063
 msgid "Move currently selected item down by one row"
-msgstr ""
+msgstr "მონიშნული ელემენტის ჩამოწევა ერთი მწკრივით"
 
 #: dialogs/keyboard-settings/keyboard-dialog.glade:1096
 msgid "Key_board layout"
@@ -1507,7 +1518,7 @@ msgstr "GTK+-ის ინიციალიზაციის შეცდო�
 #: dialogs/keyboard-settings/main.c:106
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
-msgstr ""
+msgstr "Xfconf-ის დემონთან მიერთება შეუძლებელია. მიზეზი: %s"
 
 #: dialogs/keyboard-settings/main.c:117
 msgid "Could not create the settings dialog."
@@ -1563,11 +1574,11 @@ msgstr "კლავიატურის პარამეტრების �
 
 #: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
 msgid "numlock;keyboard;layout;shortcuts;"
-msgstr ""
+msgstr "numlock;keyboard;layout;shortcuts;კლავიატურა;განლაგება;მალსახმობი;"
 
 #: dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
-msgstr ""
+msgstr "MIME დიალოგის შექმნა შეუძლებელია."
 
 #: dialogs/mime-settings/xfce-mime-chooser.c:129
 msgid "Select Application"
@@ -1644,19 +1655,19 @@ msgstr "პროგრამა არაა არჩეული"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
 msgid "Failed to set default Web Browser"
-msgstr ""
+msgstr "ნაგულისხმევი ბრაუზერის დაყენება ჩავარდა"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
 msgid "Failed to set default Mail Reader"
-msgstr ""
+msgstr "ნაგულისხმევი ელფოსტის პროგრამის დაყენება ჩავარდა"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
 msgid "Failed to set default File Manager"
-msgstr ""
+msgstr "ნაგულისხმევი ფაილების მმართველის დაყენება ჩავარდა"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
 msgid "Failed to set default Terminal Emulator"
-msgstr ""
+msgstr "ნაგულისხმევი ტერმინალის ემულატორის დაყენება ჩავარდა"
 
 #. allocate the chooser
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
@@ -1665,19 +1676,19 @@ msgstr "პროგრამის არჩევა"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
 msgid "Choose a custom Web Browser"
-msgstr ""
+msgstr "აირჩიეთ მომხმარებლის ბრაუზერი"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
 msgid "Choose a custom Mail Reader"
-msgstr ""
+msgstr "აირჩიეთ მომხმარებლის ელფოსტის პროგრამა"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
 msgid "Choose a custom File Manager"
-msgstr ""
+msgstr "აირჩიეთ მომხმარებლის ფაილების მმართველი"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
 msgid "Choose a custom Terminal Emulator"
-msgstr ""
+msgstr "აირჩიეთ მომხმარებლის ტერმინალის ემულატორი"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
 msgid ""
@@ -1717,7 +1728,7 @@ msgstr ""
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:114
 msgid "Choose Preferred Application"
-msgstr ""
+msgstr "აირჩიეთ სასურველი პროგრამა"
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
@@ -1745,24 +1756,24 @@ msgstr ""
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Web Browser"
-msgstr ""
+msgstr "ნაგულისხმევი ბრაუზერის გაშვება ჩავარდა"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:30
 msgid "Failed to execute default Mail Reader"
-msgstr ""
+msgstr "ნაგულისხმევი ელფოსტის პროგრამის გაშვება ჩავარდა"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:31
 msgid "Failed to execute default File Manager"
-msgstr ""
+msgstr "ნაგულისხმევი ფაილების მმართველი ჩავარდა"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:32
 msgid "Failed to execute default Terminal Emulator"
-msgstr ""
+msgstr "ნაგულისხმევი ტერმინალის ემულატორი ჩავარდა"
 
 #. Enable permanently dismissing this error.
 #: dialogs/mime-settings/xfce-mime-helper-main.c:74
 msgid "Do _not show this message again"
-msgstr ""
+msgstr "ეს შეტყობინ_ება მეტჯერ აღარ მაჩვენო"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:105
 msgid "Print version information and exit"
@@ -1777,7 +1788,7 @@ msgstr ""
 #: dialogs/mime-settings/xfce-mime-helper-main.c:106
 #: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid "TYPE [PARAMETER]"
-msgstr ""
+msgstr "ტიპი [პარამეტრი]"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
@@ -1798,7 +1809,7 @@ msgstr ""
 #: dialogs/mime-settings/xfce-mime-helper-main.c:249
 #, c-format
 msgid "Invalid helper type \"%s\""
-msgstr ""
+msgstr "არასწორი დამხმარე პროგრამის ტიპი \"%s\""
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:233
 #, c-format
@@ -1818,7 +1829,7 @@ msgstr ""
 #: dialogs/mime-settings/xfce-mime-helper-main.c:260
 #, c-format
 msgid "No helper defined for \"%s\"."
-msgstr ""
+msgstr "\"%s\"-სთვის დამხმარე პროგრამა აღწერილი არაა."
 
 #: dialogs/mime-settings/xfce-mime-helper.c:431
 msgid "No command specified"
@@ -1830,7 +1841,7 @@ msgstr "ბრძანება მითითებული არაა"
 #: dialogs/mime-settings/xfce-mime-helper.c:980
 #, c-format
 msgid "Failed to open %s for writing"
-msgstr ""
+msgstr "%s-ის ჩაწერისთვის გახსნა შეუძლებელია"
 
 #: dialogs/mime-settings/xfce-mime-window.c:192
 #: dialogs/mime-settings/xfce4-mime-settings.desktop.in:4
@@ -1856,7 +1867,7 @@ msgstr ""
 #: dialogs/mime-settings/xfce-mime-window.c:254
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
-msgstr ""
+msgstr "ელფოსტის წამკითხველი"
 
 #: dialogs/mime-settings/xfce-mime-window.c:262
 msgid ""
@@ -1867,7 +1878,7 @@ msgstr ""
 #. Utilities
 #: dialogs/mime-settings/xfce-mime-window.c:276
 msgid "_Utilities"
-msgstr ""
+msgstr "_ხელსაწყოები"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
@@ -1893,7 +1904,7 @@ msgstr ""
 #. Mimes
 #: dialogs/mime-settings/xfce-mime-window.c:337
 msgid "_Others"
-msgstr ""
+msgstr "სხვებ_ი"
 
 #: dialogs/mime-settings/xfce-mime-window.c:347
 msgid "_Filter:"
@@ -1922,7 +1933,7 @@ msgstr "ნაგულისხმები პროგრამა"
 #: dialogs/mime-settings/xfce-mime-window.c:658
 #: dialogs/mime-settings/xfce-mime-window.c:827
 msgid "User Set"
-msgstr ""
+msgstr "მომხმარებელი დაყენებულია"
 
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:660
@@ -1936,8 +1947,8 @@ msgstr "ნაგულისხმები"
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "აღმოჩენილია %d MIME ტიპი"
+msgstr[1] "აღმოჩენილია %d MIME ტიპი"
 
 #: dialogs/mime-settings/xfce-mime-window.c:872
 #, c-format
@@ -1948,8 +1959,8 @@ msgstr ""
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "არჩეულია %d MIME ტიპი"
+msgstr[1] "არჩეულია %d MIME ტიპი"
 
 #: dialogs/mime-settings/xfce-mime-window.c:1177
 msgid ""
@@ -1977,17 +1988,20 @@ msgstr "პროგრამის არჩევა..."
 
 #: dialogs/mime-settings/xfce4-mime-settings.desktop.in:5
 msgid "Associate preferred applications with MIME types"
-msgstr ""
+msgstr "სასურველი პროგრამების ასოცირება MIME ტიპებთან"
 
 #: dialogs/mime-settings/xfce4-mime-settings.desktop.in:6
 msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
 msgstr ""
+"file;type;extension;association;open with;web browser;mail reader;file "
+"manager;terminal emulator;ფაილი;ტიპი;გაფართოება;გახსნა;ელფოსტა;ტერმინალი;"
 
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
 msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
 msgstr ""
+"file;manager;explorer;browse;filesystem;directory;folder;xfce;ფაილები;მართვა;დათვალიერება;საქაღალდე;"
 
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
@@ -1996,14 +2010,15 @@ msgstr "ფაილურ სისტემაში ძებნა"
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
 msgid "email;mail;inbox;message;communication;"
 msgstr ""
+"email;mail;inbox;message;communication;ელფოსტა;შეტყობინება;კომუნიკაცია;"
 
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
-msgstr ""
+msgstr "წაიკითხეთ თქვენი ელფოსტა"
 
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
 msgid "terminal;command line;shell;console;xfce;"
-msgstr ""
+msgstr "terminal;command line;shell;console;xfce;ტერმინალი;ბრძანებისსტრიქონი;"
 
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
@@ -2011,7 +2026,7 @@ msgstr "ბრზანების ხაზის გამოყენებ�
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
 msgid "internet;web;browser;surf;explore;xfce;"
-msgstr ""
+msgstr "internet;web;browser;surf;explore;xfce;ინტერნეტი;ბრაუზერი;ვები;ბმული;"
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
@@ -2019,7 +2034,7 @@ msgstr "ინტენეტში მუშაობა"
 
 #: dialogs/mime-settings/helpers/alacritty.desktop.in.in:6
 msgid "Alacritty"
-msgstr ""
+msgstr "Alacritty"
 
 #: dialogs/mime-settings/helpers/aterm.desktop.in.in:6
 msgid "aterm"
@@ -2035,7 +2050,7 @@ msgstr "Brave"
 
 #: dialogs/mime-settings/helpers/caja.desktop.in.in:6
 msgid "Caja File Manager"
-msgstr ""
+msgstr "ფაილების მმართველი Caja"
 
 #: dialogs/mime-settings/helpers/chromium.desktop.in.in:7
 msgid "Chromium"
@@ -2047,7 +2062,7 @@ msgstr "Debian Sensible Browser"
 
 #: dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in:6
 msgid "Debian X Terminal Emulator"
-msgstr ""
+msgstr "Debian X ტერმინალის ემულატორი"
 
 #: dialogs/mime-settings/helpers/dillo.desktop.in.in:6
 msgid "Dillo"
@@ -2063,7 +2078,7 @@ msgstr "ეპიფანია ვებ ბროუზერი"
 
 #: dialogs/mime-settings/helpers/eterm.desktop.in.in:6
 msgid "Enlightened Terminal Emulator"
-msgstr ""
+msgstr "ტერმინალის ემულატორი Enlightened"
 
 #: dialogs/mime-settings/helpers/evolution.desktop.in.in:6
 msgid "Evolution"
@@ -2107,7 +2122,7 @@ msgstr "Jumanji"
 
 #: dialogs/mime-settings/helpers/kitty.desktop.in.in:6
 msgid "kitty"
-msgstr ""
+msgstr "kitty"
 
 #: dialogs/mime-settings/helpers/kmail.desktop.in.in:6
 msgid "KMail"
@@ -2119,11 +2134,11 @@ msgstr "Konqueror Web Browser"
 
 #: dialogs/mime-settings/helpers/links.desktop.in.in:6
 msgid "Links Text Browser"
-msgstr ""
+msgstr "ტექსტური ბრაუზერი Links"
 
 #: dialogs/mime-settings/helpers/lynx.desktop.in.in:6
 msgid "Lynx Text Browser"
-msgstr ""
+msgstr "ტექსტური ბრაუზერიLynx"
 
 #: dialogs/mime-settings/helpers/midori.desktop.in.in:7
 msgid "Midori"
@@ -2131,7 +2146,7 @@ msgstr "Midori"
 
 #: dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in:6
 msgid "Mozilla Browser"
-msgstr ""
+msgstr "ბრაუზერი Mozilla"
 
 #: dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in:6
 msgid "Mozilla Mail"
@@ -2147,7 +2162,7 @@ msgstr "Nautilus"
 
 #: dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in:6
 msgid "Netscape Navigator"
-msgstr ""
+msgstr "Netscape Navigator"
 
 #: dialogs/mime-settings/helpers/nxterm.desktop.in.in:6
 msgid "NXterm"
@@ -2155,15 +2170,15 @@ msgstr "NXterm"
 
 #: dialogs/mime-settings/helpers/opera-browser.desktop.in.in:6
 msgid "Opera Browser"
-msgstr ""
+msgstr "ბრაუზერი Opera"
 
 #: dialogs/mime-settings/helpers/pcmanfm.desktop.in.in:7
 msgid "PCMan File Manager"
-msgstr ""
+msgstr "ფაილების მმართველი PCMan"
 
 #: dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in:6
 msgid "PCManFM-Qt File Manager"
-msgstr ""
+msgstr "ფაილების მმართველი PCManFM-Qt"
 
 #: dialogs/mime-settings/helpers/qterminal.desktop.in.in:6
 msgid "QTerminal"
@@ -2179,7 +2194,7 @@ msgstr "QupZilla"
 
 #: dialogs/mime-settings/helpers/rodent.desktop.in.in:6
 msgid "Rodent File Manager"
-msgstr ""
+msgstr "ფაილების მმართველი Rodent"
 
 #: dialogs/mime-settings/helpers/rox-filer.desktop.in.in:6
 msgid "ROX-Filer"
@@ -2215,31 +2230,31 @@ msgstr "Mozilla Thunderbird"
 
 #: dialogs/mime-settings/helpers/urxvt.desktop.in.in:6
 msgid "RXVT Unicode"
-msgstr ""
+msgstr "RXVT უნიკოდით"
 
 #: dialogs/mime-settings/helpers/vimprobable2.desktop.in.in:6
 msgid "Vimprobable2"
-msgstr ""
+msgstr "Vimprobable2"
 
 #: dialogs/mime-settings/helpers/w3m.desktop.in.in:6
 msgid "W3M Text Browser"
-msgstr ""
+msgstr "ტექსტური ბრაუზერი W3M"
 
 #: dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in:6
 msgid "Xfce Terminal"
-msgstr ""
+msgstr "Xfce-ის ტერმინალი"
 
 #: dialogs/mime-settings/helpers/xfe.desktop.in.in:6
 msgid "Xfe File Manager"
-msgstr ""
+msgstr "Xfe-ის ფაილების მმართველი"
 
 #: dialogs/mime-settings/helpers/xterm.desktop.in.in:6
 msgid "X Terminal"
-msgstr ""
+msgstr "X-ის ტერმინალი"
 
 #: dialogs/mouse-settings/main.c:85
 msgid "Active device in the dialog"
-msgstr ""
+msgstr "აქტიური მოწყობილობა დიალოგში"
 
 #: dialogs/mouse-settings/main.c:85
 msgid "DEVICE NAME"
@@ -2265,11 +2280,11 @@ msgstr "%.1f წმ"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:67
 msgid "Use bottom areas as left, middle or right buttons"
-msgstr ""
+msgstr "ქვედა ადგილების გამოყენება, როგორც მარცხენა, შუა, ან მარჯვენა ღილაკი"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:71
 msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
-msgstr ""
+msgstr "1, 2, ან 3 თითით დაჭერა როგორც მარცხენა, მარჯვენა ან შუა წკაპი"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:92
 msgid "Disabled"
@@ -2289,19 +2304,19 @@ msgstr "წრიული აწევ-ჩამოწევა"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:126
 msgid "Pen (absolute)"
-msgstr ""
+msgstr "ფანქარი (აბსოლუტური)"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:130
 msgid "Mouse (relative)"
-msgstr ""
+msgstr "თაგუნა (ფარდობით)"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:144
 msgid "None (right-handed)"
-msgstr ""
+msgstr "არცერთი (მარჯვენა ხელით)"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:148
 msgid "Half (left-handed)"
-msgstr ""
+msgstr "ნახევარი (ცაცია)"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:152
 msgid "Clockwise"
@@ -2314,7 +2329,7 @@ msgstr "საათის ისრის საწინააღმდეგ�
 #: dialogs/mouse-settings/mouse-dialog.glade:162
 #: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
-msgstr ""
+msgstr "თაგუნა და თაჩპედი"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:237
 msgid "De_vice:"
@@ -2330,7 +2345,7 @@ msgstr "მემარჯვენე"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:355
 msgid "Reverse scroll d_irection"
-msgstr ""
+msgstr "გადახვევის მიმართულების _რევერსი"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:359
 msgid "When selected, the scroll wheel will work in the opposite direction"
@@ -2381,7 +2396,7 @@ msgstr ""
 
 #: dialogs/mouse-settings/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
-msgstr ""
+msgstr "ადაპტიური კურსორის აჩქარება"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:505
 msgid ""
@@ -2396,12 +2411,12 @@ msgstr "მაჩვენებლის სიჩქარე"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:544
 msgid "B_uttons and Feedback"
-msgstr ""
+msgstr "ღილაკები და _უკუკავშირი"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:578
 #: dialogs/mouse-settings/mouse-dialog.glade:595
 msgid "Disable touchpad _while typing"
-msgstr ""
+msgstr "თაჩპედის გამორთვა _კრეფისას"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:582
 #: dialogs/mouse-settings/mouse-dialog.glade:599
@@ -2415,19 +2430,19 @@ msgstr "ხანგრძლივობა:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:659
 msgid "Tap touchpad to clic_k"
-msgstr ""
+msgstr "თაჩპედზე დატ_ყაპუნება წკაპისთვის"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:682
 msgid "Click m_ethod:"
-msgstr ""
+msgstr "წკაპის მ_ეთოდი:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:767
 msgid "Scrolling _mode:"
-msgstr ""
+msgstr "გადახვევის რეჟი_მი:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:805
 msgid "Enable hori_zontal scrolling"
-msgstr ""
+msgstr "ჰორი_ზონტალური გადახვევის დაშვება"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:827
 msgid "Scrolling"
@@ -2439,7 +2454,7 @@ msgstr "თ_აჩპედი"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:888
 msgid "Trac_king mode:"
-msgstr ""
+msgstr "ტრე_კინგის რეჟიმი:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:901
 msgid "_Rotation:"
@@ -2455,7 +2470,7 @@ msgstr "მოწყობილობები"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:1034
 msgid "Th_reshold:"
-msgstr ""
+msgstr "ზღვა_რი:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:1048
 msgid ""
@@ -2479,7 +2494,7 @@ msgstr ""
 
 #: dialogs/mouse-settings/mouse-dialog.glade:1133
 msgid "D_istance:"
-msgstr ""
+msgstr "მანძ_ილი:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:1147
 msgid ""
@@ -2497,7 +2512,7 @@ msgstr "ქცევა"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:1253
 msgid "Cursor si_ze:"
-msgstr ""
+msgstr "კურსორის _ზომა:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:1287
 msgid "Size"
@@ -2519,6 +2534,8 @@ msgstr ""
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr ""
+"settings;buttons;scroll;direction;pointer;speed;double "
+"click;theme;wheel;თაგუნა;ბორბალი;"
 
 #: xfce4-settings-editor/main.c:182
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
@@ -2547,11 +2564,11 @@ msgstr "მნიშვნელობა"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:369
 msgid "New property"
-msgstr ""
+msgstr "ახალი თვისება"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:382
 msgid "Edit selected property"
-msgstr ""
+msgstr "მონიშნული თვისების ჩასწორება"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:390
 #: xfce4-settings-editor/xfce-settings-editor-box.c:1076
@@ -2561,7 +2578,7 @@ msgstr "_საწყისი მნიშვნელობებზე და
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:395
 msgid "Reset selected property"
-msgstr ""
+msgstr "მონიშნული თვისების ჩამოყრა"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:501
 #: xfce4-settings-editor/xfce-settings-editor-box.c:594
@@ -2595,16 +2612,16 @@ msgstr "ორმაგი"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:851
 msgid "Resetting a channel will permanently remove those custom settings."
-msgstr ""
+msgstr "არხის ჩამოყრა სამუდამოდ წაშლის მორგებულ პარამეტრებს."
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:859
 msgid "_Reset Channel"
-msgstr ""
+msgstr "არხის _ჩამოყრა"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:860
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr ""
+msgstr "მართლა გნებავთ, ჩამოყაროთ არხი \"%s\" და ყველა მისი თვისება?"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:935
 msgid "reset"
@@ -2626,7 +2643,7 @@ msgstr "დახურვა"
 #: xfce4-settings-editor/xfce-settings-editor-box.c:1033
 #, c-format
 msgid "start monitoring channel \"%s\""
-msgstr ""
+msgstr "მონიტორინგის გაშვება არხისთვის \"%s\""
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:1082
 msgid "_Monitor"
@@ -2638,12 +2655,12 @@ msgstr "განახლება"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:1575
 msgid "Resetting a property will permanently remove those custom settings."
-msgstr ""
+msgstr "თვისების ჩამოყრა მორგებულ პარამეტრებს შეუქცევადად წაშლის."
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:1579
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
-msgstr ""
+msgstr "მართლა გნებავთ, ჩამოყაროთ თვისება \"%s\"?"
 
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
 msgid "Int"
@@ -2651,7 +2668,7 @@ msgstr "მთელი რიცხვი"
 
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:88
 msgid "Unsigned Int"
-msgstr ""
+msgstr "უნიშნო მთელი"
 
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:89
 msgid "Int64"
@@ -2659,11 +2676,11 @@ msgstr "Int64"
 
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "Unsigned Int64"
-msgstr ""
+msgstr "უნიშნო მთელი 64-ბიტიანი"
 
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:135
 msgid "New Property"
-msgstr ""
+msgstr "ახალი თვისება"
 
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Save"
@@ -2714,19 +2731,19 @@ msgstr "თვისების სახელები არ შეიძლ
 
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:641
 msgid "Edit Property"
-msgstr ""
+msgstr "თვისების ჩასწორება"
 
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:4
 msgid "Graphical settings editor for Xfconf"
-msgstr ""
+msgstr "გრაფიკული პარამეტრების რედაქტორი Xfconf-სთვის"
 
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:5
 msgid "registry;regedit;configuration file;"
-msgstr ""
+msgstr "registry;regedit;configuration file;რეესტრი;კონფიგურაციის ფაილი;"
 
 #: xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
-msgstr ""
+msgstr "საჩვენებელი მორგების დიალოგი"
 
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:228
 msgid "All _Settings"
@@ -2740,7 +2757,7 @@ msgstr "პარამეტრები"
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:937
 #, c-format
 msgid "Unable to start \"%s\""
-msgstr ""
+msgstr "%s-ის გაშვების შეცდომა"
 
 #: xfce4-settings-manager/xfce-settings-manager.desktop.in:3
 msgid "Settings Manager"
@@ -2748,19 +2765,20 @@ msgstr "პარამეტრების მმართველი"
 
 #: xfce4-settings-manager/xfce-settings-manager.desktop.in:4
 msgid "Graphical Settings Manager for Xfce"
-msgstr ""
+msgstr "გრაფიკული პარამეტრების მმართველი Xfce-სთვის"
 
 #: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr ""
+"control;panel;center;system;settings;personalize;hardware;მართვა;პარამეტრები;ცენტრი;მორგება;აპარატურა;"
 
 #: xfsettingsd/accessibility.c:413
 msgid "Sticky keys are enabled"
-msgstr ""
+msgstr "წებოვანი ღილაკები ჩართულია"
 
 #: xfsettingsd/accessibility.c:415
 msgid "Sticky keys are disabled"
-msgstr ""
+msgstr "წებოვანი ღილაკები გამორთულია"
 
 #: xfsettingsd/accessibility.c:417
 msgid "Sticky keys"
@@ -2768,11 +2786,11 @@ msgstr "წებოვანი ღილაკები"
 
 #: xfsettingsd/accessibility.c:422
 msgid "Slow keys are enabled"
-msgstr ""
+msgstr "ნელი ღილაკები ჩართულია"
 
 #: xfsettingsd/accessibility.c:424
 msgid "Slow keys are disabled"
-msgstr ""
+msgstr "ნელი ღილაკები გამორთულია"
 
 #: xfsettingsd/accessibility.c:426
 msgid "Slow keys"
@@ -2780,11 +2798,11 @@ msgstr "ნელი ღილაკები"
 
 #: xfsettingsd/accessibility.c:431
 msgid "Bounce keys are enabled"
-msgstr ""
+msgstr "მხტუნარა ღილაკები ჩართულია"
 
 #: xfsettingsd/accessibility.c:433
 msgid "Bounce keys are disabled"
-msgstr ""
+msgstr "მხტუნარა ღილაკები გამორთულია"
 
 #: xfsettingsd/accessibility.c:435
 msgid "Bounce keys"
@@ -2793,11 +2811,11 @@ msgstr "მხტუნავი ღილაკები"
 #: xfsettingsd/keyboard-shortcuts.c:240
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
-msgstr ""
+msgstr "ჩავარდა გაშვება მალსახმობისთვის \"%s\""
 
 #: xfsettingsd/main.c:94
 msgid "Fork to the background"
-msgstr ""
+msgstr "გადასვლა ფონში"
 
 #: xfsettingsd/main.c:95
 msgid "Do not wait for a window manager on startup"
@@ -2805,7 +2823,7 @@ msgstr "არ დაელოდო ფანჯრის მმართვე
 
 #: xfsettingsd/main.c:96
 msgid "Replace running xsettings daemon (if any)"
-msgstr ""
+msgstr "გაშვებული xsettings-ის დემონის ჩანაცვლება (თუ ის არსებობს)"
 
 #. value in xfconf isn't a string, so make a default one
 #: xfsettingsd/workspaces.c:322 xfsettingsd/workspaces.c:379
@@ -2815,12 +2833,13 @@ msgstr "სამუშაო სივრცე %d"
 
 #: xfsettingsd/xfsettingsd.desktop.in:4
 msgid "Xfce Settings Daemon"
-msgstr ""
+msgstr "Xfce-ის პარამეტრების დემონი"
 
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
-msgstr ""
+msgstr "Xfce-ის პარამეტრების დემონი"
 
 #: xfsettingsd/xfsettingsd.desktop.in:13
 msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
 msgstr ""
+"settings;daemon;xfce;configuration;preferences;system;manage;მართვა;დემონი;მორგება;პარამეტრები;კონფიგურაცია;"
