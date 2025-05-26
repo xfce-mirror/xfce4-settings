@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-14 00:48+0200\n"
+"POT-Creation-Date: 2024-11-02 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/xfce/xfce4-settings/language/ko/)\n"
@@ -587,7 +587,7 @@ msgstr "Xfwm4 설정 표시에 실패했습니다"
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
-msgstr ""
+msgstr "경고: 이 아이콘 테마에 캐시 파일이 없습니다. 터미널 에뮬레이터에서 <i>gtk-update-icon-cache -f -t %s/</i> 명령을 실행하면 캐시 파일을 만들 수 있습니다."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
@@ -897,7 +897,7 @@ msgstr "호환 프로파일"
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "%s에 색 프로파일 추가"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -1248,7 +1248,7 @@ msgstr "삭제 "
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
-msgstr[0] ""
+msgstr[0] "%d Xfce 패널"
 
 #: dialogs/display-settings/main.c:2550
 msgid ""
@@ -1840,7 +1840,7 @@ msgid "_Internet"
 msgstr "인터넷(_I)"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "웹 브라우저"
 
@@ -1851,7 +1851,7 @@ msgid ""
 msgstr "기본 웹 브라우저는 하이퍼링크를 열거나 화면에 대한 도움말 내용을 표시할 때 사용합니다."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "메일 리더"
 
@@ -1867,7 +1867,7 @@ msgid "_Utilities"
 msgstr "유틸리티(_U)"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "파일 관리자"
 
@@ -1877,7 +1877,7 @@ msgid ""
 msgstr "기본 파일 관리자는 폴더의 내용을 탐색할 때 사용합니다."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "터미널 에뮬레이터"
 
@@ -1980,19 +1980,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "file;type;extension;association;open with;web browser;mail reader;file manager;terminal emulator;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr "file;파일;manager;관리자;explorer;탐색기;browse;탐색;filesystem;파일시스템;directory;디렉터리;folder;폴더;xfce;"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "파일 시스템 탐색"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr "email;이메일;전자메일;mail;메일;inbox;받은편지함;message;메시지;communication;통신;"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "이메일 읽기"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr "terminal;터미널;터미날;command line;명령줄;명령행;shell;쉘;셸;console;콘솔;xfce;"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "명령줄 사용"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr "internet;인터넷;web;웹;browser;브라우저;탐색기;surf;서핑;explore;탐색;xfce;"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "웹 탐색"
 
@@ -2796,3 +2812,7 @@ msgstr "Xfce 설정 데몬"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "Xfce 설정 데몬"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr "settings;설정;제어판;daemon;데몬;xfce;configuration;구성;preferences;기본설정;환경설정;system;시스템;manage;관리;"
