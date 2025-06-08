@@ -88,6 +88,7 @@ executable(
 
 apps = [
   'xfce4-file-manager.desktop.in',
+  'xfce4-image-viewer.desktop.in',
   'xfce4-mail-reader.desktop.in',
   'xfce4-mime-settings.desktop.in',
   'xfce4-terminal-emulator.desktop.in',

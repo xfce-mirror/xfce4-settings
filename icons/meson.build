@@ -1,6 +1,7 @@
 sizes = [16, 24, 32, 48, 128]
 names = [
   'org.xfce.filemanager',
+  'org.xfce.imageviewer',
   'org.xfce.mailreader',
   'org.xfce.settings.accessibility',
   'org.xfce.settings.appearance',

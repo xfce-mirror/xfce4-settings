@@ -31,6 +31,7 @@ static const gchar *CATEGORY_EXEC_ERRORS[] = {
   N_ ("Failed to execute default File Manager"),
   N_ ("Failed to execute default Terminal Emulator"),
   N_ ("Failed to execute default Text Editor"),
+  N_ ("Failed to execute default Image Viewer"),
 };
 
 
@@ -131,7 +132,8 @@ main (int argc,
   g_option_context_add_main_entries (opt_ctx, option_entries, NULL);
   g_option_context_set_ignore_unknown_options (opt_ctx, TRUE);
   /* Note to Translators: Do not translate the TYPEs (WebBrowser, MailReader,
-   * FileManager, TextEditor, and TerminalEmulator), since the xfce-mime-helper utility will
+   * FileManager, TerminalEmulator, and ImageViewer),
+   * since the xfce-mime-helper utility will
    * not accept localized TYPEs.
    */
   g_option_context_set_description (opt_ctx,
@@ -140,7 +142,8 @@ main (int argc,
                                       "  MailReader       - The preferred Mail Reader.\n"
                                       "  FileManager      - The preferred File Manager.\n"
                                       "  TerminalEmulator - The preferred Terminal Emulator.\n"
-                                      "  TextEditor       - The preferred Text Editor."));
+                                      "  TextEditor       - The preferred Text Editor.\n"));
+                                      "  ImageViewer      - The preferred Image Viewer.\n"));
 
   if (!g_option_context_parse (opt_ctx, &argc, &argv, &error))
     {
