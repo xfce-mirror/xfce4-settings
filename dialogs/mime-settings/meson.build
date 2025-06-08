@@ -92,6 +92,7 @@ apps = [
   'xfce4-mime-settings.desktop.in',
   'xfce4-terminal-emulator.desktop.in',
   'xfce4-web-browser.desktop.in',
+  'xfce4-video-player.desktop.in',
 ]
 foreach app : apps
   i18n.merge_file(
