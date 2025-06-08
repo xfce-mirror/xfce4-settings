@@ -180,7 +180,7 @@ xfce_mime_window_init (XfceMimeWindow *window)
   GtkWidget *box;
 
   /* verify category settings */
-  g_assert (XFCE_MIME_HELPER_N_CATEGORIES == 6);
+  g_assert (XFCE_MIME_HELPER_N_CATEGORIES == 7);
 
   window->channel = xfconf_channel_new ("xfce4-mime-settings");
 
@@ -392,6 +392,33 @@ xfce_mime_window_init (XfceMimeWindow *window)
   gtk_widget_show (chooser);
 
   xfce_gtk_label_set_a11y_relation (GTK_LABEL (label), GTK_WIDGET (chooser));
+
+  /*
+     Audio Player
+   */
+  frame = g_object_new (GTK_TYPE_FRAME, "border-width", 0, "shadow-type", GTK_SHADOW_NONE, NULL);
+  gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, TRUE, 0);
+  gtk_widget_show (frame);
+
+  label = g_object_new (GTK_TYPE_LABEL, "attributes", window->attrs_bold, "label", _("Audio Player"), NULL);
+  gtk_frame_set_label_widget (GTK_FRAME (frame), label);
+  gtk_widget_show (label);
+
+  box = g_object_new (GTK_TYPE_BOX, "orientation", GTK_ORIENTATION_VERTICAL, "margin-top", 6, "margin-left", 12, "spacing", 6, NULL);
+  gtk_container_add (GTK_CONTAINER (frame), box);
+  gtk_widget_show (box);
+
+  label = gtk_label_new (_("The default Audio Player will be used to play audio files."));
+  g_object_set (label, "xalign", 0.0f, "yalign", 0.0f, "wrap", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
+  gtk_widget_show (label);
+
+  chooser = xfce_mime_helper_chooser_new (XFCE_MIME_HELPER_AUDIOPLAYER);
+  gtk_box_pack_start (GTK_BOX (box), chooser, FALSE, FALSE, 0);
+  gtk_widget_show (chooser);
+
+  xfce_gtk_label_set_a11y_relation (GTK_LABEL (label), GTK_WIDGET (chooser));
+
 
 
   /*
