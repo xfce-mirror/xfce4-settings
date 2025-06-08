@@ -30,6 +30,7 @@ typedef enum /*< enum,prefix=XFCE_MIME_HELPER >*/
   XFCE_MIME_HELPER_FILEMANAGER, /*< nick=FileManager >*/
   XFCE_MIME_HELPER_TERMINALEMULATOR, /*< nick=TerminalEmulator >*/
   XFCE_MIME_HELPER_IMAGEVIEWER, /*< nick=ImageViewer >*/
+  XFCE_MIME_HELPER_AUDIOPLAYER, /*< nick=AudioPlayer >*/
   XFCE_MIME_HELPER_N_CATEGORIES, /*< skip >*/
 } XfceMimeHelperCategory;
 
