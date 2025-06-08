@@ -256,6 +256,8 @@ xfce_mime_helper_launcher_dialog_set_category (XfceMimeHelperLauncherDialog *lau
         "now and click OK to proceed."),
     N_ ("Please choose your preferred Terminal\n"
         "Emulator now and click OK to proceed."),
+    N_ ("Please choose your preferred Image\n"
+        "Viewer now and click OK to proceed."),
   };
 
   /* sanity check the categories */
