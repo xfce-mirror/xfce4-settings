@@ -1,5 +1,6 @@
 sizes = [16, 24, 32, 48, 128]
 names = [
+  'org.xfce.audioplayer',
   'org.xfce.filemanager',
   'org.xfce.imageviewer',
   'org.xfce.mailreader',
