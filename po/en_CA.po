@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2025
+# Steve Harris <steve@jbs.ca>, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings.xfce-4-20\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-02-14 12:29+0100\n"
+"POT-Creation-Date: 2025-02-14 12:49+0100\n"
 "PO-Revision-Date: 2025-02-14 11:29+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>, 2025\n"
+"Last-Translator: Steve Harris <steve@jbs.ca>, 2025\n"
 "Language-Team: English (Canada) (https://app.transifex.com/xfce/teams/16840/en_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -630,12 +631,14 @@ msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
 msgstr ""
+"Warning: this icon theme has no cache file. You can create this by running "
+"<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
 #: dialogs/appearance-settings/main.c:640
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
-msgstr ""
+msgstr "Warning: this icon theme is incomplete. Some icons will be missing."
 
 #. These actually are no full themes by purpose
 #: dialogs/appearance-settings/main.c:645
@@ -643,10 +646,12 @@ msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr ""
+"Warning: this icon theme is incomplete. It only provides a base set of icons"
+" from which other themes can inherit."
 
 #: dialogs/appearance-settings/main.c:1252
 msgid "File is too large, installation aborted"
-msgstr ""
+msgstr "File is too large, installation aborted"
 
 #: dialogs/appearance-settings/main.c:1257
 msgid "Failed to create temporary directory"
@@ -662,7 +667,7 @@ msgstr "Unknown format, only archives and directories are supported"
 
 #: dialogs/appearance-settings/main.c:1272
 msgid "Not a valid theme package"
-msgstr ""
+msgstr "Not a valid theme package"
 
 #: dialogs/appearance-settings/main.c:1277
 #, c-format
@@ -942,7 +947,7 @@ msgstr "Compatible Profiles"
 #: dialogs/color-settings/main.c:517
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "Add Colour Profile to %s"
 
 #: dialogs/color-settings/main.c:517
 msgid "Device"
@@ -988,11 +993,11 @@ msgstr "Never"
 
 #: dialogs/display-settings/display-dialog.glade:65
 msgid "When a display is connected"
-msgstr ""
+msgstr "When a display is connected"
 
 #: dialogs/display-settings/display-dialog.glade:69
 msgid "When a display is disconnected"
-msgstr ""
+msgstr "When a display is disconnected"
 
 #: dialogs/display-settings/display-dialog.glade:73
 msgid "Always"
@@ -1016,7 +1021,7 @@ msgstr "Extend"
 
 #: dialogs/display-settings/display-dialog.glade:157
 msgid "The primary display can be configured to show:"
-msgstr ""
+msgstr "The primary display can be configured to show:"
 
 #: dialogs/display-settings/display-dialog.glade:171
 #: dialogs/display-settings/main.c:1739
@@ -1108,11 +1113,11 @@ msgstr "Update an existing profile."
 
 #: dialogs/display-settings/display-dialog.glade:837
 msgid "First try to automatically enable a profile:"
-msgstr ""
+msgstr "First try to automatically enable a profile:"
 
 #: dialogs/display-settings/display-dialog.glade:869
 msgid "When a display is connected:"
-msgstr ""
+msgstr "When a display is connected:"
 
 #: dialogs/display-settings/display-dialog.glade:882
 msgid "Show popup windows to identify displays"
@@ -1141,19 +1146,19 @@ msgstr "A profile of this name already exists."
 
 #: dialogs/display-settings/minimal-display-dialog.glade:16
 msgid "Extend right"
-msgstr ""
+msgstr "Extend right"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:19
 msgid "Extend left"
-msgstr ""
+msgstr "Extend left"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:22
 msgid "Extend up"
-msgstr ""
+msgstr "Extend up"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:25
 msgid "Extend down"
-msgstr ""
+msgstr "Extend down"
 
 #: dialogs/display-settings/minimal-display-dialog.glade:37
 msgid "Displays"
@@ -1302,8 +1307,8 @@ msgstr "Delete"
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Xfce Panel"
+msgstr[1] "%d Xfce Panels"
 
 #: dialogs/display-settings/main.c:2550
 msgid ""
@@ -1364,6 +1369,7 @@ msgstr "Resolution:"
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
+"Your compositor does not seem to support the wlr-output-management protocol"
 
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:109
@@ -1684,7 +1690,11 @@ msgid_plural ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
 " with:"
 msgstr[0] ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
+"with:"
 msgstr[1] ""
+"Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
+" with:"
 
 #: dialogs/mime-settings/xfce-mime-chooser.c:659
 #, c-format
@@ -2052,8 +2062,8 @@ msgstr "Failed to set application \"%s\" for mime type \"%s\"."
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d MIME type selected"
+msgstr[1] "%d MIME types selected"
 
 #: dialogs/mime-settings/xfce-mime-window.c:1177
 msgid ""
@@ -2095,7 +2105,7 @@ msgstr ""
 
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
 msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
-msgstr ""
+msgstr "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
 
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
@@ -2103,7 +2113,7 @@ msgstr "Browse the file system"
 
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
 msgid "email;mail;inbox;message;communication;"
-msgstr ""
+msgstr "email;mail;inbox;message;communication;"
 
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
@@ -2111,7 +2121,7 @@ msgstr "Read your email"
 
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
 msgid "terminal;command line;shell;console;xfce;"
-msgstr ""
+msgstr "terminal;command line;shell;console;xfce;"
 
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
@@ -2119,7 +2129,7 @@ msgstr "Use the command line"
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
 msgid "internet;web;browser;surf;explore;xfce;"
-msgstr ""
+msgstr "internet;web;browser;surf;explore;xfce;"
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
@@ -2373,11 +2383,11 @@ msgstr "%.1f s"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:67
 msgid "Use bottom areas as left, middle or right buttons"
-msgstr ""
+msgstr "Use bottom areas as left, middle or right buttons"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:71
 msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
-msgstr ""
+msgstr "Click with 1, 2 or 3 fingers as a left, right, or middle click"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:92
 msgid "Disabled"
@@ -2446,13 +2456,15 @@ msgstr "When selected, the scroll wheel will work in the opposite direction"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:372
 msgid "Allow high _resolution scrolling (experimental)"
-msgstr ""
+msgstr "Allow high _resolution scrolling (experimental)"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:376
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr ""
+"Only supported on some mice (mostly Logitech) and requires driver support. "
+"On supported devices makes scrolling more precise."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:395
 msgid "Buttons"
@@ -2494,7 +2506,7 @@ msgstr ""
 
 #: dialogs/mouse-settings/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
-msgstr ""
+msgstr "Adaptive pointer acceleration"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:505
 msgid ""
@@ -2502,6 +2514,9 @@ msgid ""
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr ""
+"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
+"current speed of the device into account when deciding on acceleration. "
+"Custom acceleration profile is not supported via xfce4-settings."
 
 #: dialogs/mouse-settings/mouse-dialog.glade:525
 msgid "Pointer Speed"
@@ -2533,7 +2548,7 @@ msgstr "Tap touchpad to clic_k"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:682
 msgid "Click m_ethod:"
-msgstr ""
+msgstr "Click m_ethod:"
 
 #: dialogs/mouse-settings/mouse-dialog.glade:767
 msgid "Scrolling _mode:"
@@ -2944,4 +2959,4 @@ msgstr "The Xfce Settings Daemon"
 
 #: xfsettingsd/xfsettingsd.desktop.in:13
 msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
-msgstr ""
+msgstr "settings;daemon;xfce;configuration;preferences;system;manage;"
