@@ -350,6 +350,9 @@ menu_activate (GtkWidget *item,
     N_ ("Failed to set default Mail Reader"),
     N_ ("Failed to set default File Manager"),
     N_ ("Failed to set default Terminal Emulator"),
+    N_ ("Failed to set default Image Viewer"),
+    N_ ("Failed to set default Audio Player"),
+    N_ ("Failed to set default Video Player"),
   };
 
   XfceMimeHelper *helper;
@@ -534,6 +537,9 @@ menu_activate_other (GtkWidget *item,
     N_ ("Choose a custom Mail Reader"),
     N_ ("Choose a custom File Manager"),
     N_ ("Choose a custom Terminal Emulator"),
+    N_ ("Choose a custom Image Viewer"),
+    N_ ("Choose a custom Audio Player"),
+    N_ ("Choose a custom Viddeo Player"),
   };
 
   static const gchar *BROWSE_MESSAGES[] = {
@@ -541,6 +547,9 @@ menu_activate_other (GtkWidget *item,
     N_ ("Specify the application you want to use\nas default Mail Reader for Xfce:"),
     N_ ("Specify the application you want to use\nas default File Manager for Xfce:"),
     N_ ("Specify the application you want to use\nas default Terminal Emulator for Xfce:"),
+    N_ ("Specify the application you want to use\nas default Image Viewer for Xfce:"),
+    N_ ("Specify the application you want to use\nas default Audio Player for Xfce:"),
+    N_ ("Specify the application you want to use\nas default Video Player for Xfce:"),
   };
 
   const gchar *command;
