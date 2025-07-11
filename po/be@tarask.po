@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-09-02 00:49+0200\n"
+"POT-Creation-Date: 2025-07-11 12:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Сяргей Снапкоўскі, 2020\n"
 "Language-Team: Belarusian (Tarask) (http://app.transifex.com/xfce/xfce4-settings/language/be@tarask/)\n"
@@ -18,323 +18,1238 @@ msgstr ""
 "Language: be@tarask\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#. Translators: "Unknown" here is used to identify a monitor for which
-#. * we don't know the vendor. When a vendor is known, the name of the
-#. * vendor is used.
-#: common/display-name.c:2644
-msgctxt "Monitor vendor"
-msgid "Unknown"
-msgstr "Невядома"
-
-#. TRANSLATORS: an externally connected display, where %s is either the
-#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: common/display-name.c:2697 dialogs/color-settings/color-device.c:66
-msgid "Monitor"
-msgstr "Дысплэй"
-
-#: common/display-name.c:2700
-msgid "Television"
-msgstr "Тэлебачаньне"
-
-#: common/display-name.c:2704
-msgid "Digital display"
-msgstr "Лічбавы дысплэй"
-
-#: common/xfce-randr.c:291 dialogs/display-settings/display-settings-x11.c:702
-msgid "Unable to query the version of the RandR extension being used"
-msgstr "Не атрымалася запатрабаваць вэрсыю выкарыстоўваемага пашырэньня RandR"
-
-#: common/xfce-randr.c:573
-#: dialogs/display-settings/display-settings-wayland.c:350
-msgid "Laptop"
-msgstr "Ноўтбук"
-
-#: dialogs/accessibility-settings/accessibility-dialog.glade:66
+#: common/resources/accessibility-dialog.glade:66
 #: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:4
 msgid "Accessibility"
 msgstr "Даступнасьць"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:85
-#: dialogs/appearance-settings/appearance-dialog.glade:142
-#: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:290
-#: dialogs/display-settings/minimal-display-dialog.glade:368
-#: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3490
-#: dialogs/keyboard-settings/keyboard-dialog.glade:181
+#: common/resources/accessibility-dialog.glade:85
+#: common/resources/appearance-dialog.glade:142
+#: common/resources/color-dialog.glade:65
+#: common/resources/display-dialog.glade:290
+#: common/resources/minimal-display-dialog.glade:368
+#: common/resources/profile-changed-dialog.glade:34
+#: common/resources/keyboard-dialog.glade:181
+#: common/resources/mouse-dialog.glade:195
+#: dialogs/display-settings/main.c:3482
 #: dialogs/mime-settings/xfce-mime-window.c:194
-#: dialogs/mouse-settings/mouse-dialog.glade:195
-#: xfce4-settings-editor/main.c:185
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:235
+#: xfce4-settings-editor/main.c:188
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:234
 msgid "_Close"
 msgstr "Зачыніць"
 
 #. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
-#: dialogs/accessibility-settings/accessibility-dialog.glade:100
-#: dialogs/appearance-settings/appearance-dialog.glade:126
-#: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:274
-#: dialogs/keyboard-settings/keyboard-dialog.glade:196
+#: common/resources/accessibility-dialog.glade:100
+#: common/resources/appearance-dialog.glade:126
+#: common/resources/color-dialog.glade:80
+#: common/resources/display-dialog.glade:274
+#: common/resources/keyboard-dialog.glade:196
+#: common/resources/mouse-dialog.glade:179
 #: dialogs/mime-settings/xfce-mime-window.c:197
-#: dialogs/mouse-settings/mouse-dialog.glade:179
-#: xfce4-settings-editor/main.c:184
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:224
+#: xfce4-settings-editor/main.c:187
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:223
 msgid "_Help"
 msgstr "_Даведка"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:156
+#: common/resources/accessibility-dialog.glade:156
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr "Калі ўключана, кіраўнік сеансаў запусьціць дастасаваньні, неабходныя для чытаньня з экрану й павелічэньня."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:173
+#: common/resources/accessibility-dialog.glade:173
 msgid "_Enable assistive technologies"
 msgstr "_Уключыць дапаможныя тэхналёгіі"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:195
+#: common/resources/accessibility-dialog.glade:195
 msgid "Start With Session"
 msgstr "Пачынаць з сэансу"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:230
+#: common/resources/accessibility-dialog.glade:230
 msgid "Assistive technologies will be available the next time you login"
 msgstr "Дапаможныя тэхналёгіі будуць даступныя пры наступным уваходзе ў сыстэму"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:269
+#: common/resources/accessibility-dialog.glade:269
 msgid "No AT-SPI provider was found on your system"
 msgstr "У вашай сыстэме не знойдзены AT-SPI"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:292
+#: common/resources/accessibility-dialog.glade:292
 msgid "Assistive _Technologies"
 msgstr "_Дапаможныя тэхналёгіі"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:332
+#: common/resources/accessibility-dialog.glade:332
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr "Калі ўключана, не спатрэбіцца ўтрымліваць клявішы-мадыфікатары (Control, Alt, Shift), іх можна будзе пстрыкнуць і адпусьціць. Утрымліваць некалькі клявішаў запар не будзе патрэбна."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:355
+#: common/resources/accessibility-dialog.glade:355
 msgid "_Use sticky keys"
 msgstr "_Выкарыстоўваць заліпаньне клявішаў"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:383
+#: common/resources/accessibility-dialog.glade:383
 msgid "_Lock sticky keys"
 msgstr "_Блякаваць заліпнуўшыя клявішы"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:387
+#: common/resources/accessibility-dialog.glade:387
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr "Калі абрана, клявішы-мадыфікатары (Control, Alt, Shift) будуць дзейнымі, пакуль іх не пстрыкнуць зноў"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:400
+#: common/resources/accessibility-dialog.glade:400
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr "Выключыць заліпаньне клявішаў падчас пстрыку дзьвух клявішаў"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:404
+#: common/resources/accessibility-dialog.glade:404
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr "Калі абрана, функцыя заліпаньня клявішаў будзе выключана пры адначасовым пстрыку на дзьве клявішы"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:439
+#: common/resources/accessibility-dialog.glade:439
 msgid "Sticky Keys"
 msgstr "Заліпнуўшыя клявішы"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:469
+#: common/resources/accessibility-dialog.glade:469
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr "Каб прадухіліць выпадковыя пстрыкі клявішаў, запаволеныя клявішы неабходна ўтрымліваць пэўны прамежак часу, каб дзеяньне ўжылася."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:492
+#: common/resources/accessibility-dialog.glade:492
 msgid "Use slow _keys"
 msgstr "Выкарыстоўваць запаволеныя _клавішы"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:521
+#: common/resources/accessibility-dialog.glade:521
 msgid "Acceptance _delay:"
 msgstr "Затрымка _пагадненьня:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:535
+#: common/resources/accessibility-dialog.glade:535
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "Час у мілісэкундах да пстрыку клявішы"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:571
+#: common/resources/accessibility-dialog.glade:571
 msgid "Slow Keys"
 msgstr "Запаволеныя клявішы"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:601
+#: common/resources/accessibility-dialog.glade:601
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr "Каб прадухіліць выпадковыя пстрыкі некалькіх клявішаў, скокаючыя клявішы актывуюць мінымальную затрымку паміж пстрыкамі клявішаў."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:624
+#: common/resources/accessibility-dialog.glade:624
 msgid "Use _bounce keys"
 msgstr "Скарыстаць скокаючыя клявішы"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:653
+#: common/resources/accessibility-dialog.glade:653
 msgid "K_eystroke delay:"
 msgstr "Затрымка _пстрыку клявішы:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:667
+#: common/resources/accessibility-dialog.glade:667
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Час у мілісэкундах паміж пстрыкамі клявішаў"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:703
+#: common/resources/accessibility-dialog.glade:703
 msgid "Bounce Keys"
 msgstr "Скокаючыя клявішы"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:729
+#: common/resources/accessibility-dialog.glade:729
 msgid "Keyboa_rd"
 msgstr "Клявія_тура"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:769
+#: common/resources/accessibility-dialog.glade:769
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr "Калі ўключана, указальнікам мышу можна кіраваць з лічбавага блёку."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:792
+#: common/resources/accessibility-dialog.glade:792
 msgid "_Use mouse emulation"
 msgstr "_Выкарыстоўваць эмуляцыю мышу"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:796
+#: common/resources/accessibility-dialog.glade:796
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "Калі абрана, указальнік мышу будзе кіравацца з лічбавага блёку"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:824
-#: dialogs/accessibility-settings/accessibility-dialog.glade:894
-#: dialogs/accessibility-settings/accessibility-dialog.glade:936
+#: common/resources/accessibility-dialog.glade:824
+#: common/resources/accessibility-dialog.glade:894
+#: common/resources/accessibility-dialog.glade:936
 msgid "msec"
 msgstr "мсэк"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:835
+#: common/resources/accessibility-dialog.glade:835
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "Час у мілісэкундах паміж пстрыкам клявішы й пачаткам руху"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:852
+#: common/resources/accessibility-dialog.glade:852
 msgid "_Acceleration delay:"
 msgstr "_Затрымка паскарэньня:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:865
+#: common/resources/accessibility-dialog.glade:865
 msgid "R_epeat interval:"
 msgstr "П-рамежак паўтору:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:877
+#: common/resources/accessibility-dialog.glade:877
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Час у мілісэкундах паміж паўторнымі рухамі"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:906
+#: common/resources/accessibility-dialog.glade:906
 msgid "Acceleration t_ime:"
 msgstr "Час пас_карэньня:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:918
+#: common/resources/accessibility-dialog.glade:918
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Час у мілісэкундах для дасягненьня максымальнай хуткасьці"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:948
+#: common/resources/accessibility-dialog.glade:948
 msgid "Ma_ximum speed:"
 msgstr "Мак_сымальная хуткасьць:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:960
+#: common/resources/accessibility-dialog.glade:960
 msgid "The maximum pointer speed after acceleration"
 msgstr "Максымальная хуткасьць указальніка пасьля паскарэньня"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:978
+#: common/resources/accessibility-dialog.glade:978
 msgid "pixels/sec"
 msgstr "піксэляў/сэк"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:990
+#: common/resources/accessibility-dialog.glade:990
 msgid "Acceleration _profile:"
 msgstr "Профіль _паскарэньня:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1002
+#: common/resources/accessibility-dialog.glade:1002
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Адлегласьць, якую мусіць прайсьці ўказальнік для дасягненьня максымальнай хуткасьці"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1048
+#: common/resources/accessibility-dialog.glade:1048
 msgid "Mouse Emulation"
 msgstr "Эмуляцыя мышу"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1078
+#: common/resources/accessibility-dialog.glade:1078
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr "Прывязаць спалучэнне клавіш да xfce4-find-cursor для выяўленьня бягучага месцазнаходжаньня ўказальніка мышу."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1095
+#: common/resources/accessibility-dialog.glade:1095
 msgid "Show location of pointer on keypress"
 msgstr "Паказваць размяшчэньне ўказальніка мышу пры пстрыку клявішы"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1117
+#: common/resources/accessibility-dialog.glade:1117
 msgid "Find Cursor"
 msgstr "Знайсьці ўказальнік"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1143
+#: common/resources/accessibility-dialog.glade:1143
 msgid "_Mouse"
 msgstr "_Мыша"
 
-#: dialogs/accessibility-settings/main.c:38
-#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
-#: xfce4-settings-editor/main.c:44
+#: common/resources/appearance-dialog.glade:39
+#: common/resources/mouse-dialog.glade:63
+#: dialogs/appearance-settings/main.c:1602 dialogs/display-settings/main.c:85
+#: dialogs/display-settings/main.c:93
+msgid "None"
+msgstr "Няма"
+
+#: common/resources/appearance-dialog.glade:42
+msgid "Slight"
+msgstr "Лёгкі"
+
+#: common/resources/appearance-dialog.glade:45
+msgid "Medium"
+msgstr "Сярэдні"
+
+#: common/resources/appearance-dialog.glade:48
+msgid "Full"
+msgstr "Поўны"
+
+#: common/resources/appearance-dialog.glade:59
+msgid "Icons"
+msgstr "Відарысы"
+
+#: common/resources/appearance-dialog.glade:62
+msgid "Text"
+msgstr "Тэкст"
+
+#: common/resources/appearance-dialog.glade:65
+msgid "Text under icons"
+msgstr "Тэкст пад відарысамі"
+
+#: common/resources/appearance-dialog.glade:68
+msgid "Text next to icons"
+msgstr "Тэкст пасьля відарысаў"
+
+#: common/resources/appearance-dialog.glade:82
+msgid "1x (no scaling)"
+msgstr "1x (без маштабаваньня)"
+
+#: common/resources/appearance-dialog.glade:86
+msgid "2x"
+msgstr "2x"
+
+#: common/resources/appearance-dialog.glade:107
+#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
+msgid "Appearance"
+msgstr "Выгляд"
+
+#: common/resources/appearance-dialog.glade:205
+#: common/resources/appearance-dialog.glade:315
+#: common/resources/color-dialog.glade:374
+#: common/resources/keyboard-dialog.glade:636
+#: common/resources/keyboard-dialog.glade:970
+#: xfce4-settings-editor/xfce-settings-editor-box.c:364
+msgid "_Add"
+msgstr "_Дадаць"
+
+#: common/resources/appearance-dialog.glade:238
+msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
+msgstr ""
+
+#: common/resources/appearance-dialog.glade:272
+msgid "St_yle"
+msgstr "Сты_ль"
+
+#: common/resources/appearance-dialog.glade:348
+msgid "_Icons"
+msgstr "_Выявы"
+
+#: common/resources/appearance-dialog.glade:388
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr "Гэты шрыфт будзе прадвызначаным для адлюстраваньня тэксту інтэрфэйсу"
+
+#: common/resources/appearance-dialog.glade:390
+msgid "Select a default font"
+msgstr "Абраць прадвызначаны шрыфт"
+
+#: common/resources/appearance-dialog.glade:399
+msgid "Default Fon_t"
+msgstr "Прадвызначаны _шрыфт"
+
+#: common/resources/appearance-dialog.glade:431
+msgid ""
+"This font will be used as the default monospace font, for example by "
+"terminal emulators."
+msgstr "Гэты шрыфт будзе выкарыстоўвацца ў якасьці прадвызначанага монашырыннага шрыфту, напрыклад эмулятарам тэрміналу."
+
+#: common/resources/appearance-dialog.glade:433
+msgid "Select a default monospace font"
+msgstr "Абраць прадвызначаны монашырынны шрыфт"
+
+#: common/resources/appearance-dialog.glade:442
+msgid "Default _Monospace Font"
+msgstr "Прадвызначаны _монашырынны шрыфт"
+
+#: common/resources/appearance-dialog.glade:477
+msgid "_Enable anti-aliasing"
+msgstr "_Уключыць згладжваньне шрыфту"
+
+#: common/resources/appearance-dialog.glade:481
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr "Згладжваньне шрыфту можа палепшыць выгляд тэксту"
+
+#: common/resources/appearance-dialog.glade:509
+msgid "Hintin_g:"
+msgstr "Хін_тынг:"
+
+#: common/resources/appearance-dialog.glade:521
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw"
+" the font; pick whichever looks best according to personal preference"
+msgstr "Некаторыя шрыфты месьцяць дадатковыя зьвесткі, што дапамагаюць найбольш якасна адмалёўваць шрыфт; абярыце найлепшы варыянт"
+
+#: common/resources/appearance-dialog.glade:541
+msgid "Sub-_pixel order:"
+msgstr "Парадак _унутранага піксэля:"
+
+#: common/resources/appearance-dialog.glade:553
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr "Якасьць шрыфту на экранах TFT або LCD можа быць палепшана наладай парадку разьмяшчэньня колераў унутры піксэля"
+
+#: common/resources/appearance-dialog.glade:591
+msgid "Rendering"
+msgstr "Адмалёўка"
+
+#: common/resources/appearance-dialog.glade:623
+msgid "Custom _DPI setting:"
+msgstr "Адвольныя налады _DPI:"
+
+#: common/resources/appearance-dialog.glade:627
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too "
+"small"
+msgstr "Перавызначаць выяўленую межную здольнасьць дысплэя калі шрыфты занадта вялікія або занадта малыя"
+
+#: common/resources/appearance-dialog.glade:664
+msgid "DPI"
+msgstr "DPI"
+
+#: common/resources/appearance-dialog.glade:690
+msgid "_Fonts"
+msgstr "_Шрыфты"
+
+#: common/resources/appearance-dialog.glade:733
+msgid "Show images on _buttons"
+msgstr "Паказваць выявы на _кнопках"
+
+#: common/resources/appearance-dialog.glade:737
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "Вызначае, ці мусяць відарысы адлюстроўвацца на кнопках"
+
+#: common/resources/appearance-dialog.glade:750
+msgid "Show images in _menus"
+msgstr "Паказваць выявы ў _мэню"
+
+#: common/resources/appearance-dialog.glade:754
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "Вызначае, ці мусяць відарысы адлюстроўвацца ў элэмэнтах мэню"
+
+#: common/resources/appearance-dialog.glade:767
+msgid "Enable e_ditable accelerators"
+msgstr "Уключыць рэ_дагуемые спалучэньні клявішаў"
+
+#: common/resources/appearance-dialog.glade:771
+msgid ""
+"If selected, keyboard shortcuts for menu items can be changed by hovering "
+"the mouse over the menu item and pressing the new key combination for the "
+"shortcut"
+msgstr "Калі абрана, спалучэньні клявішаў можна зьмяніць, навёўшы на іх указальнік мышу й пстрыкнуўшы новае спалучэньне клявішаў"
+
+#: common/resources/appearance-dialog.glade:784
+msgid "Enable header bars in dialo_gs"
+msgstr ""
+
+#: common/resources/appearance-dialog.glade:788
+msgid ""
+"Defines whether GTK dialogs may place widgets such as buttons in the "
+"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
+"opened dialogs."
+msgstr ""
+
+#: common/resources/appearance-dialog.glade:807
+msgid "Menus and Buttons"
+msgstr "Мэню й кнопкі"
+
+#: common/resources/appearance-dialog.glade:839
+msgid "Enable _event sounds"
+msgstr "Уключыць _гукі падзеяў"
+
+#: common/resources/appearance-dialog.glade:843
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr "Уключыць або выключыць гукі падзеяў глябальна (патрабуецца падтрымка \"Canberra\")"
+
+#: common/resources/appearance-dialog.glade:856
+msgid "Enable input feedbac_k sounds"
+msgstr "Уключыць уваходныя _гукі зваротнай сувязі"
+
+#: common/resources/appearance-dialog.glade:860
+msgid ""
+"Specify whether mouse clicks and other user input will cause event sounds to"
+" play"
+msgstr "Вызначыць, ці будуць пстрыкі кнопак мышу й іньшых прыладаў уводу прыводзіць да прайграваньня гукаў падзеяў"
+
+#: common/resources/appearance-dialog.glade:879
+msgid "Event sounds"
+msgstr "Гукі падзеяў"
+
+#: common/resources/appearance-dialog.glade:908
+msgid "Adjust the system-wide display scaling"
+msgstr "Наладзіць сыстэмнае маштабаваньне дысплэю"
+
+#: common/resources/appearance-dialog.glade:926
+msgid "_Window Scaling"
+msgstr "_Маштабаваньне вокнаў"
+
+#: common/resources/appearance-dialog.glade:954
+msgid "Setti_ngs"
+msgstr "Налады"
+
+#: common/resources/color-dialog.glade:46
+#: dialogs/color-settings/xfce4-color-settings.desktop.in:4
+msgid "Color Profiles"
+msgstr "Каляровыя профілі"
+
+#: common/resources/color-dialog.glade:151
+msgid "<b>No devices found.</b>"
+msgstr "<b>Прыладаў ня знойдзена.</b>"
+
+#: common/resources/color-dialog.glade:221
+msgid "Model:"
+msgstr "Мадэль:"
+
+#: common/resources/color-dialog.glade:233
+msgid "Colorspace:"
+msgstr "Каляровая прастора:"
+
+#: common/resources/color-dialog.glade:256
+msgid "Vendor:"
+msgstr "Вытворца:"
+
+#: common/resources/color-dialog.glade:280
+msgid "Calibrate"
+msgstr "Калібраваць"
+
+#: common/resources/color-dialog.glade:337
+msgid "<b>No profiles for the selected device.</b>"
+msgstr "<b>Няма профіляў для абранай прылады.</b>"
+
+#: common/resources/color-dialog.glade:378
+msgid "Add a profile to the currently selected device"
+msgstr "Дадаць профіль для абранай прылады"
+
+#: common/resources/color-dialog.glade:390
+#: common/resources/keyboard-dialog.glade:666
+#: common/resources/keyboard-dialog.glade:1002
+msgid "_Remove"
+msgstr "_Выдаліць"
+
+#: common/resources/color-dialog.glade:394
+msgid "Delete the currently selected profile"
+msgstr "Выдаліць профіль абранай прылады"
+
+#: common/resources/color-dialog.glade:409
+#: common/resources/color-dialog.glade:617
+msgid "Show detailed information about the selected profile"
+msgstr "Паказаць падрабязныя зьвесткі аб абраным профілі"
+
+#: common/resources/color-dialog.glade:432
+msgid "Enable"
+msgstr "Уключыць"
+
+#: common/resources/color-dialog.glade:436
+msgid "Enable the selected profile"
+msgstr "Уключыць абраны профіль"
+
+#: common/resources/color-dialog.glade:511
+msgid "Add Profile to Device"
+msgstr "Дадаць профіль на прыладу"
+
+#. Create cancel button
+#: common/resources/color-dialog.glade:529
+#: common/resources/keyboard-dialog.glade:71
+#: dialogs/appearance-settings/main.c:1341 dialogs/color-settings/main.c:129
+#: dialogs/keyboard-settings/command-dialog.c:113
+#: dialogs/keyboard-settings/command-dialog.c:275
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:570
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+msgid "_Cancel"
+msgstr "_Скасаваць"
+
+#: common/resources/color-dialog.glade:543
+#: common/resources/keyboard-dialog.glade:86
+#: dialogs/keyboard-settings/command-dialog.c:117
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:571
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
+msgid "_OK"
+msgstr "_Добра"
+
+#: common/resources/color-dialog.glade:602
+msgid "Import color profile files (*.icc)"
+msgstr "Імпарт файлаў каляровага профілю (*.icc)"
+
+#: common/resources/confirmation-dialog.glade:13
+msgid "<b><big>Would you like to keep this configuration?</big></b>"
+msgstr ""
+
+#: common/resources/confirmation-dialog.glade:15
+msgid ""
+"The previous configuration will be restored in <b>10 seconds</b> if you do "
+"not reply to this question."
+msgstr ""
+
+#: common/resources/confirmation-dialog.glade:29
+msgid "Keep this configuration"
+msgstr "Пакінуць гэтую канфігурацыю"
+
+#: common/resources/confirmation-dialog.glade:44
+msgid "Restore the previous configuration"
+msgstr "Аднавіць папярэднюю канфігурацыю"
+
+#: common/resources/display-dialog.glade:61
+msgid "Never"
+msgstr "Ніколі"
+
+#: common/resources/display-dialog.glade:65
+msgid "When a display is connected"
+msgstr ""
+
+#: common/resources/display-dialog.glade:69
+msgid "When a display is disconnected"
+msgstr ""
+
+#: common/resources/display-dialog.glade:73
+msgid "Always"
+msgstr "Заўсёды"
+
+#: common/resources/display-dialog.glade:87
+msgid "Do nothing"
+msgstr ""
+
+#: common/resources/display-dialog.glade:91
+msgid "Show dialog"
+msgstr ""
+
+#: common/resources/display-dialog.glade:95
+msgid "Mirror"
+msgstr ""
+
+#: common/resources/display-dialog.glade:99
+msgid "Extend"
+msgstr ""
+
+#: common/resources/display-dialog.glade:157
+msgid "The primary display can be configured to show:"
+msgstr ""
+
+#: common/resources/display-dialog.glade:171
+#: dialogs/display-settings/main.c:1735
+msgid "Xfce Panel"
+msgstr "Панэль Xfce"
+
+#: common/resources/display-dialog.glade:184
+msgid "Desktop icons"
+msgstr "Відарысы Стальніцы"
+
+#: common/resources/display-dialog.glade:197
+msgid "Notifications"
+msgstr "Апавяшчэньні"
+
+#: common/resources/display-dialog.glade:207
+#: common/resources/display-dialog.glade:222
+#: common/resources/display-dialog.glade:237
+msgid "Configure..."
+msgstr "Наладзіць..."
+
+#: common/resources/display-dialog.glade:255
+#: dialogs/display-settings/xfce-display-settings.desktop.in:4
+msgid "Display"
+msgstr "Дысплэй"
+
+#: common/resources/display-dialog.glade:362
+msgid "_Mirror displays"
+msgstr "_Адлюстраваныя дысплэі"
+
+#: common/resources/display-dialog.glade:461
+msgid "Primary Display:"
+msgstr "Асноўны дысплэй:"
+
+#: common/resources/display-dialog.glade:487
+msgid "R_esolution:"
+msgstr "Меж_ная здольнасьць:"
+
+#: common/resources/display-dialog.glade:513
+msgid "Refresh _rate:"
+msgstr "Чашчыня _абнаўленьня:"
+
+#: common/resources/display-dialog.glade:539
+msgid "Ro_tation:"
+msgstr "Пава_рочваньне:"
+
+#: common/resources/display-dialog.glade:563
+msgid "Ref_lection:"
+msgstr "Ад_люстраваньне:"
+
+#: common/resources/display-dialog.glade:603
+msgid "A_pply"
+msgstr "У_жыць"
+
+#: common/resources/display-dialog.glade:631
+msgid "_Scale:"
+msgstr "_Маштаб:"
+
+#: common/resources/display-dialog.glade:669
+msgid "_General"
+msgstr "_Агульныя"
+
+#: common/resources/display-dialog.glade:689
+msgid "<b>Profiles</b>"
+msgstr "<b>Профілі</b>"
+
+#: common/resources/display-dialog.glade:705
+msgid "<b>Connecting Displays</b>"
+msgstr "<b>Падлучэньне дысплэяў</b>"
+
+#: common/resources/display-dialog.glade:755
+msgid "Delete the currently selected display profile."
+msgstr "Выдаліць абраны профіль дысплэя."
+
+#: common/resources/display-dialog.glade:768
+msgid "Apply"
+msgstr "Ужыць"
+
+#: common/resources/display-dialog.glade:772
+msgid "Apply the currently selected display profile."
+msgstr "Ужыць абраны профіль дысплэя."
+
+#: common/resources/display-dialog.glade:788
+msgid "Create a new display profile."
+msgstr "Стварыць новы профіль дысплэя."
+
+#: common/resources/display-dialog.glade:804
+msgid "Update an existing profile."
+msgstr "Абнавіць існуючы профіль."
+
+#: common/resources/display-dialog.glade:837
+msgid "First try to automatically enable a profile:"
+msgstr ""
+
+#: common/resources/display-dialog.glade:869
+msgid "When a display is connected:"
+msgstr ""
+
+#: common/resources/display-dialog.glade:882
+msgid "Show popup windows to identify displays"
+msgstr "Паказваць выплыўныя вокны для ідэнтыфікацыі дысплэяў"
+
+#: common/resources/display-dialog.glade:908
+msgid "<b>Identifying Displays</b>"
+msgstr "<b>Ідэнтыфікацыя дысплэяў</b>"
+
+#: common/resources/display-dialog.glade:946
+#: common/resources/minimal-display-dialog.glade:354
+msgid "_Advanced"
+msgstr "_Адмысловыя"
+
+#: common/resources/display-dialog.glade:998
+msgid "<b>Profile Name</b>"
+msgstr "<b>Назва профілю</b>"
+
+#: common/resources/display-dialog.glade:1021
+msgid "Create"
+msgstr "Стварыць"
+
+#: common/resources/display-dialog.glade:1056
+msgid "A profile of this name already exists."
+msgstr "Профіль з такой назвай ужо йснуе."
+
+#: common/resources/minimal-display-dialog.glade:16
+msgid "Extend right"
+msgstr ""
+
+#: common/resources/minimal-display-dialog.glade:19
+msgid "Extend left"
+msgstr ""
+
+#: common/resources/minimal-display-dialog.glade:22
+msgid "Extend up"
+msgstr ""
+
+#: common/resources/minimal-display-dialog.glade:25
+msgid "Extend down"
+msgstr ""
+
+#: common/resources/minimal-display-dialog.glade:37
+msgid "Displays"
+msgstr "Дысплэі"
+
+#: common/resources/minimal-display-dialog.glade:92
+#: common/resources/minimal-display-dialog.glade:93
+msgid "Only Display 1"
+msgstr "Толькі дысплэй 1"
+
+#: common/resources/minimal-display-dialog.glade:145
+#: common/resources/minimal-display-dialog.glade:146
+msgid "Mirror Displays"
+msgstr "Адлюстраваныя дысплэі"
+
+#: common/resources/minimal-display-dialog.glade:201
+msgid "Extend to the right"
+msgstr "Пашырыць да правага боку"
+
+#: common/resources/minimal-display-dialog.glade:262
+#: common/resources/minimal-display-dialog.glade:263
+msgid "Only Display 2"
+msgstr "Толькі дысплэй 2"
+
+#: common/resources/profile-changed-dialog.glade:12
+msgid "Update Display Profile"
+msgstr "Абнавіць профіль дысплэя"
+
+#: common/resources/profile-changed-dialog.glade:51
+msgid "_Update"
+msgstr "_Абнавіць"
+
+#: common/resources/profile-changed-dialog.glade:109
+msgid ""
+"<big><b>You have made changes to your previously active profile</b></big>"
+msgstr "<big><b>Вы ўнеслі зьмены ў свой папярэдне дзейны профіль</b></big>"
+
+#: common/resources/profile-changed-dialog.glade:124
+msgid ""
+"If you don't update the profile your changes will be lost upon restarting "
+"your session or disconnecting or connecting a display."
+msgstr "Калі вы не абновіце профіль, то падчас перазапуску сэанса, падлучэньня ці адлучэньня дысплэя зьмены страцяцца."
+
+#: common/resources/keyboard-dialog.glade:53
+msgid "Keyboard layout selection"
+msgstr "Абраць раскладкі клявіятуры"
+
+#: common/resources/keyboard-dialog.glade:162
+#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
+msgid "Keyboard"
+msgstr "Клявіятура"
+
+#: common/resources/keyboard-dialog.glade:252
+msgid "Restore num l_ock state on startup"
+msgstr "Ад_наўляць стан клявішы num l_ock падчас запуску"
+
+#: common/resources/keyboard-dialog.glade:267
+#: common/resources/mouse-dialog.glade:726
+#: common/resources/mouse-dialog.glade:953
+msgid "General"
+msgstr "Агульныя налады"
+
+#: common/resources/keyboard-dialog.glade:301
+msgid "_Enable key repeat"
+msgstr "_Уключыць паўтор клявішаў"
+
+#: common/resources/keyboard-dialog.glade:305
+msgid ""
+"When selected, pressing and holding down a key emits the same character over"
+" and over again"
+msgstr "Калі абрана, пры пстрыку й утрымліваньні клявішы будзе надрукаваны той жа сымбаль зноў і зноў"
+
+#: common/resources/keyboard-dialog.glade:333
+msgid "_Repeat delay:"
+msgstr "_Затрымка паўтору:"
+
+#: common/resources/keyboard-dialog.glade:347
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr "Час у мілісэкундах перад паўторам пры пстрыкнутай клявішы"
+
+#: common/resources/keyboard-dialog.glade:363
+msgid "Repe_at speed:"
+msgstr "Хут_касьць паўтору:"
+
+#: common/resources/keyboard-dialog.glade:377
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr "Чашчыня, з якой улічваецца пстрыкі клявішаў, калі клявіша пстрыкнута"
+
+#: common/resources/keyboard-dialog.glade:405
+msgid "Typing Settings"
+msgstr "Налады ўводу"
+
+#: common/resources/keyboard-dialog.glade:438
+msgid "Show _blinking"
+msgstr "_Мільгаценне"
+
+#: common/resources/keyboard-dialog.glade:442
+msgid "Specify whether or not the text cursor blinks"
+msgstr "Вызначае, ці будзе мільгацець указальнік на тэксце"
+
+#: common/resources/keyboard-dialog.glade:470
+msgid "Blink _delay:"
+msgstr "Затрымка _мільгаценьня:"
+
+#: common/resources/keyboard-dialog.glade:484
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr "Затрымка ў мілісэкундах паміж пасьлядоўнымі мільгаценьнямі ўказальніку"
+
+#: common/resources/keyboard-dialog.glade:512
+msgid "Cursor"
+msgstr "Указальнік"
+
+#: common/resources/keyboard-dialog.glade:534
+msgid "_Test area:"
+msgstr "_Праверачная прастора:"
+
+#: common/resources/keyboard-dialog.glade:575
+msgid "Beha_vior"
+msgstr "Паво_дзіны"
+
+#: common/resources/keyboard-dialog.glade:593
+msgid "Define shortcuts for la_unching applications:"
+msgstr "Задаць спалучэньні клявішаў для за_пуску дастасаваньняў:"
+
+#: common/resources/keyboard-dialog.glade:651
+#: common/resources/keyboard-dialog.glade:986
+#: xfce4-settings-editor/xfce-settings-editor-box.c:377
+msgid "_Edit"
+msgstr "_Рэдагаваць"
+
+#: common/resources/keyboard-dialog.glade:692
+msgid "Reset to _Defaults"
+msgstr "Скінуць да _прадвызначанага"
+
+#: common/resources/keyboard-dialog.glade:732
+msgid "A_pplication Shortcuts"
+msgstr "Спа_лучэньні клявішаў"
+
+#: common/resources/keyboard-dialog.glade:762
+msgid "<b>Use system defaults</b>"
+msgstr "<b>Выкарыстаць змаўчаньні сыстэмы</b>"
+
+#: common/resources/keyboard-dialog.glade:817
+msgid "_Keyboard model"
+msgstr "_Мадэль клявіятуры"
+
+#: common/resources/keyboard-dialog.glade:861
+msgid "Change la_yout option"
+msgstr "Зьмяніць парамэтары рас_кладкі"
+
+#: common/resources/keyboard-dialog.glade:899
+msgid "Co_mpose key"
+msgstr "Клявіша Co_mpose"
+
+#: common/resources/keyboard-dialog.glade:1043
+msgid "Move currently selected item up by one row"
+msgstr "Рухаць абраны элэмэнт уверх на 1 радок"
+
+#: common/resources/keyboard-dialog.glade:1063
+msgid "Move currently selected item down by one row"
+msgstr "Рухаць абраны элэмэнт уніз на 1 радок"
+
+#: common/resources/keyboard-dialog.glade:1096
+msgid "Key_board layout"
+msgstr "Рас_кладка клявіятуры"
+
+#: common/resources/keyboard-dialog.glade:1123
+msgid "_Layout"
+msgstr "_Раскладка"
+
+#: common/resources/mouse-dialog.glade:67
+msgid "Use bottom areas as left, middle or right buttons"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:71
+msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:92
+msgid "Disabled"
+msgstr "Адключана"
+
+#: common/resources/mouse-dialog.glade:96
+msgid "Edge scrolling"
+msgstr "Мяжа гартаньня"
+
+#: common/resources/mouse-dialog.glade:100
+msgid "Two-finger scrolling"
+msgstr "Пракрутка двума пальцамі"
+
+#: common/resources/mouse-dialog.glade:104
+msgid "Circular scrolling"
+msgstr "Цыклічная гартаньне"
+
+#: common/resources/mouse-dialog.glade:126
+msgid "Pen (absolute)"
+msgstr "Пяро (абсалютна)"
+
+#: common/resources/mouse-dialog.glade:130
+msgid "Mouse (relative)"
+msgstr "Мыш (адносна)"
+
+#: common/resources/mouse-dialog.glade:144
+msgid "None (right-handed)"
+msgstr "Няма (праваруч)"
+
+#: common/resources/mouse-dialog.glade:148
+msgid "Half (left-handed)"
+msgstr "Напалову (леваруч)"
+
+#: common/resources/mouse-dialog.glade:152
+msgid "Clockwise"
+msgstr "Павярнуць па _сонцу"
+
+#: common/resources/mouse-dialog.glade:156
+msgid "Counterclockwise"
+msgstr "Павярнуць супраць _сонца"
+
+#: common/resources/mouse-dialog.glade:162
+#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
+msgid "Mouse and Touchpad"
+msgstr "Мыша й дотыкавік"
+
+#: common/resources/mouse-dialog.glade:237
+msgid "De_vice:"
+msgstr "Пры_лада:"
+
+#: common/resources/mouse-dialog.glade:314
+msgid "Le_ft-handed"
+msgstr "Лева_руч"
+
+#: common/resources/mouse-dialog.glade:331
+msgid "Ri_ght-handed"
+msgstr "Права_руч"
+
+#: common/resources/mouse-dialog.glade:355
+msgid "Reverse scroll d_irection"
+msgstr "Адваротны парадак _гартаньня"
+
+#: common/resources/mouse-dialog.glade:359
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr "Калі абрана, кола мышу будзе гартацца ў адваротным накірунку"
+
+#: common/resources/mouse-dialog.glade:372
+msgid "Allow high _resolution scrolling (experimental)"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:376
+msgid ""
+"Only supported on some mice (mostly Logitech) and requires driver support. "
+"On supported devices makes scrolling more precise."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:395
+msgid "Buttons"
+msgstr "Кнопкі"
+
+#: common/resources/mouse-dialog.glade:428
+msgid "_Reset to Defaults"
+msgstr "_Скінуць да прадвызначанага"
+
+#: common/resources/mouse-dialog.glade:432
+msgid ""
+"Set the acceleration and sensitivity for the selected device to the default "
+"values"
+msgstr "Скінуць паскарэньне й адчувальнасьць для абранай прылады да прадвызначанага значэньня"
+
+#: common/resources/mouse-dialog.glade:448
+msgid "Sensitivit_y:"
+msgstr "Адчуваль_насьць:"
+
+#: common/resources/mouse-dialog.glade:461
+msgid "Acceleratio_n:"
+msgstr "Паскарэ_ньне:"
+
+#: common/resources/mouse-dialog.glade:473
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr "Каэфіцыэнт, на які будзе памножана хуткасьць указальніка падчас руху мышу"
+
+#: common/resources/mouse-dialog.glade:488
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr "Колькасьць піксэляў, на якія мусіць перамясьціцца ўказальнік перад паскарэньнем"
+
+#: common/resources/mouse-dialog.glade:502
+msgid "Adaptive pointer acceleration"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:505
+msgid ""
+"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
+"current speed of the device into account when deciding on acceleration. "
+"Custom acceleration profile is not supported via xfce4-settings."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:525
+msgid "Pointer Speed"
+msgstr "Хуікасьць указальніка"
+
+#: common/resources/mouse-dialog.glade:544
+msgid "B_uttons and Feedback"
+msgstr "Кноп_кі й зваротная сувязь"
+
+#: common/resources/mouse-dialog.glade:578
+#: common/resources/mouse-dialog.glade:595
+msgid "Disable touchpad _while typing"
+msgstr "Выключаць дотыкавую прыладу _падчас уводу"
+
+#: common/resources/mouse-dialog.glade:582
+#: common/resources/mouse-dialog.glade:599
+msgid ""
+"When selected, the touchpad will be disabled when the keyboard is being used"
+msgstr "Калі абрана, дотыкавік будзе выключацца падчас выкарыстоўваньня клявіятуры"
+
+#: common/resources/mouse-dialog.glade:624
+msgid "Duratio_n:"
+msgstr "Працяг_ласьць:"
+
+#: common/resources/mouse-dialog.glade:659
+msgid "Tap touchpad to clic_k"
+msgstr "Націск на дотыкавую прыладу для пстрычкі"
+
+#: common/resources/mouse-dialog.glade:682
+msgid "Click m_ethod:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:767
+msgid "Scrolling _mode:"
+msgstr "Рэжым _гартаньня:"
+
+#: common/resources/mouse-dialog.glade:805
+msgid "Enable hori_zontal scrolling"
+msgstr "Уключыць гары_зантальнае гартаньне"
+
+#: common/resources/mouse-dialog.glade:827
+msgid "Scrolling"
+msgstr "Гартаньне"
+
+#: common/resources/mouse-dialog.glade:850
+msgid "T_ouchpad"
+msgstr "Доты_кавік"
+
+#: common/resources/mouse-dialog.glade:888
+msgid "Trac_king mode:"
+msgstr "Рэжым_ адсочваньня:"
+
+#: common/resources/mouse-dialog.glade:901
+msgid "_Rotation:"
+msgstr "_Паварочваньне:"
+
+#: common/resources/mouse-dialog.glade:976
+msgid "Tab_let"
+msgstr "План_шэт"
+
+#: common/resources/mouse-dialog.glade:997
+msgid "_Devices"
+msgstr "_Прылады"
+
+#: common/resources/mouse-dialog.glade:1034
+msgid "Th_reshold:"
+msgstr "Мя_жа:"
+
+#: common/resources/mouse-dialog.glade:1048
+msgid ""
+"The number of pixels the pointer must move before a drag operation will "
+"start"
+msgstr "Колькасьць піксэляў, на якія мусіць перамясьціцца ўказальнік перад перацягваньнем аб'екту"
+
+#: common/resources/mouse-dialog.glade:1067
+msgid "Drag and Drop"
+msgstr "Перацягнуць"
+
+#: common/resources/mouse-dialog.glade:1103
+msgid "Ti_me:"
+msgstr "Ч_ас:"
+
+#: common/resources/mouse-dialog.glade:1117
+msgid ""
+"Two mouse clicks in less than this length of time (in milliseconds) will be "
+"considered a double click"
+msgstr "Дзьве пстрычкі мышу з прамежкам, меньшым за гэтае значэньне, будуць лічыцца падвойнай (у мілісэкундах)"
+
+#: common/resources/mouse-dialog.glade:1133
+msgid "D_istance:"
+msgstr "Ад_легласьць:"
+
+#: common/resources/mouse-dialog.glade:1147
+msgid ""
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
+msgstr "Для падвойнай пстрычкі ўказальнік мышу не мусіць адхіліцца паміж пстрычкамі больш чым на зададзеную адлегласьць"
+
+#: common/resources/mouse-dialog.glade:1166
+msgid "Double Click"
+msgstr "Двайны пстрык"
+
+#: common/resources/mouse-dialog.glade:1188
+msgid "_Behavior"
+msgstr "_Паводзіны"
+
+#: common/resources/mouse-dialog.glade:1253
+msgid "Cursor si_ze:"
+msgstr "Памер ука_зальніку:"
+
+#: common/resources/mouse-dialog.glade:1287
+msgid "Size"
+msgstr "Памер"
+
+#: common/resources/mouse-dialog.glade:1327
+msgid "Preview"
+msgstr "Перадпрагляд"
+
+#: common/resources/mouse-dialog.glade:1356
+msgid "_Theme"
+msgstr "_Тэма"
+
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: common/display-name.c:2649
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr "Невядома"
+
+#. TRANSLATORS: an externally connected display, where %s is either the
+#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
+#: common/display-name.c:2702 dialogs/color-settings/color-device.c:66
+msgid "Monitor"
+msgstr "Дысплэй"
+
+#: common/display-name.c:2705
+msgid "Television"
+msgstr "Тэлебачаньне"
+
+#: common/display-name.c:2709
+msgid "Digital display"
+msgstr "Лічбавы дысплэй"
+
+#: common/xfce-randr.c:285 dialogs/display-settings/display-settings-x11.c:702
+msgid "Unable to query the version of the RandR extension being used"
+msgstr "Не атрымалася запатрабаваць вэрсыю выкарыстоўваемага пашырэньня RandR"
+
+#: common/xfce-randr.c:571
+#: dialogs/display-settings/display-settings-wayland.c:350
+msgid "Laptop"
+msgstr "Ноўтбук"
+
+#: dialogs/accessibility-settings/main.c:39
+#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
+#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
+#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
+#: xfce4-settings-editor/main.c:47
 msgid "Settings manager socket"
 msgstr "Сокэт кіраўніка наладаў"
 
-#: dialogs/accessibility-settings/main.c:38
-#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
-#: xfce4-settings-editor/main.c:44
+#: dialogs/accessibility-settings/main.c:39
+#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
+#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
+#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
+#: xfce4-settings-editor/main.c:47
 msgid "SOCKET ID"
 msgstr "ID СОКЭТУ"
 
-#: dialogs/accessibility-settings/main.c:39
-#: dialogs/appearance-settings/main.c:89 dialogs/color-settings/main.c:42
-#: dialogs/display-settings/main.c:108 dialogs/keyboard-settings/main.c:37
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:87
-#: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:93
+#: dialogs/accessibility-settings/main.c:40
+#: dialogs/appearance-settings/main.c:94 dialogs/color-settings/main.c:44
+#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:40
+#: dialogs/mime-settings/main.c:44 dialogs/mouse-settings/main.c:88
+#: xfce4-settings-editor/main.c:48 xfce4-settings-manager/main.c:42
+#: xfsettingsd/main.c:96
 msgid "Version information"
 msgstr "Дадзеныя аб вэрсіі"
 
-#: dialogs/accessibility-settings/main.c:193
-#: dialogs/appearance-settings/main.c:1426 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
-#: dialogs/mime-settings/main.c:78
-#: dialogs/mime-settings/xfce-mime-helper-main.c:148
-#: dialogs/mouse-settings/main.c:2196 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
-#: xfsettingsd/main.c:280
+#: dialogs/accessibility-settings/main.c:194
+#: dialogs/appearance-settings/main.c:1695 dialogs/color-settings/main.c:1466
+#: dialogs/display-settings/main.c:3430 dialogs/keyboard-settings/main.c:77
+#: dialogs/mime-settings/main.c:81
+#: dialogs/mime-settings/xfce-mime-helper-main.c:150
+#: dialogs/mouse-settings/main.c:2197 xfce4-settings-editor/main.c:121
+#: xfce4-settings-manager/main.c:63 xfsettingsd/main.c:245
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Увядзіце '%s --help' для выкарыстаньня."
 
-#: dialogs/accessibility-settings/main.c:212
-#: dialogs/appearance-settings/main.c:1445 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
-#: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:258
+#: dialogs/accessibility-settings/main.c:213
+#: dialogs/appearance-settings/main.c:1714 dialogs/color-settings/main.c:1485
+#: dialogs/display-settings/main.c:3449 dialogs/keyboard-settings/main.c:93
+#: dialogs/mime-settings/main.c:100 dialogs/mouse-settings/main.c:2216
+#: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:79
+#: xfsettingsd/main.c:261
 msgid "The Xfce development team. All rights reserved."
 msgstr "Суполка распрацоўкі XFCE. Усе правы абароненыя."
 
-#: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1446 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
-#: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:259
+#: dialogs/accessibility-settings/main.c:214
+#: dialogs/appearance-settings/main.c:1715 dialogs/color-settings/main.c:1486
+#: dialogs/display-settings/main.c:3450 dialogs/keyboard-settings/main.c:94
+#: dialogs/mime-settings/main.c:101 dialogs/mouse-settings/main.c:2217
+#: xfce4-settings-editor/main.c:141 xfce4-settings-manager/main.c:80
+#: xfsettingsd/main.c:262
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Паведамляйце пра памылкі <%s>."
@@ -349,321 +1264,84 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "дапаможныя;тэхналёгіі;падскок;налепкі;адмова;эмуляцыя;экранныя чытальнікі;лупы;a11y;i18n;l10n;AT-SPI;АТК;выключэньне;"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1333 dialogs/display-settings/main.c:86
-#: dialogs/display-settings/main.c:94
-#: dialogs/mouse-settings/mouse-dialog.glade:63
-msgid "None"
-msgstr "Няма"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:42
-msgid "Slight"
-msgstr "Лёгкі"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:45
-msgid "Medium"
-msgstr "Сярэдні"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:48
-msgid "Full"
-msgstr "Поўны"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:59
-msgid "Icons"
-msgstr "Відарысы"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:62
-msgid "Text"
-msgstr "Тэкст"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:65
-msgid "Text under icons"
-msgstr "Тэкст пад відарысамі"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:68
-msgid "Text next to icons"
-msgstr "Тэкст пасьля відарысаў"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:82
-msgid "1x (no scaling)"
-msgstr "1x (без маштабаваньня)"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:86
-msgid "2x"
-msgstr "2x"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:107
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
-msgid "Appearance"
-msgstr "Выгляд"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:211
-#: dialogs/appearance-settings/appearance-dialog.glade:321
-#: dialogs/color-settings/color-dialog.glade:374
-#: dialogs/keyboard-settings/keyboard-dialog.glade:636
-#: dialogs/keyboard-settings/keyboard-dialog.glade:970
-#: xfce4-settings-editor/xfce-settings-editor-box.c:364
-msgid "_Add"
-msgstr "_Дадаць"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:244
-msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
-msgstr ""
-
-#: dialogs/appearance-settings/appearance-dialog.glade:278
-msgid "St_yle"
-msgstr "Сты_ль"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:354
-msgid "_Icons"
-msgstr "_Выявы"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:394
-msgid ""
-"This font will be used as the default font used when drawing user interface "
-"text"
-msgstr "Гэты шрыфт будзе прадвызначаным для адлюстраваньня тэксту інтэрфэйсу"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:396
-msgid "Select a default font"
-msgstr "Абраць прадвызначаны шрыфт"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:405
-msgid "Default Fon_t"
-msgstr "Прадвызначаны _шрыфт"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:437
-msgid ""
-"This font will be used as the default monospace font, for example by "
-"terminal emulators."
-msgstr "Гэты шрыфт будзе выкарыстоўвацца ў якасьці прадвызначанага монашырыннага шрыфту, напрыклад эмулятарам тэрміналу."
-
-#: dialogs/appearance-settings/appearance-dialog.glade:439
-msgid "Select a default monospace font"
-msgstr "Абраць прадвызначаны монашырынны шрыфт"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:448
-msgid "Default _Monospace Font"
-msgstr "Прадвызначаны _монашырынны шрыфт"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:483
-msgid "_Enable anti-aliasing"
-msgstr "_Уключыць згладжваньне шрыфту"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:487
-msgid ""
-"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "Згладжваньне шрыфту можа палепшыць выгляд тэксту"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:515
-msgid "Hintin_g:"
-msgstr "Хін_тынг:"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:527
-msgid ""
-"Many fonts contain information that provides extra hints as to how best draw"
-" the font; pick whichever looks best according to personal preference"
-msgstr "Некаторыя шрыфты месьцяць дадатковыя зьвесткі, што дапамагаюць найбольш якасна адмалёўваць шрыфт; абярыце найлепшы варыянт"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:547
-msgid "Sub-_pixel order:"
-msgstr "Парадак _унутранага піксэля:"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:559
-msgid ""
-"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
-"correct sub-pixel order of the screen"
-msgstr "Якасьць шрыфту на экранах TFT або LCD можа быць палепшана наладай парадку разьмяшчэньня колераў унутры піксэля"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:597
-msgid "Rendering"
-msgstr "Адмалёўка"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:629
-msgid "Custom _DPI setting:"
-msgstr "Адвольныя налады _DPI:"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:633
-msgid ""
-"Override the detected monitor resolution if fonts look too large or too "
-"small"
-msgstr "Перавызначаць выяўленую межную здольнасьць дысплэя калі шрыфты занадта вялікія або занадта малыя"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:670
-msgid "DPI"
-msgstr "DPI"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:696
-msgid "_Fonts"
-msgstr "_Шрыфты"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:739
-msgid "Show images on _buttons"
-msgstr "Паказваць выявы на _кнопках"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:743
-msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "Вызначае, ці мусяць відарысы адлюстроўвацца на кнопках"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:756
-msgid "Show images in _menus"
-msgstr "Паказваць выявы ў _мэню"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:760
-msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "Вызначае, ці мусяць відарысы адлюстроўвацца ў элэмэнтах мэню"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:773
-msgid "Enable e_ditable accelerators"
-msgstr "Уключыць рэ_дагуемые спалучэньні клявішаў"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:777
-msgid ""
-"If selected, keyboard shortcuts for menu items can be changed by hovering "
-"the mouse over the menu item and pressing the new key combination for the "
-"shortcut"
-msgstr "Калі абрана, спалучэньні клявішаў можна зьмяніць, навёўшы на іх указальнік мышу й пстрыкнуўшы новае спалучэньне клявішаў"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:790
-msgid "Enable header bars in dialo_gs"
-msgstr ""
-
-#: dialogs/appearance-settings/appearance-dialog.glade:794
-msgid ""
-"Defines whether GTK dialogs may place widgets such as buttons in the "
-"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
-"opened dialogs."
-msgstr ""
-
-#: dialogs/appearance-settings/appearance-dialog.glade:813
-msgid "Menus and Buttons"
-msgstr "Мэню й кнопкі"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:845
-msgid "Enable _event sounds"
-msgstr "Уключыць _гукі падзеяў"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:849
-msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "Уключыць або выключыць гукі падзеяў глябальна (патрабуецца падтрымка \"Canberra\")"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:862
-msgid "Enable input feedbac_k sounds"
-msgstr "Уключыць уваходныя _гукі зваротнай сувязі"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:866
-msgid ""
-"Specify whether mouse clicks and other user input will cause event sounds to"
-" play"
-msgstr "Вызначыць, ці будуць пстрыкі кнопак мышу й іньшых прыладаў уводу прыводзіць да прайграваньня гукаў падзеяў"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:885
-msgid "Event sounds"
-msgstr "Гукі падзеяў"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:914
-msgid "Adjust the system-wide display scaling"
-msgstr "Наладзіць сыстэмнае маштабаваньне дысплэю"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:932
-msgid "_Window Scaling"
-msgstr "_Маштабаваньне вокнаў"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:960
-msgid "Setti_ngs"
-msgstr "Налады"
-
-#: dialogs/appearance-settings/main.c:231
+#: dialogs/appearance-settings/main.c:340
 msgid "Failed to display Xfwm4 Settings"
 msgstr ""
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:498
+#: dialogs/appearance-settings/main.c:634
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
-"<i>gtk-update-icon-cache -f -t %s/%s/</i> in a terminal emulator."
+"<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
 msgstr ""
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:505
+#: dialogs/appearance-settings/main.c:641
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr ""
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:510
+#: dialogs/appearance-settings/main.c:646
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:985
+#: dialogs/appearance-settings/main.c:1253
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:990
+#: dialogs/appearance-settings/main.c:1258
 msgid "Failed to create temporary directory"
 msgstr "Немагчыма стварыць часовы каталёг"
 
-#: dialogs/appearance-settings/main.c:995
+#: dialogs/appearance-settings/main.c:1263
 msgid "Failed to extract archive"
 msgstr "Не атрымалася распакаваць архіў"
 
-#: dialogs/appearance-settings/main.c:1000
+#: dialogs/appearance-settings/main.c:1268
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Невядомы фармат, падтрымліваюцца толькі тэчкі й архівы"
 
-#: dialogs/appearance-settings/main.c:1005
+#: dialogs/appearance-settings/main.c:1273
 msgid "Not a valid theme package"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1010
+#: dialogs/appearance-settings/main.c:1278
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Невядомая памылка, код %d"
 
-#: dialogs/appearance-settings/main.c:1017
+#: dialogs/appearance-settings/main.c:1285
 msgid "Failed to install theme"
 msgstr "Не атрымалася ўсталяваць тэму"
 
-#: dialogs/appearance-settings/main.c:1071
+#: dialogs/appearance-settings/main.c:1339
 #, c-format
 msgid "Install %s theme"
 msgstr ""
 
-#. Create cancel button
-#: dialogs/appearance-settings/main.c:1073
-#: dialogs/color-settings/color-dialog.glade:529
-#: dialogs/color-settings/main.c:127
-#: dialogs/keyboard-settings/command-dialog.c:113
-#: dialogs/keyboard-settings/command-dialog.c:275
-#: dialogs/keyboard-settings/keyboard-dialog.glade:71
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:567
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
-msgid "_Cancel"
-msgstr "_Скасаваць"
-
-#: dialogs/appearance-settings/main.c:1074
+#: dialogs/appearance-settings/main.c:1342
 #: dialogs/keyboard-settings/command-dialog.c:276
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:426
 msgid "_Open"
 msgstr "_Адкрыць"
 
-#: dialogs/appearance-settings/main.c:1337
+#: dialogs/appearance-settings/main.c:1606
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1341
+#: dialogs/appearance-settings/main.c:1610
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1345
+#: dialogs/appearance-settings/main.c:1614
 msgid "Vertical RGB"
 msgstr "Вэртыкальны RGB"
 
-#: dialogs/appearance-settings/main.c:1349
+#: dialogs/appearance-settings/main.c:1618
 msgid "Vertical BGR"
 msgstr "Вэртыкальны BGR"
 
@@ -712,78 +1390,6 @@ msgstr "Убудаваная вэб-камэа"
 #, c-format
 msgid "Enable color management for %s"
 msgstr "Уключыць кіраваньне колерамі для %s"
-
-#: dialogs/color-settings/color-dialog.glade:46
-#: dialogs/color-settings/xfce4-color-settings.desktop.in:4
-msgid "Color Profiles"
-msgstr "Каляровыя профілі"
-
-#: dialogs/color-settings/color-dialog.glade:151
-msgid "<b>No devices found.</b>"
-msgstr "<b>Прыладаў ня знойдзена.</b>"
-
-#: dialogs/color-settings/color-dialog.glade:221
-msgid "Model:"
-msgstr "Мадэль:"
-
-#: dialogs/color-settings/color-dialog.glade:233
-msgid "Colorspace:"
-msgstr "Каляровая прастора:"
-
-#: dialogs/color-settings/color-dialog.glade:256
-msgid "Vendor:"
-msgstr "Вытворца:"
-
-#: dialogs/color-settings/color-dialog.glade:280
-msgid "Calibrate"
-msgstr "Калібраваць"
-
-#: dialogs/color-settings/color-dialog.glade:337
-msgid "<b>No profiles for the selected device.</b>"
-msgstr "<b>Няма профіляў для абранай прылады.</b>"
-
-#: dialogs/color-settings/color-dialog.glade:378
-msgid "Add a profile to the currently selected device"
-msgstr "Дадаць профіль для абранай прылады"
-
-#: dialogs/color-settings/color-dialog.glade:390
-#: dialogs/keyboard-settings/keyboard-dialog.glade:666
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1002
-msgid "_Remove"
-msgstr "_Выдаліць"
-
-#: dialogs/color-settings/color-dialog.glade:394
-msgid "Delete the currently selected profile"
-msgstr "Выдаліць профіль абранай прылады"
-
-#: dialogs/color-settings/color-dialog.glade:409
-#: dialogs/color-settings/color-dialog.glade:617
-msgid "Show detailed information about the selected profile"
-msgstr "Паказаць падрабязныя зьвесткі аб абраным профілі"
-
-#: dialogs/color-settings/color-dialog.glade:432
-msgid "Enable"
-msgstr "Уключыць"
-
-#: dialogs/color-settings/color-dialog.glade:436
-msgid "Enable the selected profile"
-msgstr "Уключыць абраны профіль"
-
-#: dialogs/color-settings/color-dialog.glade:511
-msgid "Add Profile to Device"
-msgstr "Дадаць профіль на прыладу"
-
-#: dialogs/color-settings/color-dialog.glade:543
-#: dialogs/keyboard-settings/command-dialog.c:117
-#: dialogs/keyboard-settings/keyboard-dialog.glade:86
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:568
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
-msgid "_OK"
-msgstr "_Добра"
-
-#: dialogs/color-settings/color-dialog.glade:602
-msgid "Import color profile files (*.icc)"
-msgstr "Імпарт файлаў каляровага профілю (*.icc)"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
@@ -850,48 +1456,57 @@ msgid "Default Gray"
 msgstr "Прадвызначаны шэры"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: dialogs/color-settings/main.c:126
+#: dialogs/color-settings/main.c:128
 msgid "Select ICC Profile File"
 msgstr "Абраць файл профілю ICC"
 
-#: dialogs/color-settings/main.c:128
+#: dialogs/color-settings/main.c:130
 msgid "_Import"
 msgstr "_Імпарт"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:139
+#: dialogs/color-settings/main.c:141
 msgid "Supported ICC profiles"
 msgstr "Падтрымліваемыя профілі ICC"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:146
+#: dialogs/color-settings/main.c:148
 msgid "All files"
 msgstr "Усе файлы"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: dialogs/color-settings/main.c:189
+#: dialogs/color-settings/main.c:191
 msgid "Default: "
 msgstr "Прадвызначана: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: dialogs/color-settings/main.c:196
+#: dialogs/color-settings/main.c:198
 msgid "Colorspace: "
 msgstr "Каляровая прастора: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: dialogs/color-settings/main.c:203
+#: dialogs/color-settings/main.c:205
 msgid "Test profile: "
 msgstr "Тэставы профіль: "
 
-#: dialogs/color-settings/main.c:238
+#: dialogs/color-settings/main.c:240
 msgid "Compatible Profiles"
 msgstr "Сумяшчальныя профілі"
 
-#: dialogs/color-settings/main.c:860 dialogs/color-settings/main.c:861
-#: dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:519
+#, c-format
+msgid "Add Color Profile to %s"
+msgstr ""
+
+#: dialogs/color-settings/main.c:519
+msgid "Device"
+msgstr ""
+
+#: dialogs/color-settings/main.c:863 dialogs/color-settings/main.c:864
+#: dialogs/color-settings/main.c:865
 msgid "Unknown"
 msgstr "Невядома"
 
@@ -903,277 +1518,45 @@ msgstr "Абраць каляровы профіль"
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr "колер;налады;кіраваньне;дысплэй;маніторы;друкаркі;вэб-камэры;сканэры;"
 
-#: dialogs/display-settings/confirmation-dialog.glade:13
-msgid "<b><big>Would you like to keep this configuration?</big></b>"
-msgstr ""
-
-#: dialogs/display-settings/confirmation-dialog.glade:15
-msgid ""
-"The previous configuration will be restored in <b>10 seconds</b> if you do "
-"not reply to this question."
-msgstr ""
-
-#: dialogs/display-settings/confirmation-dialog.glade:29
-msgid "Keep this configuration"
-msgstr "Пакінуць гэтую канфігурацыю"
-
-#: dialogs/display-settings/confirmation-dialog.glade:44
-msgid "Restore the previous configuration"
-msgstr "Аднавіць папярэднюю канфігурацыю"
-
-#: dialogs/display-settings/display-dialog.glade:61
-msgid "Never"
-msgstr "Ніколі"
-
-#: dialogs/display-settings/display-dialog.glade:65
-msgid "When a display is connected"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:69
-msgid "When a display is disconnected"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:73
-msgid "Always"
-msgstr "Заўсёды"
-
-#: dialogs/display-settings/display-dialog.glade:87
-msgid "Do nothing"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:91
-msgid "Show dialog"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:95
-msgid "Mirror"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:99
-msgid "Extend"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:157
-msgid "The primary display can be configured to show:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:171
-msgid "Xfce Panel"
-msgstr "Панэль Xfce"
-
-#: dialogs/display-settings/display-dialog.glade:184
-msgid "Desktop icons"
-msgstr "Відарысы Стальніцы"
-
-#: dialogs/display-settings/display-dialog.glade:197
-msgid "Notifications"
-msgstr "Апавяшчэньні"
-
-#: dialogs/display-settings/display-dialog.glade:207
-#: dialogs/display-settings/display-dialog.glade:222
-#: dialogs/display-settings/display-dialog.glade:237
-msgid "Configure..."
-msgstr "Наладзіць..."
-
-#: dialogs/display-settings/display-dialog.glade:255
-#: dialogs/display-settings/xfce-display-settings.desktop.in:4
-msgid "Display"
-msgstr "Дысплэй"
-
-#: dialogs/display-settings/display-dialog.glade:362
-msgid "_Mirror displays"
-msgstr "_Адлюстраваныя дысплэі"
-
-#: dialogs/display-settings/display-dialog.glade:461
-msgid "Primary Display:"
-msgstr "Асноўны дысплэй:"
-
-#: dialogs/display-settings/display-dialog.glade:487
-msgid "R_esolution:"
-msgstr "Меж_ная здольнасьць:"
-
-#: dialogs/display-settings/display-dialog.glade:513
-msgid "Refresh _rate:"
-msgstr "Чашчыня _абнаўленьня:"
-
-#: dialogs/display-settings/display-dialog.glade:539
-msgid "Ro_tation:"
-msgstr "Пава_рочваньне:"
-
-#: dialogs/display-settings/display-dialog.glade:563
-msgid "Ref_lection:"
-msgstr "Ад_люстраваньне:"
-
-#: dialogs/display-settings/display-dialog.glade:603
-msgid "A_pply"
-msgstr "У_жыць"
-
-#: dialogs/display-settings/display-dialog.glade:631
-msgid "_Scale:"
-msgstr "_Маштаб:"
-
-#: dialogs/display-settings/display-dialog.glade:669
-msgid "_General"
-msgstr "_Агульныя"
-
-#: dialogs/display-settings/display-dialog.glade:689
-msgid "<b>Profiles</b>"
-msgstr "<b>Профілі</b>"
-
-#: dialogs/display-settings/display-dialog.glade:705
-msgid "<b>Connecting Displays</b>"
-msgstr "<b>Падлучэньне дысплэяў</b>"
-
-#: dialogs/display-settings/display-dialog.glade:755
-msgid "Delete the currently selected display profile."
-msgstr "Выдаліць абраны профіль дысплэя."
-
-#: dialogs/display-settings/display-dialog.glade:768
-msgid "Apply"
-msgstr "Ужыць"
-
-#: dialogs/display-settings/display-dialog.glade:772
-msgid "Apply the currently selected display profile."
-msgstr "Ужыць абраны профіль дысплэя."
-
-#: dialogs/display-settings/display-dialog.glade:788
-msgid "Create a new display profile."
-msgstr "Стварыць новы профіль дысплэя."
-
-#: dialogs/display-settings/display-dialog.glade:804
-msgid "Update an existing profile."
-msgstr "Абнавіць існуючы профіль."
-
-#: dialogs/display-settings/display-dialog.glade:837
-msgid "First try to automatically enable a profile:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:869
-msgid "When a display is connected:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:882
-msgid "Show popup windows to identify displays"
-msgstr "Паказваць выплыўныя вокны для ідэнтыфікацыі дысплэяў"
-
-#: dialogs/display-settings/display-dialog.glade:908
-msgid "<b>Identifying Displays</b>"
-msgstr "<b>Ідэнтыфікацыя дысплэяў</b>"
-
-#: dialogs/display-settings/display-dialog.glade:946
-#: dialogs/display-settings/minimal-display-dialog.glade:354
-msgid "_Advanced"
-msgstr "_Адмысловыя"
-
-#: dialogs/display-settings/display-dialog.glade:998
-msgid "<b>Profile Name</b>"
-msgstr "<b>Назва профілю</b>"
-
-#: dialogs/display-settings/display-dialog.glade:1021
-msgid "Create"
-msgstr "Стварыць"
-
-#: dialogs/display-settings/display-dialog.glade:1056
-msgid "A profile of this name already exists."
-msgstr "Профіль з такой назвай ужо йснуе."
-
-#: dialogs/display-settings/minimal-display-dialog.glade:16
-msgid "Extend right"
-msgstr ""
-
-#: dialogs/display-settings/minimal-display-dialog.glade:19
-msgid "Extend left"
-msgstr ""
-
-#: dialogs/display-settings/minimal-display-dialog.glade:22
-msgid "Extend up"
-msgstr ""
-
-#: dialogs/display-settings/minimal-display-dialog.glade:25
-msgid "Extend down"
-msgstr ""
-
-#: dialogs/display-settings/minimal-display-dialog.glade:37
-msgid "Displays"
-msgstr "Дысплэі"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:92
-#: dialogs/display-settings/minimal-display-dialog.glade:93
-msgid "Only Display 1"
-msgstr "Толькі дысплэй 1"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:145
-#: dialogs/display-settings/minimal-display-dialog.glade:146
-msgid "Mirror Displays"
-msgstr "Адлюстраваныя дысплэі"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:201
-msgid "Extend to the right"
-msgstr "Пашырыць да правага боку"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:262
-#: dialogs/display-settings/minimal-display-dialog.glade:263
-msgid "Only Display 2"
-msgstr "Толькі дысплэй 2"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:12
-msgid "Update Display Profile"
-msgstr "Абнавіць профіль дысплэя"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:51
-msgid "_Update"
-msgstr "_Абнавіць"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:109
-msgid ""
-"<big><b>You have made changes to your previously active profile</b></big>"
-msgstr "<big><b>Вы ўнеслі зьмены ў свой папярэдне дзейны профіль</b></big>"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:124
-msgid ""
-"If you don't update the profile your changes will be lost upon restarting "
-"your session or disconnecting or connecting a display."
-msgstr "Калі вы не абновіце профіль, то падчас перазапуску сэанса, падлучэньня ці адлучэньня дысплэя зьмены страцяцца."
-
-#: dialogs/display-settings/main.c:58
+#: dialogs/display-settings/main.c:57
 #, c-format
 msgid "Only %s (1)"
 msgstr "Толькі %s (1)"
 
-#: dialogs/display-settings/main.c:59
+#: dialogs/display-settings/main.c:58
 #, c-format
 msgid "Only %s (2)"
 msgstr "Толькі %s (2)"
 
-#: dialogs/display-settings/main.c:87
+#: dialogs/display-settings/main.c:86
 msgid "Left"
 msgstr "Улева"
 
-#: dialogs/display-settings/main.c:88
+#: dialogs/display-settings/main.c:87
 msgid "Inverted"
 msgstr "Перагорнуты"
 
-#: dialogs/display-settings/main.c:89
+#: dialogs/display-settings/main.c:88
 msgid "Right"
 msgstr "Управа"
 
-#: dialogs/display-settings/main.c:95
+#: dialogs/display-settings/main.c:94
 msgid "Horizontal"
 msgstr "Гарызантальны"
 
-#: dialogs/display-settings/main.c:96
+#: dialogs/display-settings/main.c:95
 msgid "Vertical"
 msgstr "Вэртыкальны"
 
-#: dialogs/display-settings/main.c:97
+#: dialogs/display-settings/main.c:96
 msgid "Horizontal and Vertical"
 msgstr "Гарызантальны й вэртыкальны"
 
-#: dialogs/display-settings/main.c:109
+#: dialogs/display-settings/main.c:108
 msgid "Minimal interface to set up an external output"
 msgstr "Мінымальны інтэрфэйс для налады вонкавага вываду"
 
-#: dialogs/display-settings/main.c:282
+#: dialogs/display-settings/main.c:281
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1181,56 +1564,56 @@ msgid ""
 msgstr ""
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:644
+#: dialogs/display-settings/main.c:641
 #, c-format
 msgid "%.2f Hz"
 msgstr ""
 
-#: dialogs/display-settings/main.c:973
+#: dialogs/display-settings/main.c:970
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Апошні дзейны выхад мусіць быць уключаны, сыстэма будзе непрыдатнай для выкарыстаньня."
 
-#: dialogs/display-settings/main.c:974
+#: dialogs/display-settings/main.c:971
 msgid "Selected output not disabled"
 msgstr "Абраны выхад недаступны"
 
-#: dialogs/display-settings/main.c:1322
+#: dialogs/display-settings/main.c:1317
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Абнавіць зьменены профіль дысплэя \"%s\"?"
 
-#: dialogs/display-settings/main.c:1327
+#: dialogs/display-settings/main.c:1322
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Абнавіць '%s'"
 
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1670
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Выдаліць профіль дысплэя \"%s\"?"
 
-#: dialogs/display-settings/main.c:1677
+#: dialogs/display-settings/main.c:1673
 msgid "Delete Profile"
 msgstr "Выдаліць профіль"
 
-#: dialogs/display-settings/main.c:1678
+#: dialogs/display-settings/main.c:1674
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Пасьля выдаленьня профіля яго немагчыма будзе аднавіць."
 
-#: dialogs/display-settings/main.c:1678
+#: dialogs/display-settings/main.c:1674
 #: dialogs/mime-settings/xfce-mime-chooser.c:135
 #: dialogs/mime-settings/xfce-mime-chooser.c:380
-#: dialogs/mime-settings/xfce-mime-window.c:1181
+#: dialogs/mime-settings/xfce-mime-window.c:1210
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Cancel"
 msgstr "Скасаваць"
 
-#: dialogs/display-settings/main.c:1679
+#: dialogs/display-settings/main.c:1675
 msgid "Delete"
 msgstr "Выдаліць"
 
-#: dialogs/display-settings/main.c:1765
+#: dialogs/display-settings/main.c:1761
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
@@ -1239,13 +1622,13 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: dialogs/display-settings/main.c:2550
+#: dialogs/display-settings/main.c:2546
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Абярыце дысплэй для зьмены яго ўласьцівасьцяў; перацягніце для зьмены яго разьмяшчэньня."
 
-#: dialogs/display-settings/main.c:2649 dialogs/display-settings/main.c:2682
+#: dialogs/display-settings/main.c:2645 dialogs/display-settings/main.c:2678
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1254,23 +1637,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2899
+#: dialogs/display-settings/main.c:2895
 msgid "Mirror Screens"
 msgstr "Люстэркавыя экраны"
 
-#: dialogs/display-settings/main.c:2949
+#: dialogs/display-settings/main.c:2945
 msgid "(Disabled)"
 msgstr "(Выключана)"
 
-#: dialogs/display-settings/main.c:3484
+#: dialogs/display-settings/main.c:3476
 msgid "ATI Settings"
 msgstr "Налады ATI"
 
-#: dialogs/display-settings/main.c:3489
+#: dialogs/display-settings/main.c:3481
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Немагчыма запусьціць налады дысплэя Xfce"
 
-#: dialogs/display-settings/main.c:3497
+#: dialogs/display-settings/main.c:3489
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Немагчыма запусьціць налады ўласьніцкага драйвэру"
 
@@ -1283,11 +1666,11 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "дысплэй;налады;экран;разрозьненьне;абнаўленьне;частата кручэння;зьнешні;праэктары;маніторы;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:464
+#: dialogs/display-settings/display-settings.c:463
 msgid "Display:"
 msgstr "Дысплэй:"
 
-#: dialogs/display-settings/display-settings.c:472
+#: dialogs/display-settings/display-settings.c:471
 msgid "Resolution:"
 msgstr "Разрозьненьне:"
 
@@ -1328,219 +1711,92 @@ msgstr "Абраць загад"
 
 #: dialogs/keyboard-settings/command-dialog.c:281
 #: dialogs/mime-settings/xfce-mime-chooser.c:387
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:431
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:432
 msgid "All Files"
 msgstr "Усе файлы"
 
 #: dialogs/keyboard-settings/command-dialog.c:286
 #: dialogs/mime-settings/xfce-mime-chooser.c:392
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:436
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:437
 msgid "Executable Files"
 msgstr "Файлы для запуску"
 
 #: dialogs/keyboard-settings/command-dialog.c:301
 #: dialogs/mime-settings/xfce-mime-chooser.c:407
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:451
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:452
 msgid "Perl Scripts"
 msgstr "Скрыпты Perl"
 
 #: dialogs/keyboard-settings/command-dialog.c:307
 #: dialogs/mime-settings/xfce-mime-chooser.c:413
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:457
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:458
 msgid "Python Scripts"
 msgstr "Скрыпты Python"
 
 #: dialogs/keyboard-settings/command-dialog.c:313
 #: dialogs/mime-settings/xfce-mime-chooser.c:419
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:463
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:464
 msgid "Ruby Scripts"
 msgstr "Скрыпты Ruby"
 
 #: dialogs/keyboard-settings/command-dialog.c:319
 #: dialogs/mime-settings/xfce-mime-chooser.c:425
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:469
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:470
 msgid "Shell Scripts"
 msgstr "Скрыпты Shell"
 
-#: dialogs/keyboard-settings/keyboard-dialog.glade:53
-msgid "Keyboard layout selection"
-msgstr "Абраць раскладкі клявіятуры"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:162
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
-msgid "Keyboard"
-msgstr "Клявіятура"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:252
-msgid "Restore num l_ock state on startup"
-msgstr "Ад_наўляць стан клявішы num l_ock падчас запуску"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:267
-#: dialogs/mouse-settings/mouse-dialog.glade:726
-#: dialogs/mouse-settings/mouse-dialog.glade:953
-msgid "General"
-msgstr "Агульныя налады"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:301
-msgid "_Enable key repeat"
-msgstr "_Уключыць паўтор клявішаў"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:305
-msgid ""
-"When selected, pressing and holding down a key emits the same character over"
-" and over again"
-msgstr "Калі абрана, пры пстрыку й утрымліваньні клявішы будзе надрукаваны той жа сымбаль зноў і зноў"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:333
-msgid "_Repeat delay:"
-msgstr "_Затрымка паўтору:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:347
-msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "Час у мілісэкундах перад паўторам пры пстрыкнутай клявішы"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:363
-msgid "Repe_at speed:"
-msgstr "Хут_касьць паўтору:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:377
-msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "Чашчыня, з якой улічваецца пстрыкі клявішаў, калі клявіша пстрыкнута"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:405
-msgid "Typing Settings"
-msgstr "Налады ўводу"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:438
-msgid "Show _blinking"
-msgstr "_Мільгаценне"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:442
-msgid "Specify whether or not the text cursor blinks"
-msgstr "Вызначае, ці будзе мільгацець указальнік на тэксце"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:470
-msgid "Blink _delay:"
-msgstr "Затрымка _мільгаценьня:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:484
-msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Затрымка ў мілісэкундах паміж пасьлядоўнымі мільгаценьнямі ўказальніку"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:512
-msgid "Cursor"
-msgstr "Указальнік"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:534
-msgid "_Test area:"
-msgstr "_Праверачная прастора:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:575
-msgid "Beha_vior"
-msgstr "Паво_дзіны"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:593
-msgid "Define shortcuts for la_unching applications:"
-msgstr "Задаць спалучэньні клявішаў для за_пуску дастасаваньняў:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:651
-#: dialogs/keyboard-settings/keyboard-dialog.glade:986
-#: xfce4-settings-editor/xfce-settings-editor-box.c:377
-msgid "_Edit"
-msgstr "_Рэдагаваць"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:692
-msgid "Reset to _Defaults"
-msgstr "Скінуць да _прадвызначанага"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:732
-msgid "A_pplication Shortcuts"
-msgstr "Спа_лучэньні клявішаў"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:762
-msgid "<b>Use system defaults</b>"
-msgstr "<b>Выкарыстаць змаўчаньні сыстэмы</b>"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:817
-msgid "_Keyboard model"
-msgstr "_Мадэль клявіятуры"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:861
-msgid "Change la_yout option"
-msgstr "Зьмяніць парамэтары рас_кладкі"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:899
-msgid "Co_mpose key"
-msgstr "Клявіша Co_mpose"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1043
-msgid "Move currently selected item up by one row"
-msgstr "Рухаць абраны элэмэнт уверх на 1 радок"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1063
-msgid "Move currently selected item down by one row"
-msgstr "Рухаць абраны элэмэнт уніз на 1 радок"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1096
-msgid "Key_board layout"
-msgstr "Рас_кладка клявіятуры"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1123
-msgid "_Layout"
-msgstr "_Раскладка"
-
-#: dialogs/keyboard-settings/main.c:80
+#: dialogs/keyboard-settings/main.c:83
 msgid "Unable to initialize GTK+."
 msgstr "Немагчыма ініцыялізаваць GTK+."
 
-#: dialogs/keyboard-settings/main.c:106
+#: dialogs/keyboard-settings/main.c:109
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Немагчыма злучыцца са службай xfconf. Прычына: %s"
 
-#: dialogs/keyboard-settings/main.c:117
+#: dialogs/keyboard-settings/main.c:120
 msgid "Could not create the settings dialog."
 msgstr "Не атрымалася стварыць вакно наладаў."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:433
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:431
 msgid "Command"
 msgstr "Загад"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:441
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:439
 msgid "Shortcut"
 msgstr "Скарот"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:518
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
 msgid "Layout"
 msgstr "Раскладка"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
 msgid "Variant"
 msgstr "Варыяцыя"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1288
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Гэта вярне ўсе скароты да іх пачатковых значэньняў. Вярнуць?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1292
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
 msgid "Reset to Defaults"
 msgstr "Скінуць да прадвызначанага"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
 msgid "No"
 msgstr "Не"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
 msgid "Yes"
 msgstr "Так"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1372
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1362
 msgid "The system defaults will be restored next time you log in."
 msgstr "Прадвызначаныя налады адновяцца падчас наступнага ўваходу ў сыстэму."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1374
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1364
 msgid "Warning"
 msgstr "Увага"
 
@@ -1552,7 +1808,7 @@ msgstr "Рэдагаваць налады клявіятуры й спалучэ
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;клявіятура;раскладка;цэтлікі;"
 
-#: dialogs/mime-settings/main.c:115
+#: dialogs/mime-settings/main.c:118
 msgid "Could not create the mime dialog."
 msgstr "Немагчыма стварыць вакно mime."
 
@@ -1647,60 +1903,74 @@ msgstr "Немагчыма ўсталяваць змоўчны файлавы к
 msgid "Failed to set default Terminal Emulator"
 msgstr "Немагчыма ўсталяваць змоўчны эмулятар тэрмінала"
 
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:353
+msgid "Failed to set default Text Editor"
+msgstr ""
+
 #. allocate the chooser
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:423
 msgid "Select application"
 msgstr "Абраць дастасаваньне"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
 msgid "Choose a custom Web Browser"
 msgstr "Выберыце карыстацкі гартач сеціва"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
 msgid "Choose a custom Mail Reader"
 msgstr "Выберыце адмысловы чытач пошты"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
 msgid "Choose a custom File Manager"
 msgstr "Выберыце карыстацкі файлавы кіраўнік"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:537
 msgid "Choose a custom Terminal Emulator"
 msgstr "Выберыце карыстацкі эмулятар тэрмінала"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+msgid "Choose a custom Text Editor"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr "Вызначыць дастасаваньне, якое Вы хочаце выкарыстоўваць\nу якасьці гартача сеціва па змаўчаньні для Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:541
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr "Вызначыць дастасаваньне, якое Вы хочаце выкарыстоўваць\nу якасьці змоўчнага чытача пошты для Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr "Вызначыць дастасаваньне, якое Вы хочаце выкарыстоўваць\nу якасьці змоўчнага файлавага кіраўніка для Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:545
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr "Вызначыць дастасаваньне, якое Вы хочаце выкарыстоўваць\nу якасьці змоўчнага эмулятара тэрмінала для Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:607
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
+msgid ""
+"Specify the application you want to use\n"
+"as default Text Editor for Xfce:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:610
 msgid "Browse the file system to choose a custom command."
 msgstr "Праглядзець файлавую сыстэму, каб выбраць карыстацкі загад."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:746
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:760
 msgid "_Other..."
 msgstr "_Іньшы..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:747
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:761
 msgid "Use a custom application which is not included in the above list."
 msgstr "Выкарыстаць карыстацкае дастасаваньне, які не ўваходзіць ў прыведзены вышэй сьпіс."
 
@@ -1732,6 +2002,12 @@ msgid ""
 "Emulator now and click OK to proceed."
 msgstr "Калі ласка, выберыце патрэбны Вам\nэмулятар тэрмінала зараз і націсьніце кнопку Добра, каб працягнуць."
 
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
+msgid ""
+"Please choose your preferred Text\n"
+"Editor now and click OK to proceed."
+msgstr ""
+
 #: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Web Browser"
 msgstr "Немагчыма запусьціць змоўчны гартач сеціва"
@@ -1748,48 +2024,53 @@ msgstr "Немагчыма запусьціць змоўчны файлавы к
 msgid "Failed to execute default Terminal Emulator"
 msgstr "Немагчыма запусьціць змоўчны эмулятар тэрмінала"
 
+#: dialogs/mime-settings/xfce-mime-helper-main.c:33
+msgid "Failed to execute default Text Editor"
+msgstr ""
+
 #. Enable permanently dismissing this error.
-#: dialogs/mime-settings/xfce-mime-helper-main.c:74
+#: dialogs/mime-settings/xfce-mime-helper-main.c:75
 msgid "Do _not show this message again"
 msgstr "Не паказваць гэтае паведамленьне паўторна"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:105
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 msgid "Print version information and exit"
 msgstr "Друкаваць дадзеныя аб вэрсыі й выйсьці"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr "Запусьціце змоўчны дапаможнік TYPE з неабавязковым парамэтарам, дзе TYPE - гэта адно з наступных значэньняў."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 #: dialogs/mime-settings/xfce-mime-helper-main.c:107
+#: dialogs/mime-settings/xfce-mime-helper-main.c:108
 msgid "TYPE [PARAMETER]"
 msgstr "ТЫП [ПАРАМЭТАР]"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:107
+#: dialogs/mime-settings/xfce-mime-helper-main.c:108
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr "Запытаць памочніка змоўчнага тыпу, дзе тып - гэта адно з наступных значэньняў."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:137
+#: dialogs/mime-settings/xfce-mime-helper-main.c:138
 msgid ""
 "The following TYPEs are supported for the --launch and --query commands:\n"
 "\n"
 "  WebBrowser       - The preferred Web Browser.\n"
 "  MailReader       - The preferred Mail Reader.\n"
 "  FileManager      - The preferred File Manager.\n"
-"  TerminalEmulator - The preferred Terminal Emulator."
-msgstr "Падтрымліваюцца наступныя ТЫПы для загадаў --launch і --query:\n\nГартач сеціва - пераважны гартач сеціва.\nПаштовы чытач - пераважны паштовы чытач.\nФайлавы кіраўнік - пераважны файлавы кіраўнік.\nЭмулятар тэрмінала - пераважны эмулятар тэрмінала."
+"  TerminalEmulator - The preferred Terminal Emulator.\n"
+"  TextEditor       - The preferred Text Editor."
+msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:174
-#: dialogs/mime-settings/xfce-mime-helper-main.c:247
+#: dialogs/mime-settings/xfce-mime-helper-main.c:177
+#: dialogs/mime-settings/xfce-mime-helper-main.c:251
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "Няслушны дапаможны тып \"%s\""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:231
+#: dialogs/mime-settings/xfce-mime-helper-main.c:235
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -1804,19 +2085,19 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nCopyright (c) 2003-2006\n        os-cillation e.K. Усе правы абароненыя.\n\nНапісана Бэнэдыкт Мээр <benny@xfce.org>.\n\nСтворана з дапамогай ГТК+-%d.%d.%d, запускаючы ГТК+-%d.%d.%d.\n\nКалі ласка дасылайце хібы на <%s>.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:257
+#: dialogs/mime-settings/xfce-mime-helper-main.c:262
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Няма памочніка, вызначанага для \"%s\"."
 
-#: dialogs/mime-settings/xfce-mime-helper.c:432
+#: dialogs/mime-settings/xfce-mime-helper.c:431
 msgid "No command specified"
 msgstr "Загад не вызначаны"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:812
-#: dialogs/mime-settings/xfce-mime-helper.c:851
-#: dialogs/mime-settings/xfce-mime-helper.c:948
-#: dialogs/mime-settings/xfce-mime-helper.c:987
+#: dialogs/mime-settings/xfce-mime-helper.c:811
+#: dialogs/mime-settings/xfce-mime-helper.c:850
+#: dialogs/mime-settings/xfce-mime-helper.c:941
+#: dialogs/mime-settings/xfce-mime-helper.c:980
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Немагчыма адчыніць %s для запісу"
@@ -1832,7 +2113,7 @@ msgid "_Internet"
 msgstr "_Сеціва"
 
 #: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:13
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Гартач сеціва"
 
@@ -1843,7 +2124,7 @@ msgid ""
 msgstr "Змоўчны гартач сеціва будзе выкарыстоўвацца для адкрыцьця гіперспасылак і адлюстраваньня зьмесьціва даведкі."
 
 #: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:13
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Чытач пошты"
 
@@ -1859,7 +2140,7 @@ msgid "_Utilities"
 msgstr "_Прылады"
 
 #: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:13
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Файлавы кіраўнік"
 
@@ -1869,7 +2150,7 @@ msgid ""
 msgstr "Для прагляду змесьціва тэчак будзе выкарыстоўвацца змоўчны файлавы кіраўнік."
 
 #: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:12
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Эмулятар тэрмінала"
 
@@ -1879,49 +2160,57 @@ msgid ""
 "CLI environment."
 msgstr "Змоўчны Эмулятар тэрмінала будзе выкарыстоўвацца для запуску загадаў, якія патрабуюць асяродьдзя CLI."
 
+#: dialogs/mime-settings/xfce-mime-window.c:341
+msgid "Text Editor"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:349
+msgid "The default Text Editor will be used to open and edit text files."
+msgstr ""
+
 #. Mimes
-#: dialogs/mime-settings/xfce-mime-window.c:337
+#: dialogs/mime-settings/xfce-mime-window.c:363
 msgid "_Others"
 msgstr "_Іньшыя"
 
-#: dialogs/mime-settings/xfce-mime-window.c:347
+#: dialogs/mime-settings/xfce-mime-window.c:373
 msgid "_Filter:"
 msgstr "_Фільтар:"
 
-#: dialogs/mime-settings/xfce-mime-window.c:355
+#: dialogs/mime-settings/xfce-mime-window.c:381
 msgid "Clear filter"
 msgstr "Ачысьціць фільтар"
 
-#: dialogs/mime-settings/xfce-mime-window.c:385
+#: dialogs/mime-settings/xfce-mime-window.c:411
 msgid "Open with..."
 msgstr "Адчыніць з..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:434
+#: dialogs/mime-settings/xfce-mime-window.c:460
 msgid "MIME Type"
 msgstr "Тып MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:462
+#: dialogs/mime-settings/xfce-mime-window.c:488
 msgid "Status"
 msgstr "Стан"
 
-#: dialogs/mime-settings/xfce-mime-window.c:482
+#: dialogs/mime-settings/xfce-mime-window.c:508
 msgid "Default Application"
 msgstr "Прадвызначанае дастасаваньне"
 
-#: dialogs/mime-settings/xfce-mime-window.c:658
-#: dialogs/mime-settings/xfce-mime-window.c:825
+#: dialogs/mime-settings/xfce-mime-window.c:684
+#: dialogs/mime-settings/xfce-mime-window.c:853
 msgid "User Set"
 msgstr "Карыстацкі"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:660
-#: dialogs/mime-settings/xfce-mime-window.c:825
-#: dialogs/mouse-settings/main.c:413 dialogs/mouse-settings/main.c:415
-#: dialogs/mouse-settings/main.c:478
+#: dialogs/mime-settings/xfce-mime-window.c:686
+#: dialogs/mime-settings/xfce-mime-window.c:853
+#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
+#: dialogs/mouse-settings/main.c:479
 msgid "Default"
 msgstr "Прадвызначаны"
 
-#: dialogs/mime-settings/xfce-mime-window.c:748
+#: dialogs/mime-settings/xfce-mime-window.c:776
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
@@ -1930,12 +2219,12 @@ msgstr[1] "%d MIME-тыпа знойдзена"
 msgstr[2] "%d MIME-тыпаў знойдзена"
 msgstr[3] "%d MIME-тып знойдзены"
 
-#: dialogs/mime-settings/xfce-mime-window.c:870
+#: dialogs/mime-settings/xfce-mime-window.c:898
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Немагчыма прызначыць дастасаваньне \"%s\" для тыпу mime \"%s\"."
 
-#: dialogs/mime-settings/xfce-mime-window.c:978
+#: dialogs/mime-settings/xfce-mime-window.c:1007
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
@@ -1944,27 +2233,27 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: dialogs/mime-settings/xfce-mime-window.c:1174
+#: dialogs/mime-settings/xfce-mime-window.c:1203
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Абраная вамі сувязь тыпаў mime будзе заменена на прадвызначаную сыстэмную."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1176
+#: dialogs/mime-settings/xfce-mime-window.c:1205
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Скінуць зьмесціва тыпу \"%s\" да прадвызначанага значэньня?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1180
+#: dialogs/mime-settings/xfce-mime-window.c:1209
 msgid "Question"
 msgstr "Пытаньне"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1182
-#: dialogs/mime-settings/xfce-mime-window.c:1254
+#: dialogs/mime-settings/xfce-mime-window.c:1211
+#: dialogs/mime-settings/xfce-mime-window.c:1283
 msgid "Reset to Default"
 msgstr "Скінуць да прадвызначанага"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1249
+#: dialogs/mime-settings/xfce-mime-window.c:1278
 msgid "Choose Application..."
 msgstr "Абраць дастасаваньне..."
 
@@ -1978,19 +2267,35 @@ msgid ""
 "manager;terminal emulator;"
 msgstr "файл;тып;пашырэньне;асацыяцыя;адчыніць з дапамогай;гартач сеціва;чытач пошты;файлавы кіраўнік;эмулятар тэрміналу;"
 
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
 msgstr "Прагляд файлавай сыстэмы"
 
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
 msgstr "Чытаць сваю электронную пошту"
 
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
 msgstr "Выкарыстоўваць загадны радок"
 
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr ""
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
 msgstr "Праглядайце сеціва"
 
@@ -2214,279 +2519,31 @@ msgstr "Файлавы кіраўнік Xfce"
 msgid "X Terminal"
 msgstr "Х Тэрмінал"
 
-#: dialogs/mouse-settings/main.c:85
+#: dialogs/mouse-settings/main.c:86
 msgid "Active device in the dialog"
 msgstr "Дзейная прылада ў вакне"
 
-#: dialogs/mouse-settings/main.c:85
+#: dialogs/mouse-settings/main.c:86
 msgid "DEVICE NAME"
 msgstr "НАЗВА ПРЫЛАДЫ"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:167
+#: dialogs/mouse-settings/main.c:168
 #, c-format
 msgid "%g px"
 msgstr "%g пікс"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:177
+#: dialogs/mouse-settings/main.c:178
 #, c-format
 msgid "%g ms"
 msgstr "%g мс"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:188
+#: dialogs/mouse-settings/main.c:189
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f с"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:67
-msgid "Use bottom areas as left, middle or right buttons"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:71
-msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:92
-msgid "Disabled"
-msgstr "Адключана"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:96
-msgid "Edge scrolling"
-msgstr "Мяжа гартаньня"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:100
-msgid "Two-finger scrolling"
-msgstr "Пракрутка двума пальцамі"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:104
-msgid "Circular scrolling"
-msgstr "Цыклічная гартаньне"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:126
-msgid "Pen (absolute)"
-msgstr "Пяро (абсалютна)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:130
-msgid "Mouse (relative)"
-msgstr "Мыш (адносна)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:144
-msgid "None (right-handed)"
-msgstr "Няма (праваруч)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:148
-msgid "Half (left-handed)"
-msgstr "Напалову (леваруч)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:152
-msgid "Clockwise"
-msgstr "Павярнуць па _сонцу"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:156
-msgid "Counterclockwise"
-msgstr "Павярнуць супраць _сонца"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:162
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
-msgid "Mouse and Touchpad"
-msgstr "Мыша й дотыкавік"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:237
-msgid "De_vice:"
-msgstr "Пры_лада:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:314
-msgid "Le_ft-handed"
-msgstr "Лева_руч"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:331
-msgid "Ri_ght-handed"
-msgstr "Права_руч"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:355
-msgid "Reverse scroll d_irection"
-msgstr "Адваротны парадак _гартаньня"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:359
-msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr "Калі абрана, кола мышу будзе гартацца ў адваротным накірунку"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:372
-msgid "Allow high _resolution scrolling (experimental)"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:376
-msgid ""
-"Only supported on some mice (mostly Logitech) and requires driver support. "
-"On supported devices makes scrolling more precise."
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:395
-msgid "Buttons"
-msgstr "Кнопкі"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:428
-msgid "_Reset to Defaults"
-msgstr "_Скінуць да прадвызначанага"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:432
-msgid ""
-"Set the acceleration and sensitivity for the selected device to the default "
-"values"
-msgstr "Скінуць паскарэньне й адчувальнасьць для абранай прылады да прадвызначанага значэньня"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:448
-msgid "Sensitivit_y:"
-msgstr "Адчуваль_насьць:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:461
-msgid "Acceleratio_n:"
-msgstr "Паскарэ_ньне:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:473
-msgid ""
-"The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "Каэфіцыэнт, на які будзе памножана хуткасьць указальніка падчас руху мышу"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:488
-msgid ""
-"The number of pixels the pointer must move in a short time before it starts "
-"accelerating"
-msgstr "Колькасьць піксэляў, на якія мусіць перамясьціцца ўказальнік перад паскарэньнем"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:502
-msgid "Adaptive pointer acceleration"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:505
-msgid ""
-"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
-"current speed of the device into account when deciding on acceleration. "
-"Custom acceleration profile is not supported via xfce4-settings."
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:525
-msgid "Pointer Speed"
-msgstr "Хуікасьць указальніка"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:544
-msgid "B_uttons and Feedback"
-msgstr "Кноп_кі й зваротная сувязь"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:578
-#: dialogs/mouse-settings/mouse-dialog.glade:595
-msgid "Disable touchpad _while typing"
-msgstr "Выключаць дотыкавую прыладу _падчас уводу"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:582
-#: dialogs/mouse-settings/mouse-dialog.glade:599
-msgid ""
-"When selected, the touchpad will be disabled when the keyboard is being used"
-msgstr "Калі абрана, дотыкавік будзе выключацца падчас выкарыстоўваньня клявіятуры"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:624
-msgid "Duratio_n:"
-msgstr "Працяг_ласьць:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:659
-msgid "Tap touchpad to clic_k"
-msgstr "Націск на дотыкавую прыладу для пстрычкі"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:682
-msgid "Click m_ethod:"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:767
-msgid "Scrolling _mode:"
-msgstr "Рэжым _гартаньня:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:805
-msgid "Enable hori_zontal scrolling"
-msgstr "Уключыць гары_зантальнае гартаньне"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:827
-msgid "Scrolling"
-msgstr "Гартаньне"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:850
-msgid "T_ouchpad"
-msgstr "Доты_кавік"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:888
-msgid "Trac_king mode:"
-msgstr "Рэжым_ адсочваньня:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:901
-msgid "_Rotation:"
-msgstr "_Паварочваньне:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:976
-msgid "Tab_let"
-msgstr "План_шэт"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:997
-msgid "_Devices"
-msgstr "_Прылады"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1034
-msgid "Th_reshold:"
-msgstr "Мя_жа:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1048
-msgid ""
-"The number of pixels the pointer must move before a drag operation will "
-"start"
-msgstr "Колькасьць піксэляў, на якія мусіць перамясьціцца ўказальнік перад перацягваньнем аб'екту"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1067
-msgid "Drag and Drop"
-msgstr "Перацягнуць"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1103
-msgid "Ti_me:"
-msgstr "Ч_ас:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1117
-msgid ""
-"Two mouse clicks in less than this length of time (in milliseconds) will be "
-"considered a double click"
-msgstr "Дзьве пстрычкі мышу з прамежкам, меньшым за гэтае значэньне, будуць лічыцца падвойнай (у мілісэкундах)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1133
-msgid "D_istance:"
-msgstr "Ад_легласьць:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1147
-msgid ""
-"The mouse pointer cannot move farther than this distance between two clicks "
-"for them to be considered a double click"
-msgstr "Для падвойнай пстрычкі ўказальнік мышу не мусіць адхіліцца паміж пстрычкамі больш чым на зададзеную адлегласьць"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1166
-msgid "Double Click"
-msgstr "Двайны пстрык"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1188
-msgid "_Behavior"
-msgstr "_Паводзіны"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1253
-msgid "Cursor si_ze:"
-msgstr "Памер ука_зальніку:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1287
-msgid "Size"
-msgstr "Памер"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1327
-msgid "Preview"
-msgstr "Перадпрагляд"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1356
-msgid "_Theme"
-msgstr "_Тэма"
 
 #: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
@@ -2497,7 +2554,7 @@ msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "налады;кнопкі;гартаньне;напрамак;паказальнік;хуткасьць;двайны пстрык;тэма;кола;"
 
-#: xfce4-settings-editor/main.c:182
+#: xfce4-settings-editor/main.c:185
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
 msgid "Settings Editor"
 msgstr "Рэдактар наладаў"
@@ -2698,20 +2755,20 @@ msgstr "Графічны рэдактар наладаў для Xfconf"
 msgid "registry;regedit;configuration file;"
 msgstr "рээстар;рэдактар рээстра;канфігурацыйны файл;"
 
-#: xfce4-settings-manager/main.c:40
+#: xfce4-settings-manager/main.c:43
 msgid "Settings dialog to show"
 msgstr "Вакно наладаў для паказу"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:228
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:227
 msgid "All _Settings"
 msgstr "Усе _налады"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:427
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:426
 msgid "Settings"
 msgstr "Налады"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:925
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:937
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Немагчыма запусьціць \"%s\""
@@ -2769,15 +2826,15 @@ msgstr "Скокаючыя клявішы"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Немагчыма запусьціць скарот \"%s\""
 
-#: xfsettingsd/main.c:94
+#: xfsettingsd/main.c:97
 msgid "Fork to the background"
 msgstr "Адгадінаваньне на задні плян"
 
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:98
 msgid "Do not wait for a window manager on startup"
 msgstr "Не чакаць запуску кіраўніка вокнаў"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:99
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Замяніць запушчаную службу xsettings (калі запушчана)"
 
@@ -2794,3 +2851,7 @@ msgstr "Сэрвіс наладаў Xfce"
 #: xfsettingsd/xfsettingsd.desktop.in:5
 msgid "The Xfce Settings Daemon"
 msgstr "Сэрвіс наладаў Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr ""
