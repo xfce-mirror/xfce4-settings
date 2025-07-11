@@ -91,6 +91,7 @@ apps = [
   'xfce4-mail-reader.desktop.in',
   'xfce4-mime-settings.desktop.in',
   'xfce4-terminal-emulator.desktop.in',
+  'xfce4-text-editor.desktop.in',
   'xfce4-web-browser.desktop.in',
 ]
 foreach app : apps

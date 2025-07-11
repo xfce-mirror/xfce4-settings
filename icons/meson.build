@@ -12,6 +12,7 @@ names = [
   'org.xfce.settings.manager',
   'org.xfce.settings.mouse',
   'org.xfce.terminalemulator',
+  'org.xfce.texteditor',
   'org.xfce.webbrowser',
 ]
 

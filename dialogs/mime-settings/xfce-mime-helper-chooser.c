@@ -350,6 +350,7 @@ menu_activate (GtkWidget *item,
     N_ ("Failed to set default Mail Reader"),
     N_ ("Failed to set default File Manager"),
     N_ ("Failed to set default Terminal Emulator"),
+    N_ ("Failed to set default Text Editor"),
   };
 
   XfceMimeHelper *helper;
@@ -534,6 +535,7 @@ menu_activate_other (GtkWidget *item,
     N_ ("Choose a custom Mail Reader"),
     N_ ("Choose a custom File Manager"),
     N_ ("Choose a custom Terminal Emulator"),
+    N_ ("Choose a custom Text Editor"),
   };
 
   static const gchar *BROWSE_MESSAGES[] = {
@@ -541,6 +543,7 @@ menu_activate_other (GtkWidget *item,
     N_ ("Specify the application you want to use\nas default Mail Reader for Xfce:"),
     N_ ("Specify the application you want to use\nas default File Manager for Xfce:"),
     N_ ("Specify the application you want to use\nas default Terminal Emulator for Xfce:"),
+    N_ ("Specify the application you want to use\nas default Text Editor for Xfce:"),
   };
 
   const gchar *command;
