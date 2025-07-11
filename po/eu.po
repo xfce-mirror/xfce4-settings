@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-11-02 00:53+0100\n"
+"POT-Creation-Date: 2025-07-11 12:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: beriain, 2020-2025\n"
 "Language-Team: Basque (http://app.transifex.com/xfce/xfce4-settings/language/eu/)\n"
@@ -21,323 +21,1238 @@ msgstr ""
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Translators: "Unknown" here is used to identify a monitor for which
-#. * we don't know the vendor. When a vendor is known, the name of the
-#. * vendor is used.
-#: common/display-name.c:2644
-msgctxt "Monitor vendor"
-msgid "Unknown"
-msgstr "Ezezaguna"
-
-#. TRANSLATORS: an externally connected display, where %s is either the
-#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: common/display-name.c:2697 dialogs/color-settings/color-device.c:66
-msgid "Monitor"
-msgstr "Monitorea"
-
-#: common/display-name.c:2700
-msgid "Television"
-msgstr "Telebista"
-
-#: common/display-name.c:2704
-msgid "Digital display"
-msgstr "Pantaila digitala"
-
-#: common/xfce-randr.c:291 dialogs/display-settings/display-settings-x11.c:702
-msgid "Unable to query the version of the RandR extension being used"
-msgstr "Ezin da erabiltzen ari den RandR hedapen bertsioa galdezkatu"
-
-#: common/xfce-randr.c:573
-#: dialogs/display-settings/display-settings-wayland.c:350
-msgid "Laptop"
-msgstr "Eramangarria"
-
-#: dialogs/accessibility-settings/accessibility-dialog.glade:66
+#: common/resources/accessibility-dialog.glade:66
 #: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:4
 msgid "Accessibility"
 msgstr "Erabilerraztasuna"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:85
-#: dialogs/appearance-settings/appearance-dialog.glade:142
-#: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:290
-#: dialogs/display-settings/minimal-display-dialog.glade:368
-#: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3490
-#: dialogs/keyboard-settings/keyboard-dialog.glade:181
+#: common/resources/accessibility-dialog.glade:85
+#: common/resources/appearance-dialog.glade:142
+#: common/resources/color-dialog.glade:65
+#: common/resources/display-dialog.glade:290
+#: common/resources/minimal-display-dialog.glade:368
+#: common/resources/profile-changed-dialog.glade:34
+#: common/resources/keyboard-dialog.glade:181
+#: common/resources/mouse-dialog.glade:195
+#: dialogs/display-settings/main.c:3482
 #: dialogs/mime-settings/xfce-mime-window.c:194
-#: dialogs/mouse-settings/mouse-dialog.glade:195
-#: xfce4-settings-editor/main.c:185
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:235
+#: xfce4-settings-editor/main.c:188
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:234
 msgid "_Close"
 msgstr "_Itxi"
 
 #. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
-#: dialogs/accessibility-settings/accessibility-dialog.glade:100
-#: dialogs/appearance-settings/appearance-dialog.glade:126
-#: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:274
-#: dialogs/keyboard-settings/keyboard-dialog.glade:196
+#: common/resources/accessibility-dialog.glade:100
+#: common/resources/appearance-dialog.glade:126
+#: common/resources/color-dialog.glade:80
+#: common/resources/display-dialog.glade:274
+#: common/resources/keyboard-dialog.glade:196
+#: common/resources/mouse-dialog.glade:179
 #: dialogs/mime-settings/xfce-mime-window.c:197
-#: dialogs/mouse-settings/mouse-dialog.glade:179
-#: xfce4-settings-editor/main.c:184
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:224
+#: xfce4-settings-editor/main.c:187
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:223
 msgid "_Help"
 msgstr "_Laguntza"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:156
+#: common/resources/accessibility-dialog.glade:156
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr "Gaituta dagoenean, saio-administratzailea pantaila-irakurleentzat eta luparentzat behar diren aplikazioak hasiko ditu."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:173
+#: common/resources/accessibility-dialog.glade:173
 msgid "_Enable assistive technologies"
 msgstr "_Gaitu laguntza teknologiak"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:195
+#: common/resources/accessibility-dialog.glade:195
 msgid "Start With Session"
 msgstr "Hasi saioarekin"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:230
+#: common/resources/accessibility-dialog.glade:230
 msgid "Assistive technologies will be available the next time you login"
 msgstr "Laguntza-teknologiak saioa hasten duzun hurrengo aldian prest egongo dira"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:269
+#: common/resources/accessibility-dialog.glade:269
 msgid "No AT-SPI provider was found on your system"
 msgstr "Ez da AT-SPI hornitzailerik aurkitu zure sisteman"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:292
+#: common/resources/accessibility-dialog.glade:292
 msgid "Assistive _Technologies"
 msgstr "Laguntza _teknologiak"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:332
+#: common/resources/accessibility-dialog.glade:332
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr "Aktibatzen denean, aldatze teklak (hala nola, Control, Alt eta Shift) ez dira sakatuta mantendu behar (sakatu egin daitezke, eta, gero, askatu) tekla anitz aldi berean sakatu behar direnean."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:355
+#: common/resources/accessibility-dialog.glade:355
 msgid "_Use sticky keys"
 msgstr "_Erabili tekla itsaskorrak"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:383
+#: common/resources/accessibility-dialog.glade:383
 msgid "_Lock sticky keys"
 msgstr "_Blokeatu tekla itsaskorrak"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:387
+#: common/resources/accessibility-dialog.glade:387
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr "Hautaturik dagoenean, aldatze teklak (Kontrol, Alt eta Shift bezalakoak)  sakaturik blokeatuko dira berriz sakatu arte"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:400
+#: common/resources/accessibility-dialog.glade:400
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr "Desgaitu tekla itsaskorra _bi tekla sakatzen badira"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:404
+#: common/resources/accessibility-dialog.glade:404
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr "Hautaturik dagoenean, tekla itsaskor ezaugarria desgaitu egingo da bi tekla batera sakatzean"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:439
+#: common/resources/accessibility-dialog.glade:439
 msgid "Sticky Keys"
 msgstr "Tekla itsaskorrak"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:469
+#: common/resources/accessibility-dialog.glade:469
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr "Teklak nahi gabe sakatzea ekiditeko, tekla motelek denbora jakin batez sakatuta egon behar dute pultsazioa onartu orduko."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:492
+#: common/resources/accessibility-dialog.glade:492
 msgid "Use slow _keys"
 msgstr "Erabili te_kla geldoak"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:521
+#: common/resources/accessibility-dialog.glade:521
 msgid "Acceptance _delay:"
 msgstr "Azelerazioa _atzerapena:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:535
+#: common/resources/accessibility-dialog.glade:535
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "Tekla sakatze bat onartu aurretik igaro behar den denbora, milisegundotan."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:571
+#: common/resources/accessibility-dialog.glade:571
 msgid "Slow Keys"
 msgstr "Tekla geldoak"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:601
+#: common/resources/accessibility-dialog.glade:601
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr "Teklak asko batera nahi gabe sakatzea ekiditeko, errebote-teklek pultsazioen arteko gutxieneko atzerapena ezartzen dute."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:624
+#: common/resources/accessibility-dialog.glade:624
 msgid "Use _bounce keys"
 msgstr "Erabili tekla e_rrepikapena"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:653
+#: common/resources/accessibility-dialog.glade:653
 msgid "K_eystroke delay:"
 msgstr "Tekla-sakatz_e atzerapena:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:667
+#: common/resources/accessibility-dialog.glade:667
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Tekla sakatzeen artean beharreko denbora, milisegundotan"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:703
+#: common/resources/accessibility-dialog.glade:703
 msgid "Bounce Keys"
 msgstr "Tekla errepikapena"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:729
+#: common/resources/accessibility-dialog.glade:729
 msgid "Keyboa_rd"
 msgstr "Tekla_tua"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:769
+#: common/resources/accessibility-dialog.glade:769
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr "Gaituta dagoenean, saguaren erakuslea zenbakizko teklatua erabiliz kontrola daiteke."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:792
+#: common/resources/accessibility-dialog.glade:792
 msgid "_Use mouse emulation"
 msgstr "_Erabili sagu emulazioa"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:796
+#: common/resources/accessibility-dialog.glade:796
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "Hautaturik dagoenean sagu markatzailea zenbakizko teklatuaren bidez kontrolatu daiteke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:824
-#: dialogs/accessibility-settings/accessibility-dialog.glade:894
-#: dialogs/accessibility-settings/accessibility-dialog.glade:936
+#: common/resources/accessibility-dialog.glade:824
+#: common/resources/accessibility-dialog.glade:894
+#: common/resources/accessibility-dialog.glade:936
 msgid "msec"
 msgstr "mseg"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:835
+#: common/resources/accessibility-dialog.glade:835
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "Hasierako tekla sakatzea eta lehenengo errepikatutako mugimendu gertaeren arteko denbora milisegundotan"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:852
+#: common/resources/accessibility-dialog.glade:852
 msgid "_Acceleration delay:"
 msgstr "_Azelerazio atzerapena:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:865
+#: common/resources/accessibility-dialog.glade:865
 msgid "R_epeat interval:"
 msgstr "Errepikapen aldia:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:877
+#: common/resources/accessibility-dialog.glade:877
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Errepikatutako mugimendu gertaeren arteko denbora milisegundotan"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:906
+#: common/resources/accessibility-dialog.glade:906
 msgid "Acceleration t_ime:"
 msgstr "Azelerazioa _denbora:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:918
+#: common/resources/accessibility-dialog.glade:918
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Abiadura handiena lortzeko denbora, milisegundotan"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:948
+#: common/resources/accessibility-dialog.glade:948
 msgid "Ma_ximum speed:"
 msgstr "Gehiene_zko abiadura:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:960
+#: common/resources/accessibility-dialog.glade:960
 msgid "The maximum pointer speed after acceleration"
 msgstr "Gehienezko markatzaile abiadura azelerazioaren ondoren"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:978
+#: common/resources/accessibility-dialog.glade:978
 msgid "pixels/sec"
 msgstr "pixel/seg"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:990
+#: common/resources/accessibility-dialog.glade:990
 msgid "Acceleration _profile:"
 msgstr "Azelerazio _profila:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1002
+#: common/resources/accessibility-dialog.glade:1002
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Gehienezko markatzaile abiadura lortzeko erabiliko den malda"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1048
+#: common/resources/accessibility-dialog.glade:1048
 msgid "Mouse Emulation"
 msgstr "Sagu emulazioa"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1078
+#: common/resources/accessibility-dialog.glade:1078
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr "Lotu teklatu lasterbide bat xfce4-find-cursor-en, saguko erakuslearen uneko kokapenari buruzko informazio bisuala lortzeko."
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1095
+#: common/resources/accessibility-dialog.glade:1095
 msgid "Show location of pointer on keypress"
 msgstr "Erakuslearen kokapena erakutsi tekla bat sakatzean"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1117
+#: common/resources/accessibility-dialog.glade:1117
 msgid "Find Cursor"
 msgstr "Bilatu kurtsorea"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1143
+#: common/resources/accessibility-dialog.glade:1143
 msgid "_Mouse"
 msgstr "_Sagua"
 
-#: dialogs/accessibility-settings/main.c:38
-#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
-#: xfce4-settings-editor/main.c:44
+#: common/resources/appearance-dialog.glade:39
+#: common/resources/mouse-dialog.glade:63
+#: dialogs/appearance-settings/main.c:1602 dialogs/display-settings/main.c:85
+#: dialogs/display-settings/main.c:93
+msgid "None"
+msgstr "Bat ere ez"
+
+#: common/resources/appearance-dialog.glade:42
+msgid "Slight"
+msgstr "Arina"
+
+#: common/resources/appearance-dialog.glade:45
+msgid "Medium"
+msgstr "Tartekoa"
+
+#: common/resources/appearance-dialog.glade:48
+msgid "Full"
+msgstr "Osoa"
+
+#: common/resources/appearance-dialog.glade:59
+msgid "Icons"
+msgstr "Ikonoak"
+
+#: common/resources/appearance-dialog.glade:62
+msgid "Text"
+msgstr "Testua"
+
+#: common/resources/appearance-dialog.glade:65
+msgid "Text under icons"
+msgstr "testua ikonoen azpian"
+
+#: common/resources/appearance-dialog.glade:68
+msgid "Text next to icons"
+msgstr "Testua ikonoen alboan"
+
+#: common/resources/appearance-dialog.glade:82
+msgid "1x (no scaling)"
+msgstr "x1 (eskalatu gabe)"
+
+#: common/resources/appearance-dialog.glade:86
+msgid "2x"
+msgstr "x2"
+
+#: common/resources/appearance-dialog.glade:107
+#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
+msgid "Appearance"
+msgstr "Itxura"
+
+#: common/resources/appearance-dialog.glade:205
+#: common/resources/appearance-dialog.glade:315
+#: common/resources/color-dialog.glade:374
+#: common/resources/keyboard-dialog.glade:636
+#: common/resources/keyboard-dialog.glade:970
+#: xfce4-settings-editor/xfce-settings-editor-box.c:364
+msgid "_Add"
+msgstr "_Gehitu"
+
+#: common/resources/appearance-dialog.glade:238
+msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
+msgstr "Ezarri <a href=\"xfwm4-settings:\">Xfwm4 itxura</a>rekin bat datorrena, baten bat badago"
+
+#: common/resources/appearance-dialog.glade:272
+msgid "St_yle"
+msgstr "Es_tiloa"
+
+#: common/resources/appearance-dialog.glade:348
+msgid "_Icons"
+msgstr "_Ikonoak"
+
+#: common/resources/appearance-dialog.glade:388
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr "Letra-tipo hau erabiliko da Lehenetsitako letra-tipoa gisa erabiltzaile interfaze testu bat erakustean"
+
+#: common/resources/appearance-dialog.glade:390
+msgid "Select a default font"
+msgstr "Hautatu lehenetsitako letra-tipoa"
+
+#: common/resources/appearance-dialog.glade:399
+msgid "Default Fon_t"
+msgstr "Lehenetsitako letra-tipoa"
+
+#: common/resources/appearance-dialog.glade:431
+msgid ""
+"This font will be used as the default monospace font, for example by "
+"terminal emulators."
+msgstr "Letra-tipo hau aurrez zehaztutako monospace letra-tipo gisa erabiliko da, adibidez, terminal-emuladoretan."
+
+#: common/resources/appearance-dialog.glade:433
+msgid "Select a default monospace font"
+msgstr "Aukeratu lehenetsitako monospace letra-tipoa"
+
+#: common/resources/appearance-dialog.glade:442
+msgid "Default _Monospace Font"
+msgstr "Lehenetsitako monospace letra-tipoa"
+
+#: common/resources/appearance-dialog.glade:477
+msgid "_Enable anti-aliasing"
+msgstr "Gaitu _anti-aliasing-a"
+
+#: common/resources/appearance-dialog.glade:481
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr "Anti-aliasing, edo letra-tipo leuntzea, pantailako testuaren itxura hobe dezake"
+
+#: common/resources/appearance-dialog.glade:509
+msgid "Hintin_g:"
+msgstr "Hintin_g-a:"
+
+#: common/resources/appearance-dialog.glade:521
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw"
+" the font; pick whichever looks best according to personal preference"
+msgstr "Letra-tipo askok letra-tipoa hobe marrazteko gomendioez hornitzen dute, hautatu zure hobespen pertsonaletara gehien gerturatzen dena"
+
+#: common/resources/appearance-dialog.glade:541
+msgid "Sub-_pixel order:"
+msgstr "Azpi-_pixel ordena:"
+
+#: common/resources/appearance-dialog.glade:553
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr "TFT edo LCD pantailetako letra-tipo kalitatea asko hobetu daiteke pantailan dagokion azpi-pixel orden zuzena hautatuaz"
+
+#: common/resources/appearance-dialog.glade:591
+msgid "Rendering"
+msgstr "Errendatzea"
+
+#: common/resources/appearance-dialog.glade:623
+msgid "Custom _DPI setting:"
+msgstr "Pertsonalizatutako DPI ezarpena:"
+
+#: common/resources/appearance-dialog.glade:627
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too "
+"small"
+msgstr "Gainidatzi atzemandako monitore erresoluzioa letra-tipoak handiegi edo txikiegi ikusten badira"
+
+#: common/resources/appearance-dialog.glade:664
+msgid "DPI"
+msgstr "DPI"
+
+#: common/resources/appearance-dialog.glade:690
+msgid "_Fonts"
+msgstr "_Letra-tipoak"
+
+#: common/resources/appearance-dialog.glade:733
+msgid "Show images on _buttons"
+msgstr "Ikusi irudiak _botoietan"
+
+#: common/resources/appearance-dialog.glade:737
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "Zehaztu ikonoak ikusiko diren testuen ondoan menuetan"
+
+#: common/resources/appearance-dialog.glade:750
+msgid "Show images in _menus"
+msgstr "Ikusi irudiak _menuetan"
+
+#: common/resources/appearance-dialog.glade:754
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "Zehaztu ikonoak ikusiko diren elementuen ondoan menuetan"
+
+#: common/resources/appearance-dialog.glade:767
+msgid "Enable e_ditable accelerators"
+msgstr "Gaitu bizkortzaile e_ditagarriak"
+
+#: common/resources/appearance-dialog.glade:771
+msgid ""
+"If selected, keyboard shortcuts for menu items can be changed by hovering "
+"the mouse over the menu item and pressing the new key combination for the "
+"shortcut"
+msgstr "Hautaturik badago menu elementuen teklatu lasterbideak aldatu egin daitezke sagua menu elementuaren gainean ipini eta lasterbide berriaren tekla nahasketa sakatuaz"
+
+#: common/resources/appearance-dialog.glade:784
+msgid "Enable header bars in dialo_gs"
+msgstr "Goiburu barrak gaitu leihotxoetan"
+
+#: common/resources/appearance-dialog.glade:788
+msgid ""
+"Defines whether GTK dialogs may place widgets such as buttons in the "
+"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
+"opened dialogs."
+msgstr "GTK leihotxoek botoiak bezalako widget-ak leihotxoen goiburu barran jarri dezaketen definitzen du. Inplikazioak ditu Bezero Aldeko Dekorazioan (Client Side Decoration). Irekitako leihotxo berrietan du eragina soilik."
+
+#: common/resources/appearance-dialog.glade:807
+msgid "Menus and Buttons"
+msgstr "Menuak eta botoiak"
+
+#: common/resources/appearance-dialog.glade:839
+msgid "Enable _event sounds"
+msgstr "Gaitu g_ertaera soinuak"
+
+#: common/resources/appearance-dialog.glade:843
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr "Gaitu edo desgaitu gertaera soinuak osotasunean (\"Camberra\" onarpena beharrezkoa)"
+
+#: common/resources/appearance-dialog.glade:856
+msgid "Enable input feedbac_k sounds"
+msgstr "Gaitu sa_rrera atzeraelikadura soinuak"
+
+#: common/resources/appearance-dialog.glade:860
+msgid ""
+"Specify whether mouse clicks and other user input will cause event sounds to"
+" play"
+msgstr "Zehaztu sagu klik-ek edo beste erabiltzaile sarrerek gertaera soinuak erreproduzitzea eragingo duen ala ez"
+
+#: common/resources/appearance-dialog.glade:879
+msgid "Event sounds"
+msgstr "Gertaera soinuak"
+
+#: common/resources/appearance-dialog.glade:908
+msgid "Adjust the system-wide display scaling"
+msgstr "Doitu sistemaren osoaren bistaratze-eskala"
+
+#: common/resources/appearance-dialog.glade:926
+msgid "_Window Scaling"
+msgstr "_Leiho eskala"
+
+#: common/resources/appearance-dialog.glade:954
+msgid "Setti_ngs"
+msgstr "Ezarpe_nak"
+
+#: common/resources/color-dialog.glade:46
+#: dialogs/color-settings/xfce4-color-settings.desktop.in:4
+msgid "Color Profiles"
+msgstr "Kolore profilak"
+
+#: common/resources/color-dialog.glade:151
+msgid "<b>No devices found.</b>"
+msgstr "<b>Ez da gailurik aurkitu.</b>"
+
+#: common/resources/color-dialog.glade:221
+msgid "Model:"
+msgstr "Modeloa:"
+
+#: common/resources/color-dialog.glade:233
+msgid "Colorspace:"
+msgstr "Kolore-espazioa:"
+
+#: common/resources/color-dialog.glade:256
+msgid "Vendor:"
+msgstr "Saltzailea:"
+
+#: common/resources/color-dialog.glade:280
+msgid "Calibrate"
+msgstr "Kalibratu"
+
+#: common/resources/color-dialog.glade:337
+msgid "<b>No profiles for the selected device.</b>"
+msgstr "<b>Profilik ez aukeratutako gailuarentzat.</b>"
+
+#: common/resources/color-dialog.glade:378
+msgid "Add a profile to the currently selected device"
+msgstr "Gehitu profila uneko gailuari"
+
+#: common/resources/color-dialog.glade:390
+#: common/resources/keyboard-dialog.glade:666
+#: common/resources/keyboard-dialog.glade:1002
+msgid "_Remove"
+msgstr "_Ezabatu"
+
+#: common/resources/color-dialog.glade:394
+msgid "Delete the currently selected profile"
+msgstr "Ezabatuta hautatuta dagoen profila"
+
+#: common/resources/color-dialog.glade:409
+#: common/resources/color-dialog.glade:617
+msgid "Show detailed information about the selected profile"
+msgstr "Erakutsi aukeratutako profilaren informazio zehatza"
+
+#: common/resources/color-dialog.glade:432
+msgid "Enable"
+msgstr "Gaitu"
+
+#: common/resources/color-dialog.glade:436
+msgid "Enable the selected profile"
+msgstr "Gaitu hautatuta dagoen profila"
+
+#: common/resources/color-dialog.glade:511
+msgid "Add Profile to Device"
+msgstr "Gehitu profila gailuari"
+
+#. Create cancel button
+#: common/resources/color-dialog.glade:529
+#: common/resources/keyboard-dialog.glade:71
+#: dialogs/appearance-settings/main.c:1341 dialogs/color-settings/main.c:129
+#: dialogs/keyboard-settings/command-dialog.c:113
+#: dialogs/keyboard-settings/command-dialog.c:275
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:570
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+msgid "_Cancel"
+msgstr "_Utzi"
+
+#: common/resources/color-dialog.glade:543
+#: common/resources/keyboard-dialog.glade:86
+#: dialogs/keyboard-settings/command-dialog.c:117
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:571
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
+msgid "_OK"
+msgstr "_ADOS"
+
+#: common/resources/color-dialog.glade:602
+msgid "Import color profile files (*.icc)"
+msgstr "Inportatu kolore profil fitxategiak (.icc)"
+
+#: common/resources/confirmation-dialog.glade:13
+msgid "<b><big>Would you like to keep this configuration?</big></b>"
+msgstr "<b><big>Konfigurazio hau mantendu nahi duzu?</big></b>"
+
+#: common/resources/confirmation-dialog.glade:15
+msgid ""
+"The previous configuration will be restored in <b>10 seconds</b> if you do "
+"not reply to this question."
+msgstr "Aurreko konfigurazioa berreskuratuko da <b>10 segundotan</b> erantzuten ez baduzu."
+
+#: common/resources/confirmation-dialog.glade:29
+msgid "Keep this configuration"
+msgstr "Mantendu konfigurazio hau"
+
+#: common/resources/confirmation-dialog.glade:44
+msgid "Restore the previous configuration"
+msgstr "Aurreko konfigurazioa berreskuratu"
+
+#: common/resources/display-dialog.glade:61
+msgid "Never"
+msgstr "Inoiz"
+
+#: common/resources/display-dialog.glade:65
+msgid "When a display is connected"
+msgstr "Pantaila bat konektatzen denean"
+
+#: common/resources/display-dialog.glade:69
+msgid "When a display is disconnected"
+msgstr "Pantaila bat deskonektatzen denean"
+
+#: common/resources/display-dialog.glade:73
+msgid "Always"
+msgstr "Beti"
+
+#: common/resources/display-dialog.glade:87
+msgid "Do nothing"
+msgstr "Ez egin ezer"
+
+#: common/resources/display-dialog.glade:91
+msgid "Show dialog"
+msgstr "Leihoa erakutsi"
+
+#: common/resources/display-dialog.glade:95
+msgid "Mirror"
+msgstr "Ispilatu"
+
+#: common/resources/display-dialog.glade:99
+msgid "Extend"
+msgstr "Hedatu"
+
+#: common/resources/display-dialog.glade:157
+msgid "The primary display can be configured to show:"
+msgstr "Pantaila nagusia hurrengoa erakusteko konfiguratu daiteke:"
+
+#: common/resources/display-dialog.glade:171
+#: dialogs/display-settings/main.c:1735
+msgid "Xfce Panel"
+msgstr "Xfce panela"
+
+#: common/resources/display-dialog.glade:184
+msgid "Desktop icons"
+msgstr "Mahaigaineko ikonoak"
+
+#: common/resources/display-dialog.glade:197
+msgid "Notifications"
+msgstr "Jakinarazpenak"
+
+#: common/resources/display-dialog.glade:207
+#: common/resources/display-dialog.glade:222
+#: common/resources/display-dialog.glade:237
+msgid "Configure..."
+msgstr "Konfiguratu..."
+
+#: common/resources/display-dialog.glade:255
+#: dialogs/display-settings/xfce-display-settings.desktop.in:4
+msgid "Display"
+msgstr "Bistaratu"
+
+#: common/resources/display-dialog.glade:362
+msgid "_Mirror displays"
+msgstr "_Ispilu pantailak"
+
+#: common/resources/display-dialog.glade:461
+msgid "Primary Display:"
+msgstr "Pantaila nagusia:"
+
+#: common/resources/display-dialog.glade:487
+msgid "R_esolution:"
+msgstr "B_ereizmena:"
+
+#: common/resources/display-dialog.glade:513
+msgid "Refresh _rate:"
+msgstr "Freskatze _tasa:"
+
+#: common/resources/display-dialog.glade:539
+msgid "Ro_tation:"
+msgstr "Birake_ta:"
+
+#: common/resources/display-dialog.glade:563
+msgid "Ref_lection:"
+msgstr "Is_lada:"
+
+#: common/resources/display-dialog.glade:603
+msgid "A_pply"
+msgstr "E_zarri"
+
+#: common/resources/display-dialog.glade:631
+msgid "_Scale:"
+msgstr "_Eskala:"
+
+#: common/resources/display-dialog.glade:669
+msgid "_General"
+msgstr "_Orokorra"
+
+#: common/resources/display-dialog.glade:689
+msgid "<b>Profiles</b>"
+msgstr "<b>Profilak</b>"
+
+#: common/resources/display-dialog.glade:705
+msgid "<b>Connecting Displays</b>"
+msgstr "<b>Pantailak konektatze</b>"
+
+#: common/resources/display-dialog.glade:755
+msgid "Delete the currently selected display profile."
+msgstr "Ezabatu une honetan hautatutako bistaratze-profila."
+
+#: common/resources/display-dialog.glade:768
+msgid "Apply"
+msgstr "Ezarri"
+
+#: common/resources/display-dialog.glade:772
+msgid "Apply the currently selected display profile."
+msgstr "Ezarri une honetan hautatutako bistaratze-profila."
+
+#: common/resources/display-dialog.glade:788
+msgid "Create a new display profile."
+msgstr "Sortu bistaratze-profil berria."
+
+#: common/resources/display-dialog.glade:804
+msgid "Update an existing profile."
+msgstr "Eguneratu dagoen profila."
+
+#: common/resources/display-dialog.glade:837
+msgid "First try to automatically enable a profile:"
+msgstr "Lehenbizi saiatu profil bat automatikoki gaitzen:"
+
+#: common/resources/display-dialog.glade:869
+msgid "When a display is connected:"
+msgstr "Pantaila bat konektatzen denean:"
+
+#: common/resources/display-dialog.glade:882
+msgid "Show popup windows to identify displays"
+msgstr "Erakutsi popup leihoak pantailak identifikatzaileko"
+
+#: common/resources/display-dialog.glade:908
+msgid "<b>Identifying Displays</b>"
+msgstr "<b>Pantailak identifikatzen</b>"
+
+#: common/resources/display-dialog.glade:946
+#: common/resources/minimal-display-dialog.glade:354
+msgid "_Advanced"
+msgstr "_Aurreratua"
+
+#: common/resources/display-dialog.glade:998
+msgid "<b>Profile Name</b>"
+msgstr "<b>Profil izena</b>"
+
+#: common/resources/display-dialog.glade:1021
+msgid "Create"
+msgstr "Sortu"
+
+#: common/resources/display-dialog.glade:1056
+msgid "A profile of this name already exists."
+msgstr "Izen hau duen profil bat existitzen da dagoeneko."
+
+#: common/resources/minimal-display-dialog.glade:16
+msgid "Extend right"
+msgstr "Hedatu eskuinera"
+
+#: common/resources/minimal-display-dialog.glade:19
+msgid "Extend left"
+msgstr "Hedatu ezkerrera"
+
+#: common/resources/minimal-display-dialog.glade:22
+msgid "Extend up"
+msgstr "Hedatu gora"
+
+#: common/resources/minimal-display-dialog.glade:25
+msgid "Extend down"
+msgstr "Hedatu behera"
+
+#: common/resources/minimal-display-dialog.glade:37
+msgid "Displays"
+msgstr "Bistaratu"
+
+#: common/resources/minimal-display-dialog.glade:92
+#: common/resources/minimal-display-dialog.glade:93
+msgid "Only Display 1"
+msgstr "1 pantaila bakarrik"
+
+#: common/resources/minimal-display-dialog.glade:145
+#: common/resources/minimal-display-dialog.glade:146
+msgid "Mirror Displays"
+msgstr "Ispilu pantailak"
+
+#: common/resources/minimal-display-dialog.glade:201
+msgid "Extend to the right"
+msgstr "Zabaldu eskuinera"
+
+#: common/resources/minimal-display-dialog.glade:262
+#: common/resources/minimal-display-dialog.glade:263
+msgid "Only Display 2"
+msgstr "2 pantaila bakarrik"
+
+#: common/resources/profile-changed-dialog.glade:12
+msgid "Update Display Profile"
+msgstr "Eguneratu pantaila-profila"
+
+#: common/resources/profile-changed-dialog.glade:51
+msgid "_Update"
+msgstr "_Eguneratu"
+
+#: common/resources/profile-changed-dialog.glade:109
+msgid ""
+"<big><b>You have made changes to your previously active profile</b></big>"
+msgstr "<big><b>Aldaketak egin dituzu zure aurretik hautatutako profil aktiboan</b></big>"
+
+#: common/resources/profile-changed-dialog.glade:124
+msgid ""
+"If you don't update the profile your changes will be lost upon restarting "
+"your session or disconnecting or connecting a display."
+msgstr "Profila eguneratzen ez baduzu, zure aldaketak galdu egingo dira saioa berrabiaraztean edo pantaila bat deskonektatzean edo konektatzean."
+
+#: common/resources/keyboard-dialog.glade:53
+msgid "Keyboard layout selection"
+msgstr "Teklatu ingurune hautaketa"
+
+#: common/resources/keyboard-dialog.glade:162
+#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
+msgid "Keyboard"
+msgstr "Teklatua"
+
+#: common/resources/keyboard-dialog.glade:252
+msgid "Restore num l_ock state on startup"
+msgstr "Berrezarri zenb bl_ok egoera abiaraztean"
+
+#: common/resources/keyboard-dialog.glade:267
+#: common/resources/mouse-dialog.glade:726
+#: common/resources/mouse-dialog.glade:953
+msgid "General"
+msgstr "Orokorra"
+
+#: common/resources/keyboard-dialog.glade:301
+msgid "_Enable key repeat"
+msgstr "_Gaitu tekla errepikatzea"
+
+#: common/resources/keyboard-dialog.glade:305
+msgid ""
+"When selected, pressing and holding down a key emits the same character over"
+" and over again"
+msgstr "Hautaturik dagoenean, tekla bat sakatu eta mantenduaz karaktere berdina behin eta berriz sortuko du"
+
+#: common/resources/keyboard-dialog.glade:333
+msgid "_Repeat delay:"
+msgstr "_Errepikatze atzerapena:"
+
+#: common/resources/keyboard-dialog.glade:347
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr "Denbora, milisegundotan, tekla sakatua egotean errepikatzen hasteko"
+
+#: common/resources/keyboard-dialog.glade:363
+msgid "Repe_at speed:"
+msgstr "Errepikatze _abiadura :"
+
+#: common/resources/keyboard-dialog.glade:377
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr "Tekla bat sakatzean tekla-sakatzeak sortuko diren tasa"
+
+#: common/resources/keyboard-dialog.glade:405
+msgid "Typing Settings"
+msgstr "Idazte ezarpenak"
+
+#: common/resources/keyboard-dialog.glade:438
+msgid "Show _blinking"
+msgstr "Ikusi _keinuak"
+
+#: common/resources/keyboard-dialog.glade:442
+msgid "Specify whether or not the text cursor blinks"
+msgstr "Hautatu kurtsoreak keinu egien duen ala ez"
+
+#: common/resources/keyboard-dialog.glade:470
+msgid "Blink _delay:"
+msgstr "Keinu _atzerapena:"
+
+#: common/resources/keyboard-dialog.glade:484
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr "Denbora, milisegundutan, kurtsorearen jarraituko keinuen artean"
+
+#: common/resources/keyboard-dialog.glade:512
+msgid "Cursor"
+msgstr "Kurtsorea"
+
+#: common/resources/keyboard-dialog.glade:534
+msgid "_Test area:"
+msgstr "_Testu eremua:"
+
+#: common/resources/keyboard-dialog.glade:575
+msgid "Beha_vior"
+msgstr "_Portaera"
+
+#: common/resources/keyboard-dialog.glade:593
+msgid "Define shortcuts for la_unching applications:"
+msgstr "Zehaztu lasterbideak aplikazioak a_biarazteko:"
+
+#: common/resources/keyboard-dialog.glade:651
+#: common/resources/keyboard-dialog.glade:986
+#: xfce4-settings-editor/xfce-settings-editor-box.c:377
+msgid "_Edit"
+msgstr "_Editatu"
+
+#: common/resources/keyboard-dialog.glade:692
+msgid "Reset to _Defaults"
+msgstr "Berrezarri lehenetsia_n"
+
+#: common/resources/keyboard-dialog.glade:732
+msgid "A_pplication Shortcuts"
+msgstr "A_plikazio lasterbideak"
+
+#: common/resources/keyboard-dialog.glade:762
+msgid "<b>Use system defaults</b>"
+msgstr "<b>Sistemaren lehenetsiak erabili</b>"
+
+#: common/resources/keyboard-dialog.glade:817
+msgid "_Keyboard model"
+msgstr "_Teklatu modeloa"
+
+#: common/resources/keyboard-dialog.glade:861
+msgid "Change la_yout option"
+msgstr "Aldatu _diseinu aukera"
+
+#: common/resources/keyboard-dialog.glade:899
+msgid "Co_mpose key"
+msgstr "Ko_nposizio tekla"
+
+#: common/resources/keyboard-dialog.glade:1043
+msgid "Move currently selected item up by one row"
+msgstr "Mugitu hautaturik dagoen elementua lerro bat gora"
+
+#: common/resources/keyboard-dialog.glade:1063
+msgid "Move currently selected item down by one row"
+msgstr "Mugitu hautaturik dagoen elementua lerro bat behera"
+
+#: common/resources/keyboard-dialog.glade:1096
+msgid "Key_board layout"
+msgstr "T_eklatu ingurunea"
+
+#: common/resources/keyboard-dialog.glade:1123
+msgid "_Layout"
+msgstr "_Diseinua"
+
+#: common/resources/mouse-dialog.glade:67
+msgid "Use bottom areas as left, middle or right buttons"
+msgstr "Erabili beheko aldea ezkerreko, erdiko edo eskuineko botoiak bezala"
+
+#: common/resources/mouse-dialog.glade:71
+msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
+msgstr "Klik egin atzamar 1, 2 edo 3rekin ezkerreko, eskuineko edo erdiko klik bezala"
+
+#: common/resources/mouse-dialog.glade:92
+msgid "Disabled"
+msgstr "Desgaitua"
+
+#: common/resources/mouse-dialog.glade:96
+msgid "Edge scrolling"
+msgstr "Ertz korritzea"
+
+#: common/resources/mouse-dialog.glade:100
+msgid "Two-finger scrolling"
+msgstr "Bi _hatzeko korritzea "
+
+#: common/resources/mouse-dialog.glade:104
+msgid "Circular scrolling"
+msgstr "Korritze zirkularra"
+
+#: common/resources/mouse-dialog.glade:126
+msgid "Pen (absolute)"
+msgstr "Arkatza (absolutua)"
+
+#: common/resources/mouse-dialog.glade:130
+msgid "Mouse (relative)"
+msgstr "Sagua (erlatiboa)"
+
+#: common/resources/mouse-dialog.glade:144
+msgid "None (right-handed)"
+msgstr "Batez (eskuinarekin)"
+
+#: common/resources/mouse-dialog.glade:148
+msgid "Half (left-handed)"
+msgstr "Erdia (ezkerrarekin)"
+
+#: common/resources/mouse-dialog.glade:152
+msgid "Clockwise"
+msgstr "Erlojuaren noranzkoan"
+
+#: common/resources/mouse-dialog.glade:156
+msgid "Counterclockwise"
+msgstr "Erlojuaren aurka"
+
+#: common/resources/mouse-dialog.glade:162
+#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
+msgid "Mouse and Touchpad"
+msgstr "Sagua eta Touchpada"
+
+#: common/resources/mouse-dialog.glade:237
+msgid "De_vice:"
+msgstr "Gai_lua:"
+
+#: common/resources/mouse-dialog.glade:314
+msgid "Le_ft-handed"
+msgstr "_Ezkerrarekin"
+
+#: common/resources/mouse-dialog.glade:331
+msgid "Ri_ght-handed"
+msgstr "_Eskuinarekin"
+
+#: common/resources/mouse-dialog.glade:355
+msgid "Reverse scroll d_irection"
+msgstr "Alde_rantzizko korritze norantza"
+
+#: common/resources/mouse-dialog.glade:359
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr "Hautaturik dagoenean saguaren gurpilak alderantzizko norantzan funtzionatuko du"
+
+#: common/resources/mouse-dialog.glade:372
+msgid "Allow high _resolution scrolling (experimental)"
+msgstr "Berezimen handiko desplazamendua gaitu (esperimentala)"
+
+#: common/resources/mouse-dialog.glade:376
+msgid ""
+"Only supported on some mice (mostly Logitech) and requires driver support. "
+"On supported devices makes scrolling more precise."
+msgstr "Sagu batzuetan onartzen da soilik (gehienak Logitech) eta driver-a behar da. Onartutako gailuetan desplazamendua zehatzagoa bihurtzen du."
+
+#: common/resources/mouse-dialog.glade:395
+msgid "Buttons"
+msgstr "Botoiak"
+
+#: common/resources/mouse-dialog.glade:428
+msgid "_Reset to Defaults"
+msgstr "_Berrezarri lehenespenak"
+
+#: common/resources/mouse-dialog.glade:432
+msgid ""
+"Set the acceleration and sensitivity for the selected device to the default "
+"values"
+msgstr "Ezarri hautatutako gailuaren azelerazio eta abiadura muga lehenetsitako balioetara"
+
+#: common/resources/mouse-dialog.glade:448
+msgid "Sensitivit_y:"
+msgstr "_Sentikortasuna:"
+
+#: common/resources/mouse-dialog.glade:461
+msgid "Acceleratio_n:"
+msgstr "_Azelerazioa:"
+
+#: common/resources/mouse-dialog.glade:473
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr "Sagua mugitzean markatzailearen abiadura handituko den faktorea"
+
+#: common/resources/mouse-dialog.glade:488
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr "Bizkortzen hasi aurretik markatzailea mugitu behar den pixel kopurua"
+
+#: common/resources/mouse-dialog.glade:502
+msgid "Adaptive pointer acceleration"
+msgstr "Erakuslearen azelerazio egokitzailea"
+
+#: common/resources/mouse-dialog.glade:505
+msgid ""
+"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
+"current speed of the device into account when deciding on acceleration. "
+"Custom acceleration profile is not supported via xfce4-settings."
+msgstr "Azelerazio egokitzailearen eta lauaren artean aldatzen du. Egokitzaileak gailuaren uneko abiadura kontuan hartzen du azelerazioa erabakitzerakoan. Azelerazio profil pertsonalizatua ez dago baimenduta xfce4-settings bitartez."
+
+#: common/resources/mouse-dialog.glade:525
+msgid "Pointer Speed"
+msgstr "Markatzaile abiadura"
+
+#: common/resources/mouse-dialog.glade:544
+msgid "B_uttons and Feedback"
+msgstr "B_otoi eta berrelikadura"
+
+#: common/resources/mouse-dialog.glade:578
+#: common/resources/mouse-dialog.glade:595
+msgid "Disable touchpad _while typing"
+msgstr "Desgaitu to_uchpada tekleatzean"
+
+#: common/resources/mouse-dialog.glade:582
+#: common/resources/mouse-dialog.glade:599
+msgid ""
+"When selected, the touchpad will be disabled when the keyboard is being used"
+msgstr "Hautaturik dagoenean touchpada desgaitu egingo da teklatua erabiltzen den bitartean."
+
+#: common/resources/mouse-dialog.glade:624
+msgid "Duratio_n:"
+msgstr "Iraupe_na::"
+
+#: common/resources/mouse-dialog.glade:659
+msgid "Tap touchpad to clic_k"
+msgstr "Jo touchpada _klikatzeko"
+
+#: common/resources/mouse-dialog.glade:682
+msgid "Click m_ethod:"
+msgstr "Klik m_odua:"
+
+#: common/resources/mouse-dialog.glade:767
+msgid "Scrolling _mode:"
+msgstr "Korritzea modua_:"
+
+#: common/resources/mouse-dialog.glade:805
+msgid "Enable hori_zontal scrolling"
+msgstr "Gaitu korritze hori_zontala"
+
+#: common/resources/mouse-dialog.glade:827
+msgid "Scrolling"
+msgstr "Korritzea"
+
+#: common/resources/mouse-dialog.glade:850
+msgid "T_ouchpad"
+msgstr "T_ouchpad"
+
+#: common/resources/mouse-dialog.glade:888
+msgid "Trac_king mode:"
+msgstr "S_egimendu modua:"
+
+#: common/resources/mouse-dialog.glade:901
+msgid "_Rotation:"
+msgstr "Bi_raketa:"
+
+#: common/resources/mouse-dialog.glade:976
+msgid "Tab_let"
+msgstr "Tableta"
+
+#: common/resources/mouse-dialog.glade:997
+msgid "_Devices"
+msgstr "_Gailuak"
+
+#: common/resources/mouse-dialog.glade:1034
+msgid "Th_reshold:"
+msgstr "Mu_ga:"
+
+#: common/resources/mouse-dialog.glade:1048
+msgid ""
+"The number of pixels the pointer must move before a drag operation will "
+"start"
+msgstr "Arrastatze ekintza abiarazi aurretik markatzailea mugitu behar den pixel kopurua"
+
+#: common/resources/mouse-dialog.glade:1067
+msgid "Drag and Drop"
+msgstr "Arrastatu eta jaregin"
+
+#: common/resources/mouse-dialog.glade:1103
+msgid "Ti_me:"
+msgstr "De_nbora:"
+
+#: common/resources/mouse-dialog.glade:1117
+msgid ""
+"Two mouse clicks in less than this length of time (in milliseconds) will be "
+"considered a double click"
+msgstr "Klik bikoitza bezala erabiltzeko bi klik-en arteko denbora tarte handiena (milisegundotan)"
+
+#: common/resources/mouse-dialog.glade:1133
+msgid "D_istance:"
+msgstr "_Distantzia:"
+
+#: common/resources/mouse-dialog.glade:1147
+msgid ""
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
+msgstr "Saguaren markatzailea ezi da distantzia hau baino gehiago mugitu bi klikatzeren artean hauek klik-bikoitz bezala hartzeko"
+
+#: common/resources/mouse-dialog.glade:1166
+msgid "Double Click"
+msgstr "Klik bikoitza"
+
+#: common/resources/mouse-dialog.glade:1188
+msgid "_Behavior"
+msgstr "_Portaera"
+
+#: common/resources/mouse-dialog.glade:1253
+msgid "Cursor si_ze:"
+msgstr "Kurtsore _tamaina:"
+
+#: common/resources/mouse-dialog.glade:1287
+msgid "Size"
+msgstr "Tamaina"
+
+#: common/resources/mouse-dialog.glade:1327
+msgid "Preview"
+msgstr "Aurrebista"
+
+#: common/resources/mouse-dialog.glade:1356
+msgid "_Theme"
+msgstr "_Gaia"
+
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: common/display-name.c:2649
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr "Ezezaguna"
+
+#. TRANSLATORS: an externally connected display, where %s is either the
+#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
+#: common/display-name.c:2702 dialogs/color-settings/color-device.c:66
+msgid "Monitor"
+msgstr "Monitorea"
+
+#: common/display-name.c:2705
+msgid "Television"
+msgstr "Telebista"
+
+#: common/display-name.c:2709
+msgid "Digital display"
+msgstr "Pantaila digitala"
+
+#: common/xfce-randr.c:285 dialogs/display-settings/display-settings-x11.c:702
+msgid "Unable to query the version of the RandR extension being used"
+msgstr "Ezin da erabiltzen ari den RandR hedapen bertsioa galdezkatu"
+
+#: common/xfce-randr.c:571
+#: dialogs/display-settings/display-settings-wayland.c:350
+msgid "Laptop"
+msgstr "Eramangarria"
+
+#: dialogs/accessibility-settings/main.c:39
+#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
+#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
+#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
+#: xfce4-settings-editor/main.c:47
 msgid "Settings manager socket"
 msgstr "Ezarpen kudeatzaile socketa"
 
-#: dialogs/accessibility-settings/main.c:38
-#: dialogs/appearance-settings/main.c:88 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
-#: xfce4-settings-editor/main.c:44
+#: dialogs/accessibility-settings/main.c:39
+#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
+#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
+#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
+#: xfce4-settings-editor/main.c:47
 msgid "SOCKET ID"
 msgstr "SOCKET IDa"
 
-#: dialogs/accessibility-settings/main.c:39
-#: dialogs/appearance-settings/main.c:89 dialogs/color-settings/main.c:42
-#: dialogs/display-settings/main.c:108 dialogs/keyboard-settings/main.c:37
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:87
-#: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:93
+#: dialogs/accessibility-settings/main.c:40
+#: dialogs/appearance-settings/main.c:94 dialogs/color-settings/main.c:44
+#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:40
+#: dialogs/mime-settings/main.c:44 dialogs/mouse-settings/main.c:88
+#: xfce4-settings-editor/main.c:48 xfce4-settings-manager/main.c:42
+#: xfsettingsd/main.c:96
 msgid "Version information"
 msgstr "Bertsio argibideak"
 
-#: dialogs/accessibility-settings/main.c:193
-#: dialogs/appearance-settings/main.c:1690 dialogs/color-settings/main.c:1464
-#: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
-#: dialogs/mime-settings/main.c:78
-#: dialogs/mime-settings/xfce-mime-helper-main.c:148
-#: dialogs/mouse-settings/main.c:2196 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
-#: xfsettingsd/main.c:280
+#: dialogs/accessibility-settings/main.c:194
+#: dialogs/appearance-settings/main.c:1695 dialogs/color-settings/main.c:1466
+#: dialogs/display-settings/main.c:3430 dialogs/keyboard-settings/main.c:77
+#: dialogs/mime-settings/main.c:81
+#: dialogs/mime-settings/xfce-mime-helper-main.c:150
+#: dialogs/mouse-settings/main.c:2197 xfce4-settings-editor/main.c:121
+#: xfce4-settings-manager/main.c:63 xfsettingsd/main.c:245
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Idatzi '%s --help' erabilerarentzat."
 
-#: dialogs/accessibility-settings/main.c:212
-#: dialogs/appearance-settings/main.c:1709 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
-#: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:258
+#: dialogs/accessibility-settings/main.c:213
+#: dialogs/appearance-settings/main.c:1714 dialogs/color-settings/main.c:1485
+#: dialogs/display-settings/main.c:3449 dialogs/keyboard-settings/main.c:93
+#: dialogs/mime-settings/main.c:100 dialogs/mouse-settings/main.c:2216
+#: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:79
+#: xfsettingsd/main.c:261
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce garapen taldea. Eskubide guztiak erreserbatuta."
 
-#: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1710 dialogs/color-settings/main.c:1484
-#: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
-#: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:259
+#: dialogs/accessibility-settings/main.c:214
+#: dialogs/appearance-settings/main.c:1715 dialogs/color-settings/main.c:1486
+#: dialogs/display-settings/main.c:3450 dialogs/keyboard-settings/main.c:94
+#: dialogs/mime-settings/main.c:101 dialogs/mouse-settings/main.c:2217
+#: xfce4-settings-editor/main.c:141 xfce4-settings-manager/main.c:80
+#: xfsettingsd/main.c:262
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Programa-erroreen berri eman <%s>-ra."
@@ -352,236 +1267,12 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "asistentzia;teknologiak;teklak;itsaskorrak;errebote;emulazioa;pantaila irakurgailuak;lupak;a11y;i18n;l10n;AT-SPI;ATK;desgaitasunak;"
 
-#: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1597 dialogs/display-settings/main.c:86
-#: dialogs/display-settings/main.c:94
-#: dialogs/mouse-settings/mouse-dialog.glade:63
-msgid "None"
-msgstr "Bat ere ez"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:42
-msgid "Slight"
-msgstr "Arina"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:45
-msgid "Medium"
-msgstr "Tartekoa"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:48
-msgid "Full"
-msgstr "Osoa"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:59
-msgid "Icons"
-msgstr "Ikonoak"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:62
-msgid "Text"
-msgstr "Testua"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:65
-msgid "Text under icons"
-msgstr "testua ikonoen azpian"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:68
-msgid "Text next to icons"
-msgstr "Testua ikonoen alboan"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:82
-msgid "1x (no scaling)"
-msgstr "x1 (eskalatu gabe)"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:86
-msgid "2x"
-msgstr "x2"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:107
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
-msgid "Appearance"
-msgstr "Itxura"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:205
-#: dialogs/appearance-settings/appearance-dialog.glade:315
-#: dialogs/color-settings/color-dialog.glade:374
-#: dialogs/keyboard-settings/keyboard-dialog.glade:636
-#: dialogs/keyboard-settings/keyboard-dialog.glade:970
-#: xfce4-settings-editor/xfce-settings-editor-box.c:364
-msgid "_Add"
-msgstr "_Gehitu"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:238
-msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
-msgstr "Ezarri <a href=\"xfwm4-settings:\">Xfwm4 itxura</a>rekin bat datorrena, baten bat badago"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:272
-msgid "St_yle"
-msgstr "Es_tiloa"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:348
-msgid "_Icons"
-msgstr "_Ikonoak"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:388
-msgid ""
-"This font will be used as the default font used when drawing user interface "
-"text"
-msgstr "Letra-tipo hau erabiliko da Lehenetsitako letra-tipoa gisa erabiltzaile interfaze testu bat erakustean"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:390
-msgid "Select a default font"
-msgstr "Hautatu lehenetsitako letra-tipoa"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:399
-msgid "Default Fon_t"
-msgstr "Lehenetsitako letra-tipoa"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:431
-msgid ""
-"This font will be used as the default monospace font, for example by "
-"terminal emulators."
-msgstr "Letra-tipo hau aurrez zehaztutako monospace letra-tipo gisa erabiliko da, adibidez, terminal-emuladoretan."
-
-#: dialogs/appearance-settings/appearance-dialog.glade:433
-msgid "Select a default monospace font"
-msgstr "Aukeratu lehenetsitako monospace letra-tipoa"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:442
-msgid "Default _Monospace Font"
-msgstr "Lehenetsitako monospace letra-tipoa"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:477
-msgid "_Enable anti-aliasing"
-msgstr "Gaitu _anti-aliasing-a"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:481
-msgid ""
-"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "Anti-aliasing, edo letra-tipo leuntzea, pantailako testuaren itxura hobe dezake"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:509
-msgid "Hintin_g:"
-msgstr "Hintin_g-a:"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:521
-msgid ""
-"Many fonts contain information that provides extra hints as to how best draw"
-" the font; pick whichever looks best according to personal preference"
-msgstr "Letra-tipo askok letra-tipoa hobe marrazteko gomendioez hornitzen dute, hautatu zure hobespen pertsonaletara gehien gerturatzen dena"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:541
-msgid "Sub-_pixel order:"
-msgstr "Azpi-_pixel ordena:"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:553
-msgid ""
-"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
-"correct sub-pixel order of the screen"
-msgstr "TFT edo LCD pantailetako letra-tipo kalitatea asko hobetu daiteke pantailan dagokion azpi-pixel orden zuzena hautatuaz"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:591
-msgid "Rendering"
-msgstr "Errendatzea"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:623
-msgid "Custom _DPI setting:"
-msgstr "Pertsonalizatutako DPI ezarpena:"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:627
-msgid ""
-"Override the detected monitor resolution if fonts look too large or too "
-"small"
-msgstr "Gainidatzi atzemandako monitore erresoluzioa letra-tipoak handiegi edo txikiegi ikusten badira"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:664
-msgid "DPI"
-msgstr "DPI"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:690
-msgid "_Fonts"
-msgstr "_Letra-tipoak"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:733
-msgid "Show images on _buttons"
-msgstr "Ikusi irudiak _botoietan"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:737
-msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "Zehaztu ikonoak ikusiko diren testuen ondoan menuetan"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:750
-msgid "Show images in _menus"
-msgstr "Ikusi irudiak _menuetan"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:754
-msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "Zehaztu ikonoak ikusiko diren elementuen ondoan menuetan"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:767
-msgid "Enable e_ditable accelerators"
-msgstr "Gaitu bizkortzaile e_ditagarriak"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:771
-msgid ""
-"If selected, keyboard shortcuts for menu items can be changed by hovering "
-"the mouse over the menu item and pressing the new key combination for the "
-"shortcut"
-msgstr "Hautaturik badago menu elementuen teklatu lasterbideak aldatu egin daitezke sagua menu elementuaren gainean ipini eta lasterbide berriaren tekla nahasketa sakatuaz"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:784
-msgid "Enable header bars in dialo_gs"
-msgstr "Goiburu barrak gaitu leihotxoetan"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:788
-msgid ""
-"Defines whether GTK dialogs may place widgets such as buttons in the "
-"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
-"opened dialogs."
-msgstr "GTK leihotxoek botoiak bezalako widget-ak leihotxoen goiburu barran jarri dezaketen definitzen du. Inplikazioak ditu Bezero Aldeko Dekorazioan (Client Side Decoration). Irekitako leihotxo berrietan du eragina soilik."
-
-#: dialogs/appearance-settings/appearance-dialog.glade:807
-msgid "Menus and Buttons"
-msgstr "Menuak eta botoiak"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:839
-msgid "Enable _event sounds"
-msgstr "Gaitu g_ertaera soinuak"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:843
-msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr "Gaitu edo desgaitu gertaera soinuak osotasunean (\"Camberra\" onarpena beharrezkoa)"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:856
-msgid "Enable input feedbac_k sounds"
-msgstr "Gaitu sa_rrera atzeraelikadura soinuak"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:860
-msgid ""
-"Specify whether mouse clicks and other user input will cause event sounds to"
-" play"
-msgstr "Zehaztu sagu klik-ek edo beste erabiltzaile sarrerek gertaera soinuak erreproduzitzea eragingo duen ala ez"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:879
-msgid "Event sounds"
-msgstr "Gertaera soinuak"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:908
-msgid "Adjust the system-wide display scaling"
-msgstr "Doitu sistemaren osoaren bistaratze-eskala"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:926
-msgid "_Window Scaling"
-msgstr "_Leiho eskala"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:954
-msgid "Setti_ngs"
-msgstr "Ezarpe_nak"
-
-#: dialogs/appearance-settings/main.c:335
+#: dialogs/appearance-settings/main.c:340
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Ezin izan da Xfwm4 Ezarpenak erakutsi"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:629
+#: dialogs/appearance-settings/main.c:634
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -590,83 +1281,70 @@ msgstr "Kontuz : ikono gai honek ez du cache fitxategirik. Berau sor dezakezu <i
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:636
+#: dialogs/appearance-settings/main.c:641
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Abisua: ikono-gai hau osatu gabe dago. Ikono batzuk faltako dira."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:641
+#: dialogs/appearance-settings/main.c:646
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Abisua: ikono-gai hau osatu gabe dago. Beste gai batzuen oinordeko diren ikonoen oinarrizko multzo bat baino ez du eskaintzen."
 
-#: dialogs/appearance-settings/main.c:1248
+#: dialogs/appearance-settings/main.c:1253
 msgid "File is too large, installation aborted"
 msgstr "Fitxategia handiegia da, instalazioa bertan behera uzten"
 
-#: dialogs/appearance-settings/main.c:1253
+#: dialogs/appearance-settings/main.c:1258
 msgid "Failed to create temporary directory"
 msgstr "Huts aldiroko direktorioa sortzean"
 
-#: dialogs/appearance-settings/main.c:1258
+#: dialogs/appearance-settings/main.c:1263
 msgid "Failed to extract archive"
 msgstr "Huts fitxategiak artxibotik ateratzean"
 
-#: dialogs/appearance-settings/main.c:1263
+#: dialogs/appearance-settings/main.c:1268
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Formatu ezezaguna, fitxategi eta direktorioak bakarrik onartzen dira"
 
-#: dialogs/appearance-settings/main.c:1268
+#: dialogs/appearance-settings/main.c:1273
 msgid "Not a valid theme package"
 msgstr "Ez da itxura pakete balioduna"
 
-#: dialogs/appearance-settings/main.c:1273
+#: dialogs/appearance-settings/main.c:1278
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Errore ezezaguna, irteera kodea %d da"
 
-#: dialogs/appearance-settings/main.c:1280
+#: dialogs/appearance-settings/main.c:1285
 msgid "Failed to install theme"
 msgstr "Huts gaia instalatzean"
 
-#: dialogs/appearance-settings/main.c:1334
+#: dialogs/appearance-settings/main.c:1339
 #, c-format
 msgid "Install %s theme"
 msgstr "%s estiloa instalatu"
 
-#. Create cancel button
-#: dialogs/appearance-settings/main.c:1336
-#: dialogs/color-settings/color-dialog.glade:529
-#: dialogs/color-settings/main.c:127
-#: dialogs/keyboard-settings/command-dialog.c:113
-#: dialogs/keyboard-settings/command-dialog.c:275
-#: dialogs/keyboard-settings/keyboard-dialog.glade:71
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:567
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
-msgid "_Cancel"
-msgstr "_Utzi"
-
-#: dialogs/appearance-settings/main.c:1337
+#: dialogs/appearance-settings/main.c:1342
 #: dialogs/keyboard-settings/command-dialog.c:276
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:426
 msgid "_Open"
 msgstr "_Ireki"
 
-#: dialogs/appearance-settings/main.c:1601
+#: dialogs/appearance-settings/main.c:1606
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1605
+#: dialogs/appearance-settings/main.c:1610
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1609
+#: dialogs/appearance-settings/main.c:1614
 msgid "Vertical RGB"
 msgstr "RGB bertikala"
 
-#: dialogs/appearance-settings/main.c:1613
+#: dialogs/appearance-settings/main.c:1618
 msgid "Vertical BGR"
 msgstr "BGR bertikala"
 
@@ -715,78 +1393,6 @@ msgstr "Barne web-kamera"
 #, c-format
 msgid "Enable color management for %s"
 msgstr "Gaitu kolore kudeaketa %s-rentzat"
-
-#: dialogs/color-settings/color-dialog.glade:46
-#: dialogs/color-settings/xfce4-color-settings.desktop.in:4
-msgid "Color Profiles"
-msgstr "Kolore profilak"
-
-#: dialogs/color-settings/color-dialog.glade:151
-msgid "<b>No devices found.</b>"
-msgstr "<b>Ez da gailurik aurkitu.</b>"
-
-#: dialogs/color-settings/color-dialog.glade:221
-msgid "Model:"
-msgstr "Modeloa:"
-
-#: dialogs/color-settings/color-dialog.glade:233
-msgid "Colorspace:"
-msgstr "Kolore-espazioa:"
-
-#: dialogs/color-settings/color-dialog.glade:256
-msgid "Vendor:"
-msgstr "Saltzailea:"
-
-#: dialogs/color-settings/color-dialog.glade:280
-msgid "Calibrate"
-msgstr "Kalibratu"
-
-#: dialogs/color-settings/color-dialog.glade:337
-msgid "<b>No profiles for the selected device.</b>"
-msgstr "<b>Profilik ez aukeratutako gailuarentzat.</b>"
-
-#: dialogs/color-settings/color-dialog.glade:378
-msgid "Add a profile to the currently selected device"
-msgstr "Gehitu profila uneko gailuari"
-
-#: dialogs/color-settings/color-dialog.glade:390
-#: dialogs/keyboard-settings/keyboard-dialog.glade:666
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1002
-msgid "_Remove"
-msgstr "_Ezabatu"
-
-#: dialogs/color-settings/color-dialog.glade:394
-msgid "Delete the currently selected profile"
-msgstr "Ezabatuta hautatuta dagoen profila"
-
-#: dialogs/color-settings/color-dialog.glade:409
-#: dialogs/color-settings/color-dialog.glade:617
-msgid "Show detailed information about the selected profile"
-msgstr "Erakutsi aukeratutako profilaren informazio zehatza"
-
-#: dialogs/color-settings/color-dialog.glade:432
-msgid "Enable"
-msgstr "Gaitu"
-
-#: dialogs/color-settings/color-dialog.glade:436
-msgid "Enable the selected profile"
-msgstr "Gaitu hautatuta dagoen profila"
-
-#: dialogs/color-settings/color-dialog.glade:511
-msgid "Add Profile to Device"
-msgstr "Gehitu profila gailuari"
-
-#: dialogs/color-settings/color-dialog.glade:543
-#: dialogs/keyboard-settings/command-dialog.c:117
-#: dialogs/keyboard-settings/keyboard-dialog.glade:86
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:568
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
-msgid "_OK"
-msgstr "_ADOS"
-
-#: dialogs/color-settings/color-dialog.glade:602
-msgid "Import color profile files (*.icc)"
-msgstr "Inportatu kolore profil fitxategiak (.icc)"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
@@ -853,57 +1459,57 @@ msgid "Default Gray"
 msgstr "Gris lehenetsia"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: dialogs/color-settings/main.c:126
+#: dialogs/color-settings/main.c:128
 msgid "Select ICC Profile File"
 msgstr "Aukeratu ICC kolore profil fitxategia"
 
-#: dialogs/color-settings/main.c:128
+#: dialogs/color-settings/main.c:130
 msgid "_Import"
 msgstr "_Inportatu"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:139
+#: dialogs/color-settings/main.c:141
 msgid "Supported ICC profiles"
 msgstr "ICC profil bateragarriak"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:146
+#: dialogs/color-settings/main.c:148
 msgid "All files"
 msgstr "Fitxategi guztiak"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: dialogs/color-settings/main.c:189
+#: dialogs/color-settings/main.c:191
 msgid "Default: "
 msgstr "Lehenetsia:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: dialogs/color-settings/main.c:196
+#: dialogs/color-settings/main.c:198
 msgid "Colorspace: "
 msgstr "Kolore-espazioa:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: dialogs/color-settings/main.c:203
+#: dialogs/color-settings/main.c:205
 msgid "Test profile: "
 msgstr "Testu profila:"
 
-#: dialogs/color-settings/main.c:238
+#: dialogs/color-settings/main.c:240
 msgid "Compatible Profiles"
 msgstr "Profil bateragarriak"
 
-#: dialogs/color-settings/main.c:517
+#: dialogs/color-settings/main.c:519
 #, c-format
 msgid "Add Color Profile to %s"
 msgstr "Gehitu %s-ri kolore profila"
 
-#: dialogs/color-settings/main.c:517
+#: dialogs/color-settings/main.c:519
 msgid "Device"
 msgstr "Gailua"
 
-#: dialogs/color-settings/main.c:861 dialogs/color-settings/main.c:862
-#: dialogs/color-settings/main.c:863
+#: dialogs/color-settings/main.c:863 dialogs/color-settings/main.c:864
+#: dialogs/color-settings/main.c:865
 msgid "Unknown"
 msgstr "Ezezaguna"
 
@@ -915,278 +1521,45 @@ msgstr "Ezarri kolore profilak"
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr "kolorea;ezarpenak;kudeaketa;bistaratzea;monitoreak;inprimagailuak;web-kamerak;eskanerrak;"
 
-#: dialogs/display-settings/confirmation-dialog.glade:13
-msgid "<b><big>Would you like to keep this configuration?</big></b>"
-msgstr "<b><big>Konfigurazio hau mantendu nahi duzu?</big></b>"
-
-#: dialogs/display-settings/confirmation-dialog.glade:15
-msgid ""
-"The previous configuration will be restored in <b>10 seconds</b> if you do "
-"not reply to this question."
-msgstr "Aurreko konfigurazioa berreskuratuko da <b>10 segundotan</b> erantzuten ez baduzu."
-
-#: dialogs/display-settings/confirmation-dialog.glade:29
-msgid "Keep this configuration"
-msgstr "Mantendu konfigurazio hau"
-
-#: dialogs/display-settings/confirmation-dialog.glade:44
-msgid "Restore the previous configuration"
-msgstr "Aurreko konfigurazioa berreskuratu"
-
-#: dialogs/display-settings/display-dialog.glade:61
-msgid "Never"
-msgstr "Inoiz"
-
-#: dialogs/display-settings/display-dialog.glade:65
-msgid "When a display is connected"
-msgstr "Pantaila bat konektatzen denean"
-
-#: dialogs/display-settings/display-dialog.glade:69
-msgid "When a display is disconnected"
-msgstr "Pantaila bat deskonektatzen denean"
-
-#: dialogs/display-settings/display-dialog.glade:73
-msgid "Always"
-msgstr "Beti"
-
-#: dialogs/display-settings/display-dialog.glade:87
-msgid "Do nothing"
-msgstr "Ez egin ezer"
-
-#: dialogs/display-settings/display-dialog.glade:91
-msgid "Show dialog"
-msgstr "Leihoa erakutsi"
-
-#: dialogs/display-settings/display-dialog.glade:95
-msgid "Mirror"
-msgstr "Ispilatu"
-
-#: dialogs/display-settings/display-dialog.glade:99
-msgid "Extend"
-msgstr "Hedatu"
-
-#: dialogs/display-settings/display-dialog.glade:157
-msgid "The primary display can be configured to show:"
-msgstr "Pantaila nagusia hurrengoa erakusteko konfiguratu daiteke:"
-
-#: dialogs/display-settings/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1739
-msgid "Xfce Panel"
-msgstr "Xfce panela"
-
-#: dialogs/display-settings/display-dialog.glade:184
-msgid "Desktop icons"
-msgstr "Mahaigaineko ikonoak"
-
-#: dialogs/display-settings/display-dialog.glade:197
-msgid "Notifications"
-msgstr "Jakinarazpenak"
-
-#: dialogs/display-settings/display-dialog.glade:207
-#: dialogs/display-settings/display-dialog.glade:222
-#: dialogs/display-settings/display-dialog.glade:237
-msgid "Configure..."
-msgstr "Konfiguratu..."
-
-#: dialogs/display-settings/display-dialog.glade:255
-#: dialogs/display-settings/xfce-display-settings.desktop.in:4
-msgid "Display"
-msgstr "Bistaratu"
-
-#: dialogs/display-settings/display-dialog.glade:362
-msgid "_Mirror displays"
-msgstr "_Ispilu pantailak"
-
-#: dialogs/display-settings/display-dialog.glade:461
-msgid "Primary Display:"
-msgstr "Pantaila nagusia:"
-
-#: dialogs/display-settings/display-dialog.glade:487
-msgid "R_esolution:"
-msgstr "B_ereizmena:"
-
-#: dialogs/display-settings/display-dialog.glade:513
-msgid "Refresh _rate:"
-msgstr "Freskatze _tasa:"
-
-#: dialogs/display-settings/display-dialog.glade:539
-msgid "Ro_tation:"
-msgstr "Birake_ta:"
-
-#: dialogs/display-settings/display-dialog.glade:563
-msgid "Ref_lection:"
-msgstr "Is_lada:"
-
-#: dialogs/display-settings/display-dialog.glade:603
-msgid "A_pply"
-msgstr "E_zarri"
-
-#: dialogs/display-settings/display-dialog.glade:631
-msgid "_Scale:"
-msgstr "_Eskala:"
-
-#: dialogs/display-settings/display-dialog.glade:669
-msgid "_General"
-msgstr "_Orokorra"
-
-#: dialogs/display-settings/display-dialog.glade:689
-msgid "<b>Profiles</b>"
-msgstr "<b>Profilak</b>"
-
-#: dialogs/display-settings/display-dialog.glade:705
-msgid "<b>Connecting Displays</b>"
-msgstr "<b>Pantailak konektatze</b>"
-
-#: dialogs/display-settings/display-dialog.glade:755
-msgid "Delete the currently selected display profile."
-msgstr "Ezabatu une honetan hautatutako bistaratze-profila."
-
-#: dialogs/display-settings/display-dialog.glade:768
-msgid "Apply"
-msgstr "Ezarri"
-
-#: dialogs/display-settings/display-dialog.glade:772
-msgid "Apply the currently selected display profile."
-msgstr "Ezarri une honetan hautatutako bistaratze-profila."
-
-#: dialogs/display-settings/display-dialog.glade:788
-msgid "Create a new display profile."
-msgstr "Sortu bistaratze-profil berria."
-
-#: dialogs/display-settings/display-dialog.glade:804
-msgid "Update an existing profile."
-msgstr "Eguneratu dagoen profila."
-
-#: dialogs/display-settings/display-dialog.glade:837
-msgid "First try to automatically enable a profile:"
-msgstr "Lehenbizi saiatu profil bat automatikoki gaitzen:"
-
-#: dialogs/display-settings/display-dialog.glade:869
-msgid "When a display is connected:"
-msgstr "Pantaila bat konektatzen denean:"
-
-#: dialogs/display-settings/display-dialog.glade:882
-msgid "Show popup windows to identify displays"
-msgstr "Erakutsi popup leihoak pantailak identifikatzaileko"
-
-#: dialogs/display-settings/display-dialog.glade:908
-msgid "<b>Identifying Displays</b>"
-msgstr "<b>Pantailak identifikatzen</b>"
-
-#: dialogs/display-settings/display-dialog.glade:946
-#: dialogs/display-settings/minimal-display-dialog.glade:354
-msgid "_Advanced"
-msgstr "_Aurreratua"
-
-#: dialogs/display-settings/display-dialog.glade:998
-msgid "<b>Profile Name</b>"
-msgstr "<b>Profil izena</b>"
-
-#: dialogs/display-settings/display-dialog.glade:1021
-msgid "Create"
-msgstr "Sortu"
-
-#: dialogs/display-settings/display-dialog.glade:1056
-msgid "A profile of this name already exists."
-msgstr "Izen hau duen profil bat existitzen da dagoeneko."
-
-#: dialogs/display-settings/minimal-display-dialog.glade:16
-msgid "Extend right"
-msgstr "Hedatu eskuinera"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:19
-msgid "Extend left"
-msgstr "Hedatu ezkerrera"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:22
-msgid "Extend up"
-msgstr "Hedatu gora"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:25
-msgid "Extend down"
-msgstr "Hedatu behera"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:37
-msgid "Displays"
-msgstr "Bistaratu"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:92
-#: dialogs/display-settings/minimal-display-dialog.glade:93
-msgid "Only Display 1"
-msgstr "1 pantaila bakarrik"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:145
-#: dialogs/display-settings/minimal-display-dialog.glade:146
-msgid "Mirror Displays"
-msgstr "Ispilu pantailak"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:201
-msgid "Extend to the right"
-msgstr "Zabaldu eskuinera"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:262
-#: dialogs/display-settings/minimal-display-dialog.glade:263
-msgid "Only Display 2"
-msgstr "2 pantaila bakarrik"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:12
-msgid "Update Display Profile"
-msgstr "Eguneratu pantaila-profila"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:51
-msgid "_Update"
-msgstr "_Eguneratu"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:109
-msgid ""
-"<big><b>You have made changes to your previously active profile</b></big>"
-msgstr "<big><b>Aldaketak egin dituzu zure aurretik hautatutako profil aktiboan</b></big>"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:124
-msgid ""
-"If you don't update the profile your changes will be lost upon restarting "
-"your session or disconnecting or connecting a display."
-msgstr "Profila eguneratzen ez baduzu, zure aldaketak galdu egingo dira saioa berrabiaraztean edo pantaila bat deskonektatzean edo konektatzean."
-
-#: dialogs/display-settings/main.c:58
+#: dialogs/display-settings/main.c:57
 #, c-format
 msgid "Only %s (1)"
 msgstr "Bakarrik %s (1)"
 
-#: dialogs/display-settings/main.c:59
+#: dialogs/display-settings/main.c:58
 #, c-format
 msgid "Only %s (2)"
 msgstr "Bakarrik %s (2)"
 
-#: dialogs/display-settings/main.c:87
+#: dialogs/display-settings/main.c:86
 msgid "Left"
 msgstr "Ezkerrean"
 
-#: dialogs/display-settings/main.c:88
+#: dialogs/display-settings/main.c:87
 msgid "Inverted"
 msgstr "Alderantzikatuta"
 
-#: dialogs/display-settings/main.c:89
+#: dialogs/display-settings/main.c:88
 msgid "Right"
 msgstr "Eskuinean"
 
-#: dialogs/display-settings/main.c:95
+#: dialogs/display-settings/main.c:94
 msgid "Horizontal"
 msgstr "Horizontala"
 
-#: dialogs/display-settings/main.c:96
+#: dialogs/display-settings/main.c:95
 msgid "Vertical"
 msgstr "Bertikala"
 
-#: dialogs/display-settings/main.c:97
+#: dialogs/display-settings/main.c:96
 msgid "Horizontal and Vertical"
 msgstr "Horizontala eta bertikala"
 
-#: dialogs/display-settings/main.c:109
+#: dialogs/display-settings/main.c:108
 msgid "Minimal interface to set up an external output"
 msgstr "Kanpo irteera konfiguratzeko interfaze minimoa"
 
-#: dialogs/display-settings/main.c:282
+#: dialogs/display-settings/main.c:281
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1194,69 +1567,69 @@ msgid ""
 msgstr "Aurreko konfigurazioa berreskuratuko da <b>%i segundotan</b> erantzuten ez baduzu"
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:644
+#: dialogs/display-settings/main.c:641
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:973
+#: dialogs/display-settings/main.c:970
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Azken irteera aktiboa ezin da desgaitu, sistema erabilezina geratuko zen."
 
-#: dialogs/display-settings/main.c:974
+#: dialogs/display-settings/main.c:971
 msgid "Selected output not disabled"
 msgstr "Hautatutako irteera ez da desgaitu"
 
-#: dialogs/display-settings/main.c:1322
+#: dialogs/display-settings/main.c:1317
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Aldatu den '%s' bistaratze-profila eguneratu?"
 
-#: dialogs/display-settings/main.c:1327
+#: dialogs/display-settings/main.c:1322
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Eguneratu '%s'"
 
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1670
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Ezabatu nahi duzu '%s' bistaratze-profila?"
 
-#: dialogs/display-settings/main.c:1677
+#: dialogs/display-settings/main.c:1673
 msgid "Delete Profile"
 msgstr "Ezabatu profila"
 
-#: dialogs/display-settings/main.c:1678
+#: dialogs/display-settings/main.c:1674
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Bistaratze-profil bat ezabatutakoan, ezin da berreskuratu."
 
-#: dialogs/display-settings/main.c:1678
+#: dialogs/display-settings/main.c:1674
 #: dialogs/mime-settings/xfce-mime-chooser.c:135
 #: dialogs/mime-settings/xfce-mime-chooser.c:380
-#: dialogs/mime-settings/xfce-mime-window.c:1184
+#: dialogs/mime-settings/xfce-mime-window.c:1210
 #: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
 msgid "Cancel"
 msgstr "Utzi"
 
-#: dialogs/display-settings/main.c:1679
+#: dialogs/display-settings/main.c:1675
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: dialogs/display-settings/main.c:1765
+#: dialogs/display-settings/main.c:1761
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
 msgstr[0] "Xfce panel %d"
 msgstr[1] "%d Xfce panel"
 
-#: dialogs/display-settings/main.c:2550
+#: dialogs/display-settings/main.c:2546
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Hautatu monitore bat propietateak aldatzeko; arrastatu kokapena berrantolatzeko."
 
-#: dialogs/display-settings/main.c:2649 dialogs/display-settings/main.c:2682
+#: dialogs/display-settings/main.c:2645 dialogs/display-settings/main.c:2678
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1265,23 +1638,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2899
+#: dialogs/display-settings/main.c:2895
 msgid "Mirror Screens"
 msgstr "Pantaila Ispilua"
 
-#: dialogs/display-settings/main.c:2949
+#: dialogs/display-settings/main.c:2945
 msgid "(Disabled)"
 msgstr "(Desgaitua)"
 
-#: dialogs/display-settings/main.c:3484
+#: dialogs/display-settings/main.c:3476
 msgid "ATI Settings"
 msgstr "ATI Ezarpenak"
 
-#: dialogs/display-settings/main.c:3489
+#: dialogs/display-settings/main.c:3481
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Ezin da Xfce pantaila ezarpenak ireki"
 
-#: dialogs/display-settings/main.c:3497
+#: dialogs/display-settings/main.c:3489
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Ezin dira kontrolatzaile propietarioen ezarpenak abiarazi"
 
@@ -1294,11 +1667,11 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "bistaratzea;ezarpenak;pantaila;erresoluzioa;freskatu;ratioa;errotazioa;proiektoreak;monitoreak;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:464
+#: dialogs/display-settings/display-settings.c:463
 msgid "Display:"
 msgstr "Pantaila:"
 
-#: dialogs/display-settings/display-settings.c:472
+#: dialogs/display-settings/display-settings.c:471
 msgid "Resolution:"
 msgstr "Erresoluzioa:"
 
@@ -1339,219 +1712,92 @@ msgstr "Hautatu komandoa"
 
 #: dialogs/keyboard-settings/command-dialog.c:281
 #: dialogs/mime-settings/xfce-mime-chooser.c:387
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:431
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:432
 msgid "All Files"
 msgstr "Fitxategi denak"
 
 #: dialogs/keyboard-settings/command-dialog.c:286
 #: dialogs/mime-settings/xfce-mime-chooser.c:392
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:436
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:437
 msgid "Executable Files"
 msgstr "Fitxategi exekutagarriak"
 
 #: dialogs/keyboard-settings/command-dialog.c:301
 #: dialogs/mime-settings/xfce-mime-chooser.c:407
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:451
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:452
 msgid "Perl Scripts"
 msgstr "Perl script-ak"
 
 #: dialogs/keyboard-settings/command-dialog.c:307
 #: dialogs/mime-settings/xfce-mime-chooser.c:413
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:457
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:458
 msgid "Python Scripts"
 msgstr "Python script-ak"
 
 #: dialogs/keyboard-settings/command-dialog.c:313
 #: dialogs/mime-settings/xfce-mime-chooser.c:419
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:463
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:464
 msgid "Ruby Scripts"
 msgstr "Ruby script-ak"
 
 #: dialogs/keyboard-settings/command-dialog.c:319
 #: dialogs/mime-settings/xfce-mime-chooser.c:425
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:469
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:470
 msgid "Shell Scripts"
 msgstr "Shell script-ak"
 
-#: dialogs/keyboard-settings/keyboard-dialog.glade:53
-msgid "Keyboard layout selection"
-msgstr "Teklatu ingurune hautaketa"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:162
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
-msgid "Keyboard"
-msgstr "Teklatua"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:252
-msgid "Restore num l_ock state on startup"
-msgstr "Berrezarri zenb bl_ok egoera abiaraztean"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:267
-#: dialogs/mouse-settings/mouse-dialog.glade:726
-#: dialogs/mouse-settings/mouse-dialog.glade:953
-msgid "General"
-msgstr "Orokorra"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:301
-msgid "_Enable key repeat"
-msgstr "_Gaitu tekla errepikatzea"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:305
-msgid ""
-"When selected, pressing and holding down a key emits the same character over"
-" and over again"
-msgstr "Hautaturik dagoenean, tekla bat sakatu eta mantenduaz karaktere berdina behin eta berriz sortuko du"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:333
-msgid "_Repeat delay:"
-msgstr "_Errepikatze atzerapena:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:347
-msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "Denbora, milisegundotan, tekla sakatua egotean errepikatzen hasteko"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:363
-msgid "Repe_at speed:"
-msgstr "Errepikatze _abiadura :"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:377
-msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "Tekla bat sakatzean tekla-sakatzeak sortuko diren tasa"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:405
-msgid "Typing Settings"
-msgstr "Idazte ezarpenak"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:438
-msgid "Show _blinking"
-msgstr "Ikusi _keinuak"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:442
-msgid "Specify whether or not the text cursor blinks"
-msgstr "Hautatu kurtsoreak keinu egien duen ala ez"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:470
-msgid "Blink _delay:"
-msgstr "Keinu _atzerapena:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:484
-msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Denbora, milisegundutan, kurtsorearen jarraituko keinuen artean"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:512
-msgid "Cursor"
-msgstr "Kurtsorea"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:534
-msgid "_Test area:"
-msgstr "_Testu eremua:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:575
-msgid "Beha_vior"
-msgstr "_Portaera"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:593
-msgid "Define shortcuts for la_unching applications:"
-msgstr "Zehaztu lasterbideak aplikazioak a_biarazteko:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:651
-#: dialogs/keyboard-settings/keyboard-dialog.glade:986
-#: xfce4-settings-editor/xfce-settings-editor-box.c:377
-msgid "_Edit"
-msgstr "_Editatu"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:692
-msgid "Reset to _Defaults"
-msgstr "Berrezarri lehenetsia_n"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:732
-msgid "A_pplication Shortcuts"
-msgstr "A_plikazio lasterbideak"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:762
-msgid "<b>Use system defaults</b>"
-msgstr "<b>Sistemaren lehenetsiak erabili</b>"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:817
-msgid "_Keyboard model"
-msgstr "_Teklatu modeloa"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:861
-msgid "Change la_yout option"
-msgstr "Aldatu _diseinu aukera"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:899
-msgid "Co_mpose key"
-msgstr "Ko_nposizio tekla"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1043
-msgid "Move currently selected item up by one row"
-msgstr "Mugitu hautaturik dagoen elementua lerro bat gora"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1063
-msgid "Move currently selected item down by one row"
-msgstr "Mugitu hautaturik dagoen elementua lerro bat behera"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1096
-msgid "Key_board layout"
-msgstr "T_eklatu ingurunea"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1123
-msgid "_Layout"
-msgstr "_Diseinua"
-
-#: dialogs/keyboard-settings/main.c:80
+#: dialogs/keyboard-settings/main.c:83
 msgid "Unable to initialize GTK+."
 msgstr "Ezinda GTK+ abiarazi."
 
-#: dialogs/keyboard-settings/main.c:106
+#: dialogs/keyboard-settings/main.c:109
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Huts xfconf deabrura konektatzean. Arrazoia: %s"
 
-#: dialogs/keyboard-settings/main.c:117
+#: dialogs/keyboard-settings/main.c:120
 msgid "Could not create the settings dialog."
 msgstr "Ezin da ezapen elkarrizketa sortu."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:434
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:431
 msgid "Command"
 msgstr "Komandoa"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:442
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:439
 msgid "Shortcut"
 msgstr "Lasterbidea"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:519
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
 msgid "Layout"
 msgstr "Diseinua"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:520
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
 msgid "Variant"
 msgstr "Aldagaia"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1289
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Honek laster-tekla guztiak bere lehenetsiriko balioetara ezarriko ditu. Benetan hau egin nahi duzula?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1293
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
 msgid "Reset to Defaults"
 msgstr "Berrezarri lehenetsian"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
 msgid "No"
 msgstr "Ez"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1294
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
 msgid "Yes"
 msgstr "Bai"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1373
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1362
 msgid "The system defaults will be restored next time you log in."
 msgstr "Sistema lehenespenak berrezarriko dira saio hasten duzun hurrengoan."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1375
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1364
 msgid "Warning"
 msgstr "Abisua"
 
@@ -1563,7 +1809,7 @@ msgstr "Editatu teklatu ezarpenak eta aplikazio lasterbideak"
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;teklatua;bistaratzeak;lasterbideak;"
 
-#: dialogs/mime-settings/main.c:115
+#: dialogs/mime-settings/main.c:118
 msgid "Could not create the mime dialog."
 msgstr "Ezin da mime elkarrizketa sortu."
 
@@ -1656,60 +1902,74 @@ msgstr "Huts lehenetsiriko fitxategi kudeatzailea ezartzerakoan"
 msgid "Failed to set default Terminal Emulator"
 msgstr "Huts lehenetsiriko terminal emuladorea ezartzerakoan"
 
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:353
+msgid "Failed to set default Text Editor"
+msgstr ""
+
 #. allocate the chooser
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:423
 msgid "Select application"
 msgstr "Hautatu aplikazioa"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
 msgid "Choose a custom Web Browser"
 msgstr "Pertsonalizatutako web nabigatzaile bat aukeratu"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
 msgid "Choose a custom Mail Reader"
 msgstr "Pertsonalizatutako posta bezero bat aukeratu"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
 msgid "Choose a custom File Manager"
 msgstr "Pertsonalizatutako fitxategi kudeatzaile bat aukeratu"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:537
 msgid "Choose a custom Terminal Emulator"
 msgstr "Pertsonalizatutako terminal emuladore bat aukeratu"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+msgid "Choose a custom Text Editor"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr "Xfce-ren lehenetsiriko nabigatzaile bezala erabili\nnahi duzun aplikazioa zehaztu:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:541
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr "Xfce-ren lehenetsiriko posta bezero bezala erabili\nnahi duzun aplikazioa zehaztu:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr "Xfce-ren lehenetsiriko fitxategi kudeatzaile bezala erabili\nnahi duzun aplikazioa zehaztu:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:545
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr "Xfce-ren lehenetsiriko terminal emuladore bezala erabili\nnahi duzun aplikazioa zehaztu:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:607
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
+msgid ""
+"Specify the application you want to use\n"
+"as default Text Editor for Xfce:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:610
 msgid "Browse the file system to choose a custom command."
 msgstr "Pertsonalizatutako komando bat aukeratzeko fitxategi-sistema arakatu."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:757
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:760
 msgid "_Other..."
 msgstr "_Besteak..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:758
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:761
 msgid "Use a custom application which is not included in the above list."
 msgstr "Beheko zerrendan ez dagoen aplikazio pertsonalizatu bat aukeratu."
 
@@ -1741,6 +2001,12 @@ msgid ""
 "Emulator now and click OK to proceed."
 msgstr "Mesedez hobetsiriko terminal emuladorea ezarri\neta Ados sakatu aurrera jarraitzeko."
 
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
+msgid ""
+"Please choose your preferred Text\n"
+"Editor now and click OK to proceed."
+msgstr ""
+
 #: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Web Browser"
 msgstr "Huts lehenetsiriko web nabigatzailea exekutatzean"
@@ -1757,42 +2023,47 @@ msgstr "Huts lehenetsiriko fitxategi kudeatzailea exekutatzean"
 msgid "Failed to execute default Terminal Emulator"
 msgstr "Huts lehenetsiriko terminal emuladorea exekutatzean"
 
+#: dialogs/mime-settings/xfce-mime-helper-main.c:33
+msgid "Failed to execute default Text Editor"
+msgstr ""
+
 #. Enable permanently dismissing this error.
-#: dialogs/mime-settings/xfce-mime-helper-main.c:74
+#: dialogs/mime-settings/xfce-mime-helper-main.c:75
 msgid "Do _not show this message again"
 msgstr "E_z bistarazi mezu hau berriz"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:105
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 msgid "Print version information and exit"
 msgstr "Bertsio argibideak inprimatu eta irten"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr "Abiarazi MOTA laguntzailea aukerako PARAMETRO honez, non MOTA hauetako balio bat izan daitekeen."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 #: dialogs/mime-settings/xfce-mime-helper-main.c:107
+#: dialogs/mime-settings/xfce-mime-helper-main.c:108
 msgid "TYPE [PARAMETER]"
 msgstr "MOTA [PARAMETROA]"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:107
+#: dialogs/mime-settings/xfce-mime-helper-main.c:108
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr "Kontsultatu MOTA laguntzaile lehenestia, non MOTA hurrengo balioetako bat den."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:137
+#: dialogs/mime-settings/xfce-mime-helper-main.c:138
 msgid ""
 "The following TYPEs are supported for the --launch and --query commands:\n"
 "\n"
 "  WebBrowser       - The preferred Web Browser.\n"
 "  MailReader       - The preferred Mail Reader.\n"
 "  FileManager      - The preferred File Manager.\n"
-"  TerminalEmulator - The preferred Terminal Emulator."
-msgstr "Hurrengo MOTAk onartzen dira --launch eta --query komandoetarako:\n\n  WebBrowser       - Hobetsiriko web nabigatzailea.\n  MailReader       - Hobetsiriko posta bezeroa.\n  FileManager      - Hobetsiriko fitxategi kudeatzailea.\n  TerminalEmulator - Hobetsiriko terminal emuladorea."
+"  TerminalEmulator - The preferred Terminal Emulator.\n"
+"  TextEditor       - The preferred Text Editor."
+msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:176
+#: dialogs/mime-settings/xfce-mime-helper-main.c:177
 #: dialogs/mime-settings/xfce-mime-helper-main.c:251
 #, c-format
 msgid "Invalid helper type \"%s\""
@@ -1813,19 +2084,19 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nCopyright (c) 2003-2006\n        os-cillation e.K. All rights reserved.\n\nBenedikt Meurerek <benny@xfce.org> idatzia.\n\nGtk+-%d.%d.%d erabiliaz eraikia, Gtk+-%d.%d.%d erabiliaz exekutatua.\n\nPrograma erroreen berri hemen eman: <%s>.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:263
+#: dialogs/mime-settings/xfce-mime-helper-main.c:262
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Ez dago laguntzailerik definituta \"%s\"(e)rako."
 
-#: dialogs/mime-settings/xfce-mime-helper.c:433
+#: dialogs/mime-settings/xfce-mime-helper.c:431
 msgid "No command specified"
 msgstr "Ez da komandoa ezarri"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:813
-#: dialogs/mime-settings/xfce-mime-helper.c:852
-#: dialogs/mime-settings/xfce-mime-helper.c:949
-#: dialogs/mime-settings/xfce-mime-helper.c:988
+#: dialogs/mime-settings/xfce-mime-helper.c:811
+#: dialogs/mime-settings/xfce-mime-helper.c:850
+#: dialogs/mime-settings/xfce-mime-helper.c:941
+#: dialogs/mime-settings/xfce-mime-helper.c:980
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Ezin da %s fitxategia idazketarako ireki"
@@ -1888,88 +2159,96 @@ msgid ""
 "CLI environment."
 msgstr "Lehenetsiriko terminal emuladorea CLI ingurunea behar duten komandoak abiarazteko erabiliko da."
 
+#: dialogs/mime-settings/xfce-mime-window.c:341
+msgid "Text Editor"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:349
+msgid "The default Text Editor will be used to open and edit text files."
+msgstr ""
+
 #. Mimes
-#: dialogs/mime-settings/xfce-mime-window.c:337
+#: dialogs/mime-settings/xfce-mime-window.c:363
 msgid "_Others"
 msgstr "_Besteak"
 
-#: dialogs/mime-settings/xfce-mime-window.c:347
+#: dialogs/mime-settings/xfce-mime-window.c:373
 msgid "_Filter:"
 msgstr "_Iragazkia:"
 
-#: dialogs/mime-settings/xfce-mime-window.c:355
+#: dialogs/mime-settings/xfce-mime-window.c:381
 msgid "Clear filter"
 msgstr "Garbitu iragazkia"
 
-#: dialogs/mime-settings/xfce-mime-window.c:385
+#: dialogs/mime-settings/xfce-mime-window.c:411
 msgid "Open with..."
 msgstr "Ireki honekin..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:434
+#: dialogs/mime-settings/xfce-mime-window.c:460
 msgid "MIME Type"
 msgstr "MIME mota"
 
-#: dialogs/mime-settings/xfce-mime-window.c:462
+#: dialogs/mime-settings/xfce-mime-window.c:488
 msgid "Status"
 msgstr "Egoera"
 
-#: dialogs/mime-settings/xfce-mime-window.c:482
+#: dialogs/mime-settings/xfce-mime-window.c:508
 msgid "Default Application"
 msgstr "Lehenetsitako aplikazioa"
 
-#: dialogs/mime-settings/xfce-mime-window.c:658
-#: dialogs/mime-settings/xfce-mime-window.c:827
+#: dialogs/mime-settings/xfce-mime-window.c:684
+#: dialogs/mime-settings/xfce-mime-window.c:853
 msgid "User Set"
 msgstr "Erabiltzaile ezarpenak"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:660
-#: dialogs/mime-settings/xfce-mime-window.c:827
-#: dialogs/mouse-settings/main.c:413 dialogs/mouse-settings/main.c:415
-#: dialogs/mouse-settings/main.c:478
+#: dialogs/mime-settings/xfce-mime-window.c:686
+#: dialogs/mime-settings/xfce-mime-window.c:853
+#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
+#: dialogs/mouse-settings/main.c:479
 msgid "Default"
 msgstr "Lehenetsia"
 
-#: dialogs/mime-settings/xfce-mime-window.c:750
+#: dialogs/mime-settings/xfce-mime-window.c:776
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "MIME mota %d topatu da"
 msgstr[1] "%d MIME mota topatu dira"
 
-#: dialogs/mime-settings/xfce-mime-window.c:872
+#: dialogs/mime-settings/xfce-mime-window.c:898
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Huts \"%s\" aplikazioa \"%s\" MIME motarentzat ezartzerakoan."
 
-#: dialogs/mime-settings/xfce-mime-window.c:981
+#: dialogs/mime-settings/xfce-mime-window.c:1007
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
 msgstr[0] "MIME mota %d hautatuta"
 msgstr[1] "%d MIME mota hautatuta"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1177
+#: dialogs/mime-settings/xfce-mime-window.c:1203
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Honek zure pertsonalizatutako mime-lotura ezabatu eta sistemaren lehenespena berrezarriko du."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1179
+#: dialogs/mime-settings/xfce-mime-window.c:1205
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Ziur zaude \"%s\" kanala eta dituen propietateak berrabiarazi nahi duzula?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1183
+#: dialogs/mime-settings/xfce-mime-window.c:1209
 msgid "Question"
 msgstr "Galdera"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1185
-#: dialogs/mime-settings/xfce-mime-window.c:1257
+#: dialogs/mime-settings/xfce-mime-window.c:1211
+#: dialogs/mime-settings/xfce-mime-window.c:1283
 msgid "Reset to Default"
 msgstr "Berrezarri lehenetsian"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1252
+#: dialogs/mime-settings/xfce-mime-window.c:1278
 msgid "Choose Application..."
 msgstr "Hautatu aplikazioa..."
 
@@ -2235,279 +2514,31 @@ msgstr "Xfce Fitxategi kudeatzailea"
 msgid "X Terminal"
 msgstr "X terminala"
 
-#: dialogs/mouse-settings/main.c:85
+#: dialogs/mouse-settings/main.c:86
 msgid "Active device in the dialog"
 msgstr "Gaitu gailua elkarrizketan"
 
-#: dialogs/mouse-settings/main.c:85
+#: dialogs/mouse-settings/main.c:86
 msgid "DEVICE NAME"
 msgstr "GAILU IZENA"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:167
+#: dialogs/mouse-settings/main.c:168
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:177
+#: dialogs/mouse-settings/main.c:178
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:188
+#: dialogs/mouse-settings/main.c:189
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:67
-msgid "Use bottom areas as left, middle or right buttons"
-msgstr "Erabili beheko aldea ezkerreko, erdiko edo eskuineko botoiak bezala"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:71
-msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
-msgstr "Klik egin atzamar 1, 2 edo 3rekin ezkerreko, eskuineko edo erdiko klik bezala"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:92
-msgid "Disabled"
-msgstr "Desgaitua"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:96
-msgid "Edge scrolling"
-msgstr "Ertz korritzea"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:100
-msgid "Two-finger scrolling"
-msgstr "Bi _hatzeko korritzea "
-
-#: dialogs/mouse-settings/mouse-dialog.glade:104
-msgid "Circular scrolling"
-msgstr "Korritze zirkularra"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:126
-msgid "Pen (absolute)"
-msgstr "Arkatza (absolutua)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:130
-msgid "Mouse (relative)"
-msgstr "Sagua (erlatiboa)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:144
-msgid "None (right-handed)"
-msgstr "Batez (eskuinarekin)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:148
-msgid "Half (left-handed)"
-msgstr "Erdia (ezkerrarekin)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:152
-msgid "Clockwise"
-msgstr "Erlojuaren noranzkoan"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:156
-msgid "Counterclockwise"
-msgstr "Erlojuaren aurka"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:162
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
-msgid "Mouse and Touchpad"
-msgstr "Sagua eta Touchpada"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:237
-msgid "De_vice:"
-msgstr "Gai_lua:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:314
-msgid "Le_ft-handed"
-msgstr "_Ezkerrarekin"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:331
-msgid "Ri_ght-handed"
-msgstr "_Eskuinarekin"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:355
-msgid "Reverse scroll d_irection"
-msgstr "Alde_rantzizko korritze norantza"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:359
-msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr "Hautaturik dagoenean saguaren gurpilak alderantzizko norantzan funtzionatuko du"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:372
-msgid "Allow high _resolution scrolling (experimental)"
-msgstr "Berezimen handiko desplazamendua gaitu (esperimentala)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:376
-msgid ""
-"Only supported on some mice (mostly Logitech) and requires driver support. "
-"On supported devices makes scrolling more precise."
-msgstr "Sagu batzuetan onartzen da soilik (gehienak Logitech) eta driver-a behar da. Onartutako gailuetan desplazamendua zehatzagoa bihurtzen du."
-
-#: dialogs/mouse-settings/mouse-dialog.glade:395
-msgid "Buttons"
-msgstr "Botoiak"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:428
-msgid "_Reset to Defaults"
-msgstr "_Berrezarri lehenespenak"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:432
-msgid ""
-"Set the acceleration and sensitivity for the selected device to the default "
-"values"
-msgstr "Ezarri hautatutako gailuaren azelerazio eta abiadura muga lehenetsitako balioetara"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:448
-msgid "Sensitivit_y:"
-msgstr "_Sentikortasuna:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:461
-msgid "Acceleratio_n:"
-msgstr "_Azelerazioa:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:473
-msgid ""
-"The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr "Sagua mugitzean markatzailearen abiadura handituko den faktorea"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:488
-msgid ""
-"The number of pixels the pointer must move in a short time before it starts "
-"accelerating"
-msgstr "Bizkortzen hasi aurretik markatzailea mugitu behar den pixel kopurua"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:502
-msgid "Adaptive pointer acceleration"
-msgstr "Erakuslearen azelerazio egokitzailea"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:505
-msgid ""
-"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
-"current speed of the device into account when deciding on acceleration. "
-"Custom acceleration profile is not supported via xfce4-settings."
-msgstr "Azelerazio egokitzailearen eta lauaren artean aldatzen du. Egokitzaileak gailuaren uneko abiadura kontuan hartzen du azelerazioa erabakitzerakoan. Azelerazio profil pertsonalizatua ez dago baimenduta xfce4-settings bitartez."
-
-#: dialogs/mouse-settings/mouse-dialog.glade:525
-msgid "Pointer Speed"
-msgstr "Markatzaile abiadura"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:544
-msgid "B_uttons and Feedback"
-msgstr "B_otoi eta berrelikadura"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:578
-#: dialogs/mouse-settings/mouse-dialog.glade:595
-msgid "Disable touchpad _while typing"
-msgstr "Desgaitu to_uchpada tekleatzean"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:582
-#: dialogs/mouse-settings/mouse-dialog.glade:599
-msgid ""
-"When selected, the touchpad will be disabled when the keyboard is being used"
-msgstr "Hautaturik dagoenean touchpada desgaitu egingo da teklatua erabiltzen den bitartean."
-
-#: dialogs/mouse-settings/mouse-dialog.glade:624
-msgid "Duratio_n:"
-msgstr "Iraupe_na::"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:659
-msgid "Tap touchpad to clic_k"
-msgstr "Jo touchpada _klikatzeko"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:682
-msgid "Click m_ethod:"
-msgstr "Klik m_odua:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:767
-msgid "Scrolling _mode:"
-msgstr "Korritzea modua_:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:805
-msgid "Enable hori_zontal scrolling"
-msgstr "Gaitu korritze hori_zontala"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:827
-msgid "Scrolling"
-msgstr "Korritzea"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:850
-msgid "T_ouchpad"
-msgstr "T_ouchpad"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:888
-msgid "Trac_king mode:"
-msgstr "S_egimendu modua:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:901
-msgid "_Rotation:"
-msgstr "Bi_raketa:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:976
-msgid "Tab_let"
-msgstr "Tableta"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:997
-msgid "_Devices"
-msgstr "_Gailuak"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1034
-msgid "Th_reshold:"
-msgstr "Mu_ga:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1048
-msgid ""
-"The number of pixels the pointer must move before a drag operation will "
-"start"
-msgstr "Arrastatze ekintza abiarazi aurretik markatzailea mugitu behar den pixel kopurua"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1067
-msgid "Drag and Drop"
-msgstr "Arrastatu eta jaregin"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1103
-msgid "Ti_me:"
-msgstr "De_nbora:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1117
-msgid ""
-"Two mouse clicks in less than this length of time (in milliseconds) will be "
-"considered a double click"
-msgstr "Klik bikoitza bezala erabiltzeko bi klik-en arteko denbora tarte handiena (milisegundotan)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1133
-msgid "D_istance:"
-msgstr "_Distantzia:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1147
-msgid ""
-"The mouse pointer cannot move farther than this distance between two clicks "
-"for them to be considered a double click"
-msgstr "Saguaren markatzailea ezi da distantzia hau baino gehiago mugitu bi klikatzeren artean hauek klik-bikoitz bezala hartzeko"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1166
-msgid "Double Click"
-msgstr "Klik bikoitza"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1188
-msgid "_Behavior"
-msgstr "_Portaera"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1253
-msgid "Cursor si_ze:"
-msgstr "Kurtsore _tamaina:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1287
-msgid "Size"
-msgstr "Tamaina"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1327
-msgid "Preview"
-msgstr "Aurrebista"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1356
-msgid "_Theme"
-msgstr "_Gaia"
 
 #: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
@@ -2518,7 +2549,7 @@ msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "ezarpenak;botoiak;korritzea;morantza;markatzailea;abiadrua;klik bikoitza;gaia;gurpila;"
 
-#: xfce4-settings-editor/main.c:182
+#: xfce4-settings-editor/main.c:185
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
 msgid "Settings Editor"
 msgstr "Ezarpen editorea"
@@ -2719,20 +2750,20 @@ msgstr "Xfconf-ren ezarpen editore grafikoa"
 msgid "registry;regedit;configuration file;"
 msgstr "erregistroa;regedit;konfigurazio fitxategia;"
 
-#: xfce4-settings-manager/main.c:40
+#: xfce4-settings-manager/main.c:43
 msgid "Settings dialog to show"
 msgstr "Erakutsiko den ezarpen elkarrizketa"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:228
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:227
 msgid "All _Settings"
 msgstr "Ezarpen _guztiak"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:427
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:426
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:925
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:937
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Ezin da\"%s\" abiarazi"
@@ -2790,15 +2821,15 @@ msgstr "Tekla errepikapena"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Huts \"%s\" laster-marka abiaraztean."
 
-#: xfsettingsd/main.c:94
+#: xfsettingsd/main.c:97
 msgid "Fork to the background"
 msgstr "Banandu atzealdera"
 
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:98
 msgid "Do not wait for a window manager on startup"
 msgstr "Ez itxoin leiho kudeatzailerik abiaraztean"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:99
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Ordeztu martxan dagoen xsettings deabrua (balego)"
 
