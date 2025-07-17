@@ -20,10 +20,6 @@
  * Copyright (c) 2009 Jannis Pohlmann <jannis@xfce.org>
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "xfce-mime-chooser.h"
 
 #include <gio/gdesktopappinfo.h>
