@@ -537,7 +537,7 @@ menu_activate_other (GtkWidget *item,
     N_ ("Choose a custom Text Editor"),
     N_ ("Choose a custom Image Viewer"),
     N_ ("Choose a custom Audio Player"),
-    N_ ("Choose a custom Viddeo Player"),
+    N_ ("Choose a custom Video Player"),
   };
 
   static const gchar *BROWSE_MESSAGES[] = {
