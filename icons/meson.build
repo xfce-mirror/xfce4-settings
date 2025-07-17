@@ -1,6 +1,8 @@
 sizes = [16, 24, 32, 48, 128]
 names = [
+  'org.xfce.audioplayer',
   'org.xfce.filemanager',
+  'org.xfce.imageviewer',
   'org.xfce.mailreader',
   'org.xfce.settings.accessibility',
   'org.xfce.settings.appearance',
@@ -14,6 +16,7 @@ names = [
   'org.xfce.terminalemulator',
   'org.xfce.texteditor',
   'org.xfce.webbrowser',
+  'org.xfce.videoplayer',
 ]
 
 foreach size : sizes

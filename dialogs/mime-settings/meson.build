@@ -87,12 +87,15 @@ executable(
 )
 
 apps = [
+  'xfce4-audio-player.desktop.in',
   'xfce4-file-manager.desktop.in',
+  'xfce4-image-viewer.desktop.in',
   'xfce4-mail-reader.desktop.in',
   'xfce4-mime-settings.desktop.in',
   'xfce4-terminal-emulator.desktop.in',
   'xfce4-text-editor.desktop.in',
   'xfce4-web-browser.desktop.in',
+  'xfce4-video-player.desktop.in',
 ]
 foreach app : apps
   i18n.merge_file(
