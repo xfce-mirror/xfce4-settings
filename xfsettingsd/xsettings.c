@@ -22,10 +22,6 @@
  * for the description of the xsetting specification
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "xsettings.h"
 
 #include "common/debug.h"

@@ -17,10 +17,6 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "keyboard-layout.h"
 
 #include "common/debug.h"

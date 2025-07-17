@@ -26,10 +26,6 @@
    (git commit 42452cada8cf1c4d7a81aded0a3ddbb5e97441de)
    Slightly modified by Lionel Le Folgoc <mrpouit@gmail.com> to build with full debug */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "edid.h"
 
 #ifdef HAVE_MATH_H

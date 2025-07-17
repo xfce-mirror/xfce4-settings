@@ -19,10 +19,6 @@
  *  by Olivier Fourdan.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "accessibility.h"
 
 #include "common/debug.h"
