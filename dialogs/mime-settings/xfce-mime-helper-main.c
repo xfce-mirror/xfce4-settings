@@ -33,6 +33,7 @@ static const gchar *CATEGORY_EXEC_ERRORS[] = {
   N_ ("Failed to execute default Text Editor"),
   N_ ("Failed to execute default Image Viewer"),
   N_ ("Failed to execute default Audio Player"),
+  N_ ("Failed to execute default Video Player"),
 };
 
 
@@ -133,7 +134,7 @@ main (int argc,
   g_option_context_add_main_entries (opt_ctx, option_entries, NULL);
   g_option_context_set_ignore_unknown_options (opt_ctx, TRUE);
   /* Note to Translators: Do not translate the TYPEs (WebBrowser, MailReader,
-   * FileManager, TerminalEmulator, ImageViewer, and AudioPlayer), 
+   * FileManager, TerminalEmulator, ImageViewer, AudioPlayer, and VideoPlayer), 
    * since the xfce-mime-helper utility will
    * not accept localized TYPEs.
    */
@@ -145,7 +146,8 @@ main (int argc,
                                       "  TerminalEmulator - The preferred Terminal Emulator.\n"
                                       "  TextEditor       - The preferred Text Editor.\n"
                                       "  ImageViewer      - The preferred Image Viewer.\n"
-                                      "  AudioPlayer      - The preferred Audio Player.\n"));
+                                      "  AudioPlayer      - The preferred Audio Player.\n"
+                                      "  VideoPlayer      - The preferred Video Player.\n"));
 
   if (!g_option_context_parse (opt_ctx, &argc, &argv, &error))
     {
