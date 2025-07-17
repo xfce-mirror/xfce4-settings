@@ -353,6 +353,7 @@ menu_activate (GtkWidget *item,
     N_ ("Failed to set default Text Editor"),
     N_ ("Failed to set default Image Viewer"),
     N_ ("Failed to set default Audio Player"),
+    N_ ("Failed to set default Video Player"),
   };
 
   XfceMimeHelper *helper;
@@ -540,6 +541,7 @@ menu_activate_other (GtkWidget *item,
     N_ ("Choose a custom Text Editor"),
     N_ ("Choose a custom Image Viewer"),
     N_ ("Choose a custom Audio Player"),
+    N_ ("Choose a custom Viddeo Player"),
   };
 
   static const gchar *BROWSE_MESSAGES[] = {
@@ -550,6 +552,7 @@ menu_activate_other (GtkWidget *item,
     N_ ("Specify the application you want to use\nas default Text Editor for Xfce:"),
     N_ ("Specify the application you want to use\nas default Image Viewer for Xfce:"),
     N_ ("Specify the application you want to use\nas default Audio Player for Xfce:"),
+    N_ ("Specify the application you want to use\nas default Video Player for Xfce:"),
   };
 
   const gchar *command;
