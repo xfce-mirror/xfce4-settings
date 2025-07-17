@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-11 12:48+0200\n"
+"POT-Creation-Date: 2025-07-17 12:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: scootergrisen, 2016-2025\n"
 "Language-Team: Danish (http://app.transifex.com/xfce/xfce4-settings/language/da/)\n"
@@ -34,10 +34,10 @@ msgstr "Tilgængelighed"
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3482
-#: dialogs/mime-settings/xfce-mime-window.c:194
-#: xfce4-settings-editor/main.c:188
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:234
+#: dialogs/display-settings/main.c:3479
+#: dialogs/mime-settings/xfce-mime-window.c:190
+#: xfce4-settings-editor/main.c:185
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
 msgid "_Close"
 msgstr "_Luk"
 
@@ -48,9 +48,9 @@ msgstr "_Luk"
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
 #: common/resources/mouse-dialog.glade:179
-#: dialogs/mime-settings/xfce-mime-window.c:197
-#: xfce4-settings-editor/main.c:187
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:223
+#: dialogs/mime-settings/xfce-mime-window.c:193
+#: xfce4-settings-editor/main.c:184
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:219
 msgid "_Help"
 msgstr "_Hjælp"
 
@@ -257,8 +257,8 @@ msgstr "_Mus"
 
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1602 dialogs/display-settings/main.c:85
-#: dialogs/display-settings/main.c:93
+#: dialogs/appearance-settings/main.c:1599 dialogs/display-settings/main.c:82
+#: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "Ingen"
 
@@ -308,7 +308,7 @@ msgstr "Udseende"
 #: common/resources/color-dialog.glade:374
 #: common/resources/keyboard-dialog.glade:636
 #: common/resources/keyboard-dialog.glade:970
-#: xfce4-settings-editor/xfce-settings-editor-box.c:364
+#: xfce4-settings-editor/xfce-settings-editor-box.c:360
 msgid "_Add"
 msgstr "_Tilføj"
 
@@ -542,20 +542,20 @@ msgstr "Tilføj profil til enhed"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1341 dialogs/color-settings/main.c:129
-#: dialogs/keyboard-settings/command-dialog.c:113
-#: dialogs/keyboard-settings/command-dialog.c:275
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:570
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+#: dialogs/appearance-settings/main.c:1338 dialogs/color-settings/main.c:126
+#: dialogs/keyboard-settings/command-dialog.c:109
+#: dialogs/keyboard-settings/command-dialog.c:271
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:575
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:106
 msgid "_Cancel"
 msgstr "_Annuller"
 
 #: common/resources/color-dialog.glade:543
 #: common/resources/keyboard-dialog.glade:86
-#: dialogs/keyboard-settings/command-dialog.c:117
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:571
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
+#: dialogs/keyboard-settings/command-dialog.c:113
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:576
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
 msgid "_OK"
 msgstr "_OK"
 
@@ -618,7 +618,7 @@ msgid "The primary display can be configured to show:"
 msgstr "Den primære skærm kan konfigureres til at vise:"
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1735
+#: dialogs/display-settings/main.c:1732
 msgid "Xfce Panel"
 msgstr "Xfce-panel"
 
@@ -879,7 +879,7 @@ msgstr "Definér genveje til op_start af programmer:"
 
 #: common/resources/keyboard-dialog.glade:651
 #: common/resources/keyboard-dialog.glade:986
-#: xfce4-settings-editor/xfce-settings-editor-box.c:377
+#: xfce4-settings-editor/xfce-settings-editor-box.c:373
 msgid "_Edit"
 msgstr "_Rediger"
 
@@ -1174,85 +1174,85 @@ msgstr "_Tema"
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: common/display-name.c:2649
+#: common/display-name.c:2645
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Ukendt"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: common/display-name.c:2702 dialogs/color-settings/color-device.c:66
+#: common/display-name.c:2698 dialogs/color-settings/color-device.c:62
 msgid "Monitor"
 msgstr "Skærm"
 
-#: common/display-name.c:2705
+#: common/display-name.c:2701
 msgid "Television"
 msgstr "Fjernsyn"
 
-#: common/display-name.c:2709
+#: common/display-name.c:2705
 msgid "Digital display"
 msgstr "Digital skærm"
 
-#: common/xfce-randr.c:285 dialogs/display-settings/display-settings-x11.c:702
+#: common/xfce-randr.c:281 dialogs/display-settings/display-settings-x11.c:698
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Kan ikke forespørge hvilken version af RandR-udvidelsen som anvendes"
 
-#: common/xfce-randr.c:571
-#: dialogs/display-settings/display-settings-wayland.c:350
+#: common/xfce-randr.c:567
+#: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "Bærbar"
 
-#: dialogs/accessibility-settings/main.c:39
-#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
-#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
-#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
-#: xfce4-settings-editor/main.c:47
+#: dialogs/accessibility-settings/main.c:36
+#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Sokkel til indstillingshåndtering"
 
-#: dialogs/accessibility-settings/main.c:39
-#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
-#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
-#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
-#: xfce4-settings-editor/main.c:47
+#: dialogs/accessibility-settings/main.c:36
+#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "SOKKEL-ID"
 
-#: dialogs/accessibility-settings/main.c:40
-#: dialogs/appearance-settings/main.c:94 dialogs/color-settings/main.c:44
-#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:40
-#: dialogs/mime-settings/main.c:44 dialogs/mouse-settings/main.c:88
-#: xfce4-settings-editor/main.c:48 xfce4-settings-manager/main.c:42
-#: xfsettingsd/main.c:96
+#: dialogs/accessibility-settings/main.c:37
+#: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
+#: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
+#: xfsettingsd/main.c:93
 msgid "Version information"
 msgstr "Versionsinformation"
 
-#: dialogs/accessibility-settings/main.c:194
-#: dialogs/appearance-settings/main.c:1695 dialogs/color-settings/main.c:1466
-#: dialogs/display-settings/main.c:3430 dialogs/keyboard-settings/main.c:77
-#: dialogs/mime-settings/main.c:81
-#: dialogs/mime-settings/xfce-mime-helper-main.c:150
-#: dialogs/mouse-settings/main.c:2197 xfce4-settings-editor/main.c:121
-#: xfce4-settings-manager/main.c:63 xfsettingsd/main.c:245
+#: dialogs/accessibility-settings/main.c:191
+#: dialogs/appearance-settings/main.c:1692 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3427 dialogs/keyboard-settings/main.c:74
+#: dialogs/mime-settings/main.c:78
+#: dialogs/mime-settings/xfce-mime-helper-main.c:153
+#: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Skriv \"%s --help\" for anvendelse."
 
-#: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1714 dialogs/color-settings/main.c:1485
-#: dialogs/display-settings/main.c:3449 dialogs/keyboard-settings/main.c:93
-#: dialogs/mime-settings/main.c:100 dialogs/mouse-settings/main.c:2216
-#: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:79
-#: xfsettingsd/main.c:261
+#: dialogs/accessibility-settings/main.c:210
+#: dialogs/appearance-settings/main.c:1711 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3446 dialogs/keyboard-settings/main.c:90
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
+#: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
+#: xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce's udviklingshold. Alle rettigheder forbeholdes."
 
-#: dialogs/accessibility-settings/main.c:214
-#: dialogs/appearance-settings/main.c:1715 dialogs/color-settings/main.c:1486
-#: dialogs/display-settings/main.c:3450 dialogs/keyboard-settings/main.c:94
-#: dialogs/mime-settings/main.c:101 dialogs/mouse-settings/main.c:2217
-#: xfce4-settings-editor/main.c:141 xfce4-settings-manager/main.c:80
-#: xfsettingsd/main.c:262
+#: dialogs/accessibility-settings/main.c:211
+#: dialogs/appearance-settings/main.c:1712 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3447 dialogs/keyboard-settings/main.c:91
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
+#: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
+#: xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapportér venligst fejl til <%s>."
@@ -1267,12 +1267,12 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "hjælpeteknologier;taster;klæbe;ryste;emulering;skærmlæsere;forstørrelsesglas;a11y;i18n;l10n;AT-SPI;ATK;hæmmet;"
 
-#: dialogs/appearance-settings/main.c:340
+#: dialogs/appearance-settings/main.c:337
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Kunne ikke vise Xfwm4-indstillinger"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:634
+#: dialogs/appearance-settings/main.c:631
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1281,70 +1281,70 @@ msgstr "Advarsel: ikontemaet har ingen mellemlagringsfil. Du kan oprette den ved
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:641
+#: dialogs/appearance-settings/main.c:638
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Advarsel: ikontemaet er ikke komplet. Nogle ikoner vil mangle."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:646
+#: dialogs/appearance-settings/main.c:643
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Advarsel: ikontemaet er ikke komplet. Det indeholder kun et grundlæggende sæt ikoner hvorfra andre temaer kan nedarve."
 
-#: dialogs/appearance-settings/main.c:1253
+#: dialogs/appearance-settings/main.c:1250
 msgid "File is too large, installation aborted"
 msgstr "Filen er for stor, installationen blev afbrudt"
 
-#: dialogs/appearance-settings/main.c:1258
+#: dialogs/appearance-settings/main.c:1255
 msgid "Failed to create temporary directory"
 msgstr "Kunne ikke oprette midlertidig mappe"
 
-#: dialogs/appearance-settings/main.c:1263
+#: dialogs/appearance-settings/main.c:1260
 msgid "Failed to extract archive"
 msgstr "Kunne ikke udpakke arkiv"
 
-#: dialogs/appearance-settings/main.c:1268
+#: dialogs/appearance-settings/main.c:1265
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Ukendt format, kun arkiver og mapper er understøttede"
 
-#: dialogs/appearance-settings/main.c:1273
+#: dialogs/appearance-settings/main.c:1270
 msgid "Not a valid theme package"
 msgstr "Ikke en gyldig temapakke"
 
-#: dialogs/appearance-settings/main.c:1278
+#: dialogs/appearance-settings/main.c:1275
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "En ukendt fejl, afslutningskode er %d"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1282
 msgid "Failed to install theme"
 msgstr "Kunne ikke installere tema"
 
-#: dialogs/appearance-settings/main.c:1339
+#: dialogs/appearance-settings/main.c:1336
 #, c-format
 msgid "Install %s theme"
 msgstr "Installer %s tema"
 
-#: dialogs/appearance-settings/main.c:1342
-#: dialogs/keyboard-settings/command-dialog.c:276
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:426
+#: dialogs/appearance-settings/main.c:1339
+#: dialogs/keyboard-settings/command-dialog.c:272
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Åbn"
 
-#: dialogs/appearance-settings/main.c:1606
+#: dialogs/appearance-settings/main.c:1603
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1610
+#: dialogs/appearance-settings/main.c:1607
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1614
+#: dialogs/appearance-settings/main.c:1611
 msgid "Vertical RGB"
 msgstr "Lodret RGB"
 
-#: dialogs/appearance-settings/main.c:1618
+#: dialogs/appearance-settings/main.c:1615
 msgid "Vertical BGR"
 msgstr "Lodret BGR"
 
@@ -1360,49 +1360,49 @@ msgid ""
 msgstr "temaer;brugerflade;stile;ikoner;skrifttyper;anti-aliasing;udjævning;hinting;underpixel;gengivelse;ClearType;DPI;RGB;BGR;menugenveje;tastaturgenveje;hændelse;lyde;vinduesskalering;HiDPI;Retina-skærm;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
-#: dialogs/color-settings/color-device.c:69
+#: dialogs/color-settings/color-device.c:65
 msgid "Scanner"
 msgstr "Skanner"
 
 #. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
-#: dialogs/color-settings/color-device.c:72
+#: dialogs/color-settings/color-device.c:68
 msgid "Camera"
 msgstr "Kamera"
 
 #. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
-#: dialogs/color-settings/color-device.c:75
+#: dialogs/color-settings/color-device.c:71
 msgid "Printer"
 msgstr "Printer"
 
 #. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
-#: dialogs/color-settings/color-device.c:78
+#: dialogs/color-settings/color-device.c:74
 msgid "Webcam"
 msgstr "Webcam"
 
 #. TRANSLATORS: This refers to the TFT display on a laptop
-#: dialogs/color-settings/color-device.c:96
+#: dialogs/color-settings/color-device.c:92
 msgid "Laptop Screen"
 msgstr "Skærm på bærbar"
 
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
-#: dialogs/color-settings/color-device.c:105
+#: dialogs/color-settings/color-device.c:101
 msgid "Built-in Webcam"
 msgstr "Indbygget webcam"
 
-#: dialogs/color-settings/color-device.c:198
+#: dialogs/color-settings/color-device.c:194
 #, c-format
 msgid "Enable color management for %s"
 msgstr "Aktivér farvestyring for %s"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
-#: dialogs/color-settings/color-profile.c:97
+#: dialogs/color-settings/color-profile.c:93
 msgid "Standard Space"
 msgstr "Standardrum"
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
-#: dialogs/color-settings/color-profile.c:103
+#: dialogs/color-settings/color-profile.c:99
 msgid "Test Profile"
 msgstr "Testprofil"
 
@@ -1410,7 +1410,7 @@ msgstr "Testprofil"
 #. * by the color management system based on manufacturing data,
 #. * for instance the default monitor profile is created from the
 #. * primaries specified in the monitor EDID
-#: dialogs/color-settings/color-profile.c:111
+#: dialogs/color-settings/color-profile.c:107
 msgctxt "Automatically generated profile"
 msgid "Automatic"
 msgstr "Automatisk"
@@ -1418,13 +1418,13 @@ msgstr "Automatisk"
 #. TRANSLATORS: the profile quality - low quality profiles take
 #. * much less time to generate but may be a poor reflection of the
 #. * device capability
-#: dialogs/color-settings/color-profile.c:121
+#: dialogs/color-settings/color-profile.c:117
 msgctxt "Profile quality"
 msgid "Low Quality"
 msgstr "Lav kvalitet"
 
 #. TRANSLATORS: the profile quality
-#: dialogs/color-settings/color-profile.c:126
+#: dialogs/color-settings/color-profile.c:122
 msgctxt "Profile quality"
 msgid "Medium Quality"
 msgstr "Medium kvalitet"
@@ -1432,84 +1432,84 @@ msgstr "Medium kvalitet"
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
 #. * characterisation data.
-#: dialogs/color-settings/color-profile.c:133
+#: dialogs/color-settings/color-profile.c:129
 msgctxt "Profile quality"
 msgid "High Quality"
 msgstr "Høj kvalitet"
 
 #. TRANSLATORS: this default RGB space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:150
+#: dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
 msgstr "Standard-RGB"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:157
+#: dialogs/color-settings/color-profile.c:153
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
 msgstr "Standard-CMYK"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:164
+#: dialogs/color-settings/color-profile.c:160
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
 msgstr "Standard-grå"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: dialogs/color-settings/main.c:128
+#: dialogs/color-settings/main.c:125
 msgid "Select ICC Profile File"
 msgstr "Vælg ICC-profilfil"
 
-#: dialogs/color-settings/main.c:130
+#: dialogs/color-settings/main.c:127
 msgid "_Import"
 msgstr "_Importér"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:141
+#: dialogs/color-settings/main.c:138
 msgid "Supported ICC profiles"
 msgstr "Understøttede ICC-profiler"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:148
+#: dialogs/color-settings/main.c:145
 msgid "All files"
 msgstr "Alle filer"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: dialogs/color-settings/main.c:191
+#: dialogs/color-settings/main.c:188
 msgid "Default: "
 msgstr "Standard: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: dialogs/color-settings/main.c:198
+#: dialogs/color-settings/main.c:195
 msgid "Colorspace: "
 msgstr "Farverum: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: dialogs/color-settings/main.c:205
+#: dialogs/color-settings/main.c:202
 msgid "Test profile: "
 msgstr "Testprofil: "
 
-#: dialogs/color-settings/main.c:240
+#: dialogs/color-settings/main.c:237
 msgid "Compatible Profiles"
 msgstr "Kompatible profiler"
 
-#: dialogs/color-settings/main.c:519
+#: dialogs/color-settings/main.c:516
 #, c-format
 msgid "Add Color Profile to %s"
 msgstr "Tilføj farveprofil til %s"
 
-#: dialogs/color-settings/main.c:519
+#: dialogs/color-settings/main.c:516
 msgid "Device"
 msgstr "Enhed"
 
-#: dialogs/color-settings/main.c:863 dialogs/color-settings/main.c:864
-#: dialogs/color-settings/main.c:865
+#: dialogs/color-settings/main.c:860 dialogs/color-settings/main.c:861
+#: dialogs/color-settings/main.c:862
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -1521,45 +1521,45 @@ msgstr "Indstil farveprofiler"
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr "farve;indstillinger;styring;skærm;skærme;printere;webcams;webkameraer;scannere;skannere;"
 
-#: dialogs/display-settings/main.c:57
+#: dialogs/display-settings/main.c:54
 #, c-format
 msgid "Only %s (1)"
 msgstr "Kun %s (1)"
 
-#: dialogs/display-settings/main.c:58
+#: dialogs/display-settings/main.c:55
 #, c-format
 msgid "Only %s (2)"
 msgstr "Kun %s (2)"
 
-#: dialogs/display-settings/main.c:86
+#: dialogs/display-settings/main.c:83
 msgid "Left"
 msgstr "Venstre"
 
-#: dialogs/display-settings/main.c:87
+#: dialogs/display-settings/main.c:84
 msgid "Inverted"
 msgstr "Omvendt"
 
-#: dialogs/display-settings/main.c:88
+#: dialogs/display-settings/main.c:85
 msgid "Right"
 msgstr "Højre"
 
-#: dialogs/display-settings/main.c:94
+#: dialogs/display-settings/main.c:91
 msgid "Horizontal"
 msgstr "Vandret"
 
-#: dialogs/display-settings/main.c:95
+#: dialogs/display-settings/main.c:92
 msgid "Vertical"
 msgstr "Lodret"
 
-#: dialogs/display-settings/main.c:96
+#: dialogs/display-settings/main.c:93
 msgid "Horizontal and Vertical"
 msgstr "Lodret og vandret"
 
-#: dialogs/display-settings/main.c:108
+#: dialogs/display-settings/main.c:105
 msgid "Minimal interface to set up an external output"
 msgstr "Minimal grænseflade til opsætning af et ekstern output"
 
-#: dialogs/display-settings/main.c:281
+#: dialogs/display-settings/main.c:278
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1567,69 +1567,69 @@ msgid ""
 msgstr "Den forrige konfiguration genskabes i løbet af <b>%i sekunder</b>, hvis du ikke besvarer dette spørgsmål."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:641
+#: dialogs/display-settings/main.c:638
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:970
+#: dialogs/display-settings/main.c:967
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Det seneste aktive output må ikke være deaktiveret - systemet ville blive uanvendeligt."
 
-#: dialogs/display-settings/main.c:971
+#: dialogs/display-settings/main.c:968
 msgid "Selected output not disabled"
 msgstr "Valgte output er ikke deaktiveret"
 
-#: dialogs/display-settings/main.c:1317
+#: dialogs/display-settings/main.c:1314
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Opdater ændrede skærmprofil '%s'?"
 
-#: dialogs/display-settings/main.c:1322
+#: dialogs/display-settings/main.c:1319
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Opdater '%s'"
 
-#: dialogs/display-settings/main.c:1670
+#: dialogs/display-settings/main.c:1667
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Vil du slette skærmprofilen '%s'?"
 
-#: dialogs/display-settings/main.c:1673
+#: dialogs/display-settings/main.c:1670
 msgid "Delete Profile"
 msgstr "Slet profil"
 
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1671
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Når en skærmprofil er blevet slettet kan den ikke genskabes."
 
-#: dialogs/display-settings/main.c:1674
-#: dialogs/mime-settings/xfce-mime-chooser.c:135
-#: dialogs/mime-settings/xfce-mime-chooser.c:380
-#: dialogs/mime-settings/xfce-mime-window.c:1210
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
+#: dialogs/display-settings/main.c:1671
+#: dialogs/mime-settings/xfce-mime-chooser.c:131
+#: dialogs/mime-settings/xfce-mime-chooser.c:376
+#: dialogs/mime-settings/xfce-mime-window.c:1295
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:134
 msgid "Cancel"
 msgstr "Annuller"
 
-#: dialogs/display-settings/main.c:1675
+#: dialogs/display-settings/main.c:1672
 msgid "Delete"
 msgstr "Slet"
 
-#: dialogs/display-settings/main.c:1761
+#: dialogs/display-settings/main.c:1758
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
 msgstr[0] "%d Xfce-panel"
 msgstr[1] "%d Xfce-paneler"
 
-#: dialogs/display-settings/main.c:2546
+#: dialogs/display-settings/main.c:2543
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Vælg en skærm for at ændre dens egenskaber; træk den for at ændre dens placering."
 
-#: dialogs/display-settings/main.c:2645 dialogs/display-settings/main.c:2678
+#: dialogs/display-settings/main.c:2642 dialogs/display-settings/main.c:2675
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1638,23 +1638,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2895
+#: dialogs/display-settings/main.c:2892
 msgid "Mirror Screens"
 msgstr "Klon skærme"
 
-#: dialogs/display-settings/main.c:2945
+#: dialogs/display-settings/main.c:2942
 msgid "(Disabled)"
 msgstr "(Deaktiveret)"
 
-#: dialogs/display-settings/main.c:3476
+#: dialogs/display-settings/main.c:3473
 msgid "ATI Settings"
 msgstr "ATI-indstillinger"
 
-#: dialogs/display-settings/main.c:3481
+#: dialogs/display-settings/main.c:3478
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Kunne ikke starte Xfce-skærmindstillingerne"
 
-#: dialogs/display-settings/main.c:3489
+#: dialogs/display-settings/main.c:3486
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kan ikke opstarte de proprietære driverindstillinger"
 
@@ -1667,137 +1667,137 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "display;indstillinger;skærm;opløsning;opdateringshastighed;rotation;ekstern;projektorer;skærme;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:463
+#: dialogs/display-settings/display-settings.c:459
 msgid "Display:"
 msgstr "Skærm:"
 
-#: dialogs/display-settings/display-settings.c:471
+#: dialogs/display-settings/display-settings.c:467
 msgid "Resolution:"
 msgstr "Opløsning:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1008
+#: dialogs/display-settings/display-settings-wayland.c:1004
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Din kompositør ser ikke ud til at understøtte wlr-output-management-protokollen"
 
 #. Set dialog title and icon
-#: dialogs/keyboard-settings/command-dialog.c:109
+#: dialogs/keyboard-settings/command-dialog.c:105
 msgid "Shortcut Command"
 msgstr "Genvejskommando"
 
-#: dialogs/keyboard-settings/command-dialog.c:139
+#: dialogs/keyboard-settings/command-dialog.c:135
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr "Indtast kommandoen som du vil udløse med en genvej."
 
 #. We are editing an existing shortcut
-#: dialogs/keyboard-settings/command-dialog.c:157
+#: dialogs/keyboard-settings/command-dialog.c:153
 msgid "Shortcut:"
 msgstr "Genvej:"
 
-#: dialogs/keyboard-settings/command-dialog.c:182
+#: dialogs/keyboard-settings/command-dialog.c:178
 msgid "Comm_and:"
 msgstr "Komm_ando:"
 
-#: dialogs/keyboard-settings/command-dialog.c:207
+#: dialogs/keyboard-settings/command-dialog.c:203
 msgid "Use _startup notification"
 msgstr "Brug _opstartsunderretning"
 
-#: dialogs/keyboard-settings/command-dialog.c:253
+#: dialogs/keyboard-settings/command-dialog.c:249
 msgid "The command may not be empty."
 msgstr "Kommandoen må ikke være tom."
 
-#: dialogs/keyboard-settings/command-dialog.c:273
+#: dialogs/keyboard-settings/command-dialog.c:269
 msgid "Select command"
 msgstr "Vælg kommando"
 
-#: dialogs/keyboard-settings/command-dialog.c:281
-#: dialogs/mime-settings/xfce-mime-chooser.c:387
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:432
+#: dialogs/keyboard-settings/command-dialog.c:277
+#: dialogs/mime-settings/xfce-mime-chooser.c:383
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:431
 msgid "All Files"
 msgstr "Alle filer"
 
-#: dialogs/keyboard-settings/command-dialog.c:286
-#: dialogs/mime-settings/xfce-mime-chooser.c:392
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:437
+#: dialogs/keyboard-settings/command-dialog.c:282
+#: dialogs/mime-settings/xfce-mime-chooser.c:388
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:436
 msgid "Executable Files"
 msgstr "Kørbare filer"
 
-#: dialogs/keyboard-settings/command-dialog.c:301
-#: dialogs/mime-settings/xfce-mime-chooser.c:407
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:452
+#: dialogs/keyboard-settings/command-dialog.c:297
+#: dialogs/mime-settings/xfce-mime-chooser.c:403
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:451
 msgid "Perl Scripts"
 msgstr "Perl-scripter"
 
-#: dialogs/keyboard-settings/command-dialog.c:307
-#: dialogs/mime-settings/xfce-mime-chooser.c:413
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:458
+#: dialogs/keyboard-settings/command-dialog.c:303
+#: dialogs/mime-settings/xfce-mime-chooser.c:409
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:457
 msgid "Python Scripts"
 msgstr "Python-scripter"
 
-#: dialogs/keyboard-settings/command-dialog.c:313
-#: dialogs/mime-settings/xfce-mime-chooser.c:419
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:464
+#: dialogs/keyboard-settings/command-dialog.c:309
+#: dialogs/mime-settings/xfce-mime-chooser.c:415
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:463
 msgid "Ruby Scripts"
 msgstr "Ruby-scripter"
 
-#: dialogs/keyboard-settings/command-dialog.c:319
-#: dialogs/mime-settings/xfce-mime-chooser.c:425
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:470
+#: dialogs/keyboard-settings/command-dialog.c:315
+#: dialogs/mime-settings/xfce-mime-chooser.c:421
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:469
 msgid "Shell Scripts"
 msgstr "Skal-scripter"
 
-#: dialogs/keyboard-settings/main.c:83
+#: dialogs/keyboard-settings/main.c:80
 msgid "Unable to initialize GTK+."
 msgstr "Kunne ikke klargøre GTK+."
 
-#: dialogs/keyboard-settings/main.c:109
+#: dialogs/keyboard-settings/main.c:106
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Kunne ikke forbinde til xfconf-dæmon. Årsag: %s"
 
-#: dialogs/keyboard-settings/main.c:120
+#: dialogs/keyboard-settings/main.c:117
 msgid "Could not create the settings dialog."
 msgstr "Kunne ikke oprette indstillingsdialogen."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:431
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:427
 msgid "Command"
 msgstr "Kommando"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:439
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:435
 msgid "Shortcut"
 msgstr "Genvej"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:508
 msgid "Layout"
 msgstr "Layout"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:509
 msgid "Variant"
 msgstr "Variant"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Dette vil nulstille alle genveje til deres standardværdier. Vil du virkelig gøre dette?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
 msgid "Reset to Defaults"
 msgstr "Nulstil til standarder"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
 msgid "No"
 msgstr "Nej"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
 msgid "Yes"
 msgstr "Ja"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1362
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
 msgid "The system defaults will be restored next time you log in."
 msgstr "Systemstandarderne vil blive genskabt næste gang du logger ind."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1364
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -1809,55 +1809,55 @@ msgstr "Redigér tastaturindstillinger og programgenveje"
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numerisk lås;tastatur;layout;genveje;"
 
-#: dialogs/mime-settings/main.c:118
+#: dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
 msgstr "Kunne ikke oprette mime-dialogen."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:129
+#: dialogs/mime-settings/xfce-mime-chooser.c:125
 msgid "Select Application"
 msgstr "Vælg program"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:137
-#: dialogs/mime-settings/xfce-mime-chooser.c:381
+#: dialogs/mime-settings/xfce-mime-chooser.c:133
+#: dialogs/mime-settings/xfce-mime-chooser.c:377
 msgid "Open"
 msgstr "Åbn"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:205
+#: dialogs/mime-settings/xfce-mime-chooser.c:201
 msgid "Use a c_ustom command:"
 msgstr "Brug en _tilpasset kommando:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:206
+#: dialogs/mime-settings/xfce-mime-chooser.c:202
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
 msgstr "Brug en tilpasset kommando for et program der ikke er tilgængelig fra programlisten ovenfor."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:224
+#: dialogs/mime-settings/xfce-mime-chooser.c:220
 msgid "_Browse..."
 msgstr "_Gennemse ..."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:378
+#: dialogs/mime-settings/xfce-mime-chooser.c:374
 msgid "Select an Application"
 msgstr "Vælg et program"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:527
+#: dialogs/mime-settings/xfce-mime-chooser.c:523
 msgid "None available"
 msgstr "Ingen tilgængelige"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:575
+#: dialogs/mime-settings/xfce-mime-chooser.c:571
 msgid "Recommended Applications"
 msgstr "Anbefalede programmer"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:594
+#: dialogs/mime-settings/xfce-mime-chooser.c:590
 msgid "Other Applications"
 msgstr "Andre programmer"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:614
+#: dialogs/mime-settings/xfce-mime-chooser.c:610
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "Åbn <i>%s</i> og andre filer af typen \"%s\" med:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:619
+#: dialogs/mime-settings/xfce-mime-chooser.c:615
 #, c-format
 msgid ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
@@ -1868,186 +1868,258 @@ msgid_plural ""
 msgstr[0] "Åbn <i>%s</i>, andre filer af typen \"%s\", og %d og anden valgt MIME-type med:"
 msgstr[1] "Åbn <i>%s</i>, andre filer af typen \"%s\", og %d og andre valgte MIME-typer med:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:659
+#: dialogs/mime-settings/xfce-mime-chooser.c:655
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "Kunne ikke tilføje det nye program \"%s\""
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:141
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:148
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:137
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:144
 msgid "Press left mouse button to change the selected application."
 msgstr "Tryk på venstre musetast for at ændre det valgte program."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:147
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:143
 msgid "Application Chooser Button"
 msgstr "Programvælgerknap"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:334
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:330
 msgid "No application selected"
 msgstr "Intet program valgt"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:345
 msgid "Failed to set default Web Browser"
 msgstr "Kunne ikke indstille standardwebbrowser"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:346
 msgid "Failed to set default Mail Reader"
 msgstr "Kunne ikke indstille standardpostlæser"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:347
 msgid "Failed to set default File Manager"
 msgstr "Kunne ikke indstille standardfilhåndtering"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:348
 msgid "Failed to set default Terminal Emulator"
 msgstr "Kunne ikke indstille standardterminalemulator"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:353
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
 msgid "Failed to set default Text Editor"
 msgstr "Kunne ikke indstille standardtekstredigering"
 
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
+msgid "Failed to set default Image Viewer"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
+msgid "Failed to set default Audio Player"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+msgid "Failed to set default Video Player"
+msgstr ""
+
 #. allocate the chooser
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:423
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
 msgid "Select application"
 msgstr "Vælg program"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
 msgid "Choose a custom Web Browser"
 msgstr "Vælg en brugerdefineret webbrowser"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
 msgid "Choose a custom Mail Reader"
 msgstr "Vælg en brugerdefineret postlæser"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
 msgid "Choose a custom File Manager"
 msgstr "Vælg en tilpasset filhåndtering"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:537
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
 msgid "Choose a custom Terminal Emulator"
 msgstr "Vælg en brugerdefineret terminalemulator"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:537
 msgid "Choose a custom Text Editor"
 msgstr "Vælg en brugerdefineret tekstredigering"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+msgid "Choose a custom Image Viewer"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:539
+msgid "Choose a custom Audio Player"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+msgid "Choose a custom Viddeo Player"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr "Angiv programmet du vil bruge\nsom standardwebbrowser i Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:545
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr "Angiv programmet du vil bruge\nsom standardpostlæser i Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr "Angiv programmet du\nvil bruge som standardfilhåndtering i Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:545
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:547
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr "Angiv programmet du vil bruge\nsom standardterminalemulator i Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:548
 msgid ""
 "Specify the application you want to use\n"
 "as default Text Editor for Xfce:"
 msgstr "Angiv programmet du vil bruge\nsom standardtekstredigering i Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:610
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:549
+msgid ""
+"Specify the application you want to use\n"
+"as default Image Viewer for Xfce:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:550
+msgid ""
+"Specify the application you want to use\n"
+"as default Audio Player for Xfce:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:551
+msgid ""
+"Specify the application you want to use\n"
+"as default Video Player for Xfce:"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:615
 msgid "Browse the file system to choose a custom command."
 msgstr "Gennemse filsystemet for at vælge en brugerdefineret kommando."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:760
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:765
 msgid "_Other..."
 msgstr "_Andet ..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:761
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:766
 msgid "Use a custom application which is not included in the above list."
 msgstr "Brug et brugerdefineret program som ikke er i ovenstående liste."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:114
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
 msgid "Choose Preferred Application"
 msgstr "Vælg foretrukket program"
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:247
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
 msgstr "Vælg venligst din foretrukne webbrowser\nnu og klik på OK for at fortsætte."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:249
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
 msgstr "Vælg venligst din foretrukne postlæser\nnu og klik på OK for at fortsætte."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
 msgstr "Vælg venligst din foretrukne filhåndtering\nnu og klik på OK for at fortsætte."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
 msgstr "Vælg venligst din foretrukne terminalemulator\nnu og klik på OK for at fortsætte."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
 msgid ""
 "Please choose your preferred Text\n"
 "Editor now and click OK to proceed."
 msgstr "Vælg venligst din foretrukne tekstredigering\nnu og klik på OK for at fortsætte."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:29
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
+msgid ""
+"Please choose your preferred Image\n"
+"Viewer now and click OK to proceed."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
+msgid ""
+"Please choose your preferred Audio\n"
+"Player now and click OK to proceed."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:261
+msgid ""
+"Please choose your preferred Video\n"
+"Player now and click OK to proceed."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:25
 msgid "Failed to execute default Web Browser"
 msgstr "Kunne ikke køre standardwebbrowser"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:30
+#: dialogs/mime-settings/xfce-mime-helper-main.c:26
 msgid "Failed to execute default Mail Reader"
 msgstr "Kunne ikke køre standardpostlæser"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:31
+#: dialogs/mime-settings/xfce-mime-helper-main.c:27
 msgid "Failed to execute default File Manager"
 msgstr "Kunne ikke køre standardfilhåndtering"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:32
+#: dialogs/mime-settings/xfce-mime-helper-main.c:28
 msgid "Failed to execute default Terminal Emulator"
 msgstr "Kunne ikke køre standardterminalemulator"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:33
+#: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Text Editor"
 msgstr "Kunne ikke køre standardtekstredigering"
 
+#: dialogs/mime-settings/xfce-mime-helper-main.c:30
+msgid "Failed to execute default Image Viewer"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:31
+msgid "Failed to execute default Audio Player"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:32
+msgid "Failed to execute default Video Player"
+msgstr ""
+
 #. Enable permanently dismissing this error.
-#: dialogs/mime-settings/xfce-mime-helper-main.c:75
+#: dialogs/mime-settings/xfce-mime-helper-main.c:74
 msgid "Do _not show this message again"
 msgstr "Vis _ikke meddelelsen igen"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: dialogs/mime-settings/xfce-mime-helper-main.c:105
 msgid "Print version information and exit"
 msgstr "Udskriv versionsinformation og afslut"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:107
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr "Start standardhjælpen af TYPE med mulige PARAMETRE, hvor TYPE er en af følgende værdier."
 
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 #: dialogs/mime-settings/xfce-mime-helper-main.c:107
-#: dialogs/mime-settings/xfce-mime-helper-main.c:108
 msgid "TYPE [PARAMETER]"
 msgstr "TYPE [PARAMETRE]"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:108
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr "Efterspørg standardhjælperen af TYPE, hvor TYPE er en af følgende værdier."
@@ -2060,16 +2132,19 @@ msgid ""
 "  MailReader       - The preferred Mail Reader.\n"
 "  FileManager      - The preferred File Manager.\n"
 "  TerminalEmulator - The preferred Terminal Emulator.\n"
-"  TextEditor       - The preferred Text Editor."
-msgstr "Følgende TYPEr understøttes af kommandoerne --launch og --query:\n\n  WebBrowser       - Den foretrukne webbrowser.\n  MailReader       - Den foretrukne postlæser.\n  FileManager      - Den foretrukne filhåndtering.\n  TerminalEmulator - Den foretrukne terminalemulator.\n  Tekstredigering  - Den foretrukne tekstredigering."
+"  TextEditor       - The preferred Text Editor.\n"
+"  ImageViewer      - The preferred Image Viewer.\n"
+"  AudioPlayer      - The preferred Audio Player.\n"
+"  VideoPlayer      - The preferred Video Player.\n"
+msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:177
-#: dialogs/mime-settings/xfce-mime-helper-main.c:251
+#: dialogs/mime-settings/xfce-mime-helper-main.c:180
+#: dialogs/mime-settings/xfce-mime-helper-main.c:254
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "Ugyldig hjælpertype \"%s\""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:235
+#: dialogs/mime-settings/xfce-mime-helper-main.c:238
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -2084,171 +2159,200 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nOphavsret (c) 2003-2006\n        os-cillation e.K. Alle rettigheder forbeholdes.\n\nSkrevet af Benedikt Meurer <benny@xfce.org>.\n\nKompileret med Gtk+-%d.%d.%d, kørende Gtk+-%d.%d.%d.\n\nRapportér venligst fejl til <%s>.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:262
+#: dialogs/mime-settings/xfce-mime-helper-main.c:265
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Ingen hjælper defineret for \"%s\"."
 
-#: dialogs/mime-settings/xfce-mime-helper.c:431
+#: dialogs/mime-settings/xfce-mime-helper.c:427
 msgid "No command specified"
 msgstr "Ingen kommando valgt"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:811
-#: dialogs/mime-settings/xfce-mime-helper.c:850
-#: dialogs/mime-settings/xfce-mime-helper.c:941
-#: dialogs/mime-settings/xfce-mime-helper.c:980
+#: dialogs/mime-settings/xfce-mime-helper.c:807
+#: dialogs/mime-settings/xfce-mime-helper.c:846
+#: dialogs/mime-settings/xfce-mime-helper.c:937
+#: dialogs/mime-settings/xfce-mime-helper.c:976
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Kunne ikke åbne %s til skrivning"
 
-#: dialogs/mime-settings/xfce-mime-window.c:192
+#: dialogs/mime-settings/xfce-mime-window.c:188
 #: dialogs/mime-settings/xfce4-mime-settings.desktop.in:4
 msgid "Default Applications"
 msgstr "Standardprogrammer"
 
 #. Internet
-#: dialogs/mime-settings/xfce-mime-window.c:215
+#: dialogs/mime-settings/xfce-mime-window.c:211
 msgid "_Internet"
 msgstr "_Internet"
 
-#: dialogs/mime-settings/xfce-mime-window.c:228
+#: dialogs/mime-settings/xfce-mime-window.c:224
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Webbrowser"
 
-#: dialogs/mime-settings/xfce-mime-window.c:236
+#: dialogs/mime-settings/xfce-mime-window.c:232
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr "Standardwebbrowseren bruges til at åbne hyperlinks og vise hjælp-indhold."
 
-#: dialogs/mime-settings/xfce-mime-window.c:254
+#: dialogs/mime-settings/xfce-mime-window.c:250
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Postlæser"
 
-#: dialogs/mime-settings/xfce-mime-window.c:262
+#: dialogs/mime-settings/xfce-mime-window.c:258
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr "Standardpostlæseren bruges til at skrive e-mails, når du klikker på e-mailadresser."
 
 #. Utilities
-#: dialogs/mime-settings/xfce-mime-window.c:276
+#: dialogs/mime-settings/xfce-mime-window.c:272
 msgid "_Utilities"
 msgstr "_Redskaber"
 
-#: dialogs/mime-settings/xfce-mime-window.c:289
+#: dialogs/mime-settings/xfce-mime-window.c:285
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Filhåndtering"
 
-#: dialogs/mime-settings/xfce-mime-window.c:297
+#: dialogs/mime-settings/xfce-mime-window.c:293
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr "Standardfilhåndteringen bruges til at gennemse mappernes indhold."
 
-#: dialogs/mime-settings/xfce-mime-window.c:315
+#: dialogs/mime-settings/xfce-mime-window.c:311
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Terminalemulator"
 
-#: dialogs/mime-settings/xfce-mime-window.c:323
+#: dialogs/mime-settings/xfce-mime-window.c:319
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr "Standardterminalemulatoren bruges til at køre kommandoer som kræver et CLI-miljø."
 
-#: dialogs/mime-settings/xfce-mime-window.c:341
+#: dialogs/mime-settings/xfce-mime-window.c:337
 msgid "Text Editor"
 msgstr "Standardtekstredigering"
 
-#: dialogs/mime-settings/xfce-mime-window.c:349
+#: dialogs/mime-settings/xfce-mime-window.c:345
 msgid "The default Text Editor will be used to open and edit text files."
 msgstr "Standardtekstredigeringen bruges til at åbne og redigere tekstfiler."
 
+#. Media
+#: dialogs/mime-settings/xfce-mime-window.c:360
+msgid "_Media"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:373
+msgid "Image Viewer"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:381
+msgid "The default Image Viewer will be used to display image files."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:399
+msgid "Audio Player"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:407
+msgid "The default Audio Player will be used to play audio files."
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:425
+msgid "Video Player"
+msgstr ""
+
+#: dialogs/mime-settings/xfce-mime-window.c:433
+msgid "The default Video Player will be used to play video files."
+msgstr ""
+
 #. Mimes
-#: dialogs/mime-settings/xfce-mime-window.c:363
+#: dialogs/mime-settings/xfce-mime-window.c:448
 msgid "_Others"
 msgstr "_Andre"
 
-#: dialogs/mime-settings/xfce-mime-window.c:373
+#: dialogs/mime-settings/xfce-mime-window.c:458
 msgid "_Filter:"
 msgstr "_Filter:"
 
-#: dialogs/mime-settings/xfce-mime-window.c:381
+#: dialogs/mime-settings/xfce-mime-window.c:466
 msgid "Clear filter"
 msgstr "Ryd filter"
 
-#: dialogs/mime-settings/xfce-mime-window.c:411
+#: dialogs/mime-settings/xfce-mime-window.c:496
 msgid "Open with..."
 msgstr "Åbn med ..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:460
+#: dialogs/mime-settings/xfce-mime-window.c:545
 msgid "MIME Type"
 msgstr "MIME-type"
 
-#: dialogs/mime-settings/xfce-mime-window.c:488
+#: dialogs/mime-settings/xfce-mime-window.c:573
 msgid "Status"
 msgstr "Status"
 
-#: dialogs/mime-settings/xfce-mime-window.c:508
+#: dialogs/mime-settings/xfce-mime-window.c:593
 msgid "Default Application"
 msgstr "Standardprogram"
 
-#: dialogs/mime-settings/xfce-mime-window.c:684
-#: dialogs/mime-settings/xfce-mime-window.c:853
+#: dialogs/mime-settings/xfce-mime-window.c:769
+#: dialogs/mime-settings/xfce-mime-window.c:938
 msgid "User Set"
 msgstr "Angivet af bruger"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:686
-#: dialogs/mime-settings/xfce-mime-window.c:853
-#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
-#: dialogs/mouse-settings/main.c:479
+#: dialogs/mime-settings/xfce-mime-window.c:771
+#: dialogs/mime-settings/xfce-mime-window.c:938
+#: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
+#: dialogs/mouse-settings/main.c:476
 msgid "Default"
 msgstr "Standard"
 
-#: dialogs/mime-settings/xfce-mime-window.c:776
+#: dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "%d MIME-type fundet"
 msgstr[1] "%d MIME-typer fundet"
 
-#: dialogs/mime-settings/xfce-mime-window.c:898
+#: dialogs/mime-settings/xfce-mime-window.c:983
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Kunne ikke angive program \"%s\" for MIME-type \"%s\"."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1007
+#: dialogs/mime-settings/xfce-mime-window.c:1092
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
 msgstr[0] "%d MIME-type valgt"
 msgstr[1] "%d MIME-typer valgt"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1203
+#: dialogs/mime-settings/xfce-mime-window.c:1288
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Dette vil fjerne dine brugerdefinerede mime-associationer og genskabe systemets standardværdier."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1205
+#: dialogs/mime-settings/xfce-mime-window.c:1290
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Er du sikker på, at du vil nulstille indholdstypen \"%s\" til dens standardværdi?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1209
+#: dialogs/mime-settings/xfce-mime-window.c:1294
 msgid "Question"
 msgstr "Spørgsmål"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1211
-#: dialogs/mime-settings/xfce-mime-window.c:1283
+#: dialogs/mime-settings/xfce-mime-window.c:1296
+#: dialogs/mime-settings/xfce-mime-window.c:1368
 msgid "Reset to Default"
 msgstr "Nulstil til standarder"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1278
+#: dialogs/mime-settings/xfce-mime-window.c:1363
 msgid "Choose Application..."
 msgstr "Vælg program ..."
 
@@ -2514,28 +2618,28 @@ msgstr "Xfe Filhåndtering"
 msgid "X Terminal"
 msgstr "X Terminal"
 
-#: dialogs/mouse-settings/main.c:86
+#: dialogs/mouse-settings/main.c:83
 msgid "Active device in the dialog"
 msgstr "Aktiv enhed i vinduet"
 
-#: dialogs/mouse-settings/main.c:86
+#: dialogs/mouse-settings/main.c:83
 msgid "DEVICE NAME"
 msgstr "ENHEDSNAVN"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:168
+#: dialogs/mouse-settings/main.c:165
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:178
+#: dialogs/mouse-settings/main.c:175
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:189
+#: dialogs/mouse-settings/main.c:186
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
@@ -2549,196 +2653,196 @@ msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "indstillinger;knapper;rul;retning;markør;hastighed;dobbeltklik;tema;hjul;"
 
-#: xfce4-settings-editor/main.c:185
+#: xfce4-settings-editor/main.c:182
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
 msgid "Settings Editor"
 msgstr "Indstillingsredigering"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:277
+#: xfce4-settings-editor/xfce-settings-editor-box.c:273
 msgid "Channel"
 msgstr "Kanal"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:327
+#: xfce4-settings-editor/xfce-settings-editor-box.c:323
 msgid "Property"
 msgstr "Egenskab"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:335
+#: xfce4-settings-editor/xfce-settings-editor-box.c:331
 msgid "Type"
 msgstr "Type"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:342
+#: xfce4-settings-editor/xfce-settings-editor-box.c:338
 msgid "Locked"
 msgstr "Låst"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:349
+#: xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Value"
 msgstr "Værdi"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:369
+#: xfce4-settings-editor/xfce-settings-editor-box.c:365
 msgid "New property"
 msgstr "Ny egenskab"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:382
+#: xfce4-settings-editor/xfce-settings-editor-box.c:378
 msgid "Edit selected property"
 msgstr "Rediger valgte egenskab"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:390
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1076
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1578
+#: xfce4-settings-editor/xfce-settings-editor-box.c:386
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1072
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1574
 msgid "_Reset"
 msgstr "_Nulstil"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:395
+#: xfce4-settings-editor/xfce-settings-editor-box.c:391
 msgid "Reset selected property"
 msgstr "Nulstil valgte egenskab"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:501
-#: xfce4-settings-editor/xfce-settings-editor-box.c:594
-#: xfce4-settings-editor/xfce-settings-editor-box.c:712
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:83
+#: xfce4-settings-editor/xfce-settings-editor-box.c:497
+#: xfce4-settings-editor/xfce-settings-editor-box.c:590
+#: xfce4-settings-editor/xfce-settings-editor-box.c:708
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:79
 msgid "Empty"
 msgstr "Tom"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:504
+#: xfce4-settings-editor/xfce-settings-editor-box.c:500
 msgid "Array"
 msgstr "Tabel"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:509
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:84
+#: xfce4-settings-editor/xfce-settings-editor-box.c:505
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:80
 msgid "String"
 msgstr "Streng"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:517
+#: xfce4-settings-editor/xfce-settings-editor-box.c:513
 msgid "Integer"
 msgstr "Heltal"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:520
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:85
+#: xfce4-settings-editor/xfce-settings-editor-box.c:516
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:81
 msgid "Boolean"
 msgstr "Boolesk"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:523
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:87
+#: xfce4-settings-editor/xfce-settings-editor-box.c:519
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:83
 msgid "Double"
 msgstr "Decimaltal"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:851
+#: xfce4-settings-editor/xfce-settings-editor-box.c:847
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Nulstilling af en kanal vil fjerne disse brugerdefinerede indstillinger permanent."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:859
+#: xfce4-settings-editor/xfce-settings-editor-box.c:855
 msgid "_Reset Channel"
 msgstr "_Nulstil kanal"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:860
+#: xfce4-settings-editor/xfce-settings-editor-box.c:856
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Er du sikker på, at du vil nulstille kanalen \"%s\" og alle dens egenskaber?"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:935
+#: xfce4-settings-editor/xfce-settings-editor-box.c:931
 msgid "reset"
 msgstr "nulstil"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:992
+#: xfce4-settings-editor/xfce-settings-editor-box.c:988
 #, c-format
 msgid "Monitor %s"
 msgstr "Overvåg %s"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
+#: xfce4-settings-editor/xfce-settings-editor-box.c:996
 msgid "Clear"
 msgstr "Ryd"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
+#: xfce4-settings-editor/xfce-settings-editor-box.c:996
 msgid "Close"
 msgstr "Luk"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1033
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1029
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "start overvågning af kanal \"%s\""
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1082
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1078
 msgid "_Monitor"
 msgstr "_Overvågning"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1092
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1088
 msgid "Refresh"
 msgstr "Opdater"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1575
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1571
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Nulstilling af en egenskab vil fjerne disse brugerdefinerede indstillinger permanent."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1579
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1575
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Er du sikker på, at du vil nulstille egenskaben \"%s\"?"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:82
 msgid "Int"
 msgstr "Heltal"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:88
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:84
 msgid "Unsigned Int"
 msgstr "Heltal uden fortegn"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:89
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:85
 msgid "Int64"
 msgstr "Heltal-64"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
 msgid "Unsigned Int64"
 msgstr "Heltal-64 uden fortegn"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:135
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:131
 msgid "New Property"
 msgstr "Ny egenskab"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:134
 msgid "Save"
 msgstr "Gem"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:153
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:149
 msgid "_Property:"
 msgstr "_Egenskab:"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:167
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:163
 msgid "_Type:"
 msgstr "_Type:"
 
 #. strings
 #. integers
 #. bool
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:196
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:206
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:217
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:192
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:202
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:213
 msgid "_Value:"
 msgstr "_Værdi:"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:372
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:368
 msgid "Property names must start with a '/' character"
 msgstr "Egenskabsnavne skal begynde med et '/'-tegn"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:383
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:379
 msgid "The root element ('/') is not a valid property name"
 msgstr "Rodelementet ('/') er ikke et gyldigt egenskabsnavn"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:400
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
 msgstr "Egenskabsnavne må kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' og '>', såvel som '/' som en separator"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:414
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:410
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Egenskabsnavne må ikke indeholde mere end ét '/'-tegn efter hinanden"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:428
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:424
 msgid "Property names cannot end with a '/' character"
 msgstr "Egenskabsnavne må ikke slutte med et '/'-tegn"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:641
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:637
 msgid "Edit Property"
 msgstr "Rediger egenskab"
 
@@ -2750,20 +2854,20 @@ msgstr "Grafisk indstillingsredigering til Xfconf"
 msgid "registry;regedit;configuration file;"
 msgstr "register;regedit;registerredigering;konfigurationsfil;"
 
-#: xfce4-settings-manager/main.c:43
+#: xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Indstillingsvindue at vise"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:227
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:223
 msgid "All _Settings"
 msgstr "Alle _indstillinger"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:426
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:422
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:920
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:932
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Kunne ikke starte \"%s\""
@@ -2780,61 +2884,61 @@ msgstr "Grafisk indstillingshåndtering til Xfce"
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr "kontrol;panel;center;system;indstillinger;personliggør;hardware;"
 
-#: xfsettingsd/accessibility.c:413
+#: xfsettingsd/accessibility.c:409
 msgid "Sticky keys are enabled"
 msgstr "Klæbetaster er aktiveret"
 
-#: xfsettingsd/accessibility.c:415
+#: xfsettingsd/accessibility.c:411
 msgid "Sticky keys are disabled"
 msgstr "Klæbetaster er deaktiveret"
 
-#: xfsettingsd/accessibility.c:417
+#: xfsettingsd/accessibility.c:413
 msgid "Sticky keys"
 msgstr "Klæbetaster"
 
-#: xfsettingsd/accessibility.c:422
+#: xfsettingsd/accessibility.c:418
 msgid "Slow keys are enabled"
 msgstr "Langsomme taster er aktiveret"
 
-#: xfsettingsd/accessibility.c:424
+#: xfsettingsd/accessibility.c:420
 msgid "Slow keys are disabled"
 msgstr "Langsomme taster er deaktiveret"
 
-#: xfsettingsd/accessibility.c:426
+#: xfsettingsd/accessibility.c:422
 msgid "Slow keys"
 msgstr "Langsomme taster"
 
-#: xfsettingsd/accessibility.c:431
+#: xfsettingsd/accessibility.c:427
 msgid "Bounce keys are enabled"
 msgstr "Rystetaster er aktiveret"
 
-#: xfsettingsd/accessibility.c:433
+#: xfsettingsd/accessibility.c:429
 msgid "Bounce keys are disabled"
 msgstr "Rystetaster er deaktiveret"
 
-#: xfsettingsd/accessibility.c:435
+#: xfsettingsd/accessibility.c:431
 msgid "Bounce keys"
 msgstr "Rystetaster"
 
-#: xfsettingsd/keyboard-shortcuts.c:240
+#: xfsettingsd/keyboard-shortcuts.c:236
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Kunne ikke starte genvej \"%s\""
 
-#: xfsettingsd/main.c:97
+#: xfsettingsd/main.c:94
 msgid "Fork to the background"
 msgstr "Forgren til baggrunden"
 
-#: xfsettingsd/main.c:98
+#: xfsettingsd/main.c:95
 msgid "Do not wait for a window manager on startup"
 msgstr "Vent ikke på vindueshåndtering ved opstart"
 
-#: xfsettingsd/main.c:99
+#: xfsettingsd/main.c:96
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Erstat kørende xsettings-dæmon (hvis den findes)"
 
 #. value in xfconf isn't a string, so make a default one
-#: xfsettingsd/workspaces.c:322 xfsettingsd/workspaces.c:379
+#: xfsettingsd/workspaces.c:318 xfsettingsd/workspaces.c:375
 #, c-format
 msgid "Workspace %d"
 msgstr "Arbejdsområde %d"
