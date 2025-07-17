@@ -16,6 +16,7 @@ names = [
   'org.xfce.terminalemulator',
   'org.xfce.texteditor',
   'org.xfce.webbrowser',
+  'org.xfce.videoplayer',
 ]
 
 foreach size : sizes
