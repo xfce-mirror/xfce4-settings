@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-11 12:48+0200\n"
+"POT-Creation-Date: 2025-07-17 12:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: vyper <xvirusxx@gmail.com>, 2016\n"
 "Language-Team: Romanian (http://app.transifex.com/xfce/xfce4-settings/language/ro/)\n"
@@ -36,10 +36,10 @@ msgstr "Accesibilitate"
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3482
-#: dialogs/mime-settings/xfce-mime-window.c:194
-#: xfce4-settings-editor/main.c:188
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:234
+#: dialogs/display-settings/main.c:3479
+#: dialogs/mime-settings/xfce-mime-window.c:190
+#: xfce4-settings-editor/main.c:185
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
 msgid "_Close"
 msgstr "_Închide"
 
@@ -50,9 +50,9 @@ msgstr "_Închide"
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
 #: common/resources/mouse-dialog.glade:179
-#: dialogs/mime-settings/xfce-mime-window.c:197
-#: xfce4-settings-editor/main.c:187
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:223
+#: dialogs/mime-settings/xfce-mime-window.c:193
+#: xfce4-settings-editor/main.c:184
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:219
 msgid "_Help"
 msgstr "_Ajutor"
 
@@ -259,8 +259,8 @@ msgstr "_Maus"
 
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1602 dialogs/display-settings/main.c:85
-#: dialogs/display-settings/main.c:93
+#: dialogs/appearance-settings/main.c:1599 dialogs/display-settings/main.c:82
+#: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "Fără"
 
@@ -310,7 +310,7 @@ msgstr "Aspect"
 #: common/resources/color-dialog.glade:374
 #: common/resources/keyboard-dialog.glade:636
 #: common/resources/keyboard-dialog.glade:970
-#: xfce4-settings-editor/xfce-settings-editor-box.c:364
+#: xfce4-settings-editor/xfce-settings-editor-box.c:360
 msgid "_Add"
 msgstr "_Adaugă"
 
@@ -544,20 +544,20 @@ msgstr "Adaugă profilul la dispozitiv"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1341 dialogs/color-settings/main.c:129
-#: dialogs/keyboard-settings/command-dialog.c:113
-#: dialogs/keyboard-settings/command-dialog.c:275
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:570
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+#: dialogs/appearance-settings/main.c:1338 dialogs/color-settings/main.c:126
+#: dialogs/keyboard-settings/command-dialog.c:109
+#: dialogs/keyboard-settings/command-dialog.c:271
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:575
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:106
 msgid "_Cancel"
 msgstr "_Renunță"
 
 #: common/resources/color-dialog.glade:543
 #: common/resources/keyboard-dialog.glade:86
-#: dialogs/keyboard-settings/command-dialog.c:117
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:571
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
+#: dialogs/keyboard-settings/command-dialog.c:113
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:576
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
 msgid "_OK"
 msgstr "_OK"
 
@@ -620,7 +620,7 @@ msgid "The primary display can be configured to show:"
 msgstr "Ecranul principal poate fi configurat pentru a afișa:"
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1735
+#: dialogs/display-settings/main.c:1732
 msgid "Xfce Panel"
 msgstr "Panou Xfce"
 
@@ -881,7 +881,7 @@ msgstr "_Definiți combinații de taste pentru lansarea aplicațiilor:"
 
 #: common/resources/keyboard-dialog.glade:651
 #: common/resources/keyboard-dialog.glade:986
-#: xfce4-settings-editor/xfce-settings-editor-box.c:377
+#: xfce4-settings-editor/xfce-settings-editor-box.c:373
 msgid "_Edit"
 msgstr "_Editare"
 
@@ -1176,85 +1176,85 @@ msgstr "Te_mă"
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: common/display-name.c:2649
+#: common/display-name.c:2645
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Necunoscut"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: common/display-name.c:2702 dialogs/color-settings/color-device.c:66
+#: common/display-name.c:2698 dialogs/color-settings/color-device.c:62
 msgid "Monitor"
 msgstr "Monitor"
 
-#: common/display-name.c:2705
+#: common/display-name.c:2701
 msgid "Television"
 msgstr "Televizor"
 
-#: common/display-name.c:2709
+#: common/display-name.c:2705
 msgid "Digital display"
 msgstr "Ecran digital"
 
-#: common/xfce-randr.c:285 dialogs/display-settings/display-settings-x11.c:702
+#: common/xfce-randr.c:281 dialogs/display-settings/display-settings-x11.c:698
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nu se poate interoga versiunea extensiei RandR utilizate"
 
-#: common/xfce-randr.c:571
-#: dialogs/display-settings/display-settings-wayland.c:350
+#: common/xfce-randr.c:567
+#: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "Laptop"
 
-#: dialogs/accessibility-settings/main.c:39
-#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
-#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
-#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
-#: xfce4-settings-editor/main.c:47
+#: dialogs/accessibility-settings/main.c:36
+#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Soclul gestionarului de opțiuni"
 
-#: dialogs/accessibility-settings/main.c:39
-#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
-#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
-#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
-#: xfce4-settings-editor/main.c:47
+#: dialogs/accessibility-settings/main.c:36
+#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "ID SOCLU"
 
-#: dialogs/accessibility-settings/main.c:40
-#: dialogs/appearance-settings/main.c:94 dialogs/color-settings/main.c:44
-#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:40
-#: dialogs/mime-settings/main.c:44 dialogs/mouse-settings/main.c:88
-#: xfce4-settings-editor/main.c:48 xfce4-settings-manager/main.c:42
-#: xfsettingsd/main.c:96
+#: dialogs/accessibility-settings/main.c:37
+#: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
+#: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
+#: xfsettingsd/main.c:93
 msgid "Version information"
 msgstr "Detalii despre versiune"
 
-#: dialogs/accessibility-settings/main.c:194
-#: dialogs/appearance-settings/main.c:1695 dialogs/color-settings/main.c:1466
-#: dialogs/display-settings/main.c:3430 dialogs/keyboard-settings/main.c:77
-#: dialogs/mime-settings/main.c:81
-#: dialogs/mime-settings/xfce-mime-helper-main.c:150
-#: dialogs/mouse-settings/main.c:2197 xfce4-settings-editor/main.c:121
-#: xfce4-settings-manager/main.c:63 xfsettingsd/main.c:245
+#: dialogs/accessibility-settings/main.c:191
+#: dialogs/appearance-settings/main.c:1692 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3427 dialogs/keyboard-settings/main.c:74
+#: dialogs/mime-settings/main.c:78
+#: dialogs/mime-settings/xfce-mime-helper-main.c:153
+#: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Tastați «%s --help» pentru detalii despre utilizare."
 
-#: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1714 dialogs/color-settings/main.c:1485
-#: dialogs/display-settings/main.c:3449 dialogs/keyboard-settings/main.c:93
-#: dialogs/mime-settings/main.c:100 dialogs/mouse-settings/main.c:2216
-#: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:79
-#: xfsettingsd/main.c:261
+#: dialogs/accessibility-settings/main.c:210
+#: dialogs/appearance-settings/main.c:1711 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3446 dialogs/keyboard-settings/main.c:90
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
+#: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
+#: xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Echipa de dezvoltare Xfce. Toate drepturile sunt rezervate."
 
-#: dialogs/accessibility-settings/main.c:214
-#: dialogs/appearance-settings/main.c:1715 dialogs/color-settings/main.c:1486
-#: dialogs/display-settings/main.c:3450 dialogs/keyboard-settings/main.c:94
-#: dialogs/mime-settings/main.c:101 dialogs/mouse-settings/main.c:2217
-#: xfce4-settings-editor/main.c:141 xfce4-settings-manager/main.c:80
-#: xfsettingsd/main.c:262
+#: dialogs/accessibility-settings/main.c:211
+#: dialogs/appearance-settings/main.c:1712 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3447 dialogs/keyboard-settings/main.c:91
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
+#: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
+#: xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Raportați problemele la <%s>."
@@ -1269,12 +1269,12 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "asistență;tehnologii;taste;lipicios;respingere;emulare;cititoare de ecran;lupe;a11y;i18n;l10n;AT-SPI;ATK;deficiență;"
 
-#: dialogs/appearance-settings/main.c:340
+#: dialogs/appearance-settings/main.c:337
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Afișarea ferestrei de opțiuni a Xfwm4 a eșuat"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:634
+#: dialogs/appearance-settings/main.c:631
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1283,70 +1283,70 @@ msgstr "Atenție: această temă de pictograme nu are fișier cache. Puteți cre
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:641
+#: dialogs/appearance-settings/main.c:638
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Atenție: această temă de pictograme este incompletă. Unele pictograme vor lipsi."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:646
+#: dialogs/appearance-settings/main.c:643
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Atenție: această temă de pictograme este incompletă. Ea oferă doar un set de bază de pictograme pe care alte teme le pot moșteni."
 
-#: dialogs/appearance-settings/main.c:1253
+#: dialogs/appearance-settings/main.c:1250
 msgid "File is too large, installation aborted"
 msgstr "Fișierul este prea mare, instalarea a fost întreruptă"
 
-#: dialogs/appearance-settings/main.c:1258
+#: dialogs/appearance-settings/main.c:1255
 msgid "Failed to create temporary directory"
 msgstr "Nu s-a putut crea directorul temporar"
 
-#: dialogs/appearance-settings/main.c:1263
+#: dialogs/appearance-settings/main.c:1260
 msgid "Failed to extract archive"
 msgstr "Nu s-a putut extrage arhiva"
 
-#: dialogs/appearance-settings/main.c:1268
+#: dialogs/appearance-settings/main.c:1265
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Format necunoscut, există suport doar pentru arhive și directoare"
 
-#: dialogs/appearance-settings/main.c:1273
+#: dialogs/appearance-settings/main.c:1270
 msgid "Not a valid theme package"
 msgstr "Nu este un pachet temă valid"
 
-#: dialogs/appearance-settings/main.c:1278
+#: dialogs/appearance-settings/main.c:1275
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Eroare necunoscută, codul de ieșire este %d"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1282
 msgid "Failed to install theme"
 msgstr "Nu s-a putut instala tema"
 
-#: dialogs/appearance-settings/main.c:1339
+#: dialogs/appearance-settings/main.c:1336
 #, c-format
 msgid "Install %s theme"
 msgstr "Instalează tema %s"
 
-#: dialogs/appearance-settings/main.c:1342
-#: dialogs/keyboard-settings/command-dialog.c:276
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:426
+#: dialogs/appearance-settings/main.c:1339
+#: dialogs/keyboard-settings/command-dialog.c:272
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Deschide"
 
-#: dialogs/appearance-settings/main.c:1606
+#: dialogs/appearance-settings/main.c:1603
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1610
+#: dialogs/appearance-settings/main.c:1607
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1614
+#: dialogs/appearance-settings/main.c:1611
 msgid "Vertical RGB"
 msgstr "RGB vertical"
 
-#: dialogs/appearance-settings/main.c:1618
+#: dialogs/appearance-settings/main.c:1615
 msgid "Vertical BGR"
 msgstr "BGR vertical"
 
@@ -1362,49 +1362,49 @@ msgid ""
 msgstr "teme;interfață utilizator;stiluri;pictograme;fonturi;anti-alias;hinting;subpixel;subpixel;redare fonturi;ClearType;DPI;RGB;BGR;acceleratoare de meniu;comenzi rapide de la tastatură;eveniment;sunete;scalare fereastră;HiDPI;afișare Retina;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
-#: dialogs/color-settings/color-device.c:69
+#: dialogs/color-settings/color-device.c:65
 msgid "Scanner"
 msgstr "Scaner"
 
 #. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
-#: dialogs/color-settings/color-device.c:72
+#: dialogs/color-settings/color-device.c:68
 msgid "Camera"
 msgstr "Aparat foto"
 
 #. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
-#: dialogs/color-settings/color-device.c:75
+#: dialogs/color-settings/color-device.c:71
 msgid "Printer"
 msgstr "Imprimantă"
 
 #. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
-#: dialogs/color-settings/color-device.c:78
+#: dialogs/color-settings/color-device.c:74
 msgid "Webcam"
 msgstr "Cameră web"
 
 #. TRANSLATORS: This refers to the TFT display on a laptop
-#: dialogs/color-settings/color-device.c:96
+#: dialogs/color-settings/color-device.c:92
 msgid "Laptop Screen"
 msgstr "Ecran laptop"
 
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
-#: dialogs/color-settings/color-device.c:105
+#: dialogs/color-settings/color-device.c:101
 msgid "Built-in Webcam"
 msgstr "Cameră web încorporată"
 
-#: dialogs/color-settings/color-device.c:198
+#: dialogs/color-settings/color-device.c:194
 #, c-format
 msgid "Enable color management for %s"
 msgstr "Activează gestionarea culorilor pentru %s"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
-#: dialogs/color-settings/color-profile.c:97
+#: dialogs/color-settings/color-profile.c:93
 msgid "Standard Space"
 msgstr "Spațiu standard"
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
-#: dialogs/color-settings/color-profile.c:103
+#: dialogs/color-settings/color-profile.c:99
 msgid "Test Profile"
 msgstr "Profil de test"
 
@@ -1412,7 +1412,7 @@ msgstr "Profil de test"
 #. * by the color management system based on manufacturing data,
 #. * for instance the default monitor profile is created from the
 #. * primaries specified in the monitor EDID
-#: dialogs/color-settings/color-profile.c:111
+#: dialogs/color-settings/color-profile.c:107
 msgctxt "Automatically generated profile"
 msgid "Automatic"
 msgstr "Automată"
@@ -1420,13 +1420,13 @@ msgstr "Automată"
 #. TRANSLATORS: the profile quality - low quality profiles take
 #. * much less time to generate but may be a poor reflection of the
 #. * device capability
-#: dialogs/color-settings/color-profile.c:121
+#: dialogs/color-settings/color-profile.c:117
 msgctxt "Profile quality"
 msgid "Low Quality"
 msgstr "Calitate redusă"
 
 #. TRANSLATORS: the profile quality
-#: dialogs/color-settings/color-profile.c:126
+#: dialogs/color-settings/color-profile.c:122
 msgctxt "Profile quality"
 msgid "Medium Quality"
 msgstr "Calitate medie"
@@ -1434,84 +1434,84 @@ msgstr "Calitate medie"
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
 #. * characterisation data.
-#: dialogs/color-settings/color-profile.c:133
+#: dialogs/color-settings/color-profile.c:129
 msgctxt "Profile quality"
 msgid "High Quality"
 msgstr "Calitate înaltă"
 
 #. TRANSLATORS: this default RGB space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:150
+#: dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
 msgstr "RGB implicit"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:157
+#: dialogs/color-settings/color-profile.c:153
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
 msgstr "CMYK implicit"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:164
+#: dialogs/color-settings/color-profile.c:160
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
 msgstr "Gri implicit"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: dialogs/color-settings/main.c:128
+#: dialogs/color-settings/main.c:125
 msgid "Select ICC Profile File"
 msgstr "Selectați fișierul de profil ICC"
 
-#: dialogs/color-settings/main.c:130
+#: dialogs/color-settings/main.c:127
 msgid "_Import"
 msgstr "_Importă"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:141
+#: dialogs/color-settings/main.c:138
 msgid "Supported ICC profiles"
 msgstr "Profilele ICC acceptate"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:148
+#: dialogs/color-settings/main.c:145
 msgid "All files"
 msgstr "Toate fișierele"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: dialogs/color-settings/main.c:191
+#: dialogs/color-settings/main.c:188
 msgid "Default: "
 msgstr "Implicit: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: dialogs/color-settings/main.c:198
+#: dialogs/color-settings/main.c:195
 msgid "Colorspace: "
 msgstr "Spațiu de culoare: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: dialogs/color-settings/main.c:205
+#: dialogs/color-settings/main.c:202
 msgid "Test profile: "
 msgstr "Profil de test: "
 
-#: dialogs/color-settings/main.c:240
+#: dialogs/color-settings/main.c:237
 msgid "Compatible Profiles"
 msgstr "Profiluri compatibile"
 
-#: dialogs/color-settings/main.c:519
+#: dialogs/color-settings/main.c:516
 #, c-format
 msgid "Add Color Profile to %s"
 msgstr "Adăugați profilul de culoare la %s"
 
-#: dialogs/color-settings/main.c:519
+#: dialogs/color-settings/main.c:516
 msgid "Device"
 msgstr "Dispozitiv"
 
-#: dialogs/color-settings/main.c:863 dialogs/color-settings/main.c:864
-#: dialogs/color-settings/main.c:865
+#: dialogs/color-settings/main.c:860 dialogs/color-settings/main.c:861
+#: dialogs/color-settings/main.c:862
 msgid "Unknown"
 msgstr "Necunoscut"
 
@@ -1523,45 +1523,45 @@ msgstr "Configurați profilurile de culoare"
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr "culoare;opțiuni;configurări;administrare;gestionare;afișare;ecrane;monitoare;imprimante;camere web;scanere;"
 
-#: dialogs/display-settings/main.c:57
+#: dialogs/display-settings/main.c:54
 #, c-format
 msgid "Only %s (1)"
 msgstr "Doar %s (1)"
 
-#: dialogs/display-settings/main.c:58
+#: dialogs/display-settings/main.c:55
 #, c-format
 msgid "Only %s (2)"
 msgstr "Doar %s (2)"
 
-#: dialogs/display-settings/main.c:86
+#: dialogs/display-settings/main.c:83
 msgid "Left"
 msgstr "Stânga"
 
-#: dialogs/display-settings/main.c:87
+#: dialogs/display-settings/main.c:84
 msgid "Inverted"
 msgstr "Inversată"
 
-#: dialogs/display-settings/main.c:88
+#: dialogs/display-settings/main.c:85
 msgid "Right"
 msgstr "Dreapta"
 
-#: dialogs/display-settings/main.c:94
+#: dialogs/display-settings/main.c:91
 msgid "Horizontal"
 msgstr "Orizontală"
 
-#: dialogs/display-settings/main.c:95
+#: dialogs/display-settings/main.c:92
 msgid "Vertical"
 msgstr "Verticală"
 
-#: dialogs/display-settings/main.c:96
+#: dialogs/display-settings/main.c:93
 msgid "Horizontal and Vertical"
 msgstr "Orizontală și verticală"
 
-#: dialogs/display-settings/main.c:108
+#: dialogs/display-settings/main.c:105
 msgid "Minimal interface to set up an external output"
 msgstr "Interfață minimală pentru configurarea unei ieșiri externe"
 
-#: dialogs/display-settings/main.c:281
+#: dialogs/display-settings/main.c:278
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1569,56 +1569,56 @@ msgid ""
 msgstr "Configurația anterioară va fi restaurată în <b>%i secunde</b> dacă nu răspundeți la această întrebare."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:641
+#: dialogs/display-settings/main.c:638
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:970
+#: dialogs/display-settings/main.c:967
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Ultima ieșire activă nu trebuie dezactivată, altfel sistemul va deveni inutilizabil."
 
-#: dialogs/display-settings/main.c:971
+#: dialogs/display-settings/main.c:968
 msgid "Selected output not disabled"
 msgstr "Ieșirea selectată nu poate fi dezactivată"
 
-#: dialogs/display-settings/main.c:1317
+#: dialogs/display-settings/main.c:1314
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Actualizarea a schimbat profilul de afișare „%s”?"
 
-#: dialogs/display-settings/main.c:1322
+#: dialogs/display-settings/main.c:1319
 #, c-format
 msgid "_Update '%s'"
 msgstr "Act_ualizează „%s”"
 
-#: dialogs/display-settings/main.c:1670
+#: dialogs/display-settings/main.c:1667
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Doriți să ștergeți profilul de afișare „%s”?"
 
-#: dialogs/display-settings/main.c:1673
+#: dialogs/display-settings/main.c:1670
 msgid "Delete Profile"
 msgstr "Șterge profilul"
 
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1671
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Odată ce un profil de afișare este șters, acesta nu mai poate fi restaurat."
 
-#: dialogs/display-settings/main.c:1674
-#: dialogs/mime-settings/xfce-mime-chooser.c:135
-#: dialogs/mime-settings/xfce-mime-chooser.c:380
-#: dialogs/mime-settings/xfce-mime-window.c:1210
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
+#: dialogs/display-settings/main.c:1671
+#: dialogs/mime-settings/xfce-mime-chooser.c:131
+#: dialogs/mime-settings/xfce-mime-chooser.c:376
+#: dialogs/mime-settings/xfce-mime-window.c:1295
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:134
 msgid "Cancel"
 msgstr "Renunță"
 
-#: dialogs/display-settings/main.c:1675
+#: dialogs/display-settings/main.c:1672
 msgid "Delete"
 msgstr "Șterge"
 
-#: dialogs/display-settings/main.c:1761
+#: dialogs/display-settings/main.c:1758
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
@@ -1626,13 +1626,13 @@ msgstr[0] "%d panou Xfce"
 msgstr[1] "%d panouri Xfce"
 msgstr[2] "%d de panouri Xfce"
 
-#: dialogs/display-settings/main.c:2546
+#: dialogs/display-settings/main.c:2543
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Selectați un monitor pentru a-l reconfigura și trageți-l pentru a-i schimba poziția."
 
-#: dialogs/display-settings/main.c:2645 dialogs/display-settings/main.c:2678
+#: dialogs/display-settings/main.c:2642 dialogs/display-settings/main.c:2675
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1641,23 +1641,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2895
+#: dialogs/display-settings/main.c:2892
 msgid "Mirror Screens"
 msgstr "Ecrane identice"
 
-#: dialogs/display-settings/main.c:2945
+#: dialogs/display-settings/main.c:2942
 msgid "(Disabled)"
 msgstr "(Dezactivat)"
 
-#: dialogs/display-settings/main.c:3476
+#: dialogs/display-settings/main.c:3473
 msgid "ATI Settings"
 msgstr "Opțiuni ATI"
 
-#: dialogs/display-settings/main.c:3481
+#: dialogs/display-settings/main.c:3478
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nu se poate porni fereastra cu opțiunile Xfce pentru afișare"
 
-#: dialogs/display-settings/main.c:3489
+#: dialogs/display-settings/main.c:3486
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nu se poate deschide programul de configurare a controlorului proprietar"
 
@@ -1670,137 +1670,137 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "afișare;configurări;opțiuni;ecran;rezoluție;rată de reîmprospătare;rotație;extern;proiectoare;monitoare;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:463
+#: dialogs/display-settings/display-settings.c:459
 msgid "Display:"
 msgstr "Ecran:"
 
-#: dialogs/display-settings/display-settings.c:471
+#: dialogs/display-settings/display-settings.c:467
 msgid "Resolution:"
 msgstr "Rezoluție:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1008
+#: dialogs/display-settings/display-settings-wayland.c:1004
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Compozitorul dvs. nu pare să aibă suport pentru protocolul wlr-output-management"
 
 #. Set dialog title and icon
-#: dialogs/keyboard-settings/command-dialog.c:109
+#: dialogs/keyboard-settings/command-dialog.c:105
 msgid "Shortcut Command"
 msgstr "Comandă pentru combinația de taste"
 
-#: dialogs/keyboard-settings/command-dialog.c:139
+#: dialogs/keyboard-settings/command-dialog.c:135
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr "Introduceți comanda de executat cu această combinație de taste."
 
 #. We are editing an existing shortcut
-#: dialogs/keyboard-settings/command-dialog.c:157
+#: dialogs/keyboard-settings/command-dialog.c:153
 msgid "Shortcut:"
 msgstr "Combinație de taste:"
 
-#: dialogs/keyboard-settings/command-dialog.c:182
+#: dialogs/keyboard-settings/command-dialog.c:178
 msgid "Comm_and:"
 msgstr "Co_mandă:"
 
-#: dialogs/keyboard-settings/command-dialog.c:207
+#: dialogs/keyboard-settings/command-dialog.c:203
 msgid "Use _startup notification"
 msgstr "Utilizează _notificare la pornire"
 
-#: dialogs/keyboard-settings/command-dialog.c:253
+#: dialogs/keyboard-settings/command-dialog.c:249
 msgid "The command may not be empty."
 msgstr "Comanda nu poate fi nulă."
 
-#: dialogs/keyboard-settings/command-dialog.c:273
+#: dialogs/keyboard-settings/command-dialog.c:269
 msgid "Select command"
 msgstr "Selectați comanda"
 
-#: dialogs/keyboard-settings/command-dialog.c:281
-#: dialogs/mime-settings/xfce-mime-chooser.c:387
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:432
+#: dialogs/keyboard-settings/command-dialog.c:277
+#: dialogs/mime-settings/xfce-mime-chooser.c:383
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:431
 msgid "All Files"
 msgstr "Toate fișierele"
 
-#: dialogs/keyboard-settings/command-dialog.c:286
-#: dialogs/mime-settings/xfce-mime-chooser.c:392
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:437
+#: dialogs/keyboard-settings/command-dialog.c:282
+#: dialogs/mime-settings/xfce-mime-chooser.c:388
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:436
 msgid "Executable Files"
 msgstr "Fișiere executabile"
 
-#: dialogs/keyboard-settings/command-dialog.c:301
-#: dialogs/mime-settings/xfce-mime-chooser.c:407
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:452
+#: dialogs/keyboard-settings/command-dialog.c:297
+#: dialogs/mime-settings/xfce-mime-chooser.c:403
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:451
 msgid "Perl Scripts"
 msgstr "Scripturi Perl"
 
-#: dialogs/keyboard-settings/command-dialog.c:307
-#: dialogs/mime-settings/xfce-mime-chooser.c:413
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:458
+#: dialogs/keyboard-settings/command-dialog.c:303
+#: dialogs/mime-settings/xfce-mime-chooser.c:409
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:457
 msgid "Python Scripts"
 msgstr "Scripturi Python"
 
-#: dialogs/keyboard-settings/command-dialog.c:313
-#: dialogs/mime-settings/xfce-mime-chooser.c:419
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:464
+#: dialogs/keyboard-settings/command-dialog.c:309
+#: dialogs/mime-settings/xfce-mime-chooser.c:415
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:463
 msgid "Ruby Scripts"
 msgstr "Scripturi Ruby"
 
-#: dialogs/keyboard-settings/command-dialog.c:319
-#: dialogs/mime-settings/xfce-mime-chooser.c:425
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:470
+#: dialogs/keyboard-settings/command-dialog.c:315
+#: dialogs/mime-settings/xfce-mime-chooser.c:421
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:469
 msgid "Shell Scripts"
 msgstr "Scripturi shell"
 
-#: dialogs/keyboard-settings/main.c:83
+#: dialogs/keyboard-settings/main.c:80
 msgid "Unable to initialize GTK+."
 msgstr "Nu s-a putut inițializa GTK+."
 
-#: dialogs/keyboard-settings/main.c:109
+#: dialogs/keyboard-settings/main.c:106
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Nu s-a putut efectua conectarea la demonul xfconf. Motiv: %s"
 
-#: dialogs/keyboard-settings/main.c:120
+#: dialogs/keyboard-settings/main.c:117
 msgid "Could not create the settings dialog."
 msgstr "Nu s-a putut crea fereastra cu opțiuni."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:431
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:427
 msgid "Command"
 msgstr "Comandă"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:439
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:435
 msgid "Shortcut"
 msgstr "Combinație de taste"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:508
 msgid "Layout"
 msgstr "Aranjament"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:509
 msgid "Variant"
 msgstr "Variantă"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Această acțiune va reinițializa toate combinațiile de taste, revenindu-se la opțiunile implicite. Sigur doriți acest lucru?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
 msgid "Reset to Defaults"
 msgstr "Reinițializare a opțiunilor"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
 msgid "No"
 msgstr "Nu"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
 msgid "Yes"
 msgstr "Da"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1362
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
 msgid "The system defaults will be restored next time you log in."
 msgstr "Opțiunile implicite de sistem vor fi restaurate la următoarea autentificare."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1364
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
 msgid "Warning"
 msgstr "Atenționare"
 
@@ -1812,55 +1812,55 @@ msgstr "Editați opțiunile de tastatură și combinațiile de taste"
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "blocare numere;numlock;tastatură;aranjament;comenzi rapide;"
 
-#: dialogs/mime-settings/main.c:118
+#: dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
 msgstr "Nu s-a putut crea fereastra de dialog mime."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:129
+#: dialogs/mime-settings/xfce-mime-chooser.c:125
 msgid "Select Application"
 msgstr "Selectați aplicația"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:137
-#: dialogs/mime-settings/xfce-mime-chooser.c:381
+#: dialogs/mime-settings/xfce-mime-chooser.c:133
+#: dialogs/mime-settings/xfce-mime-chooser.c:377
 msgid "Open"
 msgstr "Deschide"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:205
+#: dialogs/mime-settings/xfce-mime-chooser.c:201
 msgid "Use a c_ustom command:"
 msgstr "Utilizați o comandă personali_zată:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:206
+#: dialogs/mime-settings/xfce-mime-chooser.c:202
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
 msgstr "Utilizați o comandă personalizată pentru o aplicație care nu este disponibilă din lista de aplicații de mai sus."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:224
+#: dialogs/mime-settings/xfce-mime-chooser.c:220
 msgid "_Browse..."
 msgstr "_Selectare…"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:378
+#: dialogs/mime-settings/xfce-mime-chooser.c:374
 msgid "Select an Application"
 msgstr "Selectați o aplicație"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:527
+#: dialogs/mime-settings/xfce-mime-chooser.c:523
 msgid "None available"
 msgstr "Niciuna disponibilă"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:575
+#: dialogs/mime-settings/xfce-mime-chooser.c:571
 msgid "Recommended Applications"
 msgstr "Aplicații recomandate"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:594
+#: dialogs/mime-settings/xfce-mime-chooser.c:590
 msgid "Other Applications"
 msgstr "Alte aplicații"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:614
+#: dialogs/mime-settings/xfce-mime-chooser.c:610
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "Deschide <i>%s</i> și alte fișiere de tipul „%s” cu:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:619
+#: dialogs/mime-settings/xfce-mime-chooser.c:615
 #, c-format
 msgid ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
@@ -1872,186 +1872,258 @@ msgstr[0] "Deschideți <i>%s</i>, alte fișiere de tip „%s” și %d alt tip M
 msgstr[1] "Deschideți <i>%s</i>, alte fișiere de tip „%s” și %d alte tipuri MIME selectate cu:"
 msgstr[2] "Deschideți <i>%s</i>, alte fișiere de tip „%s” și %d de alte tipuri MIME selectate cu:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:659
+#: dialogs/mime-settings/xfce-mime-chooser.c:655
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "Adăugarea noii aplicații „%s” a eșuat"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:141
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:148
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:137
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:144
 msgid "Press left mouse button to change the selected application."
 msgstr "Apăsați butonul stâng al mauseului pentru a schimba aplicația selectată."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:147
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:143
 msgid "Application Chooser Button"
 msgstr "Buton selector de aplicații"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:334
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:330
 msgid "No application selected"
 msgstr "Nicio aplicație nu este selectată"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:345
 msgid "Failed to set default Web Browser"
 msgstr "Nu s-a putut defini navigatorul web implicit"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:346
 msgid "Failed to set default Mail Reader"
 msgstr "Nu s-a putut defini clientul de poștă electronică implicit"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:347
 msgid "Failed to set default File Manager"
 msgstr "Nu s-a putut defini gestionarul de fișiere implicit"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:348
 msgid "Failed to set default Terminal Emulator"
 msgstr "Nu s-a putut defini emulatorul de terminal implicit"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:353
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
 msgid "Failed to set default Text Editor"
-msgstr "Nu s-a reușit activarea editorului de text implicit"
+msgstr "Nu s-a putut defini editorului de text implicit"
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
+msgid "Failed to set default Image Viewer"
+msgstr "Nu s-a putut defini vizorul de imagini implicit a eșuat"
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
+msgid "Failed to set default Audio Player"
+msgstr "Nu s-a putut defini programul de redare audio implicit"
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+msgid "Failed to set default Video Player"
+msgstr "Nu s-a putut defini programul de redare video implicit"
 
 #. allocate the chooser
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:423
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
 msgid "Select application"
 msgstr "Selectați aplicația"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
 msgid "Choose a custom Web Browser"
-msgstr "Alegeți un alt navigator web"
+msgstr "Alegeți navigatorul web preferat"
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
+msgid "Choose a custom Mail Reader"
+msgstr "Alegeți clientul de poștă electronică preferat"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
-msgid "Choose a custom Mail Reader"
-msgstr "Alegeți un alt client de poștă electronică"
+msgid "Choose a custom File Manager"
+msgstr "Alegeți gestionarul de fișiere preferat"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
-msgid "Choose a custom File Manager"
-msgstr "Alegeți un alt gestionar de fișiere"
+msgid "Choose a custom Terminal Emulator"
+msgstr "Alegeți emulatorul de terminal preferat"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:537
-msgid "Choose a custom Terminal Emulator"
-msgstr "Alegeți un alt emulator de terminal"
+msgid "Choose a custom Text Editor"
+msgstr "Alegeți editorul de text preferat"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
-msgid "Choose a custom Text Editor"
-msgstr "Alegeți un editor de text personalizat"
+msgid "Choose a custom Image Viewer"
+msgstr "Alegeți vizorul de imagini preferat"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:539
+msgid "Choose a custom Audio Player"
+msgstr "Alegeți programul de redare audio preferat"
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+msgid "Choose a custom Viddeo Player"
+msgstr "Alegeți programul de redare video preferat"
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr "Specificați ce aplicație doriți să utilizați\nca navigator web implicit în Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:545
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr "Specificați ce aplicație doriți să utilizați ca\nclient de poștă electronică implicit în Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr "Specificați ce aplicație doriți să utilizați\nca gestionar de fișiere implicit în Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:545
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:547
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr "Specificați ce aplicație doriți să utilizați\nca emulator de terminal implicit în Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:548
 msgid ""
 "Specify the application you want to use\n"
 "as default Text Editor for Xfce:"
 msgstr "Specificați aplicația pe care doriți să o utilizați\nca editor de text implicit pentru Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:610
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:549
+msgid ""
+"Specify the application you want to use\n"
+"as default Image Viewer for Xfce:"
+msgstr "Specificați aplicația pe care doriți să o utilizați\nca vizor de imagini implicit pentru Xfce:"
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:550
+msgid ""
+"Specify the application you want to use\n"
+"as default Audio Player for Xfce:"
+msgstr "Specificați aplicația pe care doriți să o utilizați\nca program de redare audio implicit pentru Xfce:"
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:551
+msgid ""
+"Specify the application you want to use\n"
+"as default Video Player for Xfce:"
+msgstr "Specificați aplicația pe care doriți să o utilizați\nca program de redare video implicit pentru Xfce:"
+
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:615
 msgid "Browse the file system to choose a custom command."
 msgstr "Parcurgeți sistemul de fișiere pentru a alege o altă comandă."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:760
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:765
 msgid "_Other..."
 msgstr "Altce_va..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:761
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:766
 msgid "Use a custom application which is not included in the above list."
 msgstr "Utilizați o aplicație personalizată care nu este inclusă în lista de mai sus."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:114
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
 msgid "Choose Preferred Application"
 msgstr "Alegeți o aplicație preferată"
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:247
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
 msgstr "Selectați navigatorul web preferat\nși pulsați «Ok» pentru a continua."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:249
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
 msgstr "Selectați clientul de poștă electronică preferat\nși pulsați «Ok» pentru a continua."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
 msgstr "Selectați gestionarul de fișiere preferat\nși pulsați «Ok» pentru a continua."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
 msgstr "Selectați emulatorul de terminal preferat\nși pulsați «Ok» pentru a continua."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
 msgid ""
 "Please choose your preferred Text\n"
 "Editor now and click OK to proceed."
-msgstr "Vă rugăm să alegeți editorul de text preferat\nși să apăsați butonul «Ok» pentru a continua."
+msgstr "Selectați editorul de text preferat\nși pulsați «Ok» pentru a continua."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:29
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
+msgid ""
+"Please choose your preferred Image\n"
+"Viewer now and click OK to proceed."
+msgstr "Selectați vizorul de imagini preferat\nși pulsați «Ok» pentru a continua."
+
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
+msgid ""
+"Please choose your preferred Audio\n"
+"Player now and click OK to proceed."
+msgstr "Selectați programul de redare audio preferat\nși pulsați «Ok» pentru a continua."
+
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:261
+msgid ""
+"Please choose your preferred Video\n"
+"Player now and click OK to proceed."
+msgstr "Selectați programul de redare video preferat\nși pulsați «Ok» pentru a continua."
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:25
 msgid "Failed to execute default Web Browser"
 msgstr "Nu s-a putut porni navigatorul web implicit"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:30
+#: dialogs/mime-settings/xfce-mime-helper-main.c:26
 msgid "Failed to execute default Mail Reader"
 msgstr "Nu s-a putut porni clientul de poștă electronică implicit"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:31
+#: dialogs/mime-settings/xfce-mime-helper-main.c:27
 msgid "Failed to execute default File Manager"
 msgstr "Nu s-a putut porni gestionarul de fișiere implicit"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:32
+#: dialogs/mime-settings/xfce-mime-helper-main.c:28
 msgid "Failed to execute default Terminal Emulator"
 msgstr "Nu s-a putut porni emulatorul de terminal implicit"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:33
+#: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Text Editor"
 msgstr "Nu s-a putut porni editorul de text implicit"
 
+#: dialogs/mime-settings/xfce-mime-helper-main.c:30
+msgid "Failed to execute default Image Viewer"
+msgstr "Nu s-a putut porni vizorul de imagini implicit"
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:31
+msgid "Failed to execute default Audio Player"
+msgstr "Nu s-a putut porni programul de redare audio implicit"
+
+#: dialogs/mime-settings/xfce-mime-helper-main.c:32
+msgid "Failed to execute default Video Player"
+msgstr "Nu s-a putut porni programul de redare video implicit"
+
 #. Enable permanently dismissing this error.
-#: dialogs/mime-settings/xfce-mime-helper-main.c:75
+#: dialogs/mime-settings/xfce-mime-helper-main.c:74
 msgid "Do _not show this message again"
 msgstr "_Nu mai arăta acest mesaj"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: dialogs/mime-settings/xfce-mime-helper-main.c:105
 msgid "Print version information and exit"
 msgstr "Afișează informațiile despre versiune și iese"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:107
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr "Lansează programul TIP cu parametrul opțional PARAMETRU, unde TIP are una dintre următoarele valori:"
 
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 #: dialogs/mime-settings/xfce-mime-helper-main.c:107
-#: dialogs/mime-settings/xfce-mime-helper-main.c:108
 msgid "TYPE [PARAMETER]"
 msgstr "TIP [PARAMETRU]"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:108
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr "Solicitați ajutorul standard pentru TIP, unde TIP este una dintre următoarele valori."
@@ -2064,16 +2136,19 @@ msgid ""
 "  MailReader       - The preferred Mail Reader.\n"
 "  FileManager      - The preferred File Manager.\n"
 "  TerminalEmulator - The preferred Terminal Emulator.\n"
-"  TextEditor       - The preferred Text Editor."
-msgstr "Următoarele TIPURI sunt acceptate pentru comenzile --launch și --query:\n\n  WebBrowser       - Navigatorul web preferat.\n  MailReader       - Clientul de poștă electronică preferat.\n  FileManager      - Gestionarul de fișiere preferat.\n  TerminalEmulator - Emulatorul de terminal preferat.\n  TextEditor       - Editorul de text preferat.."
+"  TextEditor       - The preferred Text Editor.\n"
+"  ImageViewer      - The preferred Image Viewer.\n"
+"  AudioPlayer      - The preferred Audio Player.\n"
+"  VideoPlayer      - The preferred Video Player.\n"
+msgstr "Următoarele TIPURI sunt acceptate pentru comenzile „--launch” și „--query”:\n\n  WebBrowser       - Navigatorul web preferat.\n  MailReader       - Clientul de poștă electronică preferat.\n  FileManager      - Gestionarul de fișiere preferat.\n  TerminalEmulator - Emulatorul de terminal preferat.\n  TextEditor       - Editorul de text preferat.\n  ImageViewer      - Vizorul de imagini preferat.\n  AudioPlayer      - Programul de redare audio preferat.\n  VideoPlayer      - Programul de redare video preferat.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:177
-#: dialogs/mime-settings/xfce-mime-helper-main.c:251
+#: dialogs/mime-settings/xfce-mime-helper-main.c:180
+#: dialogs/mime-settings/xfce-mime-helper-main.c:254
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "Tipul asistentului „%s” nu este valid"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:235
+#: dialogs/mime-settings/xfce-mime-helper-main.c:238
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -2088,132 +2163,161 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nDrepturi de autor © 2003-2006\n        os-cillation e.K. Toate drepturile rezervate.\n\nScris de Benedikt Meurer <benny@xfce.org>.\n\nCompilat cu Gtk+-%d.%d.%d, pornit cu Gtk+-%d.%d.%d.\n\nRaportați orice probleme la <%s>.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:262
+#: dialogs/mime-settings/xfce-mime-helper-main.c:265
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Nu a fost definit niciun asistent pentru „%s”."
 
-#: dialogs/mime-settings/xfce-mime-helper.c:431
+#: dialogs/mime-settings/xfce-mime-helper.c:427
 msgid "No command specified"
 msgstr "Nu s-a specificat nicio comandă"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:811
-#: dialogs/mime-settings/xfce-mime-helper.c:850
-#: dialogs/mime-settings/xfce-mime-helper.c:941
-#: dialogs/mime-settings/xfce-mime-helper.c:980
+#: dialogs/mime-settings/xfce-mime-helper.c:807
+#: dialogs/mime-settings/xfce-mime-helper.c:846
+#: dialogs/mime-settings/xfce-mime-helper.c:937
+#: dialogs/mime-settings/xfce-mime-helper.c:976
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Nu s-a putut deschide %s pentru scriere"
 
-#: dialogs/mime-settings/xfce-mime-window.c:192
+#: dialogs/mime-settings/xfce-mime-window.c:188
 #: dialogs/mime-settings/xfce4-mime-settings.desktop.in:4
 msgid "Default Applications"
 msgstr "Aplicații Implicite"
 
 #. Internet
-#: dialogs/mime-settings/xfce-mime-window.c:215
+#: dialogs/mime-settings/xfce-mime-window.c:211
 msgid "_Internet"
 msgstr "_Internet"
 
-#: dialogs/mime-settings/xfce-mime-window.c:228
+#: dialogs/mime-settings/xfce-mime-window.c:224
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Navigator web"
 
-#: dialogs/mime-settings/xfce-mime-window.c:236
+#: dialogs/mime-settings/xfce-mime-window.c:232
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr "Navigatorul web implicit va fi utilizat pentru a deschide hiperlegături și a afișa conținutul de ajutor."
 
-#: dialogs/mime-settings/xfce-mime-window.c:254
+#: dialogs/mime-settings/xfce-mime-window.c:250
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Client de poștă electronică"
 
-#: dialogs/mime-settings/xfce-mime-window.c:262
+#: dialogs/mime-settings/xfce-mime-window.c:258
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr "Clientul de poștă electronică implicit va fi utilizat pentru a compune mesaje atunci când faceți clic pe adresele de poștă electronică."
 
 #. Utilities
-#: dialogs/mime-settings/xfce-mime-window.c:276
+#: dialogs/mime-settings/xfce-mime-window.c:272
 msgid "_Utilities"
 msgstr "_Utilitare"
 
-#: dialogs/mime-settings/xfce-mime-window.c:289
+#: dialogs/mime-settings/xfce-mime-window.c:285
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Gestionar de fișiere"
 
-#: dialogs/mime-settings/xfce-mime-window.c:297
+#: dialogs/mime-settings/xfce-mime-window.c:293
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr "Gestionarul de fișiere implicit va fi utilizat pentru a răsfoi conținutul dosarelor."
 
-#: dialogs/mime-settings/xfce-mime-window.c:315
+#: dialogs/mime-settings/xfce-mime-window.c:311
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Emulator de terminal"
 
-#: dialogs/mime-settings/xfce-mime-window.c:323
+#: dialogs/mime-settings/xfce-mime-window.c:319
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr "Emulatorul de terminal implicit va fi utilizat pentru a executa comenzi care necesită un mediu CLI."
 
-#: dialogs/mime-settings/xfce-mime-window.c:341
+#: dialogs/mime-settings/xfce-mime-window.c:337
 msgid "Text Editor"
 msgstr "Editor de text"
 
-#: dialogs/mime-settings/xfce-mime-window.c:349
+#: dialogs/mime-settings/xfce-mime-window.c:345
 msgid "The default Text Editor will be used to open and edit text files."
 msgstr "Editorul de text implicit va fi utilizat pentru a deschide și edita fișiere text."
 
+#. Media
+#: dialogs/mime-settings/xfce-mime-window.c:360
+msgid "_Media"
+msgstr "_Mediu"
+
+#: dialogs/mime-settings/xfce-mime-window.c:373
+msgid "Image Viewer"
+msgstr "Vizor de imagini"
+
+#: dialogs/mime-settings/xfce-mime-window.c:381
+msgid "The default Image Viewer will be used to display image files."
+msgstr "Vizorul de imagini implicit va fi utilizat pentru afișarea fișierelor de imagini."
+
+#: dialogs/mime-settings/xfce-mime-window.c:399
+msgid "Audio Player"
+msgstr "Programul de redare audio"
+
+#: dialogs/mime-settings/xfce-mime-window.c:407
+msgid "The default Audio Player will be used to play audio files."
+msgstr "Programul de redare audio implicit va fi utilizat pentru a reda fișiere audio."
+
+#: dialogs/mime-settings/xfce-mime-window.c:425
+msgid "Video Player"
+msgstr "Programul de redare video"
+
+#: dialogs/mime-settings/xfce-mime-window.c:433
+msgid "The default Video Player will be used to play video files."
+msgstr "Programul de redare video implicit va fi utilizat pentru a reda fișiere video."
+
 #. Mimes
-#: dialogs/mime-settings/xfce-mime-window.c:363
+#: dialogs/mime-settings/xfce-mime-window.c:448
 msgid "_Others"
 msgstr "_Altele"
 
-#: dialogs/mime-settings/xfce-mime-window.c:373
+#: dialogs/mime-settings/xfce-mime-window.c:458
 msgid "_Filter:"
 msgstr "_Filtru:"
 
-#: dialogs/mime-settings/xfce-mime-window.c:381
+#: dialogs/mime-settings/xfce-mime-window.c:466
 msgid "Clear filter"
 msgstr "Curăță filtrul"
 
-#: dialogs/mime-settings/xfce-mime-window.c:411
+#: dialogs/mime-settings/xfce-mime-window.c:496
 msgid "Open with..."
 msgstr "Deschide cu..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:460
+#: dialogs/mime-settings/xfce-mime-window.c:545
 msgid "MIME Type"
 msgstr "Tip MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:488
+#: dialogs/mime-settings/xfce-mime-window.c:573
 msgid "Status"
 msgstr "Stare"
 
-#: dialogs/mime-settings/xfce-mime-window.c:508
+#: dialogs/mime-settings/xfce-mime-window.c:593
 msgid "Default Application"
 msgstr "Aplicație implicită"
 
-#: dialogs/mime-settings/xfce-mime-window.c:684
-#: dialogs/mime-settings/xfce-mime-window.c:853
+#: dialogs/mime-settings/xfce-mime-window.c:769
+#: dialogs/mime-settings/xfce-mime-window.c:938
 msgid "User Set"
 msgstr "Personalizată"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:686
-#: dialogs/mime-settings/xfce-mime-window.c:853
-#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
-#: dialogs/mouse-settings/main.c:479
+#: dialogs/mime-settings/xfce-mime-window.c:771
+#: dialogs/mime-settings/xfce-mime-window.c:938
+#: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
+#: dialogs/mouse-settings/main.c:476
 msgid "Default"
 msgstr "Implicită"
 
-#: dialogs/mime-settings/xfce-mime-window.c:776
+#: dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
@@ -2221,12 +2325,12 @@ msgstr[0] "%d tip MIME găsit"
 msgstr[1] "%d tipuri MIME găsite"
 msgstr[2] "%d de tipuri MIME găsite"
 
-#: dialogs/mime-settings/xfce-mime-window.c:898
+#: dialogs/mime-settings/xfce-mime-window.c:983
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Nu s-a putut asocia aplicațial „%s” tipului MIME „%s”."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1007
+#: dialogs/mime-settings/xfce-mime-window.c:1092
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
@@ -2234,27 +2338,27 @@ msgstr[0] "%d tip MIME selectat"
 msgstr[1] "%d tipuri MIME selectate"
 msgstr[2] "%d de tipuri MIME selectate"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1203
+#: dialogs/mime-settings/xfce-mime-window.c:1288
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Această acțiune va elimina asocierea personalizată și va restaura valorile implicite din sistem."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1205
+#: dialogs/mime-settings/xfce-mime-window.c:1290
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Sigur doriți să reinițializați asocierea tipului „%s” la valoarea implicită?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1209
+#: dialogs/mime-settings/xfce-mime-window.c:1294
 msgid "Question"
 msgstr "Întrebare"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1211
-#: dialogs/mime-settings/xfce-mime-window.c:1283
+#: dialogs/mime-settings/xfce-mime-window.c:1296
+#: dialogs/mime-settings/xfce-mime-window.c:1368
 msgid "Reset to Default"
 msgstr "Revenire la valoarea implicită"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1278
+#: dialogs/mime-settings/xfce-mime-window.c:1363
 msgid "Choose Application..."
 msgstr "Selectați o aplicație…"
 
@@ -2520,28 +2624,28 @@ msgstr "Gestionarul de fișiere Xfe"
 msgid "X Terminal"
 msgstr "Terminalul Xterm"
 
-#: dialogs/mouse-settings/main.c:86
+#: dialogs/mouse-settings/main.c:83
 msgid "Active device in the dialog"
 msgstr "Dispozitiv activ în fereastră"
 
-#: dialogs/mouse-settings/main.c:86
+#: dialogs/mouse-settings/main.c:83
 msgid "DEVICE NAME"
 msgstr "NUMELE DISPOZITIVULUI"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:168
+#: dialogs/mouse-settings/main.c:165
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:178
+#: dialogs/mouse-settings/main.c:175
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:189
+#: dialogs/mouse-settings/main.c:186
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
@@ -2555,196 +2659,196 @@ msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "configurări;opțiuni;butoane;derulare;direcție;cursor;indicator;viteză;dublu clic;temă;rotiță;"
 
-#: xfce4-settings-editor/main.c:185
+#: xfce4-settings-editor/main.c:182
 #: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
 msgid "Settings Editor"
 msgstr "Editor de opțiuni"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:277
+#: xfce4-settings-editor/xfce-settings-editor-box.c:273
 msgid "Channel"
 msgstr "Canal"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:327
+#: xfce4-settings-editor/xfce-settings-editor-box.c:323
 msgid "Property"
 msgstr "Proprietate"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:335
+#: xfce4-settings-editor/xfce-settings-editor-box.c:331
 msgid "Type"
 msgstr "Tip"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:342
+#: xfce4-settings-editor/xfce-settings-editor-box.c:338
 msgid "Locked"
 msgstr "Blocat"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:349
+#: xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Value"
 msgstr "Valoare"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:369
+#: xfce4-settings-editor/xfce-settings-editor-box.c:365
 msgid "New property"
 msgstr "Proprietate nouă"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:382
+#: xfce4-settings-editor/xfce-settings-editor-box.c:378
 msgid "Edit selected property"
 msgstr "Editați proprietatea selectată"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:390
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1076
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1578
+#: xfce4-settings-editor/xfce-settings-editor-box.c:386
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1072
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1574
 msgid "_Reset"
 msgstr "_Reinițializează"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:395
+#: xfce4-settings-editor/xfce-settings-editor-box.c:391
 msgid "Reset selected property"
 msgstr "Reinițializează proprietatea selectată"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:501
-#: xfce4-settings-editor/xfce-settings-editor-box.c:594
-#: xfce4-settings-editor/xfce-settings-editor-box.c:712
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:83
+#: xfce4-settings-editor/xfce-settings-editor-box.c:497
+#: xfce4-settings-editor/xfce-settings-editor-box.c:590
+#: xfce4-settings-editor/xfce-settings-editor-box.c:708
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:79
 msgid "Empty"
 msgstr "Gol"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:504
+#: xfce4-settings-editor/xfce-settings-editor-box.c:500
 msgid "Array"
 msgstr "Matrice"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:509
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:84
+#: xfce4-settings-editor/xfce-settings-editor-box.c:505
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:80
 msgid "String"
 msgstr "Șir"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:517
+#: xfce4-settings-editor/xfce-settings-editor-box.c:513
 msgid "Integer"
 msgstr "Întreg"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:520
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:85
+#: xfce4-settings-editor/xfce-settings-editor-box.c:516
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:81
 msgid "Boolean"
 msgstr "Boolean"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:523
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:87
+#: xfce4-settings-editor/xfce-settings-editor-box.c:519
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:83
 msgid "Double"
 msgstr "Double"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:851
+#: xfce4-settings-editor/xfce-settings-editor-box.c:847
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Reinițializarea unui canal va șterge definitiv opțiunile sale personalizate."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:859
+#: xfce4-settings-editor/xfce-settings-editor-box.c:855
 msgid "_Reset Channel"
 msgstr "_Reinițializează canalul"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:860
+#: xfce4-settings-editor/xfce-settings-editor-box.c:856
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Sigur doriți să reinițializați canalul „%s” și toate proprietățile sale?"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:935
+#: xfce4-settings-editor/xfce-settings-editor-box.c:931
 msgid "reset"
 msgstr "reinițializare"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:992
+#: xfce4-settings-editor/xfce-settings-editor-box.c:988
 #, c-format
 msgid "Monitor %s"
 msgstr "Monitorizează %s"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
+#: xfce4-settings-editor/xfce-settings-editor-box.c:996
 msgid "Clear"
 msgstr "Golește"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
+#: xfce4-settings-editor/xfce-settings-editor-box.c:996
 msgid "Close"
 msgstr "Închidere"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1033
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1029
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "începe monitorizarea canalului „%s”"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1082
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1078
 msgid "_Monitor"
 msgstr "_Monitorizare"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1092
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1088
 msgid "Refresh"
 msgstr "Reîmprospătare"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1575
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1571
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Reinițializarea unei proprietăți va șterge definitiv opțiunile personalizate asociate."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1579
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1575
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Sigur doriți să reinițializați proprietatea „%s”?"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:82
 msgid "Int"
 msgstr "Int"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:88
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:84
 msgid "Unsigned Int"
 msgstr "Unsigned Int"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:89
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:85
 msgid "Int64"
 msgstr "Int64"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
 msgid "Unsigned Int64"
 msgstr "Unsigned Int64"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:135
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:131
 msgid "New Property"
 msgstr "Proprietate nouă"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:134
 msgid "Save"
 msgstr "Salvează"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:153
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:149
 msgid "_Property:"
 msgstr "_Proprietate:"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:167
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:163
 msgid "_Type:"
 msgstr "_Tip:"
 
 #. strings
 #. integers
 #. bool
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:196
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:206
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:217
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:192
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:202
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:213
 msgid "_Value:"
 msgstr "_Valoare:"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:372
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:368
 msgid "Property names must start with a '/' character"
 msgstr "Numele proprietăților trebuie să înceapă cu caracterul „/”"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:383
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:379
 msgid "The root element ('/') is not a valid property name"
 msgstr "Elementul rădăcină (/) nu este un nume valid de proprietate"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:400
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
 msgstr "Numele proprietăților pot include doar caracterele ASCII A-Z, a-z, 0-9, „_”, „-”, „:”, „.”, „,”, „[”, „]”, „{”, „}”, „<” și „>”, precum și „/” ca separator"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:414
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:410
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Numele de proprietăți nu pot avea două sau mai multe caractere „/” consecutive"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:428
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:424
 msgid "Property names cannot end with a '/' character"
 msgstr "Numele de proprietăți nu se pot termina cu un caracter „/”"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:641
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:637
 msgid "Edit Property"
 msgstr "Editați proprietatea"
 
@@ -2756,20 +2860,20 @@ msgstr "Editor grafic al opțiunilor Xfconf"
 msgid "registry;regedit;configuration file;"
 msgstr "registru;regedit;fișier de configurare;"
 
-#: xfce4-settings-manager/main.c:43
+#: xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Fereastră cu opțiuni de afișare"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:227
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:223
 msgid "All _Settings"
 msgstr "_Toate opțiunile"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:426
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:422
 msgid "Settings"
 msgstr "Opțiuni"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:920
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:932
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nu s-a putut porni „%s”"
@@ -2786,61 +2890,61 @@ msgstr "Gestionar de opțiuni grafice pentru Xfce 4"
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr "control;panou;centru;sistem;configurări;opțiuni;personalizare;hardware;"
 
-#: xfsettingsd/accessibility.c:413
+#: xfsettingsd/accessibility.c:409
 msgid "Sticky keys are enabled"
 msgstr "S-au activat tastele persistente"
 
-#: xfsettingsd/accessibility.c:415
+#: xfsettingsd/accessibility.c:411
 msgid "Sticky keys are disabled"
 msgstr "S-au dezactivat tastele persistente"
 
-#: xfsettingsd/accessibility.c:417
+#: xfsettingsd/accessibility.c:413
 msgid "Sticky keys"
 msgstr "Taste persistente"
 
-#: xfsettingsd/accessibility.c:422
+#: xfsettingsd/accessibility.c:418
 msgid "Slow keys are enabled"
 msgstr "S-au activat tastele lente"
 
-#: xfsettingsd/accessibility.c:424
+#: xfsettingsd/accessibility.c:420
 msgid "Slow keys are disabled"
 msgstr "S-au dezactivat tastele lente"
 
-#: xfsettingsd/accessibility.c:426
+#: xfsettingsd/accessibility.c:422
 msgid "Slow keys"
 msgstr "Taste lente"
 
-#: xfsettingsd/accessibility.c:431
+#: xfsettingsd/accessibility.c:427
 msgid "Bounce keys are enabled"
 msgstr "S-au activat tastele de respingere"
 
-#: xfsettingsd/accessibility.c:433
+#: xfsettingsd/accessibility.c:429
 msgid "Bounce keys are disabled"
 msgstr "S-au dezactivat tastele de respingere"
 
-#: xfsettingsd/accessibility.c:435
+#: xfsettingsd/accessibility.c:431
 msgid "Bounce keys"
 msgstr "Taste de respingere"
 
-#: xfsettingsd/keyboard-shortcuts.c:240
+#: xfsettingsd/keyboard-shortcuts.c:236
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Nu s-a putut lansa comanda „%s”"
 
-#: xfsettingsd/main.c:97
+#: xfsettingsd/main.c:94
 msgid "Fork to the background"
 msgstr "Nu se bifurcă în fundal"
 
-#: xfsettingsd/main.c:98
+#: xfsettingsd/main.c:95
 msgid "Do not wait for a window manager on startup"
 msgstr "Nu aștepta pornirea unui administrator de ferestre"
 
-#: xfsettingsd/main.c:99
+#: xfsettingsd/main.c:96
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Înlocuiește demonul xsettings pornit (dacă există)"
 
 #. value in xfconf isn't a string, so make a default one
-#: xfsettingsd/workspaces.c:322 xfsettingsd/workspaces.c:379
+#: xfsettingsd/workspaces.c:318 xfsettingsd/workspaces.c:375
 #, c-format
 msgid "Workspace %d"
 msgstr "Spațiul de lucru %d"
