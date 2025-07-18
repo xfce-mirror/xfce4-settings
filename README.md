@@ -30,17 +30,17 @@ See [NEWS](https://gitlab.xfce.org/xfce/xfce4-settings/-/blob/master/NEWS) for d
 From source: 
 
     % cd xfce4-settings
-    % ./autogen.sh
-    % make
-    % make install
+    % meson setup build
+    % meson compile -C build
+    % meson install -C build
 
 From release tarball:
 
-    % tar xf xfce4-settings-<version>.tar.bz2
+    % tar xf xfce4-settings-<version>.tar.xz
     % cd xfce4-settings-<version>
-    % ./configure
-    % make
-    % make install
+    % meson setup build
+    % meson compile -C build
+    % meson install -C build
 
 ### Reporting Bugs
 
