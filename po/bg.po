@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce4-settings.master package.
 # 
 # Translators:
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2012
@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-18 00:48+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2025-07-18 10:59+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>, 2014-2025\n"
 "Language-Team: Bulgarian (http://app.transifex.com/xfce/xfce4-settings/language/bg/)\n"
@@ -23,1233 +23,1258 @@ msgstr ""
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../common/resources/accessibility-dialog.glade.h:1
+#: common/resources/accessibility-dialog.glade:66
+#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:4
 msgid "Accessibility"
 msgstr "Достъпност"
 
-#: ../common/resources/accessibility-dialog.glade.h:2
-#: ../common/resources/appearance-dialog.glade.h:13
-#: ../common/resources/color-dialog.glade.h:2
-#: ../common/resources/display-dialog.glade.h:16
-#: ../common/resources/minimal-display-dialog.glade.h:11
-#: ../common/resources/profile-changed-dialog.glade.h:2
-#: ../common/resources/keyboard-dialog.glade.h:5
-#: ../common/resources/mouse-dialog.glade.h:16
-#: ../dialogs/display-settings/main.c:3479
-#: ../dialogs/mime-settings/xfce-mime-window.c:190
-#: ../xfce4-settings-editor/main.c:185
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:230
+#: common/resources/accessibility-dialog.glade:85
+#: common/resources/appearance-dialog.glade:142
+#: common/resources/color-dialog.glade:65
+#: common/resources/display-dialog.glade:290
+#: common/resources/minimal-display-dialog.glade:368
+#: common/resources/profile-changed-dialog.glade:34
+#: common/resources/keyboard-dialog.glade:181
+#: common/resources/mouse-dialog.glade:195
+#: dialogs/display-settings/main.c:3479
+#: dialogs/mime-settings/xfce-mime-window.c:190
+#: xfce4-settings-editor/main.c:185
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
 msgid "_Close"
 msgstr "_Затваряне"
 
 #. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
-#: ../common/resources/accessibility-dialog.glade.h:3
-#: ../common/resources/appearance-dialog.glade.h:12
-#: ../common/resources/color-dialog.glade.h:3
-#: ../common/resources/display-dialog.glade.h:15
-#: ../common/resources/keyboard-dialog.glade.h:6
-#: ../common/resources/mouse-dialog.glade.h:15
-#: ../dialogs/mime-settings/xfce-mime-window.c:193
-#: ../xfce4-settings-editor/main.c:184
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:219
+#: common/resources/accessibility-dialog.glade:100
+#: common/resources/appearance-dialog.glade:126
+#: common/resources/color-dialog.glade:80
+#: common/resources/display-dialog.glade:274
+#: common/resources/keyboard-dialog.glade:196
+#: common/resources/mouse-dialog.glade:179
+#: dialogs/mime-settings/xfce-mime-window.c:193
+#: xfce4-settings-editor/main.c:184
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:219
 msgid "_Help"
 msgstr "_Помощ"
 
-#: ../common/resources/accessibility-dialog.glade.h:4
+#: common/resources/accessibility-dialog.glade:156
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr "Когато е включено, сесията ще стартира необходимите приложения за екранни четци и лупата."
 
-#: ../common/resources/accessibility-dialog.glade.h:5
+#: common/resources/accessibility-dialog.glade:173
 msgid "_Enable assistive technologies"
 msgstr "Включване на спомагателните технологии"
 
-#: ../common/resources/accessibility-dialog.glade.h:6
+#: common/resources/accessibility-dialog.glade:195
 msgid "Start With Session"
 msgstr "Стартиране със сесията"
 
-#: ../common/resources/accessibility-dialog.glade.h:7
+#: common/resources/accessibility-dialog.glade:230
 msgid "Assistive technologies will be available the next time you login"
 msgstr "Помощните технологии ще бъдат достъпни при следващото влизане"
 
-#: ../common/resources/accessibility-dialog.glade.h:8
+#: common/resources/accessibility-dialog.glade:269
 msgid "No AT-SPI provider was found on your system"
 msgstr "На вашата система не е намерен AP-SPI"
 
-#: ../common/resources/accessibility-dialog.glade.h:9
+#: common/resources/accessibility-dialog.glade:292
 msgid "Assistive _Technologies"
 msgstr "Спомагателни технологии"
 
-#: ../common/resources/accessibility-dialog.glade.h:10
+#: common/resources/accessibility-dialog.glade:332
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr "Когато е включено, променящите поведението клавиши (например Control, Alt и Shift) не трябва да се задържат (те могат да бъдат натиснати и освободени), когато трябва да се натискат няколко клавиша едновременно."
 
-#: ../common/resources/accessibility-dialog.glade.h:11
+#: common/resources/accessibility-dialog.glade:355
 msgid "_Use sticky keys"
 msgstr "Използване на залепващи клавиши"
 
-#: ../common/resources/accessibility-dialog.glade.h:12
+#: common/resources/accessibility-dialog.glade:383
 msgid "_Lock sticky keys"
 msgstr "Фиксиране на залепващи клавиши"
 
-#: ../common/resources/accessibility-dialog.glade.h:13
+#: common/resources/accessibility-dialog.glade:387
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr "Когато е избрано, променящите поведението клавиши (като Control, Alt и Shift)  остават в натиснато състояние, докато не бъдат натиснати отново."
 
-#: ../common/resources/accessibility-dialog.glade.h:14
+#: common/resources/accessibility-dialog.glade:400
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr "Изключване на залепващите клавиши, ако са натиснати два клавиша"
 
-#: ../common/resources/accessibility-dialog.glade.h:15
+#: common/resources/accessibility-dialog.glade:404
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr "Когато е избрано, функцията „залепващи клавиши“ ще бъде забранена, ако са натиснати едновременно два клавиша"
 
-#: ../common/resources/accessibility-dialog.glade.h:16
+#: common/resources/accessibility-dialog.glade:439
 msgid "Sticky Keys"
 msgstr "Залепващи клавиши"
 
-#: ../common/resources/accessibility-dialog.glade.h:17
+#: common/resources/accessibility-dialog.glade:469
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr "За да предотвратите случайни натискания на клавиши, бавните клавиши изискват клавиша да се задържи за определен минимален период от време, преди да бъде прието натискането на клавиша."
 
-#: ../common/resources/accessibility-dialog.glade.h:18
+#: common/resources/accessibility-dialog.glade:492
 msgid "Use slow _keys"
 msgstr "Използване на бавни клавиши"
 
-#: ../common/resources/accessibility-dialog.glade.h:19
+#: common/resources/accessibility-dialog.glade:521
 msgid "Acceptance _delay:"
 msgstr "Забавяне преди:"
 
-#: ../common/resources/accessibility-dialog.glade.h:20
+#: common/resources/accessibility-dialog.glade:535
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "Време в милисекунди, което трябва да мине, преди задействане на натиснатият клавиш"
 
-#: ../common/resources/accessibility-dialog.glade.h:21
+#: common/resources/accessibility-dialog.glade:571
 msgid "Slow Keys"
 msgstr "Бавни клавиши"
 
-#: ../common/resources/accessibility-dialog.glade.h:22
+#: common/resources/accessibility-dialog.glade:601
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr "За да бъдат предотвратени случайни многократни натискания на клавиши, клавишите за отскачане налагат минимално забавяне между натисканията на клавишите."
 
-#: ../common/resources/accessibility-dialog.glade.h:23
+#: common/resources/accessibility-dialog.glade:624
 msgid "Use _bounce keys"
 msgstr "Използване на прескачащи клавиши."
 
-#: ../common/resources/accessibility-dialog.glade.h:24
+#: common/resources/accessibility-dialog.glade:653
 msgid "K_eystroke delay:"
 msgstr "Забавяне при натискане на клавиш:"
 
-#: ../common/resources/accessibility-dialog.glade.h:25
+#: common/resources/accessibility-dialog.glade:667
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Време, в милисекунди, между натискане на клавишите"
 
-#: ../common/resources/accessibility-dialog.glade.h:26
+#: common/resources/accessibility-dialog.glade:703
 msgid "Bounce Keys"
 msgstr "Прескачащи клавиши"
 
-#: ../common/resources/accessibility-dialog.glade.h:27
+#: common/resources/accessibility-dialog.glade:729
 msgid "Keyboa_rd"
 msgstr "Клавиатура"
 
-#: ../common/resources/accessibility-dialog.glade.h:28
+#: common/resources/accessibility-dialog.glade:769
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr "Когато е включено, показалецът на мишката може да се контролира с използването на цифровия панел на клавиатурата."
 
-#: ../common/resources/accessibility-dialog.glade.h:29
+#: common/resources/accessibility-dialog.glade:792
 msgid "_Use mouse emulation"
 msgstr "Използване на емулация на мишката"
 
-#: ../common/resources/accessibility-dialog.glade.h:30
+#: common/resources/accessibility-dialog.glade:796
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "Когато е избрано, показалецът на мишката може да се контролира с цифровият панел наклавиатурата"
 
-#: ../common/resources/accessibility-dialog.glade.h:31
+#: common/resources/accessibility-dialog.glade:824
+#: common/resources/accessibility-dialog.glade:894
+#: common/resources/accessibility-dialog.glade:936
 msgid "msec"
 msgstr "мсек"
 
-#: ../common/resources/accessibility-dialog.glade.h:32
+#: common/resources/accessibility-dialog.glade:835
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "Време, в милисекунди, между началото на натискане на клавиш и началото на движението"
 
-#: ../common/resources/accessibility-dialog.glade.h:33
+#: common/resources/accessibility-dialog.glade:852
 msgid "_Acceleration delay:"
 msgstr "Забавяне преди ускорение:"
 
-#: ../common/resources/accessibility-dialog.glade.h:34
+#: common/resources/accessibility-dialog.glade:865
 msgid "R_epeat interval:"
 msgstr "Интервал на повторение:"
 
-#: ../common/resources/accessibility-dialog.glade.h:35
+#: common/resources/accessibility-dialog.glade:877
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Време, в милисекунди, между повтарящи се движения"
 
-#: ../common/resources/accessibility-dialog.glade.h:36
+#: common/resources/accessibility-dialog.glade:906
 msgid "Acceleration t_ime:"
 msgstr "Време на ускорение:"
 
-#: ../common/resources/accessibility-dialog.glade.h:37
+#: common/resources/accessibility-dialog.glade:918
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Време, в милисекунди за достигане на максимална скорост"
 
-#: ../common/resources/accessibility-dialog.glade.h:38
+#: common/resources/accessibility-dialog.glade:948
 msgid "Ma_ximum speed:"
 msgstr "Максимална скорост:"
 
-#: ../common/resources/accessibility-dialog.glade.h:39
+#: common/resources/accessibility-dialog.glade:960
 msgid "The maximum pointer speed after acceleration"
 msgstr "Максимална скорост на показалеца след ускоряване"
 
-#: ../common/resources/accessibility-dialog.glade.h:40
+#: common/resources/accessibility-dialog.glade:978
 msgid "pixels/sec"
 msgstr "пиксела/сек"
 
-#: ../common/resources/accessibility-dialog.glade.h:41
+#: common/resources/accessibility-dialog.glade:990
 msgid "Acceleration _profile:"
 msgstr "Профил на ускорение:"
 
-#: ../common/resources/accessibility-dialog.glade.h:42
+#: common/resources/accessibility-dialog.glade:1002
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Разстояние, което трябва да измине показалеца, преди да достигне максимална скорост"
 
-#: ../common/resources/accessibility-dialog.glade.h:43
+#: common/resources/accessibility-dialog.glade:1048
 msgid "Mouse Emulation"
 msgstr "Емулация на мишката"
 
-#: ../common/resources/accessibility-dialog.glade.h:44
+#: common/resources/accessibility-dialog.glade:1078
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr "Обвързване на клавишно съчетание с xfce4-find-cursor за видимо обозначаване на текущото местоположение на показалеца на мишката."
 
-#: ../common/resources/accessibility-dialog.glade.h:45
+#: common/resources/accessibility-dialog.glade:1095
 msgid "Show location of pointer on keypress"
 msgstr "Покажи местоположението на показалеца при натискане на клавиш"
 
-#: ../common/resources/accessibility-dialog.glade.h:46
+#: common/resources/accessibility-dialog.glade:1117
 msgid "Find Cursor"
 msgstr "Намиране на курсор"
 
-#: ../common/resources/accessibility-dialog.glade.h:47
+#: common/resources/accessibility-dialog.glade:1143
 msgid "_Mouse"
 msgstr "Мишка"
 
-#: ../common/resources/appearance-dialog.glade.h:1
-#: ../common/resources/mouse-dialog.glade.h:1
-#: ../dialogs/appearance-settings/main.c:1599
-#: ../dialogs/display-settings/main.c:82 ../dialogs/display-settings/main.c:90
+#: common/resources/appearance-dialog.glade:39
+#: common/resources/mouse-dialog.glade:63
+#: dialogs/appearance-settings/main.c:1599 dialogs/display-settings/main.c:82
+#: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "Няма"
 
-#: ../common/resources/appearance-dialog.glade.h:2
+#: common/resources/appearance-dialog.glade:42
 msgid "Slight"
 msgstr "Тънък"
 
-#: ../common/resources/appearance-dialog.glade.h:3
+#: common/resources/appearance-dialog.glade:45
 msgid "Medium"
 msgstr "Среден"
 
-#: ../common/resources/appearance-dialog.glade.h:4
+#: common/resources/appearance-dialog.glade:48
 msgid "Full"
 msgstr "Пълен"
 
-#: ../common/resources/appearance-dialog.glade.h:5
+#: common/resources/appearance-dialog.glade:59
 msgid "Icons"
 msgstr "Икони"
 
-#: ../common/resources/appearance-dialog.glade.h:6
+#: common/resources/appearance-dialog.glade:62
 msgid "Text"
 msgstr "Текст"
 
-#: ../common/resources/appearance-dialog.glade.h:7
+#: common/resources/appearance-dialog.glade:65
 msgid "Text under icons"
 msgstr "Текст под иконите"
 
-#: ../common/resources/appearance-dialog.glade.h:8
+#: common/resources/appearance-dialog.glade:68
 msgid "Text next to icons"
 msgstr "Текст до иконите"
 
-#: ../common/resources/appearance-dialog.glade.h:9
+#: common/resources/appearance-dialog.glade:82
 msgid "1x (no scaling)"
 msgstr "1x (без мащабиране)"
 
-#: ../common/resources/appearance-dialog.glade.h:10
+#: common/resources/appearance-dialog.glade:86
 msgid "2x"
 msgstr "2х"
 
-#: ../common/resources/appearance-dialog.glade.h:11
+#: common/resources/appearance-dialog.glade:107
+#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
 msgid "Appearance"
 msgstr "Външен вид"
 
-#: ../common/resources/appearance-dialog.glade.h:14
-#: ../common/resources/color-dialog.glade.h:10
-#: ../common/resources/keyboard-dialog.glade.h:24
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:360
+#: common/resources/appearance-dialog.glade:205
+#: common/resources/appearance-dialog.glade:315
+#: common/resources/color-dialog.glade:374
+#: common/resources/keyboard-dialog.glade:636
+#: common/resources/keyboard-dialog.glade:970
+#: xfce4-settings-editor/xfce-settings-editor-box.c:360
 msgid "_Add"
 msgstr "_Добавяне"
 
-#: ../common/resources/appearance-dialog.glade.h:15
+#: common/resources/appearance-dialog.glade:238
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
 msgstr "Задаване на съответстваща <a href=\"xfwm4-settings:\">Xfwm4 тема</a>, ако има такава"
 
-#: ../common/resources/appearance-dialog.glade.h:16
+#: common/resources/appearance-dialog.glade:272
 msgid "St_yle"
 msgstr "Стил"
 
-#: ../common/resources/appearance-dialog.glade.h:17
+#: common/resources/appearance-dialog.glade:348
 msgid "_Icons"
 msgstr "Икони"
 
-#: ../common/resources/appearance-dialog.glade.h:18
+#: common/resources/appearance-dialog.glade:388
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "Този шрифт ще бъде използван, като стандартен шрифт за изписване текста на интерфейса"
 
-#: ../common/resources/appearance-dialog.glade.h:19
+#: common/resources/appearance-dialog.glade:390
 msgid "Select a default font"
 msgstr "Избор на стандартен шрифт"
 
-#: ../common/resources/appearance-dialog.glade.h:20
+#: common/resources/appearance-dialog.glade:399
 msgid "Default Fon_t"
 msgstr "Стандартен шрифт"
 
-#: ../common/resources/appearance-dialog.glade.h:21
+#: common/resources/appearance-dialog.glade:431
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr "Този шрифт ще бъде използван, като стандартен равноширок шрифт, например в терминалните емулатори."
 
-#: ../common/resources/appearance-dialog.glade.h:22
+#: common/resources/appearance-dialog.glade:433
 msgid "Select a default monospace font"
 msgstr "Избор на стандартен равноширок шрифт"
 
-#: ../common/resources/appearance-dialog.glade.h:23
+#: common/resources/appearance-dialog.glade:442
 msgid "Default _Monospace Font"
 msgstr "Стандартен равноширок шрифт"
 
-#: ../common/resources/appearance-dialog.glade.h:24
+#: common/resources/appearance-dialog.glade:477
 msgid "_Enable anti-aliasing"
 msgstr "Включване на заглаждане на шрифта"
 
-#: ../common/resources/appearance-dialog.glade.h:25
+#: common/resources/appearance-dialog.glade:481
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Заглаждането на шрифта може да подобри външният вид на текста на екрана"
 
-#: ../common/resources/appearance-dialog.glade.h:26
+#: common/resources/appearance-dialog.glade:509
 msgid "Hintin_g:"
 msgstr "Подсказване:"
 
-#: ../common/resources/appearance-dialog.glade.h:27
+#: common/resources/appearance-dialog.glade:521
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Много шрифтове съдържат допълнителни данни, които помагат за изчертаване на шрифта по най- добър начин. Изберете този, който изглежда най- добре според личните ви предпочитания."
 
-#: ../common/resources/appearance-dialog.glade.h:28
+#: common/resources/appearance-dialog.glade:541
 msgid "Sub-_pixel order:"
 msgstr "Подпикселна подредба:"
 
-#: ../common/resources/appearance-dialog.glade.h:29
+#: common/resources/appearance-dialog.glade:553
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "Качество на шрифтовете на TFT или LCD екрани може да бъде подобрено с промяна на разположението на цветовете в самите пиксели"
 
-#: ../common/resources/appearance-dialog.glade.h:30
+#: common/resources/appearance-dialog.glade:591
 msgid "Rendering"
 msgstr "Изобразяване"
 
-#: ../common/resources/appearance-dialog.glade.h:31
+#: common/resources/appearance-dialog.glade:623
 msgid "Custom _DPI setting:"
 msgstr "Потребителска настройка DPI:"
 
-#: ../common/resources/appearance-dialog.glade.h:32
+#: common/resources/appearance-dialog.glade:627
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Замяна на откритата разделителната способност на монитора, ако шрифтове изглеждат твърде големи или твърде малки"
 
-#: ../common/resources/appearance-dialog.glade.h:33
+#: common/resources/appearance-dialog.glade:664
 msgid "DPI"
 msgstr "Разделителна способност (DPI)"
 
-#: ../common/resources/appearance-dialog.glade.h:34
+#: common/resources/appearance-dialog.glade:690
 msgid "_Fonts"
 msgstr "Шрифтове"
 
-#: ../common/resources/appearance-dialog.glade.h:35
+#: common/resources/appearance-dialog.glade:733
 msgid "Show images on _buttons"
 msgstr "Показване на изображения върху бутоните"
 
-#: ../common/resources/appearance-dialog.glade.h:36
+#: common/resources/appearance-dialog.glade:737
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Посочете, дали иконите да се показват до текста в бутоните"
 
-#: ../common/resources/appearance-dialog.glade.h:37
+#: common/resources/appearance-dialog.glade:750
 msgid "Show images in _menus"
 msgstr "Показване на изображения в менютата"
 
-#: ../common/resources/appearance-dialog.glade.h:38
+#: common/resources/appearance-dialog.glade:754
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Посочете, дали иконите трябва да бъдат показвани до елементите в менютата"
 
-#: ../common/resources/appearance-dialog.glade.h:39
+#: common/resources/appearance-dialog.glade:767
 msgid "Enable e_ditable accelerators"
 msgstr "Включване на променяеми ускорители"
 
-#: ../common/resources/appearance-dialog.glade.h:40
+#: common/resources/appearance-dialog.glade:771
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Ако бъде избрано, клавишните съчетания за елементите от менюто могат да бъдат променени чрез преместване на мишката върху тях и натискане на клавишите за новото съчетание."
 
-#: ../common/resources/appearance-dialog.glade.h:41
+#: common/resources/appearance-dialog.glade:784
 msgid "Enable header bars in dialo_gs"
 msgstr "Активиране на заглавните ленти в диалоговите прозорци"
 
-#: ../common/resources/appearance-dialog.glade.h:42
+#: common/resources/appearance-dialog.glade:788
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr "Определя дали диалозите на GTK могат да поставят джаджи като бутони в заглавната лента на диалога. Включва декорация от страна на клиента. Засяга само новоотворени диалогови прозорци."
 
-#: ../common/resources/appearance-dialog.glade.h:43
+#: common/resources/appearance-dialog.glade:807
 msgid "Menus and Buttons"
 msgstr "Менюта и бутони"
 
-#: ../common/resources/appearance-dialog.glade.h:44
+#: common/resources/appearance-dialog.glade:839
 msgid "Enable _event sounds"
 msgstr "Включване на звуците за събития"
 
-#: ../common/resources/appearance-dialog.glade.h:45
+#: common/resources/appearance-dialog.glade:843
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Включване и изключване на звуците за събития глобално (необходима е поддръжката на „Canberra“)"
 
-#: ../common/resources/appearance-dialog.glade.h:46
+#: common/resources/appearance-dialog.glade:856
 msgid "Enable input feedbac_k sounds"
 msgstr "Включване на входните звуци за обратна връзка"
 
-#: ../common/resources/appearance-dialog.glade.h:47
+#: common/resources/appearance-dialog.glade:860
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Посочете дали кликвания на мишката и въвеждане на друг потребител да стартират звуци за събитие"
 
-#: ../common/resources/appearance-dialog.glade.h:48
+#: common/resources/appearance-dialog.glade:879
 msgid "Event sounds"
 msgstr "Звуци за събитие"
 
-#: ../common/resources/appearance-dialog.glade.h:49
+#: common/resources/appearance-dialog.glade:908
 msgid "Adjust the system-wide display scaling"
 msgstr "Прилагане мащаба за цялата система"
 
-#: ../common/resources/appearance-dialog.glade.h:50
+#: common/resources/appearance-dialog.glade:926
 msgid "_Window Scaling"
 msgstr "Мащабиране на прозорец"
 
-#: ../common/resources/appearance-dialog.glade.h:51
+#: common/resources/appearance-dialog.glade:954
 msgid "Setti_ngs"
 msgstr "_Настройки"
 
-#: ../common/resources/color-dialog.glade.h:1
+#: common/resources/color-dialog.glade:46
+#: dialogs/color-settings/xfce4-color-settings.desktop.in:4
 msgid "Color Profiles"
 msgstr "Цветови профили"
 
-#: ../common/resources/color-dialog.glade.h:4
+#: common/resources/color-dialog.glade:151
 msgid "<b>No devices found.</b>"
 msgstr "<b>Не е намерено устройство.</b>"
 
-#: ../common/resources/color-dialog.glade.h:5
+#: common/resources/color-dialog.glade:221
 msgid "Model:"
 msgstr "Модел:"
 
-#: ../common/resources/color-dialog.glade.h:6
+#: common/resources/color-dialog.glade:233
 msgid "Colorspace:"
 msgstr "Цветово пространство:"
 
-#: ../common/resources/color-dialog.glade.h:7
+#: common/resources/color-dialog.glade:256
 msgid "Vendor:"
 msgstr "Продавач:"
 
-#: ../common/resources/color-dialog.glade.h:8
+#: common/resources/color-dialog.glade:280
 msgid "Calibrate"
 msgstr "Калибриране:"
 
-#: ../common/resources/color-dialog.glade.h:9
+#: common/resources/color-dialog.glade:337
 msgid "<b>No profiles for the selected device.</b>"
 msgstr "<b>Не са налични профили за избраното устройство.</b>"
 
-#: ../common/resources/color-dialog.glade.h:11
+#: common/resources/color-dialog.glade:378
 msgid "Add a profile to the currently selected device"
 msgstr "Добавяне на профил към текущо избраното устройство"
 
-#: ../common/resources/color-dialog.glade.h:12
-#: ../common/resources/keyboard-dialog.glade.h:26
+#: common/resources/color-dialog.glade:390
+#: common/resources/keyboard-dialog.glade:666
+#: common/resources/keyboard-dialog.glade:1002
 msgid "_Remove"
 msgstr "_Премахване"
 
-#: ../common/resources/color-dialog.glade.h:13
+#: common/resources/color-dialog.glade:394
 msgid "Delete the currently selected profile"
 msgstr "Изтриване на текущо избраният профил"
 
-#: ../common/resources/color-dialog.glade.h:14
+#: common/resources/color-dialog.glade:409
+#: common/resources/color-dialog.glade:617
 msgid "Show detailed information about the selected profile"
 msgstr "Показване на подробни сведения за избраният профил"
 
-#: ../common/resources/color-dialog.glade.h:15
+#: common/resources/color-dialog.glade:432
 msgid "Enable"
 msgstr "Включване"
 
-#: ../common/resources/color-dialog.glade.h:16
+#: common/resources/color-dialog.glade:436
 msgid "Enable the selected profile"
 msgstr "Включване на избраният профил"
 
-#: ../common/resources/color-dialog.glade.h:17
+#: common/resources/color-dialog.glade:511
 msgid "Add Profile to Device"
 msgstr "Добавяне на профил към устройството"
 
 #. Create cancel button
-#: ../common/resources/color-dialog.glade.h:18
-#: ../common/resources/keyboard-dialog.glade.h:2
-#: ../dialogs/appearance-settings/main.c:1338
-#: ../dialogs/color-settings/main.c:126
-#: ../dialogs/keyboard-settings/command-dialog.c:109
-#: ../dialogs/keyboard-settings/command-dialog.c:271
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:424
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:575
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:106
+#: common/resources/color-dialog.glade:529
+#: common/resources/keyboard-dialog.glade:71
+#: dialogs/appearance-settings/main.c:1338 dialogs/color-settings/main.c:126
+#: dialogs/keyboard-settings/command-dialog.c:109
+#: dialogs/keyboard-settings/command-dialog.c:271
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:575
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:106
 msgid "_Cancel"
 msgstr "_Отказ"
 
-#: ../common/resources/color-dialog.glade.h:19
-#: ../common/resources/keyboard-dialog.glade.h:3
-#: ../dialogs/keyboard-settings/command-dialog.c:113
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:576
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
+#: common/resources/color-dialog.glade:543
+#: common/resources/keyboard-dialog.glade:86
+#: dialogs/keyboard-settings/command-dialog.c:113
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:576
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
 msgid "_OK"
 msgstr "_ОК"
 
-#: ../common/resources/color-dialog.glade.h:20
+#: common/resources/color-dialog.glade:602
 msgid "Import color profile files (*.icc)"
 msgstr "Импортиране на файлове с цветови профили (*.icc)"
 
-#: ../common/resources/confirmation-dialog.glade.h:1
+#: common/resources/confirmation-dialog.glade:13
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
 msgstr "<b><big>Искате ли да запазите тази конфигурация?</big></b>"
 
-#: ../common/resources/confirmation-dialog.glade.h:2
+#: common/resources/confirmation-dialog.glade:15
 msgid ""
 "The previous configuration will be restored in <b>10 seconds</b> if you do "
 "not reply to this question."
 msgstr "Предишната конфигурация ще бъде възстановена след <b>10 секунди</b>, ако не отговорите на този въпрос."
 
-#: ../common/resources/confirmation-dialog.glade.h:3
+#: common/resources/confirmation-dialog.glade:29
 msgid "Keep this configuration"
 msgstr "Запазване на тази конфигурация"
 
-#: ../common/resources/confirmation-dialog.glade.h:4
+#: common/resources/confirmation-dialog.glade:44
 msgid "Restore the previous configuration"
 msgstr "Възстановяване на предишната конфигурация"
 
-#: ../common/resources/display-dialog.glade.h:1
+#: common/resources/display-dialog.glade:61
 msgid "Never"
 msgstr "Никога"
 
-#: ../common/resources/display-dialog.glade.h:2
+#: common/resources/display-dialog.glade:65
 msgid "When a display is connected"
 msgstr "Когато дисплеят  е свързан"
 
-#: ../common/resources/display-dialog.glade.h:3
+#: common/resources/display-dialog.glade:69
 msgid "When a display is disconnected"
 msgstr "Когато дисплеят е изключен"
 
-#: ../common/resources/display-dialog.glade.h:4
+#: common/resources/display-dialog.glade:73
 msgid "Always"
 msgstr "Винаги"
 
-#: ../common/resources/display-dialog.glade.h:5
+#: common/resources/display-dialog.glade:87
 msgid "Do nothing"
 msgstr "Не прави нищо"
 
-#: ../common/resources/display-dialog.glade.h:6
+#: common/resources/display-dialog.glade:91
 msgid "Show dialog"
 msgstr "Показване на диалог"
 
-#: ../common/resources/display-dialog.glade.h:7
+#: common/resources/display-dialog.glade:95
 msgid "Mirror"
 msgstr "Огледало"
 
-#: ../common/resources/display-dialog.glade.h:8
+#: common/resources/display-dialog.glade:99
 msgid "Extend"
 msgstr "Разширяване"
 
-#: ../common/resources/display-dialog.glade.h:9
+#: common/resources/display-dialog.glade:157
 msgid "The primary display can be configured to show:"
 msgstr "Основният дисплей може да бъде конфигуриран да показва:"
 
-#: ../common/resources/display-dialog.glade.h:10
-#: ../dialogs/display-settings/main.c:1732
+#: common/resources/display-dialog.glade:171
+#: dialogs/display-settings/main.c:1732
 msgid "Xfce Panel"
 msgstr "Xfce Панел"
 
-#: ../common/resources/display-dialog.glade.h:11
+#: common/resources/display-dialog.glade:184
 msgid "Desktop icons"
 msgstr "Икони върху работния плот"
 
-#: ../common/resources/display-dialog.glade.h:12
+#: common/resources/display-dialog.glade:197
 msgid "Notifications"
 msgstr "Уведомления"
 
-#: ../common/resources/display-dialog.glade.h:13
+#: common/resources/display-dialog.glade:207
+#: common/resources/display-dialog.glade:222
+#: common/resources/display-dialog.glade:237
 msgid "Configure..."
 msgstr "Настройване..."
 
-#: ../common/resources/display-dialog.glade.h:14
+#: common/resources/display-dialog.glade:255
+#: dialogs/display-settings/xfce-display-settings.desktop.in:4
 msgid "Display"
 msgstr "Дисплей"
 
-#: ../common/resources/display-dialog.glade.h:17
+#: common/resources/display-dialog.glade:362
 msgid "_Mirror displays"
 msgstr "Огледални дисплеи"
 
-#: ../common/resources/display-dialog.glade.h:18
+#: common/resources/display-dialog.glade:461
 msgid "Primary Display:"
 msgstr "Главен дисплей:"
 
-#: ../common/resources/display-dialog.glade.h:19
+#: common/resources/display-dialog.glade:487
 msgid "R_esolution:"
 msgstr "Разделителна способност:"
 
-#: ../common/resources/display-dialog.glade.h:20
+#: common/resources/display-dialog.glade:513
 msgid "Refresh _rate:"
 msgstr "Честота на обновяване:"
 
-#: ../common/resources/display-dialog.glade.h:21
+#: common/resources/display-dialog.glade:539
 msgid "Ro_tation:"
 msgstr "Завъртане:"
 
-#: ../common/resources/display-dialog.glade.h:22
+#: common/resources/display-dialog.glade:563
 msgid "Ref_lection:"
 msgstr "_Отражение:"
 
-#: ../common/resources/display-dialog.glade.h:23
+#: common/resources/display-dialog.glade:603
 msgid "A_pply"
 msgstr "Прилагане"
 
-#: ../common/resources/display-dialog.glade.h:24
+#: common/resources/display-dialog.glade:631
 msgid "_Scale:"
 msgstr "_Мащаб:"
 
-#: ../common/resources/display-dialog.glade.h:25
+#: common/resources/display-dialog.glade:669
 msgid "_General"
 msgstr "_Общи"
 
-#: ../common/resources/display-dialog.glade.h:26
+#: common/resources/display-dialog.glade:689
 msgid "<b>Profiles</b>"
 msgstr "<b>Профили</b>"
 
-#: ../common/resources/display-dialog.glade.h:27
+#: common/resources/display-dialog.glade:705
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>Свързване на дисплеите</b>"
 
-#: ../common/resources/display-dialog.glade.h:28
+#: common/resources/display-dialog.glade:755
 msgid "Delete the currently selected display profile."
 msgstr "Изтриване на профила на текущо избраният дисплей."
 
-#: ../common/resources/display-dialog.glade.h:29
+#: common/resources/display-dialog.glade:768
 msgid "Apply"
 msgstr "Прилагане"
 
-#: ../common/resources/display-dialog.glade.h:30
+#: common/resources/display-dialog.glade:772
 msgid "Apply the currently selected display profile."
 msgstr "Прилагане на профила на текущо избраният дисплей."
 
-#: ../common/resources/display-dialog.glade.h:31
+#: common/resources/display-dialog.glade:788
 msgid "Create a new display profile."
 msgstr "Създаване на нов профил на дисплей."
 
-#: ../common/resources/display-dialog.glade.h:32
+#: common/resources/display-dialog.glade:804
 msgid "Update an existing profile."
 msgstr "Обновяване на съществуващият профил."
 
-#: ../common/resources/display-dialog.glade.h:33
+#: common/resources/display-dialog.glade:837
 msgid "First try to automatically enable a profile:"
 msgstr "Първо, опитайте автоматично да активирате профила:"
 
-#: ../common/resources/display-dialog.glade.h:34
+#: common/resources/display-dialog.glade:869
 msgid "When a display is connected:"
 msgstr "Когато дисплеят е свързан:"
 
-#: ../common/resources/display-dialog.glade.h:35
+#: common/resources/display-dialog.glade:882
 msgid "Show popup windows to identify displays"
 msgstr "Показване на изскачащи прозорци за идентифициране на дисплеите"
 
-#: ../common/resources/display-dialog.glade.h:36
+#: common/resources/display-dialog.glade:908
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Идентифициране на дисплеите</b>"
 
-#: ../common/resources/display-dialog.glade.h:37
-#: ../common/resources/minimal-display-dialog.glade.h:10
+#: common/resources/display-dialog.glade:946
+#: common/resources/minimal-display-dialog.glade:354
 msgid "_Advanced"
 msgstr "Разширени"
 
-#: ../common/resources/display-dialog.glade.h:38
+#: common/resources/display-dialog.glade:998
 msgid "<b>Profile Name</b>"
 msgstr "<b>Име на профил</b>"
 
-#: ../common/resources/display-dialog.glade.h:39
+#: common/resources/display-dialog.glade:1021
 msgid "Create"
 msgstr "Създаване"
 
-#: ../common/resources/display-dialog.glade.h:40
+#: common/resources/display-dialog.glade:1056
 msgid "A profile of this name already exists."
 msgstr "Вече съществува профил с това име."
 
-#: ../common/resources/minimal-display-dialog.glade.h:1
+#: common/resources/minimal-display-dialog.glade:16
 msgid "Extend right"
 msgstr "Разширяване надясно"
 
-#: ../common/resources/minimal-display-dialog.glade.h:2
+#: common/resources/minimal-display-dialog.glade:19
 msgid "Extend left"
 msgstr "Разширяване наляво"
 
-#: ../common/resources/minimal-display-dialog.glade.h:3
+#: common/resources/minimal-display-dialog.glade:22
 msgid "Extend up"
 msgstr "Разширяване нагоре"
 
-#: ../common/resources/minimal-display-dialog.glade.h:4
+#: common/resources/minimal-display-dialog.glade:25
 msgid "Extend down"
 msgstr "Разширяване надолу"
 
-#: ../common/resources/minimal-display-dialog.glade.h:5
+#: common/resources/minimal-display-dialog.glade:37
 msgid "Displays"
 msgstr "Дисплеи"
 
-#: ../common/resources/minimal-display-dialog.glade.h:6
+#: common/resources/minimal-display-dialog.glade:92
+#: common/resources/minimal-display-dialog.glade:93
 msgid "Only Display 1"
 msgstr "Само дисплей 1"
 
-#: ../common/resources/minimal-display-dialog.glade.h:7
+#: common/resources/minimal-display-dialog.glade:145
+#: common/resources/minimal-display-dialog.glade:146
 msgid "Mirror Displays"
 msgstr "Огледални дисплеи"
 
-#: ../common/resources/minimal-display-dialog.glade.h:8
+#: common/resources/minimal-display-dialog.glade:201
 msgid "Extend to the right"
 msgstr "Разширяване надясно"
 
-#: ../common/resources/minimal-display-dialog.glade.h:9
+#: common/resources/minimal-display-dialog.glade:262
+#: common/resources/minimal-display-dialog.glade:263
 msgid "Only Display 2"
 msgstr "Само дисплей 2"
 
-#: ../common/resources/profile-changed-dialog.glade.h:1
+#: common/resources/profile-changed-dialog.glade:12
 msgid "Update Display Profile"
 msgstr "Обновяване на профила на дисплея"
 
-#: ../common/resources/profile-changed-dialog.glade.h:3
+#: common/resources/profile-changed-dialog.glade:51
 msgid "_Update"
 msgstr "_Обновяване"
 
-#: ../common/resources/profile-changed-dialog.glade.h:4
+#: common/resources/profile-changed-dialog.glade:109
 msgid ""
 "<big><b>You have made changes to your previously active profile</b></big>"
 msgstr "<big><b>Вие сте направили промени в предишния активен профил</b></big>"
 
-#: ../common/resources/profile-changed-dialog.glade.h:5
+#: common/resources/profile-changed-dialog.glade:124
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
 msgstr "Ако не обновите профила си, промените ще бъдат загубени при рестартиране на сесията, прекъсване на връзката или свързване на дисплей."
 
-#: ../common/resources/keyboard-dialog.glade.h:1
+#: common/resources/keyboard-dialog.glade:53
 msgid "Keyboard layout selection"
 msgstr "Избор на клавиатурна подредба"
 
-#: ../common/resources/keyboard-dialog.glade.h:4
+#: common/resources/keyboard-dialog.glade:162
+#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
 msgid "Keyboard"
 msgstr "Клавиатура"
 
-#: ../common/resources/keyboard-dialog.glade.h:7
+#: common/resources/keyboard-dialog.glade:252
 msgid "Restore num l_ock state on startup"
 msgstr "Възстановяване на състоянието на клавиша Num Lock при стартиране"
 
-#: ../common/resources/keyboard-dialog.glade.h:8
-#: ../common/resources/mouse-dialog.glade.h:40
+#: common/resources/keyboard-dialog.glade:267
+#: common/resources/mouse-dialog.glade:726
+#: common/resources/mouse-dialog.glade:953
 msgid "General"
 msgstr "Общи"
 
-#: ../common/resources/keyboard-dialog.glade.h:9
+#: common/resources/keyboard-dialog.glade:301
 msgid "_Enable key repeat"
 msgstr "Включване на повторение на клавиш"
 
-#: ../common/resources/keyboard-dialog.glade.h:10
+#: common/resources/keyboard-dialog.glade:305
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
 msgstr "Когато е избрано, при натискане и задържане на клавиш ще се въвежда един и същ символ отново и отново"
 
-#: ../common/resources/keyboard-dialog.glade.h:11
+#: common/resources/keyboard-dialog.glade:333
 msgid "_Repeat delay:"
 msgstr "Забавяне на повторение:"
 
-#: ../common/resources/keyboard-dialog.glade.h:12
+#: common/resources/keyboard-dialog.glade:347
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Време, в милисекунди, преди повторно задействане на клавиш"
 
-#: ../common/resources/keyboard-dialog.glade.h:13
+#: common/resources/keyboard-dialog.glade:363
 msgid "Repe_at speed:"
 msgstr "Скорост на повторение:"
 
-#: ../common/resources/keyboard-dialog.glade.h:14
+#: common/resources/keyboard-dialog.glade:377
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Скоростта, с която се генерират натискания на клавиши, докато е натиснат клавиш"
 
-#: ../common/resources/keyboard-dialog.glade.h:15
+#: common/resources/keyboard-dialog.glade:405
 msgid "Typing Settings"
 msgstr "Настройки на въвеждането"
 
-#: ../common/resources/keyboard-dialog.glade.h:16
+#: common/resources/keyboard-dialog.glade:438
 msgid "Show _blinking"
 msgstr "Показване на мигане"
 
-#: ../common/resources/keyboard-dialog.glade.h:17
+#: common/resources/keyboard-dialog.glade:442
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Определя, да мига или не показалецът в текста"
 
-#: ../common/resources/keyboard-dialog.glade.h:18
+#: common/resources/keyboard-dialog.glade:470
 msgid "Blink _delay:"
 msgstr "Забавяне на мигането:"
 
-#: ../common/resources/keyboard-dialog.glade.h:19
+#: common/resources/keyboard-dialog.glade:484
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Забавяне, в милисекунди между последователни мигания на показалеца"
 
-#: ../common/resources/keyboard-dialog.glade.h:20
+#: common/resources/keyboard-dialog.glade:512
 msgid "Cursor"
 msgstr "Показалец"
 
-#: ../common/resources/keyboard-dialog.glade.h:21
+#: common/resources/keyboard-dialog.glade:534
 msgid "_Test area:"
 msgstr "Област за проверка:"
 
-#: ../common/resources/keyboard-dialog.glade.h:22
+#: common/resources/keyboard-dialog.glade:575
 msgid "Beha_vior"
 msgstr "_Поведение"
 
-#: ../common/resources/keyboard-dialog.glade.h:23
+#: common/resources/keyboard-dialog.glade:593
 msgid "Define shortcuts for la_unching applications:"
 msgstr "Задаване на съчетания от клавиши за изпълнение на програми:"
 
-#: ../common/resources/keyboard-dialog.glade.h:25
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:373
+#: common/resources/keyboard-dialog.glade:651
+#: common/resources/keyboard-dialog.glade:986
+#: xfce4-settings-editor/xfce-settings-editor-box.c:373
 msgid "_Edit"
 msgstr "Редактиране"
 
-#: ../common/resources/keyboard-dialog.glade.h:27
+#: common/resources/keyboard-dialog.glade:692
 msgid "Reset to _Defaults"
 msgstr "Възстановяване на заводските настройки"
 
-#: ../common/resources/keyboard-dialog.glade.h:28
+#: common/resources/keyboard-dialog.glade:732
 msgid "A_pplication Shortcuts"
 msgstr "Съчетания от клавиши за програма"
 
-#: ../common/resources/keyboard-dialog.glade.h:29
+#: common/resources/keyboard-dialog.glade:762
 msgid "<b>Use system defaults</b>"
 msgstr "<b>Използване на стандартните за системата</b>"
 
-#: ../common/resources/keyboard-dialog.glade.h:30
+#: common/resources/keyboard-dialog.glade:817
 msgid "_Keyboard model"
 msgstr "Модел клавиатура"
 
-#: ../common/resources/keyboard-dialog.glade.h:31
+#: common/resources/keyboard-dialog.glade:861
 msgid "Change la_yout option"
 msgstr "Клавиши за смяна на подредбата"
 
-#: ../common/resources/keyboard-dialog.glade.h:32
+#: common/resources/keyboard-dialog.glade:899
 msgid "Co_mpose key"
 msgstr "Клавиш Compose"
 
-#: ../common/resources/keyboard-dialog.glade.h:33
+#: common/resources/keyboard-dialog.glade:1043
 msgid "Move currently selected item up by one row"
 msgstr "Преместване на избраният елемент с един ред нагоре"
 
-#: ../common/resources/keyboard-dialog.glade.h:34
+#: common/resources/keyboard-dialog.glade:1063
 msgid "Move currently selected item down by one row"
 msgstr "Преместване на избраният елемент с един ред надолу"
 
-#: ../common/resources/keyboard-dialog.glade.h:35
+#: common/resources/keyboard-dialog.glade:1096
 msgid "Key_board layout"
 msgstr "Клавиатурна подредба"
 
-#: ../common/resources/keyboard-dialog.glade.h:36
+#: common/resources/keyboard-dialog.glade:1123
 msgid "_Layout"
 msgstr "_Подредба"
 
-#: ../common/resources/mouse-dialog.glade.h:2
+#: common/resources/mouse-dialog.glade:67
 msgid "Use bottom areas as left, middle or right buttons"
 msgstr "Използване на областите по- долу, като леви, средни или десни бутони"
 
-#: ../common/resources/mouse-dialog.glade.h:3
+#: common/resources/mouse-dialog.glade:71
 msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
 msgstr "Кликване с 1, 2 или 3 пръста като кликване с ляв, десен или среден бутон"
 
-#: ../common/resources/mouse-dialog.glade.h:4
+#: common/resources/mouse-dialog.glade:92
 msgid "Disabled"
 msgstr "Изключено"
 
-#: ../common/resources/mouse-dialog.glade.h:5
+#: common/resources/mouse-dialog.glade:96
 msgid "Edge scrolling"
 msgstr "Превъртане по краищата"
 
-#: ../common/resources/mouse-dialog.glade.h:6
+#: common/resources/mouse-dialog.glade:100
 msgid "Two-finger scrolling"
 msgstr "Превъртане с два пръста"
 
-#: ../common/resources/mouse-dialog.glade.h:7
+#: common/resources/mouse-dialog.glade:104
 msgid "Circular scrolling"
 msgstr "Циклично превъртане"
 
-#: ../common/resources/mouse-dialog.glade.h:8
+#: common/resources/mouse-dialog.glade:126
 msgid "Pen (absolute)"
 msgstr "Писалка (абсолютно)"
 
-#: ../common/resources/mouse-dialog.glade.h:9
+#: common/resources/mouse-dialog.glade:130
 msgid "Mouse (relative)"
 msgstr "Мишка (относително)"
 
-#: ../common/resources/mouse-dialog.glade.h:10
+#: common/resources/mouse-dialog.glade:144
 msgid "None (right-handed)"
 msgstr "Без (за дясна ръка)"
 
-#: ../common/resources/mouse-dialog.glade.h:11
+#: common/resources/mouse-dialog.glade:148
 msgid "Half (left-handed)"
 msgstr "Наполовина (за лява ръка)"
 
-#: ../common/resources/mouse-dialog.glade.h:12
+#: common/resources/mouse-dialog.glade:152
 msgid "Clockwise"
 msgstr "По часовниковата стрелка"
 
-#: ../common/resources/mouse-dialog.glade.h:13
+#: common/resources/mouse-dialog.glade:156
 msgid "Counterclockwise"
 msgstr "Обратно на часовниковата стрелка"
 
-#: ../common/resources/mouse-dialog.glade.h:14
+#: common/resources/mouse-dialog.glade:162
+#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "Мишка и тъчпад"
 
-#: ../common/resources/mouse-dialog.glade.h:17
+#: common/resources/mouse-dialog.glade:237
 msgid "De_vice:"
 msgstr "Устройство:"
 
-#: ../common/resources/mouse-dialog.glade.h:18
+#: common/resources/mouse-dialog.glade:314
 msgid "Le_ft-handed"
 msgstr "За лява ръка"
 
-#: ../common/resources/mouse-dialog.glade.h:19
+#: common/resources/mouse-dialog.glade:331
 msgid "Ri_ght-handed"
 msgstr "За дясна ръка"
 
-#: ../common/resources/mouse-dialog.glade.h:20
+#: common/resources/mouse-dialog.glade:355
 msgid "Reverse scroll d_irection"
 msgstr "Обръщане на посоката на превъртане"
 
-#: ../common/resources/mouse-dialog.glade.h:21
+#: common/resources/mouse-dialog.glade:359
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Когато е избрано, колелото на мишката ще работи в обратна посока"
 
-#: ../common/resources/mouse-dialog.glade.h:22
+#: common/resources/mouse-dialog.glade:372
 msgid "Allow high _resolution scrolling (experimental)"
 msgstr "Разрешаване на превъртане с висока _резолюция (експериментално)"
 
-#: ../common/resources/mouse-dialog.glade.h:23
+#: common/resources/mouse-dialog.glade:376
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr "Поддържа се само от някои мишки (предимно Logitech) и изисква поддръжка на драйвери. На поддържаните устройства прави превъртането по-прецизно."
 
-#: ../common/resources/mouse-dialog.glade.h:24
+#: common/resources/mouse-dialog.glade:395
 msgid "Buttons"
 msgstr "Бутони"
 
-#: ../common/resources/mouse-dialog.glade.h:25
+#: common/resources/mouse-dialog.glade:428
 msgid "_Reset to Defaults"
 msgstr "Възстановяване на стандартните настройки"
 
-#: ../common/resources/mouse-dialog.glade.h:26
+#: common/resources/mouse-dialog.glade:432
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Задаване на ускорението и чувствителността на избраното устройство до стандартните стойности"
 
-#: ../common/resources/mouse-dialog.glade.h:27
+#: common/resources/mouse-dialog.glade:448
 msgid "Sensitivit_y:"
 msgstr "_Чувствителност:"
 
-#: ../common/resources/mouse-dialog.glade.h:28
+#: common/resources/mouse-dialog.glade:461
 msgid "Acceleratio_n:"
 msgstr "Ускорение:"
 
-#: ../common/resources/mouse-dialog.glade.h:29
+#: common/resources/mouse-dialog.glade:473
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Коефициент, по който да бъде умножена стойността на показалеца, при движение на мишката"
 
-#: ../common/resources/mouse-dialog.glade.h:30
+#: common/resources/mouse-dialog.glade:488
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Брой пиксели, което трябва за кратко време да измине показалецът на мишката, за да започне ускорение"
 
-#: ../common/resources/mouse-dialog.glade.h:31
+#: common/resources/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
 msgstr "Адаптивно ускорение на показалеца"
 
-#: ../common/resources/mouse-dialog.glade.h:32
+#: common/resources/mouse-dialog.glade:505
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr "Превключва между адаптивен и плосък профил на ускорение. Адаптивният, взема предвид текущата скорост на устройството, когато взема решение за ускорение. Потребителският профил на ускорение не се поддържа от xfce4-settings."
 
-#: ../common/resources/mouse-dialog.glade.h:33
+#: common/resources/mouse-dialog.glade:525
 msgid "Pointer Speed"
 msgstr "Скорост на показалеца"
 
-#: ../common/resources/mouse-dialog.glade.h:34
+#: common/resources/mouse-dialog.glade:544
 msgid "B_uttons and Feedback"
 msgstr "Бутони и обратна връзка"
 
-#: ../common/resources/mouse-dialog.glade.h:35
+#: common/resources/mouse-dialog.glade:578
+#: common/resources/mouse-dialog.glade:595
 msgid "Disable touchpad _while typing"
 msgstr "Заключване на тъчпада по време на писане"
 
-#: ../common/resources/mouse-dialog.glade.h:36
+#: common/resources/mouse-dialog.glade:582
+#: common/resources/mouse-dialog.glade:599
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Когато е избрано, тъчпада ще се заключва, когато ползвате клавиатурата"
 
-#: ../common/resources/mouse-dialog.glade.h:37
+#: common/resources/mouse-dialog.glade:624
 msgid "Duratio_n:"
 msgstr "Продължителност:"
 
-#: ../common/resources/mouse-dialog.glade.h:38
+#: common/resources/mouse-dialog.glade:659
 msgid "Tap touchpad to clic_k"
 msgstr "Натиснете тъчпада за да кликнете"
 
-#: ../common/resources/mouse-dialog.glade.h:39
+#: common/resources/mouse-dialog.glade:682
 msgid "Click m_ethod:"
 msgstr "Метод на кликване:"
 
-#: ../common/resources/mouse-dialog.glade.h:41
+#: common/resources/mouse-dialog.glade:767
 msgid "Scrolling _mode:"
 msgstr "Режим на превъртане:"
 
-#: ../common/resources/mouse-dialog.glade.h:42
+#: common/resources/mouse-dialog.glade:805
 msgid "Enable hori_zontal scrolling"
 msgstr "Включване на превъртане настрани"
 
-#: ../common/resources/mouse-dialog.glade.h:43
+#: common/resources/mouse-dialog.glade:827
 msgid "Scrolling"
 msgstr "Превъртане"
 
-#: ../common/resources/mouse-dialog.glade.h:44
+#: common/resources/mouse-dialog.glade:850
 msgid "T_ouchpad"
 msgstr "Тъчпад"
 
-#: ../common/resources/mouse-dialog.glade.h:45
+#: common/resources/mouse-dialog.glade:888
 msgid "Trac_king mode:"
 msgstr "Режим на проследяване: "
 
-#: ../common/resources/mouse-dialog.glade.h:46
+#: common/resources/mouse-dialog.glade:901
 msgid "_Rotation:"
 msgstr "Завъртане:"
 
-#: ../common/resources/mouse-dialog.glade.h:47
+#: common/resources/mouse-dialog.glade:976
 msgid "Tab_let"
 msgstr "Таблет"
 
-#: ../common/resources/mouse-dialog.glade.h:48
+#: common/resources/mouse-dialog.glade:997
 msgid "_Devices"
 msgstr "Устройства"
 
-#: ../common/resources/mouse-dialog.glade.h:49
+#: common/resources/mouse-dialog.glade:1034
 msgid "Th_reshold:"
 msgstr "Праг:"
 
-#: ../common/resources/mouse-dialog.glade.h:50
+#: common/resources/mouse-dialog.glade:1048
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Брой пиксели, което трябва да измине показалецът, преди началото на преместване на обекта"
 
-#: ../common/resources/mouse-dialog.glade.h:51
+#: common/resources/mouse-dialog.glade:1067
 msgid "Drag and Drop"
 msgstr "Влачене и Пускане"
 
-#: ../common/resources/mouse-dialog.glade.h:52
+#: common/resources/mouse-dialog.glade:1103
 msgid "Ti_me:"
 msgstr "Време:"
 
-#: ../common/resources/mouse-dialog.glade.h:53
+#: common/resources/mouse-dialog.glade:1117
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Две кликвания на мишката  с интервал по- малък от този (в милисекуни) ще се считат за двойно кликване"
 
-#: ../common/resources/mouse-dialog.glade.h:54
+#: common/resources/mouse-dialog.glade:1133
 msgid "D_istance:"
 msgstr "_Разстояние:"
 
-#: ../common/resources/mouse-dialog.glade.h:55
+#: common/resources/mouse-dialog.glade:1147
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "За да се счита за двойно кликване, показалецът на мишката не трябва да се премества между две кликвания на по- голямо от зададеното разстояние"
 
-#: ../common/resources/mouse-dialog.glade.h:56
+#: common/resources/mouse-dialog.glade:1166
 msgid "Double Click"
 msgstr "Двойно кликване"
 
-#: ../common/resources/mouse-dialog.glade.h:57
+#: common/resources/mouse-dialog.glade:1188
 msgid "_Behavior"
 msgstr "_Поведение"
 
-#: ../common/resources/mouse-dialog.glade.h:58
+#: common/resources/mouse-dialog.glade:1253
 msgid "Cursor si_ze:"
 msgstr "Размер на показалеца:"
 
-#: ../common/resources/mouse-dialog.glade.h:59
+#: common/resources/mouse-dialog.glade:1287
 msgid "Size"
 msgstr "Размер"
 
-#: ../common/resources/mouse-dialog.glade.h:60
+#: common/resources/mouse-dialog.glade:1327
 msgid "Preview"
 msgstr "Преглед"
 
-#: ../common/resources/mouse-dialog.glade.h:61
+#: common/resources/mouse-dialog.glade:1356
 msgid "_Theme"
 msgstr "Тема"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: ../common/display-name.c:2645
+#: common/display-name.c:2645
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Неизвестен"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: ../common/display-name.c:2698 ../dialogs/color-settings/color-device.c:62
+#: common/display-name.c:2698 dialogs/color-settings/color-device.c:62
 msgid "Monitor"
 msgstr "Монитор"
 
-#: ../common/display-name.c:2701
+#: common/display-name.c:2701
 msgid "Television"
 msgstr "Телевизор"
 
-#: ../common/display-name.c:2705
+#: common/display-name.c:2705
 msgid "Digital display"
 msgstr "Цифров дисплей"
 
-#: ../common/xfce-randr.c:281
-#: ../dialogs/display-settings/display-settings-x11.c:698
-#, c-format
+#: common/xfce-randr.c:281 dialogs/display-settings/display-settings-x11.c:698
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Не може да променяте версията на разширението RandR, докато се използва"
 
-#: ../common/xfce-randr.c:567
-#: ../dialogs/display-settings/display-settings-wayland.c:346
+#: common/xfce-randr.c:567
+#: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "Лаптоп"
 
-#: ../dialogs/accessibility-settings/main.c:36
-#: ../dialogs/appearance-settings/main.c:90
-#: ../dialogs/color-settings/main.c:40 ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:36 ../dialogs/mime-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:44
+#: dialogs/accessibility-settings/main.c:36
+#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Гнездо на управлението на настройките"
 
-#: ../dialogs/accessibility-settings/main.c:36
-#: ../dialogs/appearance-settings/main.c:90
-#: ../dialogs/color-settings/main.c:40 ../dialogs/display-settings/main.c:103
-#: ../dialogs/keyboard-settings/main.c:36 ../dialogs/mime-settings/main.c:40
-#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:44
+#: dialogs/accessibility-settings/main.c:36
+#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "Гнездо ID"
 
-#: ../dialogs/accessibility-settings/main.c:37
-#: ../dialogs/appearance-settings/main.c:91
-#: ../dialogs/color-settings/main.c:41 ../dialogs/display-settings/main.c:104
-#: ../dialogs/keyboard-settings/main.c:37 ../dialogs/mime-settings/main.c:41
-#: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:45
-#: ../xfce4-settings-manager/main.c:39 ../xfsettingsd/main.c:93
+#: dialogs/accessibility-settings/main.c:37
+#: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
+#: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
+#: xfsettingsd/main.c:93
 msgid "Version information"
 msgstr "Сведения за изданието"
 
-#: ../dialogs/accessibility-settings/main.c:191
-#: ../dialogs/appearance-settings/main.c:1692
-#: ../dialogs/color-settings/main.c:1463
-#: ../dialogs/display-settings/main.c:3427
-#: ../dialogs/keyboard-settings/main.c:74 ../dialogs/mime-settings/main.c:78
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: ../dialogs/mouse-settings/main.c:2194 ../xfce4-settings-editor/main.c:118
-#: ../xfce4-settings-manager/main.c:60 ../xfsettingsd/main.c:242
+#: dialogs/accessibility-settings/main.c:191
+#: dialogs/appearance-settings/main.c:1692 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3427 dialogs/keyboard-settings/main.c:74
+#: dialogs/mime-settings/main.c:78
+#: dialogs/mime-settings/xfce-mime-helper-main.c:153
+#: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Напишете „%s --help“ за показване на потребителско ръководство"
 
-#: ../dialogs/accessibility-settings/main.c:210
-#: ../dialogs/appearance-settings/main.c:1711
-#: ../dialogs/color-settings/main.c:1482
-#: ../dialogs/display-settings/main.c:3446
-#: ../dialogs/keyboard-settings/main.c:90 ../dialogs/mime-settings/main.c:97
-#: ../dialogs/mouse-settings/main.c:2213 ../xfce4-settings-editor/main.c:137
-#: ../xfce4-settings-manager/main.c:76 ../xfsettingsd/main.c:258
+#: dialogs/accessibility-settings/main.c:210
+#: dialogs/appearance-settings/main.c:1711 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3446 dialogs/keyboard-settings/main.c:90
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
+#: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
+#: xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Екипът по разрабоката на Xfce. Всички права са запазени."
 
-#: ../dialogs/accessibility-settings/main.c:211
-#: ../dialogs/appearance-settings/main.c:1712
-#: ../dialogs/color-settings/main.c:1483
-#: ../dialogs/display-settings/main.c:3447
-#: ../dialogs/keyboard-settings/main.c:91 ../dialogs/mime-settings/main.c:98
-#: ../dialogs/mouse-settings/main.c:2214 ../xfce4-settings-editor/main.c:138
-#: ../xfce4-settings-manager/main.c:77 ../xfsettingsd/main.c:259
+#: dialogs/accessibility-settings/main.c:211
+#: dialogs/appearance-settings/main.c:1712 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3447 dialogs/keyboard-settings/main.c:91
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
+#: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
+#: xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Моля, докладвайте грешки на <%s>."
 
-#: ../dialogs/appearance-settings/main.c:337
+#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:5
+msgid "Improve keyboard and mouse accessibility"
+msgstr "Настройка на специфични възможности на клавиатурата и мишката"
+
+#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:6
+msgid ""
+"assistive;technologies;keys;sticky;bounce;emulation;screen "
+"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
+msgstr "спомагателни;технологии;клавиши;лепкави;отскачане;емулация;екранен четец;луши;a11y;i18n;l10n;AT-SPI;ATK;намаляване;"
+
+#: dialogs/appearance-settings/main.c:337
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Неуспешно показване на настройките на Xfwm4"
 
 #. If the theme has no cache, mention this in the tooltip
-#: ../dialogs/appearance-settings/main.c:631
+#: dialogs/appearance-settings/main.c:631
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1258,118 +1283,128 @@ msgstr "Предупреждение: Тази тема с икони няма �
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: ../dialogs/appearance-settings/main.c:638
+#: dialogs/appearance-settings/main.c:638
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Предупреждение: тази тема с икони е незавършена. Някои икони ще липсват."
 
 #. These actually are no full themes by purpose
-#: ../dialogs/appearance-settings/main.c:643
+#: dialogs/appearance-settings/main.c:643
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Предупреждение: тази тема с икони е незавършена. Тя предоставя само основен набор от икони, които други теми могат да получат."
 
-#: ../dialogs/appearance-settings/main.c:1250
-#, c-format
+#: dialogs/appearance-settings/main.c:1250
 msgid "File is too large, installation aborted"
 msgstr "Файлът е твърде голям, инсталацията е прекъсната"
 
-#: ../dialogs/appearance-settings/main.c:1255
+#: dialogs/appearance-settings/main.c:1255
 msgid "Failed to create temporary directory"
 msgstr "Неуспех при създаване на временна директория"
 
-#: ../dialogs/appearance-settings/main.c:1260
+#: dialogs/appearance-settings/main.c:1260
 msgid "Failed to extract archive"
 msgstr "Неуспех при извличане на архив"
 
-#: ../dialogs/appearance-settings/main.c:1265
+#: dialogs/appearance-settings/main.c:1265
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Неизвестен формат. Поддържат се само архиви и директории"
 
-#: ../dialogs/appearance-settings/main.c:1270
+#: dialogs/appearance-settings/main.c:1270
 msgid "Not a valid theme package"
 msgstr "Не е валиден пакет с тема"
 
-#: ../dialogs/appearance-settings/main.c:1275
+#: dialogs/appearance-settings/main.c:1275
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Неизвестна грешка, изходен код %d"
 
-#: ../dialogs/appearance-settings/main.c:1282
+#: dialogs/appearance-settings/main.c:1282
 msgid "Failed to install theme"
 msgstr "Неуспех при инсталирането на тема"
 
-#: ../dialogs/appearance-settings/main.c:1336
+#: dialogs/appearance-settings/main.c:1336
 #, c-format
 msgid "Install %s theme"
 msgstr "Инсталиране на %s тема"
 
-#: ../dialogs/appearance-settings/main.c:1339
-#: ../dialogs/keyboard-settings/command-dialog.c:272
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:425
+#: dialogs/appearance-settings/main.c:1339
+#: dialogs/keyboard-settings/command-dialog.c:272
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Отваряне"
 
-#: ../dialogs/appearance-settings/main.c:1603
+#: dialogs/appearance-settings/main.c:1603
 msgid "RGB"
 msgstr "RGB"
 
-#: ../dialogs/appearance-settings/main.c:1607
+#: dialogs/appearance-settings/main.c:1607
 msgid "BGR"
 msgstr "BGR"
 
-#: ../dialogs/appearance-settings/main.c:1611
+#: dialogs/appearance-settings/main.c:1611
 msgid "Vertical RGB"
 msgstr "Вертикален RGB"
 
-#: ../dialogs/appearance-settings/main.c:1615
+#: dialogs/appearance-settings/main.c:1615
 msgid "Vertical BGR"
 msgstr "Вертикален BGR"
 
+#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:5
+msgid "Customize the look of your desktop"
+msgstr "Настройка на външния вид на работния плот"
+
+#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:6
+msgid ""
+"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
+"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
+"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
+msgstr "теми;потребителски интерфейс;стилове;икони;шрифтове;заглаждане;подсказване;под-пиксел;подпиксел;изчертаване;ClearType;DPI;RGB;BGR;ускорители на меню;клавишни съчетания;събития;звуци;мащабиране на прозорец;HiDPI;Retina дисплей;"
+
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
-#: ../dialogs/color-settings/color-device.c:65
+#: dialogs/color-settings/color-device.c:65
 msgid "Scanner"
 msgstr "Скенер"
 
 #. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
-#: ../dialogs/color-settings/color-device.c:68
+#: dialogs/color-settings/color-device.c:68
 msgid "Camera"
 msgstr "Камера"
 
 #. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
-#: ../dialogs/color-settings/color-device.c:71
+#: dialogs/color-settings/color-device.c:71
 msgid "Printer"
 msgstr "Принтер"
 
 #. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
-#: ../dialogs/color-settings/color-device.c:74
+#: dialogs/color-settings/color-device.c:74
 msgid "Webcam"
 msgstr "Уеб камера"
 
 #. TRANSLATORS: This refers to the TFT display on a laptop
-#: ../dialogs/color-settings/color-device.c:92
+#: dialogs/color-settings/color-device.c:92
 msgid "Laptop Screen"
 msgstr "Екран на лаптоп"
 
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
-#: ../dialogs/color-settings/color-device.c:101
+#: dialogs/color-settings/color-device.c:101
 msgid "Built-in Webcam"
 msgstr "Вградена уеб камера"
 
-#: ../dialogs/color-settings/color-device.c:194
+#: dialogs/color-settings/color-device.c:194
 #, c-format
 msgid "Enable color management for %s"
 msgstr "Включване управлението на цветовете за %s"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
-#: ../dialogs/color-settings/color-profile.c:93
+#: dialogs/color-settings/color-profile.c:93
 msgid "Standard Space"
 msgstr "Стандартно пространство"
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
-#: ../dialogs/color-settings/color-profile.c:99
+#: dialogs/color-settings/color-profile.c:99
 msgid "Test Profile"
 msgstr "Тестов профил"
 
@@ -1377,7 +1412,7 @@ msgstr "Тестов профил"
 #. * by the color management system based on manufacturing data,
 #. * for instance the default monitor profile is created from the
 #. * primaries specified in the monitor EDID
-#: ../dialogs/color-settings/color-profile.c:107
+#: dialogs/color-settings/color-profile.c:107
 msgctxt "Automatically generated profile"
 msgid "Automatic"
 msgstr "Автоматично"
@@ -1385,13 +1420,13 @@ msgstr "Автоматично"
 #. TRANSLATORS: the profile quality - low quality profiles take
 #. * much less time to generate but may be a poor reflection of the
 #. * device capability
-#: ../dialogs/color-settings/color-profile.c:117
+#: dialogs/color-settings/color-profile.c:117
 msgctxt "Profile quality"
 msgid "Low Quality"
 msgstr "Ниско качество"
 
 #. TRANSLATORS: the profile quality
-#: ../dialogs/color-settings/color-profile.c:122
+#: dialogs/color-settings/color-profile.c:122
 msgctxt "Profile quality"
 msgid "Medium Quality"
 msgstr "Средно качество"
@@ -1399,126 +1434,134 @@ msgstr "Средно качество"
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
 #. * characterisation data.
-#: ../dialogs/color-settings/color-profile.c:129
+#: dialogs/color-settings/color-profile.c:129
 msgctxt "Profile quality"
 msgid "High Quality"
 msgstr "Високо качество"
 
 #. TRANSLATORS: this default RGB space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: ../dialogs/color-settings/color-profile.c:146
+#: dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
 msgstr "Стандартно RGB"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: ../dialogs/color-settings/color-profile.c:153
+#: dialogs/color-settings/color-profile.c:153
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
 msgstr "Стандартно CMYK"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: ../dialogs/color-settings/color-profile.c:160
+#: dialogs/color-settings/color-profile.c:160
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
 msgstr "Стандартно Сиво"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: ../dialogs/color-settings/main.c:125
+#: dialogs/color-settings/main.c:125
 msgid "Select ICC Profile File"
 msgstr "Избор на файл с ICC профил"
 
-#: ../dialogs/color-settings/main.c:127
+#: dialogs/color-settings/main.c:127
 msgid "_Import"
 msgstr "_Внасяне"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: ../dialogs/color-settings/main.c:138
+#: dialogs/color-settings/main.c:138
 msgid "Supported ICC profiles"
 msgstr "Поддържани ICC профили"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: ../dialogs/color-settings/main.c:145
+#: dialogs/color-settings/main.c:145
 msgid "All files"
 msgstr "Всички файлове"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: ../dialogs/color-settings/main.c:188
+#: dialogs/color-settings/main.c:188
 msgid "Default: "
 msgstr "Стандартно:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: ../dialogs/color-settings/main.c:195
+#: dialogs/color-settings/main.c:195
 msgid "Colorspace: "
 msgstr "Цветова област:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: ../dialogs/color-settings/main.c:202
+#: dialogs/color-settings/main.c:202
 msgid "Test profile: "
 msgstr "Тестов профил:"
 
-#: ../dialogs/color-settings/main.c:237
+#: dialogs/color-settings/main.c:237
 msgid "Compatible Profiles"
 msgstr "Съвместими профили"
 
-#: ../dialogs/color-settings/main.c:516
+#: dialogs/color-settings/main.c:516
 #, c-format
 msgid "Add Color Profile to %s"
 msgstr "Добавяне на цветови профил към %s"
 
-#: ../dialogs/color-settings/main.c:516
+#: dialogs/color-settings/main.c:516
 msgid "Device"
 msgstr "Устройство"
 
-#: ../dialogs/color-settings/main.c:860 ../dialogs/color-settings/main.c:861
-#: ../dialogs/color-settings/main.c:862
+#: dialogs/color-settings/main.c:860 dialogs/color-settings/main.c:861
+#: dialogs/color-settings/main.c:862
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: ../dialogs/display-settings/main.c:54
+#: dialogs/color-settings/xfce4-color-settings.desktop.in:5
+msgid "Set color profiles"
+msgstr "Задаване на цветови профили"
+
+#: dialogs/color-settings/xfce4-color-settings.desktop.in:6
+msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
+msgstr "цвят;настройки;управление;дисплей;монитори;принтери;уеб камери;скенери;"
+
+#: dialogs/display-settings/main.c:54
 #, c-format
 msgid "Only %s (1)"
 msgstr "Само %s (1)"
 
-#: ../dialogs/display-settings/main.c:55
+#: dialogs/display-settings/main.c:55
 #, c-format
 msgid "Only %s (2)"
 msgstr "Само %s (2)"
 
-#: ../dialogs/display-settings/main.c:83
+#: dialogs/display-settings/main.c:83
 msgid "Left"
 msgstr "Ляво"
 
-#: ../dialogs/display-settings/main.c:84
+#: dialogs/display-settings/main.c:84
 msgid "Inverted"
 msgstr "Обърнат"
 
-#: ../dialogs/display-settings/main.c:85
+#: dialogs/display-settings/main.c:85
 msgid "Right"
 msgstr "Дясно"
 
-#: ../dialogs/display-settings/main.c:91
+#: dialogs/display-settings/main.c:91
 msgid "Horizontal"
 msgstr "Водоравно"
 
-#: ../dialogs/display-settings/main.c:92
+#: dialogs/display-settings/main.c:92
 msgid "Vertical"
 msgstr "Отвесно"
 
-#: ../dialogs/display-settings/main.c:93
+#: dialogs/display-settings/main.c:93
 msgid "Horizontal and Vertical"
 msgstr "Водоравно и отвесно"
 
-#: ../dialogs/display-settings/main.c:105
+#: dialogs/display-settings/main.c:105
 msgid "Minimal interface to set up an external output"
 msgstr "Минимален интерфейс за създаване на външен изход"
 
-#: ../dialogs/display-settings/main.c:278
+#: dialogs/display-settings/main.c:278
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1526,70 +1569,69 @@ msgid ""
 msgstr "Предишната конфигурация ще бъде възстановена след <b>%i секунди</b>, ако не отговорите на този въпрос."
 
 #. Insert the mode
-#: ../dialogs/display-settings/main.c:638
+#: dialogs/display-settings/main.c:638
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2fHz"
 
-#: ../dialogs/display-settings/main.c:967
+#: dialogs/display-settings/main.c:967
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Последният активен изход не трябва да се заключва, системата ще стане негодна за ползване."
 
-#: ../dialogs/display-settings/main.c:968
+#: dialogs/display-settings/main.c:968
 msgid "Selected output not disabled"
 msgstr "Избраният изход не е заключен"
 
-#: ../dialogs/display-settings/main.c:1314
+#: dialogs/display-settings/main.c:1314
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Да се обнови ли променeния профил на дисплей \"%s\"?"
 
-#: ../dialogs/display-settings/main.c:1319
+#: dialogs/display-settings/main.c:1319
 #, c-format
 msgid "_Update '%s'"
 msgstr "_Обновяване на \"%s\""
 
-#: ../dialogs/display-settings/main.c:1667
+#: dialogs/display-settings/main.c:1667
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Искате ли да изтриете профил на дисплей \"%s\"?"
 
-#: ../dialogs/display-settings/main.c:1670
+#: dialogs/display-settings/main.c:1670
 msgid "Delete Profile"
 msgstr "Изтриване на профил"
 
-#: ../dialogs/display-settings/main.c:1671
+#: dialogs/display-settings/main.c:1671
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "След изтриване, профила на дисплея не може да бъде възстановен."
 
-#: ../dialogs/display-settings/main.c:1671
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:131
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:376
-#: ../dialogs/mime-settings/xfce-mime-window.c:1295
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:134
+#: dialogs/display-settings/main.c:1671
+#: dialogs/mime-settings/xfce-mime-chooser.c:131
+#: dialogs/mime-settings/xfce-mime-chooser.c:376
+#: dialogs/mime-settings/xfce-mime-window.c:1295
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:134
 msgid "Cancel"
 msgstr "Отказ"
 
-#: ../dialogs/display-settings/main.c:1672
+#: dialogs/display-settings/main.c:1672
 msgid "Delete"
 msgstr "Изтриване"
 
-#: ../dialogs/display-settings/main.c:1758
+#: dialogs/display-settings/main.c:1758
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
 msgstr[0] "%d Панел на Xfce"
 msgstr[1] "%d Панели на Xfce"
 
-#: ../dialogs/display-settings/main.c:2543
+#: dialogs/display-settings/main.c:2543
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Изберете монитор, на който да промените настройките; променете местоположението му с влачене."
 
-#: ../dialogs/display-settings/main.c:2642
-#: ../dialogs/display-settings/main.c:2675
+#: dialogs/display-settings/main.c:2642 dialogs/display-settings/main.c:2675
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1598,210 +1640,226 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: ../dialogs/display-settings/main.c:2892
+#: dialogs/display-settings/main.c:2892
 msgid "Mirror Screens"
 msgstr "Огледални екрани"
 
-#: ../dialogs/display-settings/main.c:2942
+#: dialogs/display-settings/main.c:2942
 msgid "(Disabled)"
 msgstr "(Изключено)"
 
-#: ../dialogs/display-settings/main.c:3473
+#: dialogs/display-settings/main.c:3473
 msgid "ATI Settings"
 msgstr "Настройки на ATI"
 
-#: ../dialogs/display-settings/main.c:3478
+#: dialogs/display-settings/main.c:3478
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Не могат да стартират настройките на дисплея"
 
-#: ../dialogs/display-settings/main.c:3486
+#: dialogs/display-settings/main.c:3486
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Не могат да стартират настройките на лицензирания драйвър"
 
-#: ../dialogs/display-settings/display-settings.c:459
+#: dialogs/display-settings/xfce-display-settings.desktop.in:5
+msgid "Configure screen settings and layout"
+msgstr "Промяна на настройките и разположението на екраните"
+
+#: dialogs/display-settings/xfce-display-settings.desktop.in:6
+msgid ""
+"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
+msgstr "дисплей;настройки;екран;резолюция;опресняване;скорост;въртене;външен;проектори;монитори;LCD;CRT;HiDPI;"
+
+#: dialogs/display-settings/display-settings.c:459
 msgid "Display:"
 msgstr "Дисплей"
 
-#: ../dialogs/display-settings/display-settings.c:467
+#: dialogs/display-settings/display-settings.c:467
 msgid "Resolution:"
 msgstr "Разделителна способност:"
 
-#: ../dialogs/display-settings/display-settings-wayland.c:1004
-#, c-format
+#: dialogs/display-settings/display-settings-wayland.c:1004
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Вашият композитор изглежда не поддържа wlr-протокола за управление на изхода"
 
 #. Set dialog title and icon
-#: ../dialogs/keyboard-settings/command-dialog.c:105
+#: dialogs/keyboard-settings/command-dialog.c:105
 msgid "Shortcut Command"
 msgstr "Съчетание от клавиши за команда"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:135
+#: dialogs/keyboard-settings/command-dialog.c:135
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr "Въведете командата, която искате да се изпълни при натискане на определено съчетание от клавиши."
 
 #. We are editing an existing shortcut
-#: ../dialogs/keyboard-settings/command-dialog.c:153
+#: dialogs/keyboard-settings/command-dialog.c:153
 msgid "Shortcut:"
 msgstr "Съчетание от клавиши:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:178
+#: dialogs/keyboard-settings/command-dialog.c:178
 msgid "Comm_and:"
 msgstr "Команда:"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:203
+#: dialogs/keyboard-settings/command-dialog.c:203
 msgid "Use _startup notification"
 msgstr "Използване на стартово уведомяване"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:249
+#: dialogs/keyboard-settings/command-dialog.c:249
 msgid "The command may not be empty."
 msgstr "Командата не може да бъде празна."
 
-#: ../dialogs/keyboard-settings/command-dialog.c:269
+#: dialogs/keyboard-settings/command-dialog.c:269
 msgid "Select command"
 msgstr "Избор на команда"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:277
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:431
+#: dialogs/keyboard-settings/command-dialog.c:277
+#: dialogs/mime-settings/xfce-mime-chooser.c:383
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:431
 msgid "All Files"
 msgstr "Всички файлове"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:282
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:388
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:436
+#: dialogs/keyboard-settings/command-dialog.c:282
+#: dialogs/mime-settings/xfce-mime-chooser.c:388
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:436
 msgid "Executable Files"
 msgstr "Изпълними файлове"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:297
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:403
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:451
+#: dialogs/keyboard-settings/command-dialog.c:297
+#: dialogs/mime-settings/xfce-mime-chooser.c:403
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:451
 msgid "Perl Scripts"
 msgstr "Perl скриптове"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:303
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:409
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:457
+#: dialogs/keyboard-settings/command-dialog.c:303
+#: dialogs/mime-settings/xfce-mime-chooser.c:409
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:457
 msgid "Python Scripts"
 msgstr "Python скриптове"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:309
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:415
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:463
+#: dialogs/keyboard-settings/command-dialog.c:309
+#: dialogs/mime-settings/xfce-mime-chooser.c:415
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:463
 msgid "Ruby Scripts"
 msgstr "Ruby скриптове"
 
-#: ../dialogs/keyboard-settings/command-dialog.c:315
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:421
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:469
+#: dialogs/keyboard-settings/command-dialog.c:315
+#: dialogs/mime-settings/xfce-mime-chooser.c:421
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:469
 msgid "Shell Scripts"
 msgstr "Shell скриптове"
 
-#: ../dialogs/keyboard-settings/main.c:80
+#: dialogs/keyboard-settings/main.c:80
 msgid "Unable to initialize GTK+."
 msgstr "Не може да се инициализира GTK+."
 
-#: ../dialogs/keyboard-settings/main.c:106
+#: dialogs/keyboard-settings/main.c:106
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Неуспех при свързване с диспечера на xfconf. Причина: %s"
 
-#: ../dialogs/keyboard-settings/main.c:117
+#: dialogs/keyboard-settings/main.c:117
 msgid "Could not create the settings dialog."
 msgstr "Не може да се създаде диалоговия прозорец за настройки."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:427
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:427
 msgid "Command"
 msgstr "Команда"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:435
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:435
 msgid "Shortcut"
 msgstr "Съчетание от клавиши"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:508
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:508
 msgid "Layout"
 msgstr "Подредба"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:509
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:509
 msgid "Variant"
 msgstr "Вариант"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Това действие ще възстанови всички съчетания от клавиши до техните стандартни стойности. Наистина ли искате да направите това?"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
 msgid "Reset to Defaults"
 msgstr "Възстановяване на стандартните настройки"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
 msgid "No"
 msgstr "Не"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
 msgid "Yes"
 msgstr "Да"
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
 msgid "The system defaults will be restored next time you log in."
 msgstr "Стандартните системни настройки ще бъдат възстановени при следващото влизане в системата."
 
-#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
 msgid "Warning"
 msgstr "Внимание"
 
-#: ../dialogs/mime-settings/main.c:115
+#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:5
+msgid "Edit keyboard settings and application shortcuts"
+msgstr "Редактиране на настройкита на клавиатурата и клавишните комбинации за програмите"
+
+#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
+msgid "numlock;keyboard;layout;shortcuts;"
+msgstr "numlock;клавиатура;подредба;съчетания от клавиши;"
+
+#: dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
 msgstr "Не може да бъде създаден диалог с файлова асоциация."
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:125
+#: dialogs/mime-settings/xfce-mime-chooser.c:125
 msgid "Select Application"
 msgstr "Избор на приложение"
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:133
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:377
+#: dialogs/mime-settings/xfce-mime-chooser.c:133
+#: dialogs/mime-settings/xfce-mime-chooser.c:377
 msgid "Open"
 msgstr "Отваряне"
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:201
+#: dialogs/mime-settings/xfce-mime-chooser.c:201
 msgid "Use a c_ustom command:"
 msgstr "Използване на потребителска команда:"
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:202
+#: dialogs/mime-settings/xfce-mime-chooser.c:202
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
 msgstr "Използване на потребителска команда за стратиране на приложение, което не е налично в списъка с приложенията."
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:220
+#: dialogs/mime-settings/xfce-mime-chooser.c:220
 msgid "_Browse..."
 msgstr "Преглед..."
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:374
+#: dialogs/mime-settings/xfce-mime-chooser.c:374
 msgid "Select an Application"
 msgstr "Избор на приложение"
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:523
+#: dialogs/mime-settings/xfce-mime-chooser.c:523
 msgid "None available"
 msgstr "Няма достъпно"
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:571
+#: dialogs/mime-settings/xfce-mime-chooser.c:571
 msgid "Recommended Applications"
 msgstr "Препоръчителни програми"
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:590
+#: dialogs/mime-settings/xfce-mime-chooser.c:590
 msgid "Other Applications"
 msgstr "Други програми"
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:610
+#: dialogs/mime-settings/xfce-mime-chooser.c:610
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "Отваряне на <i>%s</i> и други файлове от тип „%s“ с:"
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:615
+#: dialogs/mime-settings/xfce-mime-chooser.c:615
 #, c-format
 msgid ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
@@ -1812,263 +1870,263 @@ msgid_plural ""
 msgstr[0] "Отваряне на <i>%s</i>, друг файл от типа \"%s\" и %d друг избран MIME тип с:"
 msgstr[1] "Отваряне на <i>%s</i>, други файлове от типа \"%s\" и %d други избрани MIME типове с:"
 
-#: ../dialogs/mime-settings/xfce-mime-chooser.c:655
+#: dialogs/mime-settings/xfce-mime-chooser.c:655
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "Неуспешно добавяне на ново приложение „%s“"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:137
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:144
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:137
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:144
 msgid "Press left mouse button to change the selected application."
 msgstr "Клик с левият бутон на мишката за промяна на избраната програма."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:143
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:143
 msgid "Application Chooser Button"
 msgstr "Бутон за избор на програма"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:330
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:330
 msgid "No application selected"
 msgstr "Няма избрано приложение"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:345
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:345
 msgid "Failed to set default Web Browser"
 msgstr "Не може да се стандартен Интернет браузър"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:346
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:346
 msgid "Failed to set default Mail Reader"
 msgstr "Не може да се зададе стандартен Четец на поща"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:347
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:347
 msgid "Failed to set default File Manager"
 msgstr "Не може да се зададе стандартен Файлов мениджър"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:348
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:348
 msgid "Failed to set default Terminal Emulator"
 msgstr "Не може да се зададе стандартен Терминален емулатор"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:349
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
 msgid "Failed to set default Text Editor"
 msgstr "Не може да бъде зададен текстов редактор по подразбиране"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:350
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
 msgid "Failed to set default Image Viewer"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:351
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
 msgid "Failed to set default Audio Player"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
 msgid "Failed to set default Video Player"
 msgstr ""
 
 #. allocate the chooser
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:422
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
 msgid "Select application"
 msgstr "Избор на програма"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:533
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
 msgid "Choose a custom Web Browser"
 msgstr "Избери свой Интернет браузър"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:534
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
 msgid "Choose a custom Mail Reader"
 msgstr "Избери свой Четец на поща"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:535
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
 msgid "Choose a custom File Manager"
 msgstr "Избери свой файлов мениджър"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:536
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
 msgid "Choose a custom Terminal Emulator"
 msgstr "Избери свой Терминал"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:537
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:537
 msgid "Choose a custom Text Editor"
 msgstr "Изберете текстов редактор по подразбиране"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
 msgid "Choose a custom Image Viewer"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:539
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:539
 msgid "Choose a custom Audio Player"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
 msgid "Choose a custom Video Player"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:544
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr "Задайте програмата, която искате да ползвате,\nкато стандартен уеб браузър за Xfce:"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:545
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:545
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr "Задайте програмата, която искате да ползвате,\nкато стандартен Четец на поща за Xfce:"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:546
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr "Задайте програмата, която искате да ползвате,\nкато стандартен файлов мениджър за Xfce:"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:547
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:547
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr "Задайте програмата, която искате да ползвате,\nкато стандартен Терминален емулатор за Xfce:"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:548
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:548
 msgid ""
 "Specify the application you want to use\n"
 "as default Text Editor for Xfce:"
 msgstr "Посочете приложението, което искате да използвате,\n като текстов редактор по подразбиране за Xfce:"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:549
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:549
 msgid ""
 "Specify the application you want to use\n"
 "as default Image Viewer for Xfce:"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:550
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:550
 msgid ""
 "Specify the application you want to use\n"
 "as default Audio Player for Xfce:"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:551
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:551
 msgid ""
 "Specify the application you want to use\n"
 "as default Video Player for Xfce:"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:615
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:615
 msgid "Browse the file system to choose a custom command."
 msgstr "Преглед на файловата система за избор на потребителска команда."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:765
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:765
 msgid "_Other..."
 msgstr "Други..."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:766
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:766
 msgid "Use a custom application which is not included in the above list."
 msgstr "Да се зползва друго приложение, което не е включено в горния списък."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
 msgid "Choose Preferred Application"
 msgstr "Избери предпочитана програма"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:247
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:247
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
 msgstr "Изберете предпочитан от Вас\nИнтернет браузър и натиснете ОК."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:249
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:249
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
 msgstr "Изберете предпочитан от Вас\nЧетец на поща и натиснете ОК."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
 msgstr "Изберете предпочитан от Вас\nфайлов мениджър и натиснете ОК."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
 msgstr "Изберете предпочитан от Вас\nТерминал и натиснете ОК."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
 msgid ""
 "Please choose your preferred Text\n"
 "Editor now and click OK to proceed."
 msgstr "Моля, изберете предпочитания от вас текстов редактор\n и кликнете върху OK, за да продължите."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
 msgid ""
 "Please choose your preferred Image\n"
 "Viewer now and click OK to proceed."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
 msgid ""
 "Please choose your preferred Audio\n"
 "Player now and click OK to proceed."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:261
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:261
 msgid ""
 "Please choose your preferred Video\n"
 "Player now and click OK to proceed."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:25
+#: dialogs/mime-settings/xfce-mime-helper-main.c:25
 msgid "Failed to execute default Web Browser"
 msgstr "Не може да се стартира стандартния Интернет браузър"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:26
+#: dialogs/mime-settings/xfce-mime-helper-main.c:26
 msgid "Failed to execute default Mail Reader"
 msgstr "Не може да се стартира стандартния Четец на поща"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:27
+#: dialogs/mime-settings/xfce-mime-helper-main.c:27
 msgid "Failed to execute default File Manager"
 msgstr "Не може да се стартира стандартния Файлов мениджър"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:28
+#: dialogs/mime-settings/xfce-mime-helper-main.c:28
 msgid "Failed to execute default Terminal Emulator"
 msgstr "Не може да се стартира стандартния Терминален емулатор"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:29
+#: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Text Editor"
 msgstr "Неуспешно изпълнение на текстовия редактор по подразбиране"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:30
+#: dialogs/mime-settings/xfce-mime-helper-main.c:30
 msgid "Failed to execute default Image Viewer"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:31
+#: dialogs/mime-settings/xfce-mime-helper-main.c:31
 msgid "Failed to execute default Audio Player"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:32
+#: dialogs/mime-settings/xfce-mime-helper-main.c:32
 msgid "Failed to execute default Video Player"
 msgstr ""
 
 #. Enable permanently dismissing this error.
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:74
+#: dialogs/mime-settings/xfce-mime-helper-main.c:74
 msgid "Do _not show this message again"
 msgstr "Това съобщение да не се показва повече"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:105
+#: dialogs/mime-settings/xfce-mime-helper-main.c:105
 msgid "Print version information and exit"
 msgstr "Показване на сведения за изданието и изход"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr "Стартиране помощник по подразбиране на ТИП с незадължителен ПАРАМЕТЪР, когато ТИП е една от следните стойности."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:106
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:107
+#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid "TYPE [PARAMETER]"
 msgstr "ТИП [ПАРАМЕТЪР]"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:107
+#: dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr "Потърсете помощника по подразбиране на Тип, където Тип е една от следните стойности."
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:138
+#: dialogs/mime-settings/xfce-mime-helper-main.c:138
 msgid ""
 "The following TYPEs are supported for the --launch and --query commands:\n"
 "\n"
@@ -2082,13 +2140,13 @@ msgid ""
 "  VideoPlayer      - The preferred Video Player.\n"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:180
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:254
+#: dialogs/mime-settings/xfce-mime-helper-main.c:180
+#: dialogs/mime-settings/xfce-mime-helper-main.c:254
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "Невалиден помощен тип „%s“"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:238
+#: dialogs/mime-settings/xfce-mime-helper-main.c:238
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -2103,495 +2161,798 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nАвторски права (c) 2003-2006\n        os-cillation e.K. Всички права са запазени.\n\nНаписано от Benedikt Meurer <benny@xfce.org>.\n\nИзградено с Gtk+-%d.%d.%d, стартиране с Gtk+-%d.%d.%d.\n\nДокладвай грешки на <%s>.\n"
 
-#: ../dialogs/mime-settings/xfce-mime-helper-main.c:265
+#: dialogs/mime-settings/xfce-mime-helper-main.c:265
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Не е определен помощник за \"%s\"."
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:427
-#, c-format
+#: dialogs/mime-settings/xfce-mime-helper.c:427
 msgid "No command specified"
 msgstr "Не е зададена команда"
 
-#: ../dialogs/mime-settings/xfce-mime-helper.c:807
-#: ../dialogs/mime-settings/xfce-mime-helper.c:846
-#: ../dialogs/mime-settings/xfce-mime-helper.c:937
-#: ../dialogs/mime-settings/xfce-mime-helper.c:976
+#: dialogs/mime-settings/xfce-mime-helper.c:807
+#: dialogs/mime-settings/xfce-mime-helper.c:846
+#: dialogs/mime-settings/xfce-mime-helper.c:937
+#: dialogs/mime-settings/xfce-mime-helper.c:976
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Не може да се отвори %s за запис"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:188
+#: dialogs/mime-settings/xfce-mime-window.c:188
+#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:4
 msgid "Default Applications"
 msgstr "Стандартни програми"
 
 #. Internet
-#: ../dialogs/mime-settings/xfce-mime-window.c:211
+#: dialogs/mime-settings/xfce-mime-window.c:211
 msgid "_Internet"
 msgstr "Интернет"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:224
+#: dialogs/mime-settings/xfce-mime-window.c:224
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
 msgid "Web Browser"
 msgstr "Уеб браузър"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:232
+#: dialogs/mime-settings/xfce-mime-window.c:232
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr "Стандартният уеб браузър ще бъде използван при отваряне на хипервръзки и показване на помощно съдържание."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:250
+#: dialogs/mime-settings/xfce-mime-window.c:250
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
 msgid "Mail Reader"
 msgstr "Четец на поща"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:258
+#: dialogs/mime-settings/xfce-mime-window.c:258
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr "Стандартният четец на поща ще бъде използван за съставяне на писма, когато кликнете върху имейл адресите."
 
 #. Utilities
-#: ../dialogs/mime-settings/xfce-mime-window.c:272
+#: dialogs/mime-settings/xfce-mime-window.c:272
 msgid "_Utilities"
 msgstr "Инструменти"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:285
+#: dialogs/mime-settings/xfce-mime-window.c:285
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
 msgid "File Manager"
 msgstr "Файлов мениджър"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:293
+#: dialogs/mime-settings/xfce-mime-window.c:293
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr "Стандартният файлов мениджър ще бъде използван да преглеждате съдържанието на папките."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:311
+#: dialogs/mime-settings/xfce-mime-window.c:311
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
 msgid "Terminal Emulator"
 msgstr "Терминален Емулатор"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:319
+#: dialogs/mime-settings/xfce-mime-window.c:319
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr "Стандартният терминален емулатор ще бъде използван да стартирате програма в конзолен режим."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:337
+#: dialogs/mime-settings/xfce-mime-window.c:337
 msgid "Text Editor"
 msgstr "Текстов редактор"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:345
+#: dialogs/mime-settings/xfce-mime-window.c:345
 msgid "The default Text Editor will be used to open and edit text files."
 msgstr "Текстовият редактор по подразбиране ще се използва за отваряне и редактиране на текстови файлове."
 
 #. Media
-#: ../dialogs/mime-settings/xfce-mime-window.c:360
+#: dialogs/mime-settings/xfce-mime-window.c:360
 msgid "_Media"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:373
+#: dialogs/mime-settings/xfce-mime-window.c:373
 msgid "Image Viewer"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:381
+#: dialogs/mime-settings/xfce-mime-window.c:381
 msgid "The default Image Viewer will be used to display image files."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:399
+#: dialogs/mime-settings/xfce-mime-window.c:399
 msgid "Audio Player"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:407
+#: dialogs/mime-settings/xfce-mime-window.c:407
 msgid "The default Audio Player will be used to play audio files."
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:425
+#: dialogs/mime-settings/xfce-mime-window.c:425
 msgid "Video Player"
 msgstr ""
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:433
+#: dialogs/mime-settings/xfce-mime-window.c:433
 msgid "The default Video Player will be used to play video files."
 msgstr ""
 
 #. Mimes
-#: ../dialogs/mime-settings/xfce-mime-window.c:448
+#: dialogs/mime-settings/xfce-mime-window.c:448
 msgid "_Others"
 msgstr "_Други"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:458
+#: dialogs/mime-settings/xfce-mime-window.c:458
 msgid "_Filter:"
 msgstr "Филтър:"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:466
+#: dialogs/mime-settings/xfce-mime-window.c:466
 msgid "Clear filter"
 msgstr "Филтър за почистване"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:496
+#: dialogs/mime-settings/xfce-mime-window.c:496
 msgid "Open with..."
 msgstr "Отваряне с ..."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:545
+#: dialogs/mime-settings/xfce-mime-window.c:545
 msgid "MIME Type"
 msgstr "MIME тип"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:573
+#: dialogs/mime-settings/xfce-mime-window.c:573
 msgid "Status"
 msgstr "Състояние"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:593
+#: dialogs/mime-settings/xfce-mime-window.c:593
 msgid "Default Application"
 msgstr "Стандартна програма"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:769
-#: ../dialogs/mime-settings/xfce-mime-window.c:938
+#: dialogs/mime-settings/xfce-mime-window.c:769
+#: dialogs/mime-settings/xfce-mime-window.c:938
 msgid "User Set"
 msgstr "Потребителски"
 
 #. sort the names but keep Default on top
-#: ../dialogs/mime-settings/xfce-mime-window.c:771
-#: ../dialogs/mime-settings/xfce-mime-window.c:938
-#: ../dialogs/mouse-settings/main.c:411 ../dialogs/mouse-settings/main.c:413
-#: ../dialogs/mouse-settings/main.c:476
+#: dialogs/mime-settings/xfce-mime-window.c:771
+#: dialogs/mime-settings/xfce-mime-window.c:938
+#: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
+#: dialogs/mouse-settings/main.c:476
 msgid "Default"
 msgstr "Стандартен"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:861
+#: dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
 msgstr[0] "Намерена е %d добавка тип MIME"
 msgstr[1] "Намерени са %d MIME типове"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:983
+#: dialogs/mime-settings/xfce-mime-window.c:983
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Неуспешно задаване на приложение „%s“ за MIME тип \"%s\"."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1092
+#: dialogs/mime-settings/xfce-mime-window.c:1092
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
 msgstr[0] "%d избран MIME тип"
 msgstr[1] "%d избрани MIME типове"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1288
+#: dialogs/mime-settings/xfce-mime-window.c:1288
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Това ще премахне вашата потребителска MIME-асоциация и ще възстанови системните настройки по подразбиране."
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1290
+#: dialogs/mime-settings/xfce-mime-window.c:1290
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Наистина ли искате да възстановите стандартните стойности за типа съдържание „%s“?"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1294
+#: dialogs/mime-settings/xfce-mime-window.c:1294
 msgid "Question"
 msgstr "Въпрос"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1296
-#: ../dialogs/mime-settings/xfce-mime-window.c:1368
+#: dialogs/mime-settings/xfce-mime-window.c:1296
+#: dialogs/mime-settings/xfce-mime-window.c:1368
 msgid "Reset to Default"
 msgstr "Възстановяване на стандартните настройки"
 
-#: ../dialogs/mime-settings/xfce-mime-window.c:1363
+#: dialogs/mime-settings/xfce-mime-window.c:1363
 msgid "Choose Application..."
 msgstr "Избор на приложение..."
 
-#: ../dialogs/mouse-settings/main.c:83
+#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:5
+msgid "Associate preferred applications with MIME types"
+msgstr "Обвързване на предпочитани програми с MIME типове"
+
+#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:6
+msgid ""
+"file;type;extension;association;open with;web browser;mail reader;file "
+"manager;terminal emulator;"
+msgstr "файл;тип;разширение;асоциация;отваряне с;уеб браузър;четец на електронна поща;файлове мениджър;терминален емулатор;"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
+msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
+msgstr "файл;мениджър;търсачка;браузър;файлова система;речник;папка;xfce;"
+
+#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
+msgid "Browse the file system"
+msgstr "Преглед на файловата система"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
+msgid "email;mail;inbox;message;communication;"
+msgstr "имейл;писмо;поща;съобщение;комуникация;"
+
+#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
+msgid "Read your email"
+msgstr "Прочетете си пощата"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
+msgid "terminal;command line;shell;console;xfce;"
+msgstr "терминал;команден ред;обвивка;конзола;xfce;"
+
+#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
+msgid "Use the command line"
+msgstr "Използване на команден ред"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
+msgid "internet;web;browser;surf;explore;xfce;"
+msgstr "интернет;уеб браузър;сърфиране;търсачка;xfce;"
+
+#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
+msgid "Browse the web"
+msgstr "Сърфиране в  мрежата"
+
+#: dialogs/mime-settings/helpers/alacritty.desktop.in.in:6
+msgid "Alacritty"
+msgstr "Alacritty"
+
+#: dialogs/mime-settings/helpers/aterm.desktop.in.in:6
+msgid "aterm"
+msgstr "aterm Терминал"
+
+#: dialogs/mime-settings/helpers/balsa.desktop.in.in:6
+msgid "Balsa"
+msgstr "Balsa"
+
+#: dialogs/mime-settings/helpers/brave.desktop.in.in:7
+msgid "Brave"
+msgstr "Brave"
+
+#: dialogs/mime-settings/helpers/caja.desktop.in.in:6
+msgid "Caja File Manager"
+msgstr "Caja файлов мениджър"
+
+#: dialogs/mime-settings/helpers/chromium.desktop.in.in:7
+msgid "Chromium"
+msgstr "Chromium"
+
+#: dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in:6
+msgid "Debian Sensible Browser"
+msgstr "Дебиан Sensible браузър"
+
+#: dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in:6
+msgid "Debian X Terminal Emulator"
+msgstr "Дебиан X Терминал"
+
+#: dialogs/mime-settings/helpers/dillo.desktop.in.in:6
+msgid "Dillo"
+msgstr "Dillo"
+
+#: dialogs/mime-settings/helpers/encompass.desktop.in.in:6
+msgid "Encompass"
+msgstr "Encompass"
+
+#: dialogs/mime-settings/helpers/epiphany.desktop.in.in:6
+msgid "Epiphany Web Browser"
+msgstr "Epiphany Уеб браузър"
+
+#: dialogs/mime-settings/helpers/eterm.desktop.in.in:6
+msgid "Enlightened Terminal Emulator"
+msgstr "Enlightened Терминал"
+
+#: dialogs/mime-settings/helpers/evolution.desktop.in.in:6
+msgid "Evolution"
+msgstr "Evolution"
+
+#: dialogs/mime-settings/helpers/firefox.desktop.in.in:6
+msgid "Mozilla Firefox"
+msgstr "Mozilla Firefox"
+
+#: dialogs/mime-settings/helpers/galeon.desktop.in.in:6
+msgid "Galeon Web Browser"
+msgstr "Galeon уеб браузър"
+
+#: dialogs/mime-settings/helpers/geary.desktop.in.in:6
+msgid "Geary"
+msgstr "Geary"
+
+#: dialogs/mime-settings/helpers/google-chrome.desktop.in.in:7
+msgid "Google Chrome"
+msgstr "Google Chrome"
+
+#: dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in:6
+msgid "GNOME Terminal"
+msgstr "GNOME Терминал"
+
+#: dialogs/mime-settings/helpers/icecat.desktop.in.in:6
+msgid "Icecat"
+msgstr "Icecat"
+
+#: dialogs/mime-settings/helpers/icedove.desktop.in.in:6
+msgid "Icedove"
+msgstr "Icedove Интернет браузър"
+
+#: dialogs/mime-settings/helpers/iceweasel.desktop.in.in:6
+msgid "Iceweasel"
+msgstr "Iceweasel"
+
+#: dialogs/mime-settings/helpers/jumanji.desktop.in.in:6
+msgid "Jumanji"
+msgstr "Jumanji"
+
+#: dialogs/mime-settings/helpers/kitty.desktop.in.in:6
+msgid "kitty"
+msgstr "kitty"
+
+#: dialogs/mime-settings/helpers/kmail.desktop.in.in:6
+msgid "KMail"
+msgstr "KMail"
+
+#: dialogs/mime-settings/helpers/konqueror.desktop.in.in:6
+msgid "Konqueror Web Browser"
+msgstr "Konqueror уеб браузър"
+
+#: dialogs/mime-settings/helpers/links.desktop.in.in:6
+msgid "Links Text Browser"
+msgstr "Lynx текстов Интернет браузър"
+
+#: dialogs/mime-settings/helpers/lynx.desktop.in.in:6
+msgid "Lynx Text Browser"
+msgstr "Links текстов Интернет браузър"
+
+#: dialogs/mime-settings/helpers/midori.desktop.in.in:7
+msgid "Midori"
+msgstr "Мидори"
+
+#: dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in:6
+msgid "Mozilla Browser"
+msgstr "Мозила Интернет браузър"
+
+#: dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in:6
+msgid "Mozilla Mail"
+msgstr "Мозила Поща"
+
+#: dialogs/mime-settings/helpers/mutt.desktop.in.in:6
+msgid "Mutt"
+msgstr "Mutt"
+
+#: dialogs/mime-settings/helpers/nautilus.desktop.in.in:6
+msgid "Nautilus"
+msgstr "Nautilus"
+
+#: dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in:6
+msgid "Netscape Navigator"
+msgstr "Нетскейп Навигатор"
+
+#: dialogs/mime-settings/helpers/nxterm.desktop.in.in:6
+msgid "NXterm"
+msgstr "NXterm Терминал"
+
+#: dialogs/mime-settings/helpers/opera-browser.desktop.in.in:6
+msgid "Opera Browser"
+msgstr "Опера Интернет браузър"
+
+#: dialogs/mime-settings/helpers/pcmanfm.desktop.in.in:7
+msgid "PCMan File Manager"
+msgstr "Файлов мениджър PCMan"
+
+#: dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in:6
+msgid "PCManFM-Qt File Manager"
+msgstr "Файлов мениджър PCManFM-Qt"
+
+#: dialogs/mime-settings/helpers/qterminal.desktop.in.in:6
+msgid "QTerminal"
+msgstr "QTerminal"
+
+#: dialogs/mime-settings/helpers/qtfm.desktop.in.in:6
+msgid "qtFM"
+msgstr "qtFM"
+
+#: dialogs/mime-settings/helpers/qupzilla.desktop.in.in:6
+msgid "QupZilla"
+msgstr "QupZilla"
+
+#: dialogs/mime-settings/helpers/rodent.desktop.in.in:6
+msgid "Rodent File Manager"
+msgstr "Rodent файлов мениджър"
+
+#: dialogs/mime-settings/helpers/rox-filer.desktop.in.in:6
+msgid "ROX-Filer"
+msgstr "ROX-Filer"
+
+#: dialogs/mime-settings/helpers/sakura.desktop.in.in:6
+msgid "Sakura"
+msgstr "Sakura"
+
+#: dialogs/mime-settings/helpers/surf.desktop.in.in:6
+msgid "Surf"
+msgstr "Surf"
+
+#: dialogs/mime-settings/helpers/sylpheed.desktop.in.in:6
+msgid "Sylpheed"
+msgstr "Sylpheed"
+
+#: dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in:6
+msgid "Claws Mail"
+msgstr "Claws Поща"
+
+#: dialogs/mime-settings/helpers/terminator.desktop.in.in:6
+msgid "Terminator"
+msgstr "Терминатор"
+
+#: dialogs/mime-settings/helpers/thunar.desktop.in.in:7
+msgid "Thunar"
+msgstr "Файлов мениджър Thunar"
+
+#: dialogs/mime-settings/helpers/thunderbird.desktop.in.in:6
+msgid "Mozilla Thunderbird"
+msgstr "Мозила Thunderbird"
+
+#: dialogs/mime-settings/helpers/urxvt.desktop.in.in:6
+msgid "RXVT Unicode"
+msgstr "RXVT Unicode"
+
+#: dialogs/mime-settings/helpers/vimprobable2.desktop.in.in:6
+msgid "Vimprobable2"
+msgstr "Vimprobable2"
+
+#: dialogs/mime-settings/helpers/w3m.desktop.in.in:6
+msgid "W3M Text Browser"
+msgstr "W3M текстов Интернет браузър"
+
+#: dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in:6
+msgid "Xfce Terminal"
+msgstr "Xfce Терминал"
+
+#: dialogs/mime-settings/helpers/xfe.desktop.in.in:6
+msgid "Xfe File Manager"
+msgstr "Файлов мениджър на Xfce"
+
+#: dialogs/mime-settings/helpers/xterm.desktop.in.in:6
+msgid "X Terminal"
+msgstr "Х Терминал"
+
+#: dialogs/mouse-settings/main.c:83
 msgid "Active device in the dialog"
 msgstr "Активно устройство в диалога"
 
-#: ../dialogs/mouse-settings/main.c:83
+#: dialogs/mouse-settings/main.c:83
 msgid "DEVICE NAME"
 msgstr "ИМЕ НА УСТРОЙСТВО"
 
 #. pixel value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:165
+#: dialogs/mouse-settings/main.c:165
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:175
+#: dialogs/mouse-settings/main.c:175
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: ../dialogs/mouse-settings/main.c:186
+#: dialogs/mouse-settings/main.c:186
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
 
-#: ../xfce4-settings-editor/main.c:182
+#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
+msgid "Configure pointer device behavior and appearance"
+msgstr "Конфигуриране на поведението и външния вид на посоченото устройство"
+
+#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:6
+msgid ""
+"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
+msgstr "настройки;бутони;скрол;посока;показалец;скорост;двойно кликване;тема;колело;"
+
+#: xfce4-settings-editor/main.c:182
+#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
 msgid "Settings Editor"
 msgstr "Редактор на настройките"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:273
+#: xfce4-settings-editor/xfce-settings-editor-box.c:273
 msgid "Channel"
 msgstr "Канал"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
+#: xfce4-settings-editor/xfce-settings-editor-box.c:323
 msgid "Property"
 msgstr "Свойство"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:331
+#: xfce4-settings-editor/xfce-settings-editor-box.c:331
 msgid "Type"
 msgstr "Тип"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:338
+#: xfce4-settings-editor/xfce-settings-editor-box.c:338
 msgid "Locked"
 msgstr "Заключено"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:345
+#: xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Value"
 msgstr "Стойност"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:365
+#: xfce4-settings-editor/xfce-settings-editor-box.c:365
 msgid "New property"
 msgstr "Ново свойство"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:378
+#: xfce4-settings-editor/xfce-settings-editor-box.c:378
 msgid "Edit selected property"
 msgstr "Промяна на избраното свойство"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:386
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1072
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1574
+#: xfce4-settings-editor/xfce-settings-editor-box.c:386
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1072
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1574
 msgid "_Reset"
 msgstr "Нулиране"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:391
+#: xfce4-settings-editor/xfce-settings-editor-box.c:391
 msgid "Reset selected property"
 msgstr "Възстановяване на настройките по подразбиране на избраното свойство"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:497
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:590
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:708
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:79
+#: xfce4-settings-editor/xfce-settings-editor-box.c:497
+#: xfce4-settings-editor/xfce-settings-editor-box.c:590
+#: xfce4-settings-editor/xfce-settings-editor-box.c:708
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:79
 msgid "Empty"
 msgstr "Празно"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:500
+#: xfce4-settings-editor/xfce-settings-editor-box.c:500
 msgid "Array"
 msgstr "Масив"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:505
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:80
+#: xfce4-settings-editor/xfce-settings-editor-box.c:505
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:80
 msgid "String"
 msgstr "Низ"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:513
+#: xfce4-settings-editor/xfce-settings-editor-box.c:513
 msgid "Integer"
 msgstr "Цяло"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:516
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:81
+#: xfce4-settings-editor/xfce-settings-editor-box.c:516
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:81
 msgid "Boolean"
 msgstr "Логическо"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:519
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:83
+#: xfce4-settings-editor/xfce-settings-editor-box.c:519
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:83
 msgid "Double"
 msgstr "Дублиране"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:847
+#: xfce4-settings-editor/xfce-settings-editor-box.c:847
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Нулирането на канала ще премахне завинаги потребителските настройки."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:855
+#: xfce4-settings-editor/xfce-settings-editor-box.c:855
 msgid "_Reset Channel"
 msgstr "Нулиране на на канал"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:856
+#: xfce4-settings-editor/xfce-settings-editor-box.c:856
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Сигурни ли сте, че искате да нулирате канала „%s“ и всички негови свойства?"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:931
+#: xfce4-settings-editor/xfce-settings-editor-box.c:931
 msgid "reset"
 msgstr "нулиране"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:988
+#: xfce4-settings-editor/xfce-settings-editor-box.c:988
 #, c-format
 msgid "Monitor %s"
 msgstr "Наблюдение на %s"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:996
+#: xfce4-settings-editor/xfce-settings-editor-box.c:996
 msgid "Clear"
 msgstr "Изчистване"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:996
+#: xfce4-settings-editor/xfce-settings-editor-box.c:996
 msgid "Close"
 msgstr "Затваряне"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1029
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1029
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "Стартиране на наблюдение на канал „%s“"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1078
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1078
 msgid "_Monitor"
 msgstr "_Наблюдение"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1088
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1088
 msgid "Refresh"
 msgstr "Опресняване"
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1571
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1571
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Възстановяването на първоначалната стойност на свойството ще премахне потребителските настройки."
 
-#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1575
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1575
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Сигурни ли сте, че искате да възстановите първоначалната стойност на свойството „%s“?"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:82
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:82
 msgid "Int"
 msgstr "Цяло число"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:84
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:84
 msgid "Unsigned Int"
 msgstr "Неподписано цяло число"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:85
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:85
 msgid "Int64"
 msgstr "64 битово цяло число"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:86
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
 msgid "Unsigned Int64"
 msgstr "Неподписано 64 битово цяло число"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:131
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:131
 msgid "New Property"
 msgstr "Ново свойство"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:134
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:134
 msgid "Save"
 msgstr "Запазване"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:149
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:149
 msgid "_Property:"
 msgstr "_Свойство:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:163
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:163
 msgid "_Type:"
 msgstr "_Тип:"
 
 #. strings
 #. integers
 #. bool
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:192
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:202
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:213
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:192
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:202
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:213
 msgid "_Value:"
 msgstr "Стойност:"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:368
-#, c-format
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:368
 msgid "Property names must start with a '/' character"
 msgstr "Имената на свойствата трябва да започват със символ „/“"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:379
-#, c-format
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:379
 msgid "The root element ('/') is not a valid property name"
 msgstr "Главният елемент („/“) не е валидно име на свойство"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
-#, c-format
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:396
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
 msgstr "Имената на свойствата могат да включват само ASCII символи A-Z, a-z, 0-9, „_“, „-“, „:“, „.“, „,“, „[„, “]“, „{„,“'}“, „<“ и „>“, а също и елемент „/“ като разделител"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:410
-#, c-format
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:410
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Имената на свойствата не могат да съдържат два или повече последователни символа „/“"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:424
-#, c-format
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:424
 msgid "Property names cannot end with a '/' character"
 msgstr "Имената на свойствата не могат да завършват със символ „/“"
 
-#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:637
+#: xfce4-settings-editor/xfce-settings-prop-dialog.c:637
 msgid "Edit Property"
 msgstr "Промяна на свойство"
 
-#: ../xfce4-settings-manager/main.c:40
+#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:4
+msgid "Graphical settings editor for Xfconf"
+msgstr "Графичен редактор на настройките за Xfconf"
+
+#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:5
+msgid "registry;regedit;configuration file;"
+msgstr "регистър;редактиране на регистър;конфигурационен файл;"
+
+#: xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Показване на диалог за настройки"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:223
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:223
 msgid "All _Settings"
 msgstr "Всички настройки"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:422
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:422
 msgid "Settings"
 msgstr "Настройки"
 
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:920
-#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:932
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:920
+#: xfce4-settings-manager/xfce-settings-manager-dialog.c:932
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Неуспешно стартиране на „%s“"
 
-#: ../xfsettingsd/accessibility.c:409
+#: xfce4-settings-manager/xfce-settings-manager.desktop.in:3
+msgid "Settings Manager"
+msgstr "Уравление на настройките"
+
+#: xfce4-settings-manager/xfce-settings-manager.desktop.in:4
+msgid "Graphical Settings Manager for Xfce"
+msgstr "Графичен мениджър за настройките на Xfce"
+
+#: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
+msgid "control;panel;center;system;settings;personalize;hardware;"
+msgstr "контрол;панел;център;система;настройки;приспособяване;хардуер;"
+
+#: xfsettingsd/accessibility.c:409
 msgid "Sticky keys are enabled"
 msgstr "Залепващите клавиши са включени"
 
-#: ../xfsettingsd/accessibility.c:411
+#: xfsettingsd/accessibility.c:411
 msgid "Sticky keys are disabled"
 msgstr "Залепващите клавиши са изключени"
 
-#: ../xfsettingsd/accessibility.c:413
+#: xfsettingsd/accessibility.c:413
 msgid "Sticky keys"
 msgstr "Залепващи клавиши"
 
-#: ../xfsettingsd/accessibility.c:418
+#: xfsettingsd/accessibility.c:418
 msgid "Slow keys are enabled"
 msgstr "Бавните клавиши са включени"
 
-#: ../xfsettingsd/accessibility.c:420
+#: xfsettingsd/accessibility.c:420
 msgid "Slow keys are disabled"
 msgstr "Бавните клавиши са изключени"
 
-#: ../xfsettingsd/accessibility.c:422
+#: xfsettingsd/accessibility.c:422
 msgid "Slow keys"
 msgstr "Бавни клавиши"
 
-#: ../xfsettingsd/accessibility.c:427
+#: xfsettingsd/accessibility.c:427
 msgid "Bounce keys are enabled"
 msgstr "Прескачащите клавиши са включени"
 
-#: ../xfsettingsd/accessibility.c:429
+#: xfsettingsd/accessibility.c:429
 msgid "Bounce keys are disabled"
 msgstr "Прескащите клавиши са изключени"
 
-#: ../xfsettingsd/accessibility.c:431
+#: xfsettingsd/accessibility.c:431
 msgid "Bounce keys"
 msgstr "Прескачащи клавиши"
 
-#: ../xfsettingsd/keyboard-shortcuts.c:236
+#: xfsettingsd/keyboard-shortcuts.c:236
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Неуспешно задействане на клавишно съчетание „%s“"
 
-#: ../xfsettingsd/main.c:94
+#: xfsettingsd/main.c:94
 msgid "Fork to the background"
 msgstr "Преминаване във фонов режим"
 
-#: ../xfsettingsd/main.c:95
+#: xfsettingsd/main.c:95
 msgid "Do not wait for a window manager on startup"
 msgstr "Не чакайте управлението на прозорците да стартира"
 
-#: ../xfsettingsd/main.c:96
+#: xfsettingsd/main.c:96
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Замяна на стартиране услуга xsettings (ако е налична)"
 
 #. value in xfconf isn't a string, so make a default one
-#: ../xfsettingsd/workspaces.c:318 ../xfsettingsd/workspaces.c:375
+#: xfsettingsd/workspaces.c:318 xfsettingsd/workspaces.c:375
 #, c-format
 msgid "Workspace %d"
 msgstr "Работно място %d"
+
+#: xfsettingsd/xfsettingsd.desktop.in:4
+msgid "Xfce Settings Daemon"
+msgstr "Демон за настройките на Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:5
+msgid "The Xfce Settings Daemon"
+msgstr "Диспечер на настройките на Xfce"
+
+#: xfsettingsd/xfsettingsd.desktop.in:13
+msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
+msgstr "настройки;демон;xfce;конфигурация;предпочитания;система;управление;"
