@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Xfce
-# This file is distributed under the same license as the xfce4-settings.master package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
 # Dušan Kazik <prescott66@gmail.com>, 2015-2021
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
-"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-11 12:48+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-18 00:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Slavko <linux@slavino.sk>, 2015,2018,2025\n"
 "Language-Team: Slovak (http://app.transifex.com/xfce/xfce4-settings/language/sk/)\n"
@@ -20,1258 +20,1233 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: common/resources/accessibility-dialog.glade:66
-#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:4
+#: ../common/resources/accessibility-dialog.glade.h:1
 msgid "Accessibility"
 msgstr "Prístupnosť"
 
-#: common/resources/accessibility-dialog.glade:85
-#: common/resources/appearance-dialog.glade:142
-#: common/resources/color-dialog.glade:65
-#: common/resources/display-dialog.glade:290
-#: common/resources/minimal-display-dialog.glade:368
-#: common/resources/profile-changed-dialog.glade:34
-#: common/resources/keyboard-dialog.glade:181
-#: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3482
-#: dialogs/mime-settings/xfce-mime-window.c:194
-#: xfce4-settings-editor/main.c:188
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:234
+#: ../common/resources/accessibility-dialog.glade.h:2
+#: ../common/resources/appearance-dialog.glade.h:13
+#: ../common/resources/color-dialog.glade.h:2
+#: ../common/resources/display-dialog.glade.h:16
+#: ../common/resources/minimal-display-dialog.glade.h:11
+#: ../common/resources/profile-changed-dialog.glade.h:2
+#: ../common/resources/keyboard-dialog.glade.h:5
+#: ../common/resources/mouse-dialog.glade.h:16
+#: ../dialogs/display-settings/main.c:3479
+#: ../dialogs/mime-settings/xfce-mime-window.c:190
+#: ../xfce4-settings-editor/main.c:185
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:230
 msgid "_Close"
 msgstr "_Zatvoriť"
 
 #. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
-#: common/resources/accessibility-dialog.glade:100
-#: common/resources/appearance-dialog.glade:126
-#: common/resources/color-dialog.glade:80
-#: common/resources/display-dialog.glade:274
-#: common/resources/keyboard-dialog.glade:196
-#: common/resources/mouse-dialog.glade:179
-#: dialogs/mime-settings/xfce-mime-window.c:197
-#: xfce4-settings-editor/main.c:187
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:223
+#: ../common/resources/accessibility-dialog.glade.h:3
+#: ../common/resources/appearance-dialog.glade.h:12
+#: ../common/resources/color-dialog.glade.h:3
+#: ../common/resources/display-dialog.glade.h:15
+#: ../common/resources/keyboard-dialog.glade.h:6
+#: ../common/resources/mouse-dialog.glade.h:15
+#: ../dialogs/mime-settings/xfce-mime-window.c:193
+#: ../xfce4-settings-editor/main.c:184
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:219
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: common/resources/accessibility-dialog.glade:156
+#: ../common/resources/accessibility-dialog.glade.h:4
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr "Ak je zapnuté, správca relácie spustí požadované aplikácie na čítanie obrazovky a lupy."
 
-#: common/resources/accessibility-dialog.glade:173
+#: ../common/resources/accessibility-dialog.glade.h:5
 msgid "_Enable assistive technologies"
 msgstr "Povoliť _asistenčné technológie"
 
-#: common/resources/accessibility-dialog.glade:195
+#: ../common/resources/accessibility-dialog.glade.h:6
 msgid "Start With Session"
 msgstr "Spustiť s reláciou"
 
-#: common/resources/accessibility-dialog.glade:230
+#: ../common/resources/accessibility-dialog.glade.h:7
 msgid "Assistive technologies will be available the next time you login"
 msgstr "Asistenčné technológie budú dostupné pri nasledujúcom prihlásení"
 
-#: common/resources/accessibility-dialog.glade:269
+#: ../common/resources/accessibility-dialog.glade.h:8
 msgid "No AT-SPI provider was found on your system"
 msgstr "V systéme nebol nájdený žiadny poskytovateľ AT-SPI"
 
-#: common/resources/accessibility-dialog.glade:292
+#: ../common/resources/accessibility-dialog.glade.h:9
 msgid "Assistive _Technologies"
 msgstr "Asistenčné _techológie"
 
-#: common/resources/accessibility-dialog.glade:332
+#: ../common/resources/accessibility-dialog.glade.h:10
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr "Ak je zapnuté, nie je potrebné klávesy modifikátorov (Control, Alt a Shift) držať (stačí ich stlačiť a uvoľniť), ak majú byť viaceré stlačené naraz."
 
-#: common/resources/accessibility-dialog.glade:355
+#: ../common/resources/accessibility-dialog.glade.h:11
 msgid "_Use sticky keys"
 msgstr "Po_užiť lepkavé klávesy"
 
-#: common/resources/accessibility-dialog.glade:383
+#: ../common/resources/accessibility-dialog.glade.h:12
 msgid "_Lock sticky keys"
 msgstr "_Zamknúť lepkavé klávesy"
 
-#: common/resources/accessibility-dialog.glade:387
+#: ../common/resources/accessibility-dialog.glade.h:13
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr "Ak vyberiete túto voľbu, klávesy modifikátorov (Control, Alt a Shift) zostanú v stlačenom stave, pokiaľ ich opätovne nestlačíte"
 
-#: common/resources/accessibility-dialog.glade:400
+#: ../common/resources/accessibility-dialog.glade.h:14
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr "Vypnúť lepkavé klávesy, ak sú stlačené dve klávesy"
 
-#: common/resources/accessibility-dialog.glade:404
+#: ../common/resources/accessibility-dialog.glade.h:15
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr "Ak vyberiete túto voľbu, bude funkcia lepkavé klávesy po stlačení dvoch klávesov naraz zakázaná"
 
-#: common/resources/accessibility-dialog.glade:439
+#: ../common/resources/accessibility-dialog.glade.h:16
 msgid "Sticky Keys"
 msgstr "Lepkavé klávesy"
 
-#: common/resources/accessibility-dialog.glade:469
+#: ../common/resources/accessibility-dialog.glade.h:17
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr "Funkcia pomalé klávesy pomáha predchádzať náhodným stlačeniam klávesov tak, že požadovaná klávesa musí byť pred prijatím stlačená určitú dobu, kým bude použitá."
 
-#: common/resources/accessibility-dialog.glade:492
+#: ../common/resources/accessibility-dialog.glade.h:18
 msgid "Use slow _keys"
 msgstr "Použiť pomalé _klávesy"
 
-#: common/resources/accessibility-dialog.glade:521
+#: ../common/resources/accessibility-dialog.glade.h:19
 msgid "Acceptance _delay:"
 msgstr "_Oneskorenie akcelerácie"
 
-#: common/resources/accessibility-dialog.glade:535
+#: ../common/resources/accessibility-dialog.glade.h:20
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "Doba v milisekundách, ktorá musí prejsť pred prijatím stlačenia klávesy"
 
-#: common/resources/accessibility-dialog.glade:571
+#: ../common/resources/accessibility-dialog.glade.h:21
 msgid "Slow Keys"
 msgstr "Pomalé klávesy"
 
-#: common/resources/accessibility-dialog.glade:601
+#: ../common/resources/accessibility-dialog.glade.h:22
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr "Na pomoc pred náhodným stlačením viac-klávesových skratiek, zdvojené klávesy zavádzajú minimálnu dobu medzi klávesovými skratkami."
 
-#: common/resources/accessibility-dialog.glade:624
+#: ../common/resources/accessibility-dialog.glade.h:23
 msgid "Use _bounce keys"
 msgstr "Použiť _zdvojené klávesy"
 
-#: common/resources/accessibility-dialog.glade:653
+#: ../common/resources/accessibility-dialog.glade.h:24
 msgid "K_eystroke delay:"
 msgstr "On_eskorenie stlačenia klávesy:"
 
-#: common/resources/accessibility-dialog.glade:667
+#: ../common/resources/accessibility-dialog.glade.h:25
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Doba v milisekundách medzi dvoma stlačeniami klávesov"
 
-#: common/resources/accessibility-dialog.glade:703
+#: ../common/resources/accessibility-dialog.glade.h:26
 msgid "Bounce Keys"
 msgstr "Zdvojené klávesy"
 
-#: common/resources/accessibility-dialog.glade:729
+#: ../common/resources/accessibility-dialog.glade.h:27
 msgid "Keyboa_rd"
 msgstr "Kláves_nica"
 
-#: common/resources/accessibility-dialog.glade:769
+#: ../common/resources/accessibility-dialog.glade.h:28
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr "Ak je zapnuté, je možné ovládať kurzor myši numerickou klávesnicou."
 
-#: common/resources/accessibility-dialog.glade:792
+#: ../common/resources/accessibility-dialog.glade.h:29
 msgid "_Use mouse emulation"
 msgstr "Použiť _emuláciu myši"
 
-#: common/resources/accessibility-dialog.glade:796
+#: ../common/resources/accessibility-dialog.glade.h:30
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "Ak vyberiete túto voľbu, bude možné ovládať kurzor myši numerickou klávesnicou"
 
-#: common/resources/accessibility-dialog.glade:824
-#: common/resources/accessibility-dialog.glade:894
-#: common/resources/accessibility-dialog.glade:936
+#: ../common/resources/accessibility-dialog.glade.h:31
 msgid "msec"
 msgstr "ms"
 
-#: common/resources/accessibility-dialog.glade:835
+#: ../common/resources/accessibility-dialog.glade.h:32
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "Doba v milisekundách medzi stlačením prvej klávesy a prvou opakovanou udalosťou pohybu"
 
-#: common/resources/accessibility-dialog.glade:852
+#: ../common/resources/accessibility-dialog.glade.h:33
 msgid "_Acceleration delay:"
 msgstr "_Oneskorenie pri akcelerácii:"
 
-#: common/resources/accessibility-dialog.glade:865
+#: ../common/resources/accessibility-dialog.glade.h:34
 msgid "R_epeat interval:"
 msgstr "Int_erval opakovania:"
 
-#: common/resources/accessibility-dialog.glade:877
+#: ../common/resources/accessibility-dialog.glade.h:35
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Doba v milisekundách medzi dvoma opakovanými udalosťami pohybu"
 
-#: common/resources/accessibility-dialog.glade:906
+#: ../common/resources/accessibility-dialog.glade.h:36
 msgid "Acceleration t_ime:"
 msgstr "_Oneskorenie akcelerácie:"
 
-#: common/resources/accessibility-dialog.glade:918
+#: ../common/resources/accessibility-dialog.glade.h:37
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "Doba v milisekundách pre dosiahnutie maximálnej rýchlosti"
 
-#: common/resources/accessibility-dialog.glade:948
+#: ../common/resources/accessibility-dialog.glade.h:38
 msgid "Ma_ximum speed:"
 msgstr "Ma_ximálna rýchlosť:"
 
-#: common/resources/accessibility-dialog.glade:960
+#: ../common/resources/accessibility-dialog.glade.h:39
 msgid "The maximum pointer speed after acceleration"
 msgstr "Maximálna rýchlosť kurzora po zrýchlení"
 
-#: common/resources/accessibility-dialog.glade:978
+#: ../common/resources/accessibility-dialog.glade.h:40
 msgid "pixels/sec"
 msgstr "pixely/s"
 
-#: common/resources/accessibility-dialog.glade:990
+#: ../common/resources/accessibility-dialog.glade.h:41
 msgid "Acceleration _profile:"
 msgstr "Pro_fil akcelerácie:"
 
-#: common/resources/accessibility-dialog.glade:1002
+#: ../common/resources/accessibility-dialog.glade.h:42
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Rampa použitá k dosiahnutiu maximálnej rýchlosti kurzora"
 
-#: common/resources/accessibility-dialog.glade:1048
+#: ../common/resources/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
 msgstr "Emulácia myši"
 
-#: common/resources/accessibility-dialog.glade:1078
+#: ../common/resources/accessibility-dialog.glade.h:44
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr "Priraďte klávesovú skratku pre xfce4-find-cursor na získanie vizuálneho zvýraznenia aktuálnej pozície kurzora myši."
 
-#: common/resources/accessibility-dialog.glade:1095
+#: ../common/resources/accessibility-dialog.glade.h:45
 msgid "Show location of pointer on keypress"
 msgstr "Zobraziť ukazovateľ myši pri stlačení tlačidla"
 
-#: common/resources/accessibility-dialog.glade:1117
+#: ../common/resources/accessibility-dialog.glade.h:46
 msgid "Find Cursor"
 msgstr "Nájsť kurzor"
 
-#: common/resources/accessibility-dialog.glade:1143
+#: ../common/resources/accessibility-dialog.glade.h:47
 msgid "_Mouse"
 msgstr "_Myš"
 
-#: common/resources/appearance-dialog.glade:39
-#: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1602 dialogs/display-settings/main.c:85
-#: dialogs/display-settings/main.c:93
+#: ../common/resources/appearance-dialog.glade.h:1
+#: ../common/resources/mouse-dialog.glade.h:1
+#: ../dialogs/appearance-settings/main.c:1599
+#: ../dialogs/display-settings/main.c:82 ../dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "Žiadne"
 
-#: common/resources/appearance-dialog.glade:42
+#: ../common/resources/appearance-dialog.glade.h:2
 msgid "Slight"
 msgstr "Mierne"
 
-#: common/resources/appearance-dialog.glade:45
+#: ../common/resources/appearance-dialog.glade.h:3
 msgid "Medium"
 msgstr "Stredné"
 
-#: common/resources/appearance-dialog.glade:48
+#: ../common/resources/appearance-dialog.glade.h:4
 msgid "Full"
 msgstr "Plné"
 
-#: common/resources/appearance-dialog.glade:59
+#: ../common/resources/appearance-dialog.glade.h:5
 msgid "Icons"
 msgstr "Ikony"
 
-#: common/resources/appearance-dialog.glade:62
+#: ../common/resources/appearance-dialog.glade.h:6
 msgid "Text"
 msgstr "Text"
 
-#: common/resources/appearance-dialog.glade:65
+#: ../common/resources/appearance-dialog.glade.h:7
 msgid "Text under icons"
 msgstr "Text pod ikonami"
 
-#: common/resources/appearance-dialog.glade:68
+#: ../common/resources/appearance-dialog.glade.h:8
 msgid "Text next to icons"
 msgstr "Text vedľa ikon"
 
-#: common/resources/appearance-dialog.glade:82
+#: ../common/resources/appearance-dialog.glade.h:9
 msgid "1x (no scaling)"
 msgstr "1x(bez zmeny mierky)"
 
-#: common/resources/appearance-dialog.glade:86
+#: ../common/resources/appearance-dialog.glade.h:10
 msgid "2x"
 msgstr "2x"
 
-#: common/resources/appearance-dialog.glade:107
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
+#: ../common/resources/appearance-dialog.glade.h:11
 msgid "Appearance"
 msgstr "Vzhľad"
 
-#: common/resources/appearance-dialog.glade:205
-#: common/resources/appearance-dialog.glade:315
-#: common/resources/color-dialog.glade:374
-#: common/resources/keyboard-dialog.glade:636
-#: common/resources/keyboard-dialog.glade:970
-#: xfce4-settings-editor/xfce-settings-editor-box.c:364
+#: ../common/resources/appearance-dialog.glade.h:14
+#: ../common/resources/color-dialog.glade.h:10
+#: ../common/resources/keyboard-dialog.glade.h:24
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:360
 msgid "_Add"
 msgstr "_Pridať"
 
-#: common/resources/appearance-dialog.glade:238
+#: ../common/resources/appearance-dialog.glade.h:15
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
 msgstr "Nastaviť zodpovedajúcu <a href=\"xfwm4-settings:\">tému Xfwm4</a>, ak existuje"
 
-#: common/resources/appearance-dialog.glade:272
+#: ../common/resources/appearance-dialog.glade.h:16
 msgid "St_yle"
 msgstr "Š_týl"
 
-#: common/resources/appearance-dialog.glade:348
+#: ../common/resources/appearance-dialog.glade.h:17
 msgid "_Icons"
 msgstr "_Ikony"
 
-#: common/resources/appearance-dialog.glade:388
+#: ../common/resources/appearance-dialog.glade.h:18
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "Toto písmo bude použité ako predvolené pre vykreslenie textu používateľského rozhrania"
 
-#: common/resources/appearance-dialog.glade:390
+#: ../common/resources/appearance-dialog.glade.h:19
 msgid "Select a default font"
 msgstr "Vybrať predvolené písmo"
 
-#: common/resources/appearance-dialog.glade:399
+#: ../common/resources/appearance-dialog.glade.h:20
 msgid "Default Fon_t"
 msgstr "Predvolené pís_mo"
 
-#: common/resources/appearance-dialog.glade:431
+#: ../common/resources/appearance-dialog.glade.h:21
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr "Toto písmo bude použité ako predvolené písmo s pevnou šírkou, napr. v emulátoroch terminálov."
 
-#: common/resources/appearance-dialog.glade:433
+#: ../common/resources/appearance-dialog.glade.h:22
 msgid "Select a default monospace font"
 msgstr "Vybrať predvolené písmo s pevnou šírkou"
 
-#: common/resources/appearance-dialog.glade:442
+#: ../common/resources/appearance-dialog.glade.h:23
 msgid "Default _Monospace Font"
 msgstr "Predvolené _písmo s pevnou šírkou"
 
-#: common/resources/appearance-dialog.glade:477
+#: ../common/resources/appearance-dialog.glade.h:24
 msgid "_Enable anti-aliasing"
 msgstr "Povoliť v_yhladzovanie"
 
-#: common/resources/appearance-dialog.glade:481
+#: ../common/resources/appearance-dialog.glade.h:25
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Vyhladzovanie zlepšuje vzhľad textu na obrazovke"
 
-#: common/resources/appearance-dialog.glade:509
+#: ../common/resources/appearance-dialog.glade.h:26
 msgid "Hintin_g:"
 msgstr "Hintin_g:"
 
-#: common/resources/appearance-dialog.glade:521
+#: ../common/resources/appearance-dialog.glade.h:27
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Mnoho písiem obsahuje dodatočné informácie o najlepšom spôsobe pre vykresľovanie písma. Najlepší vzhľad vyberte podľa svojich osobných priorít"
 
-#: common/resources/appearance-dialog.glade:541
+#: ../common/resources/appearance-dialog.glade.h:28
 msgid "Sub-_pixel order:"
 msgstr "Poradie _subpixelov:"
 
-#: common/resources/appearance-dialog.glade:553
+#: ../common/resources/appearance-dialog.glade.h:29
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "Na obrazovkách TFT alebo LCD je možné zvýšiť kvalitu písiem voľbou správneho poradia farebných zložiek pixelov obrazovky"
 
-#: common/resources/appearance-dialog.glade:591
+#: ../common/resources/appearance-dialog.glade.h:30
 msgid "Rendering"
 msgstr "Vykresľovanie"
 
-#: common/resources/appearance-dialog.glade:623
+#: ../common/resources/appearance-dialog.glade.h:31
 msgid "Custom _DPI setting:"
 msgstr "Vlastné nastavenie _DPI:"
 
-#: common/resources/appearance-dialog.glade:627
+#: ../common/resources/appearance-dialog.glade.h:32
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Obísť rozlíšenie nájdeného monitora v prípade, že je písmo príliš veľké alebo malé"
 
-#: common/resources/appearance-dialog.glade:664
+#: ../common/resources/appearance-dialog.glade.h:33
 msgid "DPI"
 msgstr "DPI"
 
-#: common/resources/appearance-dialog.glade:690
+#: ../common/resources/appearance-dialog.glade.h:34
 msgid "_Fonts"
 msgstr "Pí_sma"
 
-#: common/resources/appearance-dialog.glade:733
+#: ../common/resources/appearance-dialog.glade.h:35
 msgid "Show images on _buttons"
 msgstr "Zobrazovať obrázky na _tlačidlách"
 
-#: common/resources/appearance-dialog.glade:737
+#: ../common/resources/appearance-dialog.glade.h:36
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Zvoľte, či budú na tlačidlách zobrazené ikony"
 
-#: common/resources/appearance-dialog.glade:750
+#: ../common/resources/appearance-dialog.glade.h:37
 msgid "Show images in _menus"
 msgstr "Zobrazovať _obrázky v ponukách"
 
-#: common/resources/appearance-dialog.glade:754
+#: ../common/resources/appearance-dialog.glade.h:38
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Zvoľte, či budú vedľa položiek ponúk zobrazené ikony"
 
-#: common/resources/appearance-dialog.glade:767
+#: ../common/resources/appearance-dialog.glade.h:39
 msgid "Enable e_ditable accelerators"
 msgstr "Povoliť úpravy _klávesových skratiek"
 
-#: common/resources/appearance-dialog.glade:771
+#: ../common/resources/appearance-dialog.glade.h:40
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Ak vyberiete, môžete zmeniť klávesové skratky položiek ponuky prejdením kurzora myši nad položku ponuky a stlačením novej klávesovej skratky"
 
-#: common/resources/appearance-dialog.glade:784
+#: ../common/resources/appearance-dialog.glade.h:41
 msgid "Enable header bars in dialo_gs"
 msgstr "Zapnúť záhlavie dialó_gov"
 
-#: common/resources/appearance-dialog.glade:788
+#: ../common/resources/appearance-dialog.glade.h:42
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr "Udáva, či dialógy GTK môžu umiestniť prvka, napr. tlačidlá, v záhlaví dialógu. Zapína aj Dekorácie na strane klienta. Ovplyvňuje len novo otvorené dialógy."
 
-#: common/resources/appearance-dialog.glade:807
+#: ../common/resources/appearance-dialog.glade.h:43
 msgid "Menus and Buttons"
 msgstr "Ponuky a tlačidlá"
 
-#: common/resources/appearance-dialog.glade:839
+#: ../common/resources/appearance-dialog.glade.h:44
 msgid "Enable _event sounds"
 msgstr "Povoliť zvuky _udalostí"
 
-#: common/resources/appearance-dialog.glade:843
+#: ../common/resources/appearance-dialog.glade.h:45
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Globálne povolí, alebo zakáže zvuky udalostí (vyžaduje podporu knižnice „Canberra“)"
 
-#: common/resources/appearance-dialog.glade:856
+#: ../common/resources/appearance-dialog.glade.h:46
 msgid "Enable input feedbac_k sounds"
 msgstr "Povoliť zvuky spätnej väzby vstupu"
 
-#: common/resources/appearance-dialog.glade:860
+#: ../common/resources/appearance-dialog.glade.h:47
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Zvoľte, či budú kliknutia myšou a iné užívateľské vstupy ozvučené"
 
-#: common/resources/appearance-dialog.glade:879
+#: ../common/resources/appearance-dialog.glade.h:48
 msgid "Event sounds"
 msgstr "Zvuky udalostí"
 
-#: common/resources/appearance-dialog.glade:908
+#: ../common/resources/appearance-dialog.glade.h:49
 msgid "Adjust the system-wide display scaling"
 msgstr "Upraví zmenu mierku zobrazenia pre celý systém"
 
-#: common/resources/appearance-dialog.glade:926
+#: ../common/resources/appearance-dialog.glade.h:50
 msgid "_Window Scaling"
 msgstr "Zmena _mierky okien"
 
-#: common/resources/appearance-dialog.glade:954
+#: ../common/resources/appearance-dialog.glade.h:51
 msgid "Setti_ngs"
 msgstr "_Nastavenia"
 
-#: common/resources/color-dialog.glade:46
-#: dialogs/color-settings/xfce4-color-settings.desktop.in:4
+#: ../common/resources/color-dialog.glade.h:1
 msgid "Color Profiles"
 msgstr "Farebné profily"
 
-#: common/resources/color-dialog.glade:151
+#: ../common/resources/color-dialog.glade.h:4
 msgid "<b>No devices found.</b>"
 msgstr "<b>Nenašli sa žiadne zariadenia.</b>"
 
-#: common/resources/color-dialog.glade:221
+#: ../common/resources/color-dialog.glade.h:5
 msgid "Model:"
 msgstr "Model:"
 
-#: common/resources/color-dialog.glade:233
+#: ../common/resources/color-dialog.glade.h:6
 msgid "Colorspace:"
 msgstr "Farebný priestor:"
 
-#: common/resources/color-dialog.glade:256
+#: ../common/resources/color-dialog.glade.h:7
 msgid "Vendor:"
 msgstr "Výrobca:"
 
-#: common/resources/color-dialog.glade:280
+#: ../common/resources/color-dialog.glade.h:8
 msgid "Calibrate"
 msgstr "Kalibrovať"
 
-#: common/resources/color-dialog.glade:337
+#: ../common/resources/color-dialog.glade.h:9
 msgid "<b>No profiles for the selected device.</b>"
 msgstr "<b>Žiadne profily pre vybrané zariadenie.</b>"
 
-#: common/resources/color-dialog.glade:378
+#: ../common/resources/color-dialog.glade.h:11
 msgid "Add a profile to the currently selected device"
 msgstr "Pridať profil aktuálne vybranému zariadeniu"
 
-#: common/resources/color-dialog.glade:390
-#: common/resources/keyboard-dialog.glade:666
-#: common/resources/keyboard-dialog.glade:1002
+#: ../common/resources/color-dialog.glade.h:12
+#: ../common/resources/keyboard-dialog.glade.h:26
 msgid "_Remove"
 msgstr "_Odstrániť"
 
-#: common/resources/color-dialog.glade:394
+#: ../common/resources/color-dialog.glade.h:13
 msgid "Delete the currently selected profile"
 msgstr "Odstrániť aktuálne vybraný profil"
 
-#: common/resources/color-dialog.glade:409
-#: common/resources/color-dialog.glade:617
+#: ../common/resources/color-dialog.glade.h:14
 msgid "Show detailed information about the selected profile"
 msgstr "Zobraziť podrobné informácie o vybranom profile"
 
-#: common/resources/color-dialog.glade:432
+#: ../common/resources/color-dialog.glade.h:15
 msgid "Enable"
 msgstr "Povoliť"
 
-#: common/resources/color-dialog.glade:436
+#: ../common/resources/color-dialog.glade.h:16
 msgid "Enable the selected profile"
 msgstr "Povoliť vybraný profil"
 
-#: common/resources/color-dialog.glade:511
+#: ../common/resources/color-dialog.glade.h:17
 msgid "Add Profile to Device"
 msgstr "Pridať profil zariadeniu"
 
 #. Create cancel button
-#: common/resources/color-dialog.glade:529
-#: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1341 dialogs/color-settings/main.c:129
-#: dialogs/keyboard-settings/command-dialog.c:113
-#: dialogs/keyboard-settings/command-dialog.c:275
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:570
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+#: ../common/resources/color-dialog.glade.h:18
+#: ../common/resources/keyboard-dialog.glade.h:2
+#: ../dialogs/appearance-settings/main.c:1338
+#: ../dialogs/color-settings/main.c:126
+#: ../dialogs/keyboard-settings/command-dialog.c:109
+#: ../dialogs/keyboard-settings/command-dialog.c:271
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:424
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:575
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:106
 msgid "_Cancel"
 msgstr "_Zrušiť"
 
-#: common/resources/color-dialog.glade:543
-#: common/resources/keyboard-dialog.glade:86
-#: dialogs/keyboard-settings/command-dialog.c:117
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:571
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
+#: ../common/resources/color-dialog.glade.h:19
+#: ../common/resources/keyboard-dialog.glade.h:3
+#: ../dialogs/keyboard-settings/command-dialog.c:113
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:576
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:107
 msgid "_OK"
 msgstr "_OK"
 
-#: common/resources/color-dialog.glade:602
+#: ../common/resources/color-dialog.glade.h:20
 msgid "Import color profile files (*.icc)"
 msgstr "Importovať súbory farebných profilov (*.icc)"
 
-#: common/resources/confirmation-dialog.glade:13
+#: ../common/resources/confirmation-dialog.glade.h:1
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
 msgstr "<b><big>Chcete zachovať toto nastavenie?</big></b>"
 
-#: common/resources/confirmation-dialog.glade:15
+#: ../common/resources/confirmation-dialog.glade.h:2
 msgid ""
 "The previous configuration will be restored in <b>10 seconds</b> if you do "
 "not reply to this question."
 msgstr "Ak neodpoviete na túto otázku, predošlé nastavenie bude obnovené o <b>10 sekúnd</b>."
 
-#: common/resources/confirmation-dialog.glade:29
+#: ../common/resources/confirmation-dialog.glade.h:3
 msgid "Keep this configuration"
 msgstr "Ponechať toto nastavenie"
 
-#: common/resources/confirmation-dialog.glade:44
+#: ../common/resources/confirmation-dialog.glade.h:4
 msgid "Restore the previous configuration"
 msgstr "Obnoviť pôvodné nastavenie"
 
-#: common/resources/display-dialog.glade:61
+#: ../common/resources/display-dialog.glade.h:1
 msgid "Never"
 msgstr "Nikdy"
 
-#: common/resources/display-dialog.glade:65
+#: ../common/resources/display-dialog.glade.h:2
 msgid "When a display is connected"
 msgstr "Keď je displej pripojený"
 
-#: common/resources/display-dialog.glade:69
+#: ../common/resources/display-dialog.glade.h:3
 msgid "When a display is disconnected"
 msgstr "Keď je displej odipojený"
 
-#: common/resources/display-dialog.glade:73
+#: ../common/resources/display-dialog.glade.h:4
 msgid "Always"
 msgstr "Vždy"
 
-#: common/resources/display-dialog.glade:87
+#: ../common/resources/display-dialog.glade.h:5
 msgid "Do nothing"
 msgstr "Neurobiť nič"
 
-#: common/resources/display-dialog.glade:91
+#: ../common/resources/display-dialog.glade.h:6
 msgid "Show dialog"
 msgstr "Zobraziť dialóg"
 
-#: common/resources/display-dialog.glade:95
+#: ../common/resources/display-dialog.glade.h:7
 msgid "Mirror"
 msgstr "Zrkadliť"
 
-#: common/resources/display-dialog.glade:99
+#: ../common/resources/display-dialog.glade.h:8
 msgid "Extend"
 msgstr "Rozšíriť"
 
-#: common/resources/display-dialog.glade:157
+#: ../common/resources/display-dialog.glade.h:9
 msgid "The primary display can be configured to show:"
 msgstr "Primárny displej možno nastaviť na zobrazenie:"
 
-#: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1735
+#: ../common/resources/display-dialog.glade.h:10
+#: ../dialogs/display-settings/main.c:1732
 msgid "Xfce Panel"
 msgstr "Panel Xfce"
 
-#: common/resources/display-dialog.glade:184
+#: ../common/resources/display-dialog.glade.h:11
 msgid "Desktop icons"
 msgstr "Ikony pracovnej plochy"
 
-#: common/resources/display-dialog.glade:197
+#: ../common/resources/display-dialog.glade.h:12
 msgid "Notifications"
 msgstr "Oznámenia"
 
-#: common/resources/display-dialog.glade:207
-#: common/resources/display-dialog.glade:222
-#: common/resources/display-dialog.glade:237
+#: ../common/resources/display-dialog.glade.h:13
 msgid "Configure..."
 msgstr "Nastaviť..."
 
-#: common/resources/display-dialog.glade:255
-#: dialogs/display-settings/xfce-display-settings.desktop.in:4
+#: ../common/resources/display-dialog.glade.h:14
 msgid "Display"
 msgstr "Monitor"
 
-#: common/resources/display-dialog.glade:362
+#: ../common/resources/display-dialog.glade.h:17
 msgid "_Mirror displays"
 msgstr "_Zrkadliť obrazovky"
 
-#: common/resources/display-dialog.glade:461
+#: ../common/resources/display-dialog.glade.h:18
 msgid "Primary Display:"
 msgstr "Hlavná obrazovka:"
 
-#: common/resources/display-dialog.glade:487
+#: ../common/resources/display-dialog.glade.h:19
 msgid "R_esolution:"
 msgstr "Rozlíš_enie:"
 
-#: common/resources/display-dialog.glade:513
+#: ../common/resources/display-dialog.glade.h:20
 msgid "Refresh _rate:"
 msgstr "Obnovovacia _frekvencia:"
 
-#: common/resources/display-dialog.glade:539
+#: ../common/resources/display-dialog.glade.h:21
 msgid "Ro_tation:"
 msgstr "O_točenie:"
 
-#: common/resources/display-dialog.glade:563
+#: ../common/resources/display-dialog.glade.h:22
 msgid "Ref_lection:"
 msgstr "Od_raz:"
 
-#: common/resources/display-dialog.glade:603
+#: ../common/resources/display-dialog.glade.h:23
 msgid "A_pply"
 msgstr "_Použiť"
 
-#: common/resources/display-dialog.glade:631
+#: ../common/resources/display-dialog.glade.h:24
 msgid "_Scale:"
 msgstr "_Mierka:"
 
-#: common/resources/display-dialog.glade:669
+#: ../common/resources/display-dialog.glade.h:25
 msgid "_General"
 msgstr "_Všeobecné"
 
-#: common/resources/display-dialog.glade:689
+#: ../common/resources/display-dialog.glade.h:26
 msgid "<b>Profiles</b>"
 msgstr "<b>Profily</b>"
 
-#: common/resources/display-dialog.glade:705
+#: ../common/resources/display-dialog.glade.h:27
 msgid "<b>Connecting Displays</b>"
 msgstr "<b>Pripájanie obrazoviek</b>"
 
-#: common/resources/display-dialog.glade:755
+#: ../common/resources/display-dialog.glade.h:28
 msgid "Delete the currently selected display profile."
 msgstr "Odstrániť aktuálne vybraný profil obrazovky."
 
-#: common/resources/display-dialog.glade:768
+#: ../common/resources/display-dialog.glade.h:29
 msgid "Apply"
 msgstr "Použiť"
 
-#: common/resources/display-dialog.glade:772
+#: ../common/resources/display-dialog.glade.h:30
 msgid "Apply the currently selected display profile."
 msgstr "Použije aktuálne vybraný profil obrazovky."
 
-#: common/resources/display-dialog.glade:788
+#: ../common/resources/display-dialog.glade.h:31
 msgid "Create a new display profile."
 msgstr "Vytvoriť nový profil obrazovky."
 
-#: common/resources/display-dialog.glade:804
+#: ../common/resources/display-dialog.glade.h:32
 msgid "Update an existing profile."
 msgstr "Aktualizovať existujúci profil."
 
-#: common/resources/display-dialog.glade:837
+#: ../common/resources/display-dialog.glade.h:33
 msgid "First try to automatically enable a profile:"
 msgstr "Najprv skúsiť automaticky zapnúť profil:"
 
-#: common/resources/display-dialog.glade:869
+#: ../common/resources/display-dialog.glade.h:34
 msgid "When a display is connected:"
 msgstr "Keď je displej pripojený:"
 
-#: common/resources/display-dialog.glade:882
+#: ../common/resources/display-dialog.glade.h:35
 msgid "Show popup windows to identify displays"
 msgstr "Zobraziť vyskakovacie okná na rozpoznanie monitorov"
 
-#: common/resources/display-dialog.glade:908
+#: ../common/resources/display-dialog.glade.h:36
 msgid "<b>Identifying Displays</b>"
 msgstr "<b>Identifikácia obrazoviek</b>"
 
-#: common/resources/display-dialog.glade:946
-#: common/resources/minimal-display-dialog.glade:354
+#: ../common/resources/display-dialog.glade.h:37
+#: ../common/resources/minimal-display-dialog.glade.h:10
 msgid "_Advanced"
 msgstr "_Pokročilé"
 
-#: common/resources/display-dialog.glade:998
+#: ../common/resources/display-dialog.glade.h:38
 msgid "<b>Profile Name</b>"
 msgstr "<b>Názov profilu</b>"
 
-#: common/resources/display-dialog.glade:1021
+#: ../common/resources/display-dialog.glade.h:39
 msgid "Create"
 msgstr "Vytvoriť"
 
-#: common/resources/display-dialog.glade:1056
+#: ../common/resources/display-dialog.glade.h:40
 msgid "A profile of this name already exists."
 msgstr "Profil s týmto názvom už existuje."
 
-#: common/resources/minimal-display-dialog.glade:16
+#: ../common/resources/minimal-display-dialog.glade.h:1
 msgid "Extend right"
 msgstr "Rozšíriť vpravo"
 
-#: common/resources/minimal-display-dialog.glade:19
+#: ../common/resources/minimal-display-dialog.glade.h:2
 msgid "Extend left"
 msgstr "Rozšíriť vľavo"
 
-#: common/resources/minimal-display-dialog.glade:22
+#: ../common/resources/minimal-display-dialog.glade.h:3
 msgid "Extend up"
 msgstr "Rozšíriť hore"
 
-#: common/resources/minimal-display-dialog.glade:25
+#: ../common/resources/minimal-display-dialog.glade.h:4
 msgid "Extend down"
 msgstr "Rozšíriť dole"
 
-#: common/resources/minimal-display-dialog.glade:37
+#: ../common/resources/minimal-display-dialog.glade.h:5
 msgid "Displays"
 msgstr "Obrazovky"
 
-#: common/resources/minimal-display-dialog.glade:92
-#: common/resources/minimal-display-dialog.glade:93
+#: ../common/resources/minimal-display-dialog.glade.h:6
 msgid "Only Display 1"
 msgstr "Iba obrazovka č. 1"
 
-#: common/resources/minimal-display-dialog.glade:145
-#: common/resources/minimal-display-dialog.glade:146
+#: ../common/resources/minimal-display-dialog.glade.h:7
 msgid "Mirror Displays"
 msgstr "Zrkadliť obrazovky"
 
-#: common/resources/minimal-display-dialog.glade:201
+#: ../common/resources/minimal-display-dialog.glade.h:8
 msgid "Extend to the right"
 msgstr "Rozšíriť vpravo"
 
-#: common/resources/minimal-display-dialog.glade:262
-#: common/resources/minimal-display-dialog.glade:263
+#: ../common/resources/minimal-display-dialog.glade.h:9
 msgid "Only Display 2"
 msgstr "Iba obrazovka č. 2"
 
-#: common/resources/profile-changed-dialog.glade:12
+#: ../common/resources/profile-changed-dialog.glade.h:1
 msgid "Update Display Profile"
 msgstr "Aktualizovať profil displeja"
 
-#: common/resources/profile-changed-dialog.glade:51
+#: ../common/resources/profile-changed-dialog.glade.h:3
 msgid "_Update"
 msgstr "A_ktualizovať"
 
-#: common/resources/profile-changed-dialog.glade:109
+#: ../common/resources/profile-changed-dialog.glade.h:4
 msgid ""
 "<big><b>You have made changes to your previously active profile</b></big>"
 msgstr "<big><b>Vykonali ste zmeny vo vašom predchádzajúcom aktívnom profile</b></big>"
 
-#: common/resources/profile-changed-dialog.glade:124
+#: ../common/resources/profile-changed-dialog.glade.h:5
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
 msgstr "Ak neaktualizujete profil, zmeny budú stratené pri reštarte relácie, odpojení alebo pripojení displeja."
 
-#: common/resources/keyboard-dialog.glade:53
+#: ../common/resources/keyboard-dialog.glade.h:1
 msgid "Keyboard layout selection"
 msgstr "Výber rozloženia klávesnice"
 
-#: common/resources/keyboard-dialog.glade:162
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
+#: ../common/resources/keyboard-dialog.glade.h:4
 msgid "Keyboard"
 msgstr "Klávesnica"
 
-#: common/resources/keyboard-dialog.glade:252
+#: ../common/resources/keyboard-dialog.glade.h:7
 msgid "Restore num l_ock state on startup"
 msgstr "Obnoviť stav num l_ocku pri spustení"
 
-#: common/resources/keyboard-dialog.glade:267
-#: common/resources/mouse-dialog.glade:726
-#: common/resources/mouse-dialog.glade:953
+#: ../common/resources/keyboard-dialog.glade.h:8
+#: ../common/resources/mouse-dialog.glade.h:40
 msgid "General"
 msgstr "Všeobecné"
 
-#: common/resources/keyboard-dialog.glade:301
+#: ../common/resources/keyboard-dialog.glade.h:9
 msgid "_Enable key repeat"
 msgstr "Povoliť opakovani_e klávesy"
 
-#: common/resources/keyboard-dialog.glade:305
+#: ../common/resources/keyboard-dialog.glade.h:10
 msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
 msgstr "Ak vyberiete túto voľbu, bude sa stlačením a držaním klávesy jej zasielanie neustále opakovať"
 
-#: common/resources/keyboard-dialog.glade:333
+#: ../common/resources/keyboard-dialog.glade.h:11
 msgid "_Repeat delay:"
 msgstr "Onesko_renie opakovania:"
 
-#: common/resources/keyboard-dialog.glade:347
+#: ../common/resources/keyboard-dialog.glade.h:12
 msgid "The time, in milliseconds, before a pressed key begins repeating"
 msgstr "Čas v milisekundách pred začatím opakovania stlačenej klávesy"
 
-#: common/resources/keyboard-dialog.glade:363
+#: ../common/resources/keyboard-dialog.glade.h:13
 msgid "Repe_at speed:"
 msgstr "Rýchlosť op_akovania:"
 
-#: common/resources/keyboard-dialog.glade:377
+#: ../common/resources/keyboard-dialog.glade.h:14
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr "Frekvencia generovania kódov klávesy pri jej trvalom stlačení"
 
-#: common/resources/keyboard-dialog.glade:405
+#: ../common/resources/keyboard-dialog.glade.h:15
 msgid "Typing Settings"
 msgstr "Nastavenia písania"
 
-#: common/resources/keyboard-dialog.glade:438
+#: ../common/resources/keyboard-dialog.glade.h:16
 msgid "Show _blinking"
 msgstr "Zobraziť _blikajúci kurzor"
 
-#: common/resources/keyboard-dialog.glade:442
+#: ../common/resources/keyboard-dialog.glade.h:17
 msgid "Specify whether or not the text cursor blinks"
 msgstr "Určite, či bude textový kurzor blikať"
 
-#: common/resources/keyboard-dialog.glade:470
+#: ../common/resources/keyboard-dialog.glade.h:18
 msgid "Blink _delay:"
 msgstr "Rýchlosť _blikania:"
 
-#: common/resources/keyboard-dialog.glade:484
+#: ../common/resources/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
 msgstr "Oneskorenie v milisekundách medzi bliknutiami kurzora"
 
-#: common/resources/keyboard-dialog.glade:512
+#: ../common/resources/keyboard-dialog.glade.h:20
 msgid "Cursor"
 msgstr "Kurzor"
 
-#: common/resources/keyboard-dialog.glade:534
+#: ../common/resources/keyboard-dialog.glade.h:21
 msgid "_Test area:"
 msgstr "Oblasť pre _testovanie:"
 
-#: common/resources/keyboard-dialog.glade:575
+#: ../common/resources/keyboard-dialog.glade.h:22
 msgid "Beha_vior"
 msgstr "Sprá_vanie"
 
-#: common/resources/keyboard-dialog.glade:593
+#: ../common/resources/keyboard-dialog.glade.h:23
 msgid "Define shortcuts for la_unching applications:"
 msgstr "Defin_ujte skratky na spúšťanie aplikácií:"
 
-#: common/resources/keyboard-dialog.glade:651
-#: common/resources/keyboard-dialog.glade:986
-#: xfce4-settings-editor/xfce-settings-editor-box.c:377
+#: ../common/resources/keyboard-dialog.glade.h:25
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:373
 msgid "_Edit"
 msgstr "_Upraviť"
 
-#: common/resources/keyboard-dialog.glade:692
+#: ../common/resources/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
 msgstr "Obnoviť pr_edvolené"
 
-#: common/resources/keyboard-dialog.glade:732
+#: ../common/resources/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
 msgstr "Použitie _skratiek"
 
-#: common/resources/keyboard-dialog.glade:762
+#: ../common/resources/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
 msgstr "<b>Použiť predvolené systémom</b>"
 
-#: common/resources/keyboard-dialog.glade:817
+#: ../common/resources/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
 msgstr "Model _klávesnice"
 
-#: common/resources/keyboard-dialog.glade:861
+#: ../common/resources/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
 msgstr "Zmeniť voľb_y rozloženia"
 
-#: common/resources/keyboard-dialog.glade:899
+#: ../common/resources/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
 msgstr "Klávesa Compose"
 
-#: common/resources/keyboard-dialog.glade:1043
+#: ../common/resources/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
 msgstr "Presunúť práve vybranú položku o jeden riadok hore"
 
-#: common/resources/keyboard-dialog.glade:1063
+#: ../common/resources/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
 msgstr "Presunúť práve vybranú položku o jeden riadok dole"
 
-#: common/resources/keyboard-dialog.glade:1096
+#: ../common/resources/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
 msgstr "Rozloženie klá_vesnice"
 
-#: common/resources/keyboard-dialog.glade:1123
+#: ../common/resources/keyboard-dialog.glade.h:36
 msgid "_Layout"
 msgstr "_Rozloženie"
 
-#: common/resources/mouse-dialog.glade:67
+#: ../common/resources/mouse-dialog.glade.h:2
 msgid "Use bottom areas as left, middle or right buttons"
 msgstr "Použiť spodný priestor ako ľavé, pravé alebo stredné tlačidlo"
 
-#: common/resources/mouse-dialog.glade:71
+#: ../common/resources/mouse-dialog.glade.h:3
 msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
 msgstr "Kliknúť 1, 2 alebo 3 prstami ako ľavý, pravý alebo stredný klik"
 
-#: common/resources/mouse-dialog.glade:92
+#: ../common/resources/mouse-dialog.glade.h:4
 msgid "Disabled"
 msgstr "Zakázané"
 
-#: common/resources/mouse-dialog.glade:96
+#: ../common/resources/mouse-dialog.glade.h:5
 msgid "Edge scrolling"
 msgstr "Posun okrajom"
 
-#: common/resources/mouse-dialog.glade:100
+#: ../common/resources/mouse-dialog.glade.h:6
 msgid "Two-finger scrolling"
 msgstr "Posun dvoma prstami"
 
-#: common/resources/mouse-dialog.glade:104
+#: ../common/resources/mouse-dialog.glade.h:7
 msgid "Circular scrolling"
 msgstr "Kruhový posun"
 
-#: common/resources/mouse-dialog.glade:126
+#: ../common/resources/mouse-dialog.glade.h:8
 msgid "Pen (absolute)"
 msgstr "Pero (priamo)"
 
-#: common/resources/mouse-dialog.glade:130
+#: ../common/resources/mouse-dialog.glade.h:9
 msgid "Mouse (relative)"
 msgstr "Myš (relatívne)"
 
-#: common/resources/mouse-dialog.glade:144
+#: ../common/resources/mouse-dialog.glade.h:10
 msgid "None (right-handed)"
 msgstr "Žiadne (pre praváka)"
 
-#: common/resources/mouse-dialog.glade:148
+#: ../common/resources/mouse-dialog.glade.h:11
 msgid "Half (left-handed)"
 msgstr "Polovične (pre ľaváka)"
 
-#: common/resources/mouse-dialog.glade:152
+#: ../common/resources/mouse-dialog.glade.h:12
 msgid "Clockwise"
 msgstr "Pravotočivo"
 
-#: common/resources/mouse-dialog.glade:156
+#: ../common/resources/mouse-dialog.glade.h:13
 msgid "Counterclockwise"
 msgstr "Ľavotočivo"
 
-#: common/resources/mouse-dialog.glade:162
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
+#: ../common/resources/mouse-dialog.glade.h:14
 msgid "Mouse and Touchpad"
 msgstr "Myš a touchpad"
 
-#: common/resources/mouse-dialog.glade:237
+#: ../common/resources/mouse-dialog.glade.h:17
 msgid "De_vice:"
 msgstr "Zari_adenie:"
 
-#: common/resources/mouse-dialog.glade:314
+#: ../common/resources/mouse-dialog.glade.h:18
 msgid "Le_ft-handed"
 msgstr "Ľ_avou rukou"
 
-#: common/resources/mouse-dialog.glade:331
+#: ../common/resources/mouse-dialog.glade.h:19
 msgid "Ri_ght-handed"
 msgstr "P_ravou rukou"
 
-#: common/resources/mouse-dialog.glade:355
+#: ../common/resources/mouse-dialog.glade.h:20
 msgid "Reverse scroll d_irection"
 msgstr "Obrát_iť smer posunu"
 
-#: common/resources/mouse-dialog.glade:359
+#: ../common/resources/mouse-dialog.glade.h:21
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Ak je táto voľba povolená, bude koliesko myši pracovať opačne"
 
-#: common/resources/mouse-dialog.glade:372
+#: ../common/resources/mouse-dialog.glade.h:22
 msgid "Allow high _resolution scrolling (experimental)"
 msgstr "Povoliť posun s vysokým _rozlíšením (experimentálne)"
 
-#: common/resources/mouse-dialog.glade:376
+#: ../common/resources/mouse-dialog.glade.h:23
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr "Podporované len niektorými myšami (väčšinou Logitech) a vyžaduje podporu ovládačom. Na podporovaných zariadeniach robí posun oveľa presnejší."
 
-#: common/resources/mouse-dialog.glade:395
+#: ../common/resources/mouse-dialog.glade.h:24
 msgid "Buttons"
 msgstr "Tlačidlá"
 
-#: common/resources/mouse-dialog.glade:428
+#: ../common/resources/mouse-dialog.glade.h:25
 msgid "_Reset to Defaults"
 msgstr "Obnoviť pr_edvolené"
 
-#: common/resources/mouse-dialog.glade:432
+#: ../common/resources/mouse-dialog.glade.h:26
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Nastaví akceleráciu a citlivosť pre vybrané zariadenie na predvolené hodnoty"
 
-#: common/resources/mouse-dialog.glade:448
+#: ../common/resources/mouse-dialog.glade.h:27
 msgid "Sensitivit_y:"
 msgstr "_Citlivosť_"
 
-#: common/resources/mouse-dialog.glade:461
+#: ../common/resources/mouse-dialog.glade.h:28
 msgid "Acceleratio_n:"
 msgstr "Zrýchle_nie:"
 
-#: common/resources/mouse-dialog.glade:473
+#: ../common/resources/mouse-dialog.glade.h:29
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Faktor, pri ktorom kurzor myši zvýši rýchlosť pri pohybe"
 
-#: common/resources/mouse-dialog.glade:488
+#: ../common/resources/mouse-dialog.glade.h:30
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Počet pixelov, o ktoré sa musí kurzor v krátkom časovom úseku posunúť pred zahájením akcelerácie"
 
-#: common/resources/mouse-dialog.glade:502
+#: ../common/resources/mouse-dialog.glade.h:31
 msgid "Adaptive pointer acceleration"
 msgstr "Adaptívne zrýchľovanie ukazovateľa"
 
-#: common/resources/mouse-dialog.glade:505
+#: ../common/resources/mouse-dialog.glade.h:32
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr "Prepína medzi adaptívnym a rovnakým profilom zrýchľovania. Adaptívny berie pri určení zrýchlenia do úvahy aktuálnu rýchlosť zariadenia. Vlastný profil zrýchlenia nie je v xfce4-settings podporovaný."
 
-#: common/resources/mouse-dialog.glade:525
+#: ../common/resources/mouse-dialog.glade.h:33
 msgid "Pointer Speed"
 msgstr "Rýchlosť kurzora"
 
-#: common/resources/mouse-dialog.glade:544
+#: ../common/resources/mouse-dialog.glade.h:34
 msgid "B_uttons and Feedback"
 msgstr "_Tlačidlá a odozva"
 
-#: common/resources/mouse-dialog.glade:578
-#: common/resources/mouse-dialog.glade:595
+#: ../common/resources/mouse-dialog.glade.h:35
 msgid "Disable touchpad _while typing"
 msgstr "Zakázať to_uchpad počas písania"
 
-#: common/resources/mouse-dialog.glade:582
-#: common/resources/mouse-dialog.glade:599
+#: ../common/resources/mouse-dialog.glade.h:36
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Ak vyberiete túto možnosť, touchpad bude počas používania klávesnice vypnutý"
 
-#: common/resources/mouse-dialog.glade:624
+#: ../common/resources/mouse-dialog.glade.h:37
 msgid "Duratio_n:"
 msgstr "Trva_nie:"
 
-#: common/resources/mouse-dialog.glade:659
+#: ../common/resources/mouse-dialog.glade.h:38
 msgid "Tap touchpad to clic_k"
 msgstr "Poklep_anie na touchpad ako klik myšou"
 
-#: common/resources/mouse-dialog.glade:682
+#: ../common/resources/mouse-dialog.glade.h:39
 msgid "Click m_ethod:"
 msgstr "_Metóda kliknutia:"
 
-#: common/resources/mouse-dialog.glade:767
+#: ../common/resources/mouse-dialog.glade.h:41
 msgid "Scrolling _mode:"
 msgstr "Režim posunu:"
 
-#: common/resources/mouse-dialog.glade:805
+#: ../common/resources/mouse-dialog.glade.h:42
 msgid "Enable hori_zontal scrolling"
 msgstr "Povoliť vodo_rovný posun"
 
-#: common/resources/mouse-dialog.glade:827
+#: ../common/resources/mouse-dialog.glade.h:43
 msgid "Scrolling"
 msgstr "Posun"
 
-#: common/resources/mouse-dialog.glade:850
+#: ../common/resources/mouse-dialog.glade.h:44
 msgid "T_ouchpad"
 msgstr "T_ouchpad"
 
-#: common/resources/mouse-dialog.glade:888
+#: ../common/resources/mouse-dialog.glade.h:45
 msgid "Trac_king mode:"
 msgstr "Režim sledov_ania:"
 
-#: common/resources/mouse-dialog.glade:901
+#: ../common/resources/mouse-dialog.glade.h:46
 msgid "_Rotation:"
 msgstr "O_točenie:"
 
-#: common/resources/mouse-dialog.glade:976
+#: ../common/resources/mouse-dialog.glade.h:47
 msgid "Tab_let"
 msgstr "Tab_let"
 
-#: common/resources/mouse-dialog.glade:997
+#: ../common/resources/mouse-dialog.glade.h:48
 msgid "_Devices"
 msgstr "_Zariadenia"
 
-#: common/resources/mouse-dialog.glade:1034
+#: ../common/resources/mouse-dialog.glade.h:49
 msgid "Th_reshold:"
 msgstr "P_rah:"
 
-#: common/resources/mouse-dialog.glade:1048
+#: ../common/resources/mouse-dialog.glade.h:50
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Počet pixelov, o ktoré sa musí kurzor posunúť pred začatím ťahania"
 
-#: common/resources/mouse-dialog.glade:1067
+#: ../common/resources/mouse-dialog.glade.h:51
 msgid "Drag and Drop"
 msgstr "Ťahať a pustiť"
 
-#: common/resources/mouse-dialog.glade:1103
+#: ../common/resources/mouse-dialog.glade.h:52
 msgid "Ti_me:"
 msgstr "Č_as:"
 
-#: common/resources/mouse-dialog.glade:1117
+#: ../common/resources/mouse-dialog.glade.h:53
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Najdlhšia povolená doba medzi dvoma kliknutiami v milisekundách považovaná za dvojité kliknutie"
 
-#: common/resources/mouse-dialog.glade:1133
+#: ../common/resources/mouse-dialog.glade.h:54
 msgid "D_istance:"
 msgstr "Vzd_ialenosť:"
 
-#: common/resources/mouse-dialog.glade:1147
+#: ../common/resources/mouse-dialog.glade.h:55
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Najvyššia povolená vzdialenosť medzi dvoma kliknutiami v pixeloch považovaných za dvojité kliknutie"
 
-#: common/resources/mouse-dialog.glade:1166
+#: ../common/resources/mouse-dialog.glade.h:56
 msgid "Double Click"
 msgstr "Dvojité kliknutie"
 
-#: common/resources/mouse-dialog.glade:1188
+#: ../common/resources/mouse-dialog.glade.h:57
 msgid "_Behavior"
 msgstr "Správa_nie"
 
-#: common/resources/mouse-dialog.glade:1253
+#: ../common/resources/mouse-dialog.glade.h:58
 msgid "Cursor si_ze:"
 msgstr "Veľkosť kur_zora:"
 
-#: common/resources/mouse-dialog.glade:1287
+#: ../common/resources/mouse-dialog.glade.h:59
 msgid "Size"
 msgstr "Veľkosť"
 
-#: common/resources/mouse-dialog.glade:1327
+#: ../common/resources/mouse-dialog.glade.h:60
 msgid "Preview"
 msgstr "Náhľad"
 
-#: common/resources/mouse-dialog.glade:1356
+#: ../common/resources/mouse-dialog.glade.h:61
 msgid "_Theme"
 msgstr "_Motív"
 
 #. Translators: "Unknown" here is used to identify a monitor for which
 #. * we don't know the vendor. When a vendor is known, the name of the
 #. * vendor is used.
-#: common/display-name.c:2649
+#: ../common/display-name.c:2645
 msgctxt "Monitor vendor"
 msgid "Unknown"
 msgstr "Neznámy"
 
 #. TRANSLATORS: an externally connected display, where %s is either the
 #. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: common/display-name.c:2702 dialogs/color-settings/color-device.c:66
+#: ../common/display-name.c:2698 ../dialogs/color-settings/color-device.c:62
 msgid "Monitor"
 msgstr "Monitor"
 
-#: common/display-name.c:2705
+#: ../common/display-name.c:2701
 msgid "Television"
 msgstr "Televízor"
 
-#: common/display-name.c:2709
+#: ../common/display-name.c:2705
 msgid "Digital display"
 msgstr "Digitálna obrazovka"
 
-#: common/xfce-randr.c:285 dialogs/display-settings/display-settings-x11.c:702
+#: ../common/xfce-randr.c:281
+#: ../dialogs/display-settings/display-settings-x11.c:698
+#, c-format
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nie je možné zistiť používanú verziu rozšírenia RandR"
 
-#: common/xfce-randr.c:571
-#: dialogs/display-settings/display-settings-wayland.c:350
+#: ../common/xfce-randr.c:567
+#: ../dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "Prenosný počítač"
 
-#: dialogs/accessibility-settings/main.c:39
-#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
-#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
-#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
-#: xfce4-settings-editor/main.c:47
+#: ../dialogs/accessibility-settings/main.c:36
+#: ../dialogs/appearance-settings/main.c:90
+#: ../dialogs/color-settings/main.c:40 ../dialogs/display-settings/main.c:103
+#: ../dialogs/keyboard-settings/main.c:36 ../dialogs/mime-settings/main.c:40
+#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Soket správcu nastavení"
 
-#: dialogs/accessibility-settings/main.c:39
-#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:43
-#: dialogs/display-settings/main.c:106 dialogs/keyboard-settings/main.c:39
-#: dialogs/mime-settings/main.c:43 dialogs/mouse-settings/main.c:87
-#: xfce4-settings-editor/main.c:47
+#: ../dialogs/accessibility-settings/main.c:36
+#: ../dialogs/appearance-settings/main.c:90
+#: ../dialogs/color-settings/main.c:40 ../dialogs/display-settings/main.c:103
+#: ../dialogs/keyboard-settings/main.c:36 ../dialogs/mime-settings/main.c:40
+#: ../dialogs/mouse-settings/main.c:84 ../xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
-#: dialogs/accessibility-settings/main.c:40
-#: dialogs/appearance-settings/main.c:94 dialogs/color-settings/main.c:44
-#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:40
-#: dialogs/mime-settings/main.c:44 dialogs/mouse-settings/main.c:88
-#: xfce4-settings-editor/main.c:48 xfce4-settings-manager/main.c:42
-#: xfsettingsd/main.c:96
+#: ../dialogs/accessibility-settings/main.c:37
+#: ../dialogs/appearance-settings/main.c:91
+#: ../dialogs/color-settings/main.c:41 ../dialogs/display-settings/main.c:104
+#: ../dialogs/keyboard-settings/main.c:37 ../dialogs/mime-settings/main.c:41
+#: ../dialogs/mouse-settings/main.c:85 ../xfce4-settings-editor/main.c:45
+#: ../xfce4-settings-manager/main.c:39 ../xfsettingsd/main.c:93
 msgid "Version information"
 msgstr "Informácie o verzii"
 
-#: dialogs/accessibility-settings/main.c:194
-#: dialogs/appearance-settings/main.c:1695 dialogs/color-settings/main.c:1466
-#: dialogs/display-settings/main.c:3430 dialogs/keyboard-settings/main.c:77
-#: dialogs/mime-settings/main.c:81
-#: dialogs/mime-settings/xfce-mime-helper-main.c:150
-#: dialogs/mouse-settings/main.c:2197 xfce4-settings-editor/main.c:121
-#: xfce4-settings-manager/main.c:63 xfsettingsd/main.c:245
+#: ../dialogs/accessibility-settings/main.c:191
+#: ../dialogs/appearance-settings/main.c:1692
+#: ../dialogs/color-settings/main.c:1463
+#: ../dialogs/display-settings/main.c:3427
+#: ../dialogs/keyboard-settings/main.c:74 ../dialogs/mime-settings/main.c:78
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:153
+#: ../dialogs/mouse-settings/main.c:2194 ../xfce4-settings-editor/main.c:118
+#: ../xfce4-settings-manager/main.c:60 ../xfsettingsd/main.c:242
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Informácie o použití získate príkazom '%s --help'"
 
-#: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1714 dialogs/color-settings/main.c:1485
-#: dialogs/display-settings/main.c:3449 dialogs/keyboard-settings/main.c:93
-#: dialogs/mime-settings/main.c:100 dialogs/mouse-settings/main.c:2216
-#: xfce4-settings-editor/main.c:140 xfce4-settings-manager/main.c:79
-#: xfsettingsd/main.c:261
+#: ../dialogs/accessibility-settings/main.c:210
+#: ../dialogs/appearance-settings/main.c:1711
+#: ../dialogs/color-settings/main.c:1482
+#: ../dialogs/display-settings/main.c:3446
+#: ../dialogs/keyboard-settings/main.c:90 ../dialogs/mime-settings/main.c:97
+#: ../dialogs/mouse-settings/main.c:2213 ../xfce4-settings-editor/main.c:137
+#: ../xfce4-settings-manager/main.c:76 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Vývojársky tím Xfce. Všetky práva vyhradené."
 
-#: dialogs/accessibility-settings/main.c:214
-#: dialogs/appearance-settings/main.c:1715 dialogs/color-settings/main.c:1486
-#: dialogs/display-settings/main.c:3450 dialogs/keyboard-settings/main.c:94
-#: dialogs/mime-settings/main.c:101 dialogs/mouse-settings/main.c:2217
-#: xfce4-settings-editor/main.c:141 xfce4-settings-manager/main.c:80
-#: xfsettingsd/main.c:262
+#: ../dialogs/accessibility-settings/main.c:211
+#: ../dialogs/appearance-settings/main.c:1712
+#: ../dialogs/color-settings/main.c:1483
+#: ../dialogs/display-settings/main.c:3447
+#: ../dialogs/keyboard-settings/main.c:91 ../dialogs/mime-settings/main.c:98
+#: ../dialogs/mouse-settings/main.c:2214 ../xfce4-settings-editor/main.c:138
+#: ../xfce4-settings-manager/main.c:77 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Prosím, chyby nahláste na <%s>."
 
-#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:5
-msgid "Improve keyboard and mouse accessibility"
-msgstr "Zlepšite prístupnosť klávesnice a myši"
-
-#: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:6
-msgid ""
-"assistive;technologies;keys;sticky;bounce;emulation;screen "
-"readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-msgstr "assistive;technologies;keys;sticky;bounce;emulation;screen readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
-
-#: dialogs/appearance-settings/main.c:340
+#: ../dialogs/appearance-settings/main.c:337
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Nepodarilo sa zobraziť Nastavenia Xfwm4"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:634
+#: ../dialogs/appearance-settings/main.c:631
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1280,128 +1255,118 @@ msgstr "Upozornenie: táto téma ikon nemá súbor vyrovnávacej pamäte. Môže
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:641
+#: ../dialogs/appearance-settings/main.c:638
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Upozornenie: táto téma ikon nie je kompletná. Niektoré ikonu budú chýbať."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:646
+#: ../dialogs/appearance-settings/main.c:643
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Upozornenie: táto téma ikon nie je kompletná. Poskytuje len základnú sadu ikon, z ktorých môžu dediť iné témy."
 
-#: dialogs/appearance-settings/main.c:1253
+#: ../dialogs/appearance-settings/main.c:1250
+#, c-format
 msgid "File is too large, installation aborted"
 msgstr "Súbor je príliš veľký, inštalácia zrušená"
 
-#: dialogs/appearance-settings/main.c:1258
+#: ../dialogs/appearance-settings/main.c:1255
 msgid "Failed to create temporary directory"
 msgstr "Nie je možné vytvoriť dočasný priečinok"
 
-#: dialogs/appearance-settings/main.c:1263
+#: ../dialogs/appearance-settings/main.c:1260
 msgid "Failed to extract archive"
 msgstr "Nie je možné rozbaliť archív"
 
-#: dialogs/appearance-settings/main.c:1268
+#: ../dialogs/appearance-settings/main.c:1265
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Neznámy formát, podporované sú len archívy a priečinky"
 
-#: dialogs/appearance-settings/main.c:1273
+#: ../dialogs/appearance-settings/main.c:1270
 msgid "Not a valid theme package"
 msgstr "Nie je platný balík témy"
 
-#: dialogs/appearance-settings/main.c:1278
+#: ../dialogs/appearance-settings/main.c:1275
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Neznáma chyba, kód ukončenia je %d"
 
-#: dialogs/appearance-settings/main.c:1285
+#: ../dialogs/appearance-settings/main.c:1282
 msgid "Failed to install theme"
 msgstr "Zlyhala inštalácia motívu"
 
-#: dialogs/appearance-settings/main.c:1339
+#: ../dialogs/appearance-settings/main.c:1336
 #, c-format
 msgid "Install %s theme"
 msgstr "Inštalovať motív %s"
 
-#: dialogs/appearance-settings/main.c:1342
-#: dialogs/keyboard-settings/command-dialog.c:276
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:426
+#: ../dialogs/appearance-settings/main.c:1339
+#: ../dialogs/keyboard-settings/command-dialog.c:272
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Otvoriť"
 
-#: dialogs/appearance-settings/main.c:1606
+#: ../dialogs/appearance-settings/main.c:1603
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1610
+#: ../dialogs/appearance-settings/main.c:1607
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1614
+#: ../dialogs/appearance-settings/main.c:1611
 msgid "Vertical RGB"
 msgstr "Zvislé RGB"
 
-#: dialogs/appearance-settings/main.c:1618
+#: ../dialogs/appearance-settings/main.c:1615
 msgid "Vertical BGR"
 msgstr "Zvislé BGR"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:5
-msgid "Customize the look of your desktop"
-msgstr "Nastavenie vzhľadu pracovného prostredia"
-
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:6
-msgid ""
-"themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
-"pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
-"shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-msgstr "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
-
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
-#: dialogs/color-settings/color-device.c:69
+#: ../dialogs/color-settings/color-device.c:65
 msgid "Scanner"
 msgstr "Skener"
 
 #. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
-#: dialogs/color-settings/color-device.c:72
+#: ../dialogs/color-settings/color-device.c:68
 msgid "Camera"
 msgstr "Fotoaparát"
 
 #. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
-#: dialogs/color-settings/color-device.c:75
+#: ../dialogs/color-settings/color-device.c:71
 msgid "Printer"
 msgstr "Tlačiareň"
 
 #. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
-#: dialogs/color-settings/color-device.c:78
+#: ../dialogs/color-settings/color-device.c:74
 msgid "Webcam"
 msgstr "Webkamera"
 
 #. TRANSLATORS: This refers to the TFT display on a laptop
-#: dialogs/color-settings/color-device.c:96
+#: ../dialogs/color-settings/color-device.c:92
 msgid "Laptop Screen"
 msgstr "Obrazovka prenosného počítača"
 
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
-#: dialogs/color-settings/color-device.c:105
+#: ../dialogs/color-settings/color-device.c:101
 msgid "Built-in Webcam"
 msgstr "Vstavaná webkamera"
 
-#: dialogs/color-settings/color-device.c:198
+#: ../dialogs/color-settings/color-device.c:194
 #, c-format
 msgid "Enable color management for %s"
 msgstr "Povoliť správu farieb zariadenia %s"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
-#: dialogs/color-settings/color-profile.c:97
+#: ../dialogs/color-settings/color-profile.c:93
 msgid "Standard Space"
 msgstr "Štandardný priestor"
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
-#: dialogs/color-settings/color-profile.c:103
+#: ../dialogs/color-settings/color-profile.c:99
 msgid "Test Profile"
 msgstr "Testovací profil"
 
@@ -1409,7 +1374,7 @@ msgstr "Testovací profil"
 #. * by the color management system based on manufacturing data,
 #. * for instance the default monitor profile is created from the
 #. * primaries specified in the monitor EDID
-#: dialogs/color-settings/color-profile.c:111
+#: ../dialogs/color-settings/color-profile.c:107
 msgctxt "Automatically generated profile"
 msgid "Automatic"
 msgstr "Automatický"
@@ -1417,13 +1382,13 @@ msgstr "Automatický"
 #. TRANSLATORS: the profile quality - low quality profiles take
 #. * much less time to generate but may be a poor reflection of the
 #. * device capability
-#: dialogs/color-settings/color-profile.c:121
+#: ../dialogs/color-settings/color-profile.c:117
 msgctxt "Profile quality"
 msgid "Low Quality"
 msgstr "Nízka kvalita"
 
 #. TRANSLATORS: the profile quality
-#: dialogs/color-settings/color-profile.c:126
+#: ../dialogs/color-settings/color-profile.c:122
 msgctxt "Profile quality"
 msgid "Medium Quality"
 msgstr "Stredná kvalita"
@@ -1431,134 +1396,126 @@ msgstr "Stredná kvalita"
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
 #. * characterisation data.
-#: dialogs/color-settings/color-profile.c:133
+#: ../dialogs/color-settings/color-profile.c:129
 msgctxt "Profile quality"
 msgid "High Quality"
 msgstr "Vysoká kvalita"
 
 #. TRANSLATORS: this default RGB space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:150
+#: ../dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
 msgstr "Predvolený RGB"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:157
+#: ../dialogs/color-settings/color-profile.c:153
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
 msgstr "Predvolený CMYK"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
-#: dialogs/color-settings/color-profile.c:164
+#: ../dialogs/color-settings/color-profile.c:160
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
 msgstr "Predvolený sivý"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: dialogs/color-settings/main.c:128
+#: ../dialogs/color-settings/main.c:125
 msgid "Select ICC Profile File"
 msgstr "Výber súboru profilom ICC"
 
-#: dialogs/color-settings/main.c:130
+#: ../dialogs/color-settings/main.c:127
 msgid "_Import"
 msgstr "_Importovať"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:141
+#: ../dialogs/color-settings/main.c:138
 msgid "Supported ICC profiles"
 msgstr "Podporované profily ICC"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:148
+#: ../dialogs/color-settings/main.c:145
 msgid "All files"
 msgstr "Všetky súbory"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: dialogs/color-settings/main.c:191
+#: ../dialogs/color-settings/main.c:188
 msgid "Default: "
 msgstr "Predvolený:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: dialogs/color-settings/main.c:198
+#: ../dialogs/color-settings/main.c:195
 msgid "Colorspace: "
 msgstr "Farebný priestor:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: dialogs/color-settings/main.c:205
+#: ../dialogs/color-settings/main.c:202
 msgid "Test profile: "
 msgstr "Skúšobný profil:"
 
-#: dialogs/color-settings/main.c:240
+#: ../dialogs/color-settings/main.c:237
 msgid "Compatible Profiles"
 msgstr "Kompatibilné profily"
 
-#: dialogs/color-settings/main.c:519
+#: ../dialogs/color-settings/main.c:516
 #, c-format
 msgid "Add Color Profile to %s"
 msgstr "Pridať farebný profil zariadeniu %s"
 
-#: dialogs/color-settings/main.c:519
+#: ../dialogs/color-settings/main.c:516
 msgid "Device"
 msgstr "Zariadenie"
 
-#: dialogs/color-settings/main.c:863 dialogs/color-settings/main.c:864
-#: dialogs/color-settings/main.c:865
+#: ../dialogs/color-settings/main.c:860 ../dialogs/color-settings/main.c:861
+#: ../dialogs/color-settings/main.c:862
 msgid "Unknown"
 msgstr "Neznámy"
 
-#: dialogs/color-settings/xfce4-color-settings.desktop.in:5
-msgid "Set color profiles"
-msgstr "Nastaviť profily farieb"
-
-#: dialogs/color-settings/xfce4-color-settings.desktop.in:6
-msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
-msgstr "farba;nastavenia;správa;displej;zobrazenie;monitory;tlačiarne;webkamera;webová;kamera;skenery;"
-
-#: dialogs/display-settings/main.c:57
+#: ../dialogs/display-settings/main.c:54
 #, c-format
 msgid "Only %s (1)"
 msgstr "Iba %s (1)"
 
-#: dialogs/display-settings/main.c:58
+#: ../dialogs/display-settings/main.c:55
 #, c-format
 msgid "Only %s (2)"
 msgstr "Iba %s (2)"
 
-#: dialogs/display-settings/main.c:86
+#: ../dialogs/display-settings/main.c:83
 msgid "Left"
 msgstr "Vľavo"
 
-#: dialogs/display-settings/main.c:87
+#: ../dialogs/display-settings/main.c:84
 msgid "Inverted"
 msgstr "Obrátené"
 
-#: dialogs/display-settings/main.c:88
+#: ../dialogs/display-settings/main.c:85
 msgid "Right"
 msgstr "Vpravo"
 
-#: dialogs/display-settings/main.c:94
+#: ../dialogs/display-settings/main.c:91
 msgid "Horizontal"
 msgstr "Vodorovne"
 
-#: dialogs/display-settings/main.c:95
+#: ../dialogs/display-settings/main.c:92
 msgid "Vertical"
 msgstr "Zvisle"
 
-#: dialogs/display-settings/main.c:96
+#: ../dialogs/display-settings/main.c:93
 msgid "Horizontal and Vertical"
 msgstr "Vodorovne a zvislo"
 
-#: dialogs/display-settings/main.c:108
+#: ../dialogs/display-settings/main.c:105
 msgid "Minimal interface to set up an external output"
 msgstr "Minimálne rozhranie pre nastavenie externého výstupu"
 
-#: dialogs/display-settings/main.c:281
+#: ../dialogs/display-settings/main.c:278
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1566,56 +1523,56 @@ msgid ""
 msgstr "Ak neodpoviete na túto otázku, predošlé nastavenie bude obnovené o <b>%i sekúnd</b>."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:641
+#: ../dialogs/display-settings/main.c:638
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:970
+#: ../dialogs/display-settings/main.c:967
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Posledný aktívny výstup nie je možné zakázať, systém by bol nepoužiteľný."
 
-#: dialogs/display-settings/main.c:971
+#: ../dialogs/display-settings/main.c:968
 msgid "Selected output not disabled"
 msgstr "Vybraný výstup nie je zakázaný"
 
-#: dialogs/display-settings/main.c:1317
+#: ../dialogs/display-settings/main.c:1314
 #, c-format
 msgid "Update changed display profile '%s'?"
 msgstr "Aktualizovať zmenený profil monitora „%s“?"
 
-#: dialogs/display-settings/main.c:1322
+#: ../dialogs/display-settings/main.c:1319
 #, c-format
 msgid "_Update '%s'"
 msgstr "A_ktualizovať „%s“"
 
-#: dialogs/display-settings/main.c:1670
+#: ../dialogs/display-settings/main.c:1667
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Chcete odstrániť profil monitora „%s“?"
 
-#: dialogs/display-settings/main.c:1673
+#: ../dialogs/display-settings/main.c:1670
 msgid "Delete Profile"
 msgstr "Odstrániť profil"
 
-#: dialogs/display-settings/main.c:1674
+#: ../dialogs/display-settings/main.c:1671
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Keď je profile monitora zmazaný, už ho nemožno obnoviť."
 
-#: dialogs/display-settings/main.c:1674
-#: dialogs/mime-settings/xfce-mime-chooser.c:135
-#: dialogs/mime-settings/xfce-mime-chooser.c:380
-#: dialogs/mime-settings/xfce-mime-window.c:1210
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
+#: ../dialogs/display-settings/main.c:1671
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:131
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:376
+#: ../dialogs/mime-settings/xfce-mime-window.c:1295
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:134
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: dialogs/display-settings/main.c:1675
+#: ../dialogs/display-settings/main.c:1672
 msgid "Delete"
 msgstr "Odstrániť"
 
-#: dialogs/display-settings/main.c:1761
+#: ../dialogs/display-settings/main.c:1758
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
@@ -1624,13 +1581,14 @@ msgstr[1] "%d panely Xfce"
 msgstr[2] "%d panelov Xfce"
 msgstr[3] "%d panela Xfce"
 
-#: dialogs/display-settings/main.c:2546
+#: ../dialogs/display-settings/main.c:2543
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Vyberte monitor na zmenu jeho vlastností; presuňte ho na zmenu jeho jeho umiestnenia."
 
-#: dialogs/display-settings/main.c:2645 dialogs/display-settings/main.c:2678
+#: ../dialogs/display-settings/main.c:2642
+#: ../dialogs/display-settings/main.c:2675
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1639,226 +1597,210 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2895
+#: ../dialogs/display-settings/main.c:2892
 msgid "Mirror Screens"
 msgstr "Zrkadliť obrazovky"
 
-#: dialogs/display-settings/main.c:2945
+#: ../dialogs/display-settings/main.c:2942
 msgid "(Disabled)"
 msgstr "(Vypnuté)"
 
-#: dialogs/display-settings/main.c:3476
+#: ../dialogs/display-settings/main.c:3473
 msgid "ATI Settings"
 msgstr "Nastavenie grafickej karty ATI"
 
-#: dialogs/display-settings/main.c:3481
+#: ../dialogs/display-settings/main.c:3478
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nie je možné spustiť nastavenia obrazovky prostredia Xfce"
 
-#: dialogs/display-settings/main.c:3489
+#: ../dialogs/display-settings/main.c:3486
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nie je možné spustiť nastavenie proprietárneho ovládača"
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:5
-msgid "Configure screen settings and layout"
-msgstr "Nastavenia konfigurácie obrazovky a rozloženia"
-
-#: dialogs/display-settings/xfce-display-settings.desktop.in:6
-msgid ""
-"display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
-msgstr "displej;zobrazenie;nastavenia;obrazovka;rozlíšenie;obnovovacia;frekvencia;otočenie;externý;projektory;monitory;LCD;CRT;HiDPI;"
-
-#: dialogs/display-settings/display-settings.c:463
+#: ../dialogs/display-settings/display-settings.c:459
 msgid "Display:"
 msgstr "Obrazovka:"
 
-#: dialogs/display-settings/display-settings.c:471
+#: ../dialogs/display-settings/display-settings.c:467
 msgid "Resolution:"
 msgstr "Rozlíšenie:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1008
+#: ../dialogs/display-settings/display-settings-wayland.c:1004
+#, c-format
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Zdá sa, že Váš kompozitor nepodporuje protokol wlr-output-management"
 
 #. Set dialog title and icon
-#: dialogs/keyboard-settings/command-dialog.c:109
+#: ../dialogs/keyboard-settings/command-dialog.c:105
 msgid "Shortcut Command"
 msgstr "Príkaz klávesovej skratky"
 
-#: dialogs/keyboard-settings/command-dialog.c:139
+#: ../dialogs/keyboard-settings/command-dialog.c:135
 msgid "Enter the command you want to trigger with a shortcut."
 msgstr "Zdajte príkaz, ktorý má byť spustený touto skratkou"
 
 #. We are editing an existing shortcut
-#: dialogs/keyboard-settings/command-dialog.c:157
+#: ../dialogs/keyboard-settings/command-dialog.c:153
 msgid "Shortcut:"
 msgstr "Skratka:"
 
-#: dialogs/keyboard-settings/command-dialog.c:182
+#: ../dialogs/keyboard-settings/command-dialog.c:178
 msgid "Comm_and:"
 msgstr "_Príkaz:"
 
-#: dialogs/keyboard-settings/command-dialog.c:207
+#: ../dialogs/keyboard-settings/command-dialog.c:203
 msgid "Use _startup notification"
 msgstr "Použiť oznámenie o _spustení"
 
-#: dialogs/keyboard-settings/command-dialog.c:253
+#: ../dialogs/keyboard-settings/command-dialog.c:249
 msgid "The command may not be empty."
 msgstr "Príkaz nemôže byť prázdny."
 
-#: dialogs/keyboard-settings/command-dialog.c:273
+#: ../dialogs/keyboard-settings/command-dialog.c:269
 msgid "Select command"
 msgstr "Vyberte príkaz"
 
-#: dialogs/keyboard-settings/command-dialog.c:281
-#: dialogs/mime-settings/xfce-mime-chooser.c:387
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:432
+#: ../dialogs/keyboard-settings/command-dialog.c:277
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:383
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:431
 msgid "All Files"
 msgstr "Všetky súbory"
 
-#: dialogs/keyboard-settings/command-dialog.c:286
-#: dialogs/mime-settings/xfce-mime-chooser.c:392
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:437
+#: ../dialogs/keyboard-settings/command-dialog.c:282
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:388
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:436
 msgid "Executable Files"
 msgstr "Spustiteľné súbory"
 
-#: dialogs/keyboard-settings/command-dialog.c:301
-#: dialogs/mime-settings/xfce-mime-chooser.c:407
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:452
+#: ../dialogs/keyboard-settings/command-dialog.c:297
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:403
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:451
 msgid "Perl Scripts"
 msgstr "Skripty jazyka Perl"
 
-#: dialogs/keyboard-settings/command-dialog.c:307
-#: dialogs/mime-settings/xfce-mime-chooser.c:413
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:458
+#: ../dialogs/keyboard-settings/command-dialog.c:303
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:409
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:457
 msgid "Python Scripts"
 msgstr "Skripty jazyka Python"
 
-#: dialogs/keyboard-settings/command-dialog.c:313
-#: dialogs/mime-settings/xfce-mime-chooser.c:419
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:464
+#: ../dialogs/keyboard-settings/command-dialog.c:309
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:415
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:463
 msgid "Ruby Scripts"
 msgstr "Skripty jazyka Ruby"
 
-#: dialogs/keyboard-settings/command-dialog.c:319
-#: dialogs/mime-settings/xfce-mime-chooser.c:425
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:470
+#: ../dialogs/keyboard-settings/command-dialog.c:315
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:421
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:469
 msgid "Shell Scripts"
 msgstr "Shellové skripty"
 
-#: dialogs/keyboard-settings/main.c:83
+#: ../dialogs/keyboard-settings/main.c:80
 msgid "Unable to initialize GTK+."
 msgstr "Nie je možné inicializovať GTK+."
 
-#: dialogs/keyboard-settings/main.c:109
+#: ../dialogs/keyboard-settings/main.c:106
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Zlyhalo pripojenie na démona xfconf. Dôvod: %s"
 
-#: dialogs/keyboard-settings/main.c:120
+#: ../dialogs/keyboard-settings/main.c:117
 msgid "Could not create the settings dialog."
 msgstr "Nie je možné vytvoriť dialógové okno nastavení."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:431
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:427
 msgid "Command"
 msgstr "Príkaz"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:439
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:435
 msgid "Shortcut"
 msgstr "Skratka"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:508
 msgid "Layout"
 msgstr "Rozvrhnutie"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:509
 msgid "Variant"
 msgstr "Variant"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Touto akciou nastavíte všetky klávesové skratky na predvolené hodnoty. Naozaj si želáte pokračovať?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
 msgid "Reset to Defaults"
 msgstr "Obnoviť predvolené"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
 msgid "No"
 msgstr "Nie"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
 msgid "Yes"
 msgstr "Áno"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1362
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
 msgid "The system defaults will be restored next time you log in."
 msgstr "Predvolené nastavenie systému bude obnovené pri nasledujúcom prihlásení."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1364
+#: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
 msgid "Warning"
 msgstr "Varovanie"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:5
-msgid "Edit keyboard settings and application shortcuts"
-msgstr "Úprava nastavení klávesnice a klávesových skratiek"
-
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
-msgid "numlock;keyboard;layout;shortcuts;"
-msgstr "numlock;klávesnica;rozloženie;klávesové;skratky;"
-
-#: dialogs/mime-settings/main.c:118
+#: ../dialogs/mime-settings/main.c:115
 msgid "Could not create the mime dialog."
 msgstr "Nepodarilo sa vytvoriť dialógové okno mime."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:129
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:125
 msgid "Select Application"
 msgstr "Vyberte aplikáciu"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:137
-#: dialogs/mime-settings/xfce-mime-chooser.c:381
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:133
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:377
 msgid "Open"
 msgstr "Otvoriť"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:205
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:201
 msgid "Use a c_ustom command:"
 msgstr "Použiť _vlastný príkaz:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:206
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:202
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
 msgstr "Použiť vlastný príkaz pre aplikáciu, ktorá nie je dostupná v hornom zozname aplikácií."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:224
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:220
 msgid "_Browse..."
 msgstr "_Prechádzať..."
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:378
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:374
 msgid "Select an Application"
 msgstr "Vybrať aplikáciu"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:527
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:523
 msgid "None available"
 msgstr "Žiadna dostupná"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:575
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:571
 msgid "Recommended Applications"
 msgstr "Odporúčané aplikácie"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:594
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:590
 msgid "Other Applications"
 msgstr "Ostatné aplikácie"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:614
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:610
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
 msgstr "Otvoriť <i>%s</i> a ostatné súbory typu \"%s\" s:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:619
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:615
 #, c-format
 msgid ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME type "
@@ -1871,191 +1813,263 @@ msgstr[1] "Otvoriť <i>%s</i>, iné súbory typu „%s” a  iné %dzvolené typ
 msgstr[2] "Otvoriť <i>%s</i>, iné súbory typu „%s” a %d iné zvolené typy MIME pomocou:"
 msgstr[3] "Otvoriť <i>%s</i>, iné súbory typu „%s” a %d iné zvolené typy MIME pomocou:"
 
-#: dialogs/mime-settings/xfce-mime-chooser.c:659
+#: ../dialogs/mime-settings/xfce-mime-chooser.c:655
 #, c-format
 msgid "Failed to add new application \"%s\""
 msgstr "Pridanie novej aplikácie \"%s\" zlyhalo"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:141
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:148
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:137
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:144
 msgid "Press left mouse button to change the selected application."
 msgstr "Stlačte ľavé tlačidlo myši pre zmenu vybranej aplikácie."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:147
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:143
 msgid "Application Chooser Button"
 msgstr "Tlačidlo pre výber aplikácie"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:334
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:330
 msgid "No application selected"
 msgstr "Nie je vybraný program"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:345
 msgid "Failed to set default Web Browser"
 msgstr "Nepodarilo sa nastaviť predvolený internetový prehliadač"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:346
 msgid "Failed to set default Mail Reader"
 msgstr "Nepodarilo sa nastaviť predvolený e-mailový klient"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:347
 msgid "Failed to set default File Manager"
 msgstr "Nepodarilo sa nastaviť predvolený správca súborov"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:348
 msgid "Failed to set default Terminal Emulator"
 msgstr "Nepodarilo sa nastaviť predvolený emulátor terminálu"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:353
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:349
 msgid "Failed to set default Text Editor"
 msgstr ""
 
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:350
+msgid "Failed to set default Image Viewer"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:351
+msgid "Failed to set default Audio Player"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:352
+msgid "Failed to set default Video Player"
+msgstr ""
+
 #. allocate the chooser
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:423
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:422
 msgid "Select application"
 msgstr "Vyberte aplikáciu"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:533
 msgid "Choose a custom Web Browser"
 msgstr "Vyberte si vlastný internetový prehliadač"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:534
 msgid "Choose a custom Mail Reader"
 msgstr "Vyberte si vlastný e-mailový klient"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:536
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:535
 msgid "Choose a custom File Manager"
 msgstr "Vyberte si vlastného správcu súborov"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:537
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:536
 msgid "Choose a custom Terminal Emulator"
 msgstr "Vyberte si vlastný emulátor terminálu"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:537
 msgid "Choose a custom Text Editor"
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:538
+msgid "Choose a custom Image Viewer"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:539
+msgid "Choose a custom Audio Player"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:540
+msgid "Choose a custom Video Player"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:544
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr "Spresnite aplikáciu, ktorú chcete použiť\nako predvolený internetový prehliadač v Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:545
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr "Spresnite aplikáciu, ktorú chcete použiť\nako predvolený e-mailový klient v Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:546
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr "Spresnite aplikáciu, ktorú chcete použiť\nako predvoleného správcu súborov v Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:545
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:547
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr "Spresnite aplikáciu, ktorú chcete použiť\nako predvolený emulátor terminálu v Xfce:"
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:548
 msgid ""
 "Specify the application you want to use\n"
 "as default Text Editor for Xfce:"
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:610
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:549
+msgid ""
+"Specify the application you want to use\n"
+"as default Image Viewer for Xfce:"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:550
+msgid ""
+"Specify the application you want to use\n"
+"as default Audio Player for Xfce:"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:551
+msgid ""
+"Specify the application you want to use\n"
+"as default Video Player for Xfce:"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:615
 msgid "Browse the file system to choose a custom command."
 msgstr "Prehliadať systém súborov pre výber vlastného príkazu."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:760
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:765
 msgid "_Other..."
 msgstr "_Ostatné..."
 
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:761
+#: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:766
 msgid "Use a custom application which is not included in the above list."
 msgstr "Použiť vlastnú aplikáciu, ktorá nie je uvedená v zozname vyššie."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:114
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
 msgid "Choose Preferred Application"
 msgstr "Vyberte si uprednostňovanú aplikáciu"
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:247
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
 msgstr "Vyberte si prosím svoj uprednostňovaný\ninternetový prehliadač a kliknite na tlačidlo OK."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:249
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
 msgstr "Vyberte si prosím svoj uprednostňovaný\ne-mailový klient a kliknite na tlačidlo OK."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
 msgstr "Vyberte si prosím svoj uprednostňovaný\nsprávca súborov a kliknite na tlačidlo OK."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
 msgstr "Vyberte si prosím svoj uprednostňovaný\nemulátor terminálu a kliknite na tlačidlo OK."
 
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
 msgid ""
 "Please choose your preferred Text\n"
 "Editor now and click OK to proceed."
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:29
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
+msgid ""
+"Please choose your preferred Image\n"
+"Viewer now and click OK to proceed."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
+msgid ""
+"Please choose your preferred Audio\n"
+"Player now and click OK to proceed."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:261
+msgid ""
+"Please choose your preferred Video\n"
+"Player now and click OK to proceed."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:25
 msgid "Failed to execute default Web Browser"
 msgstr "Nepodarilo sa spustiť predvolený internetový prehliadač"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:30
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:26
 msgid "Failed to execute default Mail Reader"
 msgstr "Nepodarilo sa spustiť predvolený e-mailový klient"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:31
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:27
 msgid "Failed to execute default File Manager"
 msgstr "Nepodarilo sa spustiť predvolený správca súborov"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:32
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:28
 msgid "Failed to execute default Terminal Emulator"
 msgstr "Nepodarilo sa spustiť predvolený emulátor terminálu"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:33
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Text Editor"
 msgstr ""
 
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:30
+msgid "Failed to execute default Image Viewer"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:31
+msgid "Failed to execute default Audio Player"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:32
+msgid "Failed to execute default Video Player"
+msgstr ""
+
 #. Enable permanently dismissing this error.
-#: dialogs/mime-settings/xfce-mime-helper-main.c:75
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:74
 msgid "Do _not show this message again"
 msgstr "_Nezobrazovať túto správu znovu"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:105
 msgid "Print version information and exit"
 msgstr "Zobrazí informácie o verzii a ukončí sa"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:107
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:106
 msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr "Spustiť predvoleného pomocníka typu TYP s voliteľným PARAMETRom, kde TYP môže nadobúdať jednu z nasledujúcich hodnôt."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:107
-#: dialogs/mime-settings/xfce-mime-helper-main.c:108
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:106
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid "TYPE [PARAMETER]"
 msgstr "TYP [PARAMETER]"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:108
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:107
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr "Dotázať sa predvoleného pomocníka typu TYP, kde TYP môže nadobúdať jednu z nasledujúcich hodnôt."
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:138
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:138
 msgid ""
 "The following TYPEs are supported for the --launch and --query commands:\n"
 "\n"
@@ -2063,16 +2077,19 @@ msgid ""
 "  MailReader       - The preferred Mail Reader.\n"
 "  FileManager      - The preferred File Manager.\n"
 "  TerminalEmulator - The preferred Terminal Emulator.\n"
-"  TextEditor       - The preferred Text Editor."
+"  TextEditor       - The preferred Text Editor.\n"
+"  ImageViewer      - The preferred Image Viewer.\n"
+"  AudioPlayer      - The preferred Audio Player.\n"
+"  VideoPlayer      - The preferred Video Player.\n"
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:177
-#: dialogs/mime-settings/xfce-mime-helper-main.c:251
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:180
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:254
 #, c-format
 msgid "Invalid helper type \"%s\""
 msgstr "Neplatný typ pomocníka \"%s\""
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:235
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:238
 #, c-format
 msgid ""
 "%s (Xfce %s)\n"
@@ -2087,132 +2104,157 @@ msgid ""
 "Please report bugs to <%s>.\n"
 msgstr "%s (Xfce %s)\n\nCopyright (c) 2003-2006\n        os-cillation e.K. Všetky práva vyhradené.\n\nNapísal Benedikt Meurer <benny@xfce.org>.\n\nZostavené s Gtk+-%d.%d.%d, spustené s Gtk+-%d.%d.%d.\n\nProsíme, chyby hláste na <%s>.\n"
 
-#: dialogs/mime-settings/xfce-mime-helper-main.c:262
+#: ../dialogs/mime-settings/xfce-mime-helper-main.c:265
 #, c-format
 msgid "No helper defined for \"%s\"."
 msgstr "Žiaden pomocník pre \"%s\""
 
-#: dialogs/mime-settings/xfce-mime-helper.c:431
+#: ../dialogs/mime-settings/xfce-mime-helper.c:427
+#, c-format
 msgid "No command specified"
 msgstr "Nebol zadaný žiadny príkaz"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:811
-#: dialogs/mime-settings/xfce-mime-helper.c:850
-#: dialogs/mime-settings/xfce-mime-helper.c:941
-#: dialogs/mime-settings/xfce-mime-helper.c:980
+#: ../dialogs/mime-settings/xfce-mime-helper.c:807
+#: ../dialogs/mime-settings/xfce-mime-helper.c:846
+#: ../dialogs/mime-settings/xfce-mime-helper.c:937
+#: ../dialogs/mime-settings/xfce-mime-helper.c:976
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Otvorenie súboru %s na zápis zlyhalo"
 
-#: dialogs/mime-settings/xfce-mime-window.c:192
-#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:4
+#: ../dialogs/mime-settings/xfce-mime-window.c:188
 msgid "Default Applications"
 msgstr "Predvolené aplikácie"
 
 #. Internet
-#: dialogs/mime-settings/xfce-mime-window.c:215
+#: ../dialogs/mime-settings/xfce-mime-window.c:211
 msgid "_Internet"
 msgstr "_Internet"
 
-#: dialogs/mime-settings/xfce-mime-window.c:228
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:14
+#: ../dialogs/mime-settings/xfce-mime-window.c:224
 msgid "Web Browser"
 msgstr "Internetový prehliadač"
 
-#: dialogs/mime-settings/xfce-mime-window.c:236
+#: ../dialogs/mime-settings/xfce-mime-window.c:232
 msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr "Predvolený webový prehliadač bude použitý na otváranie hyperodkazov a zobrazovanie obsahu pomocníka."
 
-#: dialogs/mime-settings/xfce-mime-window.c:254
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:14
+#: ../dialogs/mime-settings/xfce-mime-window.c:250
 msgid "Mail Reader"
 msgstr "E-mailový klient"
 
-#: dialogs/mime-settings/xfce-mime-window.c:262
+#: ../dialogs/mime-settings/xfce-mime-window.c:258
 msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr "Predvolený poštový klient bude použitý na vytváranie emailov, keď kliknete na emailové adresy."
 
 #. Utilities
-#: dialogs/mime-settings/xfce-mime-window.c:276
+#: ../dialogs/mime-settings/xfce-mime-window.c:272
 msgid "_Utilities"
 msgstr "_Nástroje"
 
-#: dialogs/mime-settings/xfce-mime-window.c:289
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:14
+#: ../dialogs/mime-settings/xfce-mime-window.c:285
 msgid "File Manager"
 msgstr "Správca súborov"
 
-#: dialogs/mime-settings/xfce-mime-window.c:297
+#: ../dialogs/mime-settings/xfce-mime-window.c:293
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr "Predvolený správca súborov bude použitý na prehliadanie obsahu priečinkov."
 
-#: dialogs/mime-settings/xfce-mime-window.c:315
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:13
+#: ../dialogs/mime-settings/xfce-mime-window.c:311
 msgid "Terminal Emulator"
 msgstr "Emulátor terminálu"
 
-#: dialogs/mime-settings/xfce-mime-window.c:323
+#: ../dialogs/mime-settings/xfce-mime-window.c:319
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr "Predvolený emulátor terminálu bude použitý na spúšťanie príkazov, ktoré vyžadujú prostredie CLI."
 
-#: dialogs/mime-settings/xfce-mime-window.c:341
+#: ../dialogs/mime-settings/xfce-mime-window.c:337
 msgid "Text Editor"
 msgstr ""
 
-#: dialogs/mime-settings/xfce-mime-window.c:349
+#: ../dialogs/mime-settings/xfce-mime-window.c:345
 msgid "The default Text Editor will be used to open and edit text files."
 msgstr ""
 
+#. Media
+#: ../dialogs/mime-settings/xfce-mime-window.c:360
+msgid "_Media"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:373
+msgid "Image Viewer"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:381
+msgid "The default Image Viewer will be used to display image files."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:399
+msgid "Audio Player"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:407
+msgid "The default Audio Player will be used to play audio files."
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:425
+msgid "Video Player"
+msgstr ""
+
+#: ../dialogs/mime-settings/xfce-mime-window.c:433
+msgid "The default Video Player will be used to play video files."
+msgstr ""
+
 #. Mimes
-#: dialogs/mime-settings/xfce-mime-window.c:363
+#: ../dialogs/mime-settings/xfce-mime-window.c:448
 msgid "_Others"
 msgstr "_Ostatné"
 
-#: dialogs/mime-settings/xfce-mime-window.c:373
+#: ../dialogs/mime-settings/xfce-mime-window.c:458
 msgid "_Filter:"
 msgstr "_Filter:"
 
-#: dialogs/mime-settings/xfce-mime-window.c:381
+#: ../dialogs/mime-settings/xfce-mime-window.c:466
 msgid "Clear filter"
 msgstr "Vyčistiť filter"
 
-#: dialogs/mime-settings/xfce-mime-window.c:411
+#: ../dialogs/mime-settings/xfce-mime-window.c:496
 msgid "Open with..."
 msgstr "Otvoriť pomocou..."
 
-#: dialogs/mime-settings/xfce-mime-window.c:460
+#: ../dialogs/mime-settings/xfce-mime-window.c:545
 msgid "MIME Type"
 msgstr "Typ súboru"
 
-#: dialogs/mime-settings/xfce-mime-window.c:488
+#: ../dialogs/mime-settings/xfce-mime-window.c:573
 msgid "Status"
 msgstr "Stav"
 
-#: dialogs/mime-settings/xfce-mime-window.c:508
+#: ../dialogs/mime-settings/xfce-mime-window.c:593
 msgid "Default Application"
 msgstr "Predvolená aplikácia"
 
-#: dialogs/mime-settings/xfce-mime-window.c:684
-#: dialogs/mime-settings/xfce-mime-window.c:853
+#: ../dialogs/mime-settings/xfce-mime-window.c:769
+#: ../dialogs/mime-settings/xfce-mime-window.c:938
 msgid "User Set"
 msgstr "Nastavené používateľom"
 
 #. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:686
-#: dialogs/mime-settings/xfce-mime-window.c:853
-#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
-#: dialogs/mouse-settings/main.c:479
+#: ../dialogs/mime-settings/xfce-mime-window.c:771
+#: ../dialogs/mime-settings/xfce-mime-window.c:938
+#: ../dialogs/mouse-settings/main.c:411 ../dialogs/mouse-settings/main.c:413
+#: ../dialogs/mouse-settings/main.c:476
 msgid "Default"
 msgstr "Predvolené"
 
-#: dialogs/mime-settings/xfce-mime-window.c:776
+#: ../dialogs/mime-settings/xfce-mime-window.c:861
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
@@ -2221,12 +2263,12 @@ msgstr[1] "Nájdené %d typy MIME"
 msgstr[2] "Nájdených %d typov MIME"
 msgstr[3] "Nájdených %d typov MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:898
+#: ../dialogs/mime-settings/xfce-mime-window.c:983
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
 msgstr "Nastavenie aplikácie \"%s\" pre typ súboru \"%s\" zlyhalo."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1007
+#: ../dialogs/mime-settings/xfce-mime-window.c:1092
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
@@ -2235,625 +2277,326 @@ msgstr[1] "Zvolené %d typy MIME"
 msgstr[2] "Zvolených %d typov MIME"
 msgstr[3] "Zvolený %d typu MIME"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1203
+#: ../dialogs/mime-settings/xfce-mime-window.c:1288
 msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr "Toto odstráni vaše vlastné asociácie typov súborov a obnoví ich na predvolené hodnoty."
 
-#: dialogs/mime-settings/xfce-mime-window.c:1205
+#: ../dialogs/mime-settings/xfce-mime-window.c:1290
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr "Ste si istý, že chcete obnoviť typ obsahu \"%s\" na jeho predvolenú hodnotu?"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1209
+#: ../dialogs/mime-settings/xfce-mime-window.c:1294
 msgid "Question"
 msgstr "Otázka"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1211
-#: dialogs/mime-settings/xfce-mime-window.c:1283
+#: ../dialogs/mime-settings/xfce-mime-window.c:1296
+#: ../dialogs/mime-settings/xfce-mime-window.c:1368
 msgid "Reset to Default"
 msgstr "Obnoviť predvolené"
 
-#: dialogs/mime-settings/xfce-mime-window.c:1278
+#: ../dialogs/mime-settings/xfce-mime-window.c:1363
 msgid "Choose Application..."
 msgstr "Vyberte aplikáciu..."
 
-#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:5
-msgid "Associate preferred applications with MIME types"
-msgstr "Priradenie uprednostňovaných aplikácií k typom MIME"
-
-#: dialogs/mime-settings/xfce4-mime-settings.desktop.in:6
-msgid ""
-"file;type;extension;association;open with;web browser;mail reader;file "
-"manager;terminal emulator;"
-msgstr "súbor;typ;prípona;priradenie;otvoriť s;otvoriť pomocou;webový;prehliadač;čítač;pošty;správca;súborov;emulátor;terminálu;"
-
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
-msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
-msgstr "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
-
-#: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
-msgid "Browse the file system"
-msgstr "Prehliadať systém súborov"
-
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
-msgid "email;mail;inbox;message;communication;"
-msgstr "email;mail;inbox;message;communication;"
-
-#: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
-msgid "Read your email"
-msgstr "Prečítať poštu"
-
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
-msgid "terminal;command line;shell;console;xfce;"
-msgstr "terminal;command line;shell;console;xfce;"
-
-#: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
-msgid "Use the command line"
-msgstr "Použiť príkazový riadok"
-
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
-msgid "internet;web;browser;surf;explore;xfce;"
-msgstr "internet;web;browser;surf;explore;xfce;"
-
-#: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
-msgid "Browse the web"
-msgstr "Prehliadať internet"
-
-#: dialogs/mime-settings/helpers/alacritty.desktop.in.in:6
-msgid "Alacritty"
-msgstr "Alacritty"
-
-#: dialogs/mime-settings/helpers/aterm.desktop.in.in:6
-msgid "aterm"
-msgstr "aterm"
-
-#: dialogs/mime-settings/helpers/balsa.desktop.in.in:6
-msgid "Balsa"
-msgstr "Balsa"
-
-#: dialogs/mime-settings/helpers/brave.desktop.in.in:7
-msgid "Brave"
-msgstr "Brave"
-
-#: dialogs/mime-settings/helpers/caja.desktop.in.in:6
-msgid "Caja File Manager"
-msgstr "Správca súborov Caja"
-
-#: dialogs/mime-settings/helpers/chromium.desktop.in.in:7
-msgid "Chromium"
-msgstr "Chromium"
-
-#: dialogs/mime-settings/helpers/debian-sensible-browser.desktop.in.in:6
-msgid "Debian Sensible Browser"
-msgstr "Debian Sensible Browser"
-
-#: dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in:6
-msgid "Debian X Terminal Emulator"
-msgstr "Debian X Terminal Emulator"
-
-#: dialogs/mime-settings/helpers/dillo.desktop.in.in:6
-msgid "Dillo"
-msgstr "Dillo"
-
-#: dialogs/mime-settings/helpers/encompass.desktop.in.in:6
-msgid "Encompass"
-msgstr "Encompass"
-
-#: dialogs/mime-settings/helpers/epiphany.desktop.in.in:6
-msgid "Epiphany Web Browser"
-msgstr "Epiphany internetový prehliadač"
-
-#: dialogs/mime-settings/helpers/eterm.desktop.in.in:6
-msgid "Enlightened Terminal Emulator"
-msgstr "Enlightened Terminal Emulator"
-
-#: dialogs/mime-settings/helpers/evolution.desktop.in.in:6
-msgid "Evolution"
-msgstr "Evolution"
-
-#: dialogs/mime-settings/helpers/firefox.desktop.in.in:6
-msgid "Mozilla Firefox"
-msgstr "Mozilla Firefox"
-
-#: dialogs/mime-settings/helpers/galeon.desktop.in.in:6
-msgid "Galeon Web Browser"
-msgstr "Galeon internetový prehliadač"
-
-#: dialogs/mime-settings/helpers/geary.desktop.in.in:6
-msgid "Geary"
-msgstr "Geary"
-
-#: dialogs/mime-settings/helpers/google-chrome.desktop.in.in:7
-msgid "Google Chrome"
-msgstr "Google Chrome"
-
-#: dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in:6
-msgid "GNOME Terminal"
-msgstr "GNOME Terminál"
-
-#: dialogs/mime-settings/helpers/icecat.desktop.in.in:6
-msgid "Icecat"
-msgstr "Icecat"
-
-#: dialogs/mime-settings/helpers/icedove.desktop.in.in:6
-msgid "Icedove"
-msgstr "Icedove"
-
-#: dialogs/mime-settings/helpers/iceweasel.desktop.in.in:6
-msgid "Iceweasel"
-msgstr "Iceweasel"
-
-#: dialogs/mime-settings/helpers/jumanji.desktop.in.in:6
-msgid "Jumanji"
-msgstr "Jumanji"
-
-#: dialogs/mime-settings/helpers/kitty.desktop.in.in:6
-msgid "kitty"
-msgstr "kitty"
-
-#: dialogs/mime-settings/helpers/kmail.desktop.in.in:6
-msgid "KMail"
-msgstr "KMail"
-
-#: dialogs/mime-settings/helpers/konqueror.desktop.in.in:6
-msgid "Konqueror Web Browser"
-msgstr "Konqueror internetový prehliadač"
-
-#: dialogs/mime-settings/helpers/links.desktop.in.in:6
-msgid "Links Text Browser"
-msgstr "Links textový prehliadač"
-
-#: dialogs/mime-settings/helpers/lynx.desktop.in.in:6
-msgid "Lynx Text Browser"
-msgstr "Lynx textový prehliadač"
-
-#: dialogs/mime-settings/helpers/midori.desktop.in.in:7
-msgid "Midori"
-msgstr "Midori"
-
-#: dialogs/mime-settings/helpers/mozilla-browser.desktop.in.in:6
-msgid "Mozilla Browser"
-msgstr "Mozilla Browser"
-
-#: dialogs/mime-settings/helpers/mozilla-mailer.desktop.in.in:6
-msgid "Mozilla Mail"
-msgstr "Mozilla Mail"
-
-#: dialogs/mime-settings/helpers/mutt.desktop.in.in:6
-msgid "Mutt"
-msgstr "Mutt"
-
-#: dialogs/mime-settings/helpers/nautilus.desktop.in.in:6
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: dialogs/mime-settings/helpers/netscape-navigator.desktop.in.in:6
-msgid "Netscape Navigator"
-msgstr "Netscape Navigator"
-
-#: dialogs/mime-settings/helpers/nxterm.desktop.in.in:6
-msgid "NXterm"
-msgstr "NXterm"
-
-#: dialogs/mime-settings/helpers/opera-browser.desktop.in.in:6
-msgid "Opera Browser"
-msgstr "Opera"
-
-#: dialogs/mime-settings/helpers/pcmanfm.desktop.in.in:7
-msgid "PCMan File Manager"
-msgstr "PCMan správca súborov"
-
-#: dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in:6
-msgid "PCManFM-Qt File Manager"
-msgstr "Správca súborov PCManFM-Qt"
-
-#: dialogs/mime-settings/helpers/qterminal.desktop.in.in:6
-msgid "QTerminal"
-msgstr "QTerminal"
-
-#: dialogs/mime-settings/helpers/qtfm.desktop.in.in:6
-msgid "qtFM"
-msgstr "qtFM"
-
-#: dialogs/mime-settings/helpers/qupzilla.desktop.in.in:6
-msgid "QupZilla"
-msgstr "QupZilla"
-
-#: dialogs/mime-settings/helpers/rodent.desktop.in.in:6
-msgid "Rodent File Manager"
-msgstr "Správca súborov Rodent"
-
-#: dialogs/mime-settings/helpers/rox-filer.desktop.in.in:6
-msgid "ROX-Filer"
-msgstr "ROX-Filer"
-
-#: dialogs/mime-settings/helpers/sakura.desktop.in.in:6
-msgid "Sakura"
-msgstr "Sakura"
-
-#: dialogs/mime-settings/helpers/surf.desktop.in.in:6
-msgid "Surf"
-msgstr "Surf"
-
-#: dialogs/mime-settings/helpers/sylpheed.desktop.in.in:6
-msgid "Sylpheed"
-msgstr "Sylpheed"
-
-#: dialogs/mime-settings/helpers/sylpheed-claws.desktop.in.in:6
-msgid "Claws Mail"
-msgstr "Claws Mail"
-
-#: dialogs/mime-settings/helpers/terminator.desktop.in.in:6
-msgid "Terminator"
-msgstr "Terminator"
-
-#: dialogs/mime-settings/helpers/thunar.desktop.in.in:7
-msgid "Thunar"
-msgstr "Thunar"
-
-#: dialogs/mime-settings/helpers/thunderbird.desktop.in.in:6
-msgid "Mozilla Thunderbird"
-msgstr "Mozilla Thunderbird"
-
-#: dialogs/mime-settings/helpers/urxvt.desktop.in.in:6
-msgid "RXVT Unicode"
-msgstr "RXVT Unicode"
-
-#: dialogs/mime-settings/helpers/vimprobable2.desktop.in.in:6
-msgid "Vimprobable2"
-msgstr "Vimprobable2"
-
-#: dialogs/mime-settings/helpers/w3m.desktop.in.in:6
-msgid "W3M Text Browser"
-msgstr "W3M Text Browser"
-
-#: dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in:6
-msgid "Xfce Terminal"
-msgstr "Terminál Xfce"
-
-#: dialogs/mime-settings/helpers/xfe.desktop.in.in:6
-msgid "Xfe File Manager"
-msgstr "Správca súborov Xfe"
-
-#: dialogs/mime-settings/helpers/xterm.desktop.in.in:6
-msgid "X Terminal"
-msgstr "X Terminál"
-
-#: dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:83
 msgid "Active device in the dialog"
 msgstr "Aktívne zariadenie v dialógovom okne"
 
-#: dialogs/mouse-settings/main.c:86
+#: ../dialogs/mouse-settings/main.c:83
 msgid "DEVICE NAME"
 msgstr "NÁZOV ZARIADENIA"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:168
+#: ../dialogs/mouse-settings/main.c:165
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:178
+#: ../dialogs/mouse-settings/main.c:175
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:189
+#: ../dialogs/mouse-settings/main.c:186
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
 
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
-msgid "Configure pointer device behavior and appearance"
-msgstr "Konfiguruje správanie a vzhľad kurzora"
-
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:6
-msgid ""
-"settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
-msgstr "nastavenia;tlačidlá;rolovanie;posúvanie;smer;ukazovateľ;rýchlosť;dvojklik;dvojité;kliknutie;téma;motív;koliesko;"
-
-#: xfce4-settings-editor/main.c:185
-#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:3
+#: ../xfce4-settings-editor/main.c:182
 msgid "Settings Editor"
 msgstr "Editor nastavení"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:277
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:273
 msgid "Channel"
 msgstr "Kanál"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:327
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:323
 msgid "Property"
 msgstr "Vlastnosť"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:335
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:331
 msgid "Type"
 msgstr "Typ"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:342
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:338
 msgid "Locked"
 msgstr "Uzamknuté"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:349
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:345
 msgid "Value"
 msgstr "Hodnota"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:369
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:365
 msgid "New property"
 msgstr "Nová vlastnosť"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:382
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:378
 msgid "Edit selected property"
 msgstr "Úprava vybranej vlastnosti"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:390
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1076
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1578
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:386
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1072
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1574
 msgid "_Reset"
 msgstr "_Reštartovať"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:395
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:391
 msgid "Reset selected property"
 msgstr "Obnoviť vybranú vlastnosť"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:501
-#: xfce4-settings-editor/xfce-settings-editor-box.c:594
-#: xfce4-settings-editor/xfce-settings-editor-box.c:712
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:83
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:497
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:590
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:708
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:79
 msgid "Empty"
 msgstr "Prázdne"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:504
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:500
 msgid "Array"
 msgstr "Pole"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:509
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:84
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:505
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:80
 msgid "String"
 msgstr "String"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:517
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:513
 msgid "Integer"
 msgstr "Integer"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:520
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:85
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:516
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:81
 msgid "Boolean"
 msgstr "Boolean"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:523
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:87
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:519
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:83
 msgid "Double"
 msgstr "Double"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:851
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:847
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Reštartovanie kanála natrvalo odstráni vlastné nastavenia."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:859
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:855
 msgid "_Reset Channel"
 msgstr "_Obnoviť kanál"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:860
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:856
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Naozaj si želáte reštartovať kanál \"%s\" a všetky jeho vlastnosti?"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:935
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:931
 msgid "reset"
 msgstr "obnoviť"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:992
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:988
 #, c-format
 msgid "Monitor %s"
 msgstr "Monitor %s"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:996
 msgid "Clear"
 msgstr "Vymazať"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1000
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:996
 msgid "Close"
 msgstr "Zatvoriť"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1033
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1029
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "spustiť sledovanie kanála \"%s\""
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1082
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1078
 msgid "_Monitor"
 msgstr "_Monitor"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1092
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1088
 msgid "Refresh"
 msgstr "Obnoviť"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1575
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1571
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Reštartovanie vlastnosti natrvalo odstráni vlastné nastavenia."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1579
+#: ../xfce4-settings-editor/xfce-settings-editor-box.c:1575
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Naozaj si želáte reštartovať vlastnosť \"%s\"?"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:86
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:82
 msgid "Int"
 msgstr "Int"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:88
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:84
 msgid "Unsigned Int"
 msgstr "Unsigned Int"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:89
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:85
 msgid "Int64"
 msgstr "Int64"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:90
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:86
 msgid "Unsigned Int64"
 msgstr "Unsigned Int64"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:135
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:131
 msgid "New Property"
 msgstr "Nová vlastnosť"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:138
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:134
 msgid "Save"
 msgstr "Uložiť"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:153
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:149
 msgid "_Property:"
 msgstr "_Vlastnosť:"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:167
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:163
 msgid "_Type:"
 msgstr "_Typ:"
 
 #. strings
 #. integers
 #. bool
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:196
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:206
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:217
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:192
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:202
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:213
 msgid "_Value:"
 msgstr "_Hodnota:"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:372
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:368
+#, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Názvy vlastností musia začínať znakom '/'"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:383
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:379
+#, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Koreňový element ('/') nie je platným názvom vlastnosti"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:400
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:396
+#, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
 msgstr "Názvy vlastností môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_', '-', '<' a '>' a tiež '/' ako oddeľovač"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:414
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:410
+#, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Názvy vlastností nemôžu obsahovať dva po sebe idúce znaky '/'"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:428
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:424
+#, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Názvy vlastností nemôžu končiť znakom '/'"
 
-#: xfce4-settings-editor/xfce-settings-prop-dialog.c:641
+#: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:637
 msgid "Edit Property"
 msgstr "Úprava vlastnosti"
 
-#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:4
-msgid "Graphical settings editor for Xfconf"
-msgstr "Grafický editor nastavení pre Xfconf"
-
-#: xfce4-settings-editor/xfce4-settings-editor.desktop.in:5
-msgid "registry;regedit;configuration file;"
-msgstr "register;regedit;editor;konfiguračný súbor;"
-
-#: xfce4-settings-manager/main.c:43
+#: ../xfce4-settings-manager/main.c:40
 msgid "Settings dialog to show"
 msgstr "Zobrazené dialógové okno nastavení"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:227
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:223
 msgid "All _Settings"
 msgstr "Všetky na_stavenia"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:426
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:422
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:924
-#: xfce4-settings-manager/xfce-settings-manager-dialog.c:936
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:920
+#: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:932
 #, c-format
 msgid "Unable to start \"%s\""
 msgstr "Nie je možné spustiť '%s'"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:3
-msgid "Settings Manager"
-msgstr "Správca nastavení"
-
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:4
-msgid "Graphical Settings Manager for Xfce"
-msgstr "Grafický správca nastavení pre prostredie Xfce"
-
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
-msgid "control;panel;center;system;settings;personalize;hardware;"
-msgstr "ovládací;panel;stredisko;systém;nastavenia;prispôsobenie;hardvér;"
-
-#: xfsettingsd/accessibility.c:413
+#: ../xfsettingsd/accessibility.c:409
 msgid "Sticky keys are enabled"
 msgstr "Lepkavé klávesy sú povolené"
 
-#: xfsettingsd/accessibility.c:415
+#: ../xfsettingsd/accessibility.c:411
 msgid "Sticky keys are disabled"
 msgstr "Lepkavé klávesy sú zakázané"
 
-#: xfsettingsd/accessibility.c:417
+#: ../xfsettingsd/accessibility.c:413
 msgid "Sticky keys"
 msgstr "Lepkavé klávesy"
 
-#: xfsettingsd/accessibility.c:422
+#: ../xfsettingsd/accessibility.c:418
 msgid "Slow keys are enabled"
 msgstr "Pomalé klávesy sú povolené"
 
-#: xfsettingsd/accessibility.c:424
+#: ../xfsettingsd/accessibility.c:420
 msgid "Slow keys are disabled"
 msgstr "Pomalé klávesy sú zakázané"
 
-#: xfsettingsd/accessibility.c:426
+#: ../xfsettingsd/accessibility.c:422
 msgid "Slow keys"
 msgstr "Pomalé klávesy"
 
-#: xfsettingsd/accessibility.c:431
+#: ../xfsettingsd/accessibility.c:427
 msgid "Bounce keys are enabled"
 msgstr "Zdvojené klávesy sú povolené"
 
-#: xfsettingsd/accessibility.c:433
+#: ../xfsettingsd/accessibility.c:429
 msgid "Bounce keys are disabled"
 msgstr "Zdvojené klávesy sú zakázané"
 
-#: xfsettingsd/accessibility.c:435
+#: ../xfsettingsd/accessibility.c:431
 msgid "Bounce keys"
 msgstr "Zdvojené klávesy"
 
-#: xfsettingsd/keyboard-shortcuts.c:240
+#: ../xfsettingsd/keyboard-shortcuts.c:236
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Spustenie skratky \"%s\" zlyhalo"
 
-#: xfsettingsd/main.c:97
+#: ../xfsettingsd/main.c:94
 msgid "Fork to the background"
 msgstr "Presunúť do pozadia"
 
-#: xfsettingsd/main.c:98
+#: ../xfsettingsd/main.c:95
 msgid "Do not wait for a window manager on startup"
 msgstr "Nečakať na správcu okien pri štarte"
 
-#: xfsettingsd/main.c:99
+#: ../xfsettingsd/main.c:96
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Nahradiť spusteného démona služby xsettings (ak existuje)"
 
 #. value in xfconf isn't a string, so make a default one
-#: xfsettingsd/workspaces.c:322 xfsettingsd/workspaces.c:379
+#: ../xfsettingsd/workspaces.c:318 ../xfsettingsd/workspaces.c:375
 #, c-format
 msgid "Workspace %d"
 msgstr "Pracovná plocha %d"
-
-#: xfsettingsd/xfsettingsd.desktop.in:4
-msgid "Xfce Settings Daemon"
-msgstr "Démon nastavení prostredia Xfce"
-
-#: xfsettingsd/xfsettingsd.desktop.in:5
-msgid "The Xfce Settings Daemon"
-msgstr "Démon nastavenia Xfce"
-
-#: xfsettingsd/xfsettingsd.desktop.in:13
-msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
-msgstr "settings;daemon;xfce;configuration;preferences;system;manage;"
