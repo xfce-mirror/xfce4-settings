@@ -97,27 +97,27 @@ enum
     PROP_LISTENER_DATA,
 };
 
-typedef void (*_XfceWlrOutputListener) (void *data,
-                                        struct zwlr_output_manager_v1 *wl_manager,
-                                        uint32_t serial);
-
 struct _XfceWlrOutputManager
 {
     GObject __parent__;
 
     struct wl_registry *wl_registry;
     struct zwlr_output_manager_v1 *wl_manager;
-    struct zwlr_output_manager_v1_listener *wl_listener;
 
-    _XfceWlrOutputListener listener;
+    XfceWlrOutputListener listener;
     gpointer listener_data;
     GPtrArray *outputs;
-    gboolean initialized;
 };
 
 static const struct wl_registry_listener registry_listener = {
     .global = registry_global,
     .global_remove = registry_global_remove,
+};
+
+static const struct zwlr_output_manager_v1_listener manager_listener = {
+    .head = manager_head,
+    .done = manager_done,
+    .finished = manager_finished,
 };
 
 static const struct zwlr_output_head_v1_listener head_listener = {
@@ -263,18 +263,6 @@ xfce_wlr_output_manager_set_property (GObject *object,
 
 
 static void
-output_make_edid (gpointer data,
-                  gpointer user_data)
-{
-    XfceWlrOutput *output = data;
-    gchar *edid_str = g_strdup_printf ("%s-%s-%s", output->serial_number, output->model, output->manufacturer);
-    output->edid = g_compute_checksum_for_string (G_CHECKSUM_SHA1, edid_str, -1);
-    g_free (edid_str);
-}
-
-
-
-static void
 xfce_wlr_output_manager_constructed (GObject *object)
 {
     XfceWlrOutputManager *manager = XFCE_WLR_OUTPUT_MANAGER (object);
@@ -286,14 +274,8 @@ xfce_wlr_output_manager_constructed (GObject *object)
     wl_display_roundtrip (wl_display);
     if (manager->wl_manager != NULL)
     {
-        manager->wl_listener = g_new (struct zwlr_output_manager_v1_listener, 1);
-        manager->wl_listener->head = manager_head;
-        manager->wl_listener->done = manager->listener != NULL ? manager->listener : manager_done;
-        manager->wl_listener->finished = manager_finished;
-        zwlr_output_manager_v1_add_listener (manager->wl_manager, manager->wl_listener, manager);
+        zwlr_output_manager_v1_add_listener (manager->wl_manager, &manager_listener, manager);
         wl_display_roundtrip (wl_display);
-        g_ptr_array_foreach (manager->outputs, output_make_edid, NULL);
-        manager->initialized = TRUE;
     }
     else
     {
@@ -316,7 +298,6 @@ xfce_wlr_output_manager_finalize (GObject *object)
     if (manager->wl_manager != NULL)
     {
         zwlr_output_manager_v1_destroy (manager->wl_manager);
-        g_free (manager->wl_listener);
         g_ptr_array_unref (manager->outputs);
     }
     wl_registry_destroy (manager->wl_registry);
@@ -365,11 +346,18 @@ manager_head (void *data,
     output->manager = manager;
     g_ptr_array_add (manager->outputs, output);
     zwlr_output_head_v1_add_listener (head, &head_listener, output);
-    if (manager->initialized)
-    {
-        wl_display_roundtrip (gdk_wayland_display_get_wl_display (gdk_display_get_default ()));
-        output_make_edid (output, NULL);
-    }
+}
+
+
+
+static void
+output_make_edid (gpointer data,
+                  gpointer user_data)
+{
+    XfceWlrOutput *output = data;
+    gchar *edid_str = g_strdup_printf ("%s-%s-%s", output->serial_number, output->model, output->manufacturer);
+    output->edid = g_compute_checksum_for_string (G_CHECKSUM_SHA1, edid_str, -1);
+    g_free (edid_str);
 }
 
 
@@ -379,6 +367,24 @@ manager_done (void *data,
               struct zwlr_output_manager_v1 *wl_manager,
               uint32_t serial)
 {
+    XfceWlrOutputManager *manager = data;
+
+    for (guint n = 0; n < manager->outputs->len; n++)
+    {
+        XfceWlrOutput *output = g_ptr_array_index (manager->outputs, n);
+        if (output->new)
+            output_make_edid (output, NULL);
+    }
+
+    if (manager->listener != NULL)
+        manager->listener (manager, wl_manager, serial);
+
+    for (guint n = 0; n < manager->outputs->len; n++)
+    {
+        XfceWlrOutput *output = g_ptr_array_index (manager->outputs, n);
+        if (output->new)
+            output->new = FALSE;
+    }
 }
 
 
