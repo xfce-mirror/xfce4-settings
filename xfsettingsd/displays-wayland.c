@@ -314,6 +314,7 @@ apply_all (XfceDisplaysHelperWayland *helper)
     struct zwlr_output_configuration_v1 *config = zwlr_output_manager_v1_create_configuration (wl_manager, helper->serial);
     zwlr_output_configuration_v1_add_listener (config, &configuration_listener, helper);
     g_ptr_array_foreach (outputs, apply, config);
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Applying configuration %p", config);
     zwlr_output_configuration_v1_apply (config);
 }
 
@@ -559,7 +560,7 @@ static void
 configuration_succeeded (void *data,
                          struct zwlr_output_configuration_v1 *config)
 {
-    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Successfully applied configuration");
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Successfully applied configuration %p", config);
     zwlr_output_configuration_v1_destroy (config);
 }
 
@@ -569,7 +570,7 @@ static void
 configuration_failed (void *data,
                       struct zwlr_output_configuration_v1 *config)
 {
-    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Failed to apply configuration");
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Failed to apply configuration %p", config);
     g_warning ("Failed to apply configuration");
     zwlr_output_configuration_v1_destroy (config);
 }
@@ -582,6 +583,6 @@ configuration_cancelled (void *data,
 {
     XfceDisplaysHelperWayland *helper = data;
     helper->config_cancelled = TRUE;
-    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Configuration application cancelled");
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Cancelled application of configuration %p", config);
     zwlr_output_configuration_v1_destroy (config);
 }
