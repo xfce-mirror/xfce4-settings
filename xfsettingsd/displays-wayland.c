@@ -512,7 +512,6 @@ manager_listener (XfceWlrOutputManager *manager,
                 continue;
 
             xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_NEW_OUTPUT, output->name);
-            output->new = FALSE;
 
             if (helper->previous_n_outputs == 0)
             {
