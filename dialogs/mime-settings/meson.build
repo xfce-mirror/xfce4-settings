@@ -138,3 +138,9 @@ install_data(
   install_dir: helper_path_prefix / 'xfce4',
   install_mode: 'rwxr-xr-x',
 )
+
+install_data(
+  'xfce-mimeapps.list',
+  install_dir: get_option('prefix') / get_option('sysconfdir') / 'xdg',
+  install_mode: 'rwxr-xr-x',
+)
