@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-07-18 10:59+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2018,2025\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2014-2021,2024-2025\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce4-settings/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -617,7 +617,7 @@ msgstr "Rozšířit"
 
 #: common/resources/display-dialog.glade:157
 msgid "The primary display can be configured to show:"
-msgstr "Primární monitor může být nastaven, aby zobrazoval:"
+msgstr "Primární monitor může být konfigurován, aby zobrazoval:"
 
 #: common/resources/display-dialog.glade:171
 #: dialogs/display-settings/main.c:1732
@@ -796,7 +796,7 @@ msgstr "<big><b>Provedli jste změny ve vašem předchozím aktivním profilu</b
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
-msgstr "Pokud neaktualizujete profil, budou vaše změny ztraceny po restartu vaší relace, odpojení nebo připojení displeje."
+msgstr "Pokud neaktualizujete profil, budou změny ztraceny po restartu vaší relace, odpojení nebo připojení displeje."
 
 #: common/resources/keyboard-dialog.glade:53
 msgid "Keyboard layout selection"
@@ -1352,7 +1352,7 @@ msgstr "Svislé BGR"
 
 #: dialogs/appearance-settings/xfce-ui-settings.desktop.in:5
 msgid "Customize the look of your desktop"
-msgstr "Nastavení vzhledu vašeho pracovního prostředí"
+msgstr "Nastavení vzhledu pracovního prostředí"
 
 #: dialogs/appearance-settings/xfce-ui-settings.desktop.in:6
 msgid ""
@@ -1682,7 +1682,7 @@ msgstr "Rozlišení:"
 #: dialogs/display-settings/display-settings-wayland.c:1004
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
-msgstr "Váš kompozitor zřejmě nepodporuje protokol wlr-output-management"
+msgstr "Kompozitor zřejmě nepodporuje protokol wlr-output-management"
 
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:105
@@ -1918,11 +1918,11 @@ msgstr "Nepodařilo se nastavit výchozí prohlížeč obrázků"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
 msgid "Failed to set default Audio Player"
-msgstr "Nepodařilo se nastavit výchozí přehrávač zvuku"
+msgstr "Nepodařilo se nastavit výchozí přehrávač zvuků"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
 msgid "Failed to set default Video Player"
-msgstr "Nepodařilo se nastavit výchozí video přehrávač"
+msgstr "Nepodařilo se nastavit výchozí přehrávač videí"
 
 #. allocate the chooser
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
@@ -1955,11 +1955,11 @@ msgstr "Vyberte vlastní prohlížeč obrázků"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:539
 msgid "Choose a custom Audio Player"
-msgstr "Vyberte vlastní přehrávač zvuku"
+msgstr "Vyberte vlastní přehrávač zvuků"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
 msgid "Choose a custom Video Player"
-msgstr "Vyberte vlastní video přehrávač"
+msgstr "Vyberte vlastní přehrávač videí"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
 msgid ""
@@ -1995,19 +1995,19 @@ msgstr "Upřesněte aplikaci, kterou chcete použít\njako výchozí textový ed
 msgid ""
 "Specify the application you want to use\n"
 "as default Image Viewer for Xfce:"
-msgstr "Zadejte aplikaci, kterou chcete používat\njako výchozí prohlížeč obrázků pro Xfce:"
+msgstr "Upřesněte aplikaci, kterou chcete používat\njako výchozí prohlížeč obrázků pro Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:550
 msgid ""
 "Specify the application you want to use\n"
 "as default Audio Player for Xfce:"
-msgstr "Zadejte aplikaci, kterou chcete používat\njako výchozí přehrávač zvuků pro Xfce:"
+msgstr "Upřesněte aplikaci, kterou chcete používat\njako výchozí přehrávač zvuků pro Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:551
 msgid ""
 "Specify the application you want to use\n"
 "as default Video Player for Xfce:"
-msgstr "Zadejte aplikaci, kterou chcete používat\njako výchozí přehrávač videí pro Xfce:"
+msgstr "Upřesněte aplikaci, kterou chcete používat\njako výchozí přehrávač videí pro Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:615
 msgid "Browse the file system to choose a custom command."
@@ -2059,19 +2059,19 @@ msgstr "Vyberte si svůj textový editor\na klikněte na tlačítko OK"
 msgid ""
 "Please choose your preferred Image\n"
 "Viewer now and click OK to proceed."
-msgstr "Nyní zvolte vámi upřednostňovaný prohlížeč\nobrázků a pokračujte kliknutím na OK."
+msgstr "Vyberte si svůj prohlížeč obrázků\na klikněte na tlačítko OK"
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
 msgid ""
 "Please choose your preferred Audio\n"
 "Player now and click OK to proceed."
-msgstr "Nyní zvolte vámi upřednostňovaný přehrávač\nzvuků a pokračujte kliknutím na OK."
+msgstr "Vyberte si svůj přehrávač zvuků\na klikněte na tlačítko OK"
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:261
 msgid ""
 "Please choose your preferred Video\n"
 "Player now and click OK to proceed."
-msgstr "Nyní zvolte vámi upřednostňovaný přehrávač\nvideí a pokračujte kliknutím na OK."
+msgstr "Vyberte si svůj přehrávač videí\na klikněte na tlačítko OK"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:25
 msgid "Failed to execute default Web Browser"
@@ -2259,7 +2259,7 @@ msgstr "Prohlížeč obrázků"
 
 #: dialogs/mime-settings/xfce-mime-window.c:381
 msgid "The default Image Viewer will be used to display image files."
-msgstr "Výchozí prohlížeč obrázků bude používán pro zobrazování obrázkových souborů."
+msgstr "Výchozí prohlížeč obrázků bude používán k zobrazování obrázkových souborů."
 
 #: dialogs/mime-settings/xfce-mime-window.c:399
 msgid "Audio Player"
@@ -2267,7 +2267,7 @@ msgstr "Přehrávač zvuků"
 
 #: dialogs/mime-settings/xfce-mime-window.c:407
 msgid "The default Audio Player will be used to play audio files."
-msgstr "Výchozí přehrávač zvuků bude používán pro přehrávání zvukových souborů."
+msgstr "Výchozí přehrávač zvuků bude používán k přehrávání zvukových souborů."
 
 #: dialogs/mime-settings/xfce-mime-window.c:425
 msgid "Video Player"
@@ -2275,7 +2275,7 @@ msgstr "Přehrávač videí"
 
 #: dialogs/mime-settings/xfce-mime-window.c:433
 msgid "The default Video Player will be used to play video files."
-msgstr "Výchozí přehrávač videí bude používán pro přehrávání videosouborů."
+msgstr "Výchozí přehrávač videí bude používán k přehrávání videosouborů."
 
 #. Mimes
 #: dialogs/mime-settings/xfce-mime-window.c:448
