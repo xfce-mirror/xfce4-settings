@@ -555,8 +555,8 @@ xfce_randr_friendly_name (XfceRandr *randr,
     else
     {
         XRROutputInfo *xinfo = randr->priv->output_info[output];
-        gchar *edid_str = g_strdup_printf ("%s-%lu-%lu-%d-%d-%d",
-                                           xinfo->name, xinfo->mm_width, xinfo->mm_height,
+        gchar *edid_str = g_strdup_printf ("%lu-%lu-%d-%d-%d",
+                                           xinfo->mm_width, xinfo->mm_height,
                                            xinfo->ncrtc, xinfo->nclone, xinfo->nmode);
         randr->priv->edid[output] = g_compute_checksum_for_string (G_CHECKSUM_SHA1, edid_str, -1);
         g_free (edid_str);
