@@ -801,27 +801,57 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     Rotation rot;
     gint x, y, n, m, int_value;
     gboolean active;
+    const gchar *edid;
+    gchar *output_name = NULL;
+    GHashTableIter iter;
+    gpointer key;
 
     g_assert (XFCE_IS_DISPLAYS_HELPER (helper) && helper->resources && output);
 
     active = output->active;
 
     /* does this output exist in xfconf? */
-    g_snprintf (property, sizeof (property), OUTPUT_FMT, scheme, output->info->name);
-    value = g_hash_table_lookup (saved_outputs, property);
-
-    if (value == NULL || !G_VALUE_HOLDS_STRING (value))
+    edid = xfce_randr_get_edid_by_id (helper->randr, output->id);
+    if (edid == NULL)
+    {
+        g_warn_if_reached ();
         return active;
+    }
+    g_hash_table_iter_init (&iter, saved_outputs);
+    while (g_hash_table_iter_next (&iter, &key, (gpointer *) &value))
+    {
+        if (g_str_has_suffix (key, "EDID")
+            && G_VALUE_HOLDS_STRING (value)
+            && g_strcmp0 (g_value_get_string (value), edid) == 0)
+        {
+            gchar **tokens = g_strsplit (key, "/", -1);
+            if (g_strv_length (tokens) == 4)
+            {
+                output_name = g_strdup (tokens[2]);
+                if (g_strcmp0 (output_name, output->info->name) != 0)
+                {
+                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_OUTPUT_NAMES_MISMATCH,
+                                    output->info->name, output_name, edid);
+                }
+            }
+            g_strfreev (tokens);
+            break;
+        }
+    }
+    if (output_name == NULL)
+    {
+        g_warning (WARNING_MESSAGE_XFCONF_LOADING_FAILED, output->info->name, edid);
+        return active;
+    }
 
     /* is it the primary output? */
-    g_snprintf (property, sizeof (property), PRIMARY_PROP, scheme,
-                output->info->name);
+    g_snprintf (property, sizeof (property), PRIMARY_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (G_VALUE_HOLDS_BOOLEAN (value) && g_value_get_boolean (value))
         helper->primary = output->id;
 
     /* status */
-    g_snprintf (property, sizeof (property), ACTIVE_PROP, scheme, output->info->name);
+    g_snprintf (property, sizeof (property), ACTIVE_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
 
     if (value == NULL || !G_VALUE_HOLDS_BOOLEAN (value))
@@ -838,8 +868,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
         if (crtc->mode != None)
         {
             active = FALSE;
-            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "%s will be disabled by configuration.",
-                            output->info->name);
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "%s will be disabled by configuration.", output_name);
 
             crtc->mode = None;
             crtc->noutput = 0;
@@ -849,7 +878,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     }
 
     /* rotation */
-    g_snprintf (property, sizeof (property), ROTATION_PROP, scheme, output->info->name);
+    g_snprintf (property, sizeof (property), ROTATION_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (G_VALUE_HOLDS_INT (value))
         int_value = g_value_get_int (value);
@@ -866,7 +895,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     }
 
     /* reflection */
-    g_snprintf (property, sizeof (property), REFLECTION_PROP, scheme, output->info->name);
+    g_snprintf (property, sizeof (property), REFLECTION_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (G_VALUE_HOLDS_STRING (value))
         str_value = g_value_get_string (value);
@@ -884,7 +913,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     /* check rotation support */
     if ((crtc->rotations & rot) == 0)
     {
-        g_warning ("Unsupported rotation for %s. Fallback to RR_Rotate_0.", output->info->name);
+        g_warning ("Unsupported rotation for %s. Fallback to RR_Rotate_0.", output_name);
         rot = RR_Rotate_0;
     }
 
@@ -896,7 +925,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     }
 
     /* resolution */
-    g_snprintf (property, sizeof (property), RESOLUTION_PROP, scheme, output->info->name);
+    g_snprintf (property, sizeof (property), RESOLUTION_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (value == NULL || !G_VALUE_HOLDS_STRING (value))
         str_value = "";
@@ -904,14 +933,14 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
         str_value = g_value_get_string (value);
 
     /* refresh rate */
-    g_snprintf (property, sizeof (property), RRATE_PROP, scheme, output->info->name);
+    g_snprintf (property, sizeof (property), RRATE_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (G_VALUE_HOLDS_DOUBLE (value))
         output_rate = g_value_get_double (value);
     else
         output_rate = 0.0;
 
-    g_snprintf (property, sizeof (property), MODE_FLAGS_PROP, scheme, output->info->name);
+    g_snprintf (property, sizeof (property), MODE_FLAGS_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (value == NULL || !G_VALUE_HOLDS_UINT64 (value))
         mode_flags = 0;
@@ -919,7 +948,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
         mode_flags = g_value_get_uint64 (value);
 
     /* scaling */
-    g_snprintf (property, sizeof (property), SCALE_PROP, scheme, output->info->name);
+    g_snprintf (property, sizeof (property), SCALE_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (G_VALUE_HOLDS_DOUBLE (value))
         scale = g_value_get_double (value);
@@ -927,7 +956,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
         scale = 1.0;
 
     /* backward compatibility; old properties are reset in xfce-randr.c when saving  */
-    g_snprintf (property, sizeof (property), SCALEX_PROP, scheme, output->info->name);
+    g_snprintf (property, sizeof (property), SCALEX_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (G_VALUE_HOLDS_DOUBLE (value))
         scale = g_value_get_double (value);
@@ -978,7 +1007,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     if (valid_mode == None)
     {
         /* unsupported mode, abort for this output */
-        g_warning (WARNING_MESSAGE_UNKNOWN_MODE, str_value, output_rate, output->info->name);
+        g_warning (WARNING_MESSAGE_UNKNOWN_MODE, str_value, output_rate, output_name);
         return active;
     }
     else if (crtc->mode != valid_mode)
@@ -1004,8 +1033,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     }
 
     /* position, x */
-    g_snprintf (property, sizeof (property), POSX_PROP, scheme,
-                output->info->name);
+    g_snprintf (property, sizeof (property), POSX_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (G_VALUE_HOLDS_INT (value))
         x = g_value_get_int (value);
@@ -1013,8 +1041,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
         x = 0;
 
     /* position, y */
-    g_snprintf (property, sizeof (property), POSY_PROP, scheme,
-                output->info->name);
+    g_snprintf (property, sizeof (property), POSY_PROP, scheme, output_name);
     value = g_hash_table_lookup (saved_outputs, property);
     if (G_VALUE_HOLDS_INT (value))
         y = g_value_get_int (value);
@@ -1030,6 +1057,7 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     }
 
     xfce_displays_helper_x11_set_outputs (crtc, output);
+    g_free (output_name);
 
     return active;
 }
