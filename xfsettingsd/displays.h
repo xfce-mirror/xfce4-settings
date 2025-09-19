@@ -53,6 +53,8 @@
 #define DEBUG_MESSAGE_DIFF_N_OUTPUTS "Noutput: before = %d, after = %d."
 #define DEBUG_MESSAGE_ALL_DISABLED "No active output anymore! Attempting to re-enable the internal output."
 #define DEBUG_MESSAGE_NEW_OUTPUT "New output connected: %s"
+#define DEBUG_MESSAGE_OUTPUT_NAMES_MISMATCH "Output names don't match: '%s' (system) loaded as '%s' (xfconf), EDID '%s'"
+#define DEBUG_MESSAGE_NO_XFCONF_DATA "No xfconf data found for output '%s', EDID '%s'"
 
 G_BEGIN_DECLS
 
