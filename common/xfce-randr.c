@@ -42,6 +42,8 @@ struct _XfceRandrPrivate
     /* cache for the output/mode info */
     XRROutputInfo **output_info;
     XfceRRMode **modes;
+    RROutput *rr_outputs;
+
     /* SHA-1 checksum of the EDID */
     gchar **edid;
 };
@@ -51,7 +53,7 @@ struct _XfceRandrPrivate
 static gchar *
 xfce_randr_friendly_name (XfceRandr *randr,
                           guint output,
-                          guint output_rr_id);
+                          RROutput rr_output);
 
 
 
@@ -158,7 +160,7 @@ xfce_randr_populate (XfceRandr *randr,
     XRRCrtcInfo *crtc_info;
     gint n;
     guint m, connected;
-    guint *output_ids = NULL;
+    RROutput *rr_outputs = NULL;
 
     g_return_if_fail (randr != NULL);
     g_return_if_fail (randr->priv != NULL);
@@ -166,7 +168,7 @@ xfce_randr_populate (XfceRandr *randr,
 
     /* prepare the temporary cache */
     outputs = g_ptr_array_new ();
-    output_ids = g_malloc0 (randr->priv->resources->noutput * sizeof (guint));
+    rr_outputs = g_new0 (RROutput, randr->priv->resources->noutput);
 
     /* walk the outputs */
     connected = 0;
@@ -184,7 +186,7 @@ xfce_randr_populate (XfceRandr *randr,
         }
         else
         {
-            output_ids[connected] = n;
+            rr_outputs[connected] = randr->priv->resources->outputs[n];
             connected++;
         }
 
@@ -195,6 +197,7 @@ xfce_randr_populate (XfceRandr *randr,
     /* migrate the temporary cache */
     randr->noutput = outputs->len;
     randr->priv->output_info = (XRROutputInfo **) g_ptr_array_free (outputs, FALSE);
+    randr->priv->rr_outputs = rr_outputs;
 
     /* allocate final space for the settings */
     randr->mode = g_new0 (RRMode, randr->noutput);
@@ -216,7 +219,7 @@ xfce_randr_populate (XfceRandr *randr,
         randr->priv->modes[m] = xfce_randr_list_supported_modes (randr->priv->resources, randr->priv->output_info[m]);
 
         /* find the primary screen */
-        if (XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == randr->priv->resources->outputs[output_ids[m]])
+        if (XRRGetOutputPrimary (xdisplay, GDK_WINDOW_XID (root_window)) == rr_outputs[m])
             randr->status[m] = XFCE_OUTPUT_STATUS_PRIMARY;
         else
             randr->status[m] = XFCE_OUTPUT_STATUS_SECONDARY;
@@ -250,7 +253,7 @@ xfce_randr_populate (XfceRandr *randr,
         }
 
         /* fill in the name used by the UI */
-        randr->friendly_name[m] = xfce_randr_friendly_name (randr, m, output_ids[m]);
+        randr->friendly_name[m] = xfce_randr_friendly_name (randr, m, rr_outputs[m]);
 
         /* Replace spaces with underscore in name for xfconf compatibility */
         g_strcanon (randr->priv->output_info[m]->name,
@@ -258,8 +261,6 @@ xfce_randr_populate (XfceRandr *randr,
     }
     /* populate mirrored details */
     xfce_randr_guess_relations (randr);
-
-    g_free (output_ids);
 }
 
 
@@ -340,6 +341,7 @@ xfce_randr_cleanup (XfceRandr *randr)
     g_free (randr->position);
     g_free (randr->mirrored);
     g_free (randr->priv->output_info);
+    g_free (randr->priv->rr_outputs);
 }
 
 
@@ -539,7 +541,7 @@ xfce_randr_read_edid_data (Display *xdisplay,
 static gchar *
 xfce_randr_friendly_name (XfceRandr *randr,
                           guint output,
-                          guint output_rr_id)
+                          RROutput rr_output)
 {
     Display *xdisplay;
     MonitorInfo *info = NULL;
@@ -549,7 +551,7 @@ xfce_randr_friendly_name (XfceRandr *randr,
 
     /* get the vendor & size */
     xdisplay = gdk_x11_display_get_xdisplay (randr->priv->display);
-    edid_data = xfce_randr_read_edid_data (xdisplay, randr->priv->resources->outputs[output_rr_id]);
+    edid_data = xfce_randr_read_edid_data (xdisplay, rr_output);
 
     if (edid_data)
     {
@@ -715,6 +717,20 @@ xfce_randr_get_edid (XfceRandr *randr,
                      guint noutput)
 {
     return randr->priv->edid[noutput];
+}
+
+
+
+const gchar *
+xfce_randr_get_edid_by_id (XfceRandr *randr,
+                           RROutput output)
+{
+    for (guint n = 0; n < randr->noutput; n++)
+    {
+        if (randr->priv->rr_outputs[n] == output)
+            return randr->priv->edid[n];
+    }
+    return NULL;
 }
 
 
