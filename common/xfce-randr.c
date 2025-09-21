@@ -712,7 +712,7 @@ xfce_randr_clonable_modes (XfceRandr *randr)
 
 
 
-gchar *
+const gchar *
 xfce_randr_get_edid (XfceRandr *randr,
                      guint noutput)
 {
@@ -735,7 +735,7 @@ xfce_randr_get_edid_by_id (XfceRandr *randr,
 
 
 
-gchar *
+const gchar *
 xfce_randr_get_output_info_name (XfceRandr *randr,
                                  guint noutput)
 {
