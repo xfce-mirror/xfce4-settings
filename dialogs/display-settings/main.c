@@ -1430,23 +1430,36 @@ display_setting_apply (GtkWidget *widget,
 
 static void
 display_settings_profile_changed (GtkTreeSelection *selection,
-                                  GtkBuilder *builder)
+                                  XfceDisplaySettings *settings)
 {
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GObject *button;
     GtkTreeModel *model;
     GtkTreeIter iter;
-    gboolean selected, matches = FALSE;
+    gboolean selected, matches = FALSE, active = FALSE;
 
     selected = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (selected)
+    {
         gtk_tree_model_get (model, &iter, COLUMN_MATCHES, &matches, -1);
+        if (matches)
+        {
+            XfconfChannel *channel = xfce_display_settings_get_channel (settings);
+            gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
+            gchar *profile;
+            gtk_tree_model_get (model, &iter, COLUMN_HASH, &profile, -1);
+            active = g_strcmp0 (profile, active_profile) == 0;
+            g_free (profile);
+            g_free (active_profile);
+        }
+    }
 
     button = gtk_builder_get_object (builder, "button-profile-save");
     gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
     button = gtk_builder_get_object (builder, "button-profile-delete");
     gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
     button = gtk_builder_get_object (builder, "button-profile-apply");
-    gtk_widget_set_sensitive (GTK_WIDGET (button), selected && matches);
+    gtk_widget_set_sensitive (GTK_WIDGET (button), selected && matches && !active);
 }
 
 static void
@@ -1901,7 +1914,7 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
     gtk_tree_view_set_activate_on_single_click (GTK_TREE_VIEW (treeview), FALSE);
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_profile_changed), builder);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_profile_changed), settings);
     g_signal_connect (G_OBJECT (treeview), "row-activated", G_CALLBACK (display_settings_profile_row_activated), settings);
 
     combobox = gtk_builder_get_object (builder, "autoconnect-mode");
