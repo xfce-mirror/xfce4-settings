@@ -284,7 +284,8 @@ gboolean
 xfce_display_settings_is_clonable (XfceDisplaySettings *settings);
 void
 xfce_display_settings_save (XfceDisplaySettings *settings,
-                            const gchar *scheme);
+                            const gchar *scheme,
+                            const gchar *profile_name);
 void
 xfce_display_settings_mirror (XfceDisplaySettings *settings);
 void
