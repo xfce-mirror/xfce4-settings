@@ -1427,18 +1427,21 @@ display_settings_profile_save (GtkWidget *widget,
     if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
         XfconfChannel *channel = xfce_display_settings_get_channel (settings);
+        gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
         gchar *profile_hash;
         gchar *profile_name;
 
         gtk_tree_model_get (model, &iter, COLUMN_NAME, &profile_name, COLUMN_HASH, &profile_hash, -1);
         xfce_display_settings_save (settings, profile_hash, profile_name);
-        xfconf_channel_set_string (channel, "/ActiveProfile", profile_hash);
+        if (g_strcmp0 (active_profile, profile_hash) == 0)
+            xfconf_channel_set_string (channel, "/ActiveProfile", "");
 
         xfce_display_settings_populate_profile_list (settings);
         gtk_widget_set_sensitive (widget, FALSE);
 
         g_free (profile_hash);
         g_free (profile_name);
+        g_free (active_profile);
     }
     else
         gtk_widget_set_sensitive (widget, TRUE);
@@ -1503,7 +1506,6 @@ display_settings_profile_create_cb (GtkWidget *widget,
             g_free (property);
         }
         xfce_display_settings_save (settings, profile_hash, profile_name);
-        xfconf_channel_set_string (channel, "/ActiveProfile", profile_hash);
         xfce_display_settings_populate_profile_list (settings);
 
         g_free (property);
@@ -1614,23 +1616,20 @@ display_settings_profile_delete (GtkWidget *widget,
             GTK_RESPONSE_NO, _("Delete"), GTK_RESPONSE_YES, NULL);
 
         g_free (primary_message);
+        g_free (profile_name);
 
         if (response == GTK_RESPONSE_YES)
         {
-            GString *property;
+            gchar *property = g_strdup_printf ("/%s", profile_hash);
+            gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
 
-            property = g_string_new (profile_hash);
-            g_string_prepend_c (property, '/');
-
-            xfconf_channel_reset_property (channel, property->str, TRUE);
-            xfconf_channel_set_string (channel, "/ActiveProfile", "Default");
+            xfconf_channel_reset_property (channel, property, TRUE);
+            if (g_strcmp0 (active_profile, profile_hash) == 0)
+                xfconf_channel_set_string (channel, "/ActiveProfile", "");
             xfce_display_settings_populate_profile_list (settings);
-            g_free (profile_name);
-        }
-        else
-        {
-            g_free (profile_name);
-            return;
+
+            g_free (active_profile);
+            g_free (property);
         }
     }
 }
