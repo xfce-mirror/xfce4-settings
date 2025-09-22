@@ -1334,6 +1334,7 @@ display_settings_dialog_response (GtkDialog *dialog,
             if (profile_response_id == GTK_RESPONSE_OK)
             {
                 xfce_display_settings_save (settings, initial_active_profile);
+                xfconf_channel_set_string (channel, property, profile_name);
                 xfconf_channel_set_string (channel, "/ActiveProfile", initial_active_profile);
             }
         }
