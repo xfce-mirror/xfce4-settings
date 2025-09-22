@@ -106,9 +106,6 @@ static GOptionEntry option_entries[] = {
     { NULL }
 };
 
-/* Keep track of the initially active profile */
-gchar *initial_active_profile = NULL;
-
 /* Outputs Combobox */
 GtkWidget *apply_button = NULL;
 
@@ -1283,66 +1280,7 @@ display_settings_dialog_response (GtkDialog *dialog,
         xfce_dialog_show_help_with_version (GTK_WINDOW (dialog), "xfce4-settings", "display",
                                             NULL, VERSION_SHORT);
     else if (response_id == GTK_RESPONSE_CLOSE)
-    {
-        XfconfChannel *channel = xfce_display_settings_get_channel (settings);
-        gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", NULL);
-        gchar *property = g_strdup_printf ("/%s", initial_active_profile);
-        gchar *profile_name = xfconf_channel_get_string (channel, property, NULL);
-
-        if (g_strcmp0 (initial_active_profile, active_profile) != 0
-            && profile_name != NULL
-            && g_strcmp0 (initial_active_profile, "Default") != 0)
-        {
-            GtkBuilder *profile_changed_builder = xfce_display_settings_get_builder (settings);
-            GError *error = NULL;
-            gint profile_response_id = 2;
-
-            if (gtk_builder_add_from_resource (profile_changed_builder, "/org/xfce/settings/profile-changed-dialog.glade", &error) != 0)
-            {
-                GObject *profile_changed_dialog, *label, *button;
-                const char *str;
-                const char *format = "<big><b>\%s</b></big>";
-                char *markup;
-                gchar *button_label;
-
-                profile_changed_dialog = gtk_builder_get_object (profile_changed_builder, "profile-changed-dialog");
-
-                gtk_window_set_transient_for (GTK_WINDOW (profile_changed_dialog), GTK_WINDOW (dialog));
-                gtk_window_set_modal (GTK_WINDOW (profile_changed_dialog), TRUE);
-
-                label = gtk_builder_get_object (profile_changed_builder, "header");
-                str = g_strdup_printf (_("Update changed display profile '%s'?"), profile_name);
-                markup = g_markup_printf_escaped (format, str);
-                gtk_label_set_markup (GTK_LABEL (label), markup);
-
-                button = gtk_builder_get_object (profile_changed_builder, "button-update");
-                button_label = g_strdup_printf (_("_Update '%s'"), profile_name);
-                gtk_button_set_label (GTK_BUTTON (button), button_label);
-
-                profile_response_id = gtk_dialog_run (GTK_DIALOG (profile_changed_dialog));
-                gtk_widget_destroy (GTK_WIDGET (profile_changed_dialog));
-                g_free (markup);
-                g_free (button_label);
-            }
-            else
-            {
-                g_error ("Failed to load the UI file: %s.", error->message);
-                g_error_free (error);
-            }
-
-            /* update the profile */
-            if (profile_response_id == GTK_RESPONSE_OK)
-            {
-                xfce_display_settings_save (settings, initial_active_profile);
-                xfconf_channel_set_string (channel, "/ActiveProfile", initial_active_profile);
-            }
-        }
-        g_free (profile_name);
-        g_free (property);
-        g_free (active_profile);
-        g_free (initial_active_profile);
         gtk_widget_destroy (GTK_WIDGET (dialog));
-    }
 }
 
 static gboolean
@@ -1366,7 +1304,7 @@ show_confirmation_dialog (gpointer data)
     if (display_setting_timed_confirmation (settings))
     {
         /* Update Default */
-        xfce_display_settings_save (settings, "Default");
+        xfce_display_settings_save (settings, "Default", NULL);
         xfconf_channel_set_string (channel, "/ActiveProfile", "Default");
     }
     else
@@ -1419,7 +1357,7 @@ display_setting_apply (GtkWidget *widget,
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
 
     /* Apply changes via a temporary profile */
-    xfce_display_settings_save (settings, "Temp");
+    xfce_display_settings_save (settings, "Temp", NULL);
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Temp");
 
     /* Run dialog after this signal handler to avoid random freeze */
@@ -1430,23 +1368,36 @@ display_setting_apply (GtkWidget *widget,
 
 static void
 display_settings_profile_changed (GtkTreeSelection *selection,
-                                  GtkBuilder *builder)
+                                  XfceDisplaySettings *settings)
 {
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GObject *button;
     GtkTreeModel *model;
     GtkTreeIter iter;
-    gboolean selected, matches = FALSE;
+    gboolean selected, matches = FALSE, active = FALSE;
 
     selected = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (selected)
+    {
         gtk_tree_model_get (model, &iter, COLUMN_MATCHES, &matches, -1);
+        if (matches)
+        {
+            XfconfChannel *channel = xfce_display_settings_get_channel (settings);
+            gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
+            gchar *profile;
+            gtk_tree_model_get (model, &iter, COLUMN_HASH, &profile, -1);
+            active = g_strcmp0 (profile, active_profile) == 0;
+            g_free (profile);
+            g_free (active_profile);
+        }
+    }
 
     button = gtk_builder_get_object (builder, "button-profile-save");
     gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
     button = gtk_builder_get_object (builder, "button-profile-delete");
     gtk_widget_set_sensitive (GTK_WIDGET (button), selected);
     button = gtk_builder_get_object (builder, "button-profile-apply");
-    gtk_widget_set_sensitive (GTK_WIDGET (button), selected && matches);
+    gtk_widget_set_sensitive (GTK_WIDGET (button), selected && matches && !active);
 }
 
 static void
@@ -1476,24 +1427,21 @@ display_settings_profile_save (GtkWidget *widget,
     if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
         XfconfChannel *channel = xfce_display_settings_get_channel (settings);
-        gchar *property;
+        gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
         gchar *profile_hash;
         gchar *profile_name;
 
         gtk_tree_model_get (model, &iter, COLUMN_NAME, &profile_name, COLUMN_HASH, &profile_hash, -1);
-        property = g_strdup_printf ("/%s", profile_hash);
-        xfce_display_settings_save (settings, profile_hash);
-
-        /* save the human-readable name of the profile as string value */
-        xfconf_channel_set_string (channel, property, profile_name);
-        xfconf_channel_set_string (channel, "/ActiveProfile", profile_hash);
+        xfce_display_settings_save (settings, profile_hash, profile_name);
+        if (g_strcmp0 (active_profile, profile_hash) == 0)
+            xfconf_channel_set_string (channel, "/ActiveProfile", "");
 
         xfce_display_settings_populate_profile_list (settings);
         gtk_widget_set_sensitive (widget, FALSE);
 
-        g_free (property);
         g_free (profile_hash);
         g_free (profile_name);
+        g_free (active_profile);
     }
     else
         gtk_widget_set_sensitive (widget, TRUE);
@@ -1557,11 +1505,7 @@ display_settings_profile_create_cb (GtkWidget *widget,
             g_free (profile_hash);
             g_free (property);
         }
-        xfce_display_settings_save (settings, profile_hash);
-
-        /* save the human-readable name of the profile as string value */
-        xfconf_channel_set_string (channel, property, profile_name);
-        xfconf_channel_set_string (channel, "/ActiveProfile", profile_hash);
+        xfce_display_settings_save (settings, profile_hash, profile_name);
         xfce_display_settings_populate_profile_list (settings);
 
         g_free (property);
@@ -1672,23 +1616,20 @@ display_settings_profile_delete (GtkWidget *widget,
             GTK_RESPONSE_NO, _("Delete"), GTK_RESPONSE_YES, NULL);
 
         g_free (primary_message);
+        g_free (profile_name);
 
         if (response == GTK_RESPONSE_YES)
         {
-            GString *property;
+            gchar *property = g_strdup_printf ("/%s", profile_hash);
+            gchar *active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
 
-            property = g_string_new (profile_hash);
-            g_string_prepend_c (property, '/');
-
-            xfconf_channel_reset_property (channel, property->str, TRUE);
-            xfconf_channel_set_string (channel, "/ActiveProfile", "Default");
+            xfconf_channel_reset_property (channel, property, TRUE);
+            if (g_strcmp0 (active_profile, profile_hash) == 0)
+                xfconf_channel_set_string (channel, "/ActiveProfile", "");
             xfce_display_settings_populate_profile_list (settings);
-            g_free (profile_name);
-        }
-        else
-        {
-            g_free (profile_name);
-            return;
+
+            g_free (active_profile);
+            g_free (property);
         }
     }
 }
@@ -1901,7 +1842,7 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
     gtk_tree_view_set_activate_on_single_click (GTK_TREE_VIEW (treeview), FALSE);
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
-    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_profile_changed), builder);
+    g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (display_settings_profile_changed), settings);
     g_signal_connect (G_OBJECT (treeview), "row-activated", G_CALLBACK (display_settings_profile_row_activated), settings);
 
     combobox = gtk_builder_get_object (builder, "autoconnect-mode");
@@ -1972,7 +1913,7 @@ display_settings_minimal_only_display_n_toggled (GtkToggleButton *button,
     }
 
     /* Apply the changes */
-    xfce_display_settings_save (settings, "Default");
+    xfce_display_settings_save (settings, "Default", NULL);
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
 }
 
@@ -2028,7 +1969,7 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
         xfce_display_settings_mirror (settings);
 
         /* Apply all changes */
-        xfce_display_settings_save (settings, "Default");
+        xfce_display_settings_save (settings, "Default", NULL);
         xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
     }
     else
@@ -2060,7 +2001,7 @@ display_settings_minimal_extend_displays_toggled (GtkToggleButton *button,
     xfce_display_settings_extend (settings, 0, 1, mode);
 
     /* Save changes to both displays */
-    xfce_display_settings_save (settings, "Default");
+    xfce_display_settings_save (settings, "Default", NULL);
 
     /* Apply all changes */
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
@@ -3036,7 +2977,6 @@ on_area_paint (FooScrollArea *area,
 static void
 display_settings_show_main_dialog (XfceDisplaySettings *settings)
 {
-    XfconfChannel *channel = xfce_display_settings_get_channel (settings);
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GtkWidget *dialog;
     GError *error = NULL;
@@ -3067,9 +3007,6 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
         gui_container = GTK_WIDGET (gtk_builder_get_object (builder, "randr-dnd"));
         gtk_container_add (GTK_CONTAINER (gui_container), scroll_area);
         gtk_widget_show_all (gui_container);
-
-        /* Keep track of the profile that was active when the dialog was launched */
-        initial_active_profile = xfconf_channel_get_string (channel, "/ActiveProfile", "Default");
 
 #ifdef HAVE_XRANDR
         if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
