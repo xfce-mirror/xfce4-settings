@@ -1333,8 +1333,7 @@ display_settings_dialog_response (GtkDialog *dialog,
             /* update the profile */
             if (profile_response_id == GTK_RESPONSE_OK)
             {
-                xfce_display_settings_save (settings, initial_active_profile);
-                xfconf_channel_set_string (channel, property, profile_name);
+                xfce_display_settings_save (settings, initial_active_profile, profile_name);
                 xfconf_channel_set_string (channel, "/ActiveProfile", initial_active_profile);
             }
         }
@@ -1367,7 +1366,7 @@ show_confirmation_dialog (gpointer data)
     if (display_setting_timed_confirmation (settings))
     {
         /* Update Default */
-        xfce_display_settings_save (settings, "Default");
+        xfce_display_settings_save (settings, "Default", NULL);
         xfconf_channel_set_string (channel, "/ActiveProfile", "Default");
     }
     else
@@ -1420,7 +1419,7 @@ display_setting_apply (GtkWidget *widget,
     foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
 
     /* Apply changes via a temporary profile */
-    xfce_display_settings_save (settings, "Temp");
+    xfce_display_settings_save (settings, "Temp", NULL);
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Temp");
 
     /* Run dialog after this signal handler to avoid random freeze */
@@ -1490,22 +1489,16 @@ display_settings_profile_save (GtkWidget *widget,
     if (gtk_tree_selection_get_selected (selection, &model, &iter))
     {
         XfconfChannel *channel = xfce_display_settings_get_channel (settings);
-        gchar *property;
         gchar *profile_hash;
         gchar *profile_name;
 
         gtk_tree_model_get (model, &iter, COLUMN_NAME, &profile_name, COLUMN_HASH, &profile_hash, -1);
-        property = g_strdup_printf ("/%s", profile_hash);
-        xfce_display_settings_save (settings, profile_hash);
-
-        /* save the human-readable name of the profile as string value */
-        xfconf_channel_set_string (channel, property, profile_name);
+        xfce_display_settings_save (settings, profile_hash, profile_name);
         xfconf_channel_set_string (channel, "/ActiveProfile", profile_hash);
 
         xfce_display_settings_populate_profile_list (settings);
         gtk_widget_set_sensitive (widget, FALSE);
 
-        g_free (property);
         g_free (profile_hash);
         g_free (profile_name);
     }
@@ -1571,10 +1564,7 @@ display_settings_profile_create_cb (GtkWidget *widget,
             g_free (profile_hash);
             g_free (property);
         }
-        xfce_display_settings_save (settings, profile_hash);
-
-        /* save the human-readable name of the profile as string value */
-        xfconf_channel_set_string (channel, property, profile_name);
+        xfce_display_settings_save (settings, profile_hash, profile_name);
         xfconf_channel_set_string (channel, "/ActiveProfile", profile_hash);
         xfce_display_settings_populate_profile_list (settings);
 
@@ -1986,7 +1976,7 @@ display_settings_minimal_only_display_n_toggled (GtkToggleButton *button,
     }
 
     /* Apply the changes */
-    xfce_display_settings_save (settings, "Default");
+    xfce_display_settings_save (settings, "Default", NULL);
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
 }
 
@@ -2042,7 +2032,7 @@ display_settings_minimal_mirror_displays_toggled (GtkToggleButton *button,
         xfce_display_settings_mirror (settings);
 
         /* Apply all changes */
-        xfce_display_settings_save (settings, "Default");
+        xfce_display_settings_save (settings, "Default", NULL);
         xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
     }
     else
@@ -2074,7 +2064,7 @@ display_settings_minimal_extend_displays_toggled (GtkToggleButton *button,
     xfce_display_settings_extend (settings, 0, 1, mode);
 
     /* Save changes to both displays */
-    xfce_display_settings_save (settings, "Default");
+    xfce_display_settings_save (settings, "Default", NULL);
 
     /* Apply all changes */
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Default");
