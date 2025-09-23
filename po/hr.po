@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-settings.xfce-4-20\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-02-14 12:29+0100\n"
+"POT-Creation-Date: 2025-09-23 00:54+0200\n"
 "PO-Revision-Date: 2025-02-14 11:29+0000\n"
 "Last-Translator: Xfce Bot <transifex@xfce.org>, 2025\n"
 "Language-Team: Croatian (https://app.transifex.com/xfce/teams/16840/hr/)\n"
@@ -21,71 +21,40 @@ msgstr ""
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#. Translators: "Unknown" here is used to identify a monitor for which
-#. * we don't know the vendor. When a vendor is known, the name of the
-#. * vendor is used.
-#: common/display-name.c:2644
-msgctxt "Monitor vendor"
-msgid "Unknown"
-msgstr "Nepoznato"
-
-#. TRANSLATORS: an externally connected display, where %s is either the
-#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
-#: common/display-name.c:2697 dialogs/color-settings/color-device.c:66
-msgid "Monitor"
-msgstr "Monitor"
-
-#: common/display-name.c:2700
-msgid "Television"
-msgstr "Televizor"
-
-#: common/display-name.c:2704
-msgid "Digital display"
-msgstr "Digitalni zaslon"
-
-#: common/xfce-randr.c:291 dialogs/display-settings/display-settings-x11.c:702
-msgid "Unable to query the version of the RandR extension being used"
-msgstr "Ne mogu otkriti verziju RandRa koja se trenutno koristi"
-
-#: common/xfce-randr.c:573
-#: dialogs/display-settings/display-settings-wayland.c:350
-msgid "Laptop"
-msgstr "Laptop"
-
-#: dialogs/accessibility-settings/accessibility-dialog.glade:66
+#: common/resources/accessibility-dialog.glade:66
 #: dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in:4
 msgid "Accessibility"
 msgstr "Pristupačnost"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:85
-#: dialogs/appearance-settings/appearance-dialog.glade:142
-#: dialogs/color-settings/color-dialog.glade:65
-#: dialogs/display-settings/display-dialog.glade:290
-#: dialogs/display-settings/minimal-display-dialog.glade:368
-#: dialogs/display-settings/profile-changed-dialog.glade:34
-#: dialogs/display-settings/main.c:3490
-#: dialogs/keyboard-settings/keyboard-dialog.glade:181
+#: common/resources/accessibility-dialog.glade:85
+#: common/resources/appearance-dialog.glade:142
+#: common/resources/color-dialog.glade:65
+#: common/resources/display-dialog.glade:290
+#: common/resources/minimal-display-dialog.glade:368
+#: common/resources/profile-changed-dialog.glade:34
+#: common/resources/keyboard-dialog.glade:181
+#: common/resources/mouse-dialog.glade:195
+#: dialogs/display-settings/main.c:3416
 #: dialogs/mime-settings/xfce-mime-window.c:194
-#: dialogs/mouse-settings/mouse-dialog.glade:195
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:235
 msgid "_Close"
 msgstr "_Zatvori"
 
 #. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
-#: dialogs/accessibility-settings/accessibility-dialog.glade:100
-#: dialogs/appearance-settings/appearance-dialog.glade:126
-#: dialogs/color-settings/color-dialog.glade:80
-#: dialogs/display-settings/display-dialog.glade:274
-#: dialogs/keyboard-settings/keyboard-dialog.glade:196
+#: common/resources/accessibility-dialog.glade:100
+#: common/resources/appearance-dialog.glade:126
+#: common/resources/color-dialog.glade:80
+#: common/resources/display-dialog.glade:274
+#: common/resources/keyboard-dialog.glade:196
+#: common/resources/mouse-dialog.glade:179
 #: dialogs/mime-settings/xfce-mime-window.c:197
-#: dialogs/mouse-settings/mouse-dialog.glade:179
 #: xfce4-settings-editor/main.c:184
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:224
 msgid "_Help"
 msgstr "_Pomoć"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:156
+#: common/resources/accessibility-dialog.glade:156
 msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
@@ -93,27 +62,27 @@ msgstr ""
 "Ako je omogučeno, upravitelj sesije će pokrenuti potrebne aplikacije za "
 "čitaće zaslona i povečalo"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:173
+#: common/resources/accessibility-dialog.glade:173
 msgid "_Enable assistive technologies"
 msgstr "_Omogući tehnologije pomoći"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:195
+#: common/resources/accessibility-dialog.glade:195
 msgid "Start With Session"
 msgstr "Pokreni sa sesijom"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:230
+#: common/resources/accessibility-dialog.glade:230
 msgid "Assistive technologies will be available the next time you login"
 msgstr "Tehnologije za pomoć bit će dostupne kod sljedeće prijave"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:269
+#: common/resources/accessibility-dialog.glade:269
 msgid "No AT-SPI provider was found on your system"
 msgstr "Nije pronađen AT-SPI poslužitelj na vašem sustavu"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:292
+#: common/resources/accessibility-dialog.glade:292
 msgid "Assistive _Technologies"
 msgstr "Tehnologije _pomoći"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:332
+#: common/resources/accessibility-dialog.glade:332
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
@@ -123,15 +92,15 @@ msgstr ""
 "trebaju biti držane pritisnutima kada je potrebno stisnuti više tipki "
 "odjednom (mogu biti pritisnute i puštene)"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:355
+#: common/resources/accessibility-dialog.glade:355
 msgid "_Use sticky keys"
 msgstr "_Koristi ljepljive tipke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:383
+#: common/resources/accessibility-dialog.glade:383
 msgid "_Lock sticky keys"
 msgstr "_Zaključaj ljepljive tipke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:387
+#: common/resources/accessibility-dialog.glade:387
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
@@ -140,11 +109,11 @@ msgstr ""
 " kada ih se pritisne, ostati zaključane kao pritisnute dok ih se ne stisne "
 "ponovno"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:400
+#: common/resources/accessibility-dialog.glade:400
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr "Onemogući ljepljive tipke kada su pritisnute dvije _tipke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:404
+#: common/resources/accessibility-dialog.glade:404
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
@@ -152,11 +121,11 @@ msgstr ""
 "Kada je ova opcija omogućena, ljepljive tipke će biti iskljućene kada su "
 "dvije tipke pritisnute istodobno"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:439
+#: common/resources/accessibility-dialog.glade:439
 msgid "Sticky Keys"
 msgstr "Ljepljive tipke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:469
+#: common/resources/accessibility-dialog.glade:469
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
@@ -165,26 +134,26 @@ msgstr ""
 "tipka pritisnuta neko minimalno vrijeme prije nego što je pritisak "
 "zabilježen"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:492
+#: common/resources/accessibility-dialog.glade:492
 msgid "Use slow _keys"
 msgstr "Koristi spore _tipke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:521
+#: common/resources/accessibility-dialog.glade:521
 msgid "Acceptance _delay:"
 msgstr "Odgoda _prihvaćanja:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:535
+#: common/resources/accessibility-dialog.glade:535
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr ""
 "Vrijeme, u milisekundama, koje mora proći da pritisak tipke bude prihvaćen"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:571
+#: common/resources/accessibility-dialog.glade:571
 msgid "Slow Keys"
 msgstr "Spore tipke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:601
+#: common/resources/accessibility-dialog.glade:601
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
@@ -192,27 +161,27 @@ msgstr ""
 "Kako bi izbjegi slučajno uzastopno stiskanje tipki, skočne tipke nameću "
 "minimalni vremenski otklon između pritisaka tipki "
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:624
+#: common/resources/accessibility-dialog.glade:624
 msgid "Use _bounce keys"
 msgstr "Koristi _skočne tipke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:653
+#: common/resources/accessibility-dialog.glade:653
 msgid "K_eystroke delay:"
 msgstr "O_dgoda pritiska tipke:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:667
+#: common/resources/accessibility-dialog.glade:667
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "Vrijeme, u milisekundama, potrebno između pritisaka tipke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:703
+#: common/resources/accessibility-dialog.glade:703
 msgid "Bounce Keys"
 msgstr "Skočne tipke"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:729
+#: common/resources/accessibility-dialog.glade:729
 msgid "Keyboa_rd"
 msgstr "Tipkovni_ca"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:769
+#: common/resources/accessibility-dialog.glade:769
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
@@ -220,11 +189,11 @@ msgstr ""
 "Kada je ova opcija omogućena, pokazivač miša može biti kontroliran koristeći"
 " numerički dio tipkovnice"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:792
+#: common/resources/accessibility-dialog.glade:792
 msgid "_Use mouse emulation"
 msgstr "_Koristi emulaciju miša"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:796
+#: common/resources/accessibility-dialog.glade:796
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
@@ -232,63 +201,63 @@ msgstr ""
 "Kada je ova opcija omogućena, pokazivač miša može biti kontroliran koristeći"
 " numerički dio tipkovnice"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:824
-#: dialogs/accessibility-settings/accessibility-dialog.glade:894
-#: dialogs/accessibility-settings/accessibility-dialog.glade:936
+#: common/resources/accessibility-dialog.glade:824
+#: common/resources/accessibility-dialog.glade:894
+#: common/resources/accessibility-dialog.glade:936
 msgid "msec"
 msgstr "msec"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:835
+#: common/resources/accessibility-dialog.glade:835
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "Vrijeme, u milisekundama, između ponavljanja kretnji"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:852
+#: common/resources/accessibility-dialog.glade:852
 msgid "_Acceleration delay:"
 msgstr "_Odgoda ubrzanja:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:865
+#: common/resources/accessibility-dialog.glade:865
 msgid "R_epeat interval:"
 msgstr "I_nterval ponavljanja:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:877
+#: common/resources/accessibility-dialog.glade:877
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "Vrijeme, u milisekundama, između ponavljanja kretnji"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:906
+#: common/resources/accessibility-dialog.glade:906
 msgid "Acceleration t_ime:"
 msgstr "Vrijeme u_brzanja:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:918
+#: common/resources/accessibility-dialog.glade:918
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "vrijeme, u milisekundama, za postizanje maksimalne brzine"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:948
+#: common/resources/accessibility-dialog.glade:948
 msgid "Ma_ximum speed:"
 msgstr "Ma_ksimalna brzina:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:960
+#: common/resources/accessibility-dialog.glade:960
 msgid "The maximum pointer speed after acceleration"
 msgstr "Maksimalna brzina pokazivača nakon ubrzanja"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:978
+#: common/resources/accessibility-dialog.glade:978
 msgid "pixels/sec"
 msgstr "pixels/sec"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:990
+#: common/resources/accessibility-dialog.glade:990
 msgid "Acceleration _profile:"
 msgstr "Profil _ubrzanja:"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1002
+#: common/resources/accessibility-dialog.glade:1002
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "Skala za dostizanje maksimalne brzine pokazivača"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1048
+#: common/resources/accessibility-dialog.glade:1048
 msgid "Mouse Emulation"
 msgstr "Emulacija miša"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1078
+#: common/resources/accessibility-dialog.glade:1078
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
@@ -296,67 +265,1050 @@ msgstr ""
 "Poveži kraticu tipkovnice s xfce4-find-cursor za dobivanje vizualnoga "
 "indikatora trenutnog položaja pokazivača miša"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1095
+#: common/resources/accessibility-dialog.glade:1095
 msgid "Show location of pointer on keypress"
 msgstr "Pokaži lokaciju pokazivača pritiskom na tipku"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1117
+#: common/resources/accessibility-dialog.glade:1117
 msgid "Find Cursor"
 msgstr "Pronađi pokazivač"
 
-#: dialogs/accessibility-settings/accessibility-dialog.glade:1143
+#: common/resources/accessibility-dialog.glade:1143
 msgid "_Mouse"
 msgstr "_Miš"
 
-#: dialogs/accessibility-settings/main.c:38
-#: dialogs/appearance-settings/main.c:92 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
+#: common/resources/appearance-dialog.glade:39
+#: common/resources/mouse-dialog.glade:63
+#: dialogs/appearance-settings/main.c:1599 dialogs/display-settings/main.c:82
+#: dialogs/display-settings/main.c:90
+msgid "None"
+msgstr "Nijedan"
+
+#: common/resources/appearance-dialog.glade:42
+msgid "Slight"
+msgstr "Lagano"
+
+#: common/resources/appearance-dialog.glade:45
+msgid "Medium"
+msgstr "Srednji"
+
+#: common/resources/appearance-dialog.glade:48
+msgid "Full"
+msgstr "Pun"
+
+#: common/resources/appearance-dialog.glade:59
+msgid "Icons"
+msgstr "Ikone"
+
+#: common/resources/appearance-dialog.glade:62
+msgid "Text"
+msgstr "Tekst"
+
+#: common/resources/appearance-dialog.glade:65
+msgid "Text under icons"
+msgstr "Tekst ispod ikona"
+
+#: common/resources/appearance-dialog.glade:68
+msgid "Text next to icons"
+msgstr "Tekst poslije ikona"
+
+#: common/resources/appearance-dialog.glade:82
+msgid "1x (no scaling)"
+msgstr "1x (nema skaliranja)"
+
+#: common/resources/appearance-dialog.glade:86
+msgid "2x"
+msgstr "2x"
+
+#: common/resources/appearance-dialog.glade:107
+#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
+msgid "Appearance"
+msgstr "Izgled"
+
+#: common/resources/appearance-dialog.glade:205
+#: common/resources/appearance-dialog.glade:315
+#: common/resources/color-dialog.glade:374
+#: common/resources/keyboard-dialog.glade:636
+#: common/resources/keyboard-dialog.glade:970
+#: xfce4-settings-editor/xfce-settings-editor-box.c:364
+msgid "_Add"
+msgstr "_Dodaj"
+
+#: common/resources/appearance-dialog.glade:238
+msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
+msgstr ""
+
+#: common/resources/appearance-dialog.glade:272
+msgid "St_yle"
+msgstr "St_il"
+
+#: common/resources/appearance-dialog.glade:348
+msgid "_Icons"
+msgstr "_Ikone"
+
+#: common/resources/appearance-dialog.glade:388
+msgid ""
+"This font will be used as the default font used when drawing user interface "
+"text"
+msgstr ""
+"Ovaj će font biti korišten kao zadani kada se prikazuje tekst korisničkog "
+"sučelja"
+
+#: common/resources/appearance-dialog.glade:390
+msgid "Select a default font"
+msgstr "Odaberite zadani font"
+
+#: common/resources/appearance-dialog.glade:399
+msgid "Default Fon_t"
+msgstr "Zadani fon_t"
+
+#: common/resources/appearance-dialog.glade:431
+msgid ""
+"This font will be used as the default monospace font, for example by "
+"terminal emulators."
+msgstr ""
+"Ovaj font koristit će se kao zadani font fiksne širine, na primjer u "
+"emulatoru terminala."
+
+#: common/resources/appearance-dialog.glade:433
+msgid "Select a default monospace font"
+msgstr "Izaberite zadani font fiksne širine"
+
+#: common/resources/appearance-dialog.glade:442
+msgid "Default _Monospace Font"
+msgstr "Zadani font _fiksne širine"
+
+#: common/resources/appearance-dialog.glade:477
+msgid "_Enable anti-aliasing"
+msgstr "_Omogući zaobljivanje rubova"
+
+#: common/resources/appearance-dialog.glade:481
+msgid ""
+"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
+msgstr "Zaobljivanje rubova može poboljšati izgled teksta na ekranu"
+
+#: common/resources/appearance-dialog.glade:509
+msgid "Hintin_g:"
+msgstr "Sugeriranj_e:"
+
+#: common/resources/appearance-dialog.glade:521
+msgid ""
+"Many fonts contain information that provides extra hints as to how best draw"
+" the font; pick whichever looks best according to personal preference"
+msgstr ""
+"Puno fontova koristi dodatne informacije o tome kako najbolje iscrtati font;"
+" odaberite po vlastitoj želji koji vam najbolje izgleda"
+
+#: common/resources/appearance-dialog.glade:541
+msgid "Sub-_pixel order:"
+msgstr "Pod-_pixel redoslijed:"
+
+#: common/resources/appearance-dialog.glade:553
+msgid ""
+"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
+"correct sub-pixel order of the screen"
+msgstr ""
+"Kvaliteta fonta na TFT ili LCD zaslonu može biti uvelike poboljšana odabirom"
+" ispravnog podpiksel redoslijeda zaslona"
+
+#: common/resources/appearance-dialog.glade:591
+msgid "Rendering"
+msgstr "Prikaz"
+
+#: common/resources/appearance-dialog.glade:623
+msgid "Custom _DPI setting:"
+msgstr "Prilagođene _DPI postavke:"
+
+#: common/resources/appearance-dialog.glade:627
+msgid ""
+"Override the detected monitor resolution if fonts look too large or too "
+"small"
+msgstr ""
+"Premostite nađenu rezoluciju monitora ako su slova prevelika ili premalena"
+
+#: common/resources/appearance-dialog.glade:664
+msgid "DPI"
+msgstr "DPI"
+
+#: common/resources/appearance-dialog.glade:690
+msgid "_Fonts"
+msgstr "_Fontovi"
+
+#: common/resources/appearance-dialog.glade:733
+msgid "Show images on _buttons"
+msgstr "Pokazuj slike na _gumbima"
+
+#: common/resources/appearance-dialog.glade:737
+msgid "Specify whether icons should be displayed next to text in buttons"
+msgstr "Navedite da li ikone trebaju biti prikazane uz stavke u izbornicima"
+
+#: common/resources/appearance-dialog.glade:750
+msgid "Show images in _menus"
+msgstr "Pokaži slike u _izbornicima"
+
+#: common/resources/appearance-dialog.glade:754
+msgid "Specify whether icons should be displayed next to items in menus"
+msgstr "Navedite da li ikone trebaju biti prikazane uz stavke u izbornicima"
+
+#: common/resources/appearance-dialog.glade:767
+msgid "Enable e_ditable accelerators"
+msgstr "Omogući b_rze prečace koje se mogu uređivati"
+
+#: common/resources/appearance-dialog.glade:771
+msgid ""
+"If selected, keyboard shortcuts for menu items can be changed by hovering "
+"the mouse over the menu item and pressing the new key combination for the "
+"shortcut"
+msgstr ""
+"Ako su izabrani, prečaci tipkovnice za stavke izbornika mogu se promjeniti "
+"prelaskom miša preko stavke izbornika i pritiskom nove kombinacije tipki za "
+"prečac"
+
+#: common/resources/appearance-dialog.glade:784
+msgid "Enable header bars in dialo_gs"
+msgstr "Omogući traku zaglavlja u dijaloškim ovir_ima"
+
+#: common/resources/appearance-dialog.glade:788
+msgid ""
+"Defines whether GTK dialogs may place widgets such as buttons in the "
+"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
+"opened dialogs."
+msgstr ""
+
+#: common/resources/appearance-dialog.glade:807
+msgid "Menus and Buttons"
+msgstr "Izbornici i dugmad"
+
+#: common/resources/appearance-dialog.glade:839
+msgid "Enable _event sounds"
+msgstr "Omogući _zvukove događaja"
+
+#: common/resources/appearance-dialog.glade:843
+msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
+msgstr ""
+"Omogući ili onemogući zvukove događaja globalno(zahtjeva \"Canberra\" "
+"podršku)"
+
+#: common/resources/appearance-dialog.glade:856
+msgid "Enable input feedbac_k sounds"
+msgstr "Omogući zvučnu informacij_u za unose"
+
+#: common/resources/appearance-dialog.glade:860
+msgid ""
+"Specify whether mouse clicks and other user input will cause event sounds to"
+" play"
+msgstr ""
+"Odredite hoće li pritisci tipke miša i drugi unosi uzrokovati neki zvučni "
+"signal"
+
+#: common/resources/appearance-dialog.glade:879
+msgid "Event sounds"
+msgstr "Zvukovi događaja"
+
+#: common/resources/appearance-dialog.glade:908
+msgid "Adjust the system-wide display scaling"
+msgstr "Podesi skaliranje prikaza za cijeli sustav"
+
+#: common/resources/appearance-dialog.glade:926
+msgid "_Window Scaling"
+msgstr "_Skaliranje prozora"
+
+#: common/resources/appearance-dialog.glade:954
+msgid "Setti_ngs"
+msgstr "Postav_ke"
+
+#: common/resources/color-dialog.glade:46
+#: dialogs/color-settings/xfce4-color-settings.desktop.in:4
+msgid "Color Profiles"
+msgstr "Profili boja"
+
+#: common/resources/color-dialog.glade:151
+msgid "<b>No devices found.</b>"
+msgstr "<b>Nisu nađeni uređaji.</b>"
+
+#: common/resources/color-dialog.glade:221
+msgid "Model:"
+msgstr "Model:"
+
+#: common/resources/color-dialog.glade:233
+msgid "Colorspace:"
+msgstr "Područje boja:"
+
+#: common/resources/color-dialog.glade:256
+msgid "Vendor:"
+msgstr "Prodavač:"
+
+#: common/resources/color-dialog.glade:280
+msgid "Calibrate"
+msgstr "Kalibriraj"
+
+#: common/resources/color-dialog.glade:337
+msgid "<b>No profiles for the selected device.</b>"
+msgstr "<b>Nema profila za odabrani uređaj.</b>"
+
+#: common/resources/color-dialog.glade:378
+msgid "Add a profile to the currently selected device"
+msgstr "Dodaj profil trenutno odabranom uređaju"
+
+#: common/resources/color-dialog.glade:390
+#: common/resources/keyboard-dialog.glade:666
+#: common/resources/keyboard-dialog.glade:1002
+msgid "_Remove"
+msgstr "_Ukloni"
+
+#: common/resources/color-dialog.glade:394
+msgid "Delete the currently selected profile"
+msgstr "Obriši trenutno odabrani uređaj"
+
+#: common/resources/color-dialog.glade:409
+#: common/resources/color-dialog.glade:617
+msgid "Show detailed information about the selected profile"
+msgstr "Pokaži detaljne informacije o odabranom profilu"
+
+#: common/resources/color-dialog.glade:432
+msgid "Enable"
+msgstr "Omogući"
+
+#: common/resources/color-dialog.glade:436
+msgid "Enable the selected profile"
+msgstr "Omogući odabrani profil"
+
+#: common/resources/color-dialog.glade:511
+msgid "Add Profile to Device"
+msgstr "Dodaj profil za uređaj"
+
+#. Create cancel button
+#: common/resources/color-dialog.glade:529
+#: common/resources/keyboard-dialog.glade:71
+#: dialogs/appearance-settings/main.c:1338 dialogs/color-settings/main.c:126
+#: dialogs/keyboard-settings/command-dialog.c:113
+#: dialogs/keyboard-settings/command-dialog.c:275
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:567
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
+msgid "_Cancel"
+msgstr "_Odustani"
+
+#: common/resources/color-dialog.glade:543
+#: common/resources/keyboard-dialog.glade:86
+#: dialogs/keyboard-settings/command-dialog.c:117
+#: dialogs/mime-settings/xfce-mime-helper-chooser.c:568
+#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
+msgid "_OK"
+msgstr "_U redu"
+
+#: common/resources/color-dialog.glade:602
+msgid "Import color profile files (*.icc)"
+msgstr "Uvezi datoteke profila boja (*.icc)"
+
+#: common/resources/confirmation-dialog.glade:13
+msgid "<b><big>Would you like to keep this configuration?</big></b>"
+msgstr ""
+
+#: common/resources/confirmation-dialog.glade:15
+msgid ""
+"The previous configuration will be restored in <b>10 seconds</b> if you do "
+"not reply to this question."
+msgstr ""
+
+#: common/resources/confirmation-dialog.glade:29
+msgid "Keep this configuration"
+msgstr "Zadrži ovu konfiguraciju"
+
+#: common/resources/confirmation-dialog.glade:44
+msgid "Restore the previous configuration"
+msgstr "Obnovi prethodnu konfiguraciju"
+
+#: common/resources/display-dialog.glade:61
+msgid "Never"
+msgstr "Nikada"
+
+#: common/resources/display-dialog.glade:65
+msgid "When a display is connected"
+msgstr ""
+
+#: common/resources/display-dialog.glade:69
+msgid "When a display is disconnected"
+msgstr ""
+
+#: common/resources/display-dialog.glade:73
+msgid "Always"
+msgstr "Uvijek"
+
+#: common/resources/display-dialog.glade:87
+msgid "Do nothing"
+msgstr "Ne čini ništa"
+
+#: common/resources/display-dialog.glade:91
+msgid "Show dialog"
+msgstr ""
+
+#: common/resources/display-dialog.glade:95
+msgid "Mirror"
+msgstr "Zrcalo"
+
+#: common/resources/display-dialog.glade:99
+msgid "Extend"
+msgstr ""
+
+#: common/resources/display-dialog.glade:157
+msgid "The primary display can be configured to show:"
+msgstr ""
+
+#: common/resources/display-dialog.glade:171
+#: dialogs/display-settings/main.c:1673
+msgid "Xfce Panel"
+msgstr "Xfce ploču"
+
+#: common/resources/display-dialog.glade:184
+msgid "Desktop icons"
+msgstr "Ikone radne površine"
+
+#: common/resources/display-dialog.glade:197
+msgid "Notifications"
+msgstr "Obavijesti"
+
+#: common/resources/display-dialog.glade:207
+#: common/resources/display-dialog.glade:222
+#: common/resources/display-dialog.glade:237
+msgid "Configure..."
+msgstr "Postavi..."
+
+#: common/resources/display-dialog.glade:255
+#: dialogs/display-settings/xfce-display-settings.desktop.in:4
+msgid "Display"
+msgstr "Zaslon"
+
+#: common/resources/display-dialog.glade:362
+msgid "_Mirror displays"
+msgstr "_Zrcali zaslone"
+
+#: common/resources/display-dialog.glade:461
+msgid "Primary Display:"
+msgstr "Primarni zaslon:"
+
+#: common/resources/display-dialog.glade:487
+msgid "R_esolution:"
+msgstr "R_ezolucija:"
+
+#: common/resources/display-dialog.glade:513
+msgid "Refresh _rate:"
+msgstr "Vrijeme _osvježenja:"
+
+#: common/resources/display-dialog.glade:539
+msgid "Ro_tation:"
+msgstr "Ro_tacija:"
+
+#: common/resources/display-dialog.glade:563
+msgid "Ref_lection:"
+msgstr "Ref_leksija:"
+
+#: common/resources/display-dialog.glade:603
+msgid "A_pply"
+msgstr "_Primjeni"
+
+#: common/resources/display-dialog.glade:631
+msgid "_Scale:"
+msgstr ""
+
+#: common/resources/display-dialog.glade:669
+msgid "_General"
+msgstr "_Osnovno"
+
+#: common/resources/display-dialog.glade:689
+msgid "<b>Profiles</b>"
+msgstr "<b>Profili</b>"
+
+#: common/resources/display-dialog.glade:705
+msgid "<b>Connecting Displays</b>"
+msgstr "<b>Povezivanje zaslona</b>"
+
+#: common/resources/display-dialog.glade:755
+msgid "Delete the currently selected display profile."
+msgstr "Izbriši trenutno odabrani profil zaslona."
+
+#: common/resources/display-dialog.glade:768
+msgid "Apply"
+msgstr "Primjeni"
+
+#: common/resources/display-dialog.glade:772
+msgid "Apply the currently selected display profile."
+msgstr "Primjeni trenutno odabrani profil zaslona."
+
+#: common/resources/display-dialog.glade:788
+msgid "Create a new display profile."
+msgstr "Stvori novi profil zaslona."
+
+#: common/resources/display-dialog.glade:804
+msgid "Update an existing profile."
+msgstr "Ažuriraj postojeći profil."
+
+#: common/resources/display-dialog.glade:837
+msgid "First try to automatically enable a profile:"
+msgstr ""
+
+#: common/resources/display-dialog.glade:869
+msgid "When a display is connected:"
+msgstr ""
+
+#: common/resources/display-dialog.glade:882
+msgid "Show popup windows to identify displays"
+msgstr "Pokaži skočni prozor za identifikaciju zaslona"
+
+#: common/resources/display-dialog.glade:908
+msgid "<b>Identifying Displays</b>"
+msgstr "<b>Identificiranje zaslona</b>"
+
+#: common/resources/display-dialog.glade:946
+#: common/resources/minimal-display-dialog.glade:354
+msgid "_Advanced"
+msgstr "N_apredno"
+
+#: common/resources/display-dialog.glade:998
+msgid "<b>Profile Name</b>"
+msgstr "<b>Ime profila</b>"
+
+#: common/resources/display-dialog.glade:1021
+msgid "Create"
+msgstr "Stvori"
+
+#: common/resources/display-dialog.glade:1056
+msgid "A profile of this name already exists."
+msgstr "Profil ovog imena već postoji"
+
+#: common/resources/minimal-display-dialog.glade:16
+msgid "Extend right"
+msgstr ""
+
+#: common/resources/minimal-display-dialog.glade:19
+msgid "Extend left"
+msgstr ""
+
+#: common/resources/minimal-display-dialog.glade:22
+msgid "Extend up"
+msgstr ""
+
+#: common/resources/minimal-display-dialog.glade:25
+msgid "Extend down"
+msgstr ""
+
+#: common/resources/minimal-display-dialog.glade:37
+msgid "Displays"
+msgstr "Zasloni"
+
+#: common/resources/minimal-display-dialog.glade:92
+#: common/resources/minimal-display-dialog.glade:93
+msgid "Only Display 1"
+msgstr "Samo zaslon 1"
+
+#: common/resources/minimal-display-dialog.glade:145
+#: common/resources/minimal-display-dialog.glade:146
+msgid "Mirror Displays"
+msgstr "Zrcali zaslone"
+
+#: common/resources/minimal-display-dialog.glade:201
+msgid "Extend to the right"
+msgstr "Proširi u desno"
+
+#: common/resources/minimal-display-dialog.glade:262
+#: common/resources/minimal-display-dialog.glade:263
+msgid "Only Display 2"
+msgstr "Samo zaslon 2"
+
+#: common/resources/profile-changed-dialog.glade:12
+msgid "Update Display Profile"
+msgstr "Ažuriraj profil zaslona"
+
+#: common/resources/profile-changed-dialog.glade:51
+msgid "_Update"
+msgstr "Až_uriraj"
+
+#: common/resources/profile-changed-dialog.glade:109
+msgid ""
+"<big><b>You have made changes to your previously active profile</b></big>"
+msgstr ""
+"<big><b>Napravili ste izmijene na prethodno aktivnom profilu</b></big>"
+
+#: common/resources/profile-changed-dialog.glade:124
+msgid ""
+"If you don't update the profile your changes will be lost upon restarting "
+"your session or disconnecting or connecting a display."
+msgstr ""
+"Ukoliko ne spremite promijene one će biti izgubljenje ponovnim pokretanjem "
+"sesije ili spajanjem odnosno odspajanjem zaslona."
+
+#: common/resources/keyboard-dialog.glade:53
+msgid "Keyboard layout selection"
+msgstr "Odabir rasporeda tipkovnice"
+
+#: common/resources/keyboard-dialog.glade:162
+#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
+msgid "Keyboard"
+msgstr "Tipkovnica"
+
+#: common/resources/keyboard-dialog.glade:252
+msgid "Restore num l_ock state on startup"
+msgstr ""
+"Vrati stanje zaključan_osti numeričke tipkovnice pri pokretanju sustava"
+
+#: common/resources/keyboard-dialog.glade:267
+#: common/resources/mouse-dialog.glade:726
+#: common/resources/mouse-dialog.glade:953
+msgid "General"
+msgstr "Općenito"
+
+#: common/resources/keyboard-dialog.glade:301
+msgid "_Enable key repeat"
+msgstr "_Omogući ponavljanje tipke"
+
+#: common/resources/keyboard-dialog.glade:305
+msgid ""
+"When selected, pressing and holding down a key emits the same character over"
+" and over again"
+msgstr ""
+"Kada je ova opcija omogućena, držanje tipke uzastopno ispisuje isti znak"
+
+#: common/resources/keyboard-dialog.glade:333
+msgid "_Repeat delay:"
+msgstr "_Odgoda ponavljanja:"
+
+#: common/resources/keyboard-dialog.glade:347
+msgid "The time, in milliseconds, before a pressed key begins repeating"
+msgstr ""
+"Vrijeme, u milisekundama,preije nego pritisnuta tipka počne ponavljati"
+
+#: common/resources/keyboard-dialog.glade:363
+msgid "Repe_at speed:"
+msgstr "Brzi_na ponavljanja:"
+
+#: common/resources/keyboard-dialog.glade:377
+msgid "The rate at which keystrokes are generated while a key is pressed"
+msgstr "Frekvencija zapisa unosa dok je tipka pritisnuta"
+
+#: common/resources/keyboard-dialog.glade:405
+msgid "Typing Settings"
+msgstr "Postavke tipkanja"
+
+#: common/resources/keyboard-dialog.glade:438
+msgid "Show _blinking"
+msgstr "Pokaži _treperenje"
+
+#: common/resources/keyboard-dialog.glade:442
+msgid "Specify whether or not the text cursor blinks"
+msgstr "Odredite treperi li pokazivač teksta"
+
+#: common/resources/keyboard-dialog.glade:470
+msgid "Blink _delay:"
+msgstr "Razmak između _treptaja:"
+
+#: common/resources/keyboard-dialog.glade:484
+msgid "The delay, in milliseconds, between successive blinks of the cursor"
+msgstr "Odgoda, u milisekundama,između treptaja pokazivača"
+
+#: common/resources/keyboard-dialog.glade:512
+msgid "Cursor"
+msgstr "Pokazivač"
+
+#: common/resources/keyboard-dialog.glade:534
+msgid "_Test area:"
+msgstr "_Područje za testiranje:"
+
+#: common/resources/keyboard-dialog.glade:575
+msgid "Beha_vior"
+msgstr "Pona_šanje"
+
+#: common/resources/keyboard-dialog.glade:593
+msgid "Define shortcuts for la_unching applications:"
+msgstr "Definiraj prečace za po_kretanje programa:"
+
+#: common/resources/keyboard-dialog.glade:651
+#: common/resources/keyboard-dialog.glade:986
+#: xfce4-settings-editor/xfce-settings-editor-box.c:377
+msgid "_Edit"
+msgstr "_Uredi"
+
+#: common/resources/keyboard-dialog.glade:692
+msgid "Reset to _Defaults"
+msgstr "Vrati na _zadano"
+
+#: common/resources/keyboard-dialog.glade:732
+msgid "A_pplication Shortcuts"
+msgstr "P_rečaci programa"
+
+#: common/resources/keyboard-dialog.glade:762
+msgid "<b>Use system defaults</b>"
+msgstr ""
+
+#: common/resources/keyboard-dialog.glade:817
+msgid "_Keyboard model"
+msgstr "_Model tipkovnice"
+
+#: common/resources/keyboard-dialog.glade:861
+msgid "Change la_yout option"
+msgstr "Promjeni op_ciju rasporeda"
+
+#: common/resources/keyboard-dialog.glade:899
+msgid "Co_mpose key"
+msgstr "Sa_stavi tipku"
+
+#: common/resources/keyboard-dialog.glade:1043
+msgid "Move currently selected item up by one row"
+msgstr "Pomakni odabranu stavku gore za jedan red"
+
+#: common/resources/keyboard-dialog.glade:1063
+msgid "Move currently selected item down by one row"
+msgstr "Pomakni odabranu stavku dolje za jedan red"
+
+#: common/resources/keyboard-dialog.glade:1096
+msgid "Key_board layout"
+msgstr "Ras_pored tipkovnice"
+
+#: common/resources/keyboard-dialog.glade:1123
+msgid "_Layout"
+msgstr "_Raspored"
+
+#: common/resources/mouse-dialog.glade:67
+msgid "Use bottom areas as left, middle or right buttons"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:71
+msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:92
+msgid "Disabled"
+msgstr "Onemogućeno"
+
+#: common/resources/mouse-dialog.glade:96
+msgid "Edge scrolling"
+msgstr "Rub ekrana kao pomicanje kotačićem"
+
+#: common/resources/mouse-dialog.glade:100
+msgid "Two-finger scrolling"
+msgstr "Kretnje s dva prsta kao pomicanje kotačićem"
+
+#: common/resources/mouse-dialog.glade:104
+msgid "Circular scrolling"
+msgstr "Kretnje s dva prsta kao pomicanje kotačićem"
+
+#: common/resources/mouse-dialog.glade:126
+msgid "Pen (absolute)"
+msgstr "Olovka (apsolutno)"
+
+#: common/resources/mouse-dialog.glade:130
+msgid "Mouse (relative)"
+msgstr "Miš (relativno)"
+
+#: common/resources/mouse-dialog.glade:144
+msgid "None (right-handed)"
+msgstr "Nijedan (dešnjak)"
+
+#: common/resources/mouse-dialog.glade:148
+msgid "Half (left-handed)"
+msgstr "Polovica (ljevak)"
+
+#: common/resources/mouse-dialog.glade:152
+msgid "Clockwise"
+msgstr "U smjeru kazaljke na satu"
+
+#: common/resources/mouse-dialog.glade:156
+msgid "Counterclockwise"
+msgstr "Obrnuto od smjera kazaljke na satu"
+
+#: common/resources/mouse-dialog.glade:162
+#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
+msgid "Mouse and Touchpad"
+msgstr "Miš i dodirna ploča"
+
+#: common/resources/mouse-dialog.glade:237
+msgid "De_vice:"
+msgstr "Ur_eđaj:"
+
+#: common/resources/mouse-dialog.glade:314
+msgid "Le_ft-handed"
+msgstr "Lje_voruki"
+
+#: common/resources/mouse-dialog.glade:331
+msgid "Ri_ght-handed"
+msgstr "De_snoruki"
+
+#: common/resources/mouse-dialog.glade:355
+msgid "Reverse scroll d_irection"
+msgstr "Obrnut smjer kretanja kotač_ićem"
+
+#: common/resources/mouse-dialog.glade:359
+msgid "When selected, the scroll wheel will work in the opposite direction"
+msgstr ""
+"Kada je ova opcija odabrana, kretanje kotačićem miša bit će u obrnutom "
+"smjeru"
+
+#: common/resources/mouse-dialog.glade:372
+msgid "Allow high _resolution scrolling (experimental)"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:376
+msgid ""
+"Only supported on some mice (mostly Logitech) and requires driver support. "
+"On supported devices makes scrolling more precise."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:395
+msgid "Buttons"
+msgstr "Dugmad"
+
+#: common/resources/mouse-dialog.glade:428
+msgid "_Reset to Defaults"
+msgstr "_Vrati na zadano"
+
+#: common/resources/mouse-dialog.glade:432
+msgid ""
+"Set the acceleration and sensitivity for the selected device to the default "
+"values"
+msgstr ""
+"Postavite ubrzanje i osjetljivost za odabrani uređaj na početne vrijednosti"
+
+#: common/resources/mouse-dialog.glade:448
+msgid "Sensitivit_y:"
+msgstr "Osjetljivos_t:"
+
+#: common/resources/mouse-dialog.glade:461
+msgid "Acceleratio_n:"
+msgstr "Ubrzanj_e:"
+
+#: common/resources/mouse-dialog.glade:473
+msgid ""
+"The factor at which the pointer's speed will increase as the mouse is moved"
+msgstr ""
+"Faktor po kojem se povećava brzina kretanja pokazivača kada se pomiče miš"
+
+#: common/resources/mouse-dialog.glade:488
+msgid ""
+"The number of pixels the pointer must move in a short time before it starts "
+"accelerating"
+msgstr ""
+"Broj piksela koje pokazivač u kratkom vremenu mora preći prije nego što "
+"počne ubrzavati"
+
+#: common/resources/mouse-dialog.glade:502
+msgid "Adaptive pointer acceleration"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:505
+msgid ""
+"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
+"current speed of the device into account when deciding on acceleration. "
+"Custom acceleration profile is not supported via xfce4-settings."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:525
+msgid "Pointer Speed"
+msgstr "Bzina pokazivača"
+
+#: common/resources/mouse-dialog.glade:544
+msgid "B_uttons and Feedback"
+msgstr "Tipke i postavke ponašanja"
+
+#: common/resources/mouse-dialog.glade:578
+#: common/resources/mouse-dialog.glade:595
+msgid "Disable touchpad _while typing"
+msgstr "Onemogući dodirnu ploču tijekom tipkanja"
+
+#: common/resources/mouse-dialog.glade:582
+#: common/resources/mouse-dialog.glade:599
+msgid ""
+"When selected, the touchpad will be disabled when the keyboard is being used"
+msgstr ""
+"Kada je ova opcija omogućena, dodirna ploča će biti onemogućena kada se "
+"koristi tipkovnica za pisanje"
+
+#: common/resources/mouse-dialog.glade:624
+msgid "Duratio_n:"
+msgstr "Trajanj_e:"
+
+#: common/resources/mouse-dialog.glade:659
+msgid "Tap touchpad to clic_k"
+msgstr "Pritisak dodirne ploče za kli_k"
+
+#: common/resources/mouse-dialog.glade:682
+msgid "Click m_ethod:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:767
+msgid "Scrolling _mode:"
+msgstr "Način _pomicanja kotačićem:"
+
+#: common/resources/mouse-dialog.glade:805
+msgid "Enable hori_zontal scrolling"
+msgstr "Omogući hori_zontalno pomicanje kotačićem"
+
+#: common/resources/mouse-dialog.glade:827
+msgid "Scrolling"
+msgstr "Pomicanje kotačićem"
+
+#: common/resources/mouse-dialog.glade:850
+msgid "T_ouchpad"
+msgstr "D_odirna ploča"
+
+#: common/resources/mouse-dialog.glade:888
+msgid "Trac_king mode:"
+msgstr "Nač_in praćenja:"
+
+#: common/resources/mouse-dialog.glade:901
+msgid "_Rotation:"
+msgstr "_Rotacija:"
+
+#: common/resources/mouse-dialog.glade:976
+msgid "Tab_let"
+msgstr "Tab_let"
+
+#: common/resources/mouse-dialog.glade:997
+msgid "_Devices"
+msgstr "_Uređaji"
+
+#: common/resources/mouse-dialog.glade:1034
+msgid "Th_reshold:"
+msgstr "P_rag početka:"
+
+#: common/resources/mouse-dialog.glade:1048
+msgid ""
+"The number of pixels the pointer must move before a drag operation will "
+"start"
+msgstr ""
+"Broj piksela koje pokazivač mora preći u kratkom vremenu prije nego što "
+"počne radnja povlačenja"
+
+#: common/resources/mouse-dialog.glade:1067
+msgid "Drag and Drop"
+msgstr "Povuci i ispusti"
+
+#: common/resources/mouse-dialog.glade:1103
+msgid "Ti_me:"
+msgstr "Vr_ijeme:"
+
+#: common/resources/mouse-dialog.glade:1117
+msgid ""
+"Two mouse clicks in less than this length of time (in milliseconds) will be "
+"considered a double click"
+msgstr ""
+"Dva klika mišem u manjem razmaku od navedenog vremena (u milisekundama) će "
+"biti smatrana dvoklikom "
+
+#: common/resources/mouse-dialog.glade:1133
+msgid "D_istance:"
+msgstr "U_daljenost:"
+
+#: common/resources/mouse-dialog.glade:1147
+msgid ""
+"The mouse pointer cannot move farther than this distance between two clicks "
+"for them to be considered a double click"
+msgstr ""
+"Pokazivač miša nesmije se maknuti više od navedene udaljenosti između dva "
+"klika kako bi se radnja protumačila kao dvoklik"
+
+#: common/resources/mouse-dialog.glade:1166
+msgid "Double Click"
+msgstr "Dvoklik"
+
+#: common/resources/mouse-dialog.glade:1188
+msgid "_Behavior"
+msgstr "_Ponašanje"
+
+#: common/resources/mouse-dialog.glade:1253
+msgid "Cursor si_ze:"
+msgstr "Veličina pokazi_vača:"
+
+#: common/resources/mouse-dialog.glade:1287
+msgid "Size"
+msgstr "Veličina"
+
+#: common/resources/mouse-dialog.glade:1327
+msgid "Preview"
+msgstr "Pregled"
+
+#: common/resources/mouse-dialog.glade:1356
+msgid "_Theme"
+msgstr "_Tema"
+
+#. Translators: "Unknown" here is used to identify a monitor for which
+#. * we don't know the vendor. When a vendor is known, the name of the
+#. * vendor is used.
+#: common/display-name.c:2649
+msgctxt "Monitor vendor"
+msgid "Unknown"
+msgstr "Nepoznato"
+
+#. TRANSLATORS: an externally connected display, where %s is either the
+#. * model, vendor or ID, e.g. 'LP2480zx Monitor'
+#: common/display-name.c:2702 dialogs/color-settings/color-device.c:66
+msgid "Monitor"
+msgstr "Monitor"
+
+#: common/display-name.c:2705
+msgid "Television"
+msgstr "Televizor"
+
+#: common/display-name.c:2709
+msgid "Digital display"
+msgstr "Digitalni zaslon"
+
+#: common/xfce-randr.c:286 dialogs/display-settings/display-settings-x11.c:702
+msgid "Unable to query the version of the RandR extension being used"
+msgstr "Ne mogu otkriti verziju RandRa koja se trenutno koristi"
+
+#: common/xfce-randr.c:573
+#: dialogs/display-settings/display-settings-wayland.c:350
+msgid "Laptop"
+msgstr "Laptop"
+
+#: dialogs/accessibility-settings/main.c:36
+#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Priključak upravitelja postavkama"
 
-#: dialogs/accessibility-settings/main.c:38
-#: dialogs/appearance-settings/main.c:92 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:107 dialogs/keyboard-settings/main.c:36
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:86
+#: dialogs/accessibility-settings/main.c:36
+#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
-#: dialogs/accessibility-settings/main.c:39
-#: dialogs/appearance-settings/main.c:93 dialogs/color-settings/main.c:42
-#: dialogs/display-settings/main.c:108 dialogs/keyboard-settings/main.c:37
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:87
+#: dialogs/accessibility-settings/main.c:37
+#: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
+#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:93
 msgid "Version information"
 msgstr "Inforemacija o verziji"
 
-#: dialogs/accessibility-settings/main.c:193
-#: dialogs/appearance-settings/main.c:1694 dialogs/color-settings/main.c:1464
-#: dialogs/display-settings/main.c:3438 dialogs/keyboard-settings/main.c:74
+#: dialogs/accessibility-settings/main.c:191
+#: dialogs/appearance-settings/main.c:1692 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3364 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:148
-#: dialogs/mouse-settings/main.c:2196 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Upiši '%s --help' za upotrebu."
 
-#: dialogs/accessibility-settings/main.c:212
-#: dialogs/appearance-settings/main.c:1713 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3457 dialogs/keyboard-settings/main.c:90
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2215
+#: dialogs/accessibility-settings/main.c:210
+#: dialogs/appearance-settings/main.c:1711 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3383 dialogs/keyboard-settings/main.c:90
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce razvojni tim.Sva prava pridržana."
 
-#: dialogs/accessibility-settings/main.c:213
-#: dialogs/appearance-settings/main.c:1714 dialogs/color-settings/main.c:1484
-#: dialogs/display-settings/main.c:3458 dialogs/keyboard-settings/main.c:91
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2216
+#: dialogs/accessibility-settings/main.c:211
+#: dialogs/appearance-settings/main.c:1712 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3384 dialogs/keyboard-settings/main.c:91
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:259
 #, c-format
@@ -373,252 +1325,12 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr ""
 
-#: dialogs/appearance-settings/appearance-dialog.glade:39
-#: dialogs/appearance-settings/main.c:1601 dialogs/display-settings/main.c:86
-#: dialogs/display-settings/main.c:94
-#: dialogs/mouse-settings/mouse-dialog.glade:63
-msgid "None"
-msgstr "Nijedan"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:42
-msgid "Slight"
-msgstr "Lagano"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:45
-msgid "Medium"
-msgstr "Srednji"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:48
-msgid "Full"
-msgstr "Pun"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:59
-msgid "Icons"
-msgstr "Ikone"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:62
-msgid "Text"
-msgstr "Tekst"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:65
-msgid "Text under icons"
-msgstr "Tekst ispod ikona"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:68
-msgid "Text next to icons"
-msgstr "Tekst poslije ikona"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:82
-msgid "1x (no scaling)"
-msgstr "1x (nema skaliranja)"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:86
-msgid "2x"
-msgstr "2x"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:107
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
-msgid "Appearance"
-msgstr "Izgled"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:205
-#: dialogs/appearance-settings/appearance-dialog.glade:315
-#: dialogs/color-settings/color-dialog.glade:374
-#: dialogs/keyboard-settings/keyboard-dialog.glade:636
-#: dialogs/keyboard-settings/keyboard-dialog.glade:970
-#: xfce4-settings-editor/xfce-settings-editor-box.c:364
-msgid "_Add"
-msgstr "_Dodaj"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:238
-msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
-msgstr ""
-
-#: dialogs/appearance-settings/appearance-dialog.glade:272
-msgid "St_yle"
-msgstr "St_il"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:348
-msgid "_Icons"
-msgstr "_Ikone"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:388
-msgid ""
-"This font will be used as the default font used when drawing user interface "
-"text"
-msgstr ""
-"Ovaj će font biti korišten kao zadani kada se prikazuje tekst korisničkog "
-"sučelja"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:390
-msgid "Select a default font"
-msgstr "Odaberite zadani font"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:399
-msgid "Default Fon_t"
-msgstr "Zadani fon_t"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:431
-msgid ""
-"This font will be used as the default monospace font, for example by "
-"terminal emulators."
-msgstr ""
-"Ovaj font koristit će se kao zadani font fiksne širine, na primjer u "
-"emulatoru terminala."
-
-#: dialogs/appearance-settings/appearance-dialog.glade:433
-msgid "Select a default monospace font"
-msgstr "Izaberite zadani font fiksne širine"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:442
-msgid "Default _Monospace Font"
-msgstr "Zadani font _fiksne širine"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:477
-msgid "_Enable anti-aliasing"
-msgstr "_Omogući zaobljivanje rubova"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:481
-msgid ""
-"Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr "Zaobljivanje rubova može poboljšati izgled teksta na ekranu"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:509
-msgid "Hintin_g:"
-msgstr "Sugeriranj_e:"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:521
-msgid ""
-"Many fonts contain information that provides extra hints as to how best draw"
-" the font; pick whichever looks best according to personal preference"
-msgstr ""
-"Puno fontova koristi dodatne informacije o tome kako najbolje iscrtati font;"
-" odaberite po vlastitoj želji koji vam najbolje izgleda"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:541
-msgid "Sub-_pixel order:"
-msgstr "Pod-_pixel redoslijed:"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:553
-msgid ""
-"Font quality on a TFT or LCD screen can be greatly improved by choosing the "
-"correct sub-pixel order of the screen"
-msgstr ""
-"Kvaliteta fonta na TFT ili LCD zaslonu može biti uvelike poboljšana odabirom"
-" ispravnog podpiksel redoslijeda zaslona"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:591
-msgid "Rendering"
-msgstr "Prikaz"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:623
-msgid "Custom _DPI setting:"
-msgstr "Prilagođene _DPI postavke:"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:627
-msgid ""
-"Override the detected monitor resolution if fonts look too large or too "
-"small"
-msgstr ""
-"Premostite nađenu rezoluciju monitora ako su slova prevelika ili premalena"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:664
-msgid "DPI"
-msgstr "DPI"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:690
-msgid "_Fonts"
-msgstr "_Fontovi"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:733
-msgid "Show images on _buttons"
-msgstr "Pokazuj slike na _gumbima"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:737
-msgid "Specify whether icons should be displayed next to text in buttons"
-msgstr "Navedite da li ikone trebaju biti prikazane uz stavke u izbornicima"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:750
-msgid "Show images in _menus"
-msgstr "Pokaži slike u _izbornicima"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:754
-msgid "Specify whether icons should be displayed next to items in menus"
-msgstr "Navedite da li ikone trebaju biti prikazane uz stavke u izbornicima"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:767
-msgid "Enable e_ditable accelerators"
-msgstr "Omogući b_rze prečace koje se mogu uređivati"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:771
-msgid ""
-"If selected, keyboard shortcuts for menu items can be changed by hovering "
-"the mouse over the menu item and pressing the new key combination for the "
-"shortcut"
-msgstr ""
-"Ako su izabrani, prečaci tipkovnice za stavke izbornika mogu se promjeniti "
-"prelaskom miša preko stavke izbornika i pritiskom nove kombinacije tipki za "
-"prečac"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:784
-msgid "Enable header bars in dialo_gs"
-msgstr "Omogući traku zaglavlja u dijaloškim ovir_ima"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:788
-msgid ""
-"Defines whether GTK dialogs may place widgets such as buttons in the "
-"dialog's header bar. Implies in Client Side Decoration. Only affects newly "
-"opened dialogs."
-msgstr ""
-
-#: dialogs/appearance-settings/appearance-dialog.glade:807
-msgid "Menus and Buttons"
-msgstr "Izbornici i dugmad"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:839
-msgid "Enable _event sounds"
-msgstr "Omogući _zvukove događaja"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:843
-msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
-msgstr ""
-"Omogući ili onemogući zvukove događaja globalno(zahtjeva \"Canberra\" "
-"podršku)"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:856
-msgid "Enable input feedbac_k sounds"
-msgstr "Omogući zvučnu informacij_u za unose"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:860
-msgid ""
-"Specify whether mouse clicks and other user input will cause event sounds to"
-" play"
-msgstr ""
-"Odredite hoće li pritisci tipke miša i drugi unosi uzrokovati neki zvučni "
-"signal"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:879
-msgid "Event sounds"
-msgstr "Zvukovi događaja"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:908
-msgid "Adjust the system-wide display scaling"
-msgstr "Podesi skaliranje prikaza za cijeli sustav"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:926
-msgid "_Window Scaling"
-msgstr "_Skaliranje prozora"
-
-#: dialogs/appearance-settings/appearance-dialog.glade:954
-msgid "Setti_ngs"
-msgstr "Postav_ke"
-
-#: dialogs/appearance-settings/main.c:339
+#: dialogs/appearance-settings/main.c:337
 msgid "Failed to display Xfwm4 Settings"
 msgstr ""
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:633
+#: dialogs/appearance-settings/main.c:631
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -627,83 +1339,70 @@ msgstr ""
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:640
+#: dialogs/appearance-settings/main.c:638
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr ""
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:645
+#: dialogs/appearance-settings/main.c:643
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1252
+#: dialogs/appearance-settings/main.c:1250
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1257
+#: dialogs/appearance-settings/main.c:1255
 msgid "Failed to create temporary directory"
 msgstr "Nije uspjelo stvaranje privremenog direktorija"
 
-#: dialogs/appearance-settings/main.c:1262
+#: dialogs/appearance-settings/main.c:1260
 msgid "Failed to extract archive"
 msgstr "Neuspjelo raspakiranje arhive"
 
-#: dialogs/appearance-settings/main.c:1267
+#: dialogs/appearance-settings/main.c:1265
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Nepoznati format, samo su arhive i direktoriji podržani"
 
-#: dialogs/appearance-settings/main.c:1272
+#: dialogs/appearance-settings/main.c:1270
 msgid "Not a valid theme package"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1277
+#: dialogs/appearance-settings/main.c:1275
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Nepoznata pogreška, izlazni kod je %d"
 
-#: dialogs/appearance-settings/main.c:1284
+#: dialogs/appearance-settings/main.c:1282
 msgid "Failed to install theme"
 msgstr "Neuspjelo instaliranje teme"
 
-#: dialogs/appearance-settings/main.c:1338
+#: dialogs/appearance-settings/main.c:1336
 #, c-format
 msgid "Install %s theme"
 msgstr "Instaliraj %s temu"
 
-#. Create cancel button
-#: dialogs/appearance-settings/main.c:1340
-#: dialogs/color-settings/color-dialog.glade:529
-#: dialogs/color-settings/main.c:127
-#: dialogs/keyboard-settings/command-dialog.c:113
-#: dialogs/keyboard-settings/command-dialog.c:275
-#: dialogs/keyboard-settings/keyboard-dialog.glade:71
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:567
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:110
-msgid "_Cancel"
-msgstr "_Odustani"
-
-#: dialogs/appearance-settings/main.c:1341
+#: dialogs/appearance-settings/main.c:1339
 #: dialogs/keyboard-settings/command-dialog.c:276
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Otvori"
 
-#: dialogs/appearance-settings/main.c:1605
+#: dialogs/appearance-settings/main.c:1603
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1609
+#: dialogs/appearance-settings/main.c:1607
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1613
+#: dialogs/appearance-settings/main.c:1611
 msgid "Vertical RGB"
 msgstr "Okomito RGB"
 
-#: dialogs/appearance-settings/main.c:1617
+#: dialogs/appearance-settings/main.c:1615
 msgid "Vertical BGR"
 msgstr "Okomito BGR"
 
@@ -752,78 +1451,6 @@ msgstr "Ugrađena web kamera"
 #, c-format
 msgid "Enable color management for %s"
 msgstr "Omogući upravljanje bojama za %s"
-
-#: dialogs/color-settings/color-dialog.glade:46
-#: dialogs/color-settings/xfce4-color-settings.desktop.in:4
-msgid "Color Profiles"
-msgstr "Profili boja"
-
-#: dialogs/color-settings/color-dialog.glade:151
-msgid "<b>No devices found.</b>"
-msgstr "<b>Nisu nađeni uređaji.</b>"
-
-#: dialogs/color-settings/color-dialog.glade:221
-msgid "Model:"
-msgstr "Model:"
-
-#: dialogs/color-settings/color-dialog.glade:233
-msgid "Colorspace:"
-msgstr "Područje boja:"
-
-#: dialogs/color-settings/color-dialog.glade:256
-msgid "Vendor:"
-msgstr "Prodavač:"
-
-#: dialogs/color-settings/color-dialog.glade:280
-msgid "Calibrate"
-msgstr "Kalibriraj"
-
-#: dialogs/color-settings/color-dialog.glade:337
-msgid "<b>No profiles for the selected device.</b>"
-msgstr "<b>Nema profila za odabrani uređaj.</b>"
-
-#: dialogs/color-settings/color-dialog.glade:378
-msgid "Add a profile to the currently selected device"
-msgstr "Dodaj profil trenutno odabranom uređaju"
-
-#: dialogs/color-settings/color-dialog.glade:390
-#: dialogs/keyboard-settings/keyboard-dialog.glade:666
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1002
-msgid "_Remove"
-msgstr "_Ukloni"
-
-#: dialogs/color-settings/color-dialog.glade:394
-msgid "Delete the currently selected profile"
-msgstr "Obriši trenutno odabrani uređaj"
-
-#: dialogs/color-settings/color-dialog.glade:409
-#: dialogs/color-settings/color-dialog.glade:617
-msgid "Show detailed information about the selected profile"
-msgstr "Pokaži detaljne informacije o odabranom profilu"
-
-#: dialogs/color-settings/color-dialog.glade:432
-msgid "Enable"
-msgstr "Omogući"
-
-#: dialogs/color-settings/color-dialog.glade:436
-msgid "Enable the selected profile"
-msgstr "Omogući odabrani profil"
-
-#: dialogs/color-settings/color-dialog.glade:511
-msgid "Add Profile to Device"
-msgstr "Dodaj profil za uređaj"
-
-#: dialogs/color-settings/color-dialog.glade:543
-#: dialogs/keyboard-settings/command-dialog.c:117
-#: dialogs/keyboard-settings/keyboard-dialog.glade:86
-#: dialogs/mime-settings/xfce-mime-helper-chooser.c:568
-#: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
-msgid "_OK"
-msgstr "_U redu"
-
-#: dialogs/color-settings/color-dialog.glade:602
-msgid "Import color profile files (*.icc)"
-msgstr "Uvezi datoteke profila boja (*.icc)"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
@@ -890,57 +1517,57 @@ msgid "Default Gray"
 msgstr "Zadani Siva"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
-#: dialogs/color-settings/main.c:126
+#: dialogs/color-settings/main.c:125
 msgid "Select ICC Profile File"
 msgstr "Odaberi datoteku ICC profila"
 
-#: dialogs/color-settings/main.c:128
+#: dialogs/color-settings/main.c:127
 msgid "_Import"
 msgstr "Uvez_i"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:139
+#: dialogs/color-settings/main.c:138
 msgid "Supported ICC profiles"
 msgstr "Podržani ICC profili"
 
 #. TRANSLATORS: filter name on the file->open dialog
-#: dialogs/color-settings/main.c:146
+#: dialogs/color-settings/main.c:145
 msgid "All files"
 msgstr "Sve datoteke"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile has been auto-generated for this hardware
-#: dialogs/color-settings/main.c:189
+#: dialogs/color-settings/main.c:188
 msgid "Default: "
 msgstr "Zadano:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
-#: dialogs/color-settings/main.c:196
+#: dialogs/color-settings/main.c:195
 msgid "Colorspace: "
 msgstr "Područje boja:"
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
-#: dialogs/color-settings/main.c:203
+#: dialogs/color-settings/main.c:202
 msgid "Test profile: "
 msgstr "Testiraj profil:"
 
-#: dialogs/color-settings/main.c:238
+#: dialogs/color-settings/main.c:237
 msgid "Compatible Profiles"
 msgstr "Kompatibilni profili:"
 
-#: dialogs/color-settings/main.c:517
+#: dialogs/color-settings/main.c:516
 #, c-format
 msgid "Add Color Profile to %s"
 msgstr ""
 
-#: dialogs/color-settings/main.c:517
+#: dialogs/color-settings/main.c:516
 msgid "Device"
 msgstr "Uređaj"
 
-#: dialogs/color-settings/main.c:861 dialogs/color-settings/main.c:862
-#: dialogs/color-settings/main.c:863
+#: dialogs/color-settings/main.c:860 dialogs/color-settings/main.c:861
+#: dialogs/color-settings/main.c:862
 msgid "Unknown"
 msgstr "Nepoznato"
 
@@ -952,281 +1579,45 @@ msgstr "Postavi profil boje"
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr ""
 
-#: dialogs/display-settings/confirmation-dialog.glade:13
-msgid "<b><big>Would you like to keep this configuration?</big></b>"
-msgstr ""
-
-#: dialogs/display-settings/confirmation-dialog.glade:15
-msgid ""
-"The previous configuration will be restored in <b>10 seconds</b> if you do "
-"not reply to this question."
-msgstr ""
-
-#: dialogs/display-settings/confirmation-dialog.glade:29
-msgid "Keep this configuration"
-msgstr "Zadrži ovu konfiguraciju"
-
-#: dialogs/display-settings/confirmation-dialog.glade:44
-msgid "Restore the previous configuration"
-msgstr "Obnovi prethodnu konfiguraciju"
-
-#: dialogs/display-settings/display-dialog.glade:61
-msgid "Never"
-msgstr "Nikada"
-
-#: dialogs/display-settings/display-dialog.glade:65
-msgid "When a display is connected"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:69
-msgid "When a display is disconnected"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:73
-msgid "Always"
-msgstr "Uvijek"
-
-#: dialogs/display-settings/display-dialog.glade:87
-msgid "Do nothing"
-msgstr "Ne čini ništa"
-
-#: dialogs/display-settings/display-dialog.glade:91
-msgid "Show dialog"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:95
-msgid "Mirror"
-msgstr "Zrcalo"
-
-#: dialogs/display-settings/display-dialog.glade:99
-msgid "Extend"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:157
-msgid "The primary display can be configured to show:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1739
-msgid "Xfce Panel"
-msgstr "Xfce ploču"
-
-#: dialogs/display-settings/display-dialog.glade:184
-msgid "Desktop icons"
-msgstr "Ikone radne površine"
-
-#: dialogs/display-settings/display-dialog.glade:197
-msgid "Notifications"
-msgstr "Obavijesti"
-
-#: dialogs/display-settings/display-dialog.glade:207
-#: dialogs/display-settings/display-dialog.glade:222
-#: dialogs/display-settings/display-dialog.glade:237
-msgid "Configure..."
-msgstr "Postavi..."
-
-#: dialogs/display-settings/display-dialog.glade:255
-#: dialogs/display-settings/xfce-display-settings.desktop.in:4
-msgid "Display"
-msgstr "Zaslon"
-
-#: dialogs/display-settings/display-dialog.glade:362
-msgid "_Mirror displays"
-msgstr "_Zrcali zaslone"
-
-#: dialogs/display-settings/display-dialog.glade:461
-msgid "Primary Display:"
-msgstr "Primarni zaslon:"
-
-#: dialogs/display-settings/display-dialog.glade:487
-msgid "R_esolution:"
-msgstr "R_ezolucija:"
-
-#: dialogs/display-settings/display-dialog.glade:513
-msgid "Refresh _rate:"
-msgstr "Vrijeme _osvježenja:"
-
-#: dialogs/display-settings/display-dialog.glade:539
-msgid "Ro_tation:"
-msgstr "Ro_tacija:"
-
-#: dialogs/display-settings/display-dialog.glade:563
-msgid "Ref_lection:"
-msgstr "Ref_leksija:"
-
-#: dialogs/display-settings/display-dialog.glade:603
-msgid "A_pply"
-msgstr "_Primjeni"
-
-#: dialogs/display-settings/display-dialog.glade:631
-msgid "_Scale:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:669
-msgid "_General"
-msgstr "_Osnovno"
-
-#: dialogs/display-settings/display-dialog.glade:689
-msgid "<b>Profiles</b>"
-msgstr "<b>Profili</b>"
-
-#: dialogs/display-settings/display-dialog.glade:705
-msgid "<b>Connecting Displays</b>"
-msgstr "<b>Povezivanje zaslona</b>"
-
-#: dialogs/display-settings/display-dialog.glade:755
-msgid "Delete the currently selected display profile."
-msgstr "Izbriši trenutno odabrani profil zaslona."
-
-#: dialogs/display-settings/display-dialog.glade:768
-msgid "Apply"
-msgstr "Primjeni"
-
-#: dialogs/display-settings/display-dialog.glade:772
-msgid "Apply the currently selected display profile."
-msgstr "Primjeni trenutno odabrani profil zaslona."
-
-#: dialogs/display-settings/display-dialog.glade:788
-msgid "Create a new display profile."
-msgstr "Stvori novi profil zaslona."
-
-#: dialogs/display-settings/display-dialog.glade:804
-msgid "Update an existing profile."
-msgstr "Ažuriraj postojeći profil."
-
-#: dialogs/display-settings/display-dialog.glade:837
-msgid "First try to automatically enable a profile:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:869
-msgid "When a display is connected:"
-msgstr ""
-
-#: dialogs/display-settings/display-dialog.glade:882
-msgid "Show popup windows to identify displays"
-msgstr "Pokaži skočni prozor za identifikaciju zaslona"
-
-#: dialogs/display-settings/display-dialog.glade:908
-msgid "<b>Identifying Displays</b>"
-msgstr "<b>Identificiranje zaslona</b>"
-
-#: dialogs/display-settings/display-dialog.glade:946
-#: dialogs/display-settings/minimal-display-dialog.glade:354
-msgid "_Advanced"
-msgstr "N_apredno"
-
-#: dialogs/display-settings/display-dialog.glade:998
-msgid "<b>Profile Name</b>"
-msgstr "<b>Ime profila</b>"
-
-#: dialogs/display-settings/display-dialog.glade:1021
-msgid "Create"
-msgstr "Stvori"
-
-#: dialogs/display-settings/display-dialog.glade:1056
-msgid "A profile of this name already exists."
-msgstr "Profil ovog imena već postoji"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:16
-msgid "Extend right"
-msgstr ""
-
-#: dialogs/display-settings/minimal-display-dialog.glade:19
-msgid "Extend left"
-msgstr ""
-
-#: dialogs/display-settings/minimal-display-dialog.glade:22
-msgid "Extend up"
-msgstr ""
-
-#: dialogs/display-settings/minimal-display-dialog.glade:25
-msgid "Extend down"
-msgstr ""
-
-#: dialogs/display-settings/minimal-display-dialog.glade:37
-msgid "Displays"
-msgstr "Zasloni"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:92
-#: dialogs/display-settings/minimal-display-dialog.glade:93
-msgid "Only Display 1"
-msgstr "Samo zaslon 1"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:145
-#: dialogs/display-settings/minimal-display-dialog.glade:146
-msgid "Mirror Displays"
-msgstr "Zrcali zaslone"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:201
-msgid "Extend to the right"
-msgstr "Proširi u desno"
-
-#: dialogs/display-settings/minimal-display-dialog.glade:262
-#: dialogs/display-settings/minimal-display-dialog.glade:263
-msgid "Only Display 2"
-msgstr "Samo zaslon 2"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:12
-msgid "Update Display Profile"
-msgstr "Ažuriraj profil zaslona"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:51
-msgid "_Update"
-msgstr "Až_uriraj"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:109
-msgid ""
-"<big><b>You have made changes to your previously active profile</b></big>"
-msgstr ""
-"<big><b>Napravili ste izmijene na prethodno aktivnom profilu</b></big>"
-
-#: dialogs/display-settings/profile-changed-dialog.glade:124
-msgid ""
-"If you don't update the profile your changes will be lost upon restarting "
-"your session or disconnecting or connecting a display."
-msgstr ""
-"Ukoliko ne spremite promijene one će biti izgubljenje ponovnim pokretanjem "
-"sesije ili spajanjem odnosno odspajanjem zaslona."
-
-#: dialogs/display-settings/main.c:58
+#: dialogs/display-settings/main.c:54
 #, c-format
 msgid "Only %s (1)"
 msgstr "Samo %s (1)"
 
-#: dialogs/display-settings/main.c:59
+#: dialogs/display-settings/main.c:55
 #, c-format
 msgid "Only %s (2)"
 msgstr "Samo %s (2)"
 
-#: dialogs/display-settings/main.c:87
+#: dialogs/display-settings/main.c:83
 msgid "Left"
 msgstr "Lijevo"
 
-#: dialogs/display-settings/main.c:88
+#: dialogs/display-settings/main.c:84
 msgid "Inverted"
 msgstr "Obrnuto"
 
-#: dialogs/display-settings/main.c:89
+#: dialogs/display-settings/main.c:85
 msgid "Right"
 msgstr "Desno"
 
-#: dialogs/display-settings/main.c:95
+#: dialogs/display-settings/main.c:91
 msgid "Horizontal"
 msgstr "Vodoravno"
 
-#: dialogs/display-settings/main.c:96
+#: dialogs/display-settings/main.c:92
 msgid "Vertical"
 msgstr "Okomito"
 
-#: dialogs/display-settings/main.c:97
+#: dialogs/display-settings/main.c:93
 msgid "Horizontal and Vertical"
 msgstr "Vodoravno i okomito"
 
-#: dialogs/display-settings/main.c:109
+#: dialogs/display-settings/main.c:105
 msgid "Minimal interface to set up an external output"
 msgstr "Minimalno sučelje za postavljanje vanjskog ulaza"
 
-#: dialogs/display-settings/main.c:282
+#: dialogs/display-settings/main.c:275
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1234,46 +1625,36 @@ msgid ""
 msgstr ""
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:644
+#: dialogs/display-settings/main.c:635
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:973
+#: dialogs/display-settings/main.c:964
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
 "Zadnji aktivni izlaz ne smije biti  onemogućen, sustav će biti "
 "neupotrebljiv."
 
-#: dialogs/display-settings/main.c:974
+#: dialogs/display-settings/main.c:965
 msgid "Selected output not disabled"
 msgstr "Izabrani izlaz nije onemogućen"
 
-#: dialogs/display-settings/main.c:1322
-#, c-format
-msgid "Update changed display profile '%s'?"
-msgstr "Ažuriranje je izmijenilo profil zaslona '%s'?"
-
-#: dialogs/display-settings/main.c:1327
-#, c-format
-msgid "_Update '%s'"
-msgstr "Až_uriranje '%s'"
-
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1611
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Želite li izbrisati profil zaslona '%s'?"
 
-#: dialogs/display-settings/main.c:1677
+#: dialogs/display-settings/main.c:1614
 msgid "Delete Profile"
 msgstr "Izbriši profil"
 
-#: dialogs/display-settings/main.c:1678
+#: dialogs/display-settings/main.c:1615
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Jednom kada je profil izbrisan ne može biti vraćen."
 
-#: dialogs/display-settings/main.c:1678
+#: dialogs/display-settings/main.c:1615
 #: dialogs/mime-settings/xfce-mime-chooser.c:135
 #: dialogs/mime-settings/xfce-mime-chooser.c:380
 #: dialogs/mime-settings/xfce-mime-window.c:1184
@@ -1281,11 +1662,11 @@ msgstr "Jednom kada je profil izbrisan ne može biti vraćen."
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: dialogs/display-settings/main.c:1679
+#: dialogs/display-settings/main.c:1616
 msgid "Delete"
 msgstr "Izbriši"
 
-#: dialogs/display-settings/main.c:1765
+#: dialogs/display-settings/main.c:1699
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
@@ -1293,7 +1674,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: dialogs/display-settings/main.c:2550
+#: dialogs/display-settings/main.c:2484
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
@@ -1301,7 +1682,7 @@ msgstr ""
 "Izaberite monitor kako bi mijenjali njegova svojstva; povucite ih kako bi "
 "promijenili raspored."
 
-#: dialogs/display-settings/main.c:2649 dialogs/display-settings/main.c:2682
+#: dialogs/display-settings/main.c:2583 dialogs/display-settings/main.c:2616
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1310,23 +1691,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2899
+#: dialogs/display-settings/main.c:2833
 msgid "Mirror Screens"
 msgstr "Zrcali zaslone"
 
-#: dialogs/display-settings/main.c:2949
+#: dialogs/display-settings/main.c:2883
 msgid "(Disabled)"
 msgstr "(Onemogućeno)"
 
-#: dialogs/display-settings/main.c:3484
+#: dialogs/display-settings/main.c:3410
 msgid "ATI Settings"
 msgstr "ATI postavke"
 
-#: dialogs/display-settings/main.c:3489
+#: dialogs/display-settings/main.c:3415
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nije moguće pokrenuti postavke Xfce zaslona"
 
-#: dialogs/display-settings/main.c:3497
+#: dialogs/display-settings/main.c:3423
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nije moguće pokrenuti postavke vlasničkog upravljačkog programa"
 
@@ -1339,11 +1720,11 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr ""
 
-#: dialogs/display-settings/display-settings.c:464
+#: dialogs/display-settings/display-settings.c:463
 msgid "Display:"
 msgstr "Zaslon:"
 
-#: dialogs/display-settings/display-settings.c:472
+#: dialogs/display-settings/display-settings.c:471
 msgid "Resolution:"
 msgstr "Rezolucija:"
 
@@ -1418,136 +1799,6 @@ msgstr "Ruby skripte"
 msgid "Shell Scripts"
 msgstr "Skripte ljuske"
 
-#: dialogs/keyboard-settings/keyboard-dialog.glade:53
-msgid "Keyboard layout selection"
-msgstr "Odabir rasporeda tipkovnice"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:162
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
-msgid "Keyboard"
-msgstr "Tipkovnica"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:252
-msgid "Restore num l_ock state on startup"
-msgstr ""
-"Vrati stanje zaključan_osti numeričke tipkovnice pri pokretanju sustava"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:267
-#: dialogs/mouse-settings/mouse-dialog.glade:726
-#: dialogs/mouse-settings/mouse-dialog.glade:953
-msgid "General"
-msgstr "Općenito"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:301
-msgid "_Enable key repeat"
-msgstr "_Omogući ponavljanje tipke"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:305
-msgid ""
-"When selected, pressing and holding down a key emits the same character over"
-" and over again"
-msgstr ""
-"Kada je ova opcija omogućena, držanje tipke uzastopno ispisuje isti znak"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:333
-msgid "_Repeat delay:"
-msgstr "_Odgoda ponavljanja:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:347
-msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr ""
-"Vrijeme, u milisekundama,preije nego pritisnuta tipka počne ponavljati"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:363
-msgid "Repe_at speed:"
-msgstr "Brzi_na ponavljanja:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:377
-msgid "The rate at which keystrokes are generated while a key is pressed"
-msgstr "Frekvencija zapisa unosa dok je tipka pritisnuta"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:405
-msgid "Typing Settings"
-msgstr "Postavke tipkanja"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:438
-msgid "Show _blinking"
-msgstr "Pokaži _treperenje"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:442
-msgid "Specify whether or not the text cursor blinks"
-msgstr "Odredite treperi li pokazivač teksta"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:470
-msgid "Blink _delay:"
-msgstr "Razmak između _treptaja:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:484
-msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Odgoda, u milisekundama,između treptaja pokazivača"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:512
-msgid "Cursor"
-msgstr "Pokazivač"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:534
-msgid "_Test area:"
-msgstr "_Područje za testiranje:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:575
-msgid "Beha_vior"
-msgstr "Pona_šanje"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:593
-msgid "Define shortcuts for la_unching applications:"
-msgstr "Definiraj prečace za po_kretanje programa:"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:651
-#: dialogs/keyboard-settings/keyboard-dialog.glade:986
-#: xfce4-settings-editor/xfce-settings-editor-box.c:377
-msgid "_Edit"
-msgstr "_Uredi"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:692
-msgid "Reset to _Defaults"
-msgstr "Vrati na _zadano"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:732
-msgid "A_pplication Shortcuts"
-msgstr "P_rečaci programa"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:762
-msgid "<b>Use system defaults</b>"
-msgstr ""
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:817
-msgid "_Keyboard model"
-msgstr "_Model tipkovnice"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:861
-msgid "Change la_yout option"
-msgstr "Promjeni op_ciju rasporeda"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:899
-msgid "Co_mpose key"
-msgstr "Sa_stavi tipku"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1043
-msgid "Move currently selected item up by one row"
-msgstr "Pomakni odabranu stavku gore za jedan red"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1063
-msgid "Move currently selected item down by one row"
-msgstr "Pomakni odabranu stavku dolje za jedan red"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1096
-msgid "Key_board layout"
-msgstr "Ras_pored tipkovnice"
-
-#: dialogs/keyboard-settings/keyboard-dialog.glade:1123
-msgid "_Layout"
-msgstr "_Raspored"
-
 #: dialogs/keyboard-settings/main.c:80
 msgid "Unable to initialize GTK+."
 msgstr "Nije moguće pokrenuti GTK +."
@@ -1561,23 +1812,23 @@ msgstr "Neuspješno spajanje na xfconf nadglednik. Razlog: %s"
 msgid "Could not create the settings dialog."
 msgstr "Ne mogu napraviti dijalog postavki."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:434
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:431
 msgid "Command"
 msgstr "Naredba"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:442
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:439
 msgid "Shortcut"
 msgstr "Prečac"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:515
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
 msgid "Layout"
 msgstr "Raspored"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:516
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
 msgid "Variant"
 msgstr "Inačica"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1281
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
@@ -1585,24 +1836,24 @@ msgstr ""
 "Ovo će vratiti sve prečace na njihove zadane vrijednosti. Želite li doista "
 "to učiniti?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1285
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1282
 msgid "Reset to Defaults"
 msgstr "Vrati na zadano"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1286
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
 msgid "No"
 msgstr "Ne"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1286
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1283
 msgid "Yes"
 msgstr "Da"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1365
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1362
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
 "Zadane postavke sustava biti će obnovljene kada se idući put prijavite."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1367
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1364
 msgid "Warning"
 msgstr "Upozorenje"
 
@@ -2021,8 +2272,8 @@ msgstr "Postavke korisnika"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:660
 #: dialogs/mime-settings/xfce-mime-window.c:827
-#: dialogs/mouse-settings/main.c:413 dialogs/mouse-settings/main.c:415
-#: dialogs/mouse-settings/main.c:478
+#: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
+#: dialogs/mouse-settings/main.c:476
 msgid "Default"
 msgstr "Zadano"
 
@@ -2337,293 +2588,31 @@ msgstr "Xfe upravitelj datotekama"
 msgid "X Terminal"
 msgstr "X Terminal"
 
-#: dialogs/mouse-settings/main.c:85
+#: dialogs/mouse-settings/main.c:83
 msgid "Active device in the dialog"
 msgstr "Aktivni uređaj u dijalogu"
 
-#: dialogs/mouse-settings/main.c:85
+#: dialogs/mouse-settings/main.c:83
 msgid "DEVICE NAME"
 msgstr "IME UREĐAJA"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:167
+#: dialogs/mouse-settings/main.c:165
 #, c-format
 msgid "%g px"
 msgstr "% g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:177
+#: dialogs/mouse-settings/main.c:175
 #, c-format
 msgid "%g ms"
 msgstr "% g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:188
+#: dialogs/mouse-settings/main.c:186
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:67
-msgid "Use bottom areas as left, middle or right buttons"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:71
-msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:92
-msgid "Disabled"
-msgstr "Onemogućeno"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:96
-msgid "Edge scrolling"
-msgstr "Rub ekrana kao pomicanje kotačićem"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:100
-msgid "Two-finger scrolling"
-msgstr "Kretnje s dva prsta kao pomicanje kotačićem"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:104
-msgid "Circular scrolling"
-msgstr "Kretnje s dva prsta kao pomicanje kotačićem"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:126
-msgid "Pen (absolute)"
-msgstr "Olovka (apsolutno)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:130
-msgid "Mouse (relative)"
-msgstr "Miš (relativno)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:144
-msgid "None (right-handed)"
-msgstr "Nijedan (dešnjak)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:148
-msgid "Half (left-handed)"
-msgstr "Polovica (ljevak)"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:152
-msgid "Clockwise"
-msgstr "U smjeru kazaljke na satu"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:156
-msgid "Counterclockwise"
-msgstr "Obrnuto od smjera kazaljke na satu"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:162
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
-msgid "Mouse and Touchpad"
-msgstr "Miš i dodirna ploča"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:237
-msgid "De_vice:"
-msgstr "Ur_eđaj:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:314
-msgid "Le_ft-handed"
-msgstr "Lje_voruki"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:331
-msgid "Ri_ght-handed"
-msgstr "De_snoruki"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:355
-msgid "Reverse scroll d_irection"
-msgstr "Obrnut smjer kretanja kotač_ićem"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:359
-msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr ""
-"Kada je ova opcija odabrana, kretanje kotačićem miša bit će u obrnutom "
-"smjeru"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:372
-msgid "Allow high _resolution scrolling (experimental)"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:376
-msgid ""
-"Only supported on some mice (mostly Logitech) and requires driver support. "
-"On supported devices makes scrolling more precise."
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:395
-msgid "Buttons"
-msgstr "Dugmad"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:428
-msgid "_Reset to Defaults"
-msgstr "_Vrati na zadano"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:432
-msgid ""
-"Set the acceleration and sensitivity for the selected device to the default "
-"values"
-msgstr ""
-"Postavite ubrzanje i osjetljivost za odabrani uređaj na početne vrijednosti"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:448
-msgid "Sensitivit_y:"
-msgstr "Osjetljivos_t:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:461
-msgid "Acceleratio_n:"
-msgstr "Ubrzanj_e:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:473
-msgid ""
-"The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr ""
-"Faktor po kojem se povećava brzina kretanja pokazivača kada se pomiče miš"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:488
-msgid ""
-"The number of pixels the pointer must move in a short time before it starts "
-"accelerating"
-msgstr ""
-"Broj piksela koje pokazivač u kratkom vremenu mora preći prije nego što "
-"počne ubrzavati"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:502
-msgid "Adaptive pointer acceleration"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:505
-msgid ""
-"Toggles between adaptive and flat acceleration profile. Adaptive takes the "
-"current speed of the device into account when deciding on acceleration. "
-"Custom acceleration profile is not supported via xfce4-settings."
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:525
-msgid "Pointer Speed"
-msgstr "Bzina pokazivača"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:544
-msgid "B_uttons and Feedback"
-msgstr "Tipke i postavke ponašanja"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:578
-#: dialogs/mouse-settings/mouse-dialog.glade:595
-msgid "Disable touchpad _while typing"
-msgstr "Onemogući dodirnu ploču tijekom tipkanja"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:582
-#: dialogs/mouse-settings/mouse-dialog.glade:599
-msgid ""
-"When selected, the touchpad will be disabled when the keyboard is being used"
-msgstr ""
-"Kada je ova opcija omogućena, dodirna ploča će biti onemogućena kada se "
-"koristi tipkovnica za pisanje"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:624
-msgid "Duratio_n:"
-msgstr "Trajanj_e:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:659
-msgid "Tap touchpad to clic_k"
-msgstr "Pritisak dodirne ploče za kli_k"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:682
-msgid "Click m_ethod:"
-msgstr ""
-
-#: dialogs/mouse-settings/mouse-dialog.glade:767
-msgid "Scrolling _mode:"
-msgstr "Način _pomicanja kotačićem:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:805
-msgid "Enable hori_zontal scrolling"
-msgstr "Omogući hori_zontalno pomicanje kotačićem"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:827
-msgid "Scrolling"
-msgstr "Pomicanje kotačićem"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:850
-msgid "T_ouchpad"
-msgstr "D_odirna ploča"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:888
-msgid "Trac_king mode:"
-msgstr "Nač_in praćenja:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:901
-msgid "_Rotation:"
-msgstr "_Rotacija:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:976
-msgid "Tab_let"
-msgstr "Tab_let"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:997
-msgid "_Devices"
-msgstr "_Uređaji"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1034
-msgid "Th_reshold:"
-msgstr "P_rag početka:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1048
-msgid ""
-"The number of pixels the pointer must move before a drag operation will "
-"start"
-msgstr ""
-"Broj piksela koje pokazivač mora preći u kratkom vremenu prije nego što "
-"počne radnja povlačenja"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1067
-msgid "Drag and Drop"
-msgstr "Povuci i ispusti"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1103
-msgid "Ti_me:"
-msgstr "Vr_ijeme:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1117
-msgid ""
-"Two mouse clicks in less than this length of time (in milliseconds) will be "
-"considered a double click"
-msgstr ""
-"Dva klika mišem u manjem razmaku od navedenog vremena (u milisekundama) će "
-"biti smatrana dvoklikom "
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1133
-msgid "D_istance:"
-msgstr "U_daljenost:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1147
-msgid ""
-"The mouse pointer cannot move farther than this distance between two clicks "
-"for them to be considered a double click"
-msgstr ""
-"Pokazivač miša nesmije se maknuti više od navedene udaljenosti između dva "
-"klika kako bi se radnja protumačila kao dvoklik"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1166
-msgid "Double Click"
-msgstr "Dvoklik"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1188
-msgid "_Behavior"
-msgstr "_Ponašanje"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1253
-msgid "Cursor si_ze:"
-msgstr "Veličina pokazi_vača:"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1287
-msgid "Size"
-msgstr "Veličina"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1327
-msgid "Preview"
-msgstr "Pregled"
-
-#: dialogs/mouse-settings/mouse-dialog.glade:1356
-msgid "_Theme"
-msgstr "_Tema"
 
 #: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
