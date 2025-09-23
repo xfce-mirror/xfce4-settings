@@ -1631,6 +1631,8 @@ display_settings_profile_delete (GtkWidget *widget,
             g_free (active_profile);
             g_free (property);
         }
+
+        g_free (profile_hash);
     }
 }
 
