@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:59+0200\n"
+"POT-Creation-Date: 2025-09-23 00:54+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Marek Adamski, 2022-2025\n"
 "Language-Team: Polish (http://app.transifex.com/xfce/xfce4-settings/language/pl/)\n"
@@ -39,7 +39,7 @@ msgstr "Ułatwienia dostępu"
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3479
+#: dialogs/display-settings/main.c:3416
 #: dialogs/mime-settings/xfce-mime-window.c:190
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
@@ -623,7 +623,7 @@ msgid "The primary display can be configured to show:"
 msgstr "Główny ekran można skonfigurować do wyświetlania:"
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1732
+#: dialogs/display-settings/main.c:1673
 msgid "Xfce Panel"
 msgstr "Panel Xfce"
 
@@ -1198,11 +1198,11 @@ msgstr "Telewizor"
 msgid "Digital display"
 msgstr "Wyświetlacz cyfrowy"
 
-#: common/xfce-randr.c:281 dialogs/display-settings/display-settings-x11.c:698
+#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:698
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nie można uzyskać wersji używanego rozszerzenia RandR"
 
-#: common/xfce-randr.c:567
+#: common/xfce-randr.c:569
 #: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "Laptop"
@@ -1234,7 +1234,7 @@ msgstr "Wyświetla informacje o wersji"
 
 #: dialogs/accessibility-settings/main.c:191
 #: dialogs/appearance-settings/main.c:1692 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3427 dialogs/keyboard-settings/main.c:74
+#: dialogs/display-settings/main.c:3364 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
@@ -1245,7 +1245,7 @@ msgstr "Proszę wprowadzić „%s --help”, aby wypisać komunikat pomocy."
 
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1711 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3446 dialogs/keyboard-settings/main.c:90
+#: dialogs/display-settings/main.c:3383 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:258
@@ -1254,7 +1254,7 @@ msgstr "Zespół twórców Xfce. Wszystkie prawa zastrzeżone."
 
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1712 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3447 dialogs/keyboard-settings/main.c:91
+#: dialogs/display-settings/main.c:3384 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:259
@@ -1564,7 +1564,7 @@ msgstr "Poziome i pionowe"
 msgid "Minimal interface to set up an external output"
 msgstr "Otwiera okno uproszczonej konfiguracji ekranów"
 
-#: dialogs/display-settings/main.c:278
+#: dialogs/display-settings/main.c:275
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1572,44 +1572,34 @@ msgid ""
 msgstr "Poprzednia konfiguracja zostanie przywrócona w ciągu <b>%i sekund</b>, jeśli nie odpowiesz na to pytanie."
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:638
+#: dialogs/display-settings/main.c:635
 #, c-format
 msgid "%.2f Hz"
 msgstr "%.2f Hz"
 
-#: dialogs/display-settings/main.c:967
+#: dialogs/display-settings/main.c:964
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "Nie można wyłączyć ostatniego aktywnego wyjścia. W przeciwnym razie komputer byłby niezdatny do użycia."
 
-#: dialogs/display-settings/main.c:968
+#: dialogs/display-settings/main.c:965
 msgid "Selected output not disabled"
 msgstr "Zaznaczone wyjście nie jest wyłączone"
 
-#: dialogs/display-settings/main.c:1314
-#, c-format
-msgid "Update changed display profile '%s'?"
-msgstr "Zaktualizować zmieniony profil ekranu „%s”?"
-
-#: dialogs/display-settings/main.c:1319
-#, c-format
-msgid "_Update '%s'"
-msgstr "_Zaktualizuj „%s”"
-
-#: dialogs/display-settings/main.c:1667
+#: dialogs/display-settings/main.c:1611
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Czy chcesz usunąć profil ekranu „%s”?"
 
-#: dialogs/display-settings/main.c:1670
+#: dialogs/display-settings/main.c:1614
 msgid "Delete Profile"
 msgstr "Usuń profil"
 
-#: dialogs/display-settings/main.c:1671
+#: dialogs/display-settings/main.c:1615
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Po usunięciu profilu ekranu nie można go przywrócić."
 
-#: dialogs/display-settings/main.c:1671
+#: dialogs/display-settings/main.c:1615
 #: dialogs/mime-settings/xfce-mime-chooser.c:131
 #: dialogs/mime-settings/xfce-mime-chooser.c:376
 #: dialogs/mime-settings/xfce-mime-window.c:1295
@@ -1617,11 +1607,11 @@ msgstr "Po usunięciu profilu ekranu nie można go przywrócić."
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: dialogs/display-settings/main.c:1672
+#: dialogs/display-settings/main.c:1616
 msgid "Delete"
 msgstr "Usuń"
 
-#: dialogs/display-settings/main.c:1758
+#: dialogs/display-settings/main.c:1699
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
@@ -1630,13 +1620,13 @@ msgstr[1] "%d panele Xfce"
 msgstr[2] "%d paneli Xfce"
 msgstr[3] "%d paneli Xfce"
 
-#: dialogs/display-settings/main.c:2543
+#: dialogs/display-settings/main.c:2484
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Wybierz ekran, aby zmienić jego właściwości; przeciągnij go, aby zmienić jego położenie."
 
-#: dialogs/display-settings/main.c:2642 dialogs/display-settings/main.c:2675
+#: dialogs/display-settings/main.c:2583 dialogs/display-settings/main.c:2616
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1645,23 +1635,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2892
+#: dialogs/display-settings/main.c:2833
 msgid "Mirror Screens"
 msgstr "Ekrany zewnętrzne"
 
-#: dialogs/display-settings/main.c:2942
+#: dialogs/display-settings/main.c:2883
 msgid "(Disabled)"
 msgstr "(Wyłączone)"
 
-#: dialogs/display-settings/main.c:3473
+#: dialogs/display-settings/main.c:3410
 msgid "ATI Settings"
 msgstr "Sterownik ATI"
 
-#: dialogs/display-settings/main.c:3478
+#: dialogs/display-settings/main.c:3415
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nie można uruchomić programu konfiguracyjnego ekranów"
 
-#: dialogs/display-settings/main.c:3486
+#: dialogs/display-settings/main.c:3423
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nie można uruchomić ustawień sterownika własnościowego"
 
