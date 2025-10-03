@@ -95,6 +95,7 @@ static GOptionEntry option_entries[] = {
 /* Global xfconf channel */
 static XfconfChannel *xsettings_channel;
 static GSettings *desktop_interface_gsettings;
+static GSettings *xapps_portal_gsettings;
 
 typedef struct
 {
@@ -984,6 +985,35 @@ appearance_settings_load_ui_themes (gpointer user_data)
 }
 
 static void
+set_gsettings_color_scheme (GSettings *settings,
+                            XfconfChannel *channel,
+                            const gchar *property_name)
+{
+    if (settings != NULL)
+    {
+        GSettingsSchema *schema;
+        g_object_get (settings, "settings-schema", &schema, NULL);
+        if (g_settings_schema_has_key (schema, "color-scheme"))
+        {
+            gchar *str = xfconf_channel_get_string (channel, property_name, NULL);
+            if (str != NULL)
+            {
+                gchar *strdown = g_ascii_strdown (str, -1);
+                if (g_strstr_len (strdown, -1, "-dark-") || g_str_has_suffix (strdown, "-dark"))
+                    g_settings_set_string (settings, "color-scheme", "prefer-dark");
+                else
+                    g_settings_reset (settings, "color-scheme");
+                g_free (strdown);
+                g_free (str);
+            }
+            else
+                g_settings_reset (settings, "color-scheme");
+        }
+        g_settings_schema_unref (schema);
+    }
+}
+
+static void
 appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
                                                      const gchar *property_name,
                                                      const GValue *value,
@@ -1100,29 +1130,9 @@ appearance_settings_dialog_channel_property_changed (XfconfChannel *channel,
             g_free (new_name);
         }
 
-        /* Set the preferred color scheme (needed for GTK4) */
-        if (desktop_interface_gsettings != NULL)
-        {
-            GSettingsSchema *schema;
-            g_object_get (desktop_interface_gsettings, "settings-schema", &schema, NULL);
-            if (g_settings_schema_has_key (schema, "color-scheme"))
-            {
-                str = xfconf_channel_get_string (channel, property_name, NULL);
-                if (str != NULL)
-                {
-                    gchar *strdown = g_ascii_strdown (str, -1);
-                    if (g_strstr_len (strdown, -1, "-dark-") || g_str_has_suffix (strdown, "-dark"))
-                        g_settings_set_string (desktop_interface_gsettings, "color-scheme", "prefer-dark");
-                    else
-                        g_settings_reset (desktop_interface_gsettings, "color-scheme");
-                    g_free (strdown);
-                    g_free (str);
-                }
-                else
-                    g_settings_reset (desktop_interface_gsettings, "color-scheme");
-            }
-            g_settings_schema_unref (schema);
-        }
+        /* Set color scheme in gsettings, so that apps/services that read it apply the correct theme */
+        set_gsettings_color_scheme (desktop_interface_gsettings, channel, property_name);
+        set_gsettings_color_scheme (xapps_portal_gsettings, channel, property_name);
     }
     else if (strcmp (property_name, "/Net/IconThemeName") == 0)
     {
@@ -1745,6 +1755,12 @@ main (gint argc,
                 desktop_interface_gsettings = g_settings_new ("org.gnome.desktop.interface");
                 g_settings_schema_unref (schema);
             }
+            schema = g_settings_schema_source_lookup (source, "org.x.apps.portal", TRUE);
+            if (schema != NULL)
+            {
+                xapps_portal_gsettings = g_settings_new ("org.x.apps.portal");
+                g_settings_schema_unref (schema);
+            }
         }
 
         /* load the gtk user interface file*/
@@ -1812,6 +1828,8 @@ main (gint argc,
         g_object_unref (G_OBJECT (xsettings_channel));
         if (desktop_interface_gsettings != NULL)
             g_object_unref (desktop_interface_gsettings);
+        if (xapps_portal_gsettings != NULL)
+            g_object_unref (xapps_portal_gsettings);
     }
 
     /* shutdown xfconf */
