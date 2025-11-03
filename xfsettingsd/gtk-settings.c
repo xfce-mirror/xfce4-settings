@@ -216,6 +216,9 @@ xfce_gtk_settings_helper_init (XfceGtkSettingsHelper *helper)
         g_bus_own_name (G_BUS_TYPE_SESSION, "org.gtk.Settings", G_BUS_NAME_OWNER_FLAGS_NONE,
                         bus_acquired, NULL, name_lost, g_object_ref (helper), NULL);
 
+    if (g_getenv ("XFSETTINGSD_NO_GSETTINGS_SYNC") != NULL)
+        return;
+
     source = g_settings_schema_source_get_default ();
     if (source == NULL)
     {
