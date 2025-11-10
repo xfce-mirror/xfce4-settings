@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-09-23 00:54+0200\n"
+"POT-Creation-Date: 2025-11-10 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2025\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
@@ -45,7 +45,7 @@ msgstr "辅助功能"
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3416
+#: dialogs/display-settings/main.c:3418
 #: dialogs/mime-settings/xfce-mime-window.c:190
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
@@ -91,184 +91,185 @@ msgstr "在您的系统上未发现 AT-SPI （辅助技术）提供者"
 msgid "Assistive _Technologies"
 msgstr "辅助技术(_T)"
 
-#: common/resources/accessibility-dialog.glade:332
+#: common/resources/accessibility-dialog.glade:324
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
-msgstr "启用后，通常在多个按键需要同时按下时，转义键(比如 Ctrl、Alt 和 Shift)不需要一直按住(可以按住它们后再松开)。"
+msgstr "启用后，通常在多个按键需要同时按下时，修饰键(比如 Ctrl、Alt 和 Shift)不需要一直按住(可以按住它们后再松开)。"
 
-#: common/resources/accessibility-dialog.glade:355
+#: common/resources/accessibility-dialog.glade:347
 msgid "_Use sticky keys"
 msgstr "使用粘滞键(_U)"
 
-#: common/resources/accessibility-dialog.glade:383
+#: common/resources/accessibility-dialog.glade:375
 msgid "_Lock sticky keys"
 msgstr "锁定粘滞键(_L)"
 
-#: common/resources/accessibility-dialog.glade:387
+#: common/resources/accessibility-dialog.glade:379
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
-"locked in the pressed state until pressed again"
-msgstr "选中后，转义键(比如 Ctrl、Alt 和 Shift)会保持被按锁定状态直至下次再按"
+"locked in the pressed state if they are pressed twice in a row, until "
+"pressed again once"
+msgstr "当选中时，修饰键（如 Control、Alt 和 Shift ）若连续按下两次将保持锁定状态，直到再按下一次"
 
-#: common/resources/accessibility-dialog.glade:400
+#: common/resources/accessibility-dialog.glade:392
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr "两个键同时按下时禁用粘滞键(_P)"
 
-#: common/resources/accessibility-dialog.glade:404
+#: common/resources/accessibility-dialog.glade:396
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr "选中后，如果同时按下两个键会禁用 “粘滞键” 功能"
 
-#: common/resources/accessibility-dialog.glade:439
+#: common/resources/accessibility-dialog.glade:431
 msgid "Sticky Keys"
 msgstr "粘滞键"
 
-#: common/resources/accessibility-dialog.glade:469
+#: common/resources/accessibility-dialog.glade:461
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr "为防止意外按键，慢速键的要求是，在按住一个键经过一段最短时间后才接受此按键。"
 
-#: common/resources/accessibility-dialog.glade:492
+#: common/resources/accessibility-dialog.glade:484
 msgid "Use slow _keys"
 msgstr "使用慢速键(_K)"
 
-#: common/resources/accessibility-dialog.glade:521
+#: common/resources/accessibility-dialog.glade:513
 msgid "Acceptance _delay:"
 msgstr "接受延时(_D)："
 
-#: common/resources/accessibility-dialog.glade:535
+#: common/resources/accessibility-dialog.glade:527
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "以毫秒计的接受按键前必须经过的时间"
 
-#: common/resources/accessibility-dialog.glade:571
+#: common/resources/accessibility-dialog.glade:563
 msgid "Slow Keys"
 msgstr "慢速键"
 
-#: common/resources/accessibility-dialog.glade:601
+#: common/resources/accessibility-dialog.glade:593
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr "为防止意外的重复按键，反弹键强制两次按键之间的最短延时。"
 
-#: common/resources/accessibility-dialog.glade:624
+#: common/resources/accessibility-dialog.glade:616
 msgid "Use _bounce keys"
 msgstr "使用反弹键(_B)"
 
-#: common/resources/accessibility-dialog.glade:653
+#: common/resources/accessibility-dialog.glade:645
 msgid "K_eystroke delay:"
 msgstr "按键延时(_E)："
 
-#: common/resources/accessibility-dialog.glade:667
+#: common/resources/accessibility-dialog.glade:659
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "以毫秒计的两次按键间所需的时间"
 
-#: common/resources/accessibility-dialog.glade:703
+#: common/resources/accessibility-dialog.glade:695
 msgid "Bounce Keys"
 msgstr "反弹键"
 
-#: common/resources/accessibility-dialog.glade:729
+#: common/resources/accessibility-dialog.glade:714
 msgid "Keyboa_rd"
 msgstr "键盘(_R)"
 
-#: common/resources/accessibility-dialog.glade:769
+#: common/resources/accessibility-dialog.glade:746
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr "启用后，可以用数字小键盘控制鼠标光标。"
 
-#: common/resources/accessibility-dialog.glade:792
+#: common/resources/accessibility-dialog.glade:769
 msgid "_Use mouse emulation"
 msgstr "使用鼠标模拟(_U)"
 
-#: common/resources/accessibility-dialog.glade:796
+#: common/resources/accessibility-dialog.glade:773
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "选中后，可以用数字小键盘控制鼠标光标"
 
-#: common/resources/accessibility-dialog.glade:824
-#: common/resources/accessibility-dialog.glade:894
-#: common/resources/accessibility-dialog.glade:936
+#: common/resources/accessibility-dialog.glade:801
+#: common/resources/accessibility-dialog.glade:871
+#: common/resources/accessibility-dialog.glade:913
 msgid "msec"
 msgstr "毫秒"
 
-#: common/resources/accessibility-dialog.glade:835
+#: common/resources/accessibility-dialog.glade:812
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "以毫秒计的开始按键与第一次重复移动事件之间的时间"
 
-#: common/resources/accessibility-dialog.glade:852
+#: common/resources/accessibility-dialog.glade:829
 msgid "_Acceleration delay:"
 msgstr "加速延时(_A)："
 
-#: common/resources/accessibility-dialog.glade:865
+#: common/resources/accessibility-dialog.glade:842
 msgid "R_epeat interval:"
 msgstr "重复间隔(_E)："
 
-#: common/resources/accessibility-dialog.glade:877
+#: common/resources/accessibility-dialog.glade:854
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "以毫秒计的重复移动事件间的时间"
 
-#: common/resources/accessibility-dialog.glade:906
+#: common/resources/accessibility-dialog.glade:883
 msgid "Acceleration t_ime:"
 msgstr "加速时间(_I)："
 
-#: common/resources/accessibility-dialog.glade:918
+#: common/resources/accessibility-dialog.glade:895
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "以毫秒计的到达最大速度的时间"
 
-#: common/resources/accessibility-dialog.glade:948
+#: common/resources/accessibility-dialog.glade:925
 msgid "Ma_ximum speed:"
 msgstr "最大速度(_X)："
 
-#: common/resources/accessibility-dialog.glade:960
+#: common/resources/accessibility-dialog.glade:937
 msgid "The maximum pointer speed after acceleration"
 msgstr "加速后最大光标速度"
 
-#: common/resources/accessibility-dialog.glade:978
+#: common/resources/accessibility-dialog.glade:955
 msgid "pixels/sec"
 msgstr "像素/秒"
 
-#: common/resources/accessibility-dialog.glade:990
+#: common/resources/accessibility-dialog.glade:967
 msgid "Acceleration _profile:"
 msgstr "加速方式(_P)："
 
-#: common/resources/accessibility-dialog.glade:1002
+#: common/resources/accessibility-dialog.glade:979
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "到达最大光标速度的缓冲"
 
-#: common/resources/accessibility-dialog.glade:1048
+#: common/resources/accessibility-dialog.glade:1025
 msgid "Mouse Emulation"
 msgstr "鼠标模拟"
 
-#: common/resources/accessibility-dialog.glade:1078
+#: common/resources/accessibility-dialog.glade:1055
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr "为 xfce4-find-cursor 设定一键盘快捷键以获得鼠标光标当前位置的视觉回馈。"
 
-#: common/resources/accessibility-dialog.glade:1095
+#: common/resources/accessibility-dialog.glade:1072
 msgid "Show location of pointer on keypress"
 msgstr "在按下按键时显示鼠标指针的位置"
 
-#: common/resources/accessibility-dialog.glade:1117
+#: common/resources/accessibility-dialog.glade:1094
 msgid "Find Cursor"
 msgstr "寻找光标"
 
-#: common/resources/accessibility-dialog.glade:1143
+#: common/resources/accessibility-dialog.glade:1113
 msgid "_Mouse"
 msgstr "鼠标(_M)"
 
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1599 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1609 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "无"
@@ -553,7 +554,7 @@ msgstr "添加配置文件到设备"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1338 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1348 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:109
 #: dialogs/keyboard-settings/command-dialog.c:271
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
@@ -629,7 +630,7 @@ msgid "The primary display can be configured to show:"
 msgstr "主显示器可以配置为显示："
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1673
+#: dialogs/display-settings/main.c:1675
 msgid "Xfce Panel"
 msgstr "Xfce 面板"
 
@@ -1239,8 +1240,8 @@ msgid "Version information"
 msgstr "版本信息"
 
 #: dialogs/accessibility-settings/main.c:191
-#: dialogs/appearance-settings/main.c:1692 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3364 dialogs/keyboard-settings/main.c:74
+#: dialogs/appearance-settings/main.c:1702 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
@@ -1250,8 +1251,8 @@ msgid "Type '%s --help' for usage."
 msgstr "输入 ‘%s --help’ 获取用法。"
 
 #: dialogs/accessibility-settings/main.c:210
-#: dialogs/appearance-settings/main.c:1711 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3383 dialogs/keyboard-settings/main.c:90
+#: dialogs/appearance-settings/main.c:1721 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:258
@@ -1259,8 +1260,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发团队。保留所有权利。"
 
 #: dialogs/accessibility-settings/main.c:211
-#: dialogs/appearance-settings/main.c:1712 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3384 dialogs/keyboard-settings/main.c:91
+#: dialogs/appearance-settings/main.c:1722 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:259
@@ -1278,12 +1279,12 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "辅助;技术;按键;粘滞;反弹;仿真;屏幕阅读;放大镜;a11y;i18n;l10n;AT-SPI;ATK;缺陷;"
 
-#: dialogs/appearance-settings/main.c:337
+#: dialogs/appearance-settings/main.c:338
 msgid "Failed to display Xfwm4 Settings"
 msgstr "无法显示 Xfwm4 设置"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:631
+#: dialogs/appearance-settings/main.c:632
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1292,70 +1293,70 @@ msgstr "警告：此图标主题没有缓存文件。您可以在终端模拟器
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:638
+#: dialogs/appearance-settings/main.c:639
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "警告：此图标主题不完整。某些图标将丢失。"
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:643
+#: dialogs/appearance-settings/main.c:644
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "警告:此图标主题不完整。它只提供了其他主题可以继承的基本图标集。"
 
-#: dialogs/appearance-settings/main.c:1250
+#: dialogs/appearance-settings/main.c:1260
 msgid "File is too large, installation aborted"
 msgstr "文件太大，安装已中止"
 
-#: dialogs/appearance-settings/main.c:1255
+#: dialogs/appearance-settings/main.c:1265
 msgid "Failed to create temporary directory"
 msgstr "无法创建临时目录"
 
-#: dialogs/appearance-settings/main.c:1260
+#: dialogs/appearance-settings/main.c:1270
 msgid "Failed to extract archive"
 msgstr "无法提取归档文件"
 
-#: dialogs/appearance-settings/main.c:1265
+#: dialogs/appearance-settings/main.c:1275
 msgid "Unknown format, only archives and directories are supported"
 msgstr "未知格式，仅支持归档文件和目录"
 
-#: dialogs/appearance-settings/main.c:1270
+#: dialogs/appearance-settings/main.c:1280
 msgid "Not a valid theme package"
 msgstr "不是有效的主题包"
 
-#: dialogs/appearance-settings/main.c:1275
+#: dialogs/appearance-settings/main.c:1285
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "未知错误，退出代码是 %d"
 
-#: dialogs/appearance-settings/main.c:1282
+#: dialogs/appearance-settings/main.c:1292
 msgid "Failed to install theme"
 msgstr "无法安装主题"
 
-#: dialogs/appearance-settings/main.c:1336
+#: dialogs/appearance-settings/main.c:1346
 #, c-format
 msgid "Install %s theme"
 msgstr "安装 %s 主题"
 
-#: dialogs/appearance-settings/main.c:1339
+#: dialogs/appearance-settings/main.c:1349
 #: dialogs/keyboard-settings/command-dialog.c:272
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: dialogs/appearance-settings/main.c:1603
+#: dialogs/appearance-settings/main.c:1613
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1607
+#: dialogs/appearance-settings/main.c:1617
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1611
+#: dialogs/appearance-settings/main.c:1621
 msgid "Vertical RGB"
 msgstr "竖直 RGB"
 
-#: dialogs/appearance-settings/main.c:1615
+#: dialogs/appearance-settings/main.c:1625
 msgid "Vertical BGR"
 msgstr "竖直 BGR"
 
@@ -1617,19 +1618,19 @@ msgstr "取消"
 msgid "Delete"
 msgstr "删除"
 
-#: dialogs/display-settings/main.c:1699
+#: dialogs/display-settings/main.c:1701
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
 msgstr[0] "%dXfce 面板"
 
-#: dialogs/display-settings/main.c:2484
+#: dialogs/display-settings/main.c:2486
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "选取一个屏幕以改变其属性；拖曳以重新排列其位置。"
 
-#: dialogs/display-settings/main.c:2583 dialogs/display-settings/main.c:2616
+#: dialogs/display-settings/main.c:2585 dialogs/display-settings/main.c:2618
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1638,23 +1639,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2833
+#: dialogs/display-settings/main.c:2835
 msgid "Mirror Screens"
 msgstr "镜像屏幕"
 
-#: dialogs/display-settings/main.c:2883
+#: dialogs/display-settings/main.c:2885
 msgid "(Disabled)"
 msgstr "(已停用)"
 
-#: dialogs/display-settings/main.c:3410
+#: dialogs/display-settings/main.c:3412
 msgid "ATI Settings"
 msgstr "ATI 设置"
 
-#: dialogs/display-settings/main.c:3415
+#: dialogs/display-settings/main.c:3417
 msgid "Unable to start the Xfce Display Settings"
 msgstr "未能启动 Xfce 显示设置"
 
-#: dialogs/display-settings/main.c:3423
+#: dialogs/display-settings/main.c:3425
 msgid "Unable to launch the proprietary driver settings"
 msgstr "未能启动非自由驱动设置"
 
