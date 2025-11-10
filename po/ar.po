@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:59+0200\n"
+"POT-Creation-Date: 2025-11-10 00:53+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: 7f91df02564a1feba5fdc4d7b990b7f2_5fb95ff, 2021\n"
 "Language-Team: Arabic (http://app.transifex.com/xfce/xfce4-settings/language/ar/)\n"
@@ -41,7 +41,7 @@ msgstr "الإتاحة"
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3479
+#: dialogs/display-settings/main.c:3418
 #: dialogs/mime-settings/xfce-mime-window.c:190
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
@@ -87,184 +87,185 @@ msgstr "لم يتم العثور على موفر AT-SPI على النظام"
 msgid "Assistive _Technologies"
 msgstr "التقنيات المُساعدة"
 
-#: common/resources/accessibility-dialog.glade:332
+#: common/resources/accessibility-dialog.glade:324
 msgid ""
 "When enabled, modifier keys (such as Control, Alt, and Shift) do not need to"
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr "عند تمكينه، مفاتيح التعديل (مثل Control و Alt و Shift) لا تحتاج الضغط باستمرار (يمكن الضغط والإفلات) عند الحاجة لضغط مفاتيح متعددة في نفس الوقت."
 
-#: common/resources/accessibility-dialog.glade:355
+#: common/resources/accessibility-dialog.glade:347
 msgid "_Use sticky keys"
 msgstr "_استخدم مثبتات المفاتيح"
 
-#: common/resources/accessibility-dialog.glade:383
+#: common/resources/accessibility-dialog.glade:375
 msgid "_Lock sticky keys"
 msgstr "_إقفال ثبات المفاتيح"
 
-#: common/resources/accessibility-dialog.glade:387
+#: common/resources/accessibility-dialog.glade:379
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
-"locked in the pressed state until pressed again"
-msgstr "عند تحديده مفاتيح التعديل (مثل التحكم و Alt و Shift) ستبقى مؤمنة عند الضغط عليه حتى تضغط عليها مرة أخرى"
+"locked in the pressed state if they are pressed twice in a row, until "
+"pressed again once"
+msgstr ""
 
-#: common/resources/accessibility-dialog.glade:400
+#: common/resources/accessibility-dialog.glade:392
 msgid "Disable sticky keys if two keys are _pressed"
 msgstr "تعطيل المفاتيح الثابتة إذا ضُغط المفتاح مرتين"
 
-#: common/resources/accessibility-dialog.glade:404
+#: common/resources/accessibility-dialog.glade:396
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr "عند تحديده، يتم تعطيل ميزة \"ثبات المفاتيح\" إذا تم الضغط على مفتاحين في أن واحد"
 
-#: common/resources/accessibility-dialog.glade:439
+#: common/resources/accessibility-dialog.glade:431
 msgid "Sticky Keys"
 msgstr "مفاتيح ثابتة"
 
-#: common/resources/accessibility-dialog.glade:469
+#: common/resources/accessibility-dialog.glade:461
 msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr "للمساعدة في منع الضغطات العرَضية للمفاتيح، مفاتيح بطيئة يتطلب الضغط باستمرار على المفتاح لفترة محددة على اﻷقل قبل قبول الضغطة."
 
-#: common/resources/accessibility-dialog.glade:492
+#: common/resources/accessibility-dialog.glade:484
 msgid "Use slow _keys"
 msgstr "إستعمل المفاتيح البطي_ئة"
 
-#: common/resources/accessibility-dialog.glade:521
+#: common/resources/accessibility-dialog.glade:513
 msgid "Acceptance _delay:"
 msgstr "تأخير التسارع:"
 
-#: common/resources/accessibility-dialog.glade:535
+#: common/resources/accessibility-dialog.glade:527
 msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr "مقدار الوقت، بالميلي ثانية، التي يجب انقضاؤها قبل قبول ضغطه أخرى"
 
-#: common/resources/accessibility-dialog.glade:571
+#: common/resources/accessibility-dialog.glade:563
 msgid "Slow Keys"
 msgstr "مفاتيح بطيئة"
 
-#: common/resources/accessibility-dialog.glade:601
+#: common/resources/accessibility-dialog.glade:593
 msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr "للمساعدة في منع ضغطات المفاتيح المتكررة، تفرض bounce keys حداً أدنىً من الانتظار بين الضغطات."
 
-#: common/resources/accessibility-dialog.glade:624
+#: common/resources/accessibility-dialog.glade:616
 msgid "Use _bounce keys"
 msgstr "استخدم مفاتيح متكررة"
 
-#: common/resources/accessibility-dialog.glade:653
+#: common/resources/accessibility-dialog.glade:645
 msgid "K_eystroke delay:"
 msgstr "مهلة التأخير:"
 
-#: common/resources/accessibility-dialog.glade:667
+#: common/resources/accessibility-dialog.glade:659
 msgid "The amount of time, in milliseconds, required between keystrokes"
 msgstr "مقدار الوقت، بالميلي ثانية، المطلوب بين ضغطات المفاتيح"
 
-#: common/resources/accessibility-dialog.glade:703
+#: common/resources/accessibility-dialog.glade:695
 msgid "Bounce Keys"
 msgstr "تكرر المفاتيح"
 
-#: common/resources/accessibility-dialog.glade:729
+#: common/resources/accessibility-dialog.glade:714
 msgid "Keyboa_rd"
 msgstr "ل_وحة المفاتيح"
 
-#: common/resources/accessibility-dialog.glade:769
+#: common/resources/accessibility-dialog.glade:746
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
 msgstr "عند تمكينه, سيمكن التحكم بمؤشر الفأرة باستخدام لوحة مفاتيح اﻷرقام."
 
-#: common/resources/accessibility-dialog.glade:792
+#: common/resources/accessibility-dialog.glade:769
 msgid "_Use mouse emulation"
 msgstr "_إستعمل محاكي الفارة"
 
-#: common/resources/accessibility-dialog.glade:796
+#: common/resources/accessibility-dialog.glade:773
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
 msgstr "عند تحديدها, سيتم التحكم في مؤشر الفأرة بأرقام لوحة المفاتيح"
 
-#: common/resources/accessibility-dialog.glade:824
-#: common/resources/accessibility-dialog.glade:894
-#: common/resources/accessibility-dialog.glade:936
+#: common/resources/accessibility-dialog.glade:801
+#: common/resources/accessibility-dialog.glade:871
+#: common/resources/accessibility-dialog.glade:913
 msgid "msec"
 msgstr "م ثانية"
 
-#: common/resources/accessibility-dialog.glade:835
+#: common/resources/accessibility-dialog.glade:812
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr "الوقت، بالميلي ثانية، بين الحركة الأولى وأول حركة مكررة"
 
-#: common/resources/accessibility-dialog.glade:852
+#: common/resources/accessibility-dialog.glade:829
 msgid "_Acceleration delay:"
 msgstr "_مهلة التسريع:"
 
-#: common/resources/accessibility-dialog.glade:865
+#: common/resources/accessibility-dialog.glade:842
 msgid "R_epeat interval:"
 msgstr "فترة التكرار:"
 
-#: common/resources/accessibility-dialog.glade:877
+#: common/resources/accessibility-dialog.glade:854
 msgid "The time, in milliseconds, between repeated motion events"
 msgstr "الوقت، بالميلي ثانية، بين أحداث الحركة المتكررة"
 
-#: common/resources/accessibility-dialog.glade:906
+#: common/resources/accessibility-dialog.glade:883
 msgid "Acceleration t_ime:"
 msgstr "وقت التسارع:"
 
-#: common/resources/accessibility-dialog.glade:918
+#: common/resources/accessibility-dialog.glade:895
 msgid "The time, in milliseconds, to get to maximum speed"
 msgstr "الوقت، بالميلي ثانية، للوصول إلى الحد الأقصى للسرعة"
 
-#: common/resources/accessibility-dialog.glade:948
+#: common/resources/accessibility-dialog.glade:925
 msgid "Ma_ximum speed:"
 msgstr "سرعة عالية:"
 
-#: common/resources/accessibility-dialog.glade:960
+#: common/resources/accessibility-dialog.glade:937
 msgid "The maximum pointer speed after acceleration"
 msgstr "أقصى سرعة للمؤشر عند زيادة السرعة"
 
-#: common/resources/accessibility-dialog.glade:978
+#: common/resources/accessibility-dialog.glade:955
 msgid "pixels/sec"
 msgstr "بكسل/ثانية"
 
-#: common/resources/accessibility-dialog.glade:990
+#: common/resources/accessibility-dialog.glade:967
 msgid "Acceleration _profile:"
 msgstr "مواصفات التسارع:"
 
-#: common/resources/accessibility-dialog.glade:1002
+#: common/resources/accessibility-dialog.glade:979
 msgid "The ramp used to reach maximum pointer speed"
 msgstr "التسارع المستخدم للوصول إلى سرعة المؤشر القصوى"
 
-#: common/resources/accessibility-dialog.glade:1048
+#: common/resources/accessibility-dialog.glade:1025
 msgid "Mouse Emulation"
 msgstr "محاكي الفأرة"
 
-#: common/resources/accessibility-dialog.glade:1078
+#: common/resources/accessibility-dialog.glade:1055
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr "حدد اختصار لوحة المفاتيح لـ xfce4-find-cursor للحصول على ملاحظة مرئية تدل على موقع مؤشر الفأرة."
 
-#: common/resources/accessibility-dialog.glade:1095
+#: common/resources/accessibility-dialog.glade:1072
 msgid "Show location of pointer on keypress"
 msgstr "إظهار موقع المؤشر عند ضغط أحد المفاتيح"
 
-#: common/resources/accessibility-dialog.glade:1117
+#: common/resources/accessibility-dialog.glade:1094
 msgid "Find Cursor"
 msgstr "اعثر على المؤشر"
 
-#: common/resources/accessibility-dialog.glade:1143
+#: common/resources/accessibility-dialog.glade:1113
 msgid "_Mouse"
 msgstr "_فأرة"
 
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1599 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1609 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "لا شيء"
@@ -549,7 +550,7 @@ msgstr ""
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1338 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1348 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:109
 #: dialogs/keyboard-settings/command-dialog.c:271
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
@@ -625,7 +626,7 @@ msgid "The primary display can be configured to show:"
 msgstr ""
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1732
+#: dialogs/display-settings/main.c:1675
 msgid "Xfce Panel"
 msgstr "شريط إكسفس"
 
@@ -1200,11 +1201,11 @@ msgstr "تلفاز"
 msgid "Digital display"
 msgstr "العرض الرقمي"
 
-#: common/xfce-randr.c:281 dialogs/display-settings/display-settings-x11.c:698
+#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:698
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "غير قادر على الاستعلام عن إصدار الملحق RandR قيد الاستخدام"
 
-#: common/xfce-randr.c:567
+#: common/xfce-randr.c:569
 #: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "حاسوب محمول"
@@ -1235,8 +1236,8 @@ msgid "Version information"
 msgstr "معلومات النسخة"
 
 #: dialogs/accessibility-settings/main.c:191
-#: dialogs/appearance-settings/main.c:1692 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3427 dialogs/keyboard-settings/main.c:74
+#: dialogs/appearance-settings/main.c:1702 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
@@ -1246,8 +1247,8 @@ msgid "Type '%s --help' for usage."
 msgstr "اكتب '%s --help' لدليل المستخدم."
 
 #: dialogs/accessibility-settings/main.c:210
-#: dialogs/appearance-settings/main.c:1711 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3446 dialogs/keyboard-settings/main.c:90
+#: dialogs/appearance-settings/main.c:1721 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:258
@@ -1255,8 +1256,8 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "فريق تطوير إكسفس. كل الحقوق محفوظة."
 
 #: dialogs/accessibility-settings/main.c:211
-#: dialogs/appearance-settings/main.c:1712 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3447 dialogs/keyboard-settings/main.c:91
+#: dialogs/appearance-settings/main.c:1722 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:259
@@ -1274,12 +1275,12 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:337
+#: dialogs/appearance-settings/main.c:338
 msgid "Failed to display Xfwm4 Settings"
 msgstr ""
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:631
+#: dialogs/appearance-settings/main.c:632
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1288,70 +1289,70 @@ msgstr ""
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:638
+#: dialogs/appearance-settings/main.c:639
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr ""
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:643
+#: dialogs/appearance-settings/main.c:644
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1250
+#: dialogs/appearance-settings/main.c:1260
 msgid "File is too large, installation aborted"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1255
+#: dialogs/appearance-settings/main.c:1265
 msgid "Failed to create temporary directory"
 msgstr "فشل إنشاء مجلد مؤقت"
 
-#: dialogs/appearance-settings/main.c:1260
+#: dialogs/appearance-settings/main.c:1270
 msgid "Failed to extract archive"
 msgstr "فشل إستخراج الأرشيف"
 
-#: dialogs/appearance-settings/main.c:1265
+#: dialogs/appearance-settings/main.c:1275
 msgid "Unknown format, only archives and directories are supported"
 msgstr "صيغة مجهولة, يتم دعم الأرشيفات والمجلدات فقط"
 
-#: dialogs/appearance-settings/main.c:1270
+#: dialogs/appearance-settings/main.c:1280
 msgid "Not a valid theme package"
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:1275
+#: dialogs/appearance-settings/main.c:1285
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "خطأ مجهول, رمز الخروج هو %d"
 
-#: dialogs/appearance-settings/main.c:1282
+#: dialogs/appearance-settings/main.c:1292
 msgid "Failed to install theme"
 msgstr "فشل تثبيت السمة"
 
-#: dialogs/appearance-settings/main.c:1336
+#: dialogs/appearance-settings/main.c:1346
 #, c-format
 msgid "Install %s theme"
 msgstr "تثبيت %s سمة"
 
-#: dialogs/appearance-settings/main.c:1339
+#: dialogs/appearance-settings/main.c:1349
 #: dialogs/keyboard-settings/command-dialog.c:272
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_فتح"
 
-#: dialogs/appearance-settings/main.c:1603
+#: dialogs/appearance-settings/main.c:1613
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1607
+#: dialogs/appearance-settings/main.c:1617
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1611
+#: dialogs/appearance-settings/main.c:1621
 msgid "Vertical RGB"
 msgstr "RGB عمودي"
 
-#: dialogs/appearance-settings/main.c:1615
+#: dialogs/appearance-settings/main.c:1625
 msgid "Vertical BGR"
 msgstr "BGR عمودي"
 
@@ -1566,7 +1567,7 @@ msgstr "أفقي و عمودي"
 msgid "Minimal interface to set up an external output"
 msgstr "واجهة الحد الأدنى لإعداد المخرجات الخارجية"
 
-#: dialogs/display-settings/main.c:278
+#: dialogs/display-settings/main.c:275
 #, c-format
 msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
@@ -1574,44 +1575,34 @@ msgid ""
 msgstr ""
 
 #. Insert the mode
-#: dialogs/display-settings/main.c:638
+#: dialogs/display-settings/main.c:635
 #, c-format
 msgid "%.2f Hz"
 msgstr ""
 
-#: dialogs/display-settings/main.c:967
+#: dialogs/display-settings/main.c:964
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr "يجب عدم تعطيل آخر إخراج نشط، سيكون النظام غير قابل للاستخدام."
 
-#: dialogs/display-settings/main.c:968
+#: dialogs/display-settings/main.c:965
 msgid "Selected output not disabled"
 msgstr "الإخراج المحدد غير معطل"
 
-#: dialogs/display-settings/main.c:1314
-#, c-format
-msgid "Update changed display profile '%s'?"
-msgstr ""
-
-#: dialogs/display-settings/main.c:1319
-#, c-format
-msgid "_Update '%s'"
-msgstr ""
-
-#: dialogs/display-settings/main.c:1667
+#: dialogs/display-settings/main.c:1611
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1670
+#: dialogs/display-settings/main.c:1614
 msgid "Delete Profile"
 msgstr ""
 
-#: dialogs/display-settings/main.c:1671
+#: dialogs/display-settings/main.c:1615
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr ""
 
-#: dialogs/display-settings/main.c:1671
+#: dialogs/display-settings/main.c:1615
 #: dialogs/mime-settings/xfce-mime-chooser.c:131
 #: dialogs/mime-settings/xfce-mime-chooser.c:376
 #: dialogs/mime-settings/xfce-mime-window.c:1295
@@ -1619,11 +1610,11 @@ msgstr ""
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: dialogs/display-settings/main.c:1672
+#: dialogs/display-settings/main.c:1616
 msgid "Delete"
 msgstr "حذف"
 
-#: dialogs/display-settings/main.c:1758
+#: dialogs/display-settings/main.c:1701
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
@@ -1634,13 +1625,13 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: dialogs/display-settings/main.c:2543
+#: dialogs/display-settings/main.c:2486
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "اختر رصدا لتغيير خصائصه، اسحبه إلى إعادة ترتيب الموقع"
 
-#: dialogs/display-settings/main.c:2642 dialogs/display-settings/main.c:2675
+#: dialogs/display-settings/main.c:2585 dialogs/display-settings/main.c:2618
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1649,23 +1640,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2892
+#: dialogs/display-settings/main.c:2835
 msgid "Mirror Screens"
 msgstr "شاشات المرآة"
 
-#: dialogs/display-settings/main.c:2942
+#: dialogs/display-settings/main.c:2885
 msgid "(Disabled)"
 msgstr "(Disabled)"
 
-#: dialogs/display-settings/main.c:3473
+#: dialogs/display-settings/main.c:3412
 msgid "ATI Settings"
 msgstr "إعدادات ATI"
 
-#: dialogs/display-settings/main.c:3478
+#: dialogs/display-settings/main.c:3417
 msgid "Unable to start the Xfce Display Settings"
 msgstr "غير قادر على بدء مدير عرض إكسفس"
 
-#: dialogs/display-settings/main.c:3486
+#: dialogs/display-settings/main.c:3425
 msgid "Unable to launch the proprietary driver settings"
 msgstr "غير قادر على إطلاق مدير خصائص برنامج التشغيل"
 
