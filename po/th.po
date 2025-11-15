@@ -5,6 +5,7 @@
 # 
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2025
+# Warut Bunprasert <warut.b@disroot.org>, 2025
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-11-10 00:53+0100\n"
 "PO-Revision-Date: 2025-02-14 11:29+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>, 2025\n"
+"Last-Translator: Warut Bunprasert <warut.b@disroot.org>, 2025\n"
 "Language-Team: Thai (https://app.transifex.com/xfce/teams/16840/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,6 +107,8 @@ msgid ""
 "locked in the pressed state if they are pressed twice in a row, until "
 "pressed again once"
 msgstr ""
+"เมื่อเลือกแล้ว ปุ่มปรับค่า (เช่น Control, Alt และ Shift) "
+"จะยังคงล็อคอยู่ในสถานะกดหากกดสองครั้งติดต่อกัน จนกว่าจะกดอีกครั้งหนึ่งครั้ง"
 
 #: common/resources/accessibility-dialog.glade:392
 msgid "Disable sticky keys if two keys are _pressed"
@@ -330,7 +333,7 @@ msgstr "เ_พิ่ม"
 
 #: common/resources/appearance-dialog.glade:238
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
-msgstr ""
+msgstr "ตั้งค่า<a href=\"xfwm4-settings:\">ชุดตกแต่ง Xfwm4</a> ที่ตรงกัน หากมี"
 
 #: common/resources/appearance-dialog.glade:272
 msgid "St_yle"
@@ -459,7 +462,7 @@ msgstr ""
 
 #: common/resources/appearance-dialog.glade:784
 msgid "Enable header bars in dialo_gs"
-msgstr ""
+msgstr "เปิดใช้งานแถบส่วนหัวใน_กล่องโต้ตอบ"
 
 #: common/resources/appearance-dialog.glade:788
 msgid ""
@@ -467,6 +470,9 @@ msgid ""
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr ""
+"กำหนดว่ากล่องโต้ตอบ GTK สามารถวางวิดเจ็ต เช่น "
+"ปุ่มในแถบส่วนหัวของกล่องโต้ตอบได้หรือไม่ หมายถึงการตกแต่งฝั่งไคลเอ็นต์ "
+"และมีผลกับกล่องโต้ตอบที่เพิ่งเปิดใหม่เท่านั้น"
 
 #: common/resources/appearance-dialog.glade:807
 msgid "Menus and Buttons"
@@ -616,11 +622,11 @@ msgstr "ไม่จัด"
 
 #: common/resources/display-dialog.glade:65
 msgid "When a display is connected"
-msgstr ""
+msgstr "เมื่อเชื่อมต่อจอแสดงผลแล้ว"
 
 #: common/resources/display-dialog.glade:69
 msgid "When a display is disconnected"
-msgstr ""
+msgstr "เมื่อจอแสดงผลถูกตัดการเชื่อมต่อ"
 
 #: common/resources/display-dialog.glade:73
 msgid "Always"
@@ -632,19 +638,19 @@ msgstr "ไม่ทำอะไร"
 
 #: common/resources/display-dialog.glade:91
 msgid "Show dialog"
-msgstr ""
+msgstr "แสดงกล่องโต้ตอบ"
 
 #: common/resources/display-dialog.glade:95
 msgid "Mirror"
-msgstr ""
+msgstr "แหล่งสำเนา"
 
 #: common/resources/display-dialog.glade:99
 msgid "Extend"
-msgstr ""
+msgstr "ขยาย"
 
 #: common/resources/display-dialog.glade:157
 msgid "The primary display can be configured to show:"
-msgstr ""
+msgstr "จอแสดงผลหลักสามารถกำหนดค่าให้แสดง:"
 
 #: common/resources/display-dialog.glade:171
 #: dialogs/display-settings/main.c:1675
@@ -736,11 +742,11 @@ msgstr "ปรับข้อมูลโพรไฟล์"
 
 #: common/resources/display-dialog.glade:837
 msgid "First try to automatically enable a profile:"
-msgstr ""
+msgstr "ขั้นแรกให้ลองเปิดใช้งานโปรไฟล์โดยอัตโนมัติ:"
 
 #: common/resources/display-dialog.glade:869
 msgid "When a display is connected:"
-msgstr ""
+msgstr "เมื่อเชื่อมต่อจอแสดงผลแล้ว:"
 
 #: common/resources/display-dialog.glade:882
 msgid "Show popup windows to identify displays"
@@ -769,19 +775,19 @@ msgstr "มีโพรไฟล์ชื่อนี้อยู่ก่อน
 
 #: common/resources/minimal-display-dialog.glade:16
 msgid "Extend right"
-msgstr ""
+msgstr "ขยายไปทางขวา"
 
 #: common/resources/minimal-display-dialog.glade:19
 msgid "Extend left"
-msgstr ""
+msgstr "ขยายไปทางซ้าย"
 
 #: common/resources/minimal-display-dialog.glade:22
 msgid "Extend up"
-msgstr ""
+msgstr "ขยายขึ้น"
 
 #: common/resources/minimal-display-dialog.glade:25
 msgid "Extend down"
-msgstr ""
+msgstr "ขยายลง"
 
 #: common/resources/minimal-display-dialog.glade:37
 msgid "Displays"
@@ -957,11 +963,11 @@ msgstr "_ผัง"
 
 #: common/resources/mouse-dialog.glade:67
 msgid "Use bottom areas as left, middle or right buttons"
-msgstr ""
+msgstr "ใช้พื้นที่ด้านล่างเป็นปุ่มซ้าย กลาง หรือขวา"
 
 #: common/resources/mouse-dialog.glade:71
 msgid "Click with 1, 2 or 3 fingers as a left, right, or middle click"
-msgstr ""
+msgstr "คลิกด้วย 1, 2 หรือ 3 นิ้วเพื่อคลิกซ้าย ขวา หรือกลาง"
 
 #: common/resources/mouse-dialog.glade:92
 msgid "Disabled"
@@ -1030,13 +1036,15 @@ msgstr "ถ้าเลือก ล้อเลื่อนหน้าจอ�
 
 #: common/resources/mouse-dialog.glade:372
 msgid "Allow high _resolution scrolling (experimental)"
-msgstr ""
+msgstr "อนุญาตให้เลื่อนด้วย_ความละเอียดสูง (ทดลอง)"
 
 #: common/resources/mouse-dialog.glade:376
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr ""
+"รองรับเฉพาะเมาส์บางตัว (ส่วนใหญ่เป็น Logitech) และต้องการการสนับสนุนไดรเวอร์"
+" บนอุปกรณ์ที่รองรับทำให้การเลื่อนแม่นยำยิ่งขึ้น"
 
 #: common/resources/mouse-dialog.glade:395
 msgid "Buttons"
@@ -1073,7 +1081,7 @@ msgstr "จำนวนจุดที่ตัวชี้จะต้องเ
 
 #: common/resources/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
-msgstr ""
+msgstr "การเร่งความเร็วของตัวชี้แบบปรับได้"
 
 #: common/resources/mouse-dialog.glade:505
 msgid ""
@@ -1081,6 +1089,9 @@ msgid ""
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr ""
+"สลับระหว่างโปรไฟล์การเร่งความเร็วแบบปรับได้และแบบเรียบ "
+"ตัวปรับจะนำความเร็วปัจจุบันของอุปกรณ์มาพิจารณาเมื่อตัดสินใจเร่งความเร็ว "
+"ไม่รองรับโปรไฟล์การเร่งความเร็วแบบกำหนดเองผ่านการตั้งค่า Xfce4"
 
 #: common/resources/mouse-dialog.glade:525
 msgid "Pointer Speed"
@@ -1111,7 +1122,7 @@ msgstr "_คลิกด้วยการแตะทัชแพด"
 
 #: common/resources/mouse-dialog.glade:682
 msgid "Click m_ethod:"
-msgstr ""
+msgstr "วิธี_คลิก:"
 
 #: common/resources/mouse-dialog.glade:767
 msgid "Scrolling _mode:"
@@ -1307,7 +1318,7 @@ msgstr ""
 
 #: dialogs/appearance-settings/main.c:338
 msgid "Failed to display Xfwm4 Settings"
-msgstr ""
+msgstr "ไม่สามารถแสดงการตั้งค่า Xfwm4"
 
 #. If the theme has no cache, mention this in the tooltip
 #: dialogs/appearance-settings/main.c:632
@@ -1316,12 +1327,14 @@ msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache -f -t %s/</i> in a terminal emulator."
 msgstr ""
+"คำเตือน: ชุดไอคอนนี้ไม่มีแฟ้มแคช คุณสามารถสร้างแคชได้โดยสั่ง <i>gtk-update-"
+"icon-cache -f -t %s/</i> ในโปรแกรมจำลองเทอร์มินัล"
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
 #: dialogs/appearance-settings/main.c:639
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
-msgstr ""
+msgstr "คำเตือน: ชุดไอคอนนี้ไม่สมบูรณ์ บางไอคอนจะไม่แสดงผล"
 
 #. These actually are no full themes by purpose
 #: dialogs/appearance-settings/main.c:644
@@ -1329,10 +1342,12 @@ msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr ""
+"คำเตือน: ชุดไอคอนนี้ไม่สมบูรณ์ "
+"โดยจะมีเฉพาะชุดไอคอนพื้นฐานที่สามารถสืบทอดชุดไอคอนอื่นๆ ได้"
 
 #: dialogs/appearance-settings/main.c:1260
 msgid "File is too large, installation aborted"
-msgstr ""
+msgstr "แฟ้มมีขนาดใหญ่เกินไป การติดตั้งถูกยกเลิก"
 
 #: dialogs/appearance-settings/main.c:1265
 msgid "Failed to create temporary directory"
@@ -1348,7 +1363,7 @@ msgstr "รูปแบบไม่รู้จัก รองรับเฉ�
 
 #: dialogs/appearance-settings/main.c:1280
 msgid "Not a valid theme package"
-msgstr ""
+msgstr "ไม่ใช่แพ็คเกจชุดตกแต่งที่ถูกต้อง"
 
 #: dialogs/appearance-settings/main.c:1285
 #, c-format
@@ -1541,7 +1556,7 @@ msgstr "โพรไฟล์ที่เข้ากันได้"
 #: dialogs/color-settings/main.c:516
 #, c-format
 msgid "Add Color Profile to %s"
-msgstr ""
+msgstr "เพิ่มโปรไฟล์สีไปที่ %s"
 
 #: dialogs/color-settings/main.c:516
 msgid "Device"
@@ -1649,7 +1664,7 @@ msgstr "ลบ"
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
-msgstr[0] ""
+msgstr[0] "พาเนล Xfce %d อัน"
 
 #: dialogs/display-settings/main.c:2486
 msgid ""
@@ -1708,6 +1723,8 @@ msgstr "ความละเอียด:"
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
+"ดูเหมือนว่าโปรแกรมจัดการของคุณไม่สนับสนุนโปรโตคอลการจัดการ wlr-output-"
+"management"
 
 #. Set dialog title and icon
 #: dialogs/keyboard-settings/command-dialog.c:109
@@ -1897,6 +1914,8 @@ msgid_plural ""
 "Open <i>%s</i>, other files of type \"%s\", and %d other selected MIME types"
 " with:"
 msgstr[0] ""
+"เปิด <i>%s</i> และแฟ้มอื่นๆ ที่เป็นชนิด \"%s\" และ %d ที่เลือกชนิด MIME "
+"ด้วย:"
 
 #: dialogs/mime-settings/xfce-mime-chooser.c:659
 #, c-format
@@ -2259,7 +2278,7 @@ msgstr "กำหนดโปรแกรม \"%s\" สำหรับชนิ�
 #, c-format
 msgid "%d MIME type selected"
 msgid_plural "%d MIME types selected"
-msgstr[0] ""
+msgstr[0] "%d เลือกประเภท MIME แล้ว"
 
 #: dialogs/mime-settings/xfce-mime-window.c:1177
 msgid ""
@@ -2301,6 +2320,7 @@ msgstr ""
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
 msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
 msgstr ""
+"แฟ้ม;ไฟล์;ตัวจัดการ;ตัวสำรวจ;เรียกดู;ระบบไฟล์;ไดเร็กทอรี;โฟลเดอร์;xfce;"
 
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
@@ -2308,7 +2328,7 @@ msgstr "ท่องดูระบบแฟ้ม"
 
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
 msgid "email;mail;inbox;message;communication;"
-msgstr ""
+msgstr "อีเมล;เมล;กล่องจดหมาย;ข้อความ;การสื่อสาร;"
 
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
@@ -2316,7 +2336,7 @@ msgstr "อ่านอีเมลของคุณ"
 
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
 msgid "terminal;command line;shell;console;xfce;"
-msgstr ""
+msgstr "เทอร์มินัล;บรรทัดคำสั่ง;เชลล์;คอนโซล;xfce;"
 
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
@@ -2324,7 +2344,7 @@ msgstr "ใช้บรรทัดคำสั่ง"
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
 msgid "internet;web;browser;surf;explore;xfce;"
-msgstr ""
+msgstr "อินเทอร์เน็ต;เว็บ;เบราว์เซอร์;ท่อง;สำรวจ;xfce;"
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
@@ -2332,7 +2352,7 @@ msgstr "ท่องดูเว็บ"
 
 #: dialogs/mime-settings/helpers/alacritty.desktop.in.in:6
 msgid "Alacritty"
-msgstr ""
+msgstr "Alacritty"
 
 #: dialogs/mime-settings/helpers/aterm.desktop.in.in:6
 msgid "aterm"
@@ -2420,7 +2440,7 @@ msgstr "Jumanji"
 
 #: dialogs/mime-settings/helpers/kitty.desktop.in.in:6
 msgid "kitty"
-msgstr ""
+msgstr "kitty"
 
 #: dialogs/mime-settings/helpers/kmail.desktop.in.in:6
 msgid "KMail"
@@ -2889,4 +2909,4 @@ msgstr "ดีมอนค่าตั้งของ Xfce"
 
 #: xfsettingsd/xfsettingsd.desktop.in:13
 msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
-msgstr ""
+msgstr "การตั้งค่า;ดีมอม;xfce;การกำหนดค่า;การตั้งค่า;ระบบ;จัดการ;"
