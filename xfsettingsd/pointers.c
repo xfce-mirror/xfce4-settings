@@ -226,15 +226,16 @@ xfce_pointers_is_enabled (Display *xdisplay,
 
 
 static gboolean
-xfce_pointers_is_libinput (Display *xdisplay,
-                           XDevice *device)
+xfce_pointers_libinput_prop_available (Display *xdisplay,
+                                       XDevice *device,
+                                       const char *propname)
 {
     Atom prop, type;
     gulong n_items, bytes_after;
     gint rc, format;
     guchar *data;
 
-    prop = XInternAtom (xdisplay, LIBINPUT_PROP_LEFT_HANDED, False);
+    prop = XInternAtom (xdisplay, propname, False);
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
     rc = XGetDeviceProperty (xdisplay, device, prop, 0, 1, False,
                              XA_INTEGER, &type, &format, &n_items,
@@ -247,6 +248,17 @@ xfce_pointers_is_libinput (Display *xdisplay,
     }
 
     return FALSE;
+}
+
+
+
+static gboolean
+xfce_pointers_is_libinput (Display *xdisplay,
+                           XDevice *device)
+{
+    /* check both properties because not all devices have LIBINPUT_PROP_LEFT_HANDED */
+    return xfce_pointers_libinput_prop_available(xdisplay, device, LIBINPUT_PROP_LEFT_HANDED)
+        || xfce_pointers_libinput_prop_available(xdisplay, device, LIBINPUT_PROP_NATURAL_SCROLL);
 }
 #endif /* HAVE_LIBINPUT */
 
