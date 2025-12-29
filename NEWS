@@ -1,3 +1,53 @@
+4.21.1 (2025-12-29)
+======
+- build: Rename POTFILES.in to POTFILES
+- I18n: Update po/LINGUAS list
+- build: Fix typo in optimization level
+- xfsettingsd: Fix check for libinput
+- accessibility-dialog: Remove scrolled windows
+- accessibility-dialog: Improve tooltip text
+- appearance-settings: Synchronize org.x.apps.portal color-scheme too
+- display-settings: Fix string leak when deleting profile
+- display-settings: Keep /ActiveProfile in a consistent state
+- display-settings: Delete popup dialog asking to update profile
+- display-settings: Save profile name in save function
+- display-settings: Fix profile name lost when updating profile
+- display-settings: Do not allow to apply profile if already active
+- x11: display-settings: Fix some return types
+- display-settings: Match by EDID when loading output data from xfconf
+- x11: display-settings: Do not use output name to generate fallback 
+EDID
+- README.md: Add uninstall info
+- display: Add/improve some debug logs
+- wayland: displays: Don't wl_display_roundtrip() on new output
+- Update README after switchover to meson
+- Fix typo in translated string
+- Remove autotools build
+- Add default video player
+- Add default audio player
+- Add default image viewer
+- Add option to set default text editor
+- settings-editor: Fix -Wcomma warning
+- common: Fix memory leak
+- common: Be more secure when parsing pnp.ids file
+- meson-build: Fix typo in pnp_ids_path substitution
+- x11: display: Properly take XRRModeFlags into account
+- xfsettingsd: Add some debug traces to gtk-settings helper
+- meson-build: Fix wrong HELPERDIR substitution
+- xfsettingsd: Use 2 decimals in warning about unknown mode
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Asturian, Basque, Belarusian,
+  Belarusian (Tarask), Bulgarian, Catalan, Chinese (China), Chinese
+  (Hong Kong), Chinese (Taiwan), Croatian, Czech, Danish, Dutch,
+  Eastern Armenian, English (Australia), English (Canada), English
+  (United Kingdom), Estonian, Finnish, French, Galician, Georgian,
+  German, Greek, Hebrew, Hungarian, Icelandic, Indonesian, Interlingue,
+  Italian, Japanese, Kabyle, Kazakh, Korean, Lithuanian, Malay,
+  Norwegian Bokmål, Norwegian Nynorsk, Occitan (post 1500), Polish,
+  Portuguese, Portuguese (Brazil), Romanian, Russian, Serbian, Slovak,
+  Slovenian, Spanish, Swedish, Tatar, Thai, Turkish, Ukrainian, Uyghur,
+  Vietnamese
+
 4.21.0 (2025-03-23)
 ======
 - build: Fix resource not found at runtime
