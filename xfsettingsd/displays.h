@@ -29,6 +29,7 @@
 #define ACTIVE_PROFILE "/ActiveProfile"
 #define AUTO_ENABLE_PROFILES "/AutoEnableProfiles"
 #define OUTPUT_FMT "/%s/%s"
+#define DUPLICATE_EDID_PROP OUTPUT_FMT "/DuplicateEDID"
 #define PRIMARY_PROP OUTPUT_FMT "/Primary"
 #define ACTIVE_PROP OUTPUT_FMT "/Active"
 #define ROTATION_PROP OUTPUT_FMT "/Rotation"

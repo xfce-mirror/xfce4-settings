@@ -384,7 +384,8 @@ void
 xfce_randr_save_output (XfceRandr *randr,
                         const gchar *scheme,
                         XfconfChannel *channel,
-                        guint output)
+                        guint output,
+                        gboolean duplicate)
 {
     gchar property[512];
     gchar *str_value;
@@ -411,6 +412,9 @@ xfce_randr_save_output (XfceRandr *randr,
     g_snprintf (property, sizeof (property), "/%s/%s/EDID", scheme,
                 randr->priv->output_info[output]->name);
     xfconf_channel_set_string (channel, property, randr->priv->edid[output]);
+    g_snprintf (property, sizeof (property), "/%s/%s/DuplicateEDID", scheme,
+                randr->priv->output_info[output]->name);
+    xfconf_channel_set_bool (channel, property, duplicate);
 
     if (mode == NULL)
         return;
