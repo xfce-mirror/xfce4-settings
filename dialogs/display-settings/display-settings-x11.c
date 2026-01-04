@@ -572,10 +572,20 @@ xfce_display_settings_x11_save (XfceDisplaySettings *settings,
 {
     XfceRandr *randr = XFCE_DISPLAY_SETTINGS_X11 (settings)->randr;
     XfconfChannel *channel = xfce_display_settings_get_channel (settings);
+    GHashTable *edids = g_hash_table_new (g_str_hash, g_str_equal);
     for (guint n = 0; n < randr->noutput; n++)
     {
-        xfce_randr_save_output (randr, scheme, channel, n);
+        const gchar *edid = xfce_randr_get_edid (randr, n);
+        gpointer duplicate = GINT_TO_POINTER (g_hash_table_contains (edids, edid));
+        g_hash_table_insert (edids, (gpointer) edid, duplicate);
     }
+    for (guint n = 0; n < randr->noutput; n++)
+    {
+        const gchar *edid = xfce_randr_get_edid (randr, n);
+        gboolean duplicate = GPOINTER_TO_INT (g_hash_table_lookup (edids, edid));
+        xfce_randr_save_output (randr, scheme, channel, n, duplicate);
+    }
+    g_hash_table_destroy (edids);
 }
 
 
