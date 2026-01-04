@@ -90,7 +90,8 @@ void
 xfce_randr_save_output (XfceRandr *randr,
                         const gchar *scheme,
                         XfconfChannel *channel,
-                        guint output);
+                        guint output,
+                        gboolean duplicate);
 
 void
 xfce_randr_load (XfceRandr *randr,

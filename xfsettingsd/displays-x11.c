@@ -821,25 +821,39 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
         g_warn_if_reached ();
         return active;
     }
-    g_hash_table_iter_init (&iter, saved_outputs);
-    while (g_hash_table_iter_next (&iter, &key, (gpointer *) &value))
+
+    /* if this output EDID is duplicated in scheme, we fall back to matching by name */
+    g_snprintf (property, sizeof (property), DUPLICATE_EDID_PROP, scheme, output->info->name);
+    value = g_hash_table_lookup (saved_outputs, property);
+    if (G_VALUE_HOLDS_BOOLEAN (value) && g_value_get_boolean (value))
     {
-        if (g_str_has_suffix (key, "EDID")
-            && G_VALUE_HOLDS_STRING (value)
-            && g_strcmp0 (g_value_get_string (value), edid) == 0)
+        output_name = g_strdup (output->info->name);
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS,
+                        "EDID '%s' of output '%s' is duplicated in profile '%s': matching by name instead",
+                        edid, output->info->name, scheme);
+    }
+    else
+    {
+        g_hash_table_iter_init (&iter, saved_outputs);
+        while (g_hash_table_iter_next (&iter, &key, (gpointer *) &value))
         {
-            gchar **tokens = g_strsplit (key, "/", -1);
-            if (g_strv_length (tokens) == 4)
+            if (g_str_has_suffix (key, "EDID")
+                && G_VALUE_HOLDS_STRING (value)
+                && g_strcmp0 (g_value_get_string (value), edid) == 0)
             {
-                output_name = g_strdup (tokens[2]);
-                if (g_strcmp0 (output_name, output->info->name) != 0)
+                gchar **tokens = g_strsplit (key, "/", -1);
+                if (g_strv_length (tokens) == 4)
                 {
-                    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_OUTPUT_NAMES_MISMATCH,
-                                    output->info->name, output_name, edid);
+                    output_name = g_strdup (tokens[2]);
+                    if (g_strcmp0 (output_name, output->info->name) != 0)
+                    {
+                        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_OUTPUT_NAMES_MISMATCH,
+                                        output->info->name, output_name, edid);
+                    }
                 }
+                g_strfreev (tokens);
+                break;
             }
-            g_strfreev (tokens);
-            break;
         }
     }
     if (output_name == NULL)
