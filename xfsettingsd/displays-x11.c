@@ -578,6 +578,7 @@ screen_on_event (gpointer data)
             {
                 xfce_displays_helper_x11_channel_apply (XFCE_DISPLAYS_HELPER (helper), matching_profile);
                 g_free (matching_profile);
+                g_ptr_array_unref (old_outputs);
                 return FALSE;
             }
         }
