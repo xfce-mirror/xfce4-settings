@@ -461,15 +461,146 @@ cb_custom_dpi_spin_button_changed (GtkSpinButton *custom_dpi_spin,
 #endif
 
 #ifdef ENABLE_SOUND_SETTINGS
+typedef struct {
+    GtkWidget *feedback_button;
+    GtkWidget *theme_combo;
+} SoundSettingsWidgets;
+
+static void
+sound_settings_widgets_free (gpointer data, 
+                             GClosure *closure)
+{
+    g_free (data);
+}
+
+static void 
+clear_cache (GtkButton *b, 
+             gpointer   user_data) 
+{
+    GFile           *cache_dir;
+    GFileEnumerator *enumerator;
+    GError          *error = NULL;
+    const gchar     *cache_path_str;
+
+    cache_path_str = g_get_user_cache_dir ();
+    cache_dir = g_file_new_for_path (cache_path_str);
+
+    /* Open the cache directory for scanning */
+    enumerator = g_file_enumerate_children (cache_dir,
+                                            G_FILE_ATTRIBUTE_STANDARD_NAME,
+                                            G_FILE_QUERY_INFO_NONE,
+                                            NULL, &error);
+
+    if (enumerator)
+    {
+        GFileInfo *info;
+        while ((info = g_file_enumerator_next_file (enumerator, NULL, NULL)) != NULL)
+        {
+            const gchar *filename = g_file_info_get_name (info);
+
+            if (g_str_has_prefix (filename, "event-sound-cache"))
+            {
+                GFile *file_to_del = g_file_get_child (cache_dir, filename);
+                
+                g_file_delete (file_to_del, NULL, NULL);
+                
+                g_object_unref (file_to_del);
+            }
+            g_object_unref (info);
+        }
+        g_file_enumerator_close (enumerator, NULL, NULL);
+        g_object_unref (enumerator);
+    }
+    else
+    {
+        g_warning ("Could not open cache directory: %s", error ? error->message : "Unknown error");
+        g_clear_error (&error);
+    }
+
+    g_object_unref (cache_dir);
+
+    /* Clear PulseAudio/PipeWire RAM samples */
+    system ("pactl list short samples | cut -f2 | xargs -I {} pactl remove-sample {} 2>/dev/null");
+}
+
+static void
+cb_sound_theme_combo_changed (GtkComboBox *combo,
+                              gpointer     user_data)
+{
+    const char *theme = gtk_combo_box_get_active_id(combo);
+    if (!theme) {
+        return;
+    }
+
+    XfconfChannel *c = xfconf_channel_get("xsettings");
+    xfconf_channel_set_string(c, "/Net/SoundThemeName", theme);
+
+    clear_cache (NULL, NULL);
+}
+
 static void
 cb_enable_event_sounds_check_button_toggled (GtkToggleButton *toggle,
-                                             GtkWidget *button)
+                                             SoundSettingsWidgets *ssw)
 {
-    gboolean active;
+    gboolean active = gtk_toggle_button_get_active (toggle);
 
-    active = gtk_toggle_button_get_active (toggle);
-    gtk_widget_set_sensitive (button, active);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), active);
+    /* Gray out both the feedback checkbox and the theme selector */
+    gtk_widget_set_sensitive (ssw->feedback_button, active);
+    gtk_widget_set_sensitive (ssw->theme_combo, active);
+
+    /* Logic: If master sound is OFF, force input feedback OFF */
+    if (!active)
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (ssw->feedback_button), FALSE);
+}
+
+static void
+appearance_settings_load_sound_themes (GtkComboBoxText *combo)
+{
+    const gchar *name;
+    GDir        *dir;
+    gboolean     has_default = FALSE;
+    const gchar *search_dirs[] = {
+        "/usr/share/sounds",
+        g_get_user_data_dir (),
+        NULL
+    };
+
+    /* Clear existing items if any */
+    gtk_combo_box_text_remove_all (combo);
+
+    for (int i = 0; search_dirs[i] != NULL; i++)
+    {
+        gchar *base_path = (i == 1) ? g_build_filename (search_dirs[i], "sounds", NULL) 
+                                   : g_strdup (search_dirs[i]);
+
+        dir = g_dir_open (base_path, 0, NULL);
+        if (dir)
+        {
+            while ((name = g_dir_read_name (dir)) != NULL)
+            {
+                gchar *test_file = g_build_filename (base_path, name, "index.theme", NULL);
+                if (g_file_test (test_file, G_FILE_TEST_EXISTS))
+                {
+                    /* Check if this is the default theme folder */
+                    if (g_strcmp0 (name, "default") == 0)
+                        has_default = TRUE;
+
+                    gtk_combo_box_text_append (combo, name, name);
+                }
+                g_free (test_file);
+            }
+            g_dir_close (dir);
+        }
+        g_free (base_path);
+    }
+
+    /* * If the loop didn't find a folder named 'default', 
+     * add a fallback 'Default' entry so the ComboBox isn't empty.
+     */
+    if (!has_default)
+    {
+        gtk_combo_box_text_append (combo, "default", _("Default"));
+    }
 }
 #endif
 
@@ -1657,16 +1788,30 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     object = gtk_builder_get_object (builder, "enable_event_sounds_check_button");
     GObject *object2 = gtk_builder_get_object (builder, "enable_input_feedback_sounds_button");
+    GObject *sound_combo = gtk_builder_get_object (builder, "xfce_sound_theme_combo_box");
 
-    g_signal_connect (G_OBJECT (object), "toggled",
-                      G_CALLBACK (cb_enable_event_sounds_check_button_toggled), object2);
+    appearance_settings_load_sound_themes (GTK_COMBO_BOX_TEXT (sound_combo));
+
+    SoundSettingsWidgets *ssw = g_new0 (SoundSettingsWidgets, 1);
+    ssw->feedback_button = GTK_WIDGET (object2);
+    ssw->theme_combo = GTK_WIDGET (sound_combo);
+
+    g_signal_connect_data (G_OBJECT (object), "toggled",
+                           G_CALLBACK (cb_enable_event_sounds_check_button_toggled), 
+                           ssw, (GClosureNotify) sound_settings_widgets_free, 0);
+    g_signal_connect (G_OBJECT (sound_combo), "changed",
+                      G_CALLBACK (cb_sound_theme_combo_changed), NULL);
 
     xfconf_g_property_bind (xsettings_channel, "/Net/EnableEventSounds", G_TYPE_BOOLEAN,
                             G_OBJECT (object), "active");
     xfconf_g_property_bind (xsettings_channel, "/Net/EnableInputFeedbackSounds", G_TYPE_BOOLEAN,
                             G_OBJECT (object2), "active");
+    xfconf_g_property_bind (xsettings_channel, "/Net/SoundThemeName", G_TYPE_STRING,
+                            G_OBJECT (sound_combo), "active-id");
 
-    gtk_widget_set_sensitive (GTK_WIDGET (object2), gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object)));
+    gboolean sounds_enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (object));
+    gtk_widget_set_sensitive (GTK_WIDGET (object2), sounds_enabled);
+    gtk_widget_set_sensitive (GTK_WIDGET (sound_combo), sounds_enabled);
 #endif
 }
 
