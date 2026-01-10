@@ -461,26 +461,27 @@ cb_custom_dpi_spin_button_changed (GtkSpinButton *custom_dpi_spin,
 #endif
 
 #ifdef ENABLE_SOUND_SETTINGS
-typedef struct {
+typedef struct
+{
     GtkWidget *feedback_button;
     GtkWidget *theme_combo;
 } SoundSettingsWidgets;
 
 static void
-sound_settings_widgets_free (gpointer data, 
+sound_settings_widgets_free (gpointer data,
                              GClosure *closure)
 {
     g_free (data);
 }
 
-static void 
-clear_cache (GtkButton *b, 
-             gpointer   user_data) 
+static void
+clear_cache (GtkButton *b,
+             gpointer user_data)
 {
-    GFile           *cache_dir;
+    GFile *cache_dir;
     GFileEnumerator *enumerator;
-    GError          *error = NULL;
-    const gchar     *cache_path_str;
+    GError *error = NULL;
+    const gchar *cache_path_str;
 
     cache_path_str = g_get_user_cache_dir ();
     cache_dir = g_file_new_for_path (cache_path_str);
@@ -501,9 +502,9 @@ clear_cache (GtkButton *b,
             if (g_str_has_prefix (filename, "event-sound-cache"))
             {
                 GFile *file_to_del = g_file_get_child (cache_dir, filename);
-                
+
                 g_file_delete (file_to_del, NULL, NULL);
-                
+
                 g_object_unref (file_to_del);
             }
             g_object_unref (info);
@@ -525,15 +526,16 @@ clear_cache (GtkButton *b,
 
 static void
 cb_sound_theme_combo_changed (GtkComboBox *combo,
-                              gpointer     user_data)
+                              gpointer user_data)
 {
-    const char *theme = gtk_combo_box_get_active_id(combo);
-    if (!theme) {
+    const char *theme = gtk_combo_box_get_active_id (combo);
+    if (!theme)
+    {
         return;
     }
 
-    XfconfChannel *c = xfconf_channel_get("xsettings");
-    xfconf_channel_set_string(c, "/Net/SoundThemeName", theme);
+    XfconfChannel *c = xfconf_channel_get ("xsettings");
+    xfconf_channel_set_string (c, "/Net/SoundThemeName", theme);
 
     clear_cache (NULL, NULL);
 }
@@ -557,8 +559,8 @@ static void
 appearance_settings_load_sound_themes (GtkComboBoxText *combo)
 {
     const gchar *name;
-    GDir        *dir;
-    gboolean     has_default = FALSE;
+    GDir *dir;
+    gboolean has_default = FALSE;
     const gchar *search_dirs[] = {
         "/usr/share/sounds",
         g_get_user_data_dir (),
@@ -570,8 +572,8 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo)
 
     for (int i = 0; search_dirs[i] != NULL; i++)
     {
-        gchar *base_path = (i == 1) ? g_build_filename (search_dirs[i], "sounds", NULL) 
-                                   : g_strdup (search_dirs[i]);
+        gchar *base_path = (i == 1) ? g_build_filename (search_dirs[i], "sounds", NULL)
+                                    : g_strdup (search_dirs[i]);
 
         dir = g_dir_open (base_path, 0, NULL);
         if (dir)
@@ -594,7 +596,7 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo)
         g_free (base_path);
     }
 
-    /* * If the loop didn't find a folder named 'default', 
+    /* * If the loop didn't find a folder named 'default',
      * add a fallback 'Default' entry so the ComboBox isn't empty.
      */
     if (!has_default)
@@ -1797,7 +1799,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     ssw->theme_combo = GTK_WIDGET (sound_combo);
 
     g_signal_connect_data (G_OBJECT (object), "toggled",
-                           G_CALLBACK (cb_enable_event_sounds_check_button_toggled), 
+                           G_CALLBACK (cb_enable_event_sounds_check_button_toggled),
                            ssw, (GClosureNotify) sound_settings_widgets_free, 0);
     g_signal_connect (G_OBJECT (sound_combo), "changed",
                       G_CALLBACK (cb_sound_theme_combo_changed), NULL);
