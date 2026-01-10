@@ -869,29 +869,28 @@
                                       </packing>
                                     </child>
                                     <child>
-            <object class="GtkBox" id="hbox_sound_theme">
-              <property name="visible">True</property>
-              <property name="spacing">12</property>
-              <child>
-                <object class="GtkLabel" id="label_sound_theme">
-                  <property name="visible">True</property>
-                  <property name="label" translatable="yes">Sound _theme:</property>
-                  <property name="use_underline">True</property>
-                  <property name="mnemonic_widget">xfce_sound_theme_combo_box</property>
-                  <property name="xalign">2</property>
-                </object>
-              </child>
-              <child>
-                <object class="GtkComboBoxText" id="xfce_sound_theme_combo_box">
-                  <property name="visible">True</property>
-                  <property name="hexpand">True</property>
-                </object>
-              </child>
-            </object>
-            <packing>
-              <property name="position">2</property>
-            </packing>
-          </child>
+                                      <object class="GtkBox" id="hbox_sound_theme">
+                                       <property name="visible">True</property>
+                                       <property name="spacing">12</property>
+                                         <child>
+                                           <object class="GtkLabel" id="label_sound_theme">
+                                             <property name="visible">True</property>
+                                             <property name="label" translatable="yes">Sound _theme:</property>
+                                             <property name="use_underline">True</property>
+                                             <property name="mnemonic_widget">xfce_sound_theme_combo_box</property>
+                                           </object>
+                                         </child>
+                                    <child>
+                                      <object class="GtkComboBoxText" id="xfce_sound_theme_combo_box">
+                                        <property name="visible">True</property>
+                                        <property name="hexpand">True</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                <packing>
+                                  <property name="position">2</property>
+                                </packing>
+                              </child>
                                   </object>
                                 </child>
                               </object>
