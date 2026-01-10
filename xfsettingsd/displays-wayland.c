@@ -529,7 +529,7 @@ manager_listener (XfceWlrOutputManager *manager,
             update_needed = FALSE;
         }
     }
-    else
+    else if (outputs->len > helper->previous_n_outputs)
     {
         gint action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT);
         update_needed = TRUE;
