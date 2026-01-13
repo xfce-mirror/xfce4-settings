@@ -469,23 +469,21 @@ cb_sound_theme_combo_changed (GtkComboBox *combo,
     XfconfChannel *channel;
     GFile *cache_dir;
     GFileEnumerator *enumerator;
-    const gchar *cache_path_str;
 
-    if (!theme)
+    if (theme == NULL)
         return;
 
     channel = xfconf_channel_get ("xsettings");
     xfconf_channel_set_string (channel, "/Net/SoundThemeName", theme);
 
     /* Clear disk-based event sound cache (~/.cache/event-sound-cache*) */
-    cache_path_str = g_get_user_cache_dir ();
-    cache_dir = g_file_new_for_path (cache_path_str);
+    cache_dir = g_file_new_for_path (g_get_user_cache_dir ());
     enumerator = g_file_enumerate_children (cache_dir,
                                             G_FILE_ATTRIBUTE_STANDARD_NAME,
                                             G_FILE_QUERY_INFO_NONE,
                                             NULL, NULL);
 
-    if (enumerator)
+    if (enumerator != NULL)
     {
         GFileInfo *info;
         while ((info = g_file_enumerator_next_file (enumerator, NULL, NULL)) != NULL)
@@ -512,75 +510,57 @@ cb_sound_theme_combo_changed (GtkComboBox *combo,
 }
 
 static void
-cb_enable_event_sounds_check_button_toggled (GtkToggleButton *toggle,
-                                             GtkBuilder *builder)
+add_sound_themes_from_dir (GtkComboBoxText *combo,
+                           GHashTable *found_themes,
+                           const gchar *base_dir,
+                           gboolean *has_default)
 {
-    gboolean active = gtk_toggle_button_get_active (toggle);
+    GDir *dir = g_dir_open (base_dir, 0, NULL);
+    if (!dir)
+        return;
 
-    /* Fetch the widgets from the builder */
-    GtkWidget *feedback_button = GTK_WIDGET (gtk_builder_get_object (builder, "enable_input_feedback_sounds_button"));
-    GtkWidget *theme_combo = GTK_WIDGET (gtk_builder_get_object (builder, "xfce_sound_theme_combo_box"));
+    const gchar *name;
+    while ((name = g_dir_read_name (dir)) != NULL)
+    {
+        gchar *test_file = g_build_filename (base_dir, name, "index.theme", NULL);
+        if (g_file_test (test_file, G_FILE_TEST_EXISTS))
+        {
+            if (!g_hash_table_contains (found_themes, name))
+            {
+                if (g_strcmp0 (name, "default") == 0)
+                    *has_default = TRUE;
 
-    gtk_widget_set_sensitive (feedback_button, active);
-    gtk_widget_set_sensitive (theme_combo, active);
+                gtk_combo_box_text_append (combo, name, name);
+                g_hash_table_add (found_themes, g_strdup (name));
+            }
+        }
+        g_free (test_file);
+    }
+    g_dir_close (dir);
 }
+
 
 static void
 appearance_settings_load_sound_themes (GtkComboBoxText *combo)
 {
-    const gchar *name;
-    GDir *dir;
+    GHashTable *found_themes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
     gboolean has_default = FALSE;
-    const gchar *const *system_dirs = g_get_system_data_dirs ();
-    const gchar *user_data_dir = g_get_user_data_dir ();
-    GHashTable *found_themes;
-
-    /* Use a hash table to keep track of names we've already added (prevents duplicates) */
-    found_themes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 
     gtk_combo_box_text_remove_all (combo);
 
-    /* Loop through all System Data Directories */
-    for (int i = -1; i == -1 || (system_dirs != NULL && system_dirs[i] != NULL); i++)
+    const gchar *user_data_dir = g_get_user_data_dir ();
+    gchar *user_path = g_build_filename (user_data_dir, "sounds", NULL);
+    add_sound_themes_from_dir (combo, found_themes, user_path, &has_default);
+    g_free (user_path);
+
+    const gchar *const *system_dirs = g_get_system_data_dirs ();
+    for (guint i = 0; system_dirs[i] != NULL; i++)
     {
-        gchar *base_path;
-
-        if (i == -1) /* The first iteration handles user dir */
-            base_path = g_build_filename (user_data_dir, "sounds", NULL);
-        else
-            base_path = g_build_filename (system_dirs[i], "sounds", NULL);
-
-        dir = g_dir_open (base_path, 0, NULL);
-        if (dir != NULL)
-        {
-            while ((name = g_dir_read_name (dir)) != NULL)
-            {
-                gchar *test_file = g_build_filename (base_path, name, "index.theme", NULL);
-                if (g_file_test (test_file, G_FILE_TEST_EXISTS))
-                {
-                    /* Prevent duplicates if theme exists in both user and system dirs */
-                    if (!g_hash_table_contains (found_themes, name))
-                    {
-                        if (g_strcmp0 (name, "default") == 0)
-                            has_default = TRUE;
-
-                        gtk_combo_box_text_append (combo, name, name);
-                        g_hash_table_add (found_themes, g_strdup (name));
-                    }
-                }
-                g_free (test_file);
-            }
-            g_dir_close (dir);
-        }
-        g_free (base_path);
-
-        if (i == -1 && system_dirs == NULL)
-        {
-            break; /* Safety if system_dirs is empty */
-        }
+        gchar *path = g_build_filename (system_dirs[i], "sounds", NULL);
+        add_sound_themes_from_dir (combo, found_themes, path, &has_default);
+        g_free (path);
     }
 
-    /* Fallback for "Default" */
     if (!has_default)
         gtk_combo_box_text_append (combo, "default", _("Default"));
 
@@ -1769,32 +1749,28 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Ensure canberra-gtk-module is in /Gtk/Modules (Xfconf Robust Check) */
     gchar *modules = xfconf_channel_get_string (xsettings_channel, "/Gtk/Modules", "");
     gchar **module_array = g_strsplit (modules, ":", -1);
-    gboolean found_module = FALSE;
 
-    if (module_array != NULL)
-    {
-        for (guint i = 0; module_array[i] != NULL; i++)
-        {
-            if (g_strcmp0 (module_array[i], "canberra-gtk-module") == 0)
-            {
-                found_module = TRUE;
-                break;
-            }
-        }
-        g_strfreev (module_array);
-    }
-
-    if (!found_module)
+    /* Check if the module is already in the list */
+    if (!g_strv_contains ((const gchar *const *) module_array, "canberra-gtk-module"))
     {
         gchar *new_modules;
-        if (modules && *modules != '\0')
+
+        if (modules != NULL && *modules != '\0')
+        {
+            /* Append with a colon if the string wasn't empty */
             new_modules = g_strdup_printf ("%s:canberra-gtk-module", modules);
+        }
         else
+        {
+            /* Just the module name if it was empty */
             new_modules = g_strdup ("canberra-gtk-module");
+        }
 
         xfconf_channel_set_string (xsettings_channel, "/Gtk/Modules", new_modules);
         g_free (new_modules);
     }
+
+    g_strfreev (module_array);
     g_free (modules);
 
     /* Sounds */
@@ -1807,8 +1783,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     appearance_settings_load_sound_themes (GTK_COMBO_BOX_TEXT (sound_combo));
 
-    g_signal_connect (enable_sounds, "toggled",
-                      G_CALLBACK (cb_enable_event_sounds_check_button_toggled), builder);
     g_signal_connect (sound_combo, "changed",
                       G_CALLBACK (cb_sound_theme_combo_changed), NULL);
 
@@ -1819,9 +1793,13 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     xfconf_g_property_bind (xsettings_channel, "/Net/SoundThemeName", G_TYPE_STRING,
                             sound_combo, "active-id");
 
-    gboolean sounds_enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (enable_sounds));
-    gtk_widget_set_sensitive (GTK_WIDGET (feedback_sounds), sounds_enabled);
-    gtk_widget_set_sensitive (GTK_WIDGET (sound_combo), sounds_enabled);
+    g_object_bind_property (enable_sounds, "active",
+                            feedback_sounds, "sensitive",
+                            G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+
+    g_object_bind_property (enable_sounds, "active",
+                            sound_combo, "sensitive",
+                            G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
 #endif
 }
 
