@@ -506,7 +506,7 @@ cb_sound_theme_combo_changed (GtkComboBox *combo,
 
     /* Flush PulseAudio/PipeWire RAM samples to force immediate theme reload
      * This pipe finds loaded samples and removes them from the sound server's memory */
-    system ("pactl list short samples | cut -f2 | xargs -I {} pactl remove-sample {} 2>/dev/null");
+    g_spawn_command_line_async ("sh -c \"pactl list short samples 2>/dev/null | cut -f2 | xargs -I {} pactl remove-sample {} 2>/dev/null\"", NULL);
 }
 
 static void
