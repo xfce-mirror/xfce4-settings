@@ -164,6 +164,7 @@ struct _XfceRROutput
     XRROutputInfo *info;
     RRMode preferred_mode;
     guint active : 1;
+    gchar *edid;
 };
 
 
@@ -532,6 +533,7 @@ screen_on_event (gpointer data)
     GPtrArray *old_outputs;
     CARD16 dpms_mode;
     BOOL dpms_enabled;
+    gboolean edids_changed = FALSE;
 
     if (!DPMSInfo (gdk_x11_get_default_xdisplay (), &dpms_mode, &dpms_enabled))
     {
@@ -564,9 +566,38 @@ screen_on_event (gpointer data)
     xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_DIFF_N_OUTPUTS,
                     old_outputs->len, helper->outputs->len);
 
-    /* Check if we have different amount of outputs and a matching profile and
-       apply it if there's only one */
-    if (helper->outputs->len != old_outputs->len)
+    /*
+     * Since this function is delayed (to avoid reacting to virtual connections/disconnections
+     * from xrandr), it is possible that the number of outputs is the same but that the list
+     * has changed (typically a single output when starting a virtual machine, see
+     * https://gitlab.xfce.org/xfce/xfce4-settings/-/issues/629).
+     * So we use an EDID comparison to make sure that this is not the case.
+     */
+    if (helper->outputs->len == old_outputs->len)
+    {
+        for (guint n = 0; n < helper->outputs->len; n++)
+        {
+            XfceRROutput *output = g_ptr_array_index (helper->outputs, n);
+            guint m = 0;
+            for (; m < old_outputs->len; m++)
+            {
+                XfceRROutput *old_output = g_ptr_array_index (old_outputs, m);
+                if (g_strcmp0 (output->edid, old_output->edid) == 0)
+                    break;
+            }
+            if (m == old_outputs->len)
+            {
+                edids_changed = TRUE;
+                xfsettings_dbg (
+                    XFSD_DEBUG_DISPLAYS,
+                    "Same number of outputs but different EDIDs: acting as if an output had been removed or added");
+                break;
+            }
+        }
+    }
+
+    /* if output list changed, check if we have a matching profile */
+    if (helper->outputs->len != old_outputs->len || edids_changed)
     {
         gint mode = xfconf_channel_get_int (channel, AUTO_ENABLE_PROFILES, AUTO_ENABLE_PROFILES_DEFAULT);
         if (mode == AUTO_ENABLE_PROFILES_ALWAYS
@@ -585,7 +616,7 @@ screen_on_event (gpointer data)
         xfconf_channel_set_string (channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
     }
 
-    if (old_outputs->len > helper->outputs->len)
+    if (old_outputs->len > helper->outputs->len || edids_changed)
     {
         gboolean changed = FALSE;
         guint nactive = 0;
@@ -636,7 +667,8 @@ screen_on_event (gpointer data)
         else if (changed)
             xfce_displays_helper_x11_apply_all (helper);
     }
-    else
+
+    if (old_outputs->len < helper->outputs->len || edids_changed)
     {
         gint action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT);
         if (action != ACTION_ON_NEW_OUTPUT_DO_NOTHING || old_outputs->len == 0)
@@ -802,7 +834,6 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
     Rotation rot;
     gint x, y, n, m, int_value;
     gboolean active;
-    const gchar *edid;
     gchar *output_name = NULL;
     GHashTableIter iter;
     gpointer key;
@@ -811,51 +842,54 @@ xfce_displays_helper_x11_load_from_xfconf (XfceDisplaysHelperX11 *helper,
 
     active = output->active;
 
-    /* does this output exist in xfconf? */
-    edid = xfce_randr_get_edid_by_id (helper->randr, output->id);
-    if (edid == NULL)
-    {
-        g_warn_if_reached ();
-        return active;
-    }
-
-    /* if this output EDID is duplicated in scheme, we fall back to matching by name */
-    g_snprintf (property, sizeof (property), DUPLICATE_EDID_PROP, scheme, output->info->name);
-    value = g_hash_table_lookup (saved_outputs, property);
-    if (G_VALUE_HOLDS_BOOLEAN (value) && g_value_get_boolean (value))
+    /* unlikely: randr cache wasn't loaded for some reason, we fall back to matching by name */
+    if (output->edid == NULL)
     {
         output_name = g_strdup (output->info->name);
         xfsettings_dbg (XFSD_DEBUG_DISPLAYS,
-                        "EDID '%s' of output '%s' is duplicated in profile '%s': matching by name instead",
-                        edid, output->info->name, scheme);
+                        "Failed to retrieve EDID from xrandr for output '%s' in profile '%s': matching by name instead",
+                        output->info->name, scheme);
     }
     else
     {
-        g_hash_table_iter_init (&iter, saved_outputs);
-        while (g_hash_table_iter_next (&iter, &key, (gpointer *) &value))
+        /* if this output EDID is duplicated in scheme, we fall back to matching by name */
+        g_snprintf (property, sizeof (property), DUPLICATE_EDID_PROP, scheme, output->info->name);
+        value = g_hash_table_lookup (saved_outputs, property);
+        if (G_VALUE_HOLDS_BOOLEAN (value) && g_value_get_boolean (value))
         {
-            if (g_str_has_suffix (key, "EDID")
-                && G_VALUE_HOLDS_STRING (value)
-                && g_strcmp0 (g_value_get_string (value), edid) == 0)
+            output_name = g_strdup (output->info->name);
+            xfsettings_dbg (XFSD_DEBUG_DISPLAYS,
+                            "EDID '%s' of output '%s' is duplicated in profile '%s': matching by name instead",
+                            output->edid, output->info->name, scheme);
+        }
+        else
+        {
+            g_hash_table_iter_init (&iter, saved_outputs);
+            while (g_hash_table_iter_next (&iter, &key, (gpointer *) &value))
             {
-                gchar **tokens = g_strsplit (key, "/", -1);
-                if (g_strv_length (tokens) == 4)
+                if (g_str_has_suffix (key, "EDID")
+                    && G_VALUE_HOLDS_STRING (value)
+                    && g_strcmp0 (g_value_get_string (value), output->edid) == 0)
                 {
-                    output_name = g_strdup (tokens[2]);
-                    if (g_strcmp0 (output_name, output->info->name) != 0)
+                    gchar **tokens = g_strsplit (key, "/", -1);
+                    if (g_strv_length (tokens) == 4)
                     {
-                        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_OUTPUT_NAMES_MISMATCH,
-                                        output->info->name, output_name, edid);
+                        output_name = g_strdup (tokens[2]);
+                        if (g_strcmp0 (output_name, output->info->name) != 0)
+                        {
+                            xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_OUTPUT_NAMES_MISMATCH,
+                                            output->info->name, output_name, output->edid);
+                        }
                     }
+                    g_strfreev (tokens);
+                    break;
                 }
-                g_strfreev (tokens);
-                break;
             }
         }
     }
     if (output_name == NULL)
     {
-        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_NO_XFCONF_DATA, output->info->name, edid);
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, DEBUG_MESSAGE_NO_XFCONF_DATA, output->info->name, output->edid);
         return active;
     }
 
@@ -1114,6 +1148,8 @@ xfce_displays_helper_x11_list_outputs (XfceDisplaysHelperX11 *helper)
         output = g_new0 (XfceRROutput, 1);
         output->id = helper->resources->outputs[n];
         output->info = output_info;
+        if (helper->randr != NULL)
+            output->edid = g_strdup (xfce_randr_get_edid_by_id (helper->randr, output->id));
 
         /* find the preferred mode */
         output->preferred_mode = None;
@@ -1179,6 +1215,7 @@ xfce_displays_helper_x11_free_output (XfceRROutput *output)
     {
         g_critical ("Failed to free output info");
     }
+    g_free (output->edid);
     g_free (output);
 }
 
