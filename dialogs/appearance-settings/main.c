@@ -516,7 +516,7 @@ add_sound_themes_from_dir (GtkComboBoxText *combo,
                            gboolean *has_default)
 {
     GDir *dir = g_dir_open (base_dir, 0, NULL);
-    if (!dir)
+    if (dir == NULL)
         return;
 
     const gchar *name;
@@ -1753,18 +1753,8 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     /* Check if the module is already in the list */
     if (!g_strv_contains ((const gchar *const *) module_array, "canberra-gtk-module"))
     {
-        gchar *new_modules;
-
-        if (modules != NULL && *modules != '\0')
-        {
-            /* Append with a colon if the string wasn't empty */
-            new_modules = g_strdup_printf ("%s:canberra-gtk-module", modules);
-        }
-        else
-        {
-            /* Just the module name if it was empty */
-            new_modules = g_strdup ("canberra-gtk-module");
-        }
+        gchar *new_modules = xfce_str_is_empty (modules) ? g_strdup ("canberra-gtk-module")
+                                                         : g_strdup_printf ("%s:canberra-gtk-module", modules);
 
         xfconf_channel_set_string (xsettings_channel, "/Gtk/Modules", new_modules);
         g_free (new_modules);
