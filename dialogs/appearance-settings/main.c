@@ -564,6 +564,14 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo)
     if (!has_default)
         gtk_combo_box_text_append (combo, "default", _("Default"));
 
+    gchar *current_theme = xfconf_channel_get_string (xsettings_channel, "/Net/SoundThemeName", "default");
+
+    if (!gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), current_theme))
+    {
+        gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), "default");
+    }
+
+    g_free (current_theme);
     g_hash_table_destroy (found_themes);
 }
 #endif
@@ -1780,8 +1788,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
                             enable_sounds, "active");
     xfconf_g_property_bind (xsettings_channel, "/Net/EnableInputFeedbackSounds", G_TYPE_BOOLEAN,
                             feedback_sounds, "active");
-    xfconf_g_property_bind (xsettings_channel, "/Net/SoundThemeName", G_TYPE_STRING,
-                            sound_combo, "active-id");
 
     g_object_bind_property (enable_sounds, "active",
                             feedback_sounds, "sensitive",
