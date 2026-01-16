@@ -506,7 +506,38 @@ cb_sound_theme_combo_changed (GtkComboBox *combo,
 
     /* Flush PulseAudio/PipeWire RAM samples to force immediate theme reload
      * This pipe finds loaded samples and removes them from the sound server's memory */
-    g_spawn_command_line_async ("sh -c \"pactl list short samples 2>/dev/null | cut -f2 | xargs -I {} pactl remove-sample {} 2>/dev/null\"", NULL);
+    gchar *pactl = g_find_program_in_path ("pactl");
+    if (pactl != NULL)
+    {
+        GError *error = NULL;
+        gchar **argv = NULL;
+
+        gchar *command = g_strdup_printf (
+            "sh -c \"'%s' list short samples | cut -f2 | xargs -r -I {} '%s' remove-sample {}\"",
+            pactl, pactl);
+
+        if (!g_shell_parse_argv (command, NULL, &argv, &error))
+        {
+            g_warning ("Failed to parse pactl command: %s", error->message);
+            g_clear_error (&error);
+        }
+        else
+        {
+            if (!g_spawn_async (NULL, argv, NULL,
+                                G_SPAWN_SEARCH_PATH
+                                    | G_SPAWN_STDOUT_TO_DEV_NULL
+                                    | G_SPAWN_STDERR_TO_DEV_NULL,
+                                NULL, NULL, NULL, &error))
+            {
+                g_warning ("Failed to start pactl cleanup process: %s", error->message);
+                g_clear_error (&error);
+            }
+            g_strfreev (argv);
+        }
+
+        g_free (command);
+        g_free (pactl);
+    }
 }
 
 static void
