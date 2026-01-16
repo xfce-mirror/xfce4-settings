@@ -482,7 +482,6 @@ cb_sound_theme_combo_changed (GtkComboBox *combo,
                                             G_FILE_ATTRIBUTE_STANDARD_NAME,
                                             G_FILE_QUERY_INFO_NONE,
                                             NULL, NULL);
-
     if (enumerator != NULL)
     {
         GFileInfo *info;
@@ -511,7 +510,6 @@ cb_sound_theme_combo_changed (GtkComboBox *combo,
     {
         GError *error = NULL;
         gchar **argv = NULL;
-
         gchar *command = g_strdup_printf (
             "sh -c \"'%s' list short samples | cut -f2 | xargs -r -I {} '%s' remove-sample {}\"",
             pactl, pactl);
@@ -596,7 +594,6 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo)
         gtk_combo_box_text_append (combo, "default", _("Default"));
 
     gchar *current_theme = xfconf_channel_get_string (xsettings_channel, "/Net/SoundThemeName", "default");
-
     if (!gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), current_theme))
     {
         gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), "default");
@@ -1794,7 +1791,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     {
         gchar *new_modules = xfce_str_is_empty (modules) ? g_strdup ("canberra-gtk-module")
                                                          : g_strdup_printf ("%s:canberra-gtk-module", modules);
-
         xfconf_channel_set_string (xsettings_channel, "/Gtk/Modules", new_modules);
         g_free (new_modules);
     }
@@ -1819,11 +1815,9 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
                             enable_sounds, "active");
     xfconf_g_property_bind (xsettings_channel, "/Net/EnableInputFeedbackSounds", G_TYPE_BOOLEAN,
                             feedback_sounds, "active");
-
     g_object_bind_property (enable_sounds, "active",
                             feedback_sounds, "sensitive",
                             G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
-
     g_object_bind_property (enable_sounds, "active",
                             sound_combo, "sensitive",
                             G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
