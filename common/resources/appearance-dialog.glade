@@ -865,7 +865,49 @@
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="position">3</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox" id="hbox_sound_theme">
+                                        <property name="visible">True</property>
+                                        <property name="spacing">12</property>
+                                        <child>
+                                          <object class="GtkLabel" id="label_sound_theme">
+                                            <property name="tooltip_text" translatable="yes">Install sound themes in /usr/share/sounds or ~/.local/share/sounds</property>
+                                            <property name="visible">True</property>
+                                            <property name="label" translatable="yes">Sound _theme:</property>
+                                            <property name="use_underline">True</property>
+                                            <property name="mnemonic_widget">xfce_sound_theme_combo_box</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkComboBoxText" id="xfce_sound_theme_combo_box">
+                                            <property name="tooltip_text" translatable="yes">Select a sound theme</property>
+                                            <property name="visible">True</property>
+                                            <property name="hexpand">True</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="sound_theme_warning_label">
+                                            <property name="visible">False</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="halign">start</property>
+                                            <property name="label" translatable="yes">No sound themes found. Please install sound themes in /usr/share/sounds or ~/.local/share/sounds.</property>
+                                            <property name="wrap">True</property>
+                                            <attributes>
+                                              <attribute name="style" value="italic"/>
+                                            </attributes>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="position">2</property>
                                       </packing>
                                     </child>
                                   </object>
