@@ -590,13 +590,8 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo,
         /* No themes found */
         const gchar *tooltip_text = _("No sound themes found. Install themes in /usr/share/sounds or ~/.local/share/sounds");
 
-        gtk_combo_box_text_append (combo, "", "");
-        gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), "");
-
         gtk_widget_set_tooltip_text (GTK_WIDGET (combo), tooltip_text);
         gtk_widget_set_tooltip_text (GTK_WIDGET (label_sound_theme), tooltip_text);
-
-        xfconf_channel_set_string (xsettings_channel, "/Net/SoundThemeName", "freedesktop");
     }
     else /* Themes exist */
     {
@@ -627,10 +622,7 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo,
                 }
             }
         }
-        if (current_theme != NULL)
-        {
-            g_free (current_theme);
-        }
+        g_free (current_theme);
     }
 
     g_hash_table_destroy (found_themes);
