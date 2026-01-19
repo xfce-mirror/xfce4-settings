@@ -564,52 +564,75 @@ add_sound_themes_from_dir (GtkComboBoxText *combo,
     g_dir_close (dir);
 }
 
-
 static void
 appearance_settings_load_sound_themes (GtkComboBoxText *combo,
-                                       GtkLabel *warning_label)
+                                       GtkLabel *label_sound_theme)
 {
     GHashTable *found_themes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-    gboolean has_default = FALSE;
 
     gtk_combo_box_text_remove_all (combo);
 
     const gchar *user_data_dir = g_get_user_data_dir ();
     gchar *user_path = g_build_filename (user_data_dir, "sounds", NULL);
-    add_sound_themes_from_dir (combo, found_themes, user_path, &has_default);
+    add_sound_themes_from_dir (combo, found_themes, user_path);
     g_free (user_path);
 
     const gchar *const *system_dirs = g_get_system_data_dirs ();
     for (guint i = 0; system_dirs[i] != NULL; i++)
     {
         gchar *path = g_build_filename (system_dirs[i], "sounds", NULL);
-        add_sound_themes_from_dir (combo, found_themes, path, &has_default);
+        add_sound_themes_from_dir (combo, found_themes, path);
         g_free (path);
     }
 
-    gboolean any_real_themes = (g_hash_table_size (found_themes) > 0);
-
-    if (!any_real_themes)
+    if (g_hash_table_size (found_themes) == 0)
     {
-        gtk_widget_set_visible (GTK_WIDGET (combo), FALSE);
-        gtk_widget_set_visible (GTK_WIDGET (warning_label), TRUE);
+        /* No themes found */
+        const gchar *tooltip_text = _("No sound themes found. Install themes in /usr/share/sounds or ~/.local/share/sounds");
 
-        g_hash_table_destroy (found_themes);
-        return;
+        gtk_combo_box_text_append (combo, "", "");
+        gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), "");
+
+        gtk_widget_set_tooltip_text (GTK_WIDGET (combo), tooltip_text);
+        gtk_widget_set_tooltip_text (GTK_WIDGET (label_sound_theme), tooltip_text);
+
+        xfconf_channel_set_string (xsettings_channel, "/Net/SoundThemeName", "freedesktop");
     }
-    else
+    else /* Themes exist */
     {
-        gtk_widget_set_visible (GTK_WIDGET (combo), TRUE);
-        gtk_widget_set_visible (GTK_WIDGET (warning_label), FALSE);
+        /* Only fetch from Xfconf if we actually have themes to select */
+        gchar *current_theme = xfconf_channel_get_string (xsettings_channel, "/Net/SoundThemeName", "freedesktop");
+
+        gboolean success = gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), current_theme);
+
+        if (!success && g_strcmp0 (current_theme, "default") == 0)
+        {
+            success = gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), "freedesktop");
+        }
+
+        /* If still no success, pick the first item in the list */
+        if (!success)
+        {
+            GtkTreeIter iter;
+            GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
+
+            if (gtk_tree_model_get_iter_first (model, &iter))
+            {
+                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combo), &iter);
+                /* Update Xfconf so the system knows we've moved to a valid theme */
+                const gchar *active_id = gtk_combo_box_get_active_id (GTK_COMBO_BOX (combo));
+                if (active_id != NULL)
+                {
+                    xfconf_channel_set_string (xsettings_channel, "/Net/SoundThemeName", active_id);
+                }
+            }
+        }
+        if (current_theme != NULL)
+        {
+            g_free (current_theme);
+        }
     }
 
-    gchar *current_theme = xfconf_channel_get_string (xsettings_channel, "/Net/SoundThemeName", "default");
-    if (!gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), current_theme))
-    {
-        gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), "default");
-    }
-
-    g_free (current_theme);
     g_hash_table_destroy (found_themes);
 }
 #endif
@@ -1815,9 +1838,10 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     GObject *enable_sounds = gtk_builder_get_object (builder, "enable_event_sounds_check_button");
     GObject *feedback_sounds = gtk_builder_get_object (builder, "enable_input_feedback_sounds_button");
     GObject *sound_combo = gtk_builder_get_object (builder, "xfce_sound_theme_combo_box");
-    GObject *sound_warning_label = gtk_builder_get_object (builder, "sound_theme_warning_label");
+    GObject *label_sound_theme = gtk_builder_get_object (builder, "label_sound_theme");
 
-    appearance_settings_load_sound_themes (GTK_COMBO_BOX_TEXT (sound_combo), GTK_LABEL (sound_warning_label));
+    appearance_settings_load_sound_themes (GTK_COMBO_BOX_TEXT (sound_combo),
+                                           GTK_LABEL (label_sound_theme));
 
     g_signal_connect (sound_combo, "changed",
                       G_CALLBACK (cb_sound_theme_combo_changed), NULL);
