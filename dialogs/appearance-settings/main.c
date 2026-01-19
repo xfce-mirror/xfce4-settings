@@ -603,6 +603,7 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo,
         if (!success && g_strcmp0 (current_theme, "default") == 0)
         {
             success = gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), "freedesktop");
+            xfconf_channel_set_string (xsettings_channel, "/Net/SoundThemeName", "freedesktop");
         }
 
         /* If still no success, pick the first item in the list */
