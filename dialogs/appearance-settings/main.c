@@ -465,15 +465,12 @@ static void
 cb_sound_theme_combo_changed (GtkComboBox *combo,
                               gpointer user_data)
 {
-    GFile *cache_dir;
-    GFileEnumerator *enumerator;
-
     /* Clear disk-based event sound cache (~/.cache/event-sound-cache*) */
-    cache_dir = g_file_new_for_path (g_get_user_cache_dir ());
-    enumerator = g_file_enumerate_children (cache_dir,
-                                            G_FILE_ATTRIBUTE_STANDARD_NAME,
-                                            G_FILE_QUERY_INFO_NONE,
-                                            NULL, NULL);
+    GFile *cache_dir = g_file_new_for_path (g_get_user_cache_dir ());
+    GFileEnumerator *enumerator = g_file_enumerate_children (cache_dir,
+                                                             G_FILE_ATTRIBUTE_STANDARD_NAME,
+                                                             G_FILE_QUERY_INFO_NONE,
+                                                             NULL, NULL);
     if (enumerator != NULL)
     {
         GFileInfo *info;
@@ -560,10 +557,7 @@ static void
 appearance_settings_load_sound_themes (GtkComboBoxText *combo,
                                        GtkLabel *label_sound_theme)
 {
-    GHashTable *found_themes =
-        g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-
-    gtk_combo_box_text_remove_all (combo);
+    GHashTable *found_themes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 
     const gchar *user_data_dir = g_get_user_data_dir ();
     gchar *user_path = g_build_filename (user_data_dir, "sounds", NULL);
@@ -582,7 +576,6 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo,
     {
         const gchar *tooltip_text =
             _("No sound themes found. Install themes in /usr/share/sounds or ~/.local/share/sounds");
-
         gtk_widget_set_tooltip_text (GTK_WIDGET (combo), tooltip_text);
         gtk_widget_set_tooltip_text (GTK_WIDGET (label_sound_theme), tooltip_text);
     }
@@ -593,9 +586,7 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo,
          {
             /* Invalid theme in settings -> select first item as a sane default */
             GtkTreeIter iter;
-            GtkTreeModel *model =
-                gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
-
+            GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
             if (gtk_tree_model_get_iter_first (model, &iter))
                 gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combo), &iter);
         }
