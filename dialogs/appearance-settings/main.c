@@ -588,9 +588,10 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo,
     }
     else
     {
-        if (gtk_combo_box_get_active_id (GTK_COMBO_BOX (combo)) == NULL)
-        {
-            /* No value yet -> select first item as a sane default */
+        gchar *theme = xfconf_channel_get_string (xsettings_channel, "/Net/SoundThemeName", "freedesktop");
+        if (!gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), theme))
+         {
+            /* Invalid theme in settings -> select first item as a sane default */
             GtkTreeIter iter;
             GtkTreeModel *model =
                 gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
@@ -598,6 +599,7 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo,
             if (gtk_tree_model_get_iter_first (model, &iter))
                 gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combo), &iter);
         }
+        g_free (theme);
     }
 
     g_hash_table_destroy (found_themes);
@@ -1807,18 +1809,14 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     GObject *sound_combo = gtk_builder_get_object (builder, "xfce_sound_theme_combo_box");
     GObject *label_sound_theme = gtk_builder_get_object (builder, "label_sound_theme");
 
-    appearance_settings_load_sound_themes (GTK_COMBO_BOX_TEXT (sound_combo),
-                                           GTK_LABEL (label_sound_theme));
-
-    g_signal_connect (sound_combo, "changed",
-                      G_CALLBACK (cb_sound_theme_combo_changed), NULL);
+    xfconf_g_property_bind (xsettings_channel, "/Net/SoundThemeName", G_TYPE_STRING, sound_combo, "active-id");
+    appearance_settings_load_sound_themes (GTK_COMBO_BOX_TEXT (sound_combo), GTK_LABEL (label_sound_theme));
+    g_signal_connect (sound_combo, "changed", G_CALLBACK (cb_sound_theme_combo_changed), NULL);
 
     xfconf_g_property_bind (xsettings_channel, "/Net/EnableEventSounds", G_TYPE_BOOLEAN,
                             enable_sounds, "active");
     xfconf_g_property_bind (xsettings_channel, "/Net/EnableInputFeedbackSounds", G_TYPE_BOOLEAN,
                             feedback_sounds, "active");
-    xfconf_g_property_bind (xsettings_channel, "/Net/SoundThemeName", G_TYPE_STRING,
-                            sound_combo, "active-id");
     g_object_bind_property (enable_sounds, "active",
                             feedback_sounds, "sensitive",
                             G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
