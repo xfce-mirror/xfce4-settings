@@ -583,7 +583,7 @@ appearance_settings_load_sound_themes (GtkComboBoxText *combo,
     {
         gchar *theme = xfconf_channel_get_string (xsettings_channel, "/Net/SoundThemeName", "freedesktop");
         if (!gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), theme))
-         {
+        {
             /* Invalid theme in settings -> select first item as a sane default */
             GtkTreeIter iter;
             GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
