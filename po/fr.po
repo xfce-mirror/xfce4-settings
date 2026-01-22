@@ -18,15 +18,15 @@
 # roxfr, 2020
 # Silvère Latchurié <slatchurie@gmail.com>, 2017
 # Urien Desterres <urien.desterres@gmail.com>, 2014
-# Wallon Wallon, 2022-2025
+# Wallon Wallon, 2022-2026
 # Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-11-10 00:53+0100\n"
+"POT-Creation-Date: 2026-01-22 12:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Wallon Wallon, 2022-2025\n"
+"Last-Translator: Wallon Wallon, 2022-2026\n"
 "Language-Team: French (http://app.transifex.com/xfce/xfce4-settings/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -271,7 +271,7 @@ msgstr "_Souris"
 
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1609 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1733 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "-------"
@@ -477,19 +477,23 @@ msgid ""
 " play"
 msgstr "Permet de déterminer si les clics de souris et d’autres interventions de l’utilisateur déclenchent des évènements sonores"
 
-#: common/resources/appearance-dialog.glade:879
+#: common/resources/appearance-dialog.glade:878
+msgid "Sound _theme:"
+msgstr "Thème _sonore :"
+
+#: common/resources/appearance-dialog.glade:902
 msgid "Event sounds"
 msgstr "Sons des évènements"
 
-#: common/resources/appearance-dialog.glade:908
+#: common/resources/appearance-dialog.glade:931
 msgid "Adjust the system-wide display scaling"
 msgstr "Ajuster la mise à l’échelle de l’affichage pour l’ensemble du système"
 
-#: common/resources/appearance-dialog.glade:926
+#: common/resources/appearance-dialog.glade:949
 msgid "_Window Scaling"
 msgstr "_Mise à l’échelle des fenêtres"
 
-#: common/resources/appearance-dialog.glade:954
+#: common/resources/appearance-dialog.glade:977
 msgid "Setti_ngs"
 msgstr "Para_mètres"
 
@@ -556,7 +560,7 @@ msgstr "Ajouter le profil au périphérique"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1348 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1472 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:109
 #: dialogs/keyboard-settings/command-dialog.c:271
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
@@ -1207,11 +1211,11 @@ msgstr "Téléviseur"
 msgid "Digital display"
 msgstr "Écran numérique"
 
-#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:698
+#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:708
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Impossible de déterminer la version de l’extension RandR utilisée"
 
-#: common/xfce-randr.c:569
+#: common/xfce-randr.c:573
 #: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "Portable"
@@ -1242,7 +1246,7 @@ msgid "Version information"
 msgstr "Informations sur la version"
 
 #: dialogs/accessibility-settings/main.c:191
-#: dialogs/appearance-settings/main.c:1702 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:1849 dialogs/color-settings/main.c:1463
 #: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
@@ -1253,7 +1257,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Taper « %s --help » pour obtenir plus d’aide."
 
 #: dialogs/accessibility-settings/main.c:210
-#: dialogs/appearance-settings/main.c:1721 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:1868 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
@@ -1262,7 +1266,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "L’équipe de développement Xfce. Tous droits réservés."
 
 #: dialogs/accessibility-settings/main.c:211
-#: dialogs/appearance-settings/main.c:1722 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:1869 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
@@ -1285,8 +1289,14 @@ msgstr "assistance;technologies;touches;collant;rebond;émulation;lecteurs d’�
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Impossible d’afficher les paramètres Xfwm4"
 
+#: dialogs/appearance-settings/main.c:578
+msgid ""
+"No sound themes found. Install themes in /usr/share/sounds or "
+"~/.local/share/sounds"
+msgstr "Aucun thème sonore trouvé. Installez les thèmes dans /usr/share/sounds ou ~/.local/share/sounds"
+
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:632
+#: dialogs/appearance-settings/main.c:756
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1295,70 +1305,70 @@ msgstr "Avertissement : ce thème d’icônes n’a pas de fichier cache. Vous 
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:639
+#: dialogs/appearance-settings/main.c:763
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Avertissement : ce thème d’icônes est incomplet. Certaines icônes seront manquantes."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:644
+#: dialogs/appearance-settings/main.c:768
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Avertissement : ce thème d’icônes est incomplet. Il ne fournit qu’un ensemble d’icônes de base dont d’autres thèmes peuvent hériter."
 
-#: dialogs/appearance-settings/main.c:1260
+#: dialogs/appearance-settings/main.c:1384
 msgid "File is too large, installation aborted"
 msgstr "Le fichier est trop volumineux, l’installation est interrompue"
 
-#: dialogs/appearance-settings/main.c:1265
+#: dialogs/appearance-settings/main.c:1389
 msgid "Failed to create temporary directory"
 msgstr "Impossible de créer le répertoire temporaire"
 
-#: dialogs/appearance-settings/main.c:1270
+#: dialogs/appearance-settings/main.c:1394
 msgid "Failed to extract archive"
 msgstr "Impossible d’extraire l’archive"
 
-#: dialogs/appearance-settings/main.c:1275
+#: dialogs/appearance-settings/main.c:1399
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Format inconnu, seuls les répertoires et archives sont pris en charge"
 
-#: dialogs/appearance-settings/main.c:1280
+#: dialogs/appearance-settings/main.c:1404
 msgid "Not a valid theme package"
 msgstr "Ce n’est pas un paquet de thème valide"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1409
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Erreur inconnue, le code de sortie est %d"
 
-#: dialogs/appearance-settings/main.c:1292
+#: dialogs/appearance-settings/main.c:1416
 msgid "Failed to install theme"
 msgstr "Impossible d’installer le thème"
 
-#: dialogs/appearance-settings/main.c:1346
+#: dialogs/appearance-settings/main.c:1470
 #, c-format
 msgid "Install %s theme"
 msgstr "Installer le thème %s"
 
-#: dialogs/appearance-settings/main.c:1349
+#: dialogs/appearance-settings/main.c:1473
 #: dialogs/keyboard-settings/command-dialog.c:272
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Ouvrir"
 
-#: dialogs/appearance-settings/main.c:1613
+#: dialogs/appearance-settings/main.c:1737
 msgid "RGB"
 msgstr "RVB"
 
-#: dialogs/appearance-settings/main.c:1617
+#: dialogs/appearance-settings/main.c:1741
 msgid "BGR"
 msgstr "BVR"
 
-#: dialogs/appearance-settings/main.c:1621
+#: dialogs/appearance-settings/main.c:1745
 msgid "Vertical RGB"
 msgstr "RVB vertical"
 
-#: dialogs/appearance-settings/main.c:1625
+#: dialogs/appearance-settings/main.c:1749
 msgid "Vertical BGR"
 msgstr "BVR vertical"
 
