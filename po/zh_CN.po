@@ -16,15 +16,15 @@
 # 玉堂白鹤 <yjwork@qq.com>, 2014
 # Zhou Yuheng <wojiushixxx@126.com>, 2022
 # Cally Mal <zhouxiaobo.500@gmail.com>, 2015
-# 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2025
+# 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2026
 # Mingcong Bai <jeffbai@aosc.xyz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-11-10 00:53+0100\n"
+"POT-Creation-Date: 2026-01-22 12:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2025\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2026\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -269,7 +269,7 @@ msgstr "鼠标(_M)"
 
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1609 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1733 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "无"
@@ -475,19 +475,23 @@ msgid ""
 " play"
 msgstr "指定在鼠标点击和其它用户输入时是否播放事件声音"
 
-#: common/resources/appearance-dialog.glade:879
+#: common/resources/appearance-dialog.glade:878
+msgid "Sound _theme:"
+msgstr "声音主题(_T):"
+
+#: common/resources/appearance-dialog.glade:902
 msgid "Event sounds"
 msgstr "事件声音"
 
-#: common/resources/appearance-dialog.glade:908
+#: common/resources/appearance-dialog.glade:931
 msgid "Adjust the system-wide display scaling"
 msgstr "调整系统全局显示缩放"
 
-#: common/resources/appearance-dialog.glade:926
+#: common/resources/appearance-dialog.glade:949
 msgid "_Window Scaling"
 msgstr "窗口缩放(_W)"
 
-#: common/resources/appearance-dialog.glade:954
+#: common/resources/appearance-dialog.glade:977
 msgid "Setti_ngs"
 msgstr "设置(_N)"
 
@@ -554,7 +558,7 @@ msgstr "添加配置文件到设备"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1348 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1472 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:109
 #: dialogs/keyboard-settings/command-dialog.c:271
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
@@ -1205,11 +1209,11 @@ msgstr "电视"
 msgid "Digital display"
 msgstr "数字显示"
 
-#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:698
+#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:708
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "未能查询正在使用的 RandR 扩展的版本"
 
-#: common/xfce-randr.c:569
+#: common/xfce-randr.c:573
 #: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "笔记本电脑"
@@ -1240,7 +1244,7 @@ msgid "Version information"
 msgstr "版本信息"
 
 #: dialogs/accessibility-settings/main.c:191
-#: dialogs/appearance-settings/main.c:1702 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:1849 dialogs/color-settings/main.c:1463
 #: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
@@ -1251,7 +1255,7 @@ msgid "Type '%s --help' for usage."
 msgstr "输入 ‘%s --help’ 获取用法。"
 
 #: dialogs/accessibility-settings/main.c:210
-#: dialogs/appearance-settings/main.c:1721 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:1868 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
@@ -1260,7 +1264,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发团队。保留所有权利。"
 
 #: dialogs/accessibility-settings/main.c:211
-#: dialogs/appearance-settings/main.c:1722 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:1869 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
@@ -1283,8 +1287,14 @@ msgstr "辅助;技术;按键;粘滞;反弹;仿真;屏幕阅读;放大镜;a11y;i1
 msgid "Failed to display Xfwm4 Settings"
 msgstr "无法显示 Xfwm4 设置"
 
+#: dialogs/appearance-settings/main.c:578
+msgid ""
+"No sound themes found. Install themes in /usr/share/sounds or "
+"~/.local/share/sounds"
+msgstr "未找到声音主题。在 /usr/share/sounds 或 ~/.local/share/sounds 中安装主题"
+
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:632
+#: dialogs/appearance-settings/main.c:756
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1293,70 +1303,70 @@ msgstr "警告：此图标主题没有缓存文件。您可以在终端模拟器
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:639
+#: dialogs/appearance-settings/main.c:763
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "警告：此图标主题不完整。某些图标将丢失。"
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:644
+#: dialogs/appearance-settings/main.c:768
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "警告:此图标主题不完整。它只提供了其他主题可以继承的基本图标集。"
 
-#: dialogs/appearance-settings/main.c:1260
+#: dialogs/appearance-settings/main.c:1384
 msgid "File is too large, installation aborted"
 msgstr "文件太大，安装已中止"
 
-#: dialogs/appearance-settings/main.c:1265
+#: dialogs/appearance-settings/main.c:1389
 msgid "Failed to create temporary directory"
 msgstr "无法创建临时目录"
 
-#: dialogs/appearance-settings/main.c:1270
+#: dialogs/appearance-settings/main.c:1394
 msgid "Failed to extract archive"
 msgstr "无法提取归档文件"
 
-#: dialogs/appearance-settings/main.c:1275
+#: dialogs/appearance-settings/main.c:1399
 msgid "Unknown format, only archives and directories are supported"
 msgstr "未知格式，仅支持归档文件和目录"
 
-#: dialogs/appearance-settings/main.c:1280
+#: dialogs/appearance-settings/main.c:1404
 msgid "Not a valid theme package"
 msgstr "不是有效的主题包"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1409
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "未知错误，退出代码是 %d"
 
-#: dialogs/appearance-settings/main.c:1292
+#: dialogs/appearance-settings/main.c:1416
 msgid "Failed to install theme"
 msgstr "无法安装主题"
 
-#: dialogs/appearance-settings/main.c:1346
+#: dialogs/appearance-settings/main.c:1470
 #, c-format
 msgid "Install %s theme"
 msgstr "安装 %s 主题"
 
-#: dialogs/appearance-settings/main.c:1349
+#: dialogs/appearance-settings/main.c:1473
 #: dialogs/keyboard-settings/command-dialog.c:272
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: dialogs/appearance-settings/main.c:1613
+#: dialogs/appearance-settings/main.c:1737
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1617
+#: dialogs/appearance-settings/main.c:1741
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1621
+#: dialogs/appearance-settings/main.c:1745
 msgid "Vertical RGB"
 msgstr "竖直 RGB"
 
-#: dialogs/appearance-settings/main.c:1625
+#: dialogs/appearance-settings/main.c:1749
 msgid "Vertical BGR"
 msgstr "竖直 BGR"
 
