@@ -5,14 +5,14 @@
 # Translators:
 # Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012
 # Moo, 2015-2022
-# Moo, 2023-2025
+# Moo, 2023-2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-11-10 00:53+0100\n"
+"POT-Creation-Date: 2026-01-22 12:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Moo, 2023-2025\n"
+"Last-Translator: Moo, 2023-2026\n"
 "Language-Team: Lithuanian (http://app.transifex.com/xfce/xfce4-settings/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,7 +99,7 @@ msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state if they are pressed twice in a row, until "
 "pressed again once"
-msgstr ""
+msgstr "Pasirinkus, modifikavimo klavišai (tokie kaip Control, Alt ir Shift) liks užrakinti nuspaustoje būsenoje tuo atveju, jei bus paspausti du kartus iš eilės, iki tol, kol vėl bus paspausti vieną kartą"
 
 #: common/resources/accessibility-dialog.glade:392
 msgid "Disable sticky keys if two keys are _pressed"
@@ -257,7 +257,7 @@ msgstr "_Pelė"
 
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1609 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1733 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "Nėra"
@@ -463,19 +463,23 @@ msgid ""
 " play"
 msgstr "Nurodykite ar pelės spustelėjimai ir kitos naudotojo įvestys sukels įvykių garsus"
 
-#: common/resources/appearance-dialog.glade:879
+#: common/resources/appearance-dialog.glade:878
+msgid "Sound _theme:"
+msgstr "Garsų _rinkinys:"
+
+#: common/resources/appearance-dialog.glade:902
 msgid "Event sounds"
 msgstr "Įvykių garsai"
 
-#: common/resources/appearance-dialog.glade:908
+#: common/resources/appearance-dialog.glade:931
 msgid "Adjust the system-wide display scaling"
 msgstr "Derinti ekrano mastelio keitimą sistemos mastu"
 
-#: common/resources/appearance-dialog.glade:926
+#: common/resources/appearance-dialog.glade:949
 msgid "_Window Scaling"
 msgstr "_Langų mastelio keitimas"
 
-#: common/resources/appearance-dialog.glade:954
+#: common/resources/appearance-dialog.glade:977
 msgid "Setti_ngs"
 msgstr "_Nustatymai"
 
@@ -542,7 +546,7 @@ msgstr "Pridėti profilį į įrenginį"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1348 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1472 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:109
 #: dialogs/keyboard-settings/command-dialog.c:271
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
@@ -1193,11 +1197,11 @@ msgstr "Televizorius"
 msgid "Digital display"
 msgstr "Skaitmeninis ekranas"
 
-#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:698
+#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:708
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Nepavyko gauti naudojamos RandR plėtinio versijos"
 
-#: common/xfce-randr.c:569
+#: common/xfce-randr.c:573
 #: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "Nešiojamas kompiuteris"
@@ -1228,7 +1232,7 @@ msgid "Version information"
 msgstr "Versijos infomacija"
 
 #: dialogs/accessibility-settings/main.c:191
-#: dialogs/appearance-settings/main.c:1702 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:1849 dialogs/color-settings/main.c:1463
 #: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
@@ -1239,7 +1243,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Bandykite „%s –help“, jei norite išsamesnės informacijos."
 
 #: dialogs/accessibility-settings/main.c:210
-#: dialogs/appearance-settings/main.c:1721 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:1868 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
@@ -1248,7 +1252,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce kūrėjų komanda. Visos teisės saugomos."
 
 #: dialogs/accessibility-settings/main.c:211
-#: dialogs/appearance-settings/main.c:1722 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:1869 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
@@ -1271,8 +1275,14 @@ msgstr "pagalbinės;pagalbines;technologijos;pagalbinė;pagalbine;technologija;k
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Nepavyko parodyti Xfwm4 nustatymų"
 
+#: dialogs/appearance-settings/main.c:578
+msgid ""
+"No sound themes found. Install themes in /usr/share/sounds or "
+"~/.local/share/sounds"
+msgstr "Nerasta jokių garsų rinkinių. Įdiekite rinkinius į /usr/share/sounds arba ~/.local/share/sounds"
+
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:632
+#: dialogs/appearance-settings/main.c:756
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1281,70 +1291,70 @@ msgstr "Įspėjimas: šis piktogramų apipavidalinimas neturi podėlio failo. Ga
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:639
+#: dialogs/appearance-settings/main.c:763
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Įspėjimas: šis piktogramų apipavidalinimas yra neužbaigtas. Trūks kai kurių piktogramų."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:644
+#: dialogs/appearance-settings/main.c:768
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Įspėjimas: šis piktogramų apipavidalinimas yra neužbaigtas. Jis pateikia tik pagrindinį piktogramų rinkinį, kurį kiti apipavidalinimai gali paveldėti."
 
-#: dialogs/appearance-settings/main.c:1260
+#: dialogs/appearance-settings/main.c:1384
 msgid "File is too large, installation aborted"
 msgstr "Failas per didelis, įdiegimas nutrauktas"
 
-#: dialogs/appearance-settings/main.c:1265
+#: dialogs/appearance-settings/main.c:1389
 msgid "Failed to create temporary directory"
 msgstr "Nepavyko sukurti laikinojo katalogo"
 
-#: dialogs/appearance-settings/main.c:1270
+#: dialogs/appearance-settings/main.c:1394
 msgid "Failed to extract archive"
 msgstr "Nepavyko išarchyvuoti"
 
-#: dialogs/appearance-settings/main.c:1275
+#: dialogs/appearance-settings/main.c:1399
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Nežinomas formatas, palaikomi tik archyvai ir katalogai"
 
-#: dialogs/appearance-settings/main.c:1280
+#: dialogs/appearance-settings/main.c:1404
 msgid "Not a valid theme package"
 msgstr "Netinkamas apipavidalinimo paketas"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1409
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Nežinoma klaida, išėjimo kodas yra %d"
 
-#: dialogs/appearance-settings/main.c:1292
+#: dialogs/appearance-settings/main.c:1416
 msgid "Failed to install theme"
 msgstr "Nepavyko įdiegti apipavidalinimo"
 
-#: dialogs/appearance-settings/main.c:1346
+#: dialogs/appearance-settings/main.c:1470
 #, c-format
 msgid "Install %s theme"
 msgstr "Įdiegti %s apipavidalinimą"
 
-#: dialogs/appearance-settings/main.c:1349
+#: dialogs/appearance-settings/main.c:1473
 #: dialogs/keyboard-settings/command-dialog.c:272
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Atverti"
 
-#: dialogs/appearance-settings/main.c:1613
+#: dialogs/appearance-settings/main.c:1737
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1617
+#: dialogs/appearance-settings/main.c:1741
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1621
+#: dialogs/appearance-settings/main.c:1745
 msgid "Vertical RGB"
 msgstr "Vertikalus RGB"
 
-#: dialogs/appearance-settings/main.c:1625
+#: dialogs/appearance-settings/main.c:1749
 msgid "Vertical BGR"
 msgstr "Vertikalus BGR"
 
