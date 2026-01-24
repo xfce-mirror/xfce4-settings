@@ -26,6 +26,7 @@ dependency_versions = {
 
   'fontconfig': '>= 2.6.0',
   'inputproto': '>= 1.4.0',
+  'libgsound': '>= 1.0.3',
   'libx11': '>= 1.6.7',
   'libxext': '>= 1.0.0',
   'libxi': '>= 1.2.0',
@@ -51,6 +52,7 @@ gio_unix = dependency('gio-unix-2.0', version: dependency_versions['glib'])
 gmodule = dependency('gmodule-2.0', version: dependency_versions['glib'])
 gthread = dependency('gthread-2.0', version: dependency_versions['glib'])
 gtk = dependency('gtk+-3.0', version: dependency_versions['gtk'])
+libgsound = dependency('gsound', version: dependency_versions['libgsound'])
 libxfce4ui = dependency('libxfce4ui-2', version: dependency_versions['libxfce4ui'])
 libxfce4util = dependency('libxfce4util-1.0', version: dependency_versions['xfce4'])
 xfconf = dependency('libxfconf-0', version: dependency_versions['xfconf'])

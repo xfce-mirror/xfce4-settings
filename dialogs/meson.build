@@ -50,6 +50,7 @@ foreach dir : dirs
       xcursor,
       xorg_libinput,
       libm,
+      libgsound,
     ],
     install: true,
     install_dir: get_option('prefix') / get_option('bindir'),
