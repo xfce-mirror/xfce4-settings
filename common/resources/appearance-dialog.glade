@@ -1064,6 +1064,27 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_open_folder">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Open Containing Folder</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+                <child>
+                  <object class="GtkImage">
+                  <property name="visible">True</property>
+                  <property name="icon_name">folder-open-symbolic</property> </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
         <child>
