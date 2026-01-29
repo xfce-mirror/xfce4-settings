@@ -26,13 +26,11 @@ dependency_versions = {
 
   'fontconfig': '>= 2.6.0',
   'inputproto': '>= 1.4.0',
-  'libgsound': '>= 1.0.3',
   'libx11': '>= 1.6.7',
   'libxext': '>= 1.0.0',
   'libxi': '>= 1.2.0',
 
   'libxklavier': '>= 5.0',
-  'colord': '>= 1.0.2',
   'libnotify': '>= 0.7.8',
   'xcursor': '>= 1.1.0',
   'xorg-libinput': '>= 0.6.0',
@@ -43,6 +41,8 @@ dependency_versions = {
   'gtk-layer-shell': '>= 0.7.0',
 
   'upower-glib': '>= 0.99.10',
+  'colord': '>= 1.0.2',
+  'gsound': '>= 1.0.2',
 }
 
 garcon = dependency('garcon-1', version: dependency_versions['xfce4'])
@@ -52,7 +52,6 @@ gio_unix = dependency('gio-unix-2.0', version: dependency_versions['glib'])
 gmodule = dependency('gmodule-2.0', version: dependency_versions['glib'])
 gthread = dependency('gthread-2.0', version: dependency_versions['glib'])
 gtk = dependency('gtk+-3.0', version: dependency_versions['gtk'])
-libgsound = dependency('gsound', version: dependency_versions['libgsound'])
 libxfce4ui = dependency('libxfce4ui-2', version: dependency_versions['libxfce4ui'])
 libxfce4util = dependency('libxfce4util-1.0', version: dependency_versions['xfce4'])
 xfconf = dependency('libxfconf-0', version: dependency_versions['xfconf'])
@@ -172,7 +171,8 @@ if helper_path_prefix == ''
   helper_path_prefix = get_option('prefix') / get_option('libdir')
 endif
 
-if get_option('sound-settings')
+gsound = dependency('gsound', version: dependency_versions['gsound'], required: get_option('sound-settings'))
+if gsound.found()
   feature_cflags += '-DENABLE_SOUND_SETTINGS=1'
 endif
 
