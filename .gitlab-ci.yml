@@ -1,3 +1,13 @@
 include:
   - project: 'xfce/xfce4-dev-tools'
     file: '/ci/build_project.yml'
+.setup-meson:
+  script:
+    - apt-get update && apt-get -y install libgsound-dev
+    - $WRAPPER meson setup --auto-features=enabled $MESON_SETUP_FLAGS build
+  rules:
+    - !reference [.no-translation, rules]
+      # Otherwise, run if previous stage didn't fail
+    - exists:
+      - meson.build
+      when: on_success
