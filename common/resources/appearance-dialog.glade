@@ -886,23 +886,29 @@
                                             <property name="hexpand">True</property>
                                           </object>
                                         </child>
+                                        <child>
+                                          <object class="GtkToggleButton" id="xfce_sound_theme_preview_button">
+                                            <property name="can_focus">True</property>
+                                            <property name="visible">True</property>
+                                            <property name="halign">start</property>
+                                            <property name="use_underline">True</property>
+                                            <property name="tooltip_text" translatable="yes">Browse and preview theme sounds</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="visible">True</property>
+                                                <property name="icon_name">audio-x-generic-symbolic</property>
+                                                <property name="icon_size">1</property>
+                                              </object>
+                                            </child>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">False</property>
+                                          </packing>
+                                        </child>
                                       </object>
                                       <packing>
                                         <property name="position">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkToggleButton" id="xfce_sound_theme_preview_button">
-                                        <property name="label" translatable="yes">_Preview</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="visible">True</property>
-                                        <property name="halign">start</property>
-                                        <property name="use_underline">True</property>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">False</property>
-                                        <property name="position">3</property>
                                       </packing>
                                     </child>
                                   </object>
@@ -1091,12 +1097,12 @@
           <object class="GtkScrolledWindow" id="browser_scrolled_window">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
+            <property name="hexpand">False</property>
             <property name="vexpand">True</property>
             <property name="propagate_natural_height">False</property>
             <property name="propagate_natural_width">False</property>
             <property name="min_content_width">300</property>
-            <property name="min_content_height">220</property>
+            <property name="min_content_height">190</property>
             <property name="max_content_height">400</property>
             <property name="shadow_type">in</property>
             <child>

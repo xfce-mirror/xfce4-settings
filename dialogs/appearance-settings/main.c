@@ -23,11 +23,14 @@
 
 #include <cairo-gobject.h>
 #include <gio/gio.h>
-#include <gsound.h>
 #include <gtk/gtk.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
+
+#ifdef ENABLE_SOUND_SETTINGS
+#include <gsound.h>
+#endif
 
 #ifdef ENABLE_X11
 #include <gdk/gdkx.h>
@@ -72,6 +75,7 @@ enum
     NUM_SYMBOLIC_COLORS
 };
 
+#ifdef ENABLE_SOUND_SETTINGS
 enum
 {
     COL_DISPLAY_NAME,
@@ -80,7 +84,7 @@ enum
     COL_FULL_PATH,
     NUM_COLS
 };
-
+#endif
 
 static const gchar *xft_hint_styles_array[] = {
     "hintnone", "hintslight", "hintmedium", "hintfull"
@@ -138,12 +142,14 @@ typedef struct
     cairo_surface_t *preview;
 } icon_theme_theme_preview_data;
 
+#ifdef ENABLE_SOUND_SETTINGS
 typedef struct
 {
     char *id;
     char *full_path;
     GdkPixbuf *icon;
 } SoundEntry;
+#endif
 
 static icon_theme_preview_data *icon_theme_preview_loading = NULL;
 
@@ -775,22 +781,25 @@ refresh_sounds (GtkComboBoxText *combo,
     for (int i = -1; i == -1 || sys_dirs[i] != NULL; i++)
     {
         const char *root = (i == -1) ? g_get_user_data_dir () : sys_dirs[i];
+
+        /* The path to the actual audio files */
         gchar *path = g_build_filename (root, "sounds", theme, "stereo", NULL);
 
-        DIR *d = opendir (path);
-        if (d != NULL)
+        GDir *dir = g_dir_open (path, 0, NULL);
+        if (dir != NULL)
         {
-            struct dirent *e;
-            while ((e = readdir (d)) != NULL)
+            const gchar *filename;
+
+            while ((filename = g_dir_read_name (dir)) != NULL)
             {
-                if (g_str_has_suffix (e->d_name, ".oga") || g_str_has_suffix (e->d_name, ".wav"))
+                if (g_str_has_suffix (filename, ".oga") || g_str_has_suffix (filename, ".wav"))
                 {
-                    char *dot = g_strrstr (e->d_name, ".");
-                    char *id = g_strndup (e->d_name, dot - e->d_name);
+                    char *dot = g_strrstr (filename, ".");
+                    char *id = g_strndup (filename, dot - filename);
 
                     SoundEntry *se = g_new0 (SoundEntry, 1);
                     se->id = id;
-                    se->full_path = g_build_filename (path, e->d_name, NULL);
+                    se->full_path = g_build_filename (path, filename, NULL);
 
                     GtkIconInfo *info = gtk_icon_theme_choose_icon (it, (const char *[]) { id, "audio-x-generic", NULL }, 32, 0);
                     if (info)
@@ -801,16 +810,15 @@ refresh_sounds (GtkComboBoxText *combo,
                     g_ptr_array_add (sounds, se);
                 }
             }
+
+            /* Set the folder button to the theme's stereo directory */
             if (btn_open != NULL)
             {
-                if (g_file_test (path, G_FILE_TEST_IS_DIR))
-                {
-                    /* IF this directory exists, let's make it the default for the button */
-                    g_object_set_data_full (G_OBJECT (btn_open), "current-path", g_strdup (g_build_filename (path, "stereo", NULL)), g_free);
-                    gtk_widget_set_sensitive (btn_open, TRUE);
-                }
+                /* 'path' already ends in 'stereo', so just g_strdup it */
+                g_object_set_data_full (G_OBJECT (btn_open), "current-path", g_strdup (path), g_free);
+                gtk_widget_set_sensitive (btn_open, TRUE);
             }
-            closedir (d);
+            g_dir_close (dir);
         }
         g_free (path);
     }
@@ -2128,7 +2136,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     GObject *popover = gtk_builder_get_object (builder, "sound_browser_popover");
 
     gtk_popover_set_constrain_to (GTK_POPOVER (popover), GTK_POPOVER_CONSTRAINT_WINDOW);
-    gtk_popover_set_position (GTK_POPOVER (popover), GTK_POS_TOP);
+    gtk_popover_set_position (GTK_POPOVER (popover), GTK_POS_BOTTOM);
 
     GObject *icon_view = gtk_builder_get_object (builder, "browser_icon_view");
     GObject *search_entry = gtk_builder_get_object (builder, "browser_search_entry");
