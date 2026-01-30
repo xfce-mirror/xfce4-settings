@@ -567,6 +567,7 @@ cb_browser_button_toggled (GtkToggleButton *button,
     {
         gtk_popover_popdown (popover);
     }
+    gtk_widget_queue_draw (gtk_widget_get_toplevel (GTK_WIDGET (popover)));
 }
 
 static void
@@ -897,6 +898,35 @@ cb_sound_theme_combo_changed (GtkComboBoxText *combo,
         g_free (command);
         g_free (pactl);
     }
+}
+
+static gboolean
+on_window_resized (GtkWidget *window,
+                   GdkEventConfigure *event,
+                   gpointer user_data)
+{
+    GtkWidget *popover = GTK_WIDGET (user_data);
+    int current_height = event->height;
+
+    /* Safety Kill-Switch: ONLY if visible */
+    if (gtk_widget_get_visible (popover) && current_height < 420)
+    {
+        gtk_popover_popdown (GTK_POPOVER (popover));
+        /* We still want to update the size below so it's ready for next time */
+    }
+
+    /* Update Size: Always do this so the SW is ready when reopened */
+    GtkWidget *scrolled_window = g_object_get_data (G_OBJECT (popover), "scrolled-window");
+    if (scrolled_window)
+    {
+        int adaptive_max = current_height * 0.7;
+        if (adaptive_max < 400)
+        {
+            adaptive_max = 400;
+        }
+        gtk_scrolled_window_set_max_content_height (GTK_SCROLLED_WINDOW (scrolled_window), adaptive_max);
+    }
+    return FALSE;
 }
 
 static void
@@ -2169,6 +2199,7 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_object_set_data (G_OBJECT (search_entry), "scrolled-window", scrolled_window);
     g_object_set_data (G_OBJECT (search_entry), "btn-open-folder", btn_open);
     g_object_set_data (G_OBJECT (icon_view), "btn-open-folder", btn_open);
+    g_object_set_data (G_OBJECT (popover), "scrolled-window", scrolled_window);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                     GTK_POLICY_NEVER,
                                     GTK_POLICY_ALWAYS);
@@ -2178,11 +2209,20 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     g_object_set_data (G_OBJECT (search_entry), "the-list-store", sound_list_store);
     g_object_set_data (G_OBJECT (sound_combo), "sounds-array", master_sounds);
 
-    g_signal_connect (search_entry, "changed",
-                      G_CALLBACK (update_ui_list), NULL);
     refresh_sounds (GTK_COMBO_BOX_TEXT (sound_combo), GTK_WIDGET (search_entry));
 
     gtk_popover_set_relative_to (GTK_POPOVER (popover), GTK_WIDGET (sound_preview_button));
+
+    GtkWidget *toplevel = gtk_widget_get_toplevel (GTK_WIDGET (label_sound_theme));
+    GtkWidget *parent = gtk_widget_get_ancestor (GTK_WIDGET (sound_preview_button),
+                                                 GTK_TYPE_SCROLLED_WINDOW);
+    GtkAdjustment *v_adj = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (parent));
+
+    g_signal_connect (toplevel, "configure-event",
+                      G_CALLBACK (on_window_resized), GTK_WIDGET (popover));
+    /* Close popover when scrolling starts */
+    g_signal_connect_swapped (v_adj, "value-changed",
+                              G_CALLBACK (gtk_popover_popdown), popover);
 
     g_signal_connect (sound_combo, "changed",
                       G_CALLBACK (cb_sound_theme_combo_changed), search_entry);
