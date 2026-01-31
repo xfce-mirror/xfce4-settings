@@ -484,73 +484,46 @@ cb_custom_dpi_spin_button_changed (GtkSpinButton *custom_dpi_spin,
 #endif
 
 #ifdef ENABLE_SOUND_SETTINGS
-static void
-add_sound_themes_from_dir (GtkComboBoxText *combo,
-                           GHashTable *found_themes,
-                           const gchar *base_dir)
+static gboolean
+on_window_resized (GtkWidget *window,
+                   GdkEventConfigure *event,
+                   gpointer user_data)
 {
-    GDir *dir = g_dir_open (base_dir, 0, NULL);
-    if (dir == NULL)
-        return;
+    GtkWidget *popover = GTK_WIDGET (user_data);
+    int current_height = event->height;
 
-    const gchar *name;
-    while ((name = g_dir_read_name (dir)) != NULL)
+    /* Safety Kill-Switch: ONLY if visible */
+    if (gtk_widget_get_visible (popover) && current_height < 420)
     {
-        gchar *test_file = g_build_filename (base_dir, name, "index.theme", NULL);
-        if (g_file_test (test_file, G_FILE_TEST_EXISTS))
-        {
-            if (!g_hash_table_contains (found_themes, name))
-            {
-                gtk_combo_box_text_append (combo, name, name);
-                g_hash_table_add (found_themes, g_strdup (name));
-            }
-        }
-        g_free (test_file);
+        gtk_popover_popdown (GTK_POPOVER (popover));
+        /* We still want to update the size below so it's ready for next time */
     }
-    g_dir_close (dir);
+
+    /* Update Size: Always do this so the SW is ready when reopened */
+    GtkWidget *scrolled_window = g_object_get_data (G_OBJECT (popover), "scrolled-window");
+    if (scrolled_window)
+    {
+        int adaptive_max = current_height * 0.7;
+        if (adaptive_max < 400)
+        {
+            adaptive_max = 400;
+        }
+        gtk_scrolled_window_set_max_content_height (GTK_SCROLLED_WINDOW (scrolled_window), adaptive_max);
+    }
+    return FALSE;
 }
 
 static void
-appearance_settings_load_sound_themes (GtkComboBoxText *combo,
-                                       GtkLabel *label_sound_theme)
+free_sound_entry (gpointer data)
 {
-    GHashTable *found_themes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-
-    const gchar *user_data_dir = g_get_user_data_dir ();
-    gchar *user_path = g_build_filename (user_data_dir, "sounds", NULL);
-    add_sound_themes_from_dir (combo, found_themes, user_path);
-    g_free (user_path);
-
-    const gchar *const *system_dirs = g_get_system_data_dirs ();
-    for (guint i = 0; system_dirs[i] != NULL; i++)
+    SoundEntry *se = data;
+    g_free (se->id);
+    g_free (se->full_path);
+    if (se->icon)
     {
-        gchar *path = g_build_filename (system_dirs[i], "sounds", NULL);
-        add_sound_themes_from_dir (combo, found_themes, path);
-        g_free (path);
+        g_object_unref (se->icon);
     }
-
-    if (g_hash_table_size (found_themes) == 0)
-    {
-        const gchar *tooltip_text =
-            _("No sound themes found. Install themes in /usr/share/sounds or ~/.local/share/sounds");
-        gtk_widget_set_tooltip_text (GTK_WIDGET (combo), tooltip_text);
-        gtk_widget_set_tooltip_text (GTK_WIDGET (label_sound_theme), tooltip_text);
-    }
-    else
-    {
-        gchar *theme = xfconf_channel_get_string (xsettings_channel, "/Net/SoundThemeName", "freedesktop");
-        if (!gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), theme))
-        {
-            /* Invalid theme in settings -> select first item as a sane default */
-            GtkTreeIter iter;
-            GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
-            if (gtk_tree_model_get_iter_first (model, &iter))
-                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combo), &iter);
-        }
-        g_free (theme);
-    }
-
-    g_hash_table_destroy (found_themes);
+    g_free (se);
 }
 
 static void
@@ -900,46 +873,73 @@ cb_sound_theme_combo_changed (GtkComboBoxText *combo,
     }
 }
 
-static gboolean
-on_window_resized (GtkWidget *window,
-                   GdkEventConfigure *event,
-                   gpointer user_data)
+static void
+add_sound_themes_from_dir (GtkComboBoxText *combo,
+                           GHashTable *found_themes,
+                           const gchar *base_dir)
 {
-    GtkWidget *popover = GTK_WIDGET (user_data);
-    int current_height = event->height;
+    GDir *dir = g_dir_open (base_dir, 0, NULL);
+    if (dir == NULL)
+        return;
 
-    /* Safety Kill-Switch: ONLY if visible */
-    if (gtk_widget_get_visible (popover) && current_height < 420)
+    const gchar *name;
+    while ((name = g_dir_read_name (dir)) != NULL)
     {
-        gtk_popover_popdown (GTK_POPOVER (popover));
-        /* We still want to update the size below so it's ready for next time */
-    }
-
-    /* Update Size: Always do this so the SW is ready when reopened */
-    GtkWidget *scrolled_window = g_object_get_data (G_OBJECT (popover), "scrolled-window");
-    if (scrolled_window)
-    {
-        int adaptive_max = current_height * 0.7;
-        if (adaptive_max < 400)
+        gchar *test_file = g_build_filename (base_dir, name, "index.theme", NULL);
+        if (g_file_test (test_file, G_FILE_TEST_EXISTS))
         {
-            adaptive_max = 400;
+            if (!g_hash_table_contains (found_themes, name))
+            {
+                gtk_combo_box_text_append (combo, name, name);
+                g_hash_table_add (found_themes, g_strdup (name));
+            }
         }
-        gtk_scrolled_window_set_max_content_height (GTK_SCROLLED_WINDOW (scrolled_window), adaptive_max);
+        g_free (test_file);
     }
-    return FALSE;
+    g_dir_close (dir);
 }
 
 static void
-free_sound_entry (gpointer data)
+appearance_settings_load_sound_themes (GtkComboBoxText *combo,
+                                       GtkLabel *label_sound_theme)
 {
-    SoundEntry *se = data;
-    g_free (se->id);
-    g_free (se->full_path);
-    if (se->icon)
+    GHashTable *found_themes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+
+    const gchar *user_data_dir = g_get_user_data_dir ();
+    gchar *user_path = g_build_filename (user_data_dir, "sounds", NULL);
+    add_sound_themes_from_dir (combo, found_themes, user_path);
+    g_free (user_path);
+
+    const gchar *const *system_dirs = g_get_system_data_dirs ();
+    for (guint i = 0; system_dirs[i] != NULL; i++)
     {
-        g_object_unref (se->icon);
+        gchar *path = g_build_filename (system_dirs[i], "sounds", NULL);
+        add_sound_themes_from_dir (combo, found_themes, path);
+        g_free (path);
     }
-    g_free (se);
+
+    if (g_hash_table_size (found_themes) == 0)
+    {
+        const gchar *tooltip_text =
+            _("No sound themes found. Install themes in /usr/share/sounds or ~/.local/share/sounds");
+        gtk_widget_set_tooltip_text (GTK_WIDGET (combo), tooltip_text);
+        gtk_widget_set_tooltip_text (GTK_WIDGET (label_sound_theme), tooltip_text);
+    }
+    else
+    {
+        gchar *theme = xfconf_channel_get_string (xsettings_channel, "/Net/SoundThemeName", "freedesktop");
+        if (!gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), theme))
+        {
+            /* Invalid theme in settings -> select first item as a sane default */
+            GtkTreeIter iter;
+            GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo));
+            if (gtk_tree_model_get_iter_first (model, &iter))
+                gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combo), &iter);
+        }
+        g_free (theme);
+    }
+
+    g_hash_table_destroy (found_themes);
 }
 #endif
 
