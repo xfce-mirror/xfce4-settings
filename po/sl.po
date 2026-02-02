@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the xfce4-settings.master package.
 # 
 # Translators:
-# Dejweed, 2025
+# Dejweed, 2025-2026
 # 8b03701f910565d01acaec9ce3f558ab_e9f0fee <b5b06e8f85fb8288fe43ad0bc2422d94_32848>, 2013
 # Arnold Marko <arnold.marko@gmail.com>, 2019-2024
 # Kernc, 2014-2015
@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-11-10 00:53+0100\n"
+"POT-Creation-Date: 2026-01-22 12:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Dejweed, 2025\n"
+"Last-Translator: Dejweed, 2025-2026\n"
 "Language-Team: Slovenian (http://app.transifex.com/xfce/xfce4-settings/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -262,7 +262,7 @@ msgstr "_Miška"
 
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1609 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1733 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "Noben"
@@ -406,7 +406,7 @@ msgstr "DPI"
 
 #: common/resources/appearance-dialog.glade:690
 msgid "_Fonts"
-msgstr "_Pisave"
+msgstr "Pisa_ve"
 
 #: common/resources/appearance-dialog.glade:733
 msgid "Show images on _buttons"
@@ -426,7 +426,7 @@ msgstr "Določite, ali naj bodo ikone prikazane poleg besedila v menijih"
 
 #: common/resources/appearance-dialog.glade:767
 msgid "Enable e_ditable accelerators"
-msgstr "Omogoči ur_ejanje hitrih tipk"
+msgstr "Omogoči urejanje _hitrih tipk"
 
 #: common/resources/appearance-dialog.glade:771
 msgid ""
@@ -468,19 +468,23 @@ msgid ""
 " play"
 msgstr "Določite, ali naj miškini kliki in preostali uporabniški vnos povzroči predvajanje odzivnih zvokov"
 
-#: common/resources/appearance-dialog.glade:879
+#: common/resources/appearance-dialog.glade:878
+msgid "Sound _theme:"
+msgstr ""
+
+#: common/resources/appearance-dialog.glade:902
 msgid "Event sounds"
 msgstr "Zvočni učinki"
 
-#: common/resources/appearance-dialog.glade:908
+#: common/resources/appearance-dialog.glade:931
 msgid "Adjust the system-wide display scaling"
 msgstr "Prilagodi sistemsko povečevanje zaslona"
 
-#: common/resources/appearance-dialog.glade:926
+#: common/resources/appearance-dialog.glade:949
 msgid "_Window Scaling"
 msgstr "Povečevanje okna"
 
-#: common/resources/appearance-dialog.glade:954
+#: common/resources/appearance-dialog.glade:977
 msgid "Setti_ngs"
 msgstr "_Nastavitve"
 
@@ -547,7 +551,7 @@ msgstr "Napravi dodaj profil"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1348 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1472 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:109
 #: dialogs/keyboard-settings/command-dialog.c:271
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
@@ -680,7 +684,7 @@ msgstr "_Povečava:"
 
 #: common/resources/display-dialog.glade:669
 msgid "_General"
-msgstr "_Splošno"
+msgstr "Splošn_o"
 
 #: common/resources/display-dialog.glade:689
 msgid "<b>Profiles</b>"
@@ -1198,11 +1202,11 @@ msgstr "Televizija"
 msgid "Digital display"
 msgstr "Digitalni zaslon"
 
-#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:698
+#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:708
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "Ni mogoče določiti različice uporabljene RandR razširitve"
 
-#: common/xfce-randr.c:569
+#: common/xfce-randr.c:573
 #: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "Prenosnik"
@@ -1233,7 +1237,7 @@ msgid "Version information"
 msgstr "Podatki o različici"
 
 #: dialogs/accessibility-settings/main.c:191
-#: dialogs/appearance-settings/main.c:1702 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:1849 dialogs/color-settings/main.c:1463
 #: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
@@ -1244,7 +1248,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Za navodila o uporabi zaženite ukaz \"%s --help\"."
 
 #: dialogs/accessibility-settings/main.c:210
-#: dialogs/appearance-settings/main.c:1721 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:1868 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
@@ -1253,7 +1257,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce razvojna ekipa. Vse pravice pridržane."
 
 #: dialogs/accessibility-settings/main.c:211
-#: dialogs/appearance-settings/main.c:1722 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:1869 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
@@ -1276,8 +1280,14 @@ msgstr "pomožne;tehnologije;tipke;lepljive;odboj;emulacija;zaslonski bralnik;po
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Xfwm4 nastavitev ni bilo mogoče prikazati"
 
+#: dialogs/appearance-settings/main.c:578
+msgid ""
+"No sound themes found. Install themes in /usr/share/sounds or "
+"~/.local/share/sounds"
+msgstr ""
+
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:632
+#: dialogs/appearance-settings/main.c:756
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1286,70 +1296,70 @@ msgstr "Opozorilo: Ta tema ikon nima predpomnilniške datoteke. Lahko jo ustvari
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:639
+#: dialogs/appearance-settings/main.c:763
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Opozorilo: ta tema ikon je nepopolna. Nekatere ikone bodo manjkale."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:644
+#: dialogs/appearance-settings/main.c:768
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Opozorilo: ta tema ikon je nepopolna. Vsebuje le osnovni nabor ikon, ki jo lahko prevzamejo druge teme."
 
-#: dialogs/appearance-settings/main.c:1260
+#: dialogs/appearance-settings/main.c:1384
 msgid "File is too large, installation aborted"
 msgstr "Datoteka je prevelika. Namestitev je prekinjena."
 
-#: dialogs/appearance-settings/main.c:1265
+#: dialogs/appearance-settings/main.c:1389
 msgid "Failed to create temporary directory"
 msgstr "Ustvarjanje začasne mape ni uspelo"
 
-#: dialogs/appearance-settings/main.c:1270
+#: dialogs/appearance-settings/main.c:1394
 msgid "Failed to extract archive"
 msgstr "Ni mogoče odpakirati arhiva"
 
-#: dialogs/appearance-settings/main.c:1275
+#: dialogs/appearance-settings/main.c:1399
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Neznana vrsta datoteke; podprti so samo arhivi in mape"
 
-#: dialogs/appearance-settings/main.c:1280
+#: dialogs/appearance-settings/main.c:1404
 msgid "Not a valid theme package"
 msgstr "Neustrezen paket s temo"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1409
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Neznana napaka (koda zaključka %d)"
 
-#: dialogs/appearance-settings/main.c:1292
+#: dialogs/appearance-settings/main.c:1416
 msgid "Failed to install theme"
 msgstr "Namestitev teme je spodletela"
 
-#: dialogs/appearance-settings/main.c:1346
+#: dialogs/appearance-settings/main.c:1470
 #, c-format
 msgid "Install %s theme"
 msgstr "Namesti temo %s"
 
-#: dialogs/appearance-settings/main.c:1349
+#: dialogs/appearance-settings/main.c:1473
 #: dialogs/keyboard-settings/command-dialog.c:272
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "_Odpri"
 
-#: dialogs/appearance-settings/main.c:1613
+#: dialogs/appearance-settings/main.c:1737
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1617
+#: dialogs/appearance-settings/main.c:1741
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1621
+#: dialogs/appearance-settings/main.c:1745
 msgid "Vertical RGB"
 msgstr "Vertikalno RGB"
 
-#: dialogs/appearance-settings/main.c:1625
+#: dialogs/appearance-settings/main.c:1749
 msgid "Vertical BGR"
 msgstr "Vertikalno BGR"
 
