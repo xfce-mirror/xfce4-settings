@@ -66,7 +66,8 @@ static gboolean opt_version = FALSE;
 static gboolean opt_daemon = FALSE;
 static gboolean opt_disable_wm_check = FALSE;
 static gboolean opt_replace = FALSE;
-static guint owner_id;
+static gboolean opt_allow_multiple = FALSE;
+static guint owner_id = 0;
 
 struct t_data_set
 {
@@ -94,28 +95,13 @@ static GOptionEntry option_entries[] = {
     { "daemon", 0, 0, G_OPTION_ARG_NONE, &opt_daemon, N_ ("Fork to the background"), NULL },
     { "disable-wm-check", 'D', 0, G_OPTION_ARG_NONE, &opt_disable_wm_check, N_ ("Do not wait for a window manager on startup"), NULL },
     { "replace", 0, 0, G_OPTION_ARG_NONE, &opt_replace, N_ ("Replace running xsettings daemon (if any)"), NULL },
+    { "allow-multiple", 0, 0, G_OPTION_ARG_NONE, &opt_allow_multiple, N_ ("Allow xfsettingsd to start even if another instance is running"), NULL },
     { NULL }
 };
 
 static void
-on_name_lost (GDBusConnection *connection,
-              const gchar *name,
-              gpointer user_data)
+start_xfsettingsd (struct t_data_set *s_data)
 {
-    g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
-    gtk_main_quit ();
-}
-
-static void
-on_name_acquired (GDBusConnection *connection,
-                  const gchar *name,
-                  gpointer user_data)
-{
-    GBusNameOwnerFlags dbus_flags;
-    struct t_data_set *s_data;
-
-    s_data = (struct t_data_set *) user_data;
-
 #ifdef ENABLE_X11
     if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {
@@ -168,6 +154,27 @@ on_name_acquired (GDBusConnection *connection,
         }
     }
 #endif
+}
+
+static void
+on_name_lost (GDBusConnection *connection,
+              const gchar *name,
+              gpointer user_data)
+{
+    g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
+    gtk_main_quit ();
+}
+
+static void
+on_name_acquired (GDBusConnection *connection,
+                  const gchar *name,
+                  gpointer user_data)
+{
+    GBusNameOwnerFlags dbus_flags;
+    struct t_data_set *s_data;
+
+    s_data = (struct t_data_set *) user_data;
+    start_xfsettingsd (s_data);
 
     /* Update the name flags to allow replacement */
     dbus_flags = G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT;
@@ -283,6 +290,13 @@ main (gint argc,
     /* Initialize our data set */
     memset (&s_data, 0, sizeof (struct t_data_set));
 
+    if (!xfconf_init (&error))
+    {
+        g_printerr ("%s: %s.\n", G_LOG_DOMAIN, error->message);
+        g_error_free (error);
+        return EXIT_FAILURE;
+    }
+
     dbus_connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
     if (G_LIKELY (!error))
     {
@@ -311,28 +325,28 @@ main (gint argc,
         g_variant_get (name_owned_variant, "(b)", &name_owned, NULL);
         g_variant_unref (name_owned_variant);
 
-        if (G_UNLIKELY (name_owned && !opt_replace))
+        if (G_LIKELY (!name_owned || opt_replace))
+        {
+            /* Allow the settings daemon to be replaced */
+            dbus_flags = G_BUS_NAME_OWNER_FLAGS_NONE;
+            if (opt_replace || name_owned)
+                dbus_flags = G_BUS_NAME_OWNER_FLAGS_REPLACE;
+
+            owner_id = g_bus_own_name_on_connection (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, on_name_acquired, on_name_lost, &s_data, NULL);
+        }
+        else if (opt_allow_multiple)
+        {
+            xfsettings_dbg (XFSD_DEBUG_XSETTINGS, "Another instance is already running, but continuing as requested.");
+            start_xfsettingsd (&s_data);
+        }
+        else if (!opt_replace)
         {
             xfsettings_dbg (XFSD_DEBUG_XSETTINGS, "Another instance is already running. Leaving.");
             g_dbus_connection_close_sync (dbus_connection, NULL, NULL);
             return EXIT_SUCCESS;
         }
-
-        /* Allow the settings daemon to be replaced */
-        dbus_flags = G_BUS_NAME_OWNER_FLAGS_NONE;
-        if (opt_replace || name_owned)
-            dbus_flags = G_BUS_NAME_OWNER_FLAGS_REPLACE;
-
-        owner_id = g_bus_own_name_on_connection (dbus_connection, XFSETTINGS_DBUS_NAME, dbus_flags, on_name_acquired, on_name_lost, &s_data, NULL);
     }
     else
-    {
-        g_printerr ("%s: %s.\n", G_LOG_DOMAIN, error->message);
-        g_error_free (error);
-        return EXIT_FAILURE;
-    }
-
-    if (!xfconf_init (&error))
     {
         g_printerr ("%s: %s.\n", G_LOG_DOMAIN, error->message);
         g_error_free (error);
