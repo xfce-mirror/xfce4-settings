@@ -142,8 +142,10 @@ property_changed (XfconfChannel *channel,
             {
                 GValue trans_value = G_VALUE_INIT;
                 g_value_init (&trans_value, G_VALUE_TYPE (default_value));
-                g_value_transform (value, &trans_value);
-                g_object_set_property (G_OBJECT (settings), setting, &trans_value);
+                if (g_value_transform (value, &trans_value))
+                    g_object_set_property (G_OBJECT (settings), setting, &trans_value);
+                else
+                    g_object_set_property (G_OBJECT (settings), setting, default_value);
                 g_value_unset (&trans_value);
             }
         }
