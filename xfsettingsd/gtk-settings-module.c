@@ -60,6 +60,13 @@ static const gchar *sync_properties[] = {
     "/Xft/RGBA",
     NULL, // g_strv_contains() requires NULL-termination
 };
+static const struct
+{
+    const gchar *transformed;
+    const gchar *corrected;
+} property_name_fixups[] = {
+    { "gtk-xft-hint-style", "gtk-xft-hintstyle" },
+};
 
 
 
@@ -96,6 +103,13 @@ xfconf_prop_to_gtk_setting (const gchar *prop)
         else
             g_string_append_c (setting, *p);
     }
+
+    for (gsize i = 0; i < G_N_ELEMENTS (property_name_fixups); ++i)
+        if (g_strcmp0 (setting->str, property_name_fixups[i].transformed) == 0)
+        {
+            g_string_free (setting, TRUE);
+            return g_strdup (property_name_fixups[i].corrected);
+        }
 
     return g_string_free (setting, FALSE);
 }
