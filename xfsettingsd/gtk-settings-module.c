@@ -55,11 +55,14 @@ xfconf_prop_to_gtk_setting (const gchar *prop)
 
     for (const gchar *p = ++suffix; *p != '\0'; p++)
     {
-        if (g_ascii_isupper (*p))
-        {
+        gboolean is_upper = g_ascii_isupper (*p);
+        gboolean add_separator = is_upper && (p == suffix || g_ascii_islower (p[-1]) || g_ascii_islower (p[1]));
+
+        if (add_separator)
             g_string_append_c (setting, '-');
+
+        if (is_upper)
             g_string_append_c (setting, g_ascii_tolower (*p));
-        }
         else
             g_string_append_c (setting, *p);
     }
