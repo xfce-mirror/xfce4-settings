@@ -29,6 +29,45 @@ gtk_module_init (gint *argc,
 G_MODULE_EXPORT const gchar *
 g_module_check_init (GModule *module);
 
+static const gchar *sync_properties[] = {
+    "/Gtk/ButtonImages",
+    "/Gtk/CanChangeAccels",
+    "/Gtk/ColorPalette",
+    "/Gtk/CursorThemeName",
+    "/Gtk/CursorThemeSize",
+    "/Gtk/DecorationLayout",
+    "/Gtk/DialogsUseHeader",
+    "/Gtk/FontName",
+    "/Gtk/IconSizes",
+    "/Gtk/KeyThemeName",
+    "/Gtk/MenuBarAccel",
+    "/Gtk/MenuImages",
+    "/Gtk/Modules",
+    "/Gtk/TitlebarMiddleClick",
+    "/Net/CursorBlink",
+    "/Net/CursorBlinkTime",
+    "/Net/DndDragThreshold",
+    "/Net/DoubleClickDistance",
+    "/Net/DoubleClickTime",
+    "/Net/EnableEventSounds",
+    "/Net/EnableInputFeedbackSounds",
+    "/Net/IconThemeName",
+    "/Net/SoundThemeName",
+    "/Net/ThemeName",
+    "/Xft/Antialias",
+    "/Xft/HintStyle",
+    "/Xft/Hinting",
+    "/Xft/RGBA",
+    NULL, // g_strv_contains() requires NULL-termination
+};
+static const struct
+{
+    const gchar *transformed;
+    const gchar *corrected;
+} property_name_fixups[] = {
+    { "gtk-xft-hint-style", "gtk-xft-hintstyle" },
+};
+
 
 
 /*
@@ -53,14 +92,24 @@ xfconf_prop_to_gtk_setting (const gchar *prop)
 
     for (const gchar *p = ++suffix; *p != '\0'; p++)
     {
-        if (g_ascii_isupper (*p))
-        {
+        gboolean is_upper = g_ascii_isupper (*p);
+        gboolean add_separator = is_upper && (p == suffix || g_ascii_islower (p[-1]) || g_ascii_islower (p[1]));
+
+        if (add_separator)
             g_string_append_c (setting, '-');
+
+        if (is_upper)
             g_string_append_c (setting, g_ascii_tolower (*p));
-        }
         else
             g_string_append_c (setting, *p);
     }
+
+    for (gsize i = 0; i < G_N_ELEMENTS (property_name_fixups); ++i)
+        if (g_strcmp0 (setting->str, property_name_fixups[i].transformed) == 0)
+        {
+            g_string_free (setting, TRUE);
+            return g_strdup (property_name_fixups[i].corrected);
+        }
 
     return g_string_free (setting, FALSE);
 }
@@ -73,31 +122,36 @@ property_changed (XfconfChannel *channel,
                   const GValue *value,
                   gpointer data)
 {
-    GtkSettings *settings = gtk_settings_get_default ();
-    gchar *setting = xfconf_prop_to_gtk_setting (property);
-    GParamSpec *pspec = g_object_class_find_property (G_OBJECT_GET_CLASS (settings), setting);
-
-    if (pspec != NULL)
+    if (g_strv_contains (sync_properties, property))
     {
-        const GValue *default_value = g_param_spec_get_default_value (pspec);
+        GtkSettings *settings = gtk_settings_get_default ();
+        gchar *setting = xfconf_prop_to_gtk_setting (property);
+        GParamSpec *pspec = g_object_class_find_property (G_OBJECT_GET_CLASS (settings), setting);
 
-        xfsettings_dbg (XFSD_DEBUG_GTK_SETTINGS,
-                        "Xfconf property '%s' changed, syncing with GtkSettings property '%s'",
-                        property, g_param_spec_get_name (pspec));
-
-        if (G_VALUE_TYPE (value) == G_TYPE_INVALID)
-            g_object_set_property (G_OBJECT (settings), setting, default_value);
-        else
+        if (pspec != NULL)
         {
-            GValue trans_value = G_VALUE_INIT;
-            g_value_init (&trans_value, G_VALUE_TYPE (default_value));
-            g_value_transform (value, &trans_value);
-            g_object_set_property (G_OBJECT (settings), setting, &trans_value);
-            g_value_unset (&trans_value);
-        }
-    }
+            const GValue *default_value = g_param_spec_get_default_value (pspec);
 
-    g_free (setting);
+            xfsettings_dbg (XFSD_DEBUG_GTK_SETTINGS,
+                            "Xfconf property '%s' changed, syncing with GtkSettings property '%s'",
+                            property, g_param_spec_get_name (pspec));
+
+            if (G_VALUE_TYPE (value) == G_TYPE_INVALID)
+                g_object_set_property (G_OBJECT (settings), setting, default_value);
+            else
+            {
+                GValue trans_value = G_VALUE_INIT;
+                g_value_init (&trans_value, G_VALUE_TYPE (default_value));
+                if (g_value_transform (value, &trans_value))
+                    g_object_set_property (G_OBJECT (settings), setting, &trans_value);
+                else
+                    g_object_set_property (G_OBJECT (settings), setting, default_value);
+                g_value_unset (&trans_value);
+            }
+        }
+
+        g_free (setting);
+    }
 }
 
 
@@ -118,7 +172,8 @@ gtk_module_init (gint *argc,
     props = xfconf_channel_get_properties (channel, NULL);
     g_hash_table_iter_init (&iter, props);
     while (g_hash_table_iter_next (&iter, (gpointer *) &prop, (gpointer *) &value))
-        property_changed (channel, prop, value, NULL);
+        if (g_strv_contains (sync_properties, prop))
+            property_changed (channel, prop, value, NULL);
 
     g_hash_table_destroy (props);
 }
