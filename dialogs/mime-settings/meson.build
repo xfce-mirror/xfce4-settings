@@ -30,7 +30,7 @@ enums += gnome.mkenums(
   install_header: false,
   sources: 'xfce-mime-helper.h',
   fhead: '#ifndef __XFCE_MIME_HELPER_ENUM_TYPES_H__\n#define __XFCE_MIME_HELPER_ENUM_TYPES_H__\n#include <libxfce4ui/libxfce4ui.h>\nG_BEGIN_DECLS\n',
-  fprod: '/* enumerations from "@filename@" */\n',
+  fprod: '/* enumerations from "@basename@" */\n',
   vhead: 'GType @enum_name@_get_type (void) G_GNUC_CONST;\n#define XFCE_MIME_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n',
   ftail: 'G_END_DECLS\n\n#endif /* !__XFCE_MIME_HELPER_ENUM_TYPES_H__ */',
 )
@@ -39,7 +39,7 @@ enums += gnome.mkenums(
   install_header: false,
   sources: 'xfce-mime-helper.h',
   fhead: '#undef GTK_DISABLE_DEPRECATED\n#define GTK_ENABLE_BROKEN\n#include "xfce-mime-helper.h"\n\n#include "xfce-mime-helper-enum-types.h"',
-  fprod: '\n/* enumerations from "@filename@" */',
+  fprod: '\n/* enumerations from "@basename@" */',
   vhead: 'GType\n@enum_name@_get_type (void)\n{\n\tstatic GType type = 0;\n\tif (type == 0) {\n\tstatic const G@Type@Value values[] = {',
   vprod: '\t{ @VALUENAME@, "@VALUENAME@", "@valuenick@" },',
   vtail: '\t{ 0, NULL, NULL }\n\t};\n\ttype = g_@type@_register_static ("@EnumName@", values);\n  }\n\treturn type;\n}\n',
