@@ -20,6 +20,7 @@
 #include "xfce-wlr-output-manager.h"
 
 #include <gdk/gdkwayland.h>
+#include <sys/mman.h>
 
 
 
@@ -85,6 +86,17 @@ mode_preferred (void *data, struct zwlr_output_mode_v1 *wl_mode);
 static void
 mode_finished (void *data, struct zwlr_output_mode_v1 *wl_mode);
 
+static void
+xfce_manager_head (void *data, struct xfce_output_manager_private_v1 *xfce_manager, struct xfce_output_head_private_v1 *head, const char *name);
+static void
+xfce_manager_done (void *data, struct xfce_output_manager_private_v1 *xfce_manager, uint32_t serial);
+static void
+xfce_manager_finished (void *data, struct xfce_output_manager_private_v1 *xfce_manager);
+static void
+xfce_head_edid (void *data, struct xfce_output_head_private_v1 *xfce_head, int32_t fd, uint32_t size);
+static void
+xfce_head_finished (void *data, struct xfce_output_head_private_v1 *xfce_head);
+
 
 enum
 {
@@ -99,10 +111,15 @@ struct _XfceWlrOutputManager
 
     struct wl_registry *wl_registry;
     struct zwlr_output_manager_v1 *wl_manager;
+    struct xfce_output_manager_private_v1 *xfce_manager;
+
+    gboolean saw_first_wlr_done;
+    gboolean saw_first_xfce_done;
 
     XfceWlrOutputListener listener;
     gpointer listener_data;
     GPtrArray *outputs;
+    uint32_t last_done_serial;
 };
 
 static const struct wl_registry_listener registry_listener = {
@@ -138,6 +155,17 @@ static const struct zwlr_output_mode_v1_listener mode_listener = {
     .refresh = mode_refresh,
     .preferred = mode_preferred,
     .finished = mode_finished,
+};
+
+static const struct xfce_output_manager_private_v1_listener xfce_manager_listener = {
+    .head = xfce_manager_head,
+    .done = xfce_manager_done,
+    .finished = xfce_manager_finished,
+};
+
+static const struct xfce_output_head_private_v1_listener xfce_head_listener = {
+    .edid = xfce_head_edid,
+    .finished = xfce_head_finished,
 };
 
 
@@ -186,13 +214,17 @@ static void
 free_output (gpointer data)
 {
     XfceWlrOutput *output = data;
-    zwlr_output_head_v1_destroy (output->wl_head);
+    if (output->xfce_head != NULL)
+        xfce_output_head_private_v1_destroy (output->xfce_head);
+    if (output->wl_head != NULL)
+        zwlr_output_head_v1_destroy (output->wl_head);
     g_free (output->name);
     g_free (output->description);
     g_list_free_full (output->modes, free_mode);
     g_free (output->manufacturer);
     g_free (output->model);
     g_free (output->serial_number);
+    g_free (output->edid_bytes);
     g_free (output->edid);
     g_free (output);
 }
@@ -269,10 +301,7 @@ xfce_wlr_output_manager_constructed (GObject *object)
     wl_registry_add_listener (manager->wl_registry, &registry_listener, manager);
     wl_display_roundtrip (wl_display);
     if (manager->wl_manager != NULL)
-    {
         zwlr_output_manager_v1_add_listener (manager->wl_manager, &manager_listener, manager);
-        wl_display_roundtrip (wl_display);
-    }
     else
     {
         g_ptr_array_unref (manager->outputs);
@@ -280,6 +309,12 @@ xfce_wlr_output_manager_constructed (GObject *object)
         g_warning ("Your compositor does not seem to support the wlr-output-management protocol:"
                    " display settings won't work");
     }
+
+    if (manager->xfce_manager != NULL)
+        xfce_output_manager_private_v1_add_listener (manager->xfce_manager, &xfce_manager_listener, manager);
+
+    if (manager->wl_manager != NULL || manager->xfce_manager != NULL)
+        wl_display_roundtrip (wl_display);
 
     G_OBJECT_CLASS (xfce_wlr_output_manager_parent_class)->constructed (object);
 }
@@ -291,6 +326,8 @@ xfce_wlr_output_manager_finalize (GObject *object)
 {
     XfceWlrOutputManager *manager = XFCE_WLR_OUTPUT_MANAGER (object);
 
+    if (manager->xfce_manager != NULL)
+        xfce_output_manager_private_v1_destroy (manager->xfce_manager);
     if (manager->wl_manager != NULL)
     {
         zwlr_output_manager_v1_destroy (manager->wl_manager);
@@ -315,6 +352,9 @@ registry_global (void *data,
     if (g_strcmp0 (zwlr_output_manager_v1_interface.name, interface) == 0)
         manager->wl_manager = wl_registry_bind (manager->wl_registry, id, &zwlr_output_manager_v1_interface,
                                                 MIN ((uint32_t) zwlr_output_manager_v1_interface.version, version));
+    else if (g_strcmp0 (xfce_output_manager_private_v1_interface.name, interface) == 0)
+        manager->xfce_manager = wl_registry_bind (manager->wl_registry, id, &xfce_output_manager_private_v1_interface,
+                                                  MIN ((uint32_t) xfce_output_manager_private_v1_interface.version, version));
 }
 
 
@@ -351,9 +391,37 @@ output_make_edid (gpointer data,
                   gpointer user_data)
 {
     XfceWlrOutput *output = data;
-    gchar *edid_str = g_strdup_printf ("%s-%s-%s", output->serial_number, output->model, output->manufacturer);
-    output->edid = g_compute_checksum_for_string (G_CHECKSUM_SHA1, edid_str, -1);
-    g_free (edid_str);
+    if (output->edid_bytes != NULL)
+        output->edid = g_compute_checksum_for_data (G_CHECKSUM_SHA1, output->edid_bytes, output->edid_bytes_len);
+    else
+    {
+        gchar *edid_str = g_strdup_printf ("%s-%s-%s", output->serial_number, output->model, output->manufacturer);
+        output->edid = g_compute_checksum_for_string (G_CHECKSUM_SHA1, edid_str, -1);
+        g_free (edid_str);
+    }
+}
+
+
+
+static void
+notify_listener (XfceWlrOutputManager *manager)
+{
+    for (guint n = 0; n < manager->outputs->len; n++)
+    {
+        XfceWlrOutput *output = g_ptr_array_index (manager->outputs, n);
+        if (output->new)
+            output_make_edid (output, NULL);
+    }
+
+    if (manager->listener != NULL)
+        manager->listener (manager, manager->wl_manager, manager->last_done_serial);
+
+    for (guint n = 0; n < manager->outputs->len; n++)
+    {
+        XfceWlrOutput *output = g_ptr_array_index (manager->outputs, n);
+        if (output->new)
+            output->new = FALSE;
+    }
 }
 
 
@@ -364,23 +432,11 @@ manager_done (void *data,
               uint32_t serial)
 {
     XfceWlrOutputManager *manager = data;
+    manager->last_done_serial = serial;
 
-    for (guint n = 0; n < manager->outputs->len; n++)
-    {
-        XfceWlrOutput *output = g_ptr_array_index (manager->outputs, n);
-        if (output->new)
-            output_make_edid (output, NULL);
-    }
-
-    if (manager->listener != NULL)
-        manager->listener (manager, wl_manager, serial);
-
-    for (guint n = 0; n < manager->outputs->len; n++)
-    {
-        XfceWlrOutput *output = g_ptr_array_index (manager->outputs, n);
-        if (output->new)
-            output->new = FALSE;
-    }
+    manager->saw_first_wlr_done = TRUE;
+    if (manager->saw_first_xfce_done || manager->xfce_manager == NULL)
+        notify_listener (manager);
 }
 
 
@@ -511,8 +567,13 @@ head_finished (void *data,
                struct zwlr_output_head_v1 *head)
 {
     XfceWlrOutput *output = data;
-    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Output disconnected: %s", output->name);
-    g_ptr_array_remove (output->manager->outputs, output);
+
+    g_clear_pointer (&output->wl_head, zwlr_output_head_v1_destroy);
+    if (output->xfce_head == NULL || output->manager->xfce_manager == NULL)
+    {
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Output disconnected: %s", output->name);
+        g_ptr_array_remove (output->manager->outputs, output);
+    }
 }
 
 
@@ -605,6 +666,96 @@ mode_finished (void *data,
     XfceWlrMode *mode = data;
     mode->output->modes = g_list_remove (mode->output->modes, mode);
     free_mode (mode);
+}
+
+
+
+static void
+xfce_manager_head (void *data,
+                   struct xfce_output_manager_private_v1 *xfce_manager,
+                   struct xfce_output_head_private_v1 *head,
+                   const char *name)
+{
+    XfceWlrOutputManager *manager = data;
+
+    for (guint n = 0; n < manager->outputs->len; n++)
+    {
+        XfceWlrOutput *output = g_ptr_array_index (manager->outputs, n);
+        if (g_strcmp0 (name, output->name) == 0)
+        {
+            output->xfce_head = head;
+            xfce_output_head_private_v1_add_listener (head, &xfce_head_listener, output);
+            return;
+        }
+    }
+
+    g_warning ("Unable to find XfceWlrOutput to match xfce_output_head_private_v1 with name '%s'", name);
+    xfce_output_head_private_v1_destroy (head);
+}
+
+
+
+static void
+xfce_manager_done (void *data,
+                   struct xfce_output_manager_private_v1 *xfce_manager,
+                   uint32_t serial)
+{
+    XfceWlrOutputManager *manager = data;
+    manager->last_done_serial = serial;
+
+    manager->saw_first_xfce_done = TRUE;
+    if (manager->saw_first_wlr_done)
+        notify_listener (manager);
+}
+
+
+
+static void
+xfce_manager_finished (void *data,
+                       struct xfce_output_manager_private_v1 *xfce_manager)
+{
+    XfceWlrOutputManager *manager = data;
+    g_clear_pointer (&manager->xfce_manager, xfce_output_manager_private_v1_destroy);
+}
+
+
+
+static void
+xfce_head_edid (void *data,
+                struct xfce_output_head_private_v1 *xfce_head,
+                int32_t fd,
+                uint32_t size)
+{
+    XfceWlrOutput *output = data;
+    void *edid_mem;
+
+    g_clear_pointer (&output->edid_bytes, g_free);
+    output->edid_bytes_len = 0;
+
+    edid_mem = mmap (NULL, size, PROT_READ, MAP_PRIVATE, fd, 0);
+    if (edid_mem != MAP_FAILED)
+    {
+        output->edid_bytes = g_memdup2 (edid_mem, size);
+        output->edid_bytes_len = size;
+
+        munmap (edid_mem, size);
+    }
+}
+
+
+
+static void
+xfce_head_finished (void *data,
+                    struct xfce_output_head_private_v1 *xfce_head)
+{
+    XfceWlrOutput *output = data;
+
+    g_clear_pointer (&output->xfce_head, xfce_output_head_private_v1_destroy);
+    if (output->wl_head == NULL)
+    {
+        xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Output disconnected: %s", output->name);
+        g_ptr_array_remove (output->manager->outputs, output);
+    }
 }
 
 
