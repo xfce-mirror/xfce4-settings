@@ -20,6 +20,7 @@
 #define __XFCE_WLR_OUTPUT_MANAGER_H__
 
 #include "protocols/wlr-output-management-unstable-v1-client.h"
+#include "protocols/xfce-output-management-v1-client.h"
 
 #include <glib-object.h>
 
@@ -44,6 +45,7 @@ typedef struct _XfceWlrOutput
 {
     XfceWlrOutputManager *manager;
     struct zwlr_output_head_v1 *wl_head;
+    struct xfce_output_head_private_v1 *xfce_head;
     gboolean new;
 
     /* read only */
@@ -54,6 +56,8 @@ typedef struct _XfceWlrOutput
     gchar *manufacturer;
     gchar *model;
     gchar *serial_number;
+    guchar *edid_bytes;
+    gsize edid_bytes_len;
     gchar *edid;
 
     /* writable */

@@ -3,6 +3,7 @@ if enable_wayland
 
   protocols = {
     'wlr-output-management-unstable-v1': wlr_protocols_pkgdatadir / 'unstable' / 'wlr-output-management-unstable-v1.xml',
+    'xfce-output-management-v1': meson.project_source_root() / 'protocols' / 'xfce-wayland-protocols' / 'xfce-output-management-private-v1.xml',
   }
 
   foreach name, file : protocols
