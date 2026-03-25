@@ -7,15 +7,15 @@
 # knedl1k <knedl1k@tuta.io>, 2025
 # b537cbea55af75c3f49fe8b21c4cf8ea_f0ce149, 2023
 # Martin Šiška <martin-siska@email.cz>, 2024
-# Michal Várady <miko.vaji@gmail.com>, 2014-2021,2024-2025
+# Michal Várady <miko.vaji@gmail.com>, 2014-2021,2024-2026
 # Pavel Borecki <pavel.borecki@gmail.com>, 2018,2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-01-22 12:55+0100\n"
+"POT-Creation-Date: 2026-03-11 12:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2014-2021,2024-2025\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2014-2021,2024-2026\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce4-settings/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -468,7 +468,7 @@ msgstr "Zvolte, zda budou kliknutí myši a jiné uživatelské vstupy ozvučeny
 
 #: common/resources/appearance-dialog.glade:878
 msgid "Sound _theme:"
-msgstr ""
+msgstr "Mo_tiv zvuků:"
 
 #: common/resources/appearance-dialog.glade:902
 msgid "Event sounds"
@@ -1230,7 +1230,7 @@ msgstr "SOCKET ID"
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:93
+#: xfsettingsd/main.c:94
 msgid "Version information"
 msgstr "Informace o verzi"
 
@@ -1240,7 +1240,7 @@ msgstr "Informace o verzi"
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Informace o použití získáte příkazem '%s --help'"
@@ -1250,7 +1250,7 @@ msgstr "Informace o použití získáte příkazem '%s --help'"
 #: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:258
+#: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
 msgstr "Vývojářský tým Xfce. Všechna práva vyhrazena."
 
@@ -1259,7 +1259,7 @@ msgstr "Vývojářský tým Xfce. Všechna práva vyhrazena."
 #: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:259
+#: xfsettingsd/main.c:266
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Prosíme, abyste chyby hlásili na <%s>."
@@ -1282,7 +1282,7 @@ msgstr "Nepodařilo se zobrazit nastavení Xfwm4"
 msgid ""
 "No sound themes found. Install themes in /usr/share/sounds or "
 "~/.local/share/sounds"
-msgstr ""
+msgstr "Nebyly nalezeny žádné motivy zvuků. Nainstalujte motivy do /usr/share/sounds nebo ~/.local/share/sounds"
 
 #. If the theme has no cache, mention this in the tooltip
 #: dialogs/appearance-settings/main.c:756
@@ -2936,17 +2936,21 @@ msgstr "Zdvojené klávesy"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Nelze spustit odkaz „%s“"
 
-#: xfsettingsd/main.c:94
+#: xfsettingsd/main.c:95
 msgid "Fork to the background"
 msgstr "Přesunout do pozadí"
 
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:96
 msgid "Do not wait for a window manager on startup"
 msgstr "Nečekat na správce oken při startu"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:97
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Nahradit spuštěného démona služby xsettings (pokud existuje)"
+
+#: xfsettingsd/main.c:98
+msgid "Allow xfsettingsd to start even if another instance is running"
+msgstr "Umožněte službě xfsettingsd spuštění přestože je již spuštěna její jiná instance"
 
 #. value in xfconf isn't a string, so make a default one
 #: xfsettingsd/workspaces.c:318 xfsettingsd/workspaces.c:375
