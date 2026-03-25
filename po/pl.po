@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-01-22 12:55+0100\n"
+"POT-Creation-Date: 2026-03-11 12:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Marek Adamski, 2022-2026\n"
 "Language-Team: Polish (http://app.transifex.com/xfce/xfce4-settings/language/pl/)\n"
@@ -1233,7 +1233,7 @@ msgstr "ID GNIAZDA"
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:93
+#: xfsettingsd/main.c:94
 msgid "Version information"
 msgstr "Wyświetla informacje o wersji"
 
@@ -1243,7 +1243,7 @@ msgstr "Wyświetla informacje o wersji"
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Proszę wprowadzić „%s --help”, aby wypisać komunikat pomocy."
@@ -1253,7 +1253,7 @@ msgstr "Proszę wprowadzić „%s --help”, aby wypisać komunikat pomocy."
 #: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:258
+#: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
 msgstr "Zespół twórców Xfce. Wszystkie prawa zastrzeżone."
 
@@ -1262,7 +1262,7 @@ msgstr "Zespół twórców Xfce. Wszystkie prawa zastrzeżone."
 #: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:259
+#: xfsettingsd/main.c:266
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Proszę zgłaszać błędy na adres <%s>."
@@ -2939,17 +2939,21 @@ msgstr "Odskakujące klawisze"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Nie udało się uruchomić „%s”"
 
-#: xfsettingsd/main.c:94
-msgid "Fork to the background"
-msgstr "Uruchamia w tle"
-
 #: xfsettingsd/main.c:95
+msgid "Fork to the background"
+msgstr "Uruchamia w tle"
+
+#: xfsettingsd/main.c:96
 msgid "Do not wait for a window manager on startup"
 msgstr "Nie oczekuje na menedżer okien podczas uruchamiania"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:97
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Zastępuje uruchomioną usługę xsettings"
+
+#: xfsettingsd/main.c:98
+msgid "Allow xfsettingsd to start even if another instance is running"
+msgstr "Zezwala na uruchomienie xfsettingsd, nawet jeśli działa już inna instancja"
 
 #. value in xfconf isn't a string, so make a default one
 #: xfsettingsd/workspaces.c:318 xfsettingsd/workspaces.c:375
