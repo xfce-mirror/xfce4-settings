@@ -752,7 +752,8 @@ output_save (XfceWlrOutput *output,
              XfceWlrMode *mode,
              const gchar *friendly_name,
              XfconfChannel *channel,
-             const gchar *scheme)
+             const gchar *scheme,
+             gboolean duplicate)
 {
     RotationFlags rotation;
     gchar *property, *str_value;
@@ -766,6 +767,9 @@ output_save (XfceWlrOutput *output,
 
     property = g_strdup_printf ("/%s/%s/EDID", scheme, output->name);
     xfconf_channel_set_string (channel, property, output->edid);
+    g_free (property);
+    property = g_strdup_printf ("/%s/%s/DuplicateEDID", scheme, output->name);
+    xfconf_channel_set_bool (channel, property, duplicate);
     g_free (property);
 
     /* stop here if output is disabled */
@@ -840,13 +844,22 @@ xfce_display_settings_wayland_save (XfceDisplaySettings *settings,
     XfceDisplaySettingsWayland *wsettings = XFCE_DISPLAY_SETTINGS_WAYLAND (settings);
     GPtrArray *outputs = xfce_wlr_output_manager_get_outputs (wsettings->manager);
     XfconfChannel *channel = xfce_display_settings_get_channel (settings);
+    GHashTable *edids = g_hash_table_new (g_str_hash, g_str_equal);
+    for (guint n = 0; n < outputs->len; n++)
+    {
+        XfceWlrOutput *output = g_ptr_array_index (outputs, n);
+        gpointer duplicate = GINT_TO_POINTER (g_hash_table_contains (edids, output->edid));
+        g_hash_table_insert (edids, (gpointer) output->edid, duplicate);
+    }
     for (guint n = 0; n < outputs->len; n++)
     {
         XfceWlrOutput *output = g_ptr_array_index (outputs, n);
         XfceWlrMode *mode = get_current_mode (wsettings, output);
         const gchar *friendly_name = xfce_display_settings_wayland_get_friendly_name (settings, n);
-        output_save (output, mode, friendly_name, channel, scheme);
+        gboolean duplicate = GPOINTER_TO_INT (g_hash_table_lookup (edids, output->edid));
+        output_save (output, mode, friendly_name, channel, scheme, duplicate);
     }
+    g_hash_table_destroy (edids);
 }
 
 
