@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-01-22 12:55+0100\n"
+"POT-Creation-Date: 2026-03-11 12:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: vyper <xvirusxx@gmail.com>, 2016\n"
 "Language-Team: Romanian (http://app.transifex.com/xfce/xfce4-settings/language/ro/)\n"
@@ -1230,7 +1230,7 @@ msgstr "ID SOCLU"
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:93
+#: xfsettingsd/main.c:94
 msgid "Version information"
 msgstr "Detalii despre versiune"
 
@@ -1240,7 +1240,7 @@ msgstr "Detalii despre versiune"
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Tastați «%s --help» pentru detalii despre utilizare."
@@ -1250,7 +1250,7 @@ msgstr "Tastați «%s --help» pentru detalii despre utilizare."
 #: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:258
+#: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
 msgstr "Echipa de dezvoltare Xfce. Toate drepturile sunt rezervate."
 
@@ -1259,7 +1259,7 @@ msgstr "Echipa de dezvoltare Xfce. Toate drepturile sunt rezervate."
 #: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:259
+#: xfsettingsd/main.c:266
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Raportați problemele la <%s>."
@@ -2932,17 +2932,21 @@ msgstr "Taste de respingere"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Nu s-a putut lansa comanda „%s”"
 
-#: xfsettingsd/main.c:94
+#: xfsettingsd/main.c:95
 msgid "Fork to the background"
 msgstr "Nu se bifurcă în fundal"
 
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:96
 msgid "Do not wait for a window manager on startup"
 msgstr "Nu aștepta pornirea unui administrator de ferestre"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:97
 msgid "Replace running xsettings daemon (if any)"
-msgstr "Înlocuiește demonul xsettings pornit (dacă există)"
+msgstr "Înlocuiește demonul xsettings care rulează (dacă există)"
+
+#: xfsettingsd/main.c:98
+msgid "Allow xfsettingsd to start even if another instance is running"
+msgstr "Permite pornirea xfsettingsd chiar dacă o altă instanță este în execuție."
 
 #. value in xfconf isn't a string, so make a default one
 #: xfsettingsd/workspaces.c:318 xfsettingsd/workspaces.c:375
