@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-01-22 12:55+0100\n"
+"POT-Creation-Date: 2026-03-11 12:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2026\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
@@ -1239,7 +1239,7 @@ msgstr "套接字 ID"
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:93
+#: xfsettingsd/main.c:94
 msgid "Version information"
 msgstr "版本信息"
 
@@ -1249,7 +1249,7 @@ msgstr "版本信息"
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "输入 ‘%s --help’ 获取用法。"
@@ -1259,7 +1259,7 @@ msgstr "输入 ‘%s --help’ 获取用法。"
 #: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:258
+#: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发团队。保留所有权利。"
 
@@ -1268,7 +1268,7 @@ msgstr "Xfce 开发团队。保留所有权利。"
 #: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:259
+#: xfsettingsd/main.c:266
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "请向 <%s> 报告缺陷。"
@@ -2933,17 +2933,21 @@ msgstr "反弹键"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "无法启动 “%s” 快捷键"
 
-#: xfsettingsd/main.c:94
+#: xfsettingsd/main.c:95
 msgid "Fork to the background"
 msgstr "转入后台"
 
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:96
 msgid "Do not wait for a window manager on startup"
 msgstr "启动时不要等待窗口管理器"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:97
 msgid "Replace running xsettings daemon (if any)"
 msgstr "取代正在运行的 xsettings 守护进程(如果有)"
+
+#: xfsettingsd/main.c:98
+msgid "Allow xfsettingsd to start even if another instance is running"
+msgstr "即使有另一个 xfsettingsd 实例运行时，也能启动"
 
 #. value in xfconf isn't a string, so make a default one
 #: xfsettingsd/workspaces.c:318 xfsettingsd/workspaces.c:375
