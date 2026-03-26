@@ -451,11 +451,7 @@ mouse_settings_themes_populate_store (GtkBuilder *builder)
     gint scale_factor;
 
     /* get the cursor paths */
-#if XCURSOR_LIB_MAJOR == 1 && XCURSOR_LIB_MINOR < 1
-    path = "~/.icons:/usr/share/icons:/usr/share/pixmaps:/usr/X11R6/lib/X11/icons";
-#else
     path = XcursorLibraryPath ();
-#endif
 
     /* split the paths */
     basedirs = g_strsplit (path, ":", -1);
