@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-01-22 12:55+0100\n"
+"POT-Creation-Date: 2026-03-11 12:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Luna Jernberg <droidbittin@gmail.com>, 2024-2026\n"
 "Language-Team: Swedish (http://app.transifex.com/xfce/xfce4-settings/language/sv/)\n"
@@ -1235,7 +1235,7 @@ msgstr "UTTAGS-ID"
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:93
+#: xfsettingsd/main.c:94
 msgid "Version information"
 msgstr "Versionsinformation"
 
@@ -1245,7 +1245,7 @@ msgstr "Versionsinformation"
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Ange \"%s --help\" för användningsinformation."
@@ -1255,7 +1255,7 @@ msgstr "Ange \"%s --help\" för användningsinformation."
 #: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:258
+#: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
 msgstr "The Xfce development team. Alla rättigheter förbehållna."
 
@@ -1264,7 +1264,7 @@ msgstr "The Xfce development team. Alla rättigheter förbehållna."
 #: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:259
+#: xfsettingsd/main.c:266
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Rapportera fel till <%s>."
@@ -2144,7 +2144,7 @@ msgid ""
 "  ImageViewer      - The preferred Image Viewer.\n"
 "  AudioPlayer      - The preferred Audio Player.\n"
 "  VideoPlayer      - The preferred Video Player.\n"
-msgstr ""
+msgstr "Följande TYPER stöds för --launch och\n--query kommandona:\n  WebBrowser       - Den föredragna webbläsaren.\n  MailReader       - Den föredragna e-postklienten.\n  FileManager      - Den föredragna filhanteraren.      TerminalEmulator - Den föredragna terminalemulatorn.\nTextEditor - Den föredragna textredigeraren.\nImageViewer - Den föredragna bildvisaren.\n AudioPlayer - Den föredragna ljudspelaren.\nVideoPlayer - Den föredragna videospelaren.\n"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:180
 #: dialogs/mime-settings/xfce-mime-helper-main.c:254
@@ -2933,17 +2933,21 @@ msgstr "Tangentstuds"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Det gick inte att starta genvägen \"%s\""
 
-#: xfsettingsd/main.c:94
+#: xfsettingsd/main.c:95
 msgid "Fork to the background"
 msgstr "Kör i bakgrunden"
 
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:96
 msgid "Do not wait for a window manager on startup"
 msgstr "Vänta inte på att en fönsterhanterare skall starta"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:97
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Ersätt körande xsettings-demon (om någon)"
+
+#: xfsettingsd/main.c:98
+msgid "Allow xfsettingsd to start even if another instance is running"
+msgstr "Tillåt att xfsettingsd startas även om en annan instans körs"
 
 #. value in xfconf isn't a string, so make a default one
 #: xfsettingsd/workspaces.c:318 xfsettingsd/workspaces.c:375
