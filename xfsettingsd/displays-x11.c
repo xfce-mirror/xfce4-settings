@@ -672,12 +672,14 @@ screen_on_event (gpointer data)
     {
         gboolean changed = FALSE;
 
-        for (guint n = 0; n < helper->outputs->len; ++n) {
+        for (guint n = 0; n < helper->outputs->len; ++n)
+        {
             XfceRROutput *output = g_ptr_array_index (helper->outputs, n);
             XfceRROutput *old_output = g_ptr_array_index (old_outputs, n);
             XfceRRCrtc *crtc = xfce_displays_helper_x11_find_crtc_by_id (helper, output->info->crtc);
 
-            if (output->id != old_output->id) {
+            if (output->id != old_output->id)
+            {
                 g_warning ("Output identifiers or order changed, aborting.");
                 break;
             }
