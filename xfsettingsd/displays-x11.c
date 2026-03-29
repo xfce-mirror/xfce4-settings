@@ -668,6 +668,53 @@ screen_on_event (gpointer data)
             xfce_displays_helper_x11_apply_all (helper);
     }
 
+    if (old_outputs->len == helper->outputs->len)
+    {
+        gboolean changed = FALSE;
+
+        for (guint n = 0; n < helper->outputs->len; ++n)
+        {
+            XfceRROutput *output = g_ptr_array_index (helper->outputs, n);
+            XfceRROutput *old_output = g_ptr_array_index (old_outputs, n);
+            XfceRRCrtc *crtc = xfce_displays_helper_x11_find_crtc_by_id (helper, output->info->crtc);
+
+            if (output->id != old_output->id)
+            {
+                g_warning ("Output identifiers or order changed, aborting.");
+                break;
+            }
+
+            if (crtc == NULL)
+                continue;
+
+            /* if the new output has a new preferred mode and the crtc was configured in the previours preferred
+               mode, reconfigure to use the new preferred mode  */
+            if (old_output->preferred_mode != output->preferred_mode && old_output->preferred_mode == crtc->mode)
+            {
+                XRRModeInfo *mode = None;
+                for (gint m = 0; m < helper->resources->nmode; ++m)
+                {
+                    if (output->preferred_mode == helper->resources->modes[m].id)
+                    {
+                        mode = &helper->resources->modes[m];
+                        break;
+                    }
+                }
+
+                crtc->mode = mode->id;
+                crtc->width = mode->width;
+                crtc->height = mode->height;
+                crtc->changed = TRUE;
+                xfce_displays_helper_x11_set_outputs (crtc, output);
+
+                changed |= output->active;
+            }
+        }
+
+        if (changed)
+            xfce_displays_helper_x11_apply_all (helper);
+    }
+
     if (old_outputs->len < helper->outputs->len || edids_changed)
     {
         gint action = xfconf_channel_get_int (channel, NOTIFY_PROP, ACTION_ON_NEW_OUTPUT_DEFAULT);
