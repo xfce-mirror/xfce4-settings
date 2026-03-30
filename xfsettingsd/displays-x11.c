@@ -680,7 +680,7 @@ screen_on_event (gpointer data)
 
             if (output->id != old_output->id)
             {
-                g_warning ("Output identifiers or order changed, aborting.");
+                g_debug ("Output identifiers or order changed, aborting.");
                 break;
             }
 
@@ -691,23 +691,20 @@ screen_on_event (gpointer data)
                mode, reconfigure to use the new preferred mode  */
             if (old_output->preferred_mode != output->preferred_mode && old_output->preferred_mode == crtc->mode)
             {
-                XRRModeInfo *mode = None;
                 for (gint m = 0; m < helper->resources->nmode; ++m)
                 {
                     if (output->preferred_mode == helper->resources->modes[m].id)
                     {
-                        mode = &helper->resources->modes[m];
+                        crtc->mode = helper->resources->modes[m].id;
+                        crtc->width = helper->resources->modes[m].width;
+                        crtc->height = helper->resources->modes[m].height;
+                        crtc->changed = TRUE;
+                        xfce_displays_helper_x11_set_outputs (crtc, output);
+
+                        changed |= output->active;
                         break;
                     }
                 }
-
-                crtc->mode = mode->id;
-                crtc->width = mode->width;
-                crtc->height = mode->height;
-                crtc->changed = TRUE;
-                xfce_displays_helper_x11_set_outputs (crtc, output);
-
-                changed |= output->active;
             }
         }
 
