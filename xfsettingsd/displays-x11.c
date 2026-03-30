@@ -616,7 +616,10 @@ screen_on_event (gpointer data)
         xfconf_channel_set_string (channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
     }
 
-    if (old_outputs->len == helper->outputs->len && helper->resources->timestamp < helper->resources->configTimestamp && edids_changed)
+    /* hotplup event handling: see https://gitlab.xfce.org/xfce/xfce4-settings/-/issues/142 */
+    if (old_outputs->len == helper->outputs->len
+        && helper->resources->timestamp < helper->resources->configTimestamp
+        && edids_changed)
     {
         gboolean changed = FALSE;
 
