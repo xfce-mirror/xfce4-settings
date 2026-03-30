@@ -657,7 +657,11 @@ screen_on_event (gpointer data)
         }
 
         if (changed)
+        {
             xfce_displays_helper_x11_apply_all (helper);
+            g_ptr_array_unref (old_outputs);
+            return FALSE;
+        }
     }
 
     if (old_outputs->len > helper->outputs->len || edids_changed)
