@@ -680,7 +680,7 @@ screen_on_event (gpointer data)
 
             if (output->id != old_output->id)
             {
-                g_debug ("Output identifiers or order changed, aborting.");
+                xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Output identifiers or order changed, aborting.");
                 break;
             }
 
