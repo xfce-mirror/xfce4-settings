@@ -1317,6 +1317,7 @@ show_confirmation_dialog (gpointer data)
     /* Delete temporary profile */
     xfconf_channel_reset_property (channel, "/Temp", TRUE);
 
+    g_object_set_data (G_OBJECT (settings), "show-confirmation-dialog-id", GUINT_TO_POINTER (0));
     return FALSE;
 }
 
@@ -1361,7 +1362,8 @@ display_setting_apply (GtkWidget *widget,
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Temp");
 
     /* Run dialog after this signal handler to avoid random freeze */
-    g_idle_add (show_confirmation_dialog, settings);
+    guint id = g_idle_add (show_confirmation_dialog, settings);
+    g_object_set_data (G_OBJECT (settings), "show-confirmation-dialog-id", GUINT_TO_POINTER (id));
 
     gtk_widget_set_sensitive (widget, FALSE);
 }
@@ -3440,6 +3442,9 @@ main (gint argc,
     g_application_run (G_APPLICATION (app), 0, NULL);
 
     /* Cleanup */
+    guint id = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (settings), "show-confirmation-dialog-id"));
+    if (id != 0)
+        g_source_remove (id);
     g_object_unref (app);
     g_object_unref (settings);
     xfconf_shutdown ();
