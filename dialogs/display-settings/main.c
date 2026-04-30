@@ -1317,6 +1317,7 @@ show_confirmation_dialog (gpointer data)
     /* Delete temporary profile */
     xfconf_channel_reset_property (channel, "/Temp", TRUE);
 
+    g_object_set_data (G_OBJECT (settings), "show-confirmation-dialog-id", GUINT_TO_POINTER (0));
     return FALSE;
 }
 
@@ -1361,7 +1362,8 @@ display_setting_apply (GtkWidget *widget,
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Temp");
 
     /* Run dialog after this signal handler to avoid random freeze */
-    g_idle_add (show_confirmation_dialog, settings);
+    guint id = g_idle_add (show_confirmation_dialog, settings);
+    g_object_set_data (G_OBJECT (settings), "show-confirmation-dialog-id", GUINT_TO_POINTER (id));
 
     gtk_widget_set_sensitive (widget, FALSE);
 }
@@ -2977,6 +2979,15 @@ on_area_paint (FooScrollArea *area,
 /* Xfce RANDR GUI */
 
 static void
+display_settings_quit (XfceDisplaySettings *settings)
+{
+    guint id = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (settings), "show-confirmation-dialog-id"));
+    if (id != 0)
+        g_source_remove (id);
+    gtk_main_quit ();
+}
+
+static void
 display_settings_show_main_dialog (XfceDisplaySettings *settings)
 {
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
@@ -3018,7 +3029,7 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
 
             /* Create plug widget */
             plug = gtk_plug_new (opt_socket_id);
-            g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+            g_signal_connect_swapped (plug, "delete-event", G_CALLBACK (display_settings_quit), settings);
             gtk_widget_show (plug);
 
             /* Get plug child widget */
@@ -3031,8 +3042,8 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
         {
             g_signal_connect (G_OBJECT (dialog), "response",
                               G_CALLBACK (display_settings_dialog_response), settings);
-            g_signal_connect (G_OBJECT (dialog), "destroy",
-                              G_CALLBACK (gtk_main_quit), NULL);
+            g_signal_connect_swapped (G_OBJECT (dialog), "destroy",
+                                      G_CALLBACK (display_settings_quit), settings);
             /* Show the dialog */
             gtk_window_present (GTK_WINDOW (dialog));
         }
