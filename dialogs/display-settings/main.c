@@ -2984,6 +2984,7 @@ display_settings_quit (XfceDisplaySettings *settings)
     guint id = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (settings), "show-confirmation-dialog-id"));
     if (id != 0)
         g_source_remove (id);
+    g_object_unref (settings);
     gtk_main_quit ();
 }
 
@@ -3050,8 +3051,6 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
 
         /* Enter the main loop */
         gtk_main ();
-
-        gtk_widget_destroy (dialog);
     }
     else
     {
@@ -3443,6 +3442,10 @@ main (gint argc,
         return EXIT_FAILURE;
     }
 
+    /* Sometimes we want to free the main object earlier, to prevent the dialogs from
+     * being used after they have been destroyed */
+    g_object_add_weak_pointer (G_OBJECT (settings), (gpointer *) &settings);
+
     /* Use GtkApplication to ensure single instance */
     GtkApplication *app = gtk_application_new ("org.xfce.display.settings", 0);
     g_action_map_add_action_entries (G_ACTION_MAP (app), actions, G_N_ELEMENTS (actions), settings);
@@ -3452,7 +3455,8 @@ main (gint argc,
 
     /* Cleanup */
     g_object_unref (app);
-    g_object_unref (settings);
+    if (settings != NULL)
+        g_object_unref (settings);
     xfconf_shutdown ();
 
     return EXIT_SUCCESS;
