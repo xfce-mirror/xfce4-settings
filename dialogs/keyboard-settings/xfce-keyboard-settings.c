@@ -616,6 +616,33 @@ xfce_keyboard_settings_create_plug (XfceKeyboardSettings *settings,
 
 
 
+void
+xfce_keyboard_settings_switch_to_shortcuts_tab (XfceKeyboardSettings *settings,
+                                                gchar *command)
+{
+  g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
+
+  GObject *notebook = gtk_builder_get_object (GTK_BUILDER (settings), "plug-child");
+  GObject *label = gtk_builder_get_object (GTK_BUILDER (settings), "label3");
+  gint n;
+  for (n = 0; n < gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)); n++)
+    {
+      GtkWidget *page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), n);
+      if (gtk_notebook_get_tab_label (GTK_NOTEBOOK (notebook), page) == GTK_WIDGET (label))
+        break;
+    }
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), n);
+
+  if (command != NULL)
+    {
+      GObject *button = gtk_builder_get_object (GTK_BUILDER (settings), "add_shortcut_button");
+      g_object_set_data (button, "command", command);
+      gtk_button_clicked (GTK_BUTTON (button));
+    }
+}
+
+
+
 static void
 xfce_keyboard_settings_row_activated (GtkTreeView *tree_view,
                                       GtkTreePath *path,
@@ -1049,7 +1076,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
   g_return_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings));
 
   /* Request a command from the user */
-  command_dialog = command_dialog_new (NULL, NULL, FALSE);
+  command_dialog = command_dialog_new (NULL, g_object_get_data (G_OBJECT (button), "command"), FALSE);
   response = command_dialog_run (COMMAND_DIALOG (command_dialog), GTK_WIDGET (button));
 
   /* Abort if the dialog was cancelled */

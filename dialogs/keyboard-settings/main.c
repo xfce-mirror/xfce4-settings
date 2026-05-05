@@ -35,9 +35,22 @@
 
 static gint opt_socket_id = 0;
 static gboolean opt_version = FALSE;
+static gboolean opt_shortcuts = FALSE;
+static gchar *opt_shortcuts_command = NULL;
+static gboolean
+parse_shortcuts_option (const gchar *option_name,
+                        const gchar *value,
+                        gpointer data,
+                        GError **error)
+{
+  opt_shortcuts = TRUE;
+  opt_shortcuts_command = g_strdup (value);
+  return TRUE;
+}
 static GOptionEntry entries[] = {
   { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_ ("Settings manager socket"), N_ ("SOCKET ID") },
   { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_ ("Version information"), NULL },
+  { "shortcuts", '\0', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_OPTIONAL_ARG, G_OPTION_ARG_CALLBACK, parse_shortcuts_option, N_ ("Switch to the shortcuts tab, and optionnaly open the add shortcut dialog if a command is provided"), NULL },
   { NULL }
 };
 
@@ -123,6 +136,8 @@ main (int argc,
       /* Embedd the settings dialog into the given socket ID */
       GtkWidget *plug = xfce_keyboard_settings_create_plug (settings, opt_socket_id);
       g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+      if (opt_shortcuts)
+        xfce_keyboard_settings_switch_to_shortcuts_tab (settings, opt_shortcuts_command);
 
       /* Stop startup notification */
       gdk_notify_startup_complete ();
@@ -142,6 +157,8 @@ main (int argc,
       g_signal_connect (dialog, "response",
                         G_CALLBACK (keyboard_settings_dialog_response), NULL);
       gtk_window_present (GTK_WINDOW (dialog));
+      if (opt_shortcuts)
+        xfce_keyboard_settings_switch_to_shortcuts_tab (settings, opt_shortcuts_command);
 
 #ifdef ENABLE_X11
       if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
@@ -155,7 +172,7 @@ main (int argc,
     }
 
   g_object_unref (settings);
-
+  g_free (opt_shortcuts_command);
   xfconf_shutdown ();
 
   return EXIT_SUCCESS;

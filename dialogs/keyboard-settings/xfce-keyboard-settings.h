@@ -48,6 +48,9 @@ GtkWidget *
 xfce_keyboard_settings_create_plug (XfceKeyboardSettings *settings,
                                     gint socket_id);
 #endif
+void
+xfce_keyboard_settings_switch_to_shortcuts_tab (XfceKeyboardSettings *settings,
+                                                gchar *command);
 
 
 
