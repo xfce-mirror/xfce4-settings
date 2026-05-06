@@ -1041,7 +1041,7 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
 {
   GtkWidget *command_dialog;
   GtkWidget *shortcut_dialog;
-  GObject *parent;
+  GtkWidget *parent;
   const gchar *shortcut;
   const gchar *command;
   gint response;
@@ -1068,8 +1068,8 @@ xfce_keyboard_settings_add_button_clicked (XfceKeyboardSettings *settings,
       g_signal_connect (shortcut_dialog, "validate-shortcut", G_CALLBACK (xfce_keyboard_settings_validate_shortcut), settings);
 
       /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
-      parent = gtk_builder_get_object (GTK_BUILDER (settings), "keyboard-shortcuts-dialog");
-      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (shortcut_dialog), GTK_WIDGET (parent));
+      parent = gtk_widget_get_toplevel (GTK_WIDGET (gtk_builder_get_object (GTK_BUILDER (settings), "vbox5")));
+      response = xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (shortcut_dialog), parent);
 
       /* Only continue if the shortcut dialog succeeded */
       if (G_LIKELY (response == GTK_RESPONSE_OK))
@@ -1150,7 +1150,7 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
               const gchar *new_command;
               GtkWidget *shortcut_dialog;
               gboolean new_snotify;
-              GObject *parent;
+              GtkWidget *parent;
 
               /* Get the command */
               new_command = command_dialog_get_command (COMMAND_DIALOG (command_dialog));
@@ -1175,12 +1175,10 @@ xfce_keyboard_settings_edit_button_clicked (XfceKeyboardSettings *settings)
               gtk_window_set_keep_above (GTK_WINDOW (shortcut_dialog), TRUE);
 
               /* Run shortcut dialog until a valid shortcut is entered or the dialog is cancelled */
-              parent =
-                gtk_builder_get_object (GTK_BUILDER (settings),
-                                        "keyboard-shortcuts-dialog");
+              parent = gtk_widget_get_toplevel (GTK_WIDGET (gtk_builder_get_object (GTK_BUILDER (settings), "vbox5")));
               response =
                 xfce_shortcut_dialog_run (XFCE_SHORTCUT_DIALOG (shortcut_dialog),
-                                          GTK_WIDGET (parent));
+                                          parent);
 
               /* Only continue if the shortcut dialog succeeded */
               if (G_LIKELY (response == GTK_RESPONSE_OK))
