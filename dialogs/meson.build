@@ -1,11 +1,11 @@
 dirs = [
   'appearance-settings',
+  'keyboard-settings',
 ]
 
 if enable_x11
   dirs += [
     'accessibility-settings',
-    'keyboard-settings',
     'mouse-settings',
   ]
 endif
@@ -41,6 +41,7 @@ foreach dir : dirs
     ],
     dependencies: [
       gtk,
+      libxfce4kbd,
       libxfce4ui,
       libxfce4util,
       xfconf,

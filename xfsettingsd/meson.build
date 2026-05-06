@@ -143,6 +143,7 @@ executable(
     gmodule,
     gthread,
     gtk,
+    libxfce4kbd,
     libxfce4ui,
     libxfce4util,
     xfconf,

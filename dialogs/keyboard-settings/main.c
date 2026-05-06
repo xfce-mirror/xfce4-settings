@@ -23,10 +23,13 @@
 
 #include "xfce-keyboard-settings.h"
 
-#include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <xfconf/xfconf.h>
+
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
+#endif
 
 
 
@@ -59,7 +62,6 @@ main (int argc,
 {
   XfceKeyboardSettings *settings;
   GtkWidget *dialog;
-  GtkWidget *plug;
   GError *error = NULL;
 
   /* Set up translation domain */
@@ -94,12 +96,6 @@ main (int argc,
       return EXIT_SUCCESS;
     }
 
-  if (!GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
-    {
-      g_warning ("Keyboard settings are only available on X11");
-      return EXIT_FAILURE;
-    }
-
   /* Initialize xfconf */
   if (G_UNLIKELY (!xfconf_init (&error)))
     {
@@ -121,24 +117,11 @@ main (int argc,
 
   DBG ("opt_socket_id = %i", opt_socket_id);
 
-  if (G_UNLIKELY (opt_socket_id == 0))
-    {
-      /* Create and run the settings dialog */
-      dialog = xfce_keyboard_settings_create_dialog (settings);
-
-      g_signal_connect (dialog, "response",
-                        G_CALLBACK (keyboard_settings_dialog_response), NULL);
-      gtk_window_present (GTK_WINDOW (dialog));
-
-      /* To prevent the settings dialog to be saved in the session */
-      gdk_x11_set_sm_client_id ("FAKE ID");
-
-      gtk_main ();
-    }
-  else
+#ifdef ENABLE_X11
+  if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {
       /* Embedd the settings dialog into the given socket ID */
-      plug = xfce_keyboard_settings_create_plug (settings, opt_socket_id);
+      GtkWidget *plug = xfce_keyboard_settings_create_plug (settings, opt_socket_id);
       g_signal_connect (plug, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
 
       /* Stop startup notification */
@@ -148,6 +131,26 @@ main (int argc,
       gdk_x11_set_sm_client_id ("FAKE ID");
 
       /* Enter the main loop */
+      gtk_main ();
+    }
+  else
+#endif
+    {
+      /* Create and run the settings dialog */
+      dialog = xfce_keyboard_settings_create_dialog (settings);
+
+      g_signal_connect (dialog, "response",
+                        G_CALLBACK (keyboard_settings_dialog_response), NULL);
+      gtk_window_present (GTK_WINDOW (dialog));
+
+#ifdef ENABLE_X11
+      if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+        {
+          /* To prevent the settings dialog to be saved in the session */
+          gdk_x11_set_sm_client_id ("FAKE ID");
+        }
+#endif
+
       gtk_main ();
     }
 
