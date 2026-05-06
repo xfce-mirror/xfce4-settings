@@ -43,9 +43,11 @@ XfceKeyboardSettings *
 xfce_keyboard_settings_new (void) G_GNUC_MALLOC;
 GtkWidget *
 xfce_keyboard_settings_create_dialog (XfceKeyboardSettings *settings);
+#ifdef ENABLE_X11
 GtkWidget *
 xfce_keyboard_settings_create_plug (XfceKeyboardSettings *settings,
                                     gint socket_id);
+#endif
 
 
 

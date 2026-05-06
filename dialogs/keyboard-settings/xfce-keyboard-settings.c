@@ -23,17 +23,19 @@
 #include "command-dialog.h"
 #include "xfce-keyboard-settings.h"
 
-#include <gdk/gdkx.h>
-#include <gtk/gtkx.h>
 #include <libxfce4kbd-private/xfce-shortcut-dialog.h>
 #include <libxfce4kbd-private/xfce-shortcuts-provider.h>
 #include <libxfce4kbd-private/xfce-shortcuts.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <xfconf/xfconf.h>
 
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
+#include <gtk/gtkx.h>
 #ifdef HAVE_LIBXKLAVIER
 #include <libxklavier/xklavier.h>
-#endif /* HAVE_LIBXKLAVIER */
+#endif
+#endif
 
 #define CUSTOM_BASE_PROPERTY "/commands/custom"
 
@@ -455,79 +457,97 @@ xfce_keyboard_settings_constructed (GObject *object)
   xfce_keyboard_settings_initialize_shortcuts (settings);
   xfce_keyboard_settings_load_shortcuts (settings);
 
+#ifdef ENABLE_X11
+  if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    {
 #ifdef HAVE_LIBXKLAVIER
-  /* Init xklavier engine */
-  settings->priv->xkl_engine = xkl_engine_get_instance (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()));
-  xkl_engine_start_listen (settings->priv->xkl_engine, XKLL_TRACK_KEYBOARD_STATE);
+      /* Init xklavier engine */
+      settings->priv->xkl_engine = xkl_engine_get_instance (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()));
+      xkl_engine_start_listen (settings->priv->xkl_engine, XKLL_TRACK_KEYBOARD_STATE);
 
-  settings->priv->xkl_rec_config = xkl_config_rec_new ();
-  xkl_config_rec_get_from_server (settings->priv->xkl_rec_config, settings->priv->xkl_engine);
+      settings->priv->xkl_rec_config = xkl_config_rec_new ();
+      xkl_config_rec_get_from_server (settings->priv->xkl_rec_config, settings->priv->xkl_engine);
 
-  settings->priv->xkl_registry = xkl_config_registry_get_instance (settings->priv->xkl_engine);
-  xkl_config_registry_load (settings->priv->xkl_registry, FALSE);
+      settings->priv->xkl_registry = xkl_config_registry_get_instance (settings->priv->xkl_engine);
+      xkl_config_registry_load (settings->priv->xkl_registry, FALSE);
 
-  /* Tab */
-  xkb_tab_layout_vbox = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_tab_layout_vbox");
-  gtk_widget_show (GTK_WIDGET (xkb_tab_layout_vbox));
+      /* Tab */
+      xkb_tab_layout_vbox = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_tab_layout_vbox");
+      gtk_widget_show (GTK_WIDGET (xkb_tab_layout_vbox));
 
-  /* Use system defaults, i.e., disable options */
-  xkb_use_system_default_switch = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_use_system_default_switch");
-  xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
-                          (GObject *) xkb_use_system_default_switch, "active");
-  g_signal_connect (G_OBJECT (xkb_use_system_default_switch),
-                    "state-set",
-                    G_CALLBACK (xfce_keyboard_settings_system_default_cb),
-                    settings);
-  xfce_keyboard_settings_update_sensitive (GTK_SWITCH (xkb_use_system_default_switch), settings);
+      /* Use system defaults, i.e., disable options */
+      xkb_use_system_default_switch = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_use_system_default_switch");
+      xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
+                              (GObject *) xkb_use_system_default_switch, "active");
+      g_signal_connect (G_OBJECT (xkb_use_system_default_switch),
+                        "state-set",
+                        G_CALLBACK (xfce_keyboard_settings_system_default_cb),
+                        settings);
+      xfce_keyboard_settings_update_sensitive (GTK_SWITCH (xkb_use_system_default_switch), settings);
 
-  /* Keyboard model combo */
-  xfce_keyboard_settings_layouts_combo_populate (settings,
-                                                 "xkb_model_combo",
-                                                 NULL,
-                                                 xfce_keyboard_settings_init_model,
-                                                 xfce_keyboard_settings_model_changed_cb);
-  /* Group key combo */
-  xfce_keyboard_settings_layouts_combo_populate (settings,
-                                                 "xkb_grpkey_combo",
-                                                 "grp",
-                                                 xfce_keyboard_settings_init_grpkey,
-                                                 xfce_keyboard_settings_grpkey_changed_cb);
-  /* Compose key combo */
-  xfce_keyboard_settings_layouts_combo_populate (settings,
-                                                 "xkb_composekey_combo",
-                                                 "Compose key",
-                                                 xfce_keyboard_settings_init_compkey,
-                                                 xfce_keyboard_settings_compkey_changed_cb);
+      /* Keyboard model combo */
+      xfce_keyboard_settings_layouts_combo_populate (settings,
+                                                     "xkb_model_combo",
+                                                     NULL,
+                                                     xfce_keyboard_settings_init_model,
+                                                     xfce_keyboard_settings_model_changed_cb);
+      /* Group key combo */
+      xfce_keyboard_settings_layouts_combo_populate (settings,
+                                                     "xkb_grpkey_combo",
+                                                     "grp",
+                                                     xfce_keyboard_settings_init_grpkey,
+                                                     xfce_keyboard_settings_grpkey_changed_cb);
+      /* Compose key combo */
+      xfce_keyboard_settings_layouts_combo_populate (settings,
+                                                     "xkb_composekey_combo",
+                                                     "Compose key",
+                                                     xfce_keyboard_settings_init_compkey,
+                                                     xfce_keyboard_settings_compkey_changed_cb);
 
-  /* Keyboard layout/variant treeview */
-  settings->priv->layout_selection_treestore = NULL;
-  xkb_layout_view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
-  gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (xkb_layout_view)), GTK_SELECTION_BROWSE);
+      /* Keyboard layout/variant treeview */
+      settings->priv->layout_selection_treestore = NULL;
+      xkb_layout_view = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_view");
+      gtk_tree_selection_set_mode (gtk_tree_view_get_selection (GTK_TREE_VIEW (xkb_layout_view)), GTK_SELECTION_BROWSE);
 
-  renderer = gtk_cell_renderer_text_new ();
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (xkb_layout_view), -1, _("Layout"), renderer, "text", XKB_TREE_LAYOUTS_NAMES, NULL);
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (xkb_layout_view), -1, _("Variant"), renderer, "text", XKB_TREE_VARIANTS_NAMES, NULL);
+      renderer = gtk_cell_renderer_text_new ();
+      gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (xkb_layout_view), -1, _("Layout"), renderer, "text", XKB_TREE_LAYOUTS_NAMES, NULL);
+      gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (xkb_layout_view), -1, _("Variant"), renderer, "text", XKB_TREE_VARIANTS_NAMES, NULL);
 
-  list_store = gtk_list_store_new (XKB_TREE_NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-  gtk_tree_view_set_model (GTK_TREE_VIEW (xkb_layout_view), GTK_TREE_MODEL (list_store));
-  xfce_keyboard_settings_init_layout (settings);
-  g_signal_connect (G_OBJECT (xkb_layout_view), "row-activated", G_CALLBACK (xfce_keyboard_settings_row_activated_cb), settings);
+      list_store = gtk_list_store_new (XKB_TREE_NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+      gtk_tree_view_set_model (GTK_TREE_VIEW (xkb_layout_view), GTK_TREE_MODEL (list_store));
+      xfce_keyboard_settings_init_layout (settings);
+      g_signal_connect (G_OBJECT (xkb_layout_view), "row-activated", G_CALLBACK (xfce_keyboard_settings_row_activated_cb), settings);
 
-  /* Layout buttons */
-  xkb_layout_add_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_add_button");
-  xkb_layout_edit_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_edit_button");
-  xkb_layout_delete_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_delete_button");
-  xkb_layout_up_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_up_button");
-  xkb_layout_down_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_down_button");
+      /* Layout buttons */
+      xkb_layout_add_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_add_button");
+      xkb_layout_edit_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_edit_button");
+      xkb_layout_delete_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_delete_button");
+      xkb_layout_up_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_up_button");
+      xkb_layout_down_button = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_layout_down_button");
 
-  g_signal_connect (G_OBJECT (xkb_layout_add_button), "clicked", G_CALLBACK (xfce_keyboard_settings_add_layout_button_cb), settings);
-  g_signal_connect (G_OBJECT (xkb_layout_edit_button), "clicked", G_CALLBACK (xfce_keyboard_settings_edit_layout_button_cb), settings);
-  g_signal_connect (G_OBJECT (xkb_layout_delete_button), "clicked", G_CALLBACK (xfce_keyboard_settings_del_layout_button_cb), settings);
-  g_signal_connect (G_OBJECT (xkb_layout_up_button), "clicked", G_CALLBACK (xfce_keyboard_settings_up_layout_button_cb), settings);
-  g_signal_connect (G_OBJECT (xkb_layout_down_button), "clicked", G_CALLBACK (xfce_keyboard_settings_down_layout_button_cb), settings);
+      g_signal_connect (G_OBJECT (xkb_layout_add_button), "clicked", G_CALLBACK (xfce_keyboard_settings_add_layout_button_cb), settings);
+      g_signal_connect (G_OBJECT (xkb_layout_edit_button), "clicked", G_CALLBACK (xfce_keyboard_settings_edit_layout_button_cb), settings);
+      g_signal_connect (G_OBJECT (xkb_layout_delete_button), "clicked", G_CALLBACK (xfce_keyboard_settings_del_layout_button_cb), settings);
+      g_signal_connect (G_OBJECT (xkb_layout_up_button), "clicked", G_CALLBACK (xfce_keyboard_settings_up_layout_button_cb), settings);
+      g_signal_connect (G_OBJECT (xkb_layout_down_button), "clicked", G_CALLBACK (xfce_keyboard_settings_down_layout_button_cb), settings);
 
-  xfce_keyboard_settings_update_layout_buttons (settings);
+      xfce_keyboard_settings_update_layout_buttons (settings);
 #endif /* HAVE_LIBXKLAVIER */
+    }
+  else
+#endif
+    {
+      /* hide tabs other than app shortcuts */
+      GObject *notebook = gtk_builder_get_object (GTK_BUILDER (settings), "plug-child");
+      GObject *label = gtk_builder_get_object (GTK_BUILDER (settings), "label3");
+      for (gint n = 0; n < gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)); n++)
+        {
+          GtkWidget *page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), n);
+          if (gtk_notebook_get_tab_label (GTK_NOTEBOOK (notebook), page) != GTK_WIDGET (label))
+            gtk_widget_hide (page);
+        }
+      gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
+    }
 }
 
 
@@ -538,12 +558,15 @@ xfce_keyboard_settings_finalize (GObject *object)
   XfceKeyboardSettings *settings = XFCE_KEYBOARD_SETTINGS (object);
 
 #ifdef HAVE_LIBXKLAVIER
-  /* Stop xklavier engine */
-  xkl_engine_stop_listen (settings->priv->xkl_engine, XKLL_TRACK_KEYBOARD_STATE);
+  if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    {
+      /* Stop xklavier engine */
+      xkl_engine_stop_listen (settings->priv->xkl_engine, XKLL_TRACK_KEYBOARD_STATE);
 
-  g_object_unref (settings->priv->xkl_rec_config);
-  g_object_unref (settings->priv->xkl_registry);
-  g_object_unref (settings->priv->xkl_engine);
+      g_object_unref (settings->priv->xkl_rec_config);
+      g_object_unref (settings->priv->xkl_registry);
+      g_object_unref (settings->priv->xkl_engine);
+    }
 #endif /* HAVE_LIBXKLAVIER */
 
   g_object_unref (G_OBJECT (settings->priv->provider));
@@ -570,6 +593,7 @@ xfce_keyboard_settings_create_dialog (XfceKeyboardSettings *settings)
 
 
 
+#ifdef ENABLE_X11
 GtkWidget *
 xfce_keyboard_settings_create_plug (XfceKeyboardSettings *settings,
                                     gint socket_id)
@@ -588,6 +612,7 @@ xfce_keyboard_settings_create_plug (XfceKeyboardSettings *settings,
 
   return plug;
 }
+#endif
 
 
 
