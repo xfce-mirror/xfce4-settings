@@ -838,10 +838,9 @@ xfce_keyboard_settings_validate_shortcut (XfceShortcutDialog *dialog,
 
   g_return_val_if_fail (XFCE_IS_SHORTCUT_DIALOG (dialog), FALSE);
   g_return_val_if_fail (XFCE_IS_KEYBOARD_SETTINGS (settings), FALSE);
-  g_return_val_if_fail (shortcut != NULL, FALSE);
 
   /* Ignore empty shortcuts */
-  if (G_UNLIKELY (g_utf8_strlen (shortcut, -1) == 0))
+  if (G_UNLIKELY (xfce_str_is_empty (shortcut)))
     return FALSE;
 
   /* Ignore raw 'Return' and 'space' since that may have been used to activate the shortcut row */
