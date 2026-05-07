@@ -22,6 +22,7 @@
 
 #include "xfce-keyboard-settings.h"
 #include "command-dialog.h"
+#include "gdk/gdk.h"
 
 #include <libxfce4kbd-private/xfce-shortcut-dialog.h>
 #include <libxfce4kbd-private/xfce-shortcuts-provider.h>
@@ -36,6 +37,10 @@
 #include <X11/extensions/XKB.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtkx.h>
+#endif
+
+#ifdef ENABLE_WAYLAND
+#include <gdk/gdkwayland.h>
 #endif
 
 #define CUSTOM_BASE_PROPERTY "/commands/custom"
@@ -158,6 +163,7 @@ xfce_keyboard_settings_delete_button_clicked (XfceKeyboardSettings *settings);
 static void
 xfce_keyboard_settings_reset_button_clicked (XfceKeyboardSettings *settings);
 
+#ifdef ENABLE_X11
 static gboolean
 xfce_keyboard_settings_update_sensitive (GtkSwitch *widget,
                                          XfceKeyboardSettings *settings);
@@ -165,6 +171,8 @@ static void
 xfce_keyboard_settings_system_default_cb (GtkSwitch *widget,
                                           gboolean state,
                                           XfceKeyboardSettings *settings);
+#endif
+
 static void
 xfce_keyboard_settings_set_layout (XfceKeyboardSettings *settings);
 static void
@@ -422,7 +430,6 @@ xfce_keyboard_settings_constructed (GObject *object)
   GObject *kbd_shortcuts_view;
   GObject *xkb_numlock;
   GObject *button;
-  GObject *xkb_use_system_default_switch;
   GObject *xkb_tab_layout_vbox;
   GObject *xkb_layout_view;
   GObject *xkb_layout_add_button;
@@ -537,15 +544,28 @@ xfce_keyboard_settings_constructed (GObject *object)
   xkb_tab_layout_vbox = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_tab_layout_vbox");
   gtk_widget_show (GTK_WIDGET (xkb_tab_layout_vbox));
 
-  /* Use system defaults, i.e., disable options */
-  xkb_use_system_default_switch = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_use_system_default_switch");
-  xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
-                          (GObject *) xkb_use_system_default_switch, "active");
-  g_signal_connect (G_OBJECT (xkb_use_system_default_switch),
-                    "state-set",
-                    G_CALLBACK (xfce_keyboard_settings_system_default_cb),
-                    settings);
-  xfce_keyboard_settings_update_sensitive (GTK_SWITCH (xkb_use_system_default_switch), settings);
+#ifdef ENABLE_X11
+  if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    {
+      /* Use system defaults, i.e., disable options */
+      GObject *xkb_use_system_default_switch = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_use_system_default_switch");
+      xfconf_g_property_bind (settings->priv->keyboard_layout_channel, "/Default/XkbDisable", G_TYPE_BOOLEAN,
+                              (GObject *) xkb_use_system_default_switch, "active");
+      g_signal_connect (G_OBJECT (xkb_use_system_default_switch),
+                        "state-set",
+                        G_CALLBACK (xfce_keyboard_settings_system_default_cb),
+                        settings);
+      xfce_keyboard_settings_update_sensitive (GTK_SWITCH (xkb_use_system_default_switch), settings);
+    }
+#endif
+
+#ifdef ENABLE_WAYLAND
+  if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
+    {
+      GObject *use_system_defaults_box = gtk_builder_get_object (GTK_BUILDER (settings), "xkb_tab_use_system_default_box");
+      gtk_widget_hide (GTK_WIDGET (use_system_defaults_box));
+    }
+#endif
 
   /* Keyboard model combo */
   xfce_keyboard_settings_layouts_combo_populate (settings,
@@ -1383,6 +1403,8 @@ xfce_keyboard_settings_reset_button_clicked (XfceKeyboardSettings *settings)
 
 
 
+#ifdef ENABLE_X11
+
 static gboolean
 xfce_keyboard_settings_update_sensitive (GtkSwitch *widget,
                                          XfceKeyboardSettings *settings)
@@ -1432,6 +1454,8 @@ xfce_keyboard_settings_system_default_cb (GtkSwitch *widget,
       gtk_widget_destroy (warning_dialog);
     }
 }
+
+#endif /* ENABLE_X11 */
 
 
 
