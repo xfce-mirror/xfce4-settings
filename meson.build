@@ -34,6 +34,7 @@ dependency_versions = {
   'colord': '>= 1.0.2',
   'libnotify': '>= 0.7.8',
   'xcursor': '>= 1.1.0',
+  'xkbcommon': '>= 1.7.0',
   'xorg-libinput': '>= 0.6.0',
   'xrandr': '>= 1.5.0',
 
@@ -55,6 +56,7 @@ libxfce4kbd = dependency('libxfce4kbd-private-3', version: dependency_versions['
 libxfce4ui = dependency('libxfce4ui-2', version: dependency_versions['libxfce4ui'])
 libxfce4util = dependency('libxfce4util-1.0', version: dependency_versions['xfce4'])
 xfconf = dependency('libxfconf-0', version: dependency_versions['xfconf'])
+xkbregistry = dependency('xkbregistry', version: dependency_versions['xkbcommon'])
 
 xmllint = find_program('xmllint', required: true)
 sed = find_program('sed', required: true)
