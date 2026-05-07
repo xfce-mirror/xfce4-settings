@@ -47,7 +47,7 @@ foreach dir : dirs
       xfconf,
       x11_deps,
       colord,
-      libxklavier,
+      xkbregistry,
       xcursor,
       xorg_libinput,
       libm,
