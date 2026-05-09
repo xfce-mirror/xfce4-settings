@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-03-11 12:55+0100\n"
+"POT-Creation-Date: 2026-05-08 12:54+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>, 2015,2025-2026\n"
 "Language-Team: Catalan (http://app.transifex.com/xfce/xfce4-settings/language/ca/)\n"
@@ -37,7 +37,7 @@ msgstr "Accessibilitat"
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3418
+#: dialogs/display-settings/main.c:3428
 #: dialogs/mime-settings/xfce-mime-window.c:190
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
@@ -626,7 +626,7 @@ msgid "The primary display can be configured to show:"
 msgstr "La pantalla principal es pot configurar per mostrar:"
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1675
+#: dialogs/display-settings/main.c:1677
 msgid "Xfce Panel"
 msgstr "Panell de l'Xfce"
 
@@ -1212,7 +1212,7 @@ msgstr "Portàtil"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
-#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
@@ -1220,7 +1220,7 @@ msgstr "Sòcol del gestor d'ajusts"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
-#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
@@ -1228,7 +1228,7 @@ msgstr "SÒCOL ID"
 
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
+#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
@@ -1237,10 +1237,10 @@ msgstr "Informació de la versió"
 
 #: dialogs/accessibility-settings/main.c:191
 #: dialogs/appearance-settings/main.c:1849 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
+#: dialogs/display-settings/main.c:3376 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:2190 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1248,8 +1248,8 @@ msgstr "Teclegeu «%s --help» per a l'ús."
 
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1868 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
+#: dialogs/display-settings/main.c:3395 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2209
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1257,8 +1257,8 @@ msgstr "The Xfce development team. All rights reserved."
 
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1869 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
+#: dialogs/display-settings/main.c:3396 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2210
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1595,20 +1595,20 @@ msgstr "No s'ha d'inhabilitar l'última sortida activa, el sistema podria ser in
 msgid "Selected output not disabled"
 msgstr "La sortida seleccionada no està Inhabilitada"
 
-#: dialogs/display-settings/main.c:1611
+#: dialogs/display-settings/main.c:1613
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Voleu suprimir el perfil de pantalla '%s'?"
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1616
 msgid "Delete Profile"
 msgstr "Suprimeix el perfil"
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1617
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Un se suprimeix un perfil de pantalla, aquest no es pot restaurar."
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1617
 #: dialogs/mime-settings/xfce-mime-chooser.c:131
 #: dialogs/mime-settings/xfce-mime-chooser.c:376
 #: dialogs/mime-settings/xfce-mime-window.c:1295
@@ -1616,24 +1616,24 @@ msgstr "Un se suprimeix un perfil de pantalla, aquest no es pot restaurar."
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: dialogs/display-settings/main.c:1616
+#: dialogs/display-settings/main.c:1618
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: dialogs/display-settings/main.c:1701
+#: dialogs/display-settings/main.c:1703
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
 msgstr[0] "%d panell de l'Xfce"
 msgstr[1] "%d panells de l'Xfce"
 
-#: dialogs/display-settings/main.c:2486
+#: dialogs/display-settings/main.c:2488
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Seleccioneu un monitor per canviar-ne les propietats, arrossegueu-lo per ajustar-ne la ubicació."
 
-#: dialogs/display-settings/main.c:2585 dialogs/display-settings/main.c:2618
+#: dialogs/display-settings/main.c:2587 dialogs/display-settings/main.c:2620
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1642,23 +1642,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2835
+#: dialogs/display-settings/main.c:2837
 msgid "Mirror Screens"
 msgstr "Pantalles emmirallades"
 
-#: dialogs/display-settings/main.c:2885
+#: dialogs/display-settings/main.c:2887
 msgid "(Disabled)"
 msgstr "(Inhabilitat)"
 
-#: dialogs/display-settings/main.c:3412
+#: dialogs/display-settings/main.c:3422
 msgid "ATI Settings"
 msgstr "Ajusts d'ATI"
 
-#: dialogs/display-settings/main.c:3417
+#: dialogs/display-settings/main.c:3427
 msgid "Unable to start the Xfce Display Settings"
 msgstr "No es poden iniciar els ajusts de pantalla de l'Xfce"
 
-#: dialogs/display-settings/main.c:3425
+#: dialogs/display-settings/main.c:3435
 msgid "Unable to launch the proprietary driver settings"
 msgstr "No es pot executar el gestor d'ajusts del controlador propietari"
 
@@ -1679,7 +1679,7 @@ msgstr "Pantalla:"
 msgid "Resolution:"
 msgstr "Resolució:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1004
+#: dialogs/display-settings/display-settings-wayland.c:1017
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "El vostre compositor no sembla suportar el protocol wlr-output-management"
@@ -1750,58 +1750,64 @@ msgstr "Scripts Ruby"
 msgid "Shell Scripts"
 msgstr "Scripts shell"
 
-#: dialogs/keyboard-settings/main.c:80
+#: dialogs/keyboard-settings/main.c:53
+msgid ""
+"Switch to the shortcuts tab, and optionnaly open the add shortcut dialog if "
+"a command is provided"
+msgstr "Canvieu a la pestanya de dreceres i, opcionalment, obriu el diàleg d'afegir-ne una si es proporciona una ordre."
+
+#: dialogs/keyboard-settings/main.c:95
 msgid "Unable to initialize GTK+."
 msgstr "No es pot inicialitzar GTK+."
 
-#: dialogs/keyboard-settings/main.c:106
+#: dialogs/keyboard-settings/main.c:115
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Ha fallat la connexió al dimoni de xfconf. Motiu: %s"
 
-#: dialogs/keyboard-settings/main.c:117
+#: dialogs/keyboard-settings/main.c:126
 msgid "Could not create the settings dialog."
 msgstr "No s'ha pogut crear el diàleg d'ajusts."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:427
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:429
 msgid "Command"
 msgstr "Ordre"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:435
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:437
 msgid "Shortcut"
 msgstr "Drecera"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:508
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
 msgid "Layout"
 msgstr "Tipus"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:509
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
 msgid "Variant"
 msgstr "Variant"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1323
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Això restablirà totes les dreceres als seus valors predeterminats. Esteu segur que voleu fer-ho?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
 msgid "Reset to Defaults"
 msgstr "Restableix als valors predeterminats"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1328
 msgid "No"
 msgstr "No"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1328
 msgid "Yes"
 msgstr "Sí"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1407
 msgid "The system defaults will be restored next time you log in."
 msgstr "Els valors predeterminats del sistema es recuperaran el pròxim cop que inicieu la sessió."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1409
 msgid "Warning"
 msgstr "Advertència"
 
@@ -2313,7 +2319,7 @@ msgstr "Establert per l'usuari"
 #: dialogs/mime-settings/xfce-mime-window.c:771
 #: dialogs/mime-settings/xfce-mime-window.c:938
 #: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
-#: dialogs/mouse-settings/main.c:476
+#: dialogs/mouse-settings/main.c:472
 msgid "Default"
 msgstr "Predeterminat"
 
