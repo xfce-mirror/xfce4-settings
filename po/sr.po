@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-03-11 12:55+0100\n"
+"POT-Creation-Date: 2026-05-08 12:54+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>, 2012,2014-2019,2024,2026\n"
 "Language-Team: Serbian (http://app.transifex.com/xfce/xfce4-settings/language/sr/)\n"
@@ -37,7 +37,7 @@ msgstr "Приступачност"
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3418
+#: dialogs/display-settings/main.c:3428
 #: dialogs/mime-settings/xfce-mime-window.c:190
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
@@ -626,7 +626,7 @@ msgid "The primary display can be configured to show:"
 msgstr "Главни заслон може бити подешен да приказује:"
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1675
+#: dialogs/display-settings/main.c:1677
 msgid "Xfce Panel"
 msgstr "Полица ИксФЦЕ-а"
 
@@ -1212,7 +1212,7 @@ msgstr "Лаптоп"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
-#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
@@ -1220,7 +1220,7 @@ msgstr "Поставке управника утичнице"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
-#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
@@ -1228,7 +1228,7 @@ msgstr "ЛБ УТИЧНИЦЕ"
 
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
+#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
@@ -1237,10 +1237,10 @@ msgstr "Подаци о издању"
 
 #: dialogs/accessibility-settings/main.c:191
 #: dialogs/appearance-settings/main.c:1849 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
+#: dialogs/display-settings/main.c:3376 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:2190 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1248,8 +1248,8 @@ msgstr "Упишите „%s --help“ за коришћење."
 
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1868 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
+#: dialogs/display-settings/main.c:3395 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2209
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1257,8 +1257,8 @@ msgstr "Развојна дружина.Иксфце-а Сва права су �
 
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1869 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
+#: dialogs/display-settings/main.c:3396 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2210
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1595,20 +1595,20 @@ msgstr "Последњи употребљени излаз не сме бити 
 msgid "Selected output not disabled"
 msgstr "Одабрани излаз није онемогућен"
 
-#: dialogs/display-settings/main.c:1611
+#: dialogs/display-settings/main.c:1613
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Да ли желите избрисати пресек приказа „%s“?"
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1616
 msgid "Delete Profile"
 msgstr "Избриши пресек"
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1617
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Ако ли се избрише пресек приказа не може се повратити."
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1617
 #: dialogs/mime-settings/xfce-mime-chooser.c:131
 #: dialogs/mime-settings/xfce-mime-chooser.c:376
 #: dialogs/mime-settings/xfce-mime-window.c:1295
@@ -1616,11 +1616,11 @@ msgstr "Ако ли се избрише пресек приказа не мож�
 msgid "Cancel"
 msgstr "Откажи"
 
-#: dialogs/display-settings/main.c:1616
+#: dialogs/display-settings/main.c:1618
 msgid "Delete"
 msgstr "Обриши"
 
-#: dialogs/display-settings/main.c:1701
+#: dialogs/display-settings/main.c:1703
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
@@ -1628,13 +1628,13 @@ msgstr[0] "%dполица ИксФЦЕ-а"
 msgstr[1] "%dполице ИксФЦЕ-а"
 msgstr[2] "%dполица ИксФЦЕ-а"
 
-#: dialogs/display-settings/main.c:2486
+#: dialogs/display-settings/main.c:2488
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Изаберите zaslon за промену његових поставки; превуците га ради преуређења његовог смештаја."
 
-#: dialogs/display-settings/main.c:2585 dialogs/display-settings/main.c:2618
+#: dialogs/display-settings/main.c:2587 dialogs/display-settings/main.c:2620
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1643,23 +1643,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2835
+#: dialogs/display-settings/main.c:2837
 msgid "Mirror Screens"
 msgstr "Пресликај заслоне"
 
-#: dialogs/display-settings/main.c:2885
+#: dialogs/display-settings/main.c:2887
 msgid "(Disabled)"
 msgstr "(Онемогућено)"
 
-#: dialogs/display-settings/main.c:3412
+#: dialogs/display-settings/main.c:3422
 msgid "ATI Settings"
 msgstr "Подешавања АТИ-а"
 
-#: dialogs/display-settings/main.c:3417
+#: dialogs/display-settings/main.c:3427
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Нисам успео да покренем поставке приказа Иксфце-а"
 
-#: dialogs/display-settings/main.c:3425
+#: dialogs/display-settings/main.c:3435
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Нисам успео да покренем поставке власничког управљачког програма"
 
@@ -1680,7 +1680,7 @@ msgstr "Приказ:"
 msgid "Resolution:"
 msgstr "Размера:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1004
+#: dialogs/display-settings/display-settings-wayland.c:1017
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Ваш управник слагања изгледа да не подржава устројство wlr-output-management"
@@ -1751,58 +1751,64 @@ msgstr "Скрипта Рубија"
 msgid "Shell Scripts"
 msgstr "Скрипта љуске"
 
-#: dialogs/keyboard-settings/main.c:80
+#: dialogs/keyboard-settings/main.c:53
+msgid ""
+"Switch to the shortcuts tab, and optionnaly open the add shortcut dialog if "
+"a command is provided"
+msgstr "Пребаци на картицу пречица, и произвољно отвори и додај прозор пречица уколико је приложена наредба"
+
+#: dialogs/keyboard-settings/main.c:95
 msgid "Unable to initialize GTK+."
 msgstr "Нисам успео да покренем GTK+."
 
-#: dialogs/keyboard-settings/main.c:106
+#: dialogs/keyboard-settings/main.c:115
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "Нисам успео да се повежем са домаром Иксефконф-а (xfconf)  . Разлог: %s"
 
-#: dialogs/keyboard-settings/main.c:117
+#: dialogs/keyboard-settings/main.c:126
 msgid "Could not create the settings dialog."
 msgstr "Нисам успео да направим прозорче поставки."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:427
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:429
 msgid "Command"
 msgstr "Наредба"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:435
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:437
 msgid "Shortcut"
 msgstr "Пречица"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:508
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
 msgid "Layout"
 msgstr "Распоред"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:509
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
 msgid "Variant"
 msgstr "Подврста"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1323
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Ово ће вратити све пречице на њихове подразумеване вредности. Да ли то заиста желите?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
 msgid "Reset to Defaults"
 msgstr "Врати на подразумевано"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1328
 msgid "No"
 msgstr "Не"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1328
 msgid "Yes"
 msgstr "Да"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1407
 msgid "The system defaults will be restored next time you log in."
 msgstr "Почетне вредности са система ће бити враћене при следећој пријави."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1409
 msgid "Warning"
 msgstr "Упозорење"
 
@@ -2315,7 +2321,7 @@ msgstr "Корисничка поставка"
 #: dialogs/mime-settings/xfce-mime-window.c:771
 #: dialogs/mime-settings/xfce-mime-window.c:938
 #: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
-#: dialogs/mouse-settings/main.c:476
+#: dialogs/mouse-settings/main.c:472
 msgid "Default"
 msgstr "Подразумевано"
 
