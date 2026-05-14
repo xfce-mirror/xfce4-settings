@@ -7,14 +7,14 @@
 # 1763f4a4329a2376c933c5e919a36cbc_341ca53 <1f851310383599d03339229d772e1290_119292>, 2017-2019
 # Kim, Jeongu, 2022
 # lego37yoon <lego37yoon@outlook.com>, 2014
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022-2024
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022-2024,2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-11-10 00:53+0100\n"
+"POT-Creation-Date: 2026-05-08 12:54+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022-2024\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2020,2022-2024,2026\n"
 "Language-Team: Korean (http://app.transifex.com/xfce/xfce4-settings/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +35,7 @@ msgstr "접근성"
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3418
+#: dialogs/display-settings/main.c:3428
 #: dialogs/mime-settings/xfce-mime-window.c:190
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
@@ -259,7 +259,7 @@ msgstr "마우스(_M)"
 
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
-#: dialogs/appearance-settings/main.c:1609 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1733 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90
 msgid "None"
 msgstr "없음"
@@ -465,19 +465,23 @@ msgid ""
 " play"
 msgstr "마우스를 눌렀을 때, 다른 사용자가 입력이 들어왔을 때 이벤트 소리를 재생할 지 설정합니다"
 
-#: common/resources/appearance-dialog.glade:879
+#: common/resources/appearance-dialog.glade:878
+msgid "Sound _theme:"
+msgstr "소리 테마(_T):"
+
+#: common/resources/appearance-dialog.glade:902
 msgid "Event sounds"
 msgstr "이벤트 소리"
 
-#: common/resources/appearance-dialog.glade:908
+#: common/resources/appearance-dialog.glade:931
 msgid "Adjust the system-wide display scaling"
 msgstr "시스템 전체 디스플레이 표시 배율 조절"
 
-#: common/resources/appearance-dialog.glade:926
+#: common/resources/appearance-dialog.glade:949
 msgid "_Window Scaling"
 msgstr "창 크기 조절(_W)"
 
-#: common/resources/appearance-dialog.glade:954
+#: common/resources/appearance-dialog.glade:977
 msgid "Setti_ngs"
 msgstr "설정(_N)"
 
@@ -544,7 +548,7 @@ msgstr "장치에 프로파일 추가"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1348 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1472 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:109
 #: dialogs/keyboard-settings/command-dialog.c:271
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:424
@@ -620,7 +624,7 @@ msgid "The primary display can be configured to show:"
 msgstr "다음을 표시할 기본 디스플레이를 설정할 수 있습니다:"
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1675
+#: dialogs/display-settings/main.c:1677
 msgid "Xfce Panel"
 msgstr "Xfce 패널"
 
@@ -1195,18 +1199,18 @@ msgstr "텔레비전"
 msgid "Digital display"
 msgstr "디지털 디스플레이"
 
-#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:698
+#: common/xfce-randr.c:282 dialogs/display-settings/display-settings-x11.c:708
 msgid "Unable to query the version of the RandR extension being used"
 msgstr "사용할 RandR 확장의 버전을 요청할 수 없습니다"
 
-#: common/xfce-randr.c:569
+#: common/xfce-randr.c:573
 #: dialogs/display-settings/display-settings-wayland.c:346
 msgid "Laptop"
 msgstr "랩톱"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
-#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
@@ -1214,7 +1218,7 @@ msgstr "설정 관리자 소켓"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
-#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
@@ -1222,39 +1226,39 @@ msgstr "소켓 ID"
 
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
+#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:93
+#: xfsettingsd/main.c:94
 msgid "Version information"
 msgstr "버전 정보"
 
 #: dialogs/accessibility-settings/main.c:191
-#: dialogs/appearance-settings/main.c:1702 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
+#: dialogs/appearance-settings/main.c:1849 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3376 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:242
+#: dialogs/mouse-settings/main.c:2190 xfce4-settings-editor/main.c:118
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "사용 방법을 보려면 '%s --help'를 입력하십시오."
 
 #: dialogs/accessibility-settings/main.c:210
-#: dialogs/appearance-settings/main.c:1721 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
+#: dialogs/appearance-settings/main.c:1868 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3395 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2209
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:258
+#: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 개발 팀. All rights reserved."
 
 #: dialogs/accessibility-settings/main.c:211
-#: dialogs/appearance-settings/main.c:1722 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
+#: dialogs/appearance-settings/main.c:1869 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3396 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2210
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:259
+#: xfsettingsd/main.c:266
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "<%s>(으)로 버그를 알려주십시오."
@@ -1273,8 +1277,14 @@ msgstr "assistive;보조;도우미;technologies;기술;keys;키;sticky;끈적이
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Xfwm4 설정 표시에 실패했습니다"
 
+#: dialogs/appearance-settings/main.c:578
+msgid ""
+"No sound themes found. Install themes in /usr/share/sounds or "
+"~/.local/share/sounds"
+msgstr "소리 테마가 없습니다. /usr/share/sounds 또는 ~/.local/share/sounds 에 테마를 설치하십시오"
+
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:632
+#: dialogs/appearance-settings/main.c:756
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1283,70 +1293,70 @@ msgstr "경고: 이 아이콘 테마에 캐시 파일이 없습니다. 터미널
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:639
+#: dialogs/appearance-settings/main.c:763
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "경고: 이 아이콘 테마는 완성본이 아닙니다. 일부 아이콘이 빠져있습니다."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:644
+#: dialogs/appearance-settings/main.c:768
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "경고: 이 아이콘 테마는 완성본이 아닙니다. 다른 아이콘 테마에서 끌어다 쓸 수 있는 아이콘 기본 세트만 제공합니다."
 
-#: dialogs/appearance-settings/main.c:1260
+#: dialogs/appearance-settings/main.c:1384
 msgid "File is too large, installation aborted"
 msgstr "파일이 너무 커서 설치를 취소했습니다"
 
-#: dialogs/appearance-settings/main.c:1265
+#: dialogs/appearance-settings/main.c:1389
 msgid "Failed to create temporary directory"
 msgstr "임시 디렉터리 만들기에 실패했습니다"
 
-#: dialogs/appearance-settings/main.c:1270
+#: dialogs/appearance-settings/main.c:1394
 msgid "Failed to extract archive"
 msgstr "아카이브를 추출하는데 실패했습니다"
 
-#: dialogs/appearance-settings/main.c:1275
+#: dialogs/appearance-settings/main.c:1399
 msgid "Unknown format, only archives and directories are supported"
 msgstr "알 수 없는 형식이며, 아카이브와 디렉터리만 지원합니다"
 
-#: dialogs/appearance-settings/main.c:1280
+#: dialogs/appearance-settings/main.c:1404
 msgid "Not a valid theme package"
 msgstr "올바른 테마 팩이 아닙니다"
 
-#: dialogs/appearance-settings/main.c:1285
+#: dialogs/appearance-settings/main.c:1409
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "알 수 없는 오류, 마침 코드는 %d 입니다"
 
-#: dialogs/appearance-settings/main.c:1292
+#: dialogs/appearance-settings/main.c:1416
 msgid "Failed to install theme"
 msgstr "테마 설치에 실패했습니다"
 
-#: dialogs/appearance-settings/main.c:1346
+#: dialogs/appearance-settings/main.c:1470
 #, c-format
 msgid "Install %s theme"
 msgstr "%s 테마 설치"
 
-#: dialogs/appearance-settings/main.c:1349
+#: dialogs/appearance-settings/main.c:1473
 #: dialogs/keyboard-settings/command-dialog.c:272
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:425
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: dialogs/appearance-settings/main.c:1613
+#: dialogs/appearance-settings/main.c:1737
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1617
+#: dialogs/appearance-settings/main.c:1741
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1621
+#: dialogs/appearance-settings/main.c:1745
 msgid "Vertical RGB"
 msgstr "수직 RGB"
 
-#: dialogs/appearance-settings/main.c:1625
+#: dialogs/appearance-settings/main.c:1749
 msgid "Vertical BGR"
 msgstr "수직 BGR"
 
@@ -1583,20 +1593,20 @@ msgstr "최근 활성화된 출력을 비활성화 하면 안됩니다. 시스�
 msgid "Selected output not disabled"
 msgstr "선택한 출력을 비활성화하지 않았습니다"
 
-#: dialogs/display-settings/main.c:1611
+#: dialogs/display-settings/main.c:1613
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "디스플레이 프로파일 '%s'을 지우시겠습니까?"
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1616
 msgid "Delete Profile"
 msgstr "프로파일 지우기"
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1617
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "디스플레이 프로파일은 한 번 삭제되면 복원할 수 없습니다."
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1617
 #: dialogs/mime-settings/xfce-mime-chooser.c:131
 #: dialogs/mime-settings/xfce-mime-chooser.c:376
 #: dialogs/mime-settings/xfce-mime-window.c:1295
@@ -1604,23 +1614,23 @@ msgstr "디스플레이 프로파일은 한 번 삭제되면 복원할 수 없�
 msgid "Cancel"
 msgstr "취소"
 
-#: dialogs/display-settings/main.c:1616
+#: dialogs/display-settings/main.c:1618
 msgid "Delete"
 msgstr "삭제 "
 
-#: dialogs/display-settings/main.c:1701
+#: dialogs/display-settings/main.c:1703
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
 msgstr[0] "%d Xfce 패널"
 
-#: dialogs/display-settings/main.c:2486
+#: dialogs/display-settings/main.c:2488
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "속성을 바꿀 모니터를 선택하십시오. 위치를 바꾸려면 끌어다 놓으십시오."
 
-#: dialogs/display-settings/main.c:2585 dialogs/display-settings/main.c:2618
+#: dialogs/display-settings/main.c:2587 dialogs/display-settings/main.c:2620
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1629,23 +1639,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2835
+#: dialogs/display-settings/main.c:2837
 msgid "Mirror Screens"
 msgstr "화면 복제"
 
-#: dialogs/display-settings/main.c:2885
+#: dialogs/display-settings/main.c:2887
 msgid "(Disabled)"
 msgstr "(비활성화됨)"
 
-#: dialogs/display-settings/main.c:3412
+#: dialogs/display-settings/main.c:3422
 msgid "ATI Settings"
 msgstr "ATI 설정"
 
-#: dialogs/display-settings/main.c:3417
+#: dialogs/display-settings/main.c:3427
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce 디스플레이 설정을 시작할 수 없습니다"
 
-#: dialogs/display-settings/main.c:3425
+#: dialogs/display-settings/main.c:3435
 msgid "Unable to launch the proprietary driver settings"
 msgstr "상업용 드라이버 설정을 실행할 수 없습니다"
 
@@ -1666,7 +1676,7 @@ msgstr "디스플레이:"
 msgid "Resolution:"
 msgstr "해상도:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1004
+#: dialogs/display-settings/display-settings-wayland.c:1017
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "컴포지터에서 wlr-output-management 프로토콜을 지원하지 않는 것 같습니다"
@@ -1737,58 +1747,64 @@ msgstr "루비 스크립트"
 msgid "Shell Scripts"
 msgstr "쉘 스크립트"
 
-#: dialogs/keyboard-settings/main.c:80
+#: dialogs/keyboard-settings/main.c:53
+msgid ""
+"Switch to the shortcuts tab, and optionnaly open the add shortcut dialog if "
+"a command is provided"
+msgstr "바로가기 탭으로 전환하며, 주어진 명령이 있을 경우 바로 가기 추가 대화 상자를 엽니다."
+
+#: dialogs/keyboard-settings/main.c:95
 msgid "Unable to initialize GTK+."
 msgstr "GTK+를 초기화 할 수 없습니다."
 
-#: dialogs/keyboard-settings/main.c:106
+#: dialogs/keyboard-settings/main.c:115
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "xfconf 데몬에 연결하는데 실패했습니다. 이유는 다음과 같습니다: %s"
 
-#: dialogs/keyboard-settings/main.c:117
+#: dialogs/keyboard-settings/main.c:126
 msgid "Could not create the settings dialog."
 msgstr "설정 대화 상자를 만들 수 없습니다."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:427
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:429
 msgid "Command"
 msgstr "명령"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:435
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:437
 msgid "Shortcut"
 msgstr "바로 가기"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:508
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
 msgid "Layout"
 msgstr "배치"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:509
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
 msgid "Variant"
 msgstr "변형"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1323
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "이 동작은 모든 바로 가기를 기본값으로 초기화 합니다. 이 동작을 정말로 행하시렵니까?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
 msgid "Reset to Defaults"
 msgstr "기본으로 초기화"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1328
 msgid "No"
 msgstr "아니요"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1328
 msgid "Yes"
 msgstr "예"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1407
 msgid "The system defaults will be restored next time you log in."
 msgstr "다음에 로그인할 때 시스템 기본값으로 복원합니다."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1409
 msgid "Warning"
 msgstr "경고"
 
@@ -1894,19 +1910,19 @@ msgstr "기본 터미널 에뮬레이터 설정에 실패했습니다"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:349
 msgid "Failed to set default Text Editor"
-msgstr ""
+msgstr "기본 텍스트 편집기 설정에 실패했습니다"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:350
 msgid "Failed to set default Image Viewer"
-msgstr ""
+msgstr "기본 그림 보기 앱 설정에 실패했습니다"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:351
 msgid "Failed to set default Audio Player"
-msgstr ""
+msgstr "기본 오디오 재생기 설정에 실패했습니다"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:352
 msgid "Failed to set default Video Player"
-msgstr ""
+msgstr "기본 동영상 재생기 설정에 실패했습니다"
 
 #. allocate the chooser
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:422
@@ -1931,19 +1947,19 @@ msgstr "사용자 정의 터미널 에뮬레이터 선택"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:537
 msgid "Choose a custom Text Editor"
-msgstr ""
+msgstr "개별 텍스트 편집기 선택"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:538
 msgid "Choose a custom Image Viewer"
-msgstr ""
+msgstr "개별 그림 보기 앱 선택"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:539
 msgid "Choose a custom Audio Player"
-msgstr ""
+msgstr "개별 오디오 재생기 선택"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
 msgid "Choose a custom Video Player"
-msgstr ""
+msgstr "개별 동영상 재생기 선택"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
 msgid ""
@@ -1973,25 +1989,25 @@ msgstr "Xfce 기본 터미널 에뮬레이터로 사용할\n프로그램을 지�
 msgid ""
 "Specify the application you want to use\n"
 "as default Text Editor for Xfce:"
-msgstr ""
+msgstr "Xfce용 기본 텍스트 편집기로\n사용할 앱을 지정합니다:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:549
 msgid ""
 "Specify the application you want to use\n"
 "as default Image Viewer for Xfce:"
-msgstr ""
+msgstr "Xfce용 기본 그림 보기 앱으로\n사용할 앱을 지정합니다:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:550
 msgid ""
 "Specify the application you want to use\n"
 "as default Audio Player for Xfce:"
-msgstr ""
+msgstr "Xfce용 기본 오디오 재생기로\n사용할 앱을 지정합니다:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:551
 msgid ""
 "Specify the application you want to use\n"
 "as default Video Player for Xfce:"
-msgstr ""
+msgstr "Xfce용 기본 동영상 재생기로\n사용할 앱을 지정합니다:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:615
 msgid "Browse the file system to choose a custom command."
@@ -2037,25 +2053,25 @@ msgstr "기본 터미널 에뮬레이터를 선택하여 주시고\n실행을 �
 msgid ""
 "Please choose your preferred Text\n"
 "Editor now and click OK to proceed."
-msgstr ""
+msgstr "원하는 텍스트 편집기를 선택한 후\n확인을 눌러 진행합니다."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:257
 msgid ""
 "Please choose your preferred Image\n"
 "Viewer now and click OK to proceed."
-msgstr ""
+msgstr "원하는 그림 보기 앱을 선택한 후\n확인을 눌러 진행합니다."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:259
 msgid ""
 "Please choose your preferred Audio\n"
 "Player now and click OK to proceed."
-msgstr ""
+msgstr "원하는 오디오 재생기를 선택한 후\n확인을 눌러 진행합니다."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:261
 msgid ""
 "Please choose your preferred Video\n"
 "Player now and click OK to proceed."
-msgstr ""
+msgstr "원하는 동영상 재생기를 선택한 후\n확인을 눌러 진행합니다."
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:25
 msgid "Failed to execute default Web Browser"
@@ -2075,19 +2091,19 @@ msgstr "기본 터미널 에뮬레이터 실행에 실패했습니다"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Text Editor"
-msgstr ""
+msgstr "기본 텍스트 편집기 실행에 실패했습니다"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:30
 msgid "Failed to execute default Image Viewer"
-msgstr ""
+msgstr "기본 그림 보기 앱 실행에 실패했습니다"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:31
 msgid "Failed to execute default Audio Player"
-msgstr ""
+msgstr "기본 오디오 재생기 실행에 실패했습니다"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:32
 msgid "Failed to execute default Video Player"
-msgstr ""
+msgstr "기본 동영상 재생기 실행에 실패했습니다"
 
 #. Enable permanently dismissing this error.
 #: dialogs/mime-settings/xfce-mime-helper-main.c:74
@@ -2126,7 +2142,7 @@ msgid ""
 "  ImageViewer      - The preferred Image Viewer.\n"
 "  AudioPlayer      - The preferred Audio Player.\n"
 "  VideoPlayer      - The preferred Video Player.\n"
-msgstr ""
+msgstr "--launch 및 --query 명령에 다음 형식을 지원합니다:\n\n  WebBrowser       - 원하는 웹 브라우저.\n  MailReader       - 원하는 메일 보기 프로그램.\n  FileManager      - 원하는 파일 관리자.\n  TerminalEmulator - 원하는 터미널 에뮬레이터.\n  TextEditor       - 원하는 텍스트 편집기.\n  ImageViewer      - 원하는 그림 보기 앱.\n  AudioPlayer      - 원하는 오디오 재생기.\n  VideoPlayer      - 원하는 동영상 재생기.\n"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:180
 #: dialogs/mime-settings/xfce-mime-helper-main.c:254
@@ -2226,40 +2242,40 @@ msgstr "기본 터미널 에뮬레이터는 CLI 환경이 필요한 명령을 �
 
 #: dialogs/mime-settings/xfce-mime-window.c:337
 msgid "Text Editor"
-msgstr ""
+msgstr "텍스트 편집기"
 
 #: dialogs/mime-settings/xfce-mime-window.c:345
 msgid "The default Text Editor will be used to open and edit text files."
-msgstr ""
+msgstr "텍스트 편집기를 열어 편집할 때 사용할 기본 텍스트 편집기입니다."
 
 #. Media
 #: dialogs/mime-settings/xfce-mime-window.c:360
 msgid "_Media"
-msgstr ""
+msgstr "미디어(_M)"
 
 #: dialogs/mime-settings/xfce-mime-window.c:373
 msgid "Image Viewer"
-msgstr ""
+msgstr "그림 보기 앱"
 
 #: dialogs/mime-settings/xfce-mime-window.c:381
 msgid "The default Image Viewer will be used to display image files."
-msgstr ""
+msgstr "그림 파일을 나타낼 때 사용할 기본 그림 보기 앱입니다."
 
 #: dialogs/mime-settings/xfce-mime-window.c:399
 msgid "Audio Player"
-msgstr ""
+msgstr "오디오 재생기"
 
 #: dialogs/mime-settings/xfce-mime-window.c:407
 msgid "The default Audio Player will be used to play audio files."
-msgstr ""
+msgstr "오디오 파일을 재생할 때 사용할 기본 오디오 재생기입니다."
 
 #: dialogs/mime-settings/xfce-mime-window.c:425
 msgid "Video Player"
-msgstr ""
+msgstr "동영상 재생기"
 
 #: dialogs/mime-settings/xfce-mime-window.c:433
 msgid "The default Video Player will be used to play video files."
-msgstr ""
+msgstr "동영상 파일을 재생할 때 사용할 기본 동영상 재생기입니다."
 
 #. Mimes
 #: dialogs/mime-settings/xfce-mime-window.c:448
@@ -2299,7 +2315,7 @@ msgstr "사용자 셋"
 #: dialogs/mime-settings/xfce-mime-window.c:771
 #: dialogs/mime-settings/xfce-mime-window.c:938
 #: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
-#: dialogs/mouse-settings/main.c:476
+#: dialogs/mouse-settings/main.c:472
 msgid "Default"
 msgstr "기본"
 
@@ -2913,17 +2929,21 @@ msgstr "탄력 키"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "\"%s\" 바로 가기를 실행할 수 없습니다"
 
-#: xfsettingsd/main.c:94
+#: xfsettingsd/main.c:95
 msgid "Fork to the background"
 msgstr "바탕 화면으로 쪼개기"
 
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:96
 msgid "Do not wait for a window manager on startup"
 msgstr "시동시 창 관리자를 기다리지 않습니다"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:97
 msgid "Replace running xsettings daemon (if any)"
 msgstr "(실행 중일 때) 실행 중인 xsettings 데몬으로 바꾸기"
+
+#: xfsettingsd/main.c:98
+msgid "Allow xfsettingsd to start even if another instance is running"
+msgstr "다른 인스턴스를 실행하더라도 xfsettingsd 시작 허용"
 
 #. value in xfconf isn't a string, so make a default one
 #: xfsettingsd/workspaces.c:318 xfsettingsd/workspaces.c:375
