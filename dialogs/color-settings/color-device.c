@@ -335,6 +335,8 @@ color_device_constructed (GObject *object)
     g_signal_connect (G_OBJECT (color_device->widget_switch), "notify::active",
                       G_CALLBACK (color_device_notify_enable_device_cb),
                       color_device);
+
+    G_OBJECT_CLASS (color_device_parent_class)->constructed (object);
 }
 
 static void

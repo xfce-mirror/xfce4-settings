@@ -312,6 +312,8 @@ color_profile_constructed (GObject *object)
                           G_CALLBACK (color_profile_changed_cb), color_profile);
 
     color_profile_refresh (color_profile);
+
+    G_OBJECT_CLASS (color_profile_parent_class)->constructed (object);
 }
 
 static void

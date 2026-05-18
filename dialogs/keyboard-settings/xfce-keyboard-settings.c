@@ -532,6 +532,8 @@ xfce_keyboard_settings_constructed (GObject *object)
 
   xfce_keyboard_settings_update_layout_buttons (settings);
 #endif /* HAVE_LIBXKLAVIER */
+
+  (*G_OBJECT_CLASS (xfce_keyboard_settings_parent_class)->constructed) (object);
 }
 
 
