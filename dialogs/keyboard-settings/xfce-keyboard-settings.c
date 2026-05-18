@@ -616,6 +616,8 @@ xfce_keyboard_settings_constructed (GObject *object)
 
   g_free (cur_layouts);
   g_free (cur_variants);
+
+  (*G_OBJECT_CLASS (xfce_keyboard_settings_parent_class)->constructed) (object);
 }
 
 
