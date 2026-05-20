@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-05-08 12:54+0200\n"
+"POT-Creation-Date: 2026-05-20 12:55+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Dejweed, 2025-2026\n"
 "Language-Team: Slovenian (http://app.transifex.com/xfce/xfce4-settings/language/sl/)\n"
@@ -322,7 +322,7 @@ msgstr "Dod_aj"
 
 #: common/resources/appearance-dialog.glade:238
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
-msgstr "Če obstaja, nastavi na ujemajoče se <a href=\"xfwm4-settings:\">Xfwm4 temo</a>"
+msgstr "Če obstaja, nastavi ujemajočo se <a href=\"xfwm4-settings:\">Xfwm4 temo</a>"
 
 #: common/resources/appearance-dialog.glade:272
 msgid "St_yle"
@@ -440,14 +440,14 @@ msgstr "Če je izbrano, je mogoče hitre tipke predmetov menijev prilagoditi tak
 
 #: common/resources/appearance-dialog.glade:784
 msgid "Enable header bars in dialo_gs"
-msgstr "V dialo_gih omogoči naslovne pasice"
+msgstr "Omogoči gumbe v naslovnih vrsticah dialo_gov"
 
 #: common/resources/appearance-dialog.glade:788
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
-msgstr "Določi  ali sme GTK postaviti vstavke, kot so gumbi, v naslovno vrstico dialoga. Se nanaša na Client Side Decoration. Nima vpliva na že odprte dialoge."
+msgstr "Določi, ali sme GTK postaviti vstavke, kot so gumbi, v naslovno vrstico dialoga. Se nanaša na Client Side Decoration. Nima vpliva na že odprte dialoge."
 
 #: common/resources/appearance-dialog.glade:807
 msgid "Menus and Buttons"
@@ -1024,7 +1024,7 @@ msgstr "Gumbi"
 
 #: common/resources/mouse-dialog.glade:428
 msgid "_Reset to Defaults"
-msgstr "Ponastavi na privzete vrednosti"
+msgstr "Ponastavi na privz_ete vrednosti"
 
 #: common/resources/mouse-dialog.glade:432
 msgid ""
@@ -1758,9 +1758,9 @@ msgstr "Skript ukazne lupine"
 
 #: dialogs/keyboard-settings/main.c:53
 msgid ""
-"Switch to the shortcuts tab, and optionnaly open the add shortcut dialog if "
+"Switch to the shortcuts tab, and optionally open the add shortcut dialog if "
 "a command is provided"
-msgstr "Preklopi na zavihek z bližnjicami in, če je naveden ukaz, odpri pogovorno okno za dodajanje bližnjice"
+msgstr "Preklopi na zavihek z bližnjicami, in če je naveden ukaz, odpri pogovorno okno za dodajanje bližnjice"
 
 #: dialogs/keyboard-settings/main.c:95
 msgid "Unable to initialize GTK+."
@@ -1775,45 +1775,45 @@ msgstr "Ni se bilo mogoče povezati s xfconf strežnikom. Razlog: %s"
 msgid "Could not create the settings dialog."
 msgstr "Okna z nastavitvami ni bilo mogoče ustvariti."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:429
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:489
 msgid "Command"
 msgstr "Ukaz"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:437
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:497
 msgid "Shortcut"
 msgstr "Bližnjica"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:512
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:594
 msgid "Layout"
 msgstr "Razporeditev"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:513
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:595
 msgid "Variant"
 msgstr "Varianta"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1323
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1385
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "Ali ste prepričani, da želite vse bližnjice ponastaviti na privzete vrednosti?"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1327
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1389
 msgid "Reset to Defaults"
 msgstr "Ponastavi na privzete vrednosti"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1328
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1390
 msgid "No"
 msgstr "Ne"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1328
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1390
 msgid "Yes"
 msgstr "Da"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1407
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1451
 msgid "The system defaults will be restored next time you log in."
 msgstr "Sistemske privzete vrednosti bodo obnovljene ob naslednji prijavi."
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1409
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1453
 msgid "Warning"
 msgstr "Opozorilo"
 
@@ -2263,7 +2263,7 @@ msgstr "Privzeti urejevalnik besedil bo uporabljen za odpiranje in urejanje teks
 #. Media
 #: dialogs/mime-settings/xfce-mime-window.c:360
 msgid "_Media"
-msgstr ""
+msgstr "_Večpredstavnost"
 
 #: dialogs/mime-settings/xfce-mime-window.c:373
 msgid "Image Viewer"
@@ -2390,7 +2390,7 @@ msgstr "datoteka;vrsta;končnica;asociacija;odpri z;spletni brksalnik;bralnik po
 
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:10
 msgid "file;manager;explorer;browse;filesystem;directory;folder;xfce;"
-msgstr ""
+msgstr "datoteke;upravitelj;raziskovalec;datotečni sistem;direktorij;mapa;xfce;file;manager;explorer;browse;filesystem;directory;folder;"
 
 #: dialogs/mime-settings/xfce4-file-manager.desktop.in:15
 msgid "Browse the file system"
@@ -2398,7 +2398,7 @@ msgstr "Brskajte po datotečnem sistemu"
 
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:10
 msgid "email;mail;inbox;message;communication;"
-msgstr ""
+msgstr "email;pošta;prejeto;sporočila;komunikacija;mail;inbox;message;communication;"
 
 #: dialogs/mime-settings/xfce4-mail-reader.desktop.in:15
 msgid "Read your email"
@@ -2406,7 +2406,7 @@ msgstr "Preberite svojo pošto"
 
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:10
 msgid "terminal;command line;shell;console;xfce;"
-msgstr ""
+msgstr "terminal;ukazna vrstica;lupina;konzola;xfce;command line;shell;console;"
 
 #: dialogs/mime-settings/xfce4-terminal-emulator.desktop.in:14
 msgid "Use the command line"
@@ -2414,7 +2414,7 @@ msgstr "Uporabite ukazno vrstico"
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:10
 msgid "internet;web;browser;surf;explore;xfce;"
-msgstr ""
+msgstr "internet;splet;brskanje;surfaj;razišči;xfce;web;browser;surf;explore;"
 
 #: dialogs/mime-settings/xfce4-web-browser.desktop.in:15
 msgid "Browse the web"
@@ -2979,4 +2979,4 @@ msgstr "Pritajeni program za Xfce nastavitve"
 
 #: xfsettingsd/xfsettingsd.desktop.in:13
 msgid "settings;daemon;xfce;configuration;preferences;system;manage;"
-msgstr ""
+msgstr "nastavitve;demon;pritajeni;xfce;konfiguracija;sistem;upravljanje;upravljaj;settings;daemon;configuration;preferences;system;manage;"
