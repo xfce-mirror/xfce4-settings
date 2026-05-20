@@ -50,7 +50,7 @@ parse_shortcuts_option (const gchar *option_name,
 static GOptionEntry entries[] = {
   { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_ ("Settings manager socket"), N_ ("SOCKET ID") },
   { "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &opt_version, N_ ("Version information"), NULL },
-  { "shortcuts", '\0', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_OPTIONAL_ARG, G_OPTION_ARG_CALLBACK, parse_shortcuts_option, N_ ("Switch to the shortcuts tab, and optionnaly open the add shortcut dialog if a command is provided"), NULL },
+  { "shortcuts", '\0', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_OPTIONAL_ARG, G_OPTION_ARG_CALLBACK, parse_shortcuts_option, N_ ("Switch to the shortcuts tab, and optionally open the add shortcut dialog if a command is provided"), NULL },
   { NULL }
 };
 
