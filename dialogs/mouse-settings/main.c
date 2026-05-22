@@ -21,6 +21,7 @@
 #include "xfce-revision.h"
 #endif
 
+#include "common/xfce-randr.h"
 #include "xfsettingsd/pointers-defines.h"
 
 #include <cairo-gobject.h>
