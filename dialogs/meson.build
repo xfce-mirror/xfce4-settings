@@ -51,7 +51,9 @@ foreach dir : dirs
       xcursor,
       xorg_libinput,
       libm,
+      xrandr,
     ],
+    link_with: [libsettings_common],
     install: true,
     install_dir: get_option('prefix') / get_option('bindir'),
   )
