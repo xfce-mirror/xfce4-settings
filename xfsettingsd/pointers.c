@@ -24,6 +24,8 @@
 #include <gdk/gdkx.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
+#include "common/xfce-randr.h"
+#include <X11/extensions/Xrandr.h>
 
 #ifdef HAVE_LIBINPUT
 #include <libinput-properties.h>
@@ -741,6 +743,312 @@ xfce_pointers_helper_device_xfconf_name (const gchar *name)
 
     /* return the new string */
     return g_string_free (string, FALSE);
+}
+
+
+
+static void
+xfce_pointers_helper_get_display_size (guint *width,
+                                       guint *height)
+{
+    Display *xdisplay;
+    Window root;
+    XRRScreenResources *resources;
+    guint total_width = 0, total_height = 0;
+    XRRCrtcInfo *crtc_info;
+
+    xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    root = DefaultRootWindow (xdisplay);
+
+    resources = XRRGetScreenResourcesCurrent (xdisplay, root);
+    if (resources != NULL)
+    {
+        for (gint i = 0; i < resources->ncrtc; i++)
+        {
+            crtc_info = XRRGetCrtcInfo (xdisplay, resources,
+                                        resources->crtcs[i]);
+            if (crtc_info == NULL)
+                continue;
+
+            if (crtc_info->mode != None)
+            {
+                total_width = MAX (total_width, (guint)(crtc_info->x + crtc_info->width));
+                total_height = MAX (total_height, (guint)(crtc_info->y + crtc_info->height));
+            }
+
+            XRRFreeCrtcInfo (crtc_info);
+        }
+
+        XRRFreeScreenResources (resources);
+    }
+
+    *width = total_width;
+    *height = total_height;
+
+    xfsettings_dbg (XFSD_DEBUG_POINTERS, "Display size: %ux%u", *width, *height);
+}
+
+
+
+static void
+xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
+                                                     XDeviceInfo *device_info)
+{
+    GdkDisplay *gdk_display = gdk_display_get_default ();
+    XfceRandr *randr = xfce_randr_new (gdk_display, NULL);
+    gchar *touchscreen_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
+    gdouble ctm[9];
+    gdouble reflections_matrix[9] = {1, 0, 0,
+                                     0, 1, 0,
+                                     0, 0, 1};
+    guint touchscreen_rotation = 0;
+    guint monitor_rotation = 0;
+    guint final_rotation = 0;
+    gchar *touchscreen_reflection = NULL;
+    gchar *monitor_reflection = NULL;
+    gchar *final_reflection = NULL;
+    gchar *assigned_monitor = NULL;
+    gchar *connector_name = NULL;
+    gchar *active_profile = NULL;
+    gchar *prop = NULL;
+    guint display_width;
+    guint display_height;
+    gdouble scale;
+    gdouble scale_x;
+    gdouble scale_y;
+    gdouble translation_x;
+    gdouble translation_y;
+    gdouble scale_matrix[9];
+    GValue *value;
+    GPtrArray *array;
+    gint monitor_x = 0;
+    gint monitor_y = 0;
+    guint monitor_width;
+    guint monitor_height;
+    guint tmp;
+    gchar *resolution;
+    gchar **parts;
+    gdouble temp[9];
+    gdouble temp2[9];
+    gdouble sum;
+
+    xfce_pointers_helper_get_display_size (&display_width, &display_height);
+    monitor_width = display_width;
+    monitor_height = display_height;
+
+    /* Get touchscreen orientation settings from xfconf */
+    prop = g_strdup_printf ("/%s/Rotation", touchscreen_name);
+    touchscreen_rotation = xfconf_channel_get_int (helper->channel, prop, 0);
+    g_free (prop);
+    prop = g_strdup_printf ("/%s/Reflection", touchscreen_name);
+    touchscreen_reflection = xfconf_channel_get_string (helper->channel, prop, "0");
+    g_free (prop);
+    prop = g_strdup_printf ("/%s/AssignedMonitor", touchscreen_name);
+    assigned_monitor = xfconf_channel_get_string (helper->channel, prop, NULL);
+    g_free (prop);
+
+    g_debug ("Adjusting touchscreen orientation.");
+    g_debug ("Rotation: %d", touchscreen_rotation);
+    g_debug ("Reflection: %s", touchscreen_reflection);
+    g_debug ("Assigned to monitor: %s", assigned_monitor);
+
+    /* Touchscreen orients relative to it's monitor, if one is assigned.   */
+    /* We also need monitor's position within the display and height/width */
+    /* to correctly offset and scale the input respectively.               */
+    if (assigned_monitor == NULL)
+    {
+        g_warning ("No monitor assigned to touchscreen; Mapping to entire display");
+        final_rotation = touchscreen_rotation;
+        final_reflection = g_strdup (touchscreen_reflection ? touchscreen_reflection : "");
+    }
+    else
+    {
+        connector_name = xfce_randr_get_connector_by_edid (randr, assigned_monitor);
+        if (connector_name == NULL)
+        {
+            g_warning ("Could not find connector by saved EDID");
+            final_rotation = touchscreen_rotation;
+            final_reflection = g_strdup (touchscreen_reflection ? touchscreen_reflection : "");
+        }
+        else
+        {
+            active_profile = xfconf_channel_get_string (helper->displays_channel, "/ActiveProfile", "Default");
+
+            /* If rotation or reflection aren't in xfconf, we can assume they are both unset */
+            prop = g_strdup_printf ("/%s/%s/Rotation", active_profile, connector_name);
+            monitor_rotation = xfconf_channel_get_int (helper->displays_channel, prop, 0);
+            final_rotation = (touchscreen_rotation + monitor_rotation) % 360;
+            g_free (prop);
+
+            prop = g_strdup_printf ("/%s/%s/Reflection", active_profile, connector_name);
+            monitor_reflection = xfconf_channel_get_string (helper->displays_channel, prop, "0");
+            final_reflection = g_strdup_printf ("%s%s",
+                                               ((strchr(touchscreen_reflection, 'X') != NULL) ^
+                                               (strchr(monitor_reflection, 'X') != NULL)) ? "X" : "",
+                                               ((strchr(touchscreen_reflection, 'Y') != NULL) ^
+                                               (strchr(monitor_reflection, 'Y') != NULL)) ? "Y" : "");
+            g_free (prop);
+
+            prop = g_strdup_printf ("/%s/%s/Position/X", active_profile, connector_name);
+            monitor_x = xfconf_channel_get_int (helper->displays_channel, prop, -1);
+            g_free (prop);
+
+            prop = g_strdup_printf ("/%s/%s/Position/Y", active_profile, connector_name);
+            monitor_y = xfconf_channel_get_int (helper->displays_channel, prop, -1);
+            g_free (prop);
+
+            prop = g_strdup_printf ("/%s/%s/Resolution", active_profile, connector_name);
+            resolution = xfconf_channel_get_string (helper->displays_channel, prop, NULL);
+            g_free (prop);
+
+            /* If these values aren't in xfconf, it means display wasn't saved there yet; */
+            /* So if any of them are missing, we retrieve all of them from xrandr state.  */
+            if (resolution == NULL || monitor_x == -1 || monitor_y == -1)
+            {
+                for (guint n = 0; n < randr->noutput; n++)
+                {
+                    if (g_strcmp0 (xfce_randr_get_output_info_name (randr, n), connector_name) != 0)
+                        continue;
+
+                    const XfceRRMode *mode = xfce_randr_find_mode_by_id (randr, n, randr->mode[n]);
+                    if (mode != NULL)
+                    {
+                        monitor_width = mode->width;
+                        monitor_height = mode->height;
+                        monitor_x = MAX (randr->position[n].x, 0);
+                        monitor_y = MAX (randr->position[n].y, 0);
+                    }
+                    break;
+                }
+            }
+            else
+            {
+                parts = g_strsplit (resolution, "x", 2);
+                g_free (resolution);
+                monitor_width = strtoul (parts[0], NULL, 10);
+                monitor_height = strtoul (parts[1], NULL, 10);
+
+                /* If monitor is rotated sideways, swap width and height. */
+                if (monitor_rotation == 90 || monitor_rotation == 270)
+                {
+                    tmp = monitor_width;
+                    monitor_width = monitor_height;
+                    monitor_height = tmp;
+                }
+                g_strfreev (parts);
+            }
+
+            prop = g_strdup_printf ("/%s/%s/Scale", active_profile, connector_name);
+            scale = xfconf_channel_get_double (helper->displays_channel, prop, 1.0);
+            g_free (prop);
+            monitor_width *= scale;
+            monitor_height *= scale;
+
+            g_debug ("Monitor Rotation: %d", monitor_rotation);
+            g_debug ("Monitor Reflection: %s", monitor_reflection);
+            g_debug ("Display dimensions: %u x %u", display_width, display_height);
+            g_debug ("Monitor rectangle: x=%d, y=%d, width=%u, height=%u",
+                     monitor_x, monitor_y, monitor_width, monitor_height);
+        }
+    }
+
+    /* Coordinate Transformation Matrix  */
+    /* --------------------------------- */
+    /* [  a   b   c  ]                   */
+    /* [  d   e   f  ]                   */
+    /* [  0   0   1  ]                   */
+    /* --------------------------------- */
+    /* result_x = a*x + b*y + c          */
+    /* result_y = d*x + e*y + f          */
+    switch (final_rotation)
+    {
+        case 90:
+            ctm[0] = 0; ctm[1] = -1; ctm[2] = 1;
+            ctm[3] = 1; ctm[4] = 0; ctm[5] = 0;
+            break;
+        case 180:
+            ctm[0] = -1; ctm[1] = 0; ctm[2] = 1;
+            ctm[3] = 0; ctm[4] = -1; ctm[5] = 1;
+            break;
+        case 270:
+            ctm[0] = 0; ctm[1] = 1; ctm[2] = 0;
+            ctm[3] = -1; ctm[4] = 0; ctm[5] = 1;
+            break;
+        default:
+            ctm[0] = 1; ctm[1] = 0; ctm[2] = 0;
+            ctm[3] = 0; ctm[4] = 1; ctm[5] = 0;
+            break;
+    }
+    /* Last row is always the same */
+    ctm[6] = 0; ctm[7] = 0; ctm[8] = 1;
+
+    /* Adjust reflection matrix based on current reflection axis */
+    if (strcmp (final_reflection, "X") == 0 || strcmp (final_reflection, "XY") == 0)
+    {
+        reflections_matrix[0] = -1;
+        reflections_matrix[2] = 1;
+    }
+    if (strcmp (final_reflection, "Y") == 0 || strcmp (final_reflection, "XY") == 0)
+    {
+        reflections_matrix[4] = -1;
+        reflections_matrix[5] = 1;
+    }
+
+    /* Multiply ctm * reflections_matrix */
+    for (int r = 0; r < 3; ++r) {
+        for (int c = 0; c < 3; ++c) {
+            sum = 0.0;
+            for (int k = 0; k < 3; ++k)
+                sum += ctm[r*3 + k] * reflections_matrix[k*3 + c];
+            temp[r*3 + c] = sum;
+        }
+    }
+    memcpy (ctm, temp, sizeof(temp));
+
+    /* Scaling and positioning to map onto the assigned monitor */
+    scale_x = (gdouble) monitor_width / display_width;
+    scale_y = (gdouble) monitor_height / display_height;
+    translation_x = (gdouble) monitor_x / display_width;
+    translation_y = (gdouble) monitor_y / display_height;
+
+    scale_matrix[0] = scale_x;  scale_matrix[1] = 0.0;      scale_matrix[2] = translation_x;
+    scale_matrix[3] = 0.0;      scale_matrix[4] = scale_y;  scale_matrix[5] = translation_y;
+    scale_matrix[6] = 0.0;      scale_matrix[7] = 0.0;      scale_matrix[8] = 1.0;
+
+    /* Multiply scale_matrix * ctm */
+    for (int r = 0; r < 3; ++r) {
+        for (int c = 0; c < 3; ++c) {
+            sum = 0.0;
+            for (int k = 0; k < 3; ++k)
+                sum += scale_matrix[r*3 + k] * ctm[k*3 + c];
+            temp2[r*3 + c] = sum;
+        }
+    }
+    memcpy (ctm, temp2, sizeof (temp2));
+
+    /* Apply to xfconf */
+    array = g_ptr_array_sized_new (9);
+    for (guint i = 0; i < 9; i++)
+    {
+        value = g_new0 (GValue, 1);
+        g_value_init (value, G_TYPE_DOUBLE);
+        g_value_set_double (value, ctm[i]);
+        g_ptr_array_add (array, value);
+    }
+
+    prop = g_strdup_printf ("/%s/Properties/Coordinate_Transformation_Matrix", touchscreen_name);
+    xfconf_channel_set_arrayv (helper->channel, prop, array);
+    g_free (prop);
+
+    g_free (active_profile);
+    g_free (touchscreen_name);
+    g_free (touchscreen_reflection);
+    g_free (assigned_monitor);
+    g_free (monitor_reflection);
+    g_free (final_reflection);
+    g_ptr_array_free (array, TRUE);
+    g_free (connector_name);
+    if (randr != NULL) xfce_randr_free (randr);
 }
 
 
