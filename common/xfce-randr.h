@@ -153,6 +153,10 @@ xfce_randr_mode_height (XfceRandr *randr,
 gdouble
 xfce_randr_calculate_refresh_rate (XRRModeInfo mode);
 
+gchar *
+xfce_randr_get_connector_by_edid (XfceRandr *randr,
+                                  const gchar *edid);
+
 G_END_DECLS
 
 #endif /* !__XFCE_RANDR_H__ */
