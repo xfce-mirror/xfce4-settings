@@ -946,6 +946,100 @@ cleanup:
 
 
 
+static void
+mouse_settings_touchscreen_populate_monitors (GtkBuilder *builder,
+                                              gboolean create_store)
+{
+    GObject *combobox = gtk_builder_get_object (builder, "touchscreen-assigned-monitor");
+    GtkListStore *store;
+    GtkTreeIter iter;
+    GtkCellRenderer *renderer;
+    XfceRandr *randr = xfce_randr_new (gdk_display_get_default (), NULL);
+    gchar *display_name;
+    gchar *name = NULL;
+    gchar *prop;
+    gchar *stored_edid;
+    gchar *row_edid = NULL;
+    GtkTreeModel *model;
+    GtkTreeIter row_iter;
+
+    locked++;
+
+    if (G_LIKELY (create_store))
+    {
+        store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+        gtk_combo_box_set_model (GTK_COMBO_BOX (combobox), GTK_TREE_MODEL (store));
+
+        renderer = gtk_cell_renderer_text_new ();
+        gtk_cell_layout_clear (GTK_CELL_LAYOUT (combobox));
+        gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combobox), renderer, TRUE);
+        gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combobox), renderer, "text", 0, NULL);
+
+        g_signal_connect_swapped (G_OBJECT (combobox), "changed",
+                                  G_CALLBACK (mouse_settings_touchscreen_assigned_monitor_changed),
+                                  builder);
+    }
+    else
+    {
+        store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (combobox)));
+        gtk_list_store_clear (store);
+    }
+
+    /* No assignment option */
+    gtk_list_store_insert_with_values (store, &iter, -1, 0, _("None"), 1, NULL, -1);
+
+    /* Add options for currently connected monitors */
+    if (randr != NULL)
+    {
+        for (guint n = 0; n < randr->noutput; n++)
+        {
+            display_name = g_strdup_printf ("%s (%s)", randr->friendly_name[n],
+                                                   xfce_randr_get_output_info_name (randr, n));
+            gtk_list_store_insert_with_values (store, NULL, -1, 0, display_name,
+                                               1, xfce_randr_get_edid (randr, n), -1);
+            g_free (display_name);
+        }
+        xfce_randr_free (randr);
+    }
+
+    gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), 0);
+
+    /* Retrieve saved setting if available */
+    if (mouse_settings_device_get_selected (builder, NULL, &name) && name != NULL)
+    {
+        prop = g_strconcat ("/", name, "/AssignedMonitor", NULL);
+        stored_edid = xfconf_channel_get_string (pointers_channel, prop, NULL);
+        g_free (prop);
+
+        if (stored_edid != NULL)
+        {
+            model = gtk_combo_box_get_model (GTK_COMBO_BOX (combobox));
+            if (gtk_tree_model_get_iter_first (model, &row_iter))
+            {
+                do
+                {
+                    row_edid = NULL;
+                    gtk_tree_model_get (model, &row_iter, 1, &row_edid, -1);
+                    if (g_strcmp0 (row_edid, stored_edid) == 0)
+                    {
+                        gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &row_iter);
+                        g_free (row_edid);
+                        break;
+                    }
+                    g_free (row_edid);
+                }
+                while (gtk_tree_model_iter_next (model, &row_iter));
+            }
+            g_free (stored_edid);
+        }
+    }
+    g_free (name);
+
+    locked--;
+}
+
+
+
 #ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
@@ -1873,6 +1967,8 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     }
 #endif
 
+    mouse_settings_touchscreen_populate_monitors (builder, FALSE);
+
     /* unlock */
     locked--;
 }
@@ -2406,6 +2502,9 @@ main (gint argc,
         {
             /* lock */
             locked++;
+
+            /* populate the monitors combobox */
+            mouse_settings_touchscreen_populate_monitors (builder, TRUE);
 
             /* populate the devices combobox */
             mouse_settings_device_populate_store (builder, TRUE);
