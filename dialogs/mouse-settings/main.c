@@ -1930,6 +1930,61 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "touchscreen-tab");
     gtk_widget_set_visible (GTK_WIDGET (object), is_touchscreen);
 
+    if (is_touchscreen)
+    {
+        gchar *ts_name = NULL;
+        gchar *prop;
+        if (mouse_settings_device_get_selected (builder, NULL, &ts_name) && ts_name != NULL)
+        {
+            /* Restore rotation setting to UI */
+            prop = g_strconcat ("/", ts_name, "/Rotation", NULL);
+            gint rotation_degrees = xfconf_channel_get_int (pointers_channel, prop, 0);
+            g_free (prop);
+
+            gint rotation_option_id;
+            switch (rotation_degrees)
+            {
+                case 90:
+                    rotation_option_id = 1;
+                    break;
+                case 180:
+                    rotation_option_id = 2;
+                    break;
+                case 270:
+                    rotation_option_id = 3;
+                    break;
+                default:
+                    rotation_option_id = 0;
+                    break;
+            }
+
+            object = gtk_builder_get_object (builder, "touchscreen-rotation");
+            gtk_combo_box_set_active (GTK_COMBO_BOX (object), rotation_option_id);
+
+            /* Restore reflection setting to UI */
+            prop = g_strconcat ("/", ts_name, "/Reflection", NULL);
+            gchar *reflection = xfconf_channel_get_string (pointers_channel, prop, NULL);
+            g_free (prop);
+
+            gint reflection_option_id;
+            if (g_strcmp0 (reflection, "X") == 0)
+                reflection_option_id = 1;
+            else if (g_strcmp0 (reflection, "Y") == 0)
+                reflection_option_id = 2;
+            else if (g_strcmp0 (reflection, "XY") == 0)
+                reflection_option_id = 3;
+            else
+                reflection_option_id = 0;
+
+            g_free (reflection);
+
+            object = gtk_builder_get_object (builder, "touchscreen-reflection");
+            gtk_combo_box_set_active (GTK_COMBO_BOX (object), reflection_option_id);
+
+            g_free (ts_name);
+        }
+    }
+
     mouse_settings_touchscreen_populate_monitors (builder);
 
     /* unlock */
