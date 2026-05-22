@@ -1471,6 +1471,12 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
                     xfce_pointers_helper_change_mode (device_info, device, xdisplay,
                                                       g_value_get_string (value));
                 }
+                else if (strcmp (names[1], "Rotation") == 0
+                         || strcmp (names[1], "Reflection") == 0
+                         || strcmp (names[1], "AssignedMonitor") == 0)
+                {
+                    xfce_pointers_helper_update_touchscreen_orientation (helper, device_info);
+                }
                 else
                 {
                     g_warning ("Unknown property %s set for device %s",
