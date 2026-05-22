@@ -901,6 +901,51 @@ mouse_settings_device_get_selected (GtkBuilder *builder,
 
 
 
+static void
+mouse_settings_touchscreen_assigned_monitor_changed (GtkBuilder *builder)
+{
+    GObject *combobox;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+    gchar *name = NULL;
+    gchar *prop = NULL;
+    gchar *edid = NULL;
+
+    if (locked > 0)
+        return;
+
+    combobox = gtk_builder_get_object(builder, "touchscreen-assigned-monitor");
+    model = gtk_combo_box_get_model(GTK_COMBO_BOX(combobox));
+
+    if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combobox), &iter))
+        gtk_tree_model_get (model, &iter, 1, &edid, -1);
+
+    if (!mouse_settings_device_get_selected (builder, NULL, &name))
+    {
+        g_warning ("No device selected");
+        goto cleanup;
+    }
+
+    if (edid != NULL)
+    {
+        prop = g_strconcat ("/", name, "/AssignedMonitor", NULL);
+        g_debug ("Saving assigned monitor EDID: %s", edid);
+        xfconf_channel_set_string (pointers_channel, prop, edid);
+    }
+    else
+    {
+        g_debug ("Unassigning output");
+        prop = g_strconcat ("/", name, "/AssignedMonitor", NULL);
+        xfconf_channel_reset_property (pointers_channel, prop, FALSE);
+    }
+cleanup:
+    g_free (name);
+    g_free (prop);
+    g_free (edid);
+}
+
+
+
 #ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
@@ -2030,6 +2075,98 @@ bailout:
 
 
 
+static void
+mouse_settings_touchscreen_rotation_changed (GtkComboBox *combobox,
+                                             GtkBuilder  *builder)
+{
+    gint active;
+    gint degrees;
+    gchar *name = NULL;
+    gchar *prop = NULL;
+
+    if (locked > 0)
+        return;
+
+    active = gtk_combo_box_get_active (GTK_COMBO_BOX (combobox));
+
+    /* 0==None, 1==Left, 2==Inverted, 3==Right */
+    switch (active)
+    {
+        case 1:
+            degrees = 90;
+            break;
+        case 2:
+            degrees = 180;
+            break;
+        case 3:
+            degrees = 270;
+            break;
+        default:
+            degrees = 0;
+            break;
+    }
+    if (mouse_settings_device_get_selected (builder, NULL, &name))
+    {
+        prop = g_strconcat ("/", name, "/Rotation", NULL);
+        xfconf_channel_set_int (pointers_channel, prop, degrees);
+    }
+    else
+    {
+        g_warning ("No device selected");
+    }
+
+    g_free (prop);
+    g_free (name);
+}
+
+
+
+static void
+mouse_settings_touchscreen_reflection_changed (GtkComboBox *combobox,
+                                               GtkBuilder  *builder)
+{
+    gint active;
+    gchar *reflection;
+    gchar *name = NULL;
+    gchar *prop = NULL;
+
+    if (locked > 0)
+        return;
+
+    active = gtk_combo_box_get_active (GTK_COMBO_BOX (combobox));
+
+    /* 0==None, 1==Horizontal, 2==Vertical, 3==Both */
+    switch (active)
+    {
+        case 1:
+            reflection = "X";
+            break;
+        case 2:
+            reflection = "Y";
+            break;
+        case 3:
+            reflection = "XY";
+            break;
+        default:
+            reflection = "0";
+            break;
+    }
+    if (mouse_settings_device_get_selected (builder, NULL, &name))
+    {
+        prop = g_strconcat ("/", name, "/Reflection", NULL);
+        xfconf_channel_set_string (pointers_channel, prop, reflection);
+    }
+    else
+    {
+        g_warning ("No device selected");
+    }
+
+    g_free (prop);
+    g_free (name);
+}
+
+
+
 static gboolean
 mouse_settings_device_update_sliders (gpointer user_data)
 {
@@ -2368,6 +2505,14 @@ main (gint argc,
             g_signal_connect (G_OBJECT (object), "changed",
                               G_CALLBACK (mouse_settings_wacom_set_rotation), builder);
 #endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
+
+            object = gtk_builder_get_object (builder, "touchscreen-rotation");
+            g_signal_connect (G_OBJECT (object), "changed",
+                              G_CALLBACK (mouse_settings_touchscreen_rotation_changed), builder);
+
+            object = gtk_builder_get_object (builder, "touchscreen-reflection");
+            g_signal_connect (G_OBJECT (object), "changed",
+                              G_CALLBACK (mouse_settings_touchscreen_reflection_changed), builder);
 
 #ifdef HAVE_XCURSOR
             /* populate the themes treeview */
