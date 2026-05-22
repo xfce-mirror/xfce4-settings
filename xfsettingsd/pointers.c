@@ -55,6 +55,11 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
                                                const gchar *property_name,
                                                const GValue *value,
                                                XfcePointersHelper *helper);
+static void
+xfce_pointers_helper_update_all_touchscreen_orientations (GdkDisplay *display,
+                                                          XfcePointersHelper *helper);
+static gboolean
+xfce_pointers_helper_update_all_touchscreen_orientations_event (gpointer data);
 #ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_pointers_helper_event_filter (GdkXEvent *xevent,
@@ -83,6 +88,8 @@ struct _XfcePointersHelper
 
     /* xfconf channel */
     XfconfChannel *channel;
+    XfconfChannel *displays_channel;
+    guint update_all_touchscreen_orientations_event_id;
 
 #ifdef DEVICE_PROPERTIES
     GPid syndaemon_pid;
@@ -126,6 +133,8 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 #ifdef DEVICE_HOTPLUGGING
     XEventClass event_class;
 #endif
+    GError *error = NULL;
+    XfceRandr *randr = xfce_randr_new (gdk_display_get_default (), &error);
 
     /* get the default display */
     xdisplay = gdk_x11_display_get_xdisplay (gdk_display_get_default ());
@@ -155,6 +164,21 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
         /* open the channel */
         helper->channel = xfconf_channel_get ("pointers");
 
+        /* open displays channel to follow monitor orientation with touchscreens */
+        helper->displays_channel = xfconf_channel_get ("displays");
+
+        if (randr != NULL)
+        {
+            xfce_pointers_helper_update_all_touchscreen_orientations_event ((gpointer) helper);
+            xfce_randr_free (randr);
+        }
+        else
+        {
+            g_warning ("Could not initialise RandR for touchscreen auto-assignment: %s",
+                       error ? error->message : "unknown error");
+            g_clear_error (&error);
+        }
+
         /* restore the pointer devices */
         xfce_pointers_helper_restore_devices (helper, NULL);
 
@@ -164,6 +188,11 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 
         /* launch syndaemon if required */
         xfce_pointers_helper_syndaemon_check (helper);
+
+        g_signal_connect_object (gdk_screen_get_default (),
+                                 "monitors-changed",
+                                 G_CALLBACK (xfce_pointers_helper_update_all_touchscreen_orientations),
+                                 helper, G_CONNECT_AFTER);
 
 #ifdef DEVICE_HOTPLUGGING
         if (G_LIKELY (xdisplay != NULL))
@@ -191,6 +220,10 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 static void
 xfce_pointers_helper_finalize (GObject *object)
 {
+    XfcePointersHelper *helper = XFCE_POINTERS_HELPER (object);
+    if (helper->update_all_touchscreen_orientations_event_id != 0)
+        g_source_remove (helper->update_all_touchscreen_orientations_event_id);
+
     xfce_pointers_helper_syndaemon_stop (XFCE_POINTERS_HELPER (object));
 
     (*G_OBJECT_CLASS (xfce_pointers_helper_parent_class)->finalize) (object);
@@ -1496,6 +1529,91 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
     }
 
     g_strfreev (names);
+}
+
+
+
+static gboolean
+xfce_pointers_helper_update_all_touchscreen_orientations_event (gpointer data)
+{
+    XfcePointersHelper *helper = data;
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    XDeviceInfo *device_list, *device_info;
+    XDevice *device;
+    gint n, ndevices;
+    gint i, nprops;
+    Atom *props;
+    Atom touchscreen_prop;
+    gboolean is_touchscreen;
+
+    helper->update_all_touchscreen_orientations_event_id = 0;
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
+    device_list = XListInputDevices (xdisplay, &ndevices);
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || device_list == NULL)
+    {
+        g_warning ("No input devices found during display orientation update");
+        return FALSE;
+    }
+
+#ifdef HAVE_LIBINPUT
+    touchscreen_prop = XInternAtom (xdisplay, "libinput Calibration Matrix", True);
+#else
+    touchscreen_prop = XInternAtom (xdisplay, "Abs MT Position X", True);
+#endif
+
+    for (n = 0; n < ndevices; n++)
+    {
+        device_info = &device_list[n];
+        if (device_info->use != IsXExtensionPointer || device_info->name == NULL)
+            continue;
+
+        is_touchscreen = FALSE;
+
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
+        device = XOpenDevice (xdisplay, device_info->id);
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || device == NULL)
+        {
+            g_critical ("Unable to open device %s", device_info->name);
+            continue;
+        }
+
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
+        props = XListDeviceProperties (xdisplay, device, &nprops);
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) == 0 && props != NULL)
+        {
+            for (i = 0; i < nprops; i++)
+            {
+                if (props[i] == touchscreen_prop)
+                {
+                    is_touchscreen = TRUE;
+                    break;
+                }
+            }
+            XFree (props);
+        }
+
+        if (is_touchscreen)
+            xfce_pointers_helper_update_touchscreen_orientation (helper, device_info);
+
+        XCloseDevice (xdisplay, device);
+    }
+
+    XFreeDeviceList (device_list);
+
+    return G_SOURCE_REMOVE;
+}
+
+
+
+static void
+xfce_pointers_helper_update_all_touchscreen_orientations (GdkDisplay *display,
+                                                          XfcePointersHelper *helper)
+{
+    if (helper->update_all_touchscreen_orientations_event_id != 0)
+        g_source_remove (helper->update_all_touchscreen_orientations_event_id);
+
+    helper->update_all_touchscreen_orientations_event_id =
+        g_timeout_add_seconds (2, xfce_pointers_helper_update_all_touchscreen_orientations_event, helper);
 }
 
 
