@@ -1472,6 +1472,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     gint ndevices;
     gboolean is_synaptics = FALSE;
     gboolean is_wacom = FALSE;
+    gboolean is_touchscreen = FALSE;
     gboolean left_handed = FALSE;
     gboolean reverse_scrolling = FALSE;
     gboolean scroll_wheel_available = FALSE;
@@ -1496,6 +1497,7 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
 #endif /* HAVE_LIBINPUT */
     Atom synaptics_prop;
     Atom wacom_prop;
+    Atom touchscreen_prop;
     Atom synaptics_tap_prop;
     Atom synaptics_edge_scroll_prop;
     Atom synaptics_two_scroll_prop;
@@ -1643,6 +1645,13 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         device_enabled_prop = XInternAtom (xdisplay, "Device Enabled", True);
         synaptics_prop = XInternAtom (xdisplay, "Synaptics Off", True);
         wacom_prop = XInternAtom (xdisplay, "Wacom Tool Type", True);
+#ifdef HAVE_LIBINPUT
+        /* Device property used by libinput to map touch coordinates onto the display */
+        touchscreen_prop = XInternAtom (xdisplay, "libinput Calibration Matrix", True);
+#else
+        /* Used by older input stacks to expose touch axis data */
+        touchscreen_prop = XInternAtom (xdisplay, "Abs MT Position X", True);
+#endif
         synaptics_tap_prop = XInternAtom (xdisplay, "Synaptics Tap Action", True);
         synaptics_edge_scroll_prop = XInternAtom (xdisplay, "Synaptics Edge Scrolling", True);
         synaptics_two_scroll_prop = XInternAtom (xdisplay, "Synaptics Two-Finger Scrolling", True);
@@ -1662,6 +1671,8 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
                     is_synaptics = TRUE;
                 else if (props[i] == wacom_prop)
                     is_wacom = TRUE;
+                else if (props[i] == touchscreen_prop)
+                    is_touchscreen = TRUE;
                 else if (props[i] == synaptics_tap_prop)
                     synaptics_tap_to_click = mouse_settings_device_get_int_property (device, props[i], 4, NULL);
                 else if (props[i] == synaptics_edge_scroll_prop)
@@ -1912,6 +1923,14 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         gtk_combo_box_set_active (GTK_COMBO_BOX (object), wacom_rotation);
     }
 #endif
+
+    /* If this is a touchscreen:                                          */
+    /* 1. Hide "Buttons and feedback" as none of the settings there apply */
+    object = gtk_builder_get_object (builder, "device-box");
+    gtk_widget_set_visible (GTK_WIDGET (object), !is_touchscreen);
+    /* 2. Show touchscreen tab                                            */
+    object = gtk_builder_get_object (builder, "touchscreen-tab");
+    gtk_widget_set_visible (GTK_WIDGET (object), is_touchscreen);
 
     mouse_settings_touchscreen_populate_monitors (builder);
 
