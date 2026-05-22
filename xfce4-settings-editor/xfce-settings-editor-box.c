@@ -1389,11 +1389,12 @@ xfce_settings_editor_box_row_visible (GtkTreeModel *model,
                                       gpointer user_data)
 {
     GtkEntry *entry = GTK_ENTRY (user_data);
+    GValue *value = NULL;
     gchar *property;
     const gchar *text;
     gchar *normalized;
     gchar *text_casefolded;
-    gchar *property_casefolded;
+    gchar *column_casefolded;
     gboolean visible = FALSE;
 
     /* search string from dialog */
@@ -1406,19 +1407,38 @@ xfce_settings_editor_box_row_visible (GtkTreeModel *model,
     text_casefolded = g_utf8_casefold (normalized, -1);
     g_free (normalized);
 
-    gtk_tree_model_get (model, iter, PROP_COLUMN_NAME, &property, -1);
+    gtk_tree_model_get (model, iter, PROP_COLUMN_NAME, &property, PROP_COLUMN_VALUE, &value, -1);
 
     if (G_LIKELY (property != NULL))
     {
         /* casefold the name */
         normalized = g_utf8_normalize (property, -1, G_NORMALIZE_ALL);
-        property_casefolded = g_utf8_casefold (normalized, -1);
+        column_casefolded = g_utf8_casefold (normalized, -1);
         g_free (normalized);
 
         /* search */
-        visible = (g_strrstr (property_casefolded, text_casefolded) != NULL);
+        visible = (g_strrstr (column_casefolded, text_casefolded) != NULL);
 
-        g_free (property_casefolded);
+        g_free (column_casefolded);
+    }
+
+    if (value != NULL)
+    {
+        if (!visible)
+        {
+            GValue trans = G_VALUE_INIT;
+            g_value_init (&trans, G_TYPE_STRING);
+            if (g_value_transform (value, &trans))
+            {
+                normalized = g_utf8_normalize (g_value_get_string (&trans), -1, G_NORMALIZE_ALL);
+                column_casefolded = g_utf8_casefold (normalized, -1);
+                visible = (g_strrstr (column_casefolded, text_casefolded) != NULL);
+                g_free (column_casefolded);
+                g_free (normalized);
+            }
+            g_value_unset (&trans);
+        }
+        g_value_unset (value);
     }
 
     /* if the element itself doesn't contain the query recursively search its children */
