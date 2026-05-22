@@ -936,6 +936,56 @@ mouse_settings_touchscreen_assigned_monitor_changed (GtkComboBox *combobox,
 
 
 
+static void
+mouse_settings_touchscreen_populate_monitors (GtkBuilder *builder)
+{
+    GtkComboBoxText *combobox = GTK_COMBO_BOX_TEXT (gtk_builder_get_object (builder, "touchscreen-assigned-monitor"));
+    XfceRandr *randr = xfce_randr_new (gdk_display_get_default (), NULL);
+
+    locked++;
+
+    /* Clear old options */
+    gtk_combo_box_text_remove_all (combobox);
+
+    /* No assignment option */
+    gtk_combo_box_text_append (combobox, NULL, _("None"));
+
+    /* Add options for currently connected monitors */
+    if (randr != NULL)
+    {
+        for (guint i = 0; i < randr->noutput; i++)
+        {
+            gchar *display_name = g_strdup_printf ("%s (%s)", randr->friendly_name[i],
+                                                   xfce_randr_get_output_info_name (randr, i));
+            gtk_combo_box_text_append (combobox, xfce_randr_get_edid (randr, i), display_name);
+            g_free (display_name);
+        }
+        xfce_randr_free (randr);
+    }
+
+    gtk_combo_box_set_active (GTK_COMBO_BOX (combobox), 0);
+
+    /* Retrieve saved setting if available */
+    gchar *pointer_device_name = NULL;
+    if (mouse_settings_device_get_selected (builder, NULL, &pointer_device_name) && pointer_device_name != NULL)
+    {
+        gchar *prop = g_strconcat ("/", pointer_device_name, "/AssignedMonitor", NULL);
+        gchar *stored_edid = xfconf_channel_get_string (pointers_channel, prop, NULL);
+        g_free (prop);
+
+        if (stored_edid != NULL)
+        {
+            gtk_combo_box_set_active_id (GTK_COMBO_BOX (combobox), stored_edid);
+            g_free (stored_edid);
+        }
+    }
+    g_free (pointer_device_name);
+
+    locked--;
+}
+
+
+
 #ifdef DEVICE_PROPERTIES
 static void
 mouse_settings_wacom_set_rotation (GtkComboBox *combobox,
@@ -1863,6 +1913,8 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     }
 #endif
 
+    mouse_settings_touchscreen_populate_monitors (builder);
+
     /* unlock */
     locked--;
 }
@@ -2389,6 +2441,9 @@ main (gint argc,
         {
             /* lock */
             locked++;
+
+            /* populate the monitors combobox */
+            mouse_settings_touchscreen_populate_monitors (builder);
 
             /* populate the devices combobox */
             mouse_settings_device_populate_store (builder, TRUE);
