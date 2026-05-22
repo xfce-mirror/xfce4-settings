@@ -48,6 +48,9 @@ xfce_pointers_helper_syndaemon_stop (XfcePointersHelper *helper);
 static void
 xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper);
 static void
+xfce_pointers_helper_autoassign_touchscreens (XfcePointersHelper *helper,
+                                              XfceRandr *randr);
+static void
 xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
                                       XID *xid);
 static void
@@ -169,6 +172,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 
         if (randr != NULL)
         {
+            xfce_pointers_helper_autoassign_touchscreens (helper, randr);
             xfce_pointers_helper_update_all_touchscreen_orientations_event ((gpointer) helper);
             xfce_randr_free (randr);
         }
@@ -1293,6 +1297,123 @@ xfce_pointers_helper_change_properties (gpointer key,
                                           prop_name, value);
 }
 #endif
+
+
+
+static void
+xfce_pointers_helper_autoassign_touchscreens (XfcePointersHelper *helper,
+                                              XfceRandr *randr)
+{
+    Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+    XDeviceInfo *device_list, *device_info;
+    XDevice *device;
+    gint n, ndevices;
+    gint i, nprops;
+    Atom *props;
+    Atom touchscreen_prop;
+    gboolean is_touchscreen;
+    GPtrArray *touchscreens;
+    GPtrArray *edids;
+    gchar *prop;
+    const gchar *edid;
+    gchar *device_name;
+
+    if (randr == NULL || randr->noutput == 0)
+        return;
+
+    /* Get a list of output EDIDs.                                      */
+    /* eDP goes first, so that we cover most common usecase by default: */
+    /* Laptop's built in monitor being a touchscreen.                   */
+    edids = g_ptr_array_new ();
+    for (guint m = 0; m < randr->noutput; m++)
+    {
+        edid = xfce_randr_get_edid (randr, m);
+        if (g_strcmp0 (xfce_randr_get_output_info_name (randr, m), "eDP-1") == 0)
+            g_ptr_array_insert (edids, 0, (gpointer) edid);
+        else
+            g_ptr_array_add (edids, (gpointer) edid);
+    }
+
+    /* Filter input devices for touchscreens */
+    gdk_x11_display_error_trap_push (gdk_display_get_default ());
+    device_list = XListInputDevices (xdisplay, &ndevices);
+    if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || device_list == NULL)
+    {
+        g_warning ("No input devices found during touchscreen auto-assignment");
+        g_ptr_array_free (edids, TRUE);
+        return;
+    }
+
+#ifdef HAVE_LIBINPUT
+    touchscreen_prop = XInternAtom (xdisplay, "libinput Calibration Matrix", True);
+#else
+    touchscreen_prop = XInternAtom (xdisplay, "Abs MT Position X", True);
+#endif
+
+    touchscreens = g_ptr_array_new ();
+
+    for (n = 0; n < ndevices; n++)
+    {
+        device_info = &device_list[n];
+        if (device_info->use != IsXExtensionPointer || device_info->name == NULL)
+            continue;
+
+        is_touchscreen = FALSE;
+
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
+        device = XOpenDevice (xdisplay, device_info->id);
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || device == NULL)
+        {
+            g_critical ("Unable to open device %s", device_info->name);
+            continue;
+        }
+
+        gdk_x11_display_error_trap_push (gdk_display_get_default ());
+        props = XListDeviceProperties (xdisplay, device, &nprops);
+        if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) == 0 && props != NULL)
+        {
+            for (i = 0; i < nprops; i++)
+            {
+                if (props[i] == touchscreen_prop)
+                {
+                    is_touchscreen = TRUE;
+                    break;
+                }
+            }
+            XFree (props);
+        }
+
+        XCloseDevice (xdisplay, device);
+
+        if (is_touchscreen)
+            g_ptr_array_add (touchscreens, device_info);
+    }
+
+    /* Pair up touchscreens and outputs trivially */
+    for (guint j = 0; j < touchscreens->len && j < edids->len; j++)
+    {
+        device_info = g_ptr_array_index (touchscreens, j);
+        edid = g_ptr_array_index (edids, j);
+
+        device_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
+        prop = g_strdup_printf ("/%s/AssignedMonitor", device_name);
+
+        if (!xfconf_channel_has_property (helper->channel, prop))
+        {
+            xfconf_channel_set_string (helper->channel, prop, edid);
+            xfsettings_dbg (XFSD_DEBUG_POINTERS,
+                            "auto-assigned touchscreen '%s' to monitor EDID %s",
+                            device_info->name, edid);
+        }
+
+        g_free (prop);
+        g_free (device_name);
+    }
+
+    g_ptr_array_free (touchscreens, TRUE);
+    g_ptr_array_free (edids, TRUE);
+    XFreeDeviceList (device_list);
+}
 
 
 
