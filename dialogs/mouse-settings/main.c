@@ -21,6 +21,7 @@
 #include "xfce-revision.h"
 #endif
 
+#include "common/xfce-randr.h"
 #include "xfsettingsd/pointers-defines.h"
 
 #include <cairo-gobject.h>
@@ -30,7 +31,6 @@
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
-#include "common/xfce-randr.h"
 
 #ifdef HAVE_XCURSOR
 #include <X11/Xcursor/Xcursor.h>
@@ -914,8 +914,8 @@ mouse_settings_touchscreen_assigned_monitor_changed (GtkBuilder *builder)
     if (locked > 0)
         return;
 
-    combobox = gtk_builder_get_object(builder, "touchscreen-assigned-monitor");
-    model = gtk_combo_box_get_model(GTK_COMBO_BOX(combobox));
+    combobox = gtk_builder_get_object (builder, "touchscreen-assigned-monitor");
+    model = gtk_combo_box_get_model (GTK_COMBO_BOX(combobox));
 
     if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combobox), &iter))
         gtk_tree_model_get (model, &iter, 1, &edid, -1);
@@ -994,7 +994,7 @@ mouse_settings_touchscreen_populate_monitors (GtkBuilder *builder,
         for (guint n = 0; n < randr->noutput; n++)
         {
             display_name = g_strdup_printf ("%s (%s)", randr->friendly_name[n],
-                                                   xfce_randr_get_output_info_name (randr, n));
+                                            xfce_randr_get_output_info_name (randr, n));
             gtk_list_store_insert_with_values (store, NULL, -1, 0, display_name,
                                                1, xfce_randr_get_edid (randr, n), -1);
             g_free (display_name);
@@ -1027,8 +1027,7 @@ mouse_settings_touchscreen_populate_monitors (GtkBuilder *builder,
                         break;
                     }
                     g_free (row_edid);
-                }
-                while (gtk_tree_model_iter_next (model, &row_iter));
+                } while (gtk_tree_model_iter_next (model, &row_iter));
             }
             g_free (stored_edid);
         }
@@ -2241,7 +2240,7 @@ bailout:
 
 static void
 mouse_settings_touchscreen_rotation_changed (GtkComboBox *combobox,
-                                             GtkBuilder  *builder)
+                                             GtkBuilder *builder)
 {
     gint active;
     gint degrees;
@@ -2287,7 +2286,7 @@ mouse_settings_touchscreen_rotation_changed (GtkComboBox *combobox,
 
 static void
 mouse_settings_touchscreen_reflection_changed (GtkComboBox *combobox,
-                                               GtkBuilder  *builder)
+                                               GtkBuilder *builder)
 {
     gint active;
     gchar *reflection;
