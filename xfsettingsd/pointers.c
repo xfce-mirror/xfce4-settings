@@ -20,12 +20,12 @@
 #include "pointers.h"
 
 #include "common/debug.h"
+#include "common/xfce-randr.h"
 
+#include <X11/extensions/Xrandr.h>
 #include <gdk/gdkx.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
-#include "common/xfce-randr.h"
-#include <X11/extensions/Xrandr.h>
 
 #ifdef HAVE_LIBINPUT
 #include <libinput-properties.h>
@@ -809,8 +809,8 @@ xfce_pointers_helper_get_display_size (guint *width,
 
             if (crtc_info->mode != None)
             {
-                total_width = MAX (total_width, (guint)(crtc_info->x + crtc_info->width));
-                total_height = MAX (total_height, (guint)(crtc_info->y + crtc_info->height));
+                total_width = MAX (total_width, (guint) (crtc_info->x + crtc_info->width));
+                total_height = MAX (total_height, (guint) (crtc_info->y + crtc_info->height));
             }
 
             XRRFreeCrtcInfo (crtc_info);
@@ -835,9 +835,9 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     XfceRandr *randr = xfce_randr_new (gdk_display, NULL);
     gchar *touchscreen_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
     gdouble ctm[9];
-    gdouble reflections_matrix[9] = {1, 0, 0,
-                                     0, 1, 0,
-                                     0, 0, 1};
+    gdouble reflections_matrix[9] = { 1, 0, 0,
+                                      0, 1, 0,
+                                      0, 0, 1 };
     guint touchscreen_rotation = 0;
     guint monitor_rotation = 0;
     guint final_rotation = 0;
@@ -920,10 +920,8 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
             prop = g_strdup_printf ("/%s/%s/Reflection", active_profile, connector_name);
             monitor_reflection = xfconf_channel_get_string (helper->displays_channel, prop, "0");
             final_reflection = g_strdup_printf ("%s%s",
-                                               ((strchr(touchscreen_reflection, 'X') != NULL) ^
-                                               (strchr(monitor_reflection, 'X') != NULL)) ? "X" : "",
-                                               ((strchr(touchscreen_reflection, 'Y') != NULL) ^
-                                               (strchr(monitor_reflection, 'Y') != NULL)) ? "Y" : "");
+                                               ((strchr(touchscreen_reflection, 'X') != NULL) ^ (strchr(monitor_reflection, 'X') != NULL)) ? "X" : "",
+                                               ((strchr(touchscreen_reflection, 'Y') != NULL) ^ (strchr(monitor_reflection, 'Y') != NULL)) ? "Y" : "");
             g_free (prop);
 
             prop = g_strdup_printf ("/%s/%s/Position/X", active_profile, connector_name);
@@ -997,6 +995,7 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     /* --------------------------------- */
     /* result_x = a*x + b*y + c          */
     /* result_y = d*x + e*y + f          */
+    /* clang-format off */
     switch (final_rotation)
     {
         case 90:
@@ -1018,6 +1017,7 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     }
     /* Last row is always the same */
     ctm[6] = 0; ctm[7] = 0; ctm[8] = 1;
+    /* clang-format on */
 
     /* Adjust reflection matrix based on current reflection axis */
     if (strcmp (final_reflection, "X") == 0 || strcmp (final_reflection, "XY") == 0)
@@ -1032,11 +1032,13 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     }
 
     /* Multiply ctm * reflections_matrix */
-    for (int r = 0; r < 3; ++r) {
-        for (int c = 0; c < 3; ++c) {
+    for (int r = 0; r < 3; ++r)
+    {
+        for (int c = 0; c < 3; ++c)
+        {
             sum = 0.0;
             for (int k = 0; k < 3; ++k)
-                sum += ctm[r*3 + k] * reflections_matrix[k*3 + c];
+                sum += ctm[r * 3 + k] * reflections_matrix[k * 3 + c];
             temp[r*3 + c] = sum;
         }
     }
@@ -1048,16 +1050,20 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     translation_x = (gdouble) monitor_x / display_width;
     translation_y = (gdouble) monitor_y / display_height;
 
+    /* clang-format off */
     scale_matrix[0] = scale_x;  scale_matrix[1] = 0.0;      scale_matrix[2] = translation_x;
     scale_matrix[3] = 0.0;      scale_matrix[4] = scale_y;  scale_matrix[5] = translation_y;
     scale_matrix[6] = 0.0;      scale_matrix[7] = 0.0;      scale_matrix[8] = 1.0;
+    /* clang-format on */
 
     /* Multiply scale_matrix * ctm */
-    for (int r = 0; r < 3; ++r) {
-        for (int c = 0; c < 3; ++c) {
+    for (int r = 0; r < 3; ++r)
+    {
+        for (int c = 0; c < 3; ++c)
+        {
             sum = 0.0;
             for (int k = 0; k < 3; ++k)
-                sum += scale_matrix[r*3 + k] * ctm[k*3 + c];
+                sum += scale_matrix[r * 3 + k] * ctm[k * 3 + c];
             temp2[r*3 + c] = sum;
         }
     }
@@ -1085,7 +1091,8 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     g_free (final_reflection);
     g_ptr_array_free (array, TRUE);
     g_free (connector_name);
-    if (randr != NULL) xfce_randr_free (randr);
+    if (randr != NULL)
+        xfce_randr_free (randr);
 }
 
 
