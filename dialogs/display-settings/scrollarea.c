@@ -281,7 +281,7 @@ foo_scroll_area_class_init (FooScrollAreaClass *klass)
     g_object_class_override_property (object_class, PROP_VSCROLL_POLICY, "vscroll-policy");
 
     scrollarea_signals[VIEWPORT_CHANGED] =
-        g_signal_new ("viewport_changed",
+        g_signal_new ("viewport-changed",
                       G_OBJECT_CLASS_TYPE (object_class),
                       G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                       G_STRUCT_OFFSET (FooScrollAreaClass,
@@ -1076,7 +1076,7 @@ set_one_adjustment (FooScrollArea *scroll_area,
 
     g_object_ref_sink (*location);
 
-    g_signal_connect (*location, "value_changed",
+    g_signal_connect (*location, "value-changed",
                       G_CALLBACK (foo_scrollbar_adjustment_changed),
                       scroll_area);
 }
