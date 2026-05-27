@@ -3447,7 +3447,7 @@ main (gint argc,
     g_object_add_weak_pointer (G_OBJECT (settings), (gpointer *) &settings);
 
     /* Use GtkApplication to ensure single instance */
-    GtkApplication *app = gtk_application_new ("org.xfce.display.settings", 0);
+    GtkApplication *app = gtk_application_new ("org.xfce.display.settings", G_APPLICATION_DEFAULT_FLAGS);
     g_action_map_add_action_entries (G_ACTION_MAP (app), actions, G_N_ELEMENTS (actions), settings);
     g_signal_connect (app, "handle-local-options", G_CALLBACK (handle_local_options), settings);
     g_signal_connect (app, "activate", G_CALLBACK (display_settings_activated), settings);
