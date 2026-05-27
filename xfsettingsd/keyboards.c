@@ -76,7 +76,7 @@ struct _XfceKeyboardsHelper
 
 
 
-G_DEFINE_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, G_TYPE_OBJECT)
 
 
 

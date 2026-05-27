@@ -66,7 +66,7 @@ xfce_settings_prop_dialog_type_changed (GtkWidget *combo,
 
 
 
-G_DEFINE_TYPE (XfceSettingsPropDialog, xfce_settings_prop_dialog, GTK_TYPE_DIALOG)
+G_DEFINE_FINAL_TYPE (XfceSettingsPropDialog, xfce_settings_prop_dialog, GTK_TYPE_DIALOG)
 
 
 

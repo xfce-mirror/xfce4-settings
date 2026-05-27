@@ -169,7 +169,7 @@ static const struct xfce_output_head_private_v1_listener xfce_head_listener = {
 
 
 
-G_DEFINE_TYPE (XfceWlrOutputManager, xfce_wlr_output_manager, G_TYPE_OBJECT);
+G_DEFINE_FINAL_TYPE (XfceWlrOutputManager, xfce_wlr_output_manager, G_TYPE_OBJECT);
 
 
 

@@ -122,7 +122,7 @@ xfce_settings_manager_dialog_scroll_to_item (GtkWidget *iconview,
 
 
 
-G_DEFINE_TYPE (XfceSettingsManagerDialog, xfce_settings_manager_dialog, XFCE_TYPE_TITLED_DIALOG)
+G_DEFINE_FINAL_TYPE (XfceSettingsManagerDialog, xfce_settings_manager_dialog, XFCE_TYPE_TITLED_DIALOG)
 
 
 

@@ -131,7 +131,7 @@ struct _XfceDisplaySettingsWayland
 
 
 
-G_DEFINE_TYPE (XfceDisplaySettingsWayland, xfce_display_settings_wayland, XFCE_TYPE_DISPLAY_SETTINGS);
+G_DEFINE_FINAL_TYPE (XfceDisplaySettingsWayland, xfce_display_settings_wayland, XFCE_TYPE_DISPLAY_SETTINGS);
 
 
 

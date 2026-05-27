@@ -97,7 +97,7 @@ typedef struct
 
 
 
-G_DEFINE_TYPE (XfcePointersHelper, xfce_pointers_helper, G_TYPE_OBJECT);
+G_DEFINE_FINAL_TYPE (XfcePointersHelper, xfce_pointers_helper, G_TYPE_OBJECT);
 
 
 

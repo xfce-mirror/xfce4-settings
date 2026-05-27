@@ -67,7 +67,7 @@ struct _XfceMimeHelperChooser
 
 
 
-G_DEFINE_TYPE (XfceMimeHelperChooser, xfce_mime_helper_chooser, GTK_TYPE_BIN)
+G_DEFINE_FINAL_TYPE (XfceMimeHelperChooser, xfce_mime_helper_chooser, GTK_TYPE_BIN)
 
 
 

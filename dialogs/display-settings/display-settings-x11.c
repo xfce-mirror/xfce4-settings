@@ -127,7 +127,7 @@ struct _XfceDisplaySettingsX11
 
 
 
-G_DEFINE_TYPE (XfceDisplaySettingsX11, xfce_display_settings_x11, XFCE_TYPE_DISPLAY_SETTINGS);
+G_DEFINE_FINAL_TYPE (XfceDisplaySettingsX11, xfce_display_settings_x11, XFCE_TYPE_DISPLAY_SETTINGS);
 
 
 

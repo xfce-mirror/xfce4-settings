@@ -140,7 +140,7 @@ struct _XfceTimestamp
 
 
 
-G_DEFINE_TYPE (XfceXSettingsHelper, xfce_xsettings_helper, G_TYPE_OBJECT);
+G_DEFINE_FINAL_TYPE (XfceXSettingsHelper, xfce_xsettings_helper, G_TYPE_OBJECT);
 
 
 

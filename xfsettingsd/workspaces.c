@@ -80,7 +80,7 @@ typedef struct
 
 
 
-G_DEFINE_TYPE (XfceWorkspacesHelper, xfce_workspaces_helper, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (XfceWorkspacesHelper, xfce_workspaces_helper, G_TYPE_OBJECT)
 
 
 

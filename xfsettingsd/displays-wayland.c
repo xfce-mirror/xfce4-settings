@@ -71,7 +71,7 @@ static const struct zwlr_output_configuration_v1_listener configuration_listener
 
 
 
-G_DEFINE_TYPE (XfceDisplaysHelperWayland, xfce_displays_helper_wayland, XFCE_TYPE_DISPLAYS_HELPER);
+G_DEFINE_FINAL_TYPE (XfceDisplaysHelperWayland, xfce_displays_helper_wayland, XFCE_TYPE_DISPLAYS_HELPER);
 
 
 

@@ -58,7 +58,7 @@ struct _XfceMimeHelper
 
 
 
-G_DEFINE_TYPE (XfceMimeHelper, xfce_mime_helper, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (XfceMimeHelper, xfce_mime_helper, G_TYPE_OBJECT)
 
 
 
@@ -569,7 +569,7 @@ struct _XfceMimeHelperDatabase
 
 
 
-G_DEFINE_TYPE (XfceMimeHelperDatabase, xfce_mime_helper_database, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (XfceMimeHelperDatabase, xfce_mime_helper_database, G_TYPE_OBJECT)
 
 
 

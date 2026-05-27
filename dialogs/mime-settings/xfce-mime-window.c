@@ -129,7 +129,7 @@ enum
 
 
 
-G_DEFINE_TYPE (XfceMimeWindow, xfce_mime_window, XFCE_TYPE_TITLED_DIALOG)
+G_DEFINE_FINAL_TYPE (XfceMimeWindow, xfce_mime_window, XFCE_TYPE_TITLED_DIALOG)
 
 
 

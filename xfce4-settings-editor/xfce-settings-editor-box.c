@@ -145,7 +145,7 @@ set_tooltip_from_treemodel_iterator (GtkTreeModel *model,
                                      GtkTooltip *tooltip);
 
 
-G_DEFINE_TYPE (XfceSettingsEditorBox, xfce_settings_editor_box, GTK_TYPE_BOX)
+G_DEFINE_FINAL_TYPE (XfceSettingsEditorBox, xfce_settings_editor_box, GTK_TYPE_BOX)
 
 static void
 xfce_settings_editor_box_get_property (GObject *object,

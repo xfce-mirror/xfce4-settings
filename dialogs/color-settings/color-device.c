@@ -36,7 +36,7 @@ struct _ColorDevice
     guint device_changed_id;
 };
 
-G_DEFINE_TYPE (ColorDevice, color_device, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_FINAL_TYPE (ColorDevice, color_device, GTK_TYPE_LIST_BOX_ROW)
 
 enum
 {

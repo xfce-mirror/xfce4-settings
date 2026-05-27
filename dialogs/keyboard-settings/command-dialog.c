@@ -42,7 +42,7 @@ struct _CommandDialog
 
 
 
-G_DEFINE_TYPE (CommandDialog, command_dialog, XFCE_TYPE_TITLED_DIALOG)
+G_DEFINE_FINAL_TYPE (CommandDialog, command_dialog, XFCE_TYPE_TITLED_DIALOG)
 
 
 

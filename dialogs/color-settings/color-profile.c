@@ -40,7 +40,7 @@ struct _ColorProfile
 
 #define IMAGE_WIDGET_PADDING 9
 
-G_DEFINE_TYPE (ColorProfile, color_profile, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_FINAL_TYPE (ColorProfile, color_profile, GTK_TYPE_LIST_BOX_ROW)
 
 enum
 {

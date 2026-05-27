@@ -95,7 +95,7 @@ xfce_settings_strv_to_string (const GValue *src_value,
                               GValue *dest_value);
 
 
-G_DEFINE_TYPE (XfceSettingsCellRenderer, xfce_settings_cell_renderer, GTK_TYPE_CELL_RENDERER)
+G_DEFINE_FINAL_TYPE (XfceSettingsCellRenderer, xfce_settings_cell_renderer, GTK_TYPE_CELL_RENDERER)
 
 
 

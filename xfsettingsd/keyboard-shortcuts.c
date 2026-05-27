@@ -74,7 +74,7 @@ struct _XfceKeyboardShortcutsHelper
 
 
 
-G_DEFINE_TYPE (XfceKeyboardShortcutsHelper, xfce_keyboard_shortcuts_helper, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (XfceKeyboardShortcutsHelper, xfce_keyboard_shortcuts_helper, G_TYPE_OBJECT)
 
 
 

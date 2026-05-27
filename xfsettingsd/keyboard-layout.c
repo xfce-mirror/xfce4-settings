@@ -84,7 +84,7 @@ struct _XfceKeyboardLayoutHelper
 #endif /* HAVE_LIBXKLAVIER */
 };
 
-G_DEFINE_TYPE (XfceKeyboardLayoutHelper, xfce_keyboard_layout_helper, G_TYPE_OBJECT);
+G_DEFINE_FINAL_TYPE (XfceKeyboardLayoutHelper, xfce_keyboard_layout_helper, G_TYPE_OBJECT);
 
 static void
 xfce_keyboard_layout_helper_class_init (XfceKeyboardLayoutHelperClass *klass)

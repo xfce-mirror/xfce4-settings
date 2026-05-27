@@ -59,7 +59,7 @@ struct _XfceMimeHelperLauncherDialog
 
 
 
-G_DEFINE_TYPE (XfceMimeHelperLauncherDialog, xfce_mime_helper_launcher_dialog, GTK_TYPE_DIALOG)
+G_DEFINE_FINAL_TYPE (XfceMimeHelperLauncherDialog, xfce_mime_helper_launcher_dialog, GTK_TYPE_DIALOG)
 
 
 

@@ -107,7 +107,7 @@ static const GSettingsData translations[] = {
 
 
 
-G_DEFINE_TYPE (XfceGtkSettingsHelper, xfce_gtk_settings_helper, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (XfceGtkSettingsHelper, xfce_gtk_settings_helper, G_TYPE_OBJECT)
 
 
 

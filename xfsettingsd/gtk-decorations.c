@@ -42,7 +42,7 @@ struct _XfceDecorationsHelper
     XfconfChannel *xsettings_channel;
 };
 
-G_DEFINE_TYPE (XfceDecorationsHelper, xfce_decorations_helper, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (XfceDecorationsHelper, xfce_decorations_helper, G_TYPE_OBJECT)
 
 static void
 xfce_decorations_helper_class_init (XfceDecorationsHelperClass *klass)

@@ -79,7 +79,7 @@ enum
 
 
 
-G_DEFINE_TYPE (XfceMimeChooser, xfce_mime_chooser, GTK_TYPE_DIALOG)
+G_DEFINE_FINAL_TYPE (XfceMimeChooser, xfce_mime_chooser, GTK_TYPE_DIALOG)
 
 
 

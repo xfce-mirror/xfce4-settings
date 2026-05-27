@@ -168,7 +168,7 @@ struct _XfceRROutput
 };
 
 
-G_DEFINE_TYPE (XfceDisplaysHelperX11, xfce_displays_helper_x11, XFCE_TYPE_DISPLAYS_HELPER);
+G_DEFINE_FINAL_TYPE (XfceDisplaysHelperX11, xfce_displays_helper_x11, XFCE_TYPE_DISPLAYS_HELPER);
 
 
 

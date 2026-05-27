@@ -86,7 +86,7 @@ struct _XfceAccessibilityHelper
 
 
 
-G_DEFINE_TYPE (XfceAccessibilityHelper, xfce_accessibility_helper, G_TYPE_OBJECT);
+G_DEFINE_FINAL_TYPE (XfceAccessibilityHelper, xfce_accessibility_helper, G_TYPE_OBJECT);
 
 
 
