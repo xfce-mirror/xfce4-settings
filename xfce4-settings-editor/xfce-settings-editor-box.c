@@ -590,7 +590,7 @@ set_child_values:
 
                 g_value_init (&string_value, G_TYPE_STRING);
                 if (!g_value_transform (value, &string_value))
-                    g_value_set_string (&string_value, "Unknown");
+                    g_value_set_static_string (&string_value, "Unknown");
 
                 gtk_tree_store_set (GTK_TREE_STORE (model), &child_iter,
                                     PROP_COLUMN_NAME, paths[i],
