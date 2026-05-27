@@ -2067,7 +2067,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
   gtk_tree_view_collapse_all (GTK_TREE_VIEW (layout_selection_view));
 
   /* Selected and expand the layout/variant to be edited */
-  if (edit_layout && g_strcmp0 (edit_layout, ""))
+  if (edit_layout && g_strcmp0 (edit_layout, "") != 0)
     {
       gboolean found;
 
@@ -2086,7 +2086,7 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
 
               if (g_strcmp0 (tmp_layout, edit_layout) == 0)
                 {
-                  if (edit_variant && g_strcmp0 (edit_variant, "") && gtk_tree_model_iter_has_child (model, &iter))
+                  if (edit_variant && g_strcmp0 (edit_variant, "") != 0 && gtk_tree_model_iter_has_child (model, &iter))
                     {
                       GtkTreeIter iter2;
                       gint n, i;
