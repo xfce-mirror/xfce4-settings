@@ -1034,7 +1034,7 @@ Time
 xfce_xsettings_get_server_time (Display *xdisplay,
                                 Window window)
 {
-    struct _XfceTimestamp *ts = g_malloc (sizeof (struct _XfceTimestamp));
+    struct _XfceTimestamp *ts = g_new (struct _XfceTimestamp, 1);
     guchar c = 'a';
     XEvent xevent;
 
