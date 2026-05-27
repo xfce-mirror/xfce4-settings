@@ -375,12 +375,11 @@ display_setting_scale_changed (GtkSpinButton *spinbutton,
     display_settings_changed (settings);
 }
 
-static gboolean
+static void
 empty_spin_scale (gpointer data)
 {
     /* We need to delay this because GTK returns a numerical value in our back sometimes */
     gtk_entry_set_text (data, "");
-    return FALSE;
 }
 
 static void
@@ -394,7 +393,7 @@ display_setting_scale_populate (XfceDisplaySettings *settings,
     /* disable it if output is disabled */
     if (!xfce_display_settings_is_active (settings, selected_id))
     {
-        g_idle_add (empty_spin_scale, spin);
+        g_idle_add_once (empty_spin_scale, spin);
         gtk_widget_set_sensitive (GTK_WIDGET (spin), FALSE);
         gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
         return;
@@ -958,12 +957,11 @@ display_setting_primary_populate (XfceDisplaySettings *settings,
     g_signal_handlers_unblock_by_func (check, display_setting_primary_toggled, settings);
 }
 
-static gboolean
+static void
 show_no_output_dialog (gpointer data)
 {
     const gchar *text = _("The last active output must not be disabled, the system would be unusable.");
     xfce_dialog_show_warning (NULL, text, _("Selected output not disabled"));
-    return FALSE;
 }
 
 static gboolean
@@ -989,7 +987,7 @@ display_setting_output_toggled (GtkSwitch *widget,
             gtk_switch_set_active (GTK_SWITCH (check), TRUE);
 
             /* Run dialog after this signal handler to avoid random freeze */
-            g_idle_add (show_no_output_dialog, NULL);
+            g_idle_add_once (show_no_output_dialog, NULL);
             return TRUE;
         }
         xfce_display_settings_set_active (settings, selected_id, FALSE);

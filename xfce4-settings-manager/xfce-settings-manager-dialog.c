@@ -158,13 +158,11 @@ xfce_settings_manager_queue_resize (XfceSettingsManagerDialog *dialog)
     }
 }
 
-static gboolean
+static void
 xfce_settings_manager_queue_resize_cb (gpointer user_data)
 {
     XfceSettingsManagerDialog *dialog = user_data;
-
     xfce_settings_manager_queue_resize (dialog);
-    return FALSE;
 }
 
 
@@ -703,7 +701,7 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget *entry,
             gtk_widget_set_visible (category->box, n_children > 0);
         }
 
-        g_idle_add (xfce_settings_manager_queue_resize_cb, dialog);
+        g_idle_add_once (xfce_settings_manager_queue_resize_cb, dialog);
     }
     else
     {
@@ -1317,7 +1315,7 @@ xfce_settings_manager_dialog_menu_reload (XfceSettingsManagerDialog *dialog)
         g_error_free (error);
     }
 
-    g_idle_add (xfce_settings_manager_queue_resize_cb, dialog);
+    g_idle_add_once (xfce_settings_manager_queue_resize_cb, dialog);
 }
 
 
