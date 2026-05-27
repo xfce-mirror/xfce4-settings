@@ -66,11 +66,6 @@ xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
                                        XfceKeyboardLayoutHelper *helper);
 #endif /* HAVE_LIBXKLAVIER */
 
-struct _XfceKeyboardLayoutHelperClass
-{
-    GObjectClass __parent__;
-};
-
 struct _XfceKeyboardLayoutHelper
 {
     GObject __parent__;

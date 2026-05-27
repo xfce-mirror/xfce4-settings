@@ -33,11 +33,6 @@ xfce_decorations_helper_channel_property_changed (XfconfChannel *channel,
                                                   const GValue *value,
                                                   XfceDecorationsHelper *helper);
 
-struct _XfceDecorationsHelperClass
-{
-    GObjectClass __parent__;
-};
-
 struct _XfceDecorationsHelper
 {
     GObject __parent__;

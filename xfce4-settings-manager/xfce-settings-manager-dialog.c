@@ -23,7 +23,6 @@
 
 #include <garcon/garcon.h>
 #include <gdk/gdkkeysyms.h>
-#include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
@@ -36,11 +35,6 @@
 #define ICON_WIDTH (48)
 
 
-
-struct _XfceSettingsManagerDialogClass
-{
-    XfceTitledDialogClass __parent__;
-};
 
 struct _XfceSettingsManagerDialog
 {

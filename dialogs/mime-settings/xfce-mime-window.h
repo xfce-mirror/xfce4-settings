@@ -20,21 +20,16 @@
 #define __XFCE_MIME_WINDOW_H__
 
 #include <gtk/gtk.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 G_BEGIN_DECLS
 
-typedef struct _XfceMimeWindowClass XfceMimeWindowClass;
-typedef struct _XfceMimeWindow XfceMimeWindow;
-
 #define XFCE_TYPE_MIME_WINDOW (xfce_mime_window_get_type ())
-#define XFCE_MIME_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_MIME_WINDOW, XfceMimeWindow))
-#define XFCE_MIME_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_MIME_WINDOW, XfceMimeWindowClass))
-#define XFCE_IS_MIME_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_MIME_WINDOW))
-#define XFCE_IS_MIME_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_MIME_WINDOW))
-#define XFCE_MIME_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MIME_WINDOW, XfceMimeWindowClass))
-
-GType
-xfce_mime_window_get_type (void) G_GNUC_CONST;
+#define COMMAND_TYPE_DIALOG (command_dialog_get_type ())
+#ifndef glib_autoptr_clear_XfceTitledDialog
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceTitledDialog, g_object_unref)
+#endif
+G_DECLARE_FINAL_TYPE (XfceMimeWindow, xfce_mime_window, XFCE, MIME_WINDOW, XfceTitledDialog)
 
 XfceMimeWindow *
 xfce_mime_window_new (void) G_GNUC_MALLOC;

@@ -54,11 +54,6 @@ xfce_mime_chooser_browse_command (GtkWidget *button,
 
 
 
-struct _XfceMimeChooserClass
-{
-  GtkDialogClass __parent__;
-};
-
 struct _XfceMimeChooser
 {
   GtkDialog __parent__;

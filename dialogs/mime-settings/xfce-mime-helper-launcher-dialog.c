@@ -50,11 +50,6 @@ xfce_mime_helper_launcher_dialog_notify_is_valid (XfceMimeHelperChooser *chooser
 
 
 
-struct _XfceMimeHelperLauncherDialogClass
-{
-  GtkDialogClass __parent__;
-};
-
 struct _XfceMimeHelperLauncherDialog
 {
   GtkDialog __parent__;
@@ -223,7 +218,7 @@ xfce_mime_helper_launcher_dialog_new (XfceMimeHelperCategory category)
  * Return value: the #XfceMimeHelperCategory for @launcher_dialog.
  **/
 XfceMimeHelperCategory
-xfce_mime_helper_launcher_dialog_get_category (const XfceMimeHelperLauncherDialog *launcher_dialog)
+xfce_mime_helper_launcher_dialog_get_category (XfceMimeHelperLauncherDialog *launcher_dialog)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_LAUNCHER_DIALOG (launcher_dialog), XFCE_MIME_HELPER_WEBBROWSER);
   return launcher_dialog->category;

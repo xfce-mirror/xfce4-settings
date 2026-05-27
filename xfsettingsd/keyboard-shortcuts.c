@@ -61,11 +61,6 @@ xfce_keyboard_shortcuts_helper_load_shortcuts (XfceKeyboardShortcutsHelper *help
 
 
 
-struct _XfceKeyboardShortcutsHelperClass
-{
-    GObjectClass __parent__;
-};
-
 struct _XfceKeyboardShortcutsHelper
 {
     GObject __parent__;

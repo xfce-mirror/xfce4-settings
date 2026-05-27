@@ -24,11 +24,6 @@
 
 
 
-struct _XfceSettingsPropDialogClass
-{
-    GtkDialogClass __parent__;
-};
-
 struct _XfceSettingsPropDialog
 {
     GtkDialog __parent__;

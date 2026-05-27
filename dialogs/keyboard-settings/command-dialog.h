@@ -21,21 +21,15 @@
 #define __COMMAND_DIALOG_H__
 
 #include <gtk/gtk.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 G_BEGIN_DECLS
 
-typedef struct _CommandDialogClass CommandDialogClass;
-typedef struct _CommandDialog CommandDialog;
-
-#define TYPE_COMMAND_DIALOG (command_dialog_get_type ())
-#define COMMAND_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_COMMAND_DIALOG, CommandDialog))
-#define COMMAND_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_COMMAND_DIALOG, CommandDialogClass))
-#define IS_COMMAND_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_COMMAND_DIALOG))
-#define IS_COMMAND_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_COMMAND_DIALOG))
-#define COMMAND_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_COMMAND_DIALOG, CommandDialogClass))
-
-GType
-command_dialog_get_type (void) G_GNUC_CONST;
+#define COMMAND_TYPE_DIALOG (command_dialog_get_type ())
+#ifndef glib_autoptr_clear_XfceTitledDialog
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceTitledDialog, g_object_unref)
+#endif
+G_DECLARE_FINAL_TYPE (CommandDialog, command_dialog, COMMAND, DIALOG, XfceTitledDialog)
 
 GtkWidget *
 command_dialog_new (const gchar *shortcut,

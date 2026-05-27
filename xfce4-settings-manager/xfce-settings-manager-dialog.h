@@ -21,21 +21,15 @@
 #define __XFCE_SETTINGS_MANAGER_DIALOG_H__
 
 #include <gtk/gtk.h>
-
-#define XFCE_TYPE_SETTINGS_MANAGER_DIALOG (xfce_settings_manager_dialog_get_type ())
-#define XFCE_SETTINGS_MANAGER_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_SETTINGS_MANAGER_DIALOG, XfceSettingsManagerDialog))
-#define XFCE_SETTINGS_MANAGER_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_SETTINGS_MANAGER_DIALOG, XfceSettingsManagerDialogClass))
-#define XFCE_IS_SETTINGS_MANAGER_DIALOG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_SETTINGS_MANAGER_DIALOG))
-#define XFCE_IS_SETTINGS_MANAGER_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_SETTINGS_MANAGER_DIALOG))
-#define XFCE_SETTINGS_MANAGER_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_SETTINGS_MANAGER_DIALOG, XfceSettingsManagerDialogClass))
+#include <libxfce4ui/libxfce4ui.h>
 
 G_BEGIN_DECLS
 
-typedef struct _XfceSettingsManagerDialog XfceSettingsManagerDialog;
-typedef struct _XfceSettingsManagerDialogClass XfceSettingsManagerDialogClass;
-
-GType
-xfce_settings_manager_dialog_get_type (void) G_GNUC_CONST;
+#define XFCE_TYPE_SETTINGS_MANAGER_DIALOG (xfce_settings_manager_dialog_get_type ())
+#ifndef glib_autoptr_clear_XfceTitledDialog
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceTitledDialog, g_object_unref)
+#endif
+G_DECLARE_FINAL_TYPE (XfceSettingsManagerDialog, xfce_settings_manager_dialog, XFCE, SETTINGS_MANAGER_DIALOG, XfceTitledDialog)
 
 GtkWidget *
 xfce_settings_manager_dialog_new (void);

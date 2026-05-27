@@ -35,6 +35,7 @@ typedef struct _XfceKeyboardSettings XfceKeyboardSettings;
 #define XFCE_IS_KEYBOARD_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_KEYBOARD_SETTINGS))
 #define XFCE_IS_KEYBOARD_SETTINGS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_KEYBOARD_SETTINGS)
 #define XFCE_KEYBOARD_SETTINGS_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettingsClass))
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceKeyboardSettings, g_object_unref)
 
 GType
 xfce_keyboard_settings_get_type (void) G_GNUC_CONST;

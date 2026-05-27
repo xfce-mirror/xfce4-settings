@@ -52,11 +52,6 @@ xfce_mime_helper_chooser_toggled (XfceMimeHelperChooser *chooser,
 
 
 
-struct _XfceMimeHelperChooserClass
-{
-  GtkBinClass __parent__;
-};
-
 struct _XfceMimeHelperChooser
 {
   GtkBin __parent__;
@@ -811,7 +806,7 @@ xfce_mime_helper_chooser_new (XfceMimeHelperCategory category)
  * Return value: the category for @chooser.
  **/
 XfceMimeHelperCategory
-xfce_mime_helper_chooser_get_category (const XfceMimeHelperChooser *chooser)
+xfce_mime_helper_chooser_get_category (XfceMimeHelperChooser *chooser)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser), XFCE_MIME_HELPER_WEBBROWSER);
   return chooser->category;
@@ -851,7 +846,7 @@ xfce_mime_helper_chooser_set_category (XfceMimeHelperChooser *chooser,
  * Return value: %TRUE if a valid helper is selected.
  **/
 gboolean
-xfce_mime_helper_chooser_get_is_valid (const XfceMimeHelperChooser *chooser)
+xfce_mime_helper_chooser_get_is_valid (XfceMimeHelperChooser *chooser)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER_CHOOSER (chooser), FALSE);
   return chooser->is_valid;

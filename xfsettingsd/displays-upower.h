@@ -32,6 +32,7 @@ typedef struct _XfceDisplaysUPower XfceDisplaysUPower;
 #define XFCE_IS_DISPLAYS_UPOWER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_DISPLAYS_UPOWER))
 #define XFCE_IS_DISPLAYS_UPOWER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_DISPLAYS_UPOWER))
 #define XFCE_DISPLAYS_UPOWER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_DISPLAYS_UPOWER, XfceDisplaysUPowerClass))
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceDisplaysUPower, g_object_unref)
 
 #define XFSD_LID_STR(b) (b ? "closed" : "open")
 

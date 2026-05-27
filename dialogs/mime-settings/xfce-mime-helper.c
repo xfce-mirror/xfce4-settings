@@ -41,11 +41,6 @@ clear_bad_entries (XfceRc *rc);
 
 
 
-struct _XfceMimeHelperClass
-{
-  GObjectClass __parent__;
-};
-
 struct _XfceMimeHelper
 {
   GObject __parent__;
@@ -284,7 +279,7 @@ failed:
  * Return value: the #XfceMimeHelperCategory of @helper.
  **/
 XfceMimeHelperCategory
-xfce_mime_helper_get_category (const XfceMimeHelper *helper)
+xfce_mime_helper_get_category (XfceMimeHelper *helper)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), XFCE_MIME_HELPER_WEBBROWSER);
   return helper->category;
@@ -301,7 +296,7 @@ xfce_mime_helper_get_category (const XfceMimeHelper *helper)
  * Return value: the unique id of @helper.
  **/
 const gchar *
-xfce_mime_helper_get_id (const XfceMimeHelper *helper)
+xfce_mime_helper_get_id (XfceMimeHelper *helper)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
   return helper->id;
@@ -318,7 +313,7 @@ xfce_mime_helper_get_id (const XfceMimeHelper *helper)
  * Return value: the name of @helper.
  **/
 const gchar *
-xfce_mime_helper_get_name (const XfceMimeHelper *helper)
+xfce_mime_helper_get_name (XfceMimeHelper *helper)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
   return helper->name;
@@ -337,7 +332,7 @@ xfce_mime_helper_get_name (const XfceMimeHelper *helper)
  * Return value: the icon for @helper or %NULL.
  **/
 const gchar *
-xfce_mime_helper_get_icon (const XfceMimeHelper *helper)
+xfce_mime_helper_get_icon (XfceMimeHelper *helper)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
   return helper->icon;
@@ -354,7 +349,7 @@ xfce_mime_helper_get_icon (const XfceMimeHelper *helper)
  * Return value: a command for @helper.
  **/
 const gchar *
-xfce_mime_helper_get_command (const XfceMimeHelper *helper)
+xfce_mime_helper_get_command (XfceMimeHelper *helper)
 {
   g_return_val_if_fail (XFCE_MIME_IS_HELPER (helper), NULL);
   return *helper->commands_with_parameter;
@@ -565,11 +560,6 @@ xfce_mime_helper_database_lookup (XfceMimeHelperDatabase *database,
                                   const gchar *id);
 
 
-
-struct _XfceMimeHelperDatabaseClass
-{
-  GObjectClass __parent__;
-};
 
 struct _XfceMimeHelperDatabase
 {
@@ -1075,7 +1065,7 @@ static gint
 helper_compare (gconstpointer a,
                 gconstpointer b)
 {
-  return g_utf8_collate (xfce_mime_helper_get_name (a), xfce_mime_helper_get_name (b));
+  return g_utf8_collate (xfce_mime_helper_get_name ((XfceMimeHelper *) a), xfce_mime_helper_get_name ((XfceMimeHelper *) b));
 }
 
 

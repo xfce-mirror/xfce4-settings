@@ -36,28 +36,19 @@ typedef enum /*< enum,prefix=XFCE_MIME_HELPER >*/
   XFCE_MIME_HELPER_N_CATEGORIES, /*< skip >*/
 } XfceMimeHelperCategory;
 
-typedef struct _XfceMimeHelperClass XfceMimeHelperClass;
-typedef struct _XfceMimeHelper XfceMimeHelper;
-
 #define XFCE_MIME_TYPE_HELPER (xfce_mime_helper_get_type ())
-#define XFCE_MIME_HELPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_MIME_TYPE_HELPER, XfceMimeHelper))
-#define XFCE_MIME_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_MIME_TYPE_HELPER, XfceMimeHelperClass))
-#define XFCE_MIME_IS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_MIME_TYPE_HELPER))
-#define XFCE_MIME_IS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_MIME_TYPE_HELPER))
-#define XFCE_MIME_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_MIME_TYPE_HELPER, XfceMimeHelperClass))
+G_DECLARE_FINAL_TYPE (XfceMimeHelper, xfce_mime_helper, XFCE_MIME, HELPER, GObject)
 
-GType
-xfce_mime_helper_get_type (void) G_GNUC_CONST;
 XfceMimeHelperCategory
-xfce_mime_helper_get_category (const XfceMimeHelper *helper);
+xfce_mime_helper_get_category (XfceMimeHelper *helper);
 const gchar *
-xfce_mime_helper_get_id (const XfceMimeHelper *helper);
+xfce_mime_helper_get_id (XfceMimeHelper *helper);
 const gchar *
-xfce_mime_helper_get_name (const XfceMimeHelper *helper);
+xfce_mime_helper_get_name (XfceMimeHelper *helper);
 const gchar *
-xfce_mime_helper_get_icon (const XfceMimeHelper *helper);
+xfce_mime_helper_get_icon (XfceMimeHelper *helper);
 const gchar *
-xfce_mime_helper_get_command (const XfceMimeHelper *helper);
+xfce_mime_helper_get_command (XfceMimeHelper *helper);
 gboolean
 xfce_mime_helper_execute (XfceMimeHelper *helper,
                           GdkScreen *screen,
@@ -66,17 +57,8 @@ xfce_mime_helper_execute (XfceMimeHelper *helper,
 
 
 #define XFCE_MIME_TYPE_HELPER_DATABASE (xfce_mime_helper_database_get_type ())
-#define XFCE_MIME_HELPER_DATABASE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_MIME_TYPE_HELPER_DATABASE, XfceMimeHelperDatabase))
-#define XFCE_MIME_HELPER_DATABASE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_MIME_TYPE_HELPER_DATABASE, XfceMimeHelperDatabaseClass))
-#define XFCE_MIME_IS_HELPER_DATABASE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_MIME_TYPE_HELPER_DATABASE))
-#define XFCE_MIME_IS_HELPER_DATABASE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_MIME_TYPE_HELPER_DATABASE))
-#define XFCE_MIME_HELPER_DATABASE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_MIME_TYPE_HELPER_DATABASE, XfceMimeHelperDatabaseClass))
+G_DECLARE_FINAL_TYPE (XfceMimeHelperDatabase, xfce_mime_helper_database, XFCE_MIME, HELPER_DATABASE, GObject)
 
-typedef struct _XfceMimeHelperDatabaseClass XfceMimeHelperDatabaseClass;
-typedef struct _XfceMimeHelperDatabase XfceMimeHelperDatabase;
-
-GType
-xfce_mime_helper_database_get_type (void) G_GNUC_CONST;
 XfceMimeHelperDatabase *
 xfce_mime_helper_database_get (void);
 XfceMimeHelper *

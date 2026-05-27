@@ -32,11 +32,6 @@
 
 
 
-struct _XfceSettingsEditorBoxClass
-{
-    GtkBoxClass __parent__;
-};
-
 struct _XfceSettingsEditorBox
 {
     GtkBox __parent__;

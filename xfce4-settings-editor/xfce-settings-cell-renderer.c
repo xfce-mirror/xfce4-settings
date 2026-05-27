@@ -24,11 +24,6 @@
 
 
 
-struct _XfceSettingsCellRendererClass
-{
-    GtkCellRendererClass __parent__;
-};
-
 struct _XfceSettingsCellRenderer
 {
     GtkCellRenderer __parent__;

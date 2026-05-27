@@ -82,11 +82,6 @@ xfce_xsettings_helper_notify (XfceXSettingsHelper *helper);
 
 
 
-struct _XfceXSettingsHelperClass
-{
-    GObjectClass __parent__;
-};
-
 struct _XfceXSettingsHelper
 {
     GObject __parent__;

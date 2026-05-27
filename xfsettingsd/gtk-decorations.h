@@ -24,18 +24,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _XfceDecorationsHelperClass XfceDecorationsHelperClass;
-typedef struct _XfceDecorationsHelper XfceDecorationsHelper;
-
 #define XFCE_TYPE_DECORATIONS_HELPER (xfce_decorations_helper_get_type ())
-#define XFCE_DECORATIONS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_DECORATIONS_HELPER, XfceDecorationsHelper))
-#define XFCE_DECORATIONS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_DECORATIONS_HELPER, XfceDecorationsHelperClass))
-#define XFCE_IS_DECORATIONS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_DECORATIONS_HELPER))
-#define XFCE_IS_DECORATIONS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_DECORATIONS_HELPER))
-#define XFCE_DECORATIONS_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_DECORATIONS_HELPER, XfceDecorationsHelperClass))
-
-GType
-xfce_decorations_helper_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (XfceDecorationsHelper, xfce_decorations_helper, XFCE, DECORATIONS_HELPER, GObject)
 
 G_END_DECLS
 

@@ -23,7 +23,6 @@
 #include <gdk/gdkkeysyms.h>
 #include <gio/gdesktopappinfo.h>
 #include <gio/gio.h>
-#include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
@@ -76,11 +75,6 @@ xfce_mime_window_combo_populate (GtkCellRenderer *renderer,
                                  XfceMimeWindow *window);
 
 
-
-struct _XfceMimeWindowClass
-{
-  XfceTitledDialogClass __parent__;
-};
 
 struct _XfceMimeWindow
 {

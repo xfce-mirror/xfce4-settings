@@ -61,11 +61,6 @@ xfce_keyboards_helper_event_filter (GdkXEvent *xevent,
 
 
 
-struct _XfceKeyboardsHelperClass
-{
-    GObjectClass __parent__;
-};
-
 struct _XfceKeyboardsHelper
 {
     GObject __parent__;

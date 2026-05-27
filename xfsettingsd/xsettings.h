@@ -26,18 +26,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _XfceXSettingsHelperClass XfceXSettingsHelperClass;
-typedef struct _XfceXSettingsHelper XfceXSettingsHelper;
-
 #define XFCE_TYPE_XSETTINGS_HELPER (xfce_xsettings_helper_get_type ())
-#define XFCE_XSETTINGS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelper))
-#define XFCE_XSETTINGS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelperClass))
-#define XFCE_IS_XSETTINGS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_XSETTINGS_HELPER))
-#define XFCE_IS_XSETTINGS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_XSETTINGS_HELPER))
-#define XFCE_XSETTINGS_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelperClass))
-
-GType
-xfce_xsettings_helper_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (XfceXSettingsHelper, xfce_xsettings_helper, XFCE, XSETTINGS_HELPER, GObject)
 
 gboolean
 xfce_xsettings_helper_register (XfceXSettingsHelper *helper,

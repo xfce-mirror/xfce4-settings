@@ -63,11 +63,6 @@ struct _XfceWorkspacesHelper
     guint wait_for_wm_timeout_id;
 };
 
-struct _XfceWorkspacesHelperClass
-{
-    GObjectClass parent;
-};
-
 static Atom atom_net_number_of_desktops = 0;
 static Atom atom_net_desktop_names = 0;
 static gboolean xfsettingsd_disable_wm_check = FALSE;

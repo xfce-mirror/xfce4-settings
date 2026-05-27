@@ -70,11 +70,6 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
 
 
 
-struct _XfcePointersHelperClass
-{
-    GObjectClass __parent__;
-};
-
 struct _XfcePointersHelper
 {
     GObject __parent__;

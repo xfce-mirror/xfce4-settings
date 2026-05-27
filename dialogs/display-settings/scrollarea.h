@@ -37,17 +37,18 @@ G_BEGIN_DECLS
 #define gdk_region_point_in cairo_region_contains_point
 #define gdk_region_union cairo_region_union
 
+typedef struct FooScrollArea FooScrollArea;
+typedef struct FooScrollAreaClass FooScrollAreaClass;
+typedef struct FooScrollAreaPrivate FooScrollAreaPrivate;
+typedef struct FooScrollAreaEvent FooScrollAreaEvent;
+
 #define FOO_TYPE_SCROLL_AREA (foo_scroll_area_get_type ())
 #define FOO_SCROLL_AREA(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), FOO_TYPE_SCROLL_AREA, FooScrollArea))
 #define FOO_SCROLL_AREA_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), FOO_TYPE_SCROLL_AREA, FooScrollAreaClass))
 #define FOO_IS_SCROLL_AREA(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), FOO_TYPE_SCROLL_AREA))
 #define FOO_IS_SCROLL_AREA_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), FOO_TYPE_SCROLL_AREA))
 #define FOO_SCROLL_AREA_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), FOO_TYPE_SCROLL_AREA, FooScrollAreaClass))
-
-typedef struct FooScrollArea FooScrollArea;
-typedef struct FooScrollAreaClass FooScrollAreaClass;
-typedef struct FooScrollAreaPrivate FooScrollAreaPrivate;
-typedef struct FooScrollAreaEvent FooScrollAreaEvent;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (FooScrollArea, g_object_unref)
 
 typedef enum
 {

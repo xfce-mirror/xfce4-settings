@@ -19,8 +19,6 @@
 
 #include "command-dialog.h"
 
-#include <libxfce4ui/libxfce4ui.h>
-
 
 
 static void
@@ -32,11 +30,6 @@ static void
 command_dialog_button_clicked (CommandDialog *dialog);
 
 
-
-struct _CommandDialogClass
-{
-  XfceTitledDialogClass __parent__;
-};
 
 struct _CommandDialog
 {
@@ -76,7 +69,7 @@ command_dialog_new (const gchar *shortcut,
 {
   CommandDialog *dialog;
 
-  dialog = COMMAND_DIALOG (g_object_new (TYPE_COMMAND_DIALOG, NULL));
+  dialog = COMMAND_DIALOG (g_object_new (COMMAND_TYPE_DIALOG, NULL));
 
   command_dialog_create_contents (dialog, shortcut, action, snotify);
 
@@ -213,7 +206,7 @@ command_dialog_create_contents (CommandDialog *dialog,
 const char *
 command_dialog_get_command (CommandDialog *dialog)
 {
-  g_return_val_if_fail (IS_COMMAND_DIALOG (dialog), NULL);
+  g_return_val_if_fail (COMMAND_IS_DIALOG (dialog), NULL);
   return gtk_entry_get_text (GTK_ENTRY (dialog->entry));
 }
 
@@ -222,7 +215,7 @@ command_dialog_get_command (CommandDialog *dialog)
 gboolean
 command_dialog_get_snotify (CommandDialog *dialog)
 {
-  g_return_val_if_fail (IS_COMMAND_DIALOG (dialog), FALSE);
+  g_return_val_if_fail (COMMAND_IS_DIALOG (dialog), FALSE);
   return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->sn_option));
 }
 
@@ -235,7 +228,7 @@ command_dialog_run (CommandDialog *dialog,
   gint response = GTK_RESPONSE_CANCEL;
   gboolean finished = FALSE;
 
-  g_return_val_if_fail (IS_COMMAND_DIALOG (dialog), GTK_RESPONSE_CANCEL);
+  g_return_val_if_fail (COMMAND_IS_DIALOG (dialog), GTK_RESPONSE_CANCEL);
 
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (gtk_widget_get_toplevel (parent)));
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
@@ -264,7 +257,7 @@ command_dialog_button_clicked (CommandDialog *dialog)
   GtkFileFilter *filter;
   gchar *filename;
 
-  g_return_if_fail (IS_COMMAND_DIALOG (dialog));
+  g_return_if_fail (COMMAND_IS_DIALOG (dialog));
 
   chooser = gtk_file_chooser_dialog_new (_("Select command"),
                                          GTK_WINDOW (dialog),

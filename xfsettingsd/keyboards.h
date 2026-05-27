@@ -27,15 +27,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _XfceKeyboardsHelperClass XfceKeyboardsHelperClass;
-typedef struct _XfceKeyboardsHelper XfceKeyboardsHelper;
-
 #define XFCE_TYPE_KEYBOARDS_HELPER (xfce_keyboards_helper_get_type ())
-#define XFCE_KEYBOARDS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_KEYBOARDS_HELPER, XfceKeyboardsHelper))
-#define XFCE_KEYBOARDS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_KEYBOARDS_HELPER, XfceKeyboardsHelperClass))
-#define XFCE_IS_KEYBOARDS_HELPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_KEYBOARDS_HELPER))
-#define XFCE_IS_KEYBOARDS_HELPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_KEYBOARDS_HELPER))
-#define XFCE_KEYBOARDS_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_KEYBOARDS_HELPER, XfceKeyboardsHelperClass))
+G_DECLARE_FINAL_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, XFCE, KEYBOARDS_HELPER, GObject)
 
 /* test if the required version of inputproto (1.4.2) is available */
 #undef DEVICE_HOTPLUGGING
@@ -46,9 +39,6 @@ typedef struct _XfceKeyboardsHelper XfceKeyboardsHelper;
 #undef DEVICE_HOTPLUGGING
 #endif
 #endif
-
-GType
-xfce_keyboards_helper_get_type (void) G_GNUC_CONST;
 
 G_END_DECLS
 

@@ -23,18 +23,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _XfceMimeChooserClass XfceMimeChooserClass;
-typedef struct _XfceMimeChooser XfceMimeChooser;
-
 #define XFCE_TYPE_MIME_CHOOSER (xfce_mime_chooser_get_type ())
-#define XFCE_MIME_CHOOSER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_MIME_CHOOSER, XfceMimeChooser))
-#define XFCE_MIME_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_MIME_CHOOSER, XfceMimeChooserClass))
-#define XFCE_IS_MIME_CHOOSER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_MIME_CHOOSER))
-#define XFCE_IS_MIME_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_MIME_CHOOSER))
-#define XFCE_MIME_CHOOSER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MIME_CHOOSER, XfceMimeChooserClass))
-
-GType
-xfce_mime_chooser_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (XfceMimeChooser, xfce_mime_chooser, XFCE, MIME_CHOOSER, GtkDialog)
 
 void
 xfce_mime_chooser_set_mime_type (XfceMimeChooser *chooser,

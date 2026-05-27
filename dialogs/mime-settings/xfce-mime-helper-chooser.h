@@ -26,29 +26,19 @@
 G_BEGIN_DECLS
 
 #define XFCE_MIME_TYPE_HELPER_CHOOSER (xfce_mime_helper_chooser_get_type ())
-#define XFCE_MIME_HELPER_CHOOSER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_MIME_TYPE_HELPER_CHOOSER, XfceMimeHelperChooser))
-#define XFCE_MIME_HELPER_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_MIME_TYPE_HELPER_CHOOSER, XfceMimeHelperChooserClass))
-#define XFCE_MIME_IS_HELPER_CHOOSER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_MIME_TYPE_HELPER_CHOOSER))
-#define XFCE_MIME_IS_HELPER_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_MIME_TYPE_HELPER_CHOOSER))
-#define XFCE_MIME_HELPER_CHOOSER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_MIME_TYPE_HELPER_CHOOSER, XfceMimeHelperChooserClass))
-
-typedef struct _XfceMimeHelperChooserClass XfceMimeHelperChooserClass;
-typedef struct _XfceMimeHelperChooser XfceMimeHelperChooser;
-
-GType
-xfce_mime_helper_chooser_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (XfceMimeHelperChooser, xfce_mime_helper_chooser, XFCE_MIME, HELPER_CHOOSER, GtkBin)
 
 GtkWidget *
 xfce_mime_helper_chooser_new (XfceMimeHelperCategory category) G_GNUC_MALLOC;
 
 XfceMimeHelperCategory
-xfce_mime_helper_chooser_get_category (const XfceMimeHelperChooser *chooser);
+xfce_mime_helper_chooser_get_category (XfceMimeHelperChooser *chooser);
 void
 xfce_mime_helper_chooser_set_category (XfceMimeHelperChooser *chooser,
                                        XfceMimeHelperCategory category);
 
 gboolean
-xfce_mime_helper_chooser_get_is_valid (const XfceMimeHelperChooser *chooser);
+xfce_mime_helper_chooser_get_is_valid (XfceMimeHelperChooser *chooser);
 
 G_END_DECLS
 

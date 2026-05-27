@@ -72,11 +72,6 @@ xfce_accessibility_helper_notification_show (XfceAccessibilityHelper *helper,
 
 
 
-struct _XfceAccessibilityHelperClass
-{
-    GObjectClass __parent__;
-};
-
 struct _XfceAccessibilityHelper
 {
     GObject __parent__;
