@@ -209,7 +209,10 @@ xfce_displays_helper_x11_init (XfceDisplaysHelperX11 *helper)
         GError *error = NULL;
         helper->randr = xfce_randr_new (helper->display, &error);
         if (helper->randr == NULL)
+        {
             g_critical ("%s", error->message);
+            g_error_free (error);
+        }
 
         gdk_x11_display_error_trap_push (helper->display);
         /* get the screen resource */
