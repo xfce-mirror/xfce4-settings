@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-03-11 12:55+0100\n"
+"POT-Creation-Date: 2026-05-20 12:55+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2026\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
@@ -45,7 +45,7 @@ msgstr "辅助功能"
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3418
+#: dialogs/display-settings/main.c:3428
 #: dialogs/mime-settings/xfce-mime-window.c:190
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:230
@@ -634,7 +634,7 @@ msgid "The primary display can be configured to show:"
 msgstr "主显示器可以配置为显示："
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1675
+#: dialogs/display-settings/main.c:1677
 msgid "Xfce Panel"
 msgstr "Xfce 面板"
 
@@ -1220,7 +1220,7 @@ msgstr "笔记本电脑"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
-#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
@@ -1228,7 +1228,7 @@ msgstr "设置管理器套接字"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
-#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:36
+#: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
@@ -1236,7 +1236,7 @@ msgstr "套接字 ID"
 
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
-#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:37
+#: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
@@ -1245,10 +1245,10 @@ msgstr "版本信息"
 
 #: dialogs/accessibility-settings/main.c:191
 #: dialogs/appearance-settings/main.c:1849 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3366 dialogs/keyboard-settings/main.c:74
+#: dialogs/display-settings/main.c:3376 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2194 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:2190 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1256,8 +1256,8 @@ msgstr "输入 ‘%s --help’ 获取用法。"
 
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1868 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3385 dialogs/keyboard-settings/main.c:90
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2213
+#: dialogs/display-settings/main.c:3395 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2209
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1265,8 +1265,8 @@ msgstr "Xfce 开发团队。保留所有权利。"
 
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1869 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3386 dialogs/keyboard-settings/main.c:91
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2214
+#: dialogs/display-settings/main.c:3396 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2210
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1603,20 +1603,20 @@ msgstr "绝不能禁用上一个活动输出，否则系统将不可用。"
 msgid "Selected output not disabled"
 msgstr "未禁用选中的输出"
 
-#: dialogs/display-settings/main.c:1611
+#: dialogs/display-settings/main.c:1613
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "您真的要删除显示配置文件 '%s'吗?"
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1616
 msgid "Delete Profile"
 msgstr "删除配置文件"
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1617
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "一旦删除显示配置文件后，将无法恢复。"
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1617
 #: dialogs/mime-settings/xfce-mime-chooser.c:131
 #: dialogs/mime-settings/xfce-mime-chooser.c:376
 #: dialogs/mime-settings/xfce-mime-window.c:1295
@@ -1624,23 +1624,23 @@ msgstr "一旦删除显示配置文件后，将无法恢复。"
 msgid "Cancel"
 msgstr "取消"
 
-#: dialogs/display-settings/main.c:1616
+#: dialogs/display-settings/main.c:1618
 msgid "Delete"
 msgstr "删除"
 
-#: dialogs/display-settings/main.c:1701
+#: dialogs/display-settings/main.c:1703
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
 msgstr[0] "%dXfce 面板"
 
-#: dialogs/display-settings/main.c:2486
+#: dialogs/display-settings/main.c:2488
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "选取一个屏幕以改变其属性；拖曳以重新排列其位置。"
 
-#: dialogs/display-settings/main.c:2585 dialogs/display-settings/main.c:2618
+#: dialogs/display-settings/main.c:2587 dialogs/display-settings/main.c:2620
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1649,23 +1649,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2835
+#: dialogs/display-settings/main.c:2837
 msgid "Mirror Screens"
 msgstr "镜像屏幕"
 
-#: dialogs/display-settings/main.c:2885
+#: dialogs/display-settings/main.c:2887
 msgid "(Disabled)"
 msgstr "(已停用)"
 
-#: dialogs/display-settings/main.c:3412
+#: dialogs/display-settings/main.c:3422
 msgid "ATI Settings"
 msgstr "ATI 设置"
 
-#: dialogs/display-settings/main.c:3417
+#: dialogs/display-settings/main.c:3427
 msgid "Unable to start the Xfce Display Settings"
 msgstr "未能启动 Xfce 显示设置"
 
-#: dialogs/display-settings/main.c:3425
+#: dialogs/display-settings/main.c:3435
 msgid "Unable to launch the proprietary driver settings"
 msgstr "未能启动非自由驱动设置"
 
@@ -1686,7 +1686,7 @@ msgstr "显示:"
 msgid "Resolution:"
 msgstr "分辨率："
 
-#: dialogs/display-settings/display-settings-wayland.c:1004
+#: dialogs/display-settings/display-settings-wayland.c:1017
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "您的合成器似乎不支持 wlr-output-management （wlr 输出管理）协议"
@@ -1757,58 +1757,64 @@ msgstr "Ruby 脚本"
 msgid "Shell Scripts"
 msgstr "Shell 脚本"
 
-#: dialogs/keyboard-settings/main.c:80
+#: dialogs/keyboard-settings/main.c:53
+msgid ""
+"Switch to the shortcuts tab, and optionally open the add shortcut dialog if "
+"a command is provided"
+msgstr "切换到快捷方式标签，如果提供了命令，可选择打开添加快捷方式对话框"
+
+#: dialogs/keyboard-settings/main.c:95
 msgid "Unable to initialize GTK+."
 msgstr "未能初始化 GTK+。"
 
-#: dialogs/keyboard-settings/main.c:106
+#: dialogs/keyboard-settings/main.c:115
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
 msgstr "无法与 xfconf 守护进程连接。原因：%s"
 
-#: dialogs/keyboard-settings/main.c:117
+#: dialogs/keyboard-settings/main.c:126
 msgid "Could not create the settings dialog."
 msgstr "未能创建设置对话框。"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:427
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:489
 msgid "Command"
 msgstr "命令"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:435
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:497
 msgid "Shortcut"
 msgstr "快捷键"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:508
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:594
 msgid "Layout"
 msgstr "布局"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:509
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:595
 msgid "Variant"
 msgstr "变体"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1274
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1385
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr "这会把所有快捷键重置为它们的默认值，您真的要这样做吗？"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1278
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1389
 msgid "Reset to Defaults"
 msgstr "重置为默认"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1390
 msgid "No"
 msgstr "不"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1279
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1390
 msgid "Yes"
 msgstr "是的"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1358
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1451
 msgid "The system defaults will be restored next time you log in."
 msgstr "在您下次登录时将恢复系统默认。"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1360
+#: dialogs/keyboard-settings/xfce-keyboard-settings.c:1453
 msgid "Warning"
 msgstr "警告"
 
@@ -2319,7 +2325,7 @@ msgstr "用户设置"
 #: dialogs/mime-settings/xfce-mime-window.c:771
 #: dialogs/mime-settings/xfce-mime-window.c:938
 #: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
-#: dialogs/mouse-settings/main.c:476
+#: dialogs/mouse-settings/main.c:472
 msgid "Default"
 msgstr "默认"
 
