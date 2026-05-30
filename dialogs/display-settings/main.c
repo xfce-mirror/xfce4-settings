@@ -2606,10 +2606,7 @@ on_output_event (FooScrollArea *area,
 
                 foo_scroll_area_end_grab (area);
                 set_monitors_tooltip (settings, NULL);
-
-                g_free (output->user_data);
-                output->user_data = NULL;
-
+                g_clear_pointer (&output->user_data, g_free);
                 initialize_connected_outputs_at_zero (settings);
                 display_settings_changed (settings);
             }

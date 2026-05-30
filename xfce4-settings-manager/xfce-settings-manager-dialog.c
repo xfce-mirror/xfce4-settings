@@ -614,11 +614,7 @@ xfce_settings_manager_dialog_remove_socket (XfceSettingsManagerDialog *dialog)
     if (G_UNLIKELY (socket != NULL))
         gtk_container_remove (GTK_CONTAINER (dialog->socket_viewport), socket);
 
-    if (dialog->socket_item != NULL)
-    {
-        g_object_unref (G_OBJECT (dialog->socket_item));
-        dialog->socket_item = NULL;
-    }
+    g_clear_object (&dialog->socket_item);
 }
 
 
@@ -635,12 +631,9 @@ xfce_settings_manager_dialog_go_back (XfceSettingsManagerDialog *dialog)
     gtk_widget_show (dialog->category_scroll);
     gtk_widget_hide (dialog->socket_scroll);
 
-    g_free (dialog->help_page);
-    dialog->help_page = NULL;
-    g_free (dialog->help_component);
-    dialog->help_component = NULL;
-    g_free (dialog->help_version);
-    dialog->help_version = NULL;
+    g_clear_pointer (&dialog->help_page, g_free);
+    g_clear_pointer (&dialog->help_component, g_free);
+    g_clear_pointer (&dialog->help_version, g_free);
 
     gtk_widget_set_sensitive (dialog->button_back, FALSE);
     gtk_widget_set_sensitive (dialog->button_help, TRUE);
@@ -705,8 +698,7 @@ xfce_settings_manager_dialog_entry_changed (GtkWidget *entry,
     }
     else
     {
-        g_free (dialog->filter_text);
-        dialog->filter_text = NULL;
+        g_clear_pointer (&dialog->filter_text, g_free);
         g_free (filter_text);
     }
 }

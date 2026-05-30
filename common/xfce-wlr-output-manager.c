@@ -303,8 +303,7 @@ xfce_wlr_output_manager_constructed (GObject *object)
         zwlr_output_manager_v1_add_listener (manager->wl_manager, &manager_listener, manager);
     else
     {
-        g_ptr_array_unref (manager->outputs);
-        manager->outputs = NULL;
+        g_clear_pointer (&manager->outputs, g_ptr_array_unref);
         g_warning ("Your compositor does not seem to support the wlr-output-management protocol:"
                    " display settings won't work");
     }

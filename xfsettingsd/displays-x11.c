@@ -259,23 +259,9 @@ xfce_displays_helper_x11_dispose (GObject *object)
                               xfce_displays_helper_x11_screen_on_event,
                               helper);
 
-    if (helper->randr)
-    {
-        xfce_randr_free (helper->randr);
-        helper->randr = NULL;
-    }
-
-    if (helper->outputs)
-    {
-        g_ptr_array_unref (helper->outputs);
-        helper->outputs = NULL;
-    }
-
-    if (helper->crtcs)
-    {
-        g_ptr_array_unref (helper->crtcs);
-        helper->crtcs = NULL;
-    }
+    g_clear_pointer (&helper->randr, xfce_randr_free);
+    g_clear_pointer (&helper->outputs, g_ptr_array_unref);
+    g_clear_pointer (&helper->crtcs, g_ptr_array_unref);
 
     (*G_OBJECT_CLASS (xfce_displays_helper_x11_parent_class)->dispose) (object);
 }

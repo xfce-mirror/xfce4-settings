@@ -2136,10 +2136,8 @@ xfce_keyboard_settings_layout_selection (XfceKeyboardSettings *settings,
                     }
                 }
 
-              gtk_tree_path_free (path);
-              path = NULL;
-              g_free (tmp_layout);
-              tmp_layout = NULL;
+              g_clear_pointer (&path, gtk_tree_path_free);
+              g_clear_pointer (&tmp_layout, g_free);
             }
           while (gtk_tree_model_iter_next (model, &iter));
           g_free (tmp_layout);
