@@ -261,26 +261,14 @@ xfce_xsettings_helper_fc_changed (XfceXSettingsHelper *helper)
 static void
 xfce_xsettings_helper_fc_free (XfceXSettingsHelper *helper)
 {
-    if (helper->fc_notify_timeout_id != 0)
-    {
-        /* stop update timeout */
-        g_source_remove (helper->fc_notify_timeout_id);
-        helper->fc_notify_timeout_id = 0;
-    }
+    /* stop update timeout */
+    g_clear_handle_id (&helper->fc_notify_timeout_id, g_source_remove);
 
-    if (helper->fc_init_id != 0)
-    {
-        /* stop startup timeout */
-        g_source_remove (helper->fc_init_id);
-        helper->fc_init_id = 0;
-    }
+    /* stop startup timeout */
+    g_clear_handle_id (&helper->fc_init_id, g_source_remove);
 
-    if (helper->fc_monitors != NULL)
-    {
-        /* remove monitors */
-        g_ptr_array_free (helper->fc_monitors, TRUE);
-        helper->fc_monitors = NULL;
-    }
+    /* remove monitors */
+    g_clear_pointer (&helper->fc_monitors, g_ptr_array_unref);
 }
 
 

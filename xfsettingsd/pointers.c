@@ -1036,8 +1036,7 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
         if (mode != NULL)
         {
             xfce_pointers_helper_change_mode (device_info, device, xdisplay, mode);
-            g_free (mode);
-            mode = NULL;
+            g_clear_pointer (&mode, g_free);
         }
 
 #ifdef DEVICE_PROPERTIES

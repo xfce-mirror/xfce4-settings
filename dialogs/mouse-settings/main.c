@@ -2008,8 +2008,7 @@ mouse_settings_device_populate_store (GtkBuilder *builder,
             && strcmp (opt_device_name, device_info->name) == 0)
         {
             gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combobox), &iter);
-            g_free (opt_device_name);
-            opt_device_name = NULL;
+            g_clear_pointer (&opt_device_name, g_free);
             has_active_item = TRUE;
         }
 
