@@ -325,17 +325,17 @@ color_profile_class_init (ColorProfileClass *klass)
                                      g_param_spec_object ("device", NULL,
                                                           NULL,
                                                           CD_TYPE_DEVICE,
-                                                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
     g_object_class_install_property (object_class, PROP_PROFILE,
                                      g_param_spec_object ("profile", NULL,
                                                           NULL,
                                                           CD_TYPE_PROFILE,
-                                                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
     g_object_class_install_property (object_class, PROP_IS_DEFAULT,
                                      g_param_spec_boolean ("is-default", NULL,
                                                            NULL,
                                                            FALSE,
-                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 }
 
 static void

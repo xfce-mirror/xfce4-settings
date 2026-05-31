@@ -188,13 +188,13 @@ xfce_wlr_output_manager_class_init (XfceWlrOutputManagerClass *klass)
                                      g_param_spec_pointer ("listener",
                                                            NULL,
                                                            NULL,
-                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
     g_object_class_install_property (gobject_class,
                                      PROP_LISTENER_DATA,
                                      g_param_spec_pointer ("listener-data",
                                                            NULL,
                                                            NULL,
-                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 }
 
 

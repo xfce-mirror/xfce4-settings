@@ -410,7 +410,7 @@ xfce_settings_editor_box_class_init (XfceSettingsEditorBoxClass *klass)
                                                        0,
                                                        G_MAXINT,
                                                        10,
-                                                       G_PARAM_CONSTRUCT | G_PARAM_READWRITE));
+                                                       G_PARAM_CONSTRUCT | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
     gobject_class->finalize = xfce_settings_editor_box_finalize;
 }

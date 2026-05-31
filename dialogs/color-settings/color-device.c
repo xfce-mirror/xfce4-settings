@@ -348,7 +348,7 @@ color_device_class_init (ColorDeviceClass *klass)
                                      g_param_spec_object ("device", NULL,
                                                           NULL,
                                                           CD_TYPE_DEVICE,
-                                                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
     signals[SIGNAL_ENABLED_CHANGED] =
         g_signal_new ("enabled-changed",
