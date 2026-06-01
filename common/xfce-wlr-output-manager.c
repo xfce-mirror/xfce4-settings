@@ -577,6 +577,11 @@ mode_size (void *data,
     XfceWlrMode *mode = data;
     mode->width = width;
     mode->height = height;
+    if (width <= 0 || height <= 0)
+    {
+        mode->width = mode->height = 1;
+        g_warning ("Mode with invalid dimensions %dx%d, set it to 1x1", width, height);
+    }
 }
 
 
