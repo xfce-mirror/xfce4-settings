@@ -796,8 +796,8 @@ display_setting_resolutions_populate (XfceDisplaySettings *settings,
             if (!ratio_info)
             {
                 guint gcd_tmp = gcd (modes[n]->width, modes[n]->height);
-                guint format_x = gcd_tmp != 0 ? modes[n]->width / gcd_tmp : 0;
-                guint format_y = gcd_tmp != 0 ? modes[n]->height / gcd_tmp : 0;
+                guint format_x = modes[n]->width / gcd_tmp;
+                guint format_y = modes[n]->height / gcd_tmp;
                 rratio = g_strdup_printf ("<span fgalpha='50%%'>%d:%d</span>", format_x, format_y);
             }
             else
