@@ -56,7 +56,7 @@ get_rectangle_screenshot (gint x,
     GdkPixbuf *screenshot = NULL;
     GdkWindow *root_window = gdk_get_default_root_window ();
     gint width = CIRCLE_SIZE + workaround_offset;
-    gint height = CIRCLE_SIZE + workaround_offset;
+    gint height = width;
 
     /* cut down screenshot if it's out of bounds */
     if (x < 0)
