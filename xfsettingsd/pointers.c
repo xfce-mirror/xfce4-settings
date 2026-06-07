@@ -87,6 +87,7 @@ struct _XfcePointersHelper
 #endif
 };
 
+#ifdef DEVICE_PROPERTIES
 typedef struct
 {
     Display *xdisplay;
@@ -94,6 +95,7 @@ typedef struct
     XDeviceInfo *device_info;
     gsize prop_name_len;
 } XfcePointerData;
+#endif
 
 
 
@@ -765,7 +767,6 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
         guchar *c;
         gshort *s;
         glong *l;
-        float *f;
         Atom *a;
     } data;
     guchar *allocated_data = NULL;

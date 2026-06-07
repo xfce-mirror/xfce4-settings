@@ -65,9 +65,6 @@ struct _XfceKeyboardShortcutsHelper
 {
     GObject __parent__;
 
-    /* Xfconf channel used for managing the keyboard shortcuts */
-    XfconfChannel *channel;
-
     XfceShortcutsGrabber *grabber;
     XfceShortcutsProvider *provider;
 };

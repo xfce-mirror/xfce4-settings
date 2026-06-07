@@ -121,6 +121,7 @@ enum
     N_DEVICE_COLUMNS
 };
 
+#ifdef HAVE_LIBINPUT
 typedef union
 {
     gchar c;
@@ -133,7 +134,6 @@ typedef union
     Atom a;
 } propdata_t;
 
-#ifdef HAVE_LIBINPUT
 typedef enum
 {
     LIBINPUT_CLICK_METHOD_NONE = 0,

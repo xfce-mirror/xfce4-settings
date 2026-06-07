@@ -78,7 +78,6 @@ struct _XfceKeyboardLayoutHelper
 #ifdef HAVE_LIBXKLAVIER
     /* libxklavier */
     XklEngine *engine;
-    XklConfigRegistry *registry;
     XklConfigRec *config;
     gchar *system_keyboard_model;
 #endif /* HAVE_LIBXKLAVIER */
