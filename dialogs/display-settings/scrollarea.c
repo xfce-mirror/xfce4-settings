@@ -339,11 +339,6 @@ typedef void (*PathForeachFunc) (double *x,
                                  double *y,
                                  gpointer data);
 
-typedef struct
-{
-    double x1, y1, x2, y2;
-} Box;
-
 static void
 input_path_free_list (InputPath *paths)
 {
