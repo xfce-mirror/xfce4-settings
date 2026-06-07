@@ -325,7 +325,7 @@ xfce_keyboard_settings_init (XfceKeyboardSettings *settings)
 
   if (gtk_builder_add_from_resource (GTK_BUILDER (settings), "/org/xfce/settings/keyboard-dialog.glade", &error) == 0)
     {
-      g_error ("Failed to load the UI file: %s.", error->message);
+      g_critical ("Failed to load the UI file: %s.", error->message);
       g_error_free (error);
     }
 }

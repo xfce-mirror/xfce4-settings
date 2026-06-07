@@ -121,6 +121,7 @@ enum
     N_DEVICE_COLUMNS
 };
 
+#ifdef HAVE_LIBINPUT
 typedef union
 {
     gchar c;
@@ -133,7 +134,6 @@ typedef union
     Atom a;
 } propdata_t;
 
-#ifdef HAVE_LIBINPUT
 typedef enum
 {
     LIBINPUT_CLICK_METHOD_NONE = 0,
@@ -888,7 +888,7 @@ mouse_settings_device_get_selected (GtkBuilder *builder,
             *device = XOpenDevice (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), xid);
             if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || *device == NULL)
             {
-                g_critical ("Unable to open device %ld", xid);
+                g_critical ("Unable to open device %lu", xid);
                 *device = NULL;
                 found = FALSE;
             }
@@ -2194,7 +2194,7 @@ main (gint argc,
         }
         else
         {
-            g_error ("Unable to open display.");
+            g_critical ("Unable to open display.");
         }
 
         return EXIT_FAILURE;
@@ -2457,7 +2457,7 @@ main (gint argc,
         }
         else
         {
-            g_error ("Failed to load the UI file: %s.", error->message);
+            g_critical ("Failed to load the UI file: %s.", error->message);
             g_error_free (error);
         }
 

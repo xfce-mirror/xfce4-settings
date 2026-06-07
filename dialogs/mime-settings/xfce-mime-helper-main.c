@@ -155,7 +155,7 @@ main (int argc,
           g_error_free (error);
         }
       else
-        g_error ("Unable to open display.");
+        g_critical ("Unable to open display.");
 
       result = EXIT_FAILURE;
       goto out;
@@ -177,7 +177,7 @@ main (int argc,
       /* try to parse the type */
       if (!xfce_mime_helper_category_from_string (opt_launch_type, &category))
         {
-          g_warning (_("Invalid helper type \"%s\""), opt_launch_type);
+          g_warning ("Invalid helper type \"%s\"", opt_launch_type);
           result = EXIT_FAILURE;
           goto out;
         }
@@ -251,7 +251,7 @@ main (int argc,
       /* try to parse the type */
       if (!xfce_mime_helper_category_from_string (opt_query_type, &category))
         {
-          g_warning (_("Invalid helper type \"%s\""), opt_query_type);
+          g_warning ("Invalid helper type \"%s\"", opt_query_type);
           result = EXIT_FAILURE;
           goto out;
         }

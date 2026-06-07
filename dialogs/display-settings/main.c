@@ -322,7 +322,7 @@ display_setting_timed_confirmation (XfceDisplaySettings *settings)
     }
     else
     {
-        g_error ("Failed to load the UI file: %s.", error->message);
+        g_critical ("Failed to load the UI file: %s.", error->message);
         g_error_free (error);
     }
 
@@ -742,9 +742,8 @@ display_setting_resolutions_populate (XfceDisplaySettings *settings,
     {
         /* Try to avoid duplicates */
         if (n == 0
-            || (n > 0
-                && (modes[n]->width != modes[n - 1]->width
-                    || modes[n]->height != modes[n - 1]->height)))
+            || modes[n]->width != modes[n - 1]->width
+            || modes[n]->height != modes[n - 1]->height)
         {
             /* Insert mode and ratio */
             gdouble ratio = (double) modes[n]->width / (double) modes[n]->height;
@@ -755,10 +754,10 @@ display_setting_resolutions_populate (XfceDisplaySettings *settings,
             /* Highlight the preferred mode with an asterisk */
             if (output->pref_width == modes[n]->width
                 && output->pref_height == modes[n]->height)
-                name = g_strdup_printf ("%dx%d*", modes[n]->width,
+                name = g_strdup_printf ("%ux%u*", modes[n]->width,
                                         modes[n]->height);
             else
-                name = g_strdup_printf ("%dx%d", modes[n]->width,
+                name = g_strdup_printf ("%ux%u", modes[n]->width,
                                         modes[n]->height);
 
             if (ratio_info)
@@ -798,7 +797,7 @@ display_setting_resolutions_populate (XfceDisplaySettings *settings,
                 guint gcd_tmp = gcd (modes[n]->width, modes[n]->height);
                 guint format_x = modes[n]->width / gcd_tmp;
                 guint format_y = modes[n]->height / gcd_tmp;
-                rratio = g_strdup_printf ("<span fgalpha='50%%'>%d:%d</span>", format_x, format_y);
+                rratio = g_strdup_printf ("<span fgalpha='50%%'>%u:%u</span>", format_x, format_y);
             }
             else
             {
@@ -2480,8 +2479,7 @@ set_monitors_tooltip (XfceDisplaySettings *settings,
     const char *text;
 
     if (tooltip_text)
-        text = g_strdup (tooltip_text);
-
+        text = tooltip_text;
     else
         text = _("Select a monitor to change its properties; drag it to rearrange its placement.");
 
@@ -3049,7 +3047,7 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
     }
     else
     {
-        g_error ("Failed to load the UI file: %s.", error->message);
+        g_critical ("Failed to load the UI file: %s.", error->message);
         g_error_free (error);
     }
 }
@@ -3310,7 +3308,7 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
     }
     else
     {
-        g_error ("Failed to load the UI file: %s.", error->message);
+        g_critical ("Failed to load the UI file: %s.", error->message);
         g_error_free (error);
     }
 }
@@ -3376,7 +3374,7 @@ main (gint argc,
         }
         else
         {
-            g_error ("Unable to open display.");
+            g_critical ("Unable to open display.");
         }
 
         return EXIT_FAILURE;

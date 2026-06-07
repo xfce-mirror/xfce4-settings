@@ -92,7 +92,7 @@ main (int argc,
           g_error_free (error);
         }
       else
-        g_error (_("Unable to initialize GTK+."));
+        g_critical ("Unable to initialize GTK+.");
 
       return EXIT_FAILURE;
     }
@@ -112,7 +112,7 @@ main (int argc,
   /* Initialize xfconf */
   if (G_UNLIKELY (!xfconf_init (&error)))
     {
-      g_error (_("Failed to connect to xfconf daemon. Reason: %s"), error->message);
+      g_critical ("Failed to connect to xfconf daemon. Reason: %s", error->message);
       g_error_free (error);
 
       return EXIT_FAILURE;
@@ -123,7 +123,7 @@ main (int argc,
 
   if (G_UNLIKELY (settings == NULL))
     {
-      g_error (_("Could not create the settings dialog."));
+      g_critical ("Could not create the settings dialog.");
       xfconf_shutdown ();
       return EXIT_FAILURE;
     }

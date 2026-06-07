@@ -27,7 +27,6 @@ struct _ColorProfile
 {
     GtkListBoxRow parent_instance;
 
-    GtkWidget *box;
     CdDevice *device;
     CdProfile *profile;
     gboolean is_default;

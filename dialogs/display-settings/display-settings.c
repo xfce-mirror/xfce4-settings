@@ -586,7 +586,7 @@ xfce_display_settings_populate_combobox (XfceDisplaySettings *settings)
 
         /* insert the output in the store */
         if (n_output > 1)
-            display_name = g_strdup_printf ("%d - %s", n + 1, friendly_name);
+            display_name = g_strdup_printf ("%u - %s", n + 1, friendly_name);
         else
             display_name = g_strdup (friendly_name);
         gtk_list_store_append (store, &iter);

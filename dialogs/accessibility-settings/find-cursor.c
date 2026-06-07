@@ -56,7 +56,7 @@ get_rectangle_screenshot (gint x,
     GdkPixbuf *screenshot = NULL;
     GdkWindow *root_window = gdk_get_default_root_window ();
     gint width = CIRCLE_SIZE + workaround_offset;
-    gint height = CIRCLE_SIZE + workaround_offset;
+    gint height = width;
 
     /* cut down screenshot if it's out of bounds */
     if (x < 0)
@@ -207,7 +207,7 @@ main (gint argc,
     if (!xfconf_init (&error))
     {
         /* print error and exit */
-        g_error ("Failed to connect to xfconf daemon: %s.", error->message);
+        g_critical ("Failed to connect to xfconf daemon: %s.", error->message);
         g_error_free (error);
 
         return EXIT_FAILURE;

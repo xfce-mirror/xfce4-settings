@@ -87,6 +87,7 @@ struct _XfcePointersHelper
 #endif
 };
 
+#ifdef DEVICE_PROPERTIES
 typedef struct
 {
     Display *xdisplay;
@@ -94,6 +95,7 @@ typedef struct
     XDeviceInfo *device_info;
     gsize prop_name_len;
 } XfcePointerData;
+#endif
 
 
 
@@ -765,7 +767,6 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
         guchar *c;
         gshort *s;
         glong *l;
-        float *f;
         Atom *a;
     } data;
     guchar *allocated_data = NULL;
@@ -1100,6 +1101,7 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
         if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || device_list == NULL)
         {
             g_message ("No input devices found");
+            g_strfreev (names);
             return;
         }
 

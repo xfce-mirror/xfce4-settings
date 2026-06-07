@@ -83,7 +83,7 @@ main (gint argc,
         }
       else
         {
-          g_error ("Unable to open display.");
+          g_critical ("Unable to open display.");
         }
 
       return EXIT_FAILURE;
@@ -112,7 +112,7 @@ main (gint argc,
 
   if (G_UNLIKELY (window == NULL))
     {
-      g_error (_("Could not create the mime dialog."));
+      g_critical ("Could not create the mime dialog.");
       xfconf_shutdown ();
       return EXIT_FAILURE;
     }

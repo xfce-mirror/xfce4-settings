@@ -130,6 +130,7 @@ command_dialog_create_contents (CommandDialog *dialog,
       gtk_label_set_markup (GTK_LABEL (label), explanation_markup);
       gtk_box_pack_start (GTK_BOX (content_box), label, FALSE, FALSE, 0);
       gtk_widget_show (label);
+      g_free (explanation_markup);
     }
 
   table = gtk_grid_new ();
