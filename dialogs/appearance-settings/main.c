@@ -28,6 +28,10 @@
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
+#ifdef ENABLE_SOUND_SETTINGS
+#include <gsound.h>
+#endif
+
 #ifdef ENABLE_X11
 #include <gdk/gdkx.h>
 #include <gtk/gtkx.h>
@@ -70,6 +74,17 @@ enum
     COLOR_SELECTED_BG,
     NUM_SYMBOLIC_COLORS
 };
+
+#ifdef ENABLE_SOUND_SETTINGS
+enum
+{
+    COL_DISPLAY_NAME,
+    COL_ICON,
+    COL_SOUND_ID,
+    COL_FULL_PATH,
+    NUM_COLS
+};
+#endif
 
 static const gchar *xft_hint_styles_array[] = {
     "hintnone", "hintslight", "hintmedium", "hintfull"
@@ -127,6 +142,14 @@ typedef struct
     cairo_surface_t *preview;
 } icon_theme_theme_preview_data;
 
+#ifdef ENABLE_SOUND_SETTINGS
+typedef struct
+{
+    char *id;
+    char *full_path;
+    GdkPixbuf *icon;
+} SoundEntry;
+#endif
 
 static icon_theme_preview_data *icon_theme_preview_loading = NULL;
 
@@ -461,10 +484,333 @@ cb_custom_dpi_spin_button_changed (GtkSpinButton *custom_dpi_spin,
 #endif
 
 #ifdef ENABLE_SOUND_SETTINGS
+static gboolean
+on_window_resized (GtkWidget *window,
+                   GdkEventConfigure *event,
+                   gpointer user_data)
+{
+    GtkWidget *popover = GTK_WIDGET (user_data);
+    int current_height = event->height;
+
+    /* Safety Kill-Switch: ONLY if visible */
+    if (gtk_widget_get_visible (popover) && current_height < 420)
+    {
+        gtk_popover_popdown (GTK_POPOVER (popover));
+        /* We still want to update the size below so it's ready for next time */
+    }
+
+    /* Update Size: Always do this so the SW is ready when reopened */
+    GtkWidget *scrolled_window = g_object_get_data (G_OBJECT (popover), "scrolled-window");
+    if (scrolled_window)
+    {
+        int adaptive_max = current_height * 0.7;
+        if (adaptive_max < 400)
+        {
+            adaptive_max = 400;
+        }
+        gtk_scrolled_window_set_max_content_height (GTK_SCROLLED_WINDOW (scrolled_window), adaptive_max);
+    }
+    return FALSE;
+}
+
 static void
-cb_sound_theme_combo_changed (GtkComboBox *combo,
+free_sound_entry (gpointer data)
+{
+    SoundEntry *se = data;
+    g_free (se->id);
+    g_free (se->full_path);
+    if (se->icon)
+    {
+        g_object_unref (se->icon);
+    }
+    g_free (se);
+}
+
+static void
+cb_browser_button_toggled (GtkToggleButton *button,
+                           gpointer user_data)
+{
+    GtkPopover *popover = GTK_POPOVER (user_data);
+
+    if (gtk_toggle_button_get_active (button))
+    {
+        gtk_popover_popup (popover);
+    }
+    else
+    {
+        gtk_popover_popdown (popover);
+    }
+    gtk_widget_queue_draw (gtk_widget_get_toplevel (GTK_WIDGET (popover)));
+}
+
+static void
+on_popover_closed (GtkPopover *popover,
+                   gpointer user_data)
+{
+    /* Check if the button is still a valid ToggleButton before acting */
+    if (user_data != NULL && GTK_IS_TOGGLE_BUTTON (user_data))
+    {
+        /* Block signals temporarily so we don't re-trigger the popover show logic */
+        g_signal_handlers_block_by_func (user_data, cb_browser_button_toggled, popover);
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (user_data), FALSE);
+        g_signal_handlers_unblock_by_func (user_data, cb_browser_button_toggled, popover);
+    }
+}
+
+static void
+play_sound (GSoundContext *gctx,
+            const char *id,
+            const char *theme)
+{
+    if (id == NULL || theme == NULL || gctx == NULL)
+        return;
+
+    /* Retrieve and handle the cancellable attached to the context */
+    GCancellable *cancel = g_object_get_data (G_OBJECT (gctx), "current-cancel");
+    if (cancel != NULL)
+    {
+        g_cancellable_cancel (cancel);
+    }
+
+    cancel = g_cancellable_new ();
+    /* Set with a destroyer so it unrefs automatically when replaced or cleared */
+    g_object_set_data_full (G_OBJECT (gctx), "current-cancel", cancel, g_object_unref);
+
+    gsound_context_play_simple (gctx, cancel, NULL,
+                                GSOUND_ATTR_EVENT_ID, id,
+                                GSOUND_ATTR_CANBERRA_XDG_THEME_NAME, theme,
+                                NULL);
+}
+
+static void
+on_btn_open_folder_clicked (GtkButton *button, gpointer user_data)
+{
+    const char *path = g_object_get_data (G_OBJECT (button), "current-path");
+    if (path == NULL)
+    {
+        return;
+    }
+    gchar *uri = NULL;
+
+    if (g_file_test (path, G_FILE_TEST_IS_DIR))
+    {
+        uri = g_filename_to_uri (path, NULL, NULL);
+    }
+    else
+    {
+        gchar *dir = g_path_get_dirname (path);
+        uri = g_filename_to_uri (dir, NULL, NULL);
+        g_free (dir);
+    }
+
+    if (uri != NULL)
+    {
+        g_app_info_launch_default_for_uri (uri, NULL, NULL);
+        g_free (uri);
+    }
+}
+
+static gboolean
+on_icon_view_button_release (GtkWidget *widget, GdkEventButton *event, gpointer user_data)
+{
+    if (event->button != 1)
+        return FALSE;
+
+    GtkIconView *view = GTK_ICON_VIEW (widget);
+    GtkTreePath *path = gtk_icon_view_get_path_at_pos (view, event->x, event->y);
+
+    if (path != NULL)
+    {
+        GtkTreeModel *model = gtk_icon_view_get_model (view);
+        GtkTreeIter iter;
+
+        if (gtk_tree_model_get_iter (model, &iter, path))
+        {
+            char *id, *full_path;
+            gtk_tree_model_get (model, &iter, COL_SOUND_ID, &id, COL_FULL_PATH, &full_path, -1);
+
+            /* Play the sound */
+            GSoundContext *gctx = g_object_get_data (G_OBJECT (view), "gsound-ctx");
+            GtkComboBox *combo = g_object_get_data (G_OBJECT (view), "sound-combo");
+            if (id != NULL && gctx != NULL && combo != NULL)
+            {
+                play_sound (gctx, id, gtk_combo_box_get_active_id (combo));
+            }
+
+            g_free (id);
+            g_free (full_path);
+        }
+        gtk_tree_path_free (path);
+    }
+    return FALSE;
+}
+
+static void
+on_stop_clicked (GtkButton *button,
+                 gpointer user_data)
+{
+    GObject *gctx = g_object_get_data (G_OBJECT (button), "gsound-ctx");
+    if (!G_IS_OBJECT (gctx))
+        return;
+
+    GCancellable *cancel = g_object_get_data (gctx, "current-cancel");
+
+    if (G_IS_CANCELLABLE (cancel))
+    {
+        /* Trigger the cancel signal */
+        g_cancellable_cancel (cancel);
+
+        g_object_set_data (gctx, "current-cancel", NULL);
+    }
+}
+
+static void
+on_play_clicked (GtkButton *btn,
+                 gpointer data)
+{
+    GSoundContext *gctx = g_object_get_data (G_OBJECT (btn), "gsound-ctx");
+    GObject *combo_obj = g_object_get_data (G_OBJECT (btn), "sound-combo");
+    GObject *view_obj = g_object_get_data (G_OBJECT (btn), "icon-view");
+
+    if (gctx == NULL || !GTK_IS_COMBO_BOX (combo_obj) || !GTK_IS_ICON_VIEW (view_obj))
+        return;
+
+    GList *selected = gtk_icon_view_get_selected_items (GTK_ICON_VIEW (view_obj));
+    if (selected)
+    {
+        GtkTreeIter iter;
+        GtkTreeModel *model = gtk_icon_view_get_model (GTK_ICON_VIEW (view_obj));
+
+        if (gtk_tree_model_get_iter (model, &iter, (GtkTreePath *) selected->data))
+        {
+            char *id;
+            gtk_tree_model_get (model, &iter, COL_SOUND_ID, &id, -1);
+            const char *theme = gtk_combo_box_get_active_id (GTK_COMBO_BOX (combo_obj));
+
+            if (id && theme)
+                play_sound (gctx, id, theme);
+
+            g_free (id);
+        }
+        g_list_free_full (selected, (GDestroyNotify) gtk_tree_path_free);
+    }
+}
+
+static void
+update_ui_list (GtkEditable *editable,
+                gpointer user_data)
+{
+    /* 'editable' is our search_entry */
+    GPtrArray *master_sounds = g_object_get_data (G_OBJECT (editable), "master-sounds");
+    GtkListStore *list_store = g_object_get_data (G_OBJECT (editable), "the-list-store");
+    if (master_sounds == NULL || list_store == NULL)
+    {
+        return;
+    }
+    const char *text = gtk_entry_get_text (GTK_ENTRY (editable));
+    char *search_query = g_utf8_strdown (text, -1);
+
+    gtk_list_store_clear (list_store);
+
+    for (guint i = 0; i < master_sounds->len; i++)
+    {
+        SoundEntry *se = g_ptr_array_index (master_sounds, i);
+        char *id_l = g_utf8_strdown (se->id, -1);
+
+        if (strlen (search_query) == 0 || strstr (id_l, search_query))
+        {
+            GtkTreeIter iter;
+            gtk_list_store_append (list_store, &iter);
+            gtk_list_store_set (list_store, &iter,
+                                COL_DISPLAY_NAME, se->id,
+                                COL_ICON, se->icon,
+                                COL_SOUND_ID, se->id,
+                                COL_FULL_PATH, se->full_path,
+                                -1);
+        }
+        g_free (id_l);
+    }
+
+    g_free (search_query);
+}
+
+static void
+refresh_sounds (GtkComboBoxText *combo,
+                GtkWidget *search_entry)
+{
+    GPtrArray *sounds = g_object_get_data (G_OBJECT (combo), "sounds-array");
+    const char *theme = gtk_combo_box_get_active_id (GTK_COMBO_BOX (combo));
+    GtkWidget *btn_open = g_object_get_data (G_OBJECT (search_entry), "btn-open-folder");
+
+    if (theme == NULL || sounds == NULL)
+        return;
+
+    /* Clear array */
+    g_ptr_array_set_size (sounds, 0);
+
+    /* File Scanning Logic */
+    GtkIconTheme *it = gtk_icon_theme_get_default ();
+    const gchar *const *sys_dirs = g_get_system_data_dirs ();
+
+    for (int i = -1; i == -1 || sys_dirs[i] != NULL; i++)
+    {
+        const char *root = (i == -1) ? g_get_user_data_dir () : sys_dirs[i];
+
+        /* The path to the actual audio files */
+        gchar *path = g_build_filename (root, "sounds", theme, "stereo", NULL);
+
+        GDir *dir = g_dir_open (path, 0, NULL);
+        if (dir != NULL)
+        {
+            const gchar *filename;
+
+            while ((filename = g_dir_read_name (dir)) != NULL)
+            {
+                if (g_str_has_suffix (filename, ".oga") || g_str_has_suffix (filename, ".wav"))
+                {
+                    char *dot = g_strrstr (filename, ".");
+                    char *id = g_strndup (filename, dot - filename);
+
+                    SoundEntry *se = g_new0 (SoundEntry, 1);
+                    se->id = id;
+                    se->full_path = g_build_filename (path, filename, NULL);
+
+                    GtkIconInfo *info = gtk_icon_theme_choose_icon (it, (const char *[]) { id, "audio-x-generic", NULL }, 32, 0);
+                    if (info)
+                    {
+                        se->icon = gtk_icon_info_load_icon (info, NULL);
+                        g_object_unref (info);
+                    }
+                    g_ptr_array_add (sounds, se);
+                }
+            }
+
+            /* Set the folder button to the theme's stereo directory */
+            if (btn_open != NULL)
+            {
+                /* 'path' already ends in 'stereo', so just g_strdup it */
+                g_object_set_data_full (G_OBJECT (btn_open), "current-path", g_strdup (path), g_free);
+                gtk_widget_set_sensitive (btn_open, TRUE);
+            }
+            g_dir_close (dir);
+        }
+        g_free (path);
+    }
+
+    update_ui_list (GTK_EDITABLE (search_entry), NULL);
+}
+
+static void
+cb_sound_theme_combo_changed (GtkComboBoxText *combo,
                               gpointer user_data)
 {
+    GtkWidget *search_entry = GTK_WIDGET (user_data);
+    /* Trigger refresh  */
+    if (GTK_IS_WIDGET (search_entry))
+    {
+        refresh_sounds (combo, search_entry);
+    }
+
     /* Clear disk-based event sound cache (~/.cache/event-sound-cache*) */
     GFile *cache_dir = g_file_new_for_path (g_get_user_cache_dir ());
     GFileEnumerator *enumerator = g_file_enumerate_children (cache_dir,
@@ -1802,7 +2148,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 
     xfconf_g_property_bind (xsettings_channel, "/Net/SoundThemeName", G_TYPE_STRING, sound_combo, "active-id");
     appearance_settings_load_sound_themes (GTK_COMBO_BOX_TEXT (sound_combo), GTK_LABEL (label_sound_theme));
-    g_signal_connect (sound_combo, "changed", G_CALLBACK (cb_sound_theme_combo_changed), NULL);
 
     xfconf_g_property_bind (xsettings_channel, "/Net/EnableEventSounds", G_TYPE_BOOLEAN,
                             enable_sounds, "active");
@@ -1813,6 +2158,96 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
                             G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
     g_object_bind_property (enable_sounds, "active",
                             sound_combo, "sensitive",
+                            G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+    GSoundContext *gctx;
+    gctx = gsound_context_new (NULL, NULL);
+
+    GObject *sound_preview_button = gtk_builder_get_object (builder, "xfce_sound_theme_preview_button");
+    GObject *popover = gtk_builder_get_object (builder, "sound_browser_popover");
+
+    gtk_popover_set_constrain_to (GTK_POPOVER (popover), GTK_POPOVER_CONSTRAINT_WINDOW);
+    gtk_popover_set_position (GTK_POPOVER (popover), GTK_POS_BOTTOM);
+
+    GObject *icon_view = gtk_builder_get_object (builder, "browser_icon_view");
+    GObject *search_entry = gtk_builder_get_object (builder, "browser_search_entry");
+    GObject *scrolled_window = gtk_builder_get_object (builder, "browser_scrolled_window");
+
+    GtkListStore *sound_list_store = gtk_list_store_new (NUM_COLS,
+                                                         G_TYPE_STRING, /* COL_DISPLAY_NAME */
+                                                         GDK_TYPE_PIXBUF, /* COL_ICON */
+                                                         G_TYPE_STRING, /* COL_SOUND_ID */
+                                                         G_TYPE_STRING); /* COL_FULL_PATH */
+
+    gtk_icon_view_set_model (GTK_ICON_VIEW (icon_view),
+                             GTK_TREE_MODEL (sound_list_store));
+    gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (icon_view), COL_ICON);
+    gtk_icon_view_set_text_column (GTK_ICON_VIEW (icon_view), COL_DISPLAY_NAME);
+    gtk_icon_view_set_item_width (GTK_ICON_VIEW (icon_view), 60);
+    gtk_icon_view_set_columns (GTK_ICON_VIEW (icon_view), -1);
+    gtk_icon_view_set_selection_mode (GTK_ICON_VIEW (icon_view), GTK_SELECTION_SINGLE);
+
+    GObject *btn_play = gtk_builder_get_object (builder, "btn_play");
+    GObject *btn_stop = gtk_builder_get_object (builder, "btn_stop");
+    GObject *btn_open = gtk_builder_get_object (builder, "btn_open_folder");
+
+    g_object_set_data (btn_play, "gsound-ctx", gctx);
+    g_object_set_data (btn_stop, "gsound-ctx", gctx);
+    g_object_set_data (G_OBJECT (btn_play), "sound-combo", sound_combo);
+    g_object_set_data (G_OBJECT (btn_play), "icon-view", icon_view);
+    g_object_set_data (G_OBJECT (icon_view), "gsound-ctx", gctx);
+    g_object_set_data (G_OBJECT (icon_view), "sound-combo", sound_combo);
+    g_object_set_data (G_OBJECT (search_entry), "scrolled-window", scrolled_window);
+    g_object_set_data (G_OBJECT (search_entry), "btn-open-folder", btn_open);
+    g_object_set_data (G_OBJECT (icon_view), "btn-open-folder", btn_open);
+    g_object_set_data (G_OBJECT (popover), "scrolled-window", scrolled_window);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+                                    GTK_POLICY_NEVER,
+                                    GTK_POLICY_ALWAYS);
+
+    GPtrArray *master_sounds = g_ptr_array_new_with_free_func (free_sound_entry);
+    g_object_set_data (G_OBJECT (search_entry), "master-sounds", master_sounds);
+    g_object_set_data (G_OBJECT (search_entry), "the-list-store", sound_list_store);
+    g_object_set_data (G_OBJECT (sound_combo), "sounds-array", master_sounds);
+
+    refresh_sounds (GTK_COMBO_BOX_TEXT (sound_combo), GTK_WIDGET (search_entry));
+
+    gtk_popover_set_relative_to (GTK_POPOVER (popover), GTK_WIDGET (sound_preview_button));
+
+    GtkWidget *toplevel = gtk_widget_get_toplevel (GTK_WIDGET (label_sound_theme));
+    GtkWidget *parent = gtk_widget_get_ancestor (GTK_WIDGET (sound_preview_button),
+                                                 GTK_TYPE_SCROLLED_WINDOW);
+    GtkAdjustment *v_adj = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (parent));
+
+    g_signal_connect (toplevel, "configure-event",
+                      G_CALLBACK (on_window_resized), GTK_WIDGET (popover));
+    /* Close popover when scrolling starts */
+    g_signal_connect_swapped (v_adj, "value-changed",
+                              G_CALLBACK (gtk_popover_popdown), popover);
+
+    g_signal_connect (sound_combo, "changed",
+                      G_CALLBACK (cb_sound_theme_combo_changed), search_entry);
+    g_signal_connect (sound_preview_button, "toggled",
+                      G_CALLBACK (cb_browser_button_toggled), popover);
+    g_signal_connect (popover, "closed",
+                      G_CALLBACK (on_popover_closed), GTK_TOGGLE_BUTTON (sound_preview_button));
+    g_signal_connect (search_entry, "changed",
+                      G_CALLBACK (update_ui_list), NULL);
+    g_signal_connect (icon_view, "button-release-event",
+                      G_CALLBACK (on_icon_view_button_release), NULL);
+    g_signal_connect (btn_play, "clicked",
+                      G_CALLBACK (on_play_clicked), sound_combo);
+    g_signal_connect (btn_stop, "clicked",
+                      G_CALLBACK (on_stop_clicked), NULL);
+    g_signal_connect (btn_open, "clicked",
+                      G_CALLBACK (on_btn_open_folder_clicked), NULL);
+    g_signal_connect (popover, "map",
+                      G_CALLBACK (gtk_widget_grab_focus), search_entry);
+
+    g_object_bind_property (enable_sounds, "active",
+                            sound_preview_button, "sensitive",
+                            G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+    g_object_bind_property (enable_sounds, "active",
+                            popover, "sensitive",
                             G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
 #endif
 }
