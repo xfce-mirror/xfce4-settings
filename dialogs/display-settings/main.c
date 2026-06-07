@@ -2479,8 +2479,7 @@ set_monitors_tooltip (XfceDisplaySettings *settings,
     const char *text;
 
     if (tooltip_text)
-        text = g_strdup (tooltip_text);
-
+        text = tooltip_text;
     else
         text = _("Select a monitor to change its properties; drag it to rearrange its placement.");
 

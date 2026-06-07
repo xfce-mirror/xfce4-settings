@@ -1101,6 +1101,7 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
         if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || device_list == NULL)
         {
             g_message ("No input devices found");
+            g_strfreev (names);
             return;
         }
 
