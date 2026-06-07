@@ -880,12 +880,15 @@ icon_theme_root_path_enumerate_ready (GObject *source,
     }
     else
     {
-        g_file_enumerator_next_files_async (enumerator,
-                                            20,
-                                            G_PRIORITY_LOW,
-                                            itpd->cancellable,
-                                            icon_theme_root_path_files_ready,
-                                            icon_theme_preview_data_ref (itpd));
+        if (icon_theme_preview_data_ref (itpd) != NULL)
+        {
+            g_file_enumerator_next_files_async (enumerator,
+                                                20,
+                                                G_PRIORITY_LOW,
+                                                itpd->cancellable,
+                                                icon_theme_root_path_files_ready,
+                                                itpd);
+        }
     }
 
     g_object_unref (path);
