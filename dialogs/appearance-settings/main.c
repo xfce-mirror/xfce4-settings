@@ -916,7 +916,10 @@ appearance_settings_load_icon_themes (gpointer user_data)
     itpd->pool = g_thread_pool_new (load_icon_theme_preview, NULL, 1, TRUE, &error);
     if (itpd->pool == NULL)
     {
-        g_error ("Failed to start thread pool for icon theme loading: %s", error->message);
+        g_critical ("Failed to start thread pool for icon theme loading: %s", error->message);
+        g_strfreev (icon_theme_dirs);
+        g_error_free (error);
+        return FALSE;
     }
 
     for (i = 0; icon_theme_dirs[i] != NULL; ++i)
@@ -1854,7 +1857,7 @@ main (gint argc,
         }
         else
         {
-            g_error ("Unable to open display.");
+            g_critical ("Unable to open display.");
         }
 
         return EXIT_FAILURE;
@@ -1876,7 +1879,7 @@ main (gint argc,
     if (!xfconf_init (&error))
     {
         /* print error and exit */
-        g_error ("Failed to connect to xfconf daemon: %s.", error->message);
+        g_critical ("Failed to connect to xfconf daemon: %s.", error->message);
         g_error_free (error);
 
         return EXIT_FAILURE;
@@ -1964,7 +1967,7 @@ main (gint argc,
         }
         else
         {
-            g_error ("Failed to load the UI file: %s.", error->message);
+            g_critical ("Failed to load the UI file: %s.", error->message);
             g_error_free (error);
         }
 

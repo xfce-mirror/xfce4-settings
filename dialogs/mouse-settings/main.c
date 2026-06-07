@@ -2194,7 +2194,7 @@ main (gint argc,
         }
         else
         {
-            g_error ("Unable to open display.");
+            g_critical ("Unable to open display.");
         }
 
         return EXIT_FAILURE;
@@ -2457,7 +2457,7 @@ main (gint argc,
         }
         else
         {
-            g_error ("Failed to load the UI file: %s.", error->message);
+            g_critical ("Failed to load the UI file: %s.", error->message);
             g_error_free (error);
         }
 

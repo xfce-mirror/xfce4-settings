@@ -155,7 +155,7 @@ main (int argc,
           g_error_free (error);
         }
       else
-        g_error ("Unable to open display.");
+        g_critical ("Unable to open display.");
 
       result = EXIT_FAILURE;
       goto out;

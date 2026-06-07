@@ -322,7 +322,7 @@ display_setting_timed_confirmation (XfceDisplaySettings *settings)
     }
     else
     {
-        g_error ("Failed to load the UI file: %s.", error->message);
+        g_critical ("Failed to load the UI file: %s.", error->message);
         g_error_free (error);
     }
 
@@ -3047,7 +3047,7 @@ display_settings_show_main_dialog (XfceDisplaySettings *settings)
     }
     else
     {
-        g_error ("Failed to load the UI file: %s.", error->message);
+        g_critical ("Failed to load the UI file: %s.", error->message);
         g_error_free (error);
     }
 }
@@ -3308,7 +3308,7 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
     }
     else
     {
-        g_error ("Failed to load the UI file: %s.", error->message);
+        g_critical ("Failed to load the UI file: %s.", error->message);
         g_error_free (error);
     }
 }
@@ -3374,7 +3374,7 @@ main (gint argc,
         }
         else
         {
-            g_error ("Unable to open display.");
+            g_critical ("Unable to open display.");
         }
 
         return EXIT_FAILURE;
