@@ -509,8 +509,7 @@ xfce_workspaces_helper_save_names (XfceWorkspacesHelper *helper)
 
         xfsettings_dbg (XFSD_DEBUG_WORKSPACES, "storing %d names in xfconf", new_names->len);
     }
-    else if (xfconf_names != NULL
-             && xfconf_names->len >= new_names->len)
+    else
     {
         /* update the new names in the xfconf array */
         for (i = 0; i < new_names->len; i++)
