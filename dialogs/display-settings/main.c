@@ -755,10 +755,10 @@ display_setting_resolutions_populate (XfceDisplaySettings *settings,
             /* Highlight the preferred mode with an asterisk */
             if (output->pref_width == modes[n]->width
                 && output->pref_height == modes[n]->height)
-                name = g_strdup_printf ("%dx%d*", modes[n]->width,
+                name = g_strdup_printf ("%ux%u*", modes[n]->width,
                                         modes[n]->height);
             else
-                name = g_strdup_printf ("%dx%d", modes[n]->width,
+                name = g_strdup_printf ("%ux%u", modes[n]->width,
                                         modes[n]->height);
 
             if (ratio_info)
@@ -798,7 +798,7 @@ display_setting_resolutions_populate (XfceDisplaySettings *settings,
                 guint gcd_tmp = gcd (modes[n]->width, modes[n]->height);
                 guint format_x = modes[n]->width / gcd_tmp;
                 guint format_y = modes[n]->height / gcd_tmp;
-                rratio = g_strdup_printf ("<span fgalpha='50%%'>%d:%d</span>", format_x, format_y);
+                rratio = g_strdup_printf ("<span fgalpha='50%%'>%u:%u</span>", format_x, format_y);
             }
             else
             {

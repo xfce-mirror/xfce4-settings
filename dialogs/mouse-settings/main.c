@@ -888,7 +888,7 @@ mouse_settings_device_get_selected (GtkBuilder *builder,
             *device = XOpenDevice (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), xid);
             if (gdk_x11_display_error_trap_pop (gdk_display_get_default ()) != 0 || *device == NULL)
             {
-                g_critical ("Unable to open device %ld", xid);
+                g_critical ("Unable to open device %lu", xid);
                 *device = NULL;
                 found = FALSE;
             }

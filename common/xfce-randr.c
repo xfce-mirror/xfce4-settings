@@ -420,7 +420,7 @@ xfce_randr_save_output (XfceRandr *randr,
         return;
 
     /* save the resolution */
-    str_value = g_strdup_printf ("%dx%d", mode->width, mode->height);
+    str_value = g_strdup_printf ("%ux%u", mode->width, mode->height);
     g_snprintf (property, sizeof (property), "/%s/%s/Resolution", scheme,
                 randr->priv->output_info[output]->name);
     xfconf_channel_set_string (channel, property, str_value);

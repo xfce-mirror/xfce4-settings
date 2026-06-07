@@ -609,7 +609,7 @@ color_settings_device_calibrate_cb (CdProfile *profile,
     else
         return;
 
-    cli = g_strdup_printf ("gcm-calibrate --device %s --parent-window %i", cd_device_get_id (settings->current_device), xid);
+    cli = g_strdup_printf ("gcm-calibrate --device %s --parent-window %u", cd_device_get_id (settings->current_device), xid);
 
     /* open up gcm-viewer */
     app_info = g_app_info_create_from_commandline (cli, "Gnome Color Manager Calibration",
@@ -647,7 +647,7 @@ color_settings_profile_info_view (CdProfile *profile,
     else
         return;
 
-    cli = g_strdup_printf ("gcm-viewer --profile %s --parent-window %i", cd_profile_get_id (profile), xid);
+    cli = g_strdup_printf ("gcm-viewer --profile %s --parent-window %u", cd_profile_get_id (profile), xid);
 
     /* open up gcm-viewer */
     app_info = g_app_info_create_from_commandline (cli, "Gnome Color Manager Viewer",
