@@ -447,7 +447,7 @@ xfce_settings_prop_dialog_entry_validate (GtkWidget *entry,
         gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry), GTK_ENTRY_ICON_SECONDARY,
                                          is_valid ? NULL : error->message);
 
-        if (error != NULL)
+        if (!is_valid)
             g_error_free (error);
     }
     else
