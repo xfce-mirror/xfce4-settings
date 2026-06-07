@@ -236,6 +236,8 @@ xfce_display_settings_wayland_get_display_infos (XfceDisplaySettings *settings)
 static XfceWlrMode **
 get_clonable_modes (GPtrArray *outputs)
 {
+    g_return_val_if_fail (outputs->len >= 1, NULL);
+
     XfceWlrOutput *output = g_ptr_array_index (outputs, 0);
     XfceWlrMode *modes[outputs->len];
     modes[outputs->len - 1] = NULL;
