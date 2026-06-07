@@ -130,7 +130,7 @@ msgstr "Použít pomalé _klávesy"
 
 #: common/resources/accessibility-dialog.glade:513
 msgid "Acceptance _delay:"
-msgstr "_Zpoždění akcelerace:"
+msgstr "_Zpoždění přijetí:"
 
 #: common/resources/accessibility-dialog.glade:527
 msgid ""
@@ -594,11 +594,11 @@ msgstr "Nikdy"
 
 #: common/resources/display-dialog.glade:65
 msgid "When a display is connected"
-msgstr "Pokud je monitor připojený "
+msgstr "Pokud je displej připojený "
 
 #: common/resources/display-dialog.glade:69
 msgid "When a display is disconnected"
-msgstr "Pokud je monitor odpojený"
+msgstr "Pokud je displej odpojený"
 
 #: common/resources/display-dialog.glade:73
 msgid "Always"
@@ -678,7 +678,7 @@ msgstr "_Použít"
 
 #: common/resources/display-dialog.glade:631
 msgid "_Scale:"
-msgstr "_Zvětšení:"
+msgstr "_Měřítko:"
 
 #: common/resources/display-dialog.glade:669
 msgid "_General"
@@ -694,7 +694,7 @@ msgstr "<b>Připojování displejů</b>"
 
 #: common/resources/display-dialog.glade:755
 msgid "Delete the currently selected display profile."
-msgstr "Smazat aktuálně označený profil zobrazení."
+msgstr "Smazat aktuálně označený profil displeje."
 
 #: common/resources/display-dialog.glade:768
 msgid "Apply"
@@ -702,11 +702,11 @@ msgstr "Použít"
 
 #: common/resources/display-dialog.glade:772
 msgid "Apply the currently selected display profile."
-msgstr "Použít aktuálně označený profil zobrazení."
+msgstr "Použít aktuálně označený profil displeje."
 
 #: common/resources/display-dialog.glade:788
 msgid "Create a new display profile."
-msgstr "Vytvořit nový profil zobrazení."
+msgstr "Vytvořit nový profil displeje."
 
 #: common/resources/display-dialog.glade:804
 msgid "Update an existing profile."
@@ -718,11 +718,11 @@ msgstr "Nejprve se pokusit automaticky aktivovat profil:"
 
 #: common/resources/display-dialog.glade:869
 msgid "When a display is connected:"
-msgstr "Pokud je monitor připojený:"
+msgstr "Pokud je displej připojený:"
 
 #: common/resources/display-dialog.glade:882
 msgid "Show popup windows to identify displays"
-msgstr "Zobrazit vyskakovací okna pro rozpoznání obrazovek"
+msgstr "Zobrazit vyskakovací okna pro rozpoznání displejů"
 
 #: common/resources/display-dialog.glade:908
 msgid "<b>Identifying Displays</b>"
@@ -1044,7 +1044,7 @@ msgstr "Faktor, při kterém ukazatel myši zvýší rychlost při pohybu"
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
-msgstr "Počet pixelů, o které se ukazatel musí v krátkém časovém úseku posunout před zahájením akcelerace"
+msgstr "Počet pixelů, o které se ukazatel musí v krátkém časovém úseku posunout před zahájením zrychlení"
 
 #: common/resources/mouse-dialog.glade:502
 msgid "Adaptive pointer acceleration"
@@ -1395,7 +1395,7 @@ msgstr "Webkamera"
 #. TRANSLATORS: This refers to the TFT display on a laptop
 #: dialogs/color-settings/color-device.c:92
 msgid "Laptop Screen"
-msgstr "Obrazovka laptopu"
+msgstr "Obrazovka notebooku"
 
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
 #: dialogs/color-settings/color-device.c:101
@@ -1597,7 +1597,7 @@ msgstr "Vybraný výstup není zakázaný"
 #: dialogs/display-settings/main.c:1613
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr "Opravdu chcete smazat profil displeje %s?"
+msgstr "Opravdu chcete smazat profil displeje \"%s\"?"
 
 #: dialogs/display-settings/main.c:1616
 msgid "Delete Profile"
@@ -2149,13 +2149,13 @@ msgid ""
 "  ImageViewer      - The preferred Image Viewer.\n"
 "  AudioPlayer      - The preferred Audio Player.\n"
 "  VideoPlayer      - The preferred Video Player.\n"
-msgstr "Pro příkazy --launch a --query jsou podporovány následující hodnoty TYPE:\n\n  WebBrowser       - Upřednostňovaný webový prohlížeč.\n  MailReader       - Upřednostňovaný e-mailový klient.\n  FileManager      - Upřednostňovaný  správce souborů.\n  TerminalEmulator - Upřednostňovaný emulátor terminálu.\n  TextEditor       - Upřednostňovaný textový editor.\n  ImageViewer      - Upřednostňovaný prohlížeč obrázků.\n  AudioPlayer      - Upřednostňovaný přehrávač zvuků.\n  VideoPlayer      - Upřednostňovaný přehrávač videí.\n"
+msgstr "Pro příkazy --launch a --query jsou podporovány následující hodnoty TYPE:\n\n  WebBrowser       - Upřednostňovaný webový prohlížeč.\n  MailReader       - Upřednostňovaný poštovní klient.\n  FileManager      - Upřednostňovaný správce souborů.\n  TerminalEmulator - Upřednostňovaný emulátor terminálu.\n  TextEditor       - Upřednostňovaný textový editor.\n  ImageViewer      - Upřednostňovaný prohlížeč obrázků.\n  AudioPlayer      - Upřednostňovaný přehrávač zvuků.\n  VideoPlayer      - Upřednostňovaný přehrávač videí.\n"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:180
 #: dialogs/mime-settings/xfce-mime-helper-main.c:254
 #, c-format
 msgid "Invalid helper type \"%s\""
-msgstr "Neplatný typ nápovědy „%s“"
+msgstr "Neplatný typ výchozí aplikace „%s“"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:238
 #, c-format
@@ -2175,7 +2175,7 @@ msgstr "%s (Xfce %s)\n\nCopyright (c) 2003-2006\n        os-cillation e.K. Všec
 #: dialogs/mime-settings/xfce-mime-helper-main.c:265
 #, c-format
 msgid "No helper defined for \"%s\"."
-msgstr "Pro položku „%s“ není definována žádná nápověda."
+msgstr "Pro položku „%s“ není definována žádná výchozí aplikace."
 
 #: dialogs/mime-settings/xfce-mime-helper.c:427
 msgid "No command specified"
