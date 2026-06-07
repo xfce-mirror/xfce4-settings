@@ -112,7 +112,7 @@ main (gint argc,
 
   if (G_UNLIKELY (window == NULL))
     {
-      g_critical (_("Could not create the mime dialog."));
+      g_critical ("Could not create the mime dialog.");
       xfconf_shutdown ();
       return EXIT_FAILURE;
     }
