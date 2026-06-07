@@ -742,9 +742,8 @@ display_setting_resolutions_populate (XfceDisplaySettings *settings,
     {
         /* Try to avoid duplicates */
         if (n == 0
-            || (n > 0
-                && (modes[n]->width != modes[n - 1]->width
-                    || modes[n]->height != modes[n - 1]->height)))
+            || modes[n]->width != modes[n - 1]->width
+            || modes[n]->height != modes[n - 1]->height)
         {
             /* Insert mode and ratio */
             gdouble ratio = (double) modes[n]->width / (double) modes[n]->height;

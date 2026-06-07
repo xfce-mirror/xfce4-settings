@@ -57,7 +57,7 @@ decode_header (const uchar *edid)
     return FALSE;
 }
 
-static int
+static void
 decode_vendor_and_product_identification (const uchar *edid,
                                           MonitorInfo *info)
 {
@@ -108,21 +108,17 @@ decode_vendor_and_product_identification (const uchar *edid,
         info->production_year = 1990 + edid[0x11];
         info->model_year = -1;
     }
-
-    return TRUE;
 }
 
-static int
+static void
 decode_edid_version (const uchar *edid,
                      MonitorInfo *info)
 {
     info->major_version = edid[0x12];
     info->minor_version = edid[0x13];
-
-    return TRUE;
 }
 
-static int
+static void
 decode_display_parameters (const uchar *edid,
                            MonitorInfo *info)
 {
@@ -237,7 +233,6 @@ decode_display_parameters (const uchar *edid,
 
     /* FIXME: In 1.3 this indicates whether the monitor accepts GTF */
     info->continuous_frequency = get_bit (edid[0x18], 0);
-    return TRUE;
 }
 
 static double
@@ -255,7 +250,7 @@ decode_fraction (int high,
     return result;
 }
 
-static int
+static void
 decode_color_characteristics (const uchar *edid,
                               MonitorInfo *info)
 {
@@ -267,11 +262,9 @@ decode_color_characteristics (const uchar *edid,
     info->blue_y = decode_fraction (edid[0x20], get_bits (edid[0x1a], 4, 5));
     info->white_x = decode_fraction (edid[0x21], get_bits (edid[0x1a], 2, 3));
     info->white_y = decode_fraction (edid[0x22], get_bits (edid[0x1a], 0, 1));
-
-    return TRUE;
 }
 
-static int
+static void
 decode_established_timings (const uchar *edid,
                             MonitorInfo *info)
 {
@@ -321,10 +314,9 @@ decode_established_timings (const uchar *edid,
                 info->established[idx++] = established[i][j];
         }
     }
-    return TRUE;
 }
 
-static int
+static void
 decode_standard_timings (const uchar *edid,
                          MonitorInfo *info)
 {
@@ -353,8 +345,6 @@ decode_standard_timings (const uchar *edid,
             info->standard[i].frequency = get_bits (second, 0, 5) + 60;
         }
     }
-
-    return TRUE;
 }
 
 static void
@@ -482,7 +472,7 @@ decode_detailed_timing (const uchar *timing,
     }
 }
 
-static int
+static void
 decode_descriptors (const uchar *edid,
                     MonitorInfo *info)
 {
@@ -506,8 +496,6 @@ decode_descriptors (const uchar *edid,
     }
 
     info->n_detailed_timings = timing_idx;
-
-    return TRUE;
 }
 
 static void
@@ -530,15 +518,15 @@ decode_edid (const uchar *edid)
 
     decode_check_sum (edid, info);
 
-    if (decode_header (edid)
-        && decode_vendor_and_product_identification (edid, info)
-        && decode_edid_version (edid, info)
-        && decode_display_parameters (edid, info)
-        && decode_color_characteristics (edid, info)
-        && decode_established_timings (edid, info)
-        && decode_standard_timings (edid, info)
-        && decode_descriptors (edid, info))
+    if (decode_header (edid))
     {
+        decode_vendor_and_product_identification (edid, info);
+        decode_edid_version (edid, info);
+        decode_display_parameters (edid, info);
+        decode_color_characteristics (edid, info);
+        decode_established_timings (edid, info);
+        decode_standard_timings (edid, info);
+        decode_descriptors (edid, info);
         return info;
     }
     else
