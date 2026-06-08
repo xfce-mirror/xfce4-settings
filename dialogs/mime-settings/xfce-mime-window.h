@@ -26,9 +26,6 @@ G_BEGIN_DECLS
 
 #define XFCE_TYPE_MIME_WINDOW (xfce_mime_window_get_type ())
 #define COMMAND_TYPE_DIALOG (command_dialog_get_type ())
-#ifndef glib_autoptr_clear_XfceTitledDialog
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceTitledDialog, g_object_unref)
-#endif
 G_DECLARE_FINAL_TYPE (XfceMimeWindow, xfce_mime_window, XFCE, MIME_WINDOW, XfceTitledDialog)
 
 XfceMimeWindow *

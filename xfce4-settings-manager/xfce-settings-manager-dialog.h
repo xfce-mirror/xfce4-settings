@@ -26,9 +26,6 @@
 G_BEGIN_DECLS
 
 #define XFCE_TYPE_SETTINGS_MANAGER_DIALOG (xfce_settings_manager_dialog_get_type ())
-#ifndef glib_autoptr_clear_XfceTitledDialog
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceTitledDialog, g_object_unref)
-#endif
 G_DECLARE_FINAL_TYPE (XfceSettingsManagerDialog, xfce_settings_manager_dialog, XFCE, SETTINGS_MANAGER_DIALOG, XfceTitledDialog)
 
 GtkWidget *
