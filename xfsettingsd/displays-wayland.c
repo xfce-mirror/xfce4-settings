@@ -29,6 +29,8 @@
 
 
 static void
+xfce_displays_helper_wayland_constructed (GObject *object);
+static void
 xfce_displays_helper_wayland_finalize (GObject *object);
 static GPtrArray *
 xfce_displays_helper_wayland_get_outputs (XfceDisplaysHelper *helper);
@@ -81,6 +83,7 @@ xfce_displays_helper_wayland_class_init (XfceDisplaysHelperWaylandClass *klass)
     GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
     XfceDisplaysHelperClass *helper_class = XFCE_DISPLAYS_HELPER_CLASS (klass);
 
+    gobject_class->constructed = xfce_displays_helper_wayland_constructed;
     gobject_class->finalize = xfce_displays_helper_wayland_finalize;
 
     helper_class->get_outputs = xfce_displays_helper_wayland_get_outputs;
@@ -95,6 +98,16 @@ static void
 xfce_displays_helper_wayland_init (XfceDisplaysHelperWayland *helper)
 {
     helper->manager = xfce_wlr_output_manager_new (manager_listener, helper);
+}
+
+
+
+static void
+xfce_displays_helper_wayland_constructed (GObject *object)
+{
+    display_settings_wayland_migrate_profiles ();
+
+    G_OBJECT_CLASS (xfce_displays_helper_wayland_parent_class)->constructed (object);
 }
 
 

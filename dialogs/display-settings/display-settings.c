@@ -94,7 +94,7 @@ xfce_display_settings_init (XfceDisplaySettings *settings)
 {
     XfceDisplaySettingsPrivate *priv = get_instance_private (settings);
 
-    priv->channel = xfconf_channel_get ("displays");
+    priv->channel = display_settings_profiles_channel_get ();
     priv->builder = gtk_builder_new ();
     priv->scroll_area = (GtkWidget *) foo_scroll_area_new ();
     g_signal_connect (priv->scroll_area, "destroy", G_CALLBACK (gtk_widget_destroyed), &priv->scroll_area);
