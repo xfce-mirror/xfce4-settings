@@ -19,6 +19,7 @@
 #include "display-settings-wayland.h"
 #include "scrollarea.h"
 
+#include "common/display-profiles.h"
 #include "common/edid.h"
 #include "common/xfce-wlr-output-manager.h"
 
@@ -31,6 +32,8 @@
 
 
 
+static void
+xfce_display_settings_wayland_constructed (GObject *object);
 static void
 xfce_display_settings_wayland_finalize (GObject *object);
 static guint
@@ -141,6 +144,7 @@ xfce_display_settings_wayland_class_init (XfceDisplaySettingsWaylandClass *klass
     GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
     XfceDisplaySettingsClass *settings_class = XFCE_DISPLAY_SETTINGS_CLASS (klass);
 
+    gobject_class->constructed = xfce_display_settings_wayland_constructed;
     gobject_class->finalize = xfce_display_settings_wayland_finalize;
 
     settings_class->get_n_outputs = xfce_display_settings_wayland_get_n_outputs;
@@ -181,6 +185,16 @@ xfce_display_settings_wayland_init (XfceDisplaySettingsWayland *settings)
     settings->dummy_mode = g_new0 (XfceWlrMode, 1);
     settings->dummy_mode->width = 640;
     settings->dummy_mode->height = 480;
+}
+
+
+
+static void
+xfce_display_settings_wayland_constructed (GObject *object)
+{
+    display_settings_wayland_migrate_profiles ();
+
+    G_OBJECT_CLASS (xfce_display_settings_wayland_parent_class)->constructed (object);
 }
 
 
