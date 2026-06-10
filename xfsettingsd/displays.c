@@ -122,7 +122,7 @@ xfce_displays_helper_constructed (GObject *object)
 #endif
 
         /* open the channel */
-        priv->channel = xfconf_channel_get ("displays");
+        priv->channel = display_settings_profiles_channel_get ();
 
         /* remove any leftover apply property before setting the monitor */
         xfconf_channel_reset_property (priv->channel, APPLY_SCHEME_PROP, FALSE);
