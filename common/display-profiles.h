@@ -43,6 +43,9 @@ enum
 #define ACTION_ON_NEW_OUTPUT_DEFAULT ACTION_ON_NEW_OUTPUT_SHOW_DIALOG
 #define AUTO_ENABLE_PROFILES_DEFAULT AUTO_ENABLE_PROFILES_ALWAYS
 
+XfconfChannel *
+display_settings_profiles_channel_get (void);
+
 gboolean
 display_settings_profile_name_exists (XfconfChannel *channel,
                                       const gchar *new_profile_name);
@@ -54,6 +57,11 @@ gboolean
 display_settings_profile_matches (const gchar *profile,
                                   gchar **display_infos,
                                   XfconfChannel *channel);
+
+#ifdef ENABLE_WAYLAND
+void
+display_settings_wayland_migrate_profiles (void);
+#endif
 
 G_END_DECLS
 
