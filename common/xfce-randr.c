@@ -828,3 +828,21 @@ xfce_randr_calculate_refresh_rate (XRRModeInfo mode)
 
     return mode.dotClock / ((gdouble) mode.hTotal * v_total);
 }
+
+
+
+gchar *
+xfce_randr_get_connector_by_edid (XfceRandr *randr,
+                                  const gchar *edid)
+{
+    g_return_val_if_fail (randr != NULL, NULL);
+    g_return_val_if_fail (edid != NULL, NULL);
+
+    for (guint n = 0; n < randr->noutput; n++)
+    {
+        if (g_strcmp0 (xfce_randr_get_edid (randr, n), edid) == 0)
+            return g_strdup (xfce_randr_get_output_info_name (randr, n));
+    }
+
+    return NULL;
+}
