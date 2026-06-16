@@ -838,9 +838,9 @@ xfce_randr_get_connector_by_edid (XfceRandr *randr,
     g_return_val_if_fail (randr != NULL, NULL);
     g_return_val_if_fail (edid != NULL, NULL);
 
-    for (guint n = 0; n < randr->noutput; n++)
+    for (guint i = 0; n < randr->noutput; n++)
     {
-        if (g_strcmp0 (xfce_randr_get_edid (randr, n), edid) == 0)
+        if (g_strcmp0 (xfce_randr_get_edid (randr, i), edid) == 0)
             return g_strdup (xfce_randr_get_output_info_name (randr, n));
     }
 
