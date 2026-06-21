@@ -1,3 +1,80 @@
+4.21.2 (2026-06-21)
+======
+- Use a separate channel for Wayland display profiles
+- build: Require libxfce4ui 4.21.8 and remove wrong define guard
+- gcc-analyzer: Fix -Wanalyzer-out-of-bounds
+- gcc-analyzer: Fix -Wanalyzer-null-dereference
+- cppcheck: Fix duplicateAssignExpression
+- cppcheck: Fix nullPointer
+- cppcheck: Fix invalidFunctionArg
+- cppcheck: Fix duplicateExpression
+- Do not translate warning messages
+- Replace g_error with g_critical
+- cppcheck: Fix nullPointerRedundantCheck
+- cppcheck: Fix unreadVariable
+- cppcheck: Fix memleak
+- cppcheck: Fix invalidPointerCast
+- cppcheck: Fix unusedStructMember
+- cppcheck: Fix knownConditionTrueFalse
+- cppcheck: Fix invalidPrintfArgType_sint
+- wayland: Set mode dimensions to 1x1 if width or height <= 0
+- Revert "dialogs/display-settings: Fix possible arithmetic exception"
+- gobject_linter: Fix g_param_spec_static_strings
+- gobject-linter: Fix use_clear_functions
+- dialogs/display-settings: Fix possible arithmetic exception
+- gobject-linter: Fix use_g_source_once
+- gobject-linter: Fix use_g_new
+- gobject-linter: Fix g_error_leak
+- gobject-linter: Fix use_g_value_set_static_string
+- gobject-linter: Fix strcmp_explicit_comparison
+- gobject-linter: Fix use_explicit_default_flags
+- gobject-linter: Fix signal_canonical_name
+- gobject-linter: Fix matching_declare_define
+- gobject-linter: Fix missing_autoptr_cleanup
+- settings-editor: Search also in values when typing text in search
+  entry
+- keyboard-settings: Fix typo
+- Add missing chain up to parent class
+- keyboard: hide "Use system defaults" switch on Wayland
+- keyboards: remove libxklavier and use libxkbcommon
+- keyboard-settings: Add --shortcuts option
+- keyboard-settings: Don't warn if shortcut == NULL
+- keyboard-settings: Set proper parent for shortcut dialog
+- keyboard-settings: Enable on Wayland and show what makes sense
+- dialogs: Fix wrong log domain
+- display-settings: Release main object early to avoid use-after-free
+- display-settings: Handle source memory management
+- I18n: Update po/LINGUAS list
+- x11: displays: Add hotplug event handling
+- mouse-settings: Remove dead code
+- wayland: display-settings: Fall back to output name when EDID is
+  duplicated
+- Use xfce-output-manager-private-v1 on Wayland to get real EDID
+- build: Do not display full path in generated headers
+- gtk-settings-module: handle g_value_transform() failures
+- Special-case gtk-xft-hintstyle
+- Include an allowlist of xfconf props to sync to GtkSettings
+- Fix incorrect TitleCase to kebab-case in gtk-settings-module.c
+- xfsettingsd: add --allow-multiple CLI flag
+- appearance-settings: Add sound theme selection and cache flushing
+- x11: displays: Check by EDID that output list has not changed
+- wayland: displays: Add missing condition to act on new output
+- x11: displays: Fix memory leak
+- x11: display-settings: Fall back to output name when EDID is
+  duplicated
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Asturian, Basque, Belarusian,
+  Belarusian (Tarask), Bulgarian, Catalan, Chinese (China), Chinese
+  (Hong Kong), Chinese (Taiwan), Croatian, Czech, Danish, Dutch,
+  Eastern Armenian, English (Australia), English (Canada), English
+  (United Kingdom), Estonian, Finnish, French, Galician, Georgian,
+  German, Greek, Hebrew, Hungarian, Icelandic, Indonesian, Interlingue,
+  Italian, Japanese, Kabyle, Kazakh, Korean, Lao, Lithuanian, Malay,
+  Norwegian Bokmål, Norwegian Nynorsk, Occitan (post 1500), Polish,
+  Portuguese, Portuguese (Brazil), Romanian, Russian, Serbian, Slovak,
+  Slovenian, Spanish, Swedish, Tatar, Thai, Turkish, Ukrainian, Uyghur,
+  Vietnamese
+
 4.21.1 (2025-12-29)
 ======
 - build: Rename POTFILES.in to POTFILES
