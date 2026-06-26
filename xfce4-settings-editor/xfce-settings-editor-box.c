@@ -1434,6 +1434,7 @@ xfce_settings_editor_box_row_visible (GtkTreeModel *model,
             g_value_unset (&trans);
         }
         g_value_unset (value);
+        g_free (value);
     }
 
     /* if the element itself doesn't contain the query recursively search its children */
