@@ -3356,6 +3356,8 @@ main (gint argc,
     XfceDisplaySettings *settings;
     GError *error = NULL;
 
+    g_set_prgname ("xfce-display-settings");
+
     /* Setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 

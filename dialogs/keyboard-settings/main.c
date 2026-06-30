@@ -77,6 +77,8 @@ main (int argc,
   GtkWidget *dialog;
   GError *error = NULL;
 
+  g_set_prgname ("xfce-keyboard-settings");
+
   /* Set up translation domain */
   xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 

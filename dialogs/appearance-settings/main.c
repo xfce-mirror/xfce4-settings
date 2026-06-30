@@ -1842,6 +1842,8 @@ main (gint argc,
     GtkBuilder *builder;
     GError *error = NULL;
 
+    g_set_prgname ("xfce-ui-settings");
+
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 

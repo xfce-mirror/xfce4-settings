@@ -2420,6 +2420,8 @@ main (gint argc,
     GObject *synaptics_disable_duration_table;
 #endif
 
+    g_set_prgname ("xfce-mouse-settings");
+
     /* setup translation domain */
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
