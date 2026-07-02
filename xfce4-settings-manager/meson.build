@@ -30,8 +30,8 @@ executable(
 install_data('xfce-settings-manager.menu', install_dir: menu_dir)
 
 i18n.merge_file(
-  input: 'xfce-settings-manager.desktop.in',
-  output: 'xfce-settings-manager.desktop',
+  input: 'xfce4-settings-manager.desktop.in',
+  output: 'xfce4-settings-manager.desktop',
   po_dir: '..' / 'po',
   type: 'desktop',
   install: true,

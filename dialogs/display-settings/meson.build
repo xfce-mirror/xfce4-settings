@@ -55,8 +55,8 @@ if enable_display_settings
   )
 
   i18n.merge_file(
-    input: 'xfce-display-settings.desktop.in',
-    output: 'xfce-display-settings.desktop',
+    input: 'xfce4-display-settings.desktop.in',
+    output: 'xfce4-display-settings.desktop',
     po_dir: '..' / '..' / 'po',
     type: 'desktop',
     install: true,
