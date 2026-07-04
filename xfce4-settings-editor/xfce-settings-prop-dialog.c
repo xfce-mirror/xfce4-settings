@@ -673,7 +673,7 @@ xfce_settings_prop_dialog_set_parent_property (XfceSettingsPropDialog *dialog,
 
     if (property != NULL && *property == '/')
     {
-        p = strrchr (property, '/');
+        p = (gchar *) strrchr (property, '/');
         if (G_LIKELY (p != NULL))
             length = (p - property) + 1;
 
