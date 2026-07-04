@@ -38,7 +38,7 @@ typedef struct _XfceKeyboardSettings XfceKeyboardSettings;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceKeyboardSettings, g_object_unref)
 
 GType
-xfce_keyboard_settings_get_type (void) G_GNUC_CONST;
+xfce_keyboard_settings_get_type (void);
 
 XfceKeyboardSettings *
 xfce_keyboard_settings_new (void) G_GNUC_MALLOC;
