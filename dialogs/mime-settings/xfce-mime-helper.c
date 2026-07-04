@@ -1174,7 +1174,7 @@ xfce_mime_helper_database_set_custom (XfceMimeHelperDatabase *database,
       xfce_rc_write_entry (rc, "X-XFCE-Category", category_string);
 
       /* check if the command includes a parameter */
-      cmdline = (strstr (command, "%s") != NULL) ? g_strdup (command) : g_strconcat (command, " \"%s\"", NULL);
+      cmdline = (strstr (command, "%s") != NULL) ? g_strdup (command) : g_strconcat (command, " %s", NULL);
 
       /* use the command line for the CommandsWithParameter */
       xfce_rc_write_entry (rc, "X-XFCE-CommandsWithParameter", cmdline);
