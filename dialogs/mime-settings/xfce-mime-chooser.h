@@ -34,7 +34,7 @@ typedef struct _XfceMimeChooser XfceMimeChooser;
 #define XFCE_MIME_CHOOSER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MIME_CHOOSER, XfceMimeChooserClass))
 
 GType
-xfce_mime_chooser_get_type (void) G_GNUC_CONST;
+xfce_mime_chooser_get_type (void);
 
 void
 xfce_mime_chooser_set_mime_type (XfceMimeChooser *chooser,

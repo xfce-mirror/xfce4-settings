@@ -35,7 +35,7 @@ typedef struct _XfceSettingsCellRenderer XfceSettingsCellRenderer;
 typedef struct _XfceSettingsCellRendererClass XfceSettingsCellRendererClass;
 
 GType
-xfce_settings_cell_renderer_get_type (void) G_GNUC_CONST;
+xfce_settings_cell_renderer_get_type (void);
 
 GtkCellRenderer *
 xfce_settings_cell_renderer_new (void);

@@ -34,7 +34,7 @@ typedef struct _XfceMimeWindow XfceMimeWindow;
 #define XFCE_MIME_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MIME_WINDOW, XfceMimeWindowClass))
 
 GType
-xfce_mime_window_get_type (void) G_GNUC_CONST;
+xfce_mime_window_get_type (void);
 
 XfceMimeWindow *
 xfce_mime_window_new (void) G_GNUC_MALLOC;

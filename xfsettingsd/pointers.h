@@ -34,7 +34,7 @@ typedef struct _XfcePointersHelper XfcePointersHelper;
 #define XFCE_POINTERS_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_POINTERS_HELPER, XfcePointersHelperClass))
 
 GType
-xfce_pointers_helper_get_type (void) G_GNUC_CONST;
+xfce_pointers_helper_get_type (void);
 
 G_END_DECLS
 

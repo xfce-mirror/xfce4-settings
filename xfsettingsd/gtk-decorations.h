@@ -35,7 +35,7 @@ typedef struct _XfceDecorationsHelper XfceDecorationsHelper;
 #define XFCE_DECORATIONS_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_DECORATIONS_HELPER, XfceDecorationsHelperClass))
 
 GType
-xfce_decorations_helper_get_type (void) G_GNUC_CONST;
+xfce_decorations_helper_get_type (void);
 
 G_END_DECLS
 

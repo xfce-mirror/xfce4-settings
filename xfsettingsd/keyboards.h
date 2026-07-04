@@ -48,7 +48,7 @@ typedef struct _XfceKeyboardsHelper XfceKeyboardsHelper;
 #endif
 
 GType
-xfce_keyboards_helper_get_type (void) G_GNUC_CONST;
+xfce_keyboards_helper_get_type (void);
 
 G_END_DECLS
 

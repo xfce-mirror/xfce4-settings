@@ -36,7 +36,7 @@ typedef struct _XfceSettingsPropDialog XfceSettingsPropDialog;
 typedef struct _XfceSettingsPropDialogClass XfceSettingsPropDialogClass;
 
 GType
-xfce_settings_prop_dialog_get_type (void) G_GNUC_CONST;
+xfce_settings_prop_dialog_get_type (void);
 
 GtkWidget *
 xfce_settings_prop_dialog_new (GtkWindow *parent,

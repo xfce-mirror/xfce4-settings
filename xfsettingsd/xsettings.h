@@ -37,7 +37,7 @@ typedef struct _XfceXSettingsHelper XfceXSettingsHelper;
 #define XFCE_XSETTINGS_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_XSETTINGS_HELPER, XfceXSettingsHelperClass))
 
 GType
-xfce_xsettings_helper_get_type (void) G_GNUC_CONST;
+xfce_xsettings_helper_get_type (void);
 
 gboolean
 xfce_xsettings_helper_register (XfceXSettingsHelper *helper,

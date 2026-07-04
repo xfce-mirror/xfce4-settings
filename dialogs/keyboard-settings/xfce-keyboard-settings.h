@@ -37,7 +37,7 @@ typedef struct _XfceKeyboardSettings XfceKeyboardSettings;
 #define XFCE_KEYBOARD_SETTINGS_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_KEYBOARD_SETTINGS, XfceKeyboardSettingsClass))
 
 GType
-xfce_keyboard_settings_get_type (void) G_GNUC_CONST;
+xfce_keyboard_settings_get_type (void);
 
 XfceKeyboardSettings *
 xfce_keyboard_settings_new (void) G_GNUC_MALLOC;

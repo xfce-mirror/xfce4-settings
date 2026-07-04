@@ -36,7 +36,7 @@ typedef struct _XfceMimeHelperChooserClass XfceMimeHelperChooserClass;
 typedef struct _XfceMimeHelperChooser XfceMimeHelperChooser;
 
 GType
-xfce_mime_helper_chooser_get_type (void) G_GNUC_CONST;
+xfce_mime_helper_chooser_get_type (void);
 
 GtkWidget *
 xfce_mime_helper_chooser_new (XfceMimeHelperCategory category) G_GNUC_MALLOC;

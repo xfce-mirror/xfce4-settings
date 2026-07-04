@@ -43,7 +43,7 @@ typedef struct _XfceMimeHelper XfceMimeHelper;
 #define XFCE_MIME_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_MIME_TYPE_HELPER, XfceMimeHelperClass))
 
 GType
-xfce_mime_helper_get_type (void) G_GNUC_CONST;
+xfce_mime_helper_get_type (void);
 XfceMimeHelperCategory
 xfce_mime_helper_get_category (const XfceMimeHelper *helper);
 const gchar *
@@ -72,7 +72,7 @@ typedef struct _XfceMimeHelperDatabaseClass XfceMimeHelperDatabaseClass;
 typedef struct _XfceMimeHelperDatabase XfceMimeHelperDatabase;
 
 GType
-xfce_mime_helper_database_get_type (void) G_GNUC_CONST;
+xfce_mime_helper_database_get_type (void);
 XfceMimeHelperDatabase *
 xfce_mime_helper_database_get (void);
 XfceMimeHelper *

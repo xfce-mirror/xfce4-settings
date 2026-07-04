@@ -37,7 +37,7 @@ typedef struct _XfceAccessibilityHelper XfceAccessibilityHelper;
 #define XFCE_ACCESSIBILITY_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_ACCESSIBILITY_HELPER, XfceAccessibilityHelperClass))
 
 GType
-xfce_accessibility_helper_get_type (void) G_GNUC_CONST;
+xfce_accessibility_helper_get_type (void);
 
 G_END_DECLS
 

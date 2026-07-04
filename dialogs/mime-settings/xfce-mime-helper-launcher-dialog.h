@@ -36,7 +36,7 @@ typedef struct _XfceMimeHelperLauncherDialog XfceMimeHelperLauncherDialog;
 #define XFCE_MIME_HELPER_LAUNCHER_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_MIME_TYPE_HELPER_LAUNCHER_DIALOG, XfceMimeHelperLauncherDialogClass))
 
 GType
-xfce_mime_helper_launcher_dialog_get_type (void) G_GNUC_CONST;
+xfce_mime_helper_launcher_dialog_get_type (void);
 
 GtkWidget *
 xfce_mime_helper_launcher_dialog_new (XfceMimeHelperCategory category) G_GNUC_MALLOC;

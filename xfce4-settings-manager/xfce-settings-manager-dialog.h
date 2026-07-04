@@ -35,7 +35,7 @@ typedef struct _XfceSettingsManagerDialog XfceSettingsManagerDialog;
 typedef struct _XfceSettingsManagerDialogClass XfceSettingsManagerDialogClass;
 
 GType
-xfce_settings_manager_dialog_get_type (void) G_GNUC_CONST;
+xfce_settings_manager_dialog_get_type (void);
 
 GtkWidget *
 xfce_settings_manager_dialog_new (void);

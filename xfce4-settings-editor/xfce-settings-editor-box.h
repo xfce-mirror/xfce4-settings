@@ -39,7 +39,7 @@ typedef struct _XfceSettingsEditorBox XfceSettingsEditorBox;
 typedef struct _XfceSettingsEditorBoxClass XfceSettingsEditorBoxClass;
 
 GType
-xfce_settings_editor_box_get_type (void) G_GNUC_CONST;
+xfce_settings_editor_box_get_type (void);
 
 GtkWidget *
 xfce_settings_editor_box_new (gint paned_pos);

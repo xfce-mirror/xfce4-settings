@@ -35,7 +35,7 @@ typedef struct _XfceKeyboardShortcutsHelper XfceKeyboardShortcutsHelper;
 #define XFCE_KEYBOARD_SHORTCUTS_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_KEYBOARD_SHORTCUTS_HELPER, XfceKeyboardShortcutsHelperClass))
 
 GType
-xfce_keyboard_shortcuts_helper_get_type (void) G_GNUC_CONST;
+xfce_keyboard_shortcuts_helper_get_type (void);
 
 G_END_DECLS;
 

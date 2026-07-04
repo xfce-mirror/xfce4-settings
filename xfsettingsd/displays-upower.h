@@ -36,7 +36,7 @@ typedef struct _XfceDisplaysUPower XfceDisplaysUPower;
 #define XFSD_LID_STR(b) (b ? "closed" : "open")
 
 GType
-xfce_displays_upower_get_type (void) G_GNUC_CONST;
+xfce_displays_upower_get_type (void);
 
 G_END_DECLS
 

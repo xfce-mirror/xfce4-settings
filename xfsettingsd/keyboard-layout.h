@@ -35,7 +35,7 @@ typedef struct _XfceKeyboardLayoutHelper XfceKeyboardLayoutHelper;
 #define XFCE_KEYBOARD_LAYOUT_HELPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_KEYBOARD_LAYOUT_HELPER, XfceKeyboardLayoutHelperClass))
 
 GType
-xfce_keyboard_layout_helper_get_type (void) G_GNUC_CONST;
+xfce_keyboard_layout_helper_get_type (void);
 
 G_END_DECLS
 

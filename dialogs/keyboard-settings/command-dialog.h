@@ -35,7 +35,7 @@ typedef struct _CommandDialog CommandDialog;
 #define COMMAND_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_COMMAND_DIALOG, CommandDialogClass))
 
 GType
-command_dialog_get_type (void) G_GNUC_CONST;
+command_dialog_get_type (void);
 
 GtkWidget *
 command_dialog_new (const gchar *shortcut,
