@@ -7,4 +7,4 @@ StartupNotify=false
 X-XFCE-Binaries=netscape;
 X-XFCE-Category=WebBrowser
 X-XFCE-Commands=%B -remote "openURL(about:blank,new-window)";%B;
-X-XFCE-CommandsWithParameter=%B -remote "openURL(%s,new-window)";%B "%s";
+X-XFCE-CommandsWithParameter=%B -remote openURL(%s,new-window);%B %s;
