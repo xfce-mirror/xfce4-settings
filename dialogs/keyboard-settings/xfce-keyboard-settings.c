@@ -1653,6 +1653,7 @@ xfce_keyboard_settings_layouts_combo_init (XfceKeyboardSettings *settings,
   if (xfconf_prop_value == NULL || *xfconf_prop_value == 0)
     {
       gtk_combo_box_set_active_iter (GTK_COMBO_BOX (view), &iter);
+      g_free (xfconf_prop_value);
       return;
     }
 
