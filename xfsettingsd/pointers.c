@@ -887,7 +887,6 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
         g_warning ("No monitor assigned to touchscreen; Mapping to entire display");
         final_rotation = touchscreen_rotation;
         final_reflection = g_strdup (touchscreen_reflection ? touchscreen_reflection : "");
-        g_free (assigned_monitor);
     }
     else
     {
