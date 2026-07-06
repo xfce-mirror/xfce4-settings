@@ -1107,12 +1107,18 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     prop = g_strdup_printf ("/%s/Properties/Coordinate_Transformation_Matrix", touchscreen_device_name);
     xfconf_channel_set_arrayv (helper->channel, prop, array);
     g_free (prop);
+    for (guint i = 0; i < array->len; i++)
+    {
+        GValue *v = g_ptr_array_index (array, i);
+        g_value_unset (v);
+        g_free (v);
+    }
+    g_ptr_array_free (array, FALSE);
 
     g_free (touchscreen_device_name);
     g_free (touchscreen_reflection);
     g_free (monitor_reflection);
     g_free (final_reflection);
-    g_ptr_array_free (array, TRUE);
     if (randr != NULL)
         xfce_randr_free (randr);
 }
