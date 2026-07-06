@@ -1091,6 +1091,7 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
 
     /* Apply to xfconf */
     GPtrArray *array = g_ptr_array_sized_new (9);
+    g_ptr_array_set_free_func (array, g_free);
     for (guint i = 0; i < 9; i++)
     {
         GValue *value = g_new0 (GValue, 1);
