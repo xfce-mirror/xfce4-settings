@@ -950,6 +950,12 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
                     g_warning ("Could not apply touchscreen orientation: Malformed resolution entry (missing 'x').");
                     g_free (active_profile);
                     g_free (connector_name);
+                    g_free (resolution);
+                    g_free (touchscreen_device_name);
+                    g_free (touchscreen_reflection);
+                    g_free (monitor_reflection);
+                    g_free (final_reflection);
+                    xfce_randr_free (randr);
                     return;
                 }
                 gchar **parts = g_strsplit (resolution, "x", 2);
