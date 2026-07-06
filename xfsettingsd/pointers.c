@@ -830,6 +830,12 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
 {
     GdkDisplay *gdk_display = gdk_display_get_default ();
     XfceRandr *randr = xfce_randr_new (gdk_display, NULL);
+    if (randr == NULL)
+    {
+        g_warning ("Could not update touchscreen orientation: xrandr is NULL.");
+        return;
+    }
+
     gchar *touchscreen_device_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
 
     guint touchscreen_rotation = 0;
@@ -1108,8 +1114,7 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     g_free (monitor_reflection);
     g_free (final_reflection);
     g_ptr_array_free (array, TRUE);
-    if (randr != NULL)
-        xfce_randr_free (randr);
+    xfce_randr_free (randr);
 }
 
 
