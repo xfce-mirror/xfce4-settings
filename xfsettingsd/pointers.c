@@ -830,6 +830,12 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
 {
     GdkDisplay *gdk_display = gdk_display_get_default ();
     XfceRandr *randr = xfce_randr_new (gdk_display, NULL);
+    if (randr == NULL)
+    {
+        g_warning ("Could not update touchscreen orientation: xrandr is NULL.");
+        return;
+    }
+
     gchar *touchscreen_device_name = xfce_pointers_helper_device_xfconf_name (device_info->name);
 
     guint touchscreen_rotation = 0;
@@ -881,7 +887,6 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
         g_warning ("No monitor assigned to touchscreen; Mapping to entire display");
         final_rotation = touchscreen_rotation;
         final_reflection = g_strdup (touchscreen_reflection ? touchscreen_reflection : "");
-        g_free (assigned_monitor);
     }
     else
     {
@@ -950,6 +955,12 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
                     g_warning ("Could not apply touchscreen orientation: Malformed resolution entry (missing 'x').");
                     g_free (active_profile);
                     g_free (connector_name);
+                    g_free (resolution);
+                    g_free (touchscreen_device_name);
+                    g_free (touchscreen_reflection);
+                    g_free (monitor_reflection);
+                    g_free (final_reflection);
+                    xfce_randr_free (randr);
                     return;
                 }
                 gchar **parts = g_strsplit (resolution, "x", 2);
@@ -1096,12 +1107,18 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     prop = g_strdup_printf ("/%s/Properties/Coordinate_Transformation_Matrix", touchscreen_device_name);
     xfconf_channel_set_arrayv (helper->channel, prop, array);
     g_free (prop);
+    for (guint i = 0; i < array->len; i++)
+    {
+        GValue *v = g_ptr_array_index (array, i);
+        g_value_unset (v);
+        g_free (v);
+    }
+    g_ptr_array_free (array, FALSE);
 
     g_free (touchscreen_device_name);
     g_free (touchscreen_reflection);
     g_free (monitor_reflection);
     g_free (final_reflection);
-    g_ptr_array_free (array, TRUE);
     if (randr != NULL)
         xfce_randr_free (randr);
 }
