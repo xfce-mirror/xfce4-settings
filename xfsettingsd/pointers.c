@@ -886,7 +886,7 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
     {
         g_warning ("No monitor assigned to touchscreen; Mapping to entire display");
         final_rotation = touchscreen_rotation;
-        final_reflection = g_strdup (touchscreen_reflection ? touchscreen_reflection : "");
+        final_reflection = g_strdup (touchscreen_reflection);
     }
     else
     {
@@ -897,7 +897,7 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
         {
             g_warning ("Could not find connector by saved EDID");
             final_rotation = touchscreen_rotation;
-            final_reflection = g_strdup (touchscreen_reflection ? touchscreen_reflection : "");
+            final_reflection = g_strdup (touchscreen_reflection);
         }
         else
         {
