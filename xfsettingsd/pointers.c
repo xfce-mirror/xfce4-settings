@@ -1113,7 +1113,7 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
         g_value_unset (v);
         g_free (v);
     }
-    g_ptr_array_free (array, FALSE);
+    g_ptr_array_free (array, TRUE);
 
     g_free (touchscreen_device_name);
     g_free (touchscreen_reflection);
