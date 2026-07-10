@@ -37,6 +37,7 @@ static const gchar *sync_properties[] = {
     "/Gtk/CursorThemeSize",
     "/Gtk/DecorationLayout",
     "/Gtk/DialogsUseHeader",
+    "/Gtk/EnablePrimaryPaste",
     "/Gtk/FontName",
     "/Gtk/IconSizes",
     "/Gtk/KeyThemeName",
