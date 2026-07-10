@@ -2665,6 +2665,12 @@ main (gint argc,
             g_signal_connect (G_OBJECT (object), "format-value",
                               G_CALLBACK (mouse_settings_format_value_px), NULL);
 
+            object = gtk_builder_get_object (builder, "middle-button-paste");
+            xfconf_g_property_bind (xsettings_channel, "/Gtk/EnablePrimaryPaste",
+                                    G_TYPE_BOOLEAN, G_OBJECT (object), "active");
+            gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object),
+                                          xfconf_channel_get_bool (xsettings_channel, "/Gtk/EnablePrimaryPaste", TRUE));
+
 #ifdef DEVICE_HOTPLUGGING
             /* create the event filter for device monitoring */
             mouse_settings_create_event_filter (builder);
