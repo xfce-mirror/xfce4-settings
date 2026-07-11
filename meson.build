@@ -25,7 +25,7 @@ dependency_versions = {
   'xfconf': '>= 4.19.3',
 
   'fontconfig': '>= 2.6.0',
-  'inputproto': '>= 1.4.0',
+  'inputproto': '>= 2.0.0',
   'libx11': '>= 1.6.7',
   'libxext': '>= 1.0.0',
   'libxi': '>= 1.2.0',
