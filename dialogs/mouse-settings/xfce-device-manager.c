@@ -18,7 +18,15 @@
 
 #include <gio/gio.h>
 
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
+#endif
+
 #include "xfce-device-manager.h"
+
+#ifdef ENABLE_X11
+#include "xfce-device-manager-x11.h"
+#endif
 
 #define GET_PRIV(manager) ((XfceDeviceManagerPrivate *) xfce_device_manager_get_instance_private (XFCE_DEVICE_MANAGER (manager)))
 
@@ -206,8 +214,13 @@ xfce_device_manager_new (GdkDisplay *display,
                          XfconfChannel *channel,
                          GError **error)
 {
-    /* The windowing-system backends this dispatches to are added in later
-     * phases. */
+#ifdef ENABLE_X11
+    if (GDK_IS_X11_DISPLAY (display))
+    {
+        return xfce_device_manager_x11_new (display, channel, error);
+    }
+#endif
+
     g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
                          "No supported windowing system available");
     return NULL;

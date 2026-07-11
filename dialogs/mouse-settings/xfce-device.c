@@ -16,8 +16,9 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "libinput-properties.h"
 #include "xfce-device.h"
+
+#include "common/libinput-properties.h"
 
 #include <string.h>
 
