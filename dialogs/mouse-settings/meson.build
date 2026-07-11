@@ -3,6 +3,10 @@ if enable_x11
     'xfce4-mouse-settings',
     [
       'main.c',
+      'xfce-device.c',
+      'xfce-device.h',
+      'xfce-device-manager.c',
+      'xfce-device-manager.h',
       xfce_revision_h,
       xfce4_settings_resources_c,
     ],
