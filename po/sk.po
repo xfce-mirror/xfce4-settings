@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Dušan Kazik <prescott66@gmail.com>, 2015-2021
-# Slavko <linux@slavino.sk>, 2015,2018,2025
+# Slavko <linux@slavino.sk>, 2015,2018,2025-2026
 # 7dcd6f74323fe8d9c477949ff8fcbb1c_c427b63 <3fcd202e3dfab15fda15b8e88e54d449_7173>, 2011-2012
 msgid ""
 msgstr ""
@@ -12,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2026-06-08 00:54+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
-"Last-Translator: Slavko <linux@slavino.sk>, 2015,2018,2025\n"
+"Last-Translator: Slavko <linux@slavino.sk>, 2015,2018,2025-2026\n"
 "Language-Team: Slovak (http://app.transifex.com/xfce/xfce4-settings/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,7 +99,7 @@ msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state if they are pressed twice in a row, until "
 "pressed again once"
-msgstr ""
+msgstr "Ak vyberiete túto voľbu, klávesy modifikátorov (Ctrl, Alt a Shift) zostanú v stlačenom stave keď ich stlačíte dva krát po sebe, kým ich znova nestlačíte"
 
 #: common/resources/accessibility-dialog.glade:392
 msgid "Disable sticky keys if two keys are _pressed"
@@ -465,7 +465,7 @@ msgstr "Zvoľte, či budú kliknutia myšou a iné užívateľské vstupy ozvuč
 
 #: common/resources/appearance-dialog.glade:878
 msgid "Sound _theme:"
-msgstr ""
+msgstr "Zvuková _téma"
 
 #: common/resources/appearance-dialog.glade:902
 msgid "Event sounds"
@@ -1279,7 +1279,7 @@ msgstr "Nepodarilo sa zobraziť Nastavenia Xfwm4"
 msgid ""
 "No sound themes found. Install themes in /usr/share/sounds or "
 "~/.local/share/sounds"
-msgstr ""
+msgstr "Nebola nájdená téma zvuku. Nainštalujte témy do /usr/share/sounds alebo ~/.local/share/sounds"
 
 #. If the theme has no cache, mention this in the tooltip
 #: dialogs/appearance-settings/main.c:756
@@ -1694,11 +1694,11 @@ msgstr "Zdajte príkaz, ktorý má byť spustený touto skratkou"
 #. We are editing an existing shortcut
 #: dialogs/keyboard-settings/command-dialog.c:147
 msgid "Shortcut:"
-msgstr "Skratka:"
+msgstr "Klávesová skratka:"
 
 #: dialogs/keyboard-settings/command-dialog.c:172
 msgid "Comm_and:"
-msgstr "_Príkaz:"
+msgstr "Prík_az:"
 
 #: dialogs/keyboard-settings/command-dialog.c:197
 msgid "Use _startup notification"
@@ -1728,31 +1728,31 @@ msgstr "Spustiteľné súbory"
 #: dialogs/mime-settings/xfce-mime-chooser.c:398
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:446
 msgid "Perl Scripts"
-msgstr "Skripty jazyka Perl"
+msgstr "Skripty Perl"
 
 #: dialogs/keyboard-settings/command-dialog.c:297
 #: dialogs/mime-settings/xfce-mime-chooser.c:404
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:452
 msgid "Python Scripts"
-msgstr "Skripty jazyka Python"
+msgstr "Skripty Python"
 
 #: dialogs/keyboard-settings/command-dialog.c:303
 #: dialogs/mime-settings/xfce-mime-chooser.c:410
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:458
 msgid "Ruby Scripts"
-msgstr "Skripty jazyka Ruby"
+msgstr "Skripty Ruby"
 
 #: dialogs/keyboard-settings/command-dialog.c:309
 #: dialogs/mime-settings/xfce-mime-chooser.c:416
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:464
 msgid "Shell Scripts"
-msgstr "Shellové skripty"
+msgstr "Skripty shellu"
 
 #: dialogs/keyboard-settings/main.c:53
 msgid ""
 "Switch to the shortcuts tab, and optionally open the add shortcut dialog if "
 "a command is provided"
-msgstr ""
+msgstr "Prepnúť na kartu klávesových skratiek a prípadne otvoriť dialóg pridania skratky, ak je nastavený príkaz"
 
 #: dialogs/keyboard-settings/xfce-keyboard-settings.c:489
 msgid "Command"
@@ -1764,7 +1764,7 @@ msgstr "Skratka"
 
 #: dialogs/keyboard-settings/xfce-keyboard-settings.c:594
 msgid "Layout"
-msgstr "Rozvrhnutie"
+msgstr "Rozloženie"
 
 #: dialogs/keyboard-settings/xfce-keyboard-settings.c:595
 msgid "Variant"
@@ -1802,7 +1802,7 @@ msgstr "Úprava nastavení klávesnice a klávesových skratiek"
 
 #: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
 msgid "numlock;keyboard;layout;shortcuts;"
-msgstr "numlock;klávesnica;rozloženie;klávesové;skratky;"
+msgstr "numlock;keyboard;layout;shortcuts;"
 
 #: dialogs/mime-settings/xfce-mime-chooser.c:120
 msgid "Select Application"
@@ -1869,11 +1869,11 @@ msgstr "Pridanie novej aplikácie \"%s\" zlyhalo"
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:132
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:139
 msgid "Press left mouse button to change the selected application."
-msgstr "Stlačte ľavé tlačidlo myši pre zmenu vybranej aplikácie."
+msgstr "Stlačte ľavé tlačidlo myši na zmenu vybranej aplikácie."
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:138
 msgid "Application Chooser Button"
-msgstr "Tlačidlo pre výber aplikácie"
+msgstr "Tlačidlo na výber aplikácie"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:325
 msgid "No application selected"
@@ -1881,35 +1881,35 @@ msgstr "Nie je vybraný program"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:340
 msgid "Failed to set default Web Browser"
-msgstr "Nepodarilo sa nastaviť predvolený internetový prehliadač"
+msgstr "Zlyhalo nastavenie predvoleného internetového prehliadača"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:341
 msgid "Failed to set default Mail Reader"
-msgstr "Nepodarilo sa nastaviť predvolený e-mailový klient"
+msgstr "Zlyhalo nastavenie predvoleného e-mailového klienta"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:342
 msgid "Failed to set default File Manager"
-msgstr "Nepodarilo sa nastaviť predvolený správca súborov"
+msgstr "Zlyhalo nastavenie predvoleného správcu súborov"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:343
 msgid "Failed to set default Terminal Emulator"
-msgstr "Nepodarilo sa nastaviť predvolený emulátor terminálu"
+msgstr "Zlyhalo nastavenie predvoleného emulátora terminálu"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:344
 msgid "Failed to set default Text Editor"
-msgstr ""
+msgstr "Zlyhalo nastavenie predvoleného textového editora"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:345
 msgid "Failed to set default Image Viewer"
-msgstr ""
+msgstr "Zlyhalo nastavenie predvoleného zobrazovača obrázkov"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:346
 msgid "Failed to set default Audio Player"
-msgstr ""
+msgstr "Zlyhalo nastavenie predvoleného prehrávača audia"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:347
 msgid "Failed to set default Video Player"
-msgstr ""
+msgstr "Zlyhalo nastavenie predvoleného prehrávača videa"
 
 #. allocate the chooser
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:417
@@ -1918,83 +1918,83 @@ msgstr "Vyberte aplikáciu"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:528
 msgid "Choose a custom Web Browser"
-msgstr "Vyberte si vlastný internetový prehliadač"
+msgstr "Vyberte vlastný internetový prehliadač"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:529
 msgid "Choose a custom Mail Reader"
-msgstr "Vyberte si vlastný e-mailový klient"
+msgstr "Vyberte vlastný e-mailový klient"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:530
 msgid "Choose a custom File Manager"
-msgstr "Vyberte si vlastného správcu súborov"
+msgstr "Vyberte vlastného správcu súborov"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:531
 msgid "Choose a custom Terminal Emulator"
-msgstr "Vyberte si vlastný emulátor terminálu"
+msgstr "Vyberte vlastný emulátor terminálu"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:532
 msgid "Choose a custom Text Editor"
-msgstr ""
+msgstr "Vyberte vlastný textový editor"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:533
 msgid "Choose a custom Image Viewer"
-msgstr ""
+msgstr "Vyberte vlastný zobrazovač obrázkov"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:534
 msgid "Choose a custom Audio Player"
-msgstr ""
+msgstr "Vyberte vlastný prehrávač audia"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:535
 msgid "Choose a custom Video Player"
-msgstr ""
+msgstr "Vyberte vlastný prehrávač videa"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:539
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
-msgstr "Spresnite aplikáciu, ktorú chcete použiť\nako predvolený internetový prehliadač v Xfce:"
+msgstr "Zadajte aplikáciu, ktorú chcete použiť\nako predvolený internetový prehliadač Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:540
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
-msgstr "Spresnite aplikáciu, ktorú chcete použiť\nako predvolený e-mailový klient v Xfce:"
+msgstr "Zadajte aplikáciu, ktorú chcete použiť\nako predvolený e-mailový klient Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:541
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
-msgstr "Spresnite aplikáciu, ktorú chcete použiť\nako predvoleného správcu súborov v Xfce:"
+msgstr "Zadajte aplikáciu, ktorú chcete použiť\nako predvoleného správcu súborov Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:542
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
-msgstr "Spresnite aplikáciu, ktorú chcete použiť\nako predvolený emulátor terminálu v Xfce:"
+msgstr "Zadajte aplikáciu, ktorú chcete použiť\nako predvolený emulátor terminálu Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:543
 msgid ""
 "Specify the application you want to use\n"
 "as default Text Editor for Xfce:"
-msgstr ""
+msgstr "Zadajte aplikáciu, ktorú chcete použiť\nako predvolený textový editor Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:544
 msgid ""
 "Specify the application you want to use\n"
 "as default Image Viewer for Xfce:"
-msgstr ""
+msgstr "Zadajte aplikáciu, ktorú chcete použiť\nako predvolený zobrazovač obrázkov Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:545
 msgid ""
 "Specify the application you want to use\n"
 "as default Audio Player for Xfce:"
-msgstr ""
+msgstr "Zadajte aplikáciu, ktorú chcete použiť\nako predvolený prehrávač audia Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:546
 msgid ""
 "Specify the application you want to use\n"
 "as default Video Player for Xfce:"
-msgstr ""
+msgstr "Zadajte aplikáciu, ktorú chcete použiť\nako predvolený prehrávač videa Xfce:"
 
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:610
 msgid "Browse the file system to choose a custom command."
@@ -2016,81 +2016,81 @@ msgstr "Vyberte si uprednostňovanú aplikáciu"
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
-msgstr "Vyberte si prosím svoj uprednostňovaný\ninternetový prehliadač a kliknite na tlačidlo OK."
+msgstr "Prosím, vyberte si teraz uprednostňovaný\ninternetový prehliadač a kliknite na tlačidlo OK."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:244
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
-msgstr "Vyberte si prosím svoj uprednostňovaný\ne-mailový klient a kliknite na tlačidlo OK."
+msgstr "Prosím, vyberte si teraz uprednostňovaný \ne-mailový klient a kliknite na tlačidlo OK."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:246
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
-msgstr "Vyberte si prosím svoj uprednostňovaný\nsprávca súborov a kliknite na tlačidlo OK."
+msgstr "Prosím, vyberte si teraz uprednostňovaný \nsprávca súborov a kliknite na tlačidlo OK."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:248
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
-msgstr "Vyberte si prosím svoj uprednostňovaný\nemulátor terminálu a kliknite na tlačidlo OK."
+msgstr "Prosím, vyberte si teraz uprednostňovaný \nemulátor terminálu a kliknite na tlačidlo OK."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:250
 msgid ""
 "Please choose your preferred Text\n"
 "Editor now and click OK to proceed."
-msgstr ""
+msgstr "Prosím, vyberte si teraz uprednostňovaný textový\neditor a kliknite na OK na potvrdenie."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:252
 msgid ""
 "Please choose your preferred Image\n"
 "Viewer now and click OK to proceed."
-msgstr ""
+msgstr "Prosím, vyberte si teraz uprednostňovaný zobrazovač\nobrázkov a kliknite na OK na potvrdenie."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:254
 msgid ""
 "Please choose your preferred Audio\n"
 "Player now and click OK to proceed."
-msgstr ""
+msgstr "Prosím, vyberte si teraz uprednostňovaný prehrávač\naudia a kliknite na OK na potvrdenie."
 
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:256
 msgid ""
 "Please choose your preferred Video\n"
 "Player now and click OK to proceed."
-msgstr ""
+msgstr "Prosím, vyberte si teraz uprednostňovaný prehrávač\nvidea a kliknite na OK na potvrdenie."
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:25
 msgid "Failed to execute default Web Browser"
-msgstr "Nepodarilo sa spustiť predvolený internetový prehliadač"
+msgstr "Zlyhalo spustenie predvoleného internetového prehliadača"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:26
 msgid "Failed to execute default Mail Reader"
-msgstr "Nepodarilo sa spustiť predvolený e-mailový klient"
+msgstr "Zlyhalo spustenie predvoleného e-mailového klienta"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:27
 msgid "Failed to execute default File Manager"
-msgstr "Nepodarilo sa spustiť predvolený správca súborov"
+msgstr "Zlyhalo spustenie predvoleného správcu súborov"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:28
 msgid "Failed to execute default Terminal Emulator"
-msgstr "Nepodarilo sa spustiť predvolený emulátor terminálu"
+msgstr "Zlyhalo spustenie predvoleného emulátora terminálu"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:29
 msgid "Failed to execute default Text Editor"
-msgstr ""
+msgstr "Zlyhalo spustenie predvoleného textového editora"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:30
 msgid "Failed to execute default Image Viewer"
-msgstr ""
+msgstr "Zlyhalo spustenie predvoleného zobrazovača obrázkov"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:31
 msgid "Failed to execute default Audio Player"
-msgstr ""
+msgstr "Zlyhalo spustenie predvoleného prehrávača audia"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:32
 msgid "Failed to execute default Video Player"
-msgstr ""
+msgstr "Zlyhalo spustenie predvoleného prehrávača videa"
 
 #. Enable permanently dismissing this error.
 #: dialogs/mime-settings/xfce-mime-helper-main.c:74
@@ -2129,7 +2129,7 @@ msgid ""
 "  ImageViewer      - The preferred Image Viewer.\n"
 "  AudioPlayer      - The preferred Audio Player.\n"
 "  VideoPlayer      - The preferred Video Player.\n"
-msgstr ""
+msgstr "V príkaze --launch a --query sú podporované tieto typy:\n\n  WebBrowser       - uprednostňovaný internetový prehliadač.\n  MailReader       - uprednostňovaný e-mailový klient.\n  FileManager      - uprednostňovaný správca súborov\n  TerminalEmulator - uprednostňovaný emulátor terminálu.\n  TextEditor       - uprednostňovaný Text Editor.\n  ImageViewer      - uprednostňovaný Image Viewer.\n  AudioPlayer      - uprednostňovaný Audio Player.\n  VideoPlayer      - uprednostňovaný Video Player.\n"
 
 #: dialogs/mime-settings/xfce-mime-helper-main.c:238
 #, c-format
@@ -2223,40 +2223,40 @@ msgstr "Predvolený emulátor terminálu bude použitý na spúšťanie príkazo
 
 #: dialogs/mime-settings/xfce-mime-window.c:331
 msgid "Text Editor"
-msgstr ""
+msgstr "Textový editor"
 
 #: dialogs/mime-settings/xfce-mime-window.c:339
 msgid "The default Text Editor will be used to open and edit text files."
-msgstr ""
+msgstr "Predvolený textový editor bude použitý na otváranie textových súborov."
 
 #. Media
 #: dialogs/mime-settings/xfce-mime-window.c:354
 msgid "_Media"
-msgstr ""
+msgstr "_Média"
 
 #: dialogs/mime-settings/xfce-mime-window.c:367
 msgid "Image Viewer"
-msgstr ""
+msgstr "Zobrazovač obrázkov"
 
 #: dialogs/mime-settings/xfce-mime-window.c:375
 msgid "The default Image Viewer will be used to display image files."
-msgstr ""
+msgstr "Predvolený zobrazovač obrázkov bude použitý na zobrazenie súborov obrázkov."
 
 #: dialogs/mime-settings/xfce-mime-window.c:393
 msgid "Audio Player"
-msgstr ""
+msgstr "Prehrávač audia"
 
 #: dialogs/mime-settings/xfce-mime-window.c:401
 msgid "The default Audio Player will be used to play audio files."
-msgstr ""
+msgstr "Predvolený prehrávač audia bude použitý na prehranie audio súborov."
 
 #: dialogs/mime-settings/xfce-mime-window.c:419
 msgid "Video Player"
-msgstr ""
+msgstr "Prehrávač videa"
 
 #: dialogs/mime-settings/xfce-mime-window.c:427
 msgid "The default Video Player will be used to play video files."
-msgstr ""
+msgstr "Predvolený prehrávač videa bude použitý na prehranie video súborov."
 
 #. Mimes
 #: dialogs/mime-settings/xfce-mime-window.c:442
@@ -2930,7 +2930,7 @@ msgstr "Nahradiť spusteného démona služby xsettings (ak existuje)"
 
 #: xfsettingsd/main.c:98
 msgid "Allow xfsettingsd to start even if another instance is running"
-msgstr ""
+msgstr "Povoliť spustenie xfsettingsd, i keď je spustená iná inštancia"
 
 #. value in xfconf isn't a string, so make a default one
 #: xfsettingsd/workspaces.c:313 xfsettingsd/workspaces.c:370
