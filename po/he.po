@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-06-08 00:54+0200\n"
+"POT-Creation-Date: 2026-07-25 01:02+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2020-2024\n"
 "Language-Team: Hebrew (http://app.transifex.com/xfce/xfce4-settings/language/he/)\n"
@@ -40,7 +40,7 @@ msgstr "נגישות"
 #: common/resources/minimal-display-dialog.glade:368
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
-#: common/resources/mouse-dialog.glade:195
+#: common/resources/mouse-dialog.glade:231
 #: dialogs/display-settings/main.c:3421
 #: dialogs/mime-settings/xfce-mime-window.c:184
 #: xfce4-settings-editor/main.c:185
@@ -54,7 +54,7 @@ msgstr "_סגור"
 #: common/resources/color-dialog.glade:80
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
-#: common/resources/mouse-dialog.glade:179
+#: common/resources/mouse-dialog.glade:246
 #: dialogs/mime-settings/xfce-mime-window.c:187
 #: xfce4-settings-editor/main.c:184
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:211
@@ -263,10 +263,13 @@ msgstr "מצא סמן"
 msgid "_Mouse"
 msgstr "עכ_בר"
 
+#. No assignment option
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
+#: common/resources/mouse-dialog.glade:126
+#: common/resources/mouse-dialog.glade:152
 #: dialogs/appearance-settings/main.c:1739 dialogs/display-settings/main.c:82
-#: dialogs/display-settings/main.c:90
+#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:951
 msgid "None"
 msgstr "אף אחד"
 
@@ -307,7 +310,7 @@ msgid "2x"
 msgstr "2x"
 
 #: common/resources/appearance-dialog.glade:107
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:4
 msgid "Appearance"
 msgstr "מראה"
 
@@ -649,7 +652,7 @@ msgid "Configure..."
 msgstr "הגדר..."
 
 #: common/resources/display-dialog.glade:255
-#: dialogs/display-settings/xfce-display-settings.desktop.in:4
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:4
 msgid "Display"
 msgstr "תצוגה"
 
@@ -813,7 +816,7 @@ msgid "Keyboard layout selection"
 msgstr "בחירת סידור מקלדת"
 
 #: common/resources/keyboard-dialog.glade:162
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:4
 msgid "Keyboard"
 msgstr "מקלדת"
 
@@ -822,8 +825,9 @@ msgid "Restore num l_ock state on startup"
 msgstr "שחזר מצב num l_ock בהפעלה"
 
 #: common/resources/keyboard-dialog.glade:267
-#: common/resources/mouse-dialog.glade:726
-#: common/resources/mouse-dialog.glade:953
+#: common/resources/mouse-dialog.glade:788
+#: common/resources/mouse-dialog.glade:1031
+#: common/resources/mouse-dialog.glade:1223
 msgid "General"
 msgstr "כללי"
 
@@ -959,227 +963,287 @@ msgstr "גלילה בשתי אצבעות"
 msgid "Circular scrolling"
 msgstr "גלילה מעגלית"
 
-#: common/resources/mouse-dialog.glade:126
+#: common/resources/mouse-dialog.glade:130 dialogs/display-settings/main.c:91
+msgid "Horizontal"
+msgstr "אופקי"
+
+#: common/resources/mouse-dialog.glade:134 dialogs/display-settings/main.c:92
+msgid "Vertical"
+msgstr "אנכי"
+
+#: common/resources/mouse-dialog.glade:138
+msgid "Both"
+msgstr "שניהם"
+
+#: common/resources/mouse-dialog.glade:156 dialogs/display-settings/main.c:83
+msgid "Left"
+msgstr "שמאל"
+
+#: common/resources/mouse-dialog.glade:160 dialogs/display-settings/main.c:84
+msgid "Inverted"
+msgstr "מהופך"
+
+#: common/resources/mouse-dialog.glade:164 dialogs/display-settings/main.c:85
+msgid "Right"
+msgstr "ימין"
+
+#: common/resources/mouse-dialog.glade:178
 msgid "Pen (absolute)"
 msgstr "עט (מוחלט)"
 
-#: common/resources/mouse-dialog.glade:130
+#: common/resources/mouse-dialog.glade:182
 msgid "Mouse (relative)"
 msgstr "עכבר (יחסי)"
 
-#: common/resources/mouse-dialog.glade:144
+#: common/resources/mouse-dialog.glade:196
 msgid "None (right-handed)"
 msgstr "אף אחד (ימניים)"
 
-#: common/resources/mouse-dialog.glade:148
+#: common/resources/mouse-dialog.glade:200
 msgid "Half (left-handed)"
 msgstr "חצי (שמאליים)"
 
-#: common/resources/mouse-dialog.glade:152
+#: common/resources/mouse-dialog.glade:204
 msgid "Clockwise"
 msgstr "כיוון שעון"
 
-#: common/resources/mouse-dialog.glade:156
+#: common/resources/mouse-dialog.glade:208
 msgid "Counterclockwise"
 msgstr "נגד כיוון שעון"
 
-#: common/resources/mouse-dialog.glade:162
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
+#: common/resources/mouse-dialog.glade:214
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "עכבר ולוח מגע"
 
-#: common/resources/mouse-dialog.glade:237
+#: common/resources/mouse-dialog.glade:289
 msgid "De_vice:"
 msgstr "הת_קן:"
 
-#: common/resources/mouse-dialog.glade:314
+#: common/resources/mouse-dialog.glade:366
 msgid "Le_ft-handed"
 msgstr "_שמאליים"
 
-#: common/resources/mouse-dialog.glade:331
+#: common/resources/mouse-dialog.glade:383
 msgid "Ri_ght-handed"
 msgstr "י_מניים"
 
-#: common/resources/mouse-dialog.glade:355
+#: common/resources/mouse-dialog.glade:407
 msgid "Reverse scroll d_irection"
 msgstr "ה_פוך כיוון גלילה"
 
-#: common/resources/mouse-dialog.glade:359
+#: common/resources/mouse-dialog.glade:411
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "כאשר נבחרת, גלגל הגלילה יעבוד בכיוון ההפוך"
 
-#: common/resources/mouse-dialog.glade:372
+#: common/resources/mouse-dialog.glade:424
 msgid "Allow high _resolution scrolling (experimental)"
 msgstr "הרשה גלילה ב_רזולוציה גבוהה (נסיוני)"
 
-#: common/resources/mouse-dialog.glade:376
+#: common/resources/mouse-dialog.glade:428
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr "נתמך רק בעכברים מסוימים (בעיקר לוג'יטק) ודורש תמיכת דרייבר. בהתקנים נתמכים הופך את הגלילה ליותר מדויקת."
 
-#: common/resources/mouse-dialog.glade:395
+#: common/resources/mouse-dialog.glade:447
 msgid "Buttons"
 msgstr "כפתורים"
 
-#: common/resources/mouse-dialog.glade:428
+#: common/resources/mouse-dialog.glade:481
 msgid "_Reset to Defaults"
 msgstr "אפס ל_ברירות מחדל"
 
-#: common/resources/mouse-dialog.glade:432
+#: common/resources/mouse-dialog.glade:485
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "קבע את ההאצה והרגישות של ההתקן הנבחר אל ערכי ברירת המחדל"
 
-#: common/resources/mouse-dialog.glade:448
+#: common/resources/mouse-dialog.glade:501
 msgid "Sensitivit_y:"
 msgstr "_רגישות:"
 
-#: common/resources/mouse-dialog.glade:461
+#: common/resources/mouse-dialog.glade:514
 msgid "Acceleratio_n:"
 msgstr "ה_אצה:"
 
-#: common/resources/mouse-dialog.glade:473
+#: common/resources/mouse-dialog.glade:526
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "היחס בו מהירות הסמן תגדל כאשר העכבר מוזז"
 
-#: common/resources/mouse-dialog.glade:488
+#: common/resources/mouse-dialog.glade:541
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "המספר של פיקסלים שהסמן חייב לעבור בזמן קצר בטרם זה מתחיל להאיץ"
 
-#: common/resources/mouse-dialog.glade:502
+#: common/resources/mouse-dialog.glade:555
 msgid "Adaptive pointer acceleration"
 msgstr "תאוצת סמן אדפטיבית"
 
-#: common/resources/mouse-dialog.glade:505
+#: common/resources/mouse-dialog.glade:559
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr "מחליף בין פרופיל תאוצה אדפטיבי ושטוח. אדפטיבי לוקח את המהירות הנוכחית של ההתקן בחשבון בעת קביעת תאוצה. פרופיל תאוצה מותאם אישית לא נתמך דרך הגדרות xfce4 ."
 
-#: common/resources/mouse-dialog.glade:525
+#: common/resources/mouse-dialog.glade:590
 msgid "Pointer Speed"
 msgstr "מהירות סמן"
 
-#: common/resources/mouse-dialog.glade:544
+#: common/resources/mouse-dialog.glade:609
 msgid "B_uttons and Feedback"
 msgstr "כ_פתורים ומשוב"
 
-#: common/resources/mouse-dialog.glade:578
-#: common/resources/mouse-dialog.glade:595
+#: common/resources/mouse-dialog.glade:643
+#: common/resources/mouse-dialog.glade:660
 msgid "Disable touchpad _while typing"
 msgstr "נטרל לוח מ_גע במהלך הקלדה"
 
-#: common/resources/mouse-dialog.glade:582
-#: common/resources/mouse-dialog.glade:599
+#: common/resources/mouse-dialog.glade:647
+#: common/resources/mouse-dialog.glade:663
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "כאשר נבחרת, בלוח מגע ינוטרל כאשר המקלדת מצויה בשימוש"
 
-#: common/resources/mouse-dialog.glade:624
+#: common/resources/mouse-dialog.glade:688
 msgid "Duratio_n:"
 msgstr "מ_שך:"
 
-#: common/resources/mouse-dialog.glade:659
+#: common/resources/mouse-dialog.glade:723
 msgid "Tap touchpad to clic_k"
 msgstr "הק_ש על לוח מגע כדי להקליק"
 
-#: common/resources/mouse-dialog.glade:682
+#: common/resources/mouse-dialog.glade:745
 msgid "Click m_ethod:"
 msgstr "_שיטת הקלקה:"
 
-#: common/resources/mouse-dialog.glade:767
+#: common/resources/mouse-dialog.glade:829
 msgid "Scrolling _mode:"
 msgstr "מ_צב גלילה:"
 
-#: common/resources/mouse-dialog.glade:805
+#: common/resources/mouse-dialog.glade:867
 msgid "Enable hori_zontal scrolling"
 msgstr "אפשר גלילה אופ_קית"
 
-#: common/resources/mouse-dialog.glade:827
+#: common/resources/mouse-dialog.glade:889
 msgid "Scrolling"
 msgstr "גלילה"
 
-#: common/resources/mouse-dialog.glade:850
+#: common/resources/mouse-dialog.glade:912
 msgid "T_ouchpad"
 msgstr "_לוח מגע"
 
-#: common/resources/mouse-dialog.glade:888
+#: common/resources/mouse-dialog.glade:951
 msgid "Trac_king mode:"
 msgstr "מצב _עקיבה:"
 
-#: common/resources/mouse-dialog.glade:901
+#: common/resources/mouse-dialog.glade:964
 msgid "_Rotation:"
 msgstr "ה_טיה:"
 
-#: common/resources/mouse-dialog.glade:976
+#: common/resources/mouse-dialog.glade:1054
 msgid "Tab_let"
 msgstr "_טאבלט"
 
-#: common/resources/mouse-dialog.glade:997
+#: common/resources/mouse-dialog.glade:1092
+msgid ""
+"Touchscreen devices may be mapped incorrectly in multimonitor setups. These "
+"settings can be used to manually adjust the mapping."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1117
+msgid "Assign to monitor:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1130
+msgid "Relative rotation:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1162
+msgid "Relative reflection:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1249
+msgid "Touchscreen"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1269
 msgid "_Devices"
 msgstr "_התקנים"
 
-#: common/resources/mouse-dialog.glade:1034
+#: common/resources/mouse-dialog.glade:1306
 msgid "Th_reshold:"
 msgstr "ס_ף:"
 
-#: common/resources/mouse-dialog.glade:1048
+#: common/resources/mouse-dialog.glade:1320
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "המספר של פיקסלים שהסמן חייב לעבור בטרם פעולת גרירה מתחילה"
 
-#: common/resources/mouse-dialog.glade:1067
+#: common/resources/mouse-dialog.glade:1339
 msgid "Drag and Drop"
 msgstr "גרירה ושחרור"
 
-#: common/resources/mouse-dialog.glade:1103
+#: common/resources/mouse-dialog.glade:1375
 msgid "Ti_me:"
 msgstr "_זמן:"
 
-#: common/resources/mouse-dialog.glade:1117
+#: common/resources/mouse-dialog.glade:1389
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "שני קליקים בעכבר בתוך פחות מאורך זמן זה (באלפיות שנייה) ייחשבו בתור קליק כפול"
 
-#: common/resources/mouse-dialog.glade:1133
+#: common/resources/mouse-dialog.glade:1405
 msgid "D_istance:"
 msgstr "_מרחק:"
 
-#: common/resources/mouse-dialog.glade:1147
+#: common/resources/mouse-dialog.glade:1419
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "סמן העכבר לא יכול לזוז יותר רחוק מאשר מרחק זה בין שני קליקים כדי שאלו ייחשבו כקליק כפול"
 
-#: common/resources/mouse-dialog.glade:1166
+#: common/resources/mouse-dialog.glade:1438
 msgid "Double Click"
 msgstr "קליק כפול"
 
-#: common/resources/mouse-dialog.glade:1188
+#: common/resources/mouse-dialog.glade:1471
+msgid "_Paste selection on middle click"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1475
+msgid ""
+"Paste the current selection (not the clipboard) using the middle mouse "
+"button."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1494
+msgid "Paste"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1516
 msgid "_Behavior"
 msgstr "ה_תנהגות"
 
-#: common/resources/mouse-dialog.glade:1253
+#: common/resources/mouse-dialog.glade:1581
 msgid "Cursor si_ze:"
 msgstr "_גודל סמן:"
 
-#: common/resources/mouse-dialog.glade:1287
+#: common/resources/mouse-dialog.glade:1615
 msgid "Size"
 msgstr "גודל"
 
-#: common/resources/mouse-dialog.glade:1327
+#: common/resources/mouse-dialog.glade:1655
 msgid "Preview"
 msgstr "תצוגה מקדימה"
 
-#: common/resources/mouse-dialog.glade:1356
+#: common/resources/mouse-dialog.glade:1684
 msgid "_Theme"
 msgstr "ערכת _נושא"
 
@@ -1210,14 +1274,14 @@ msgid "Unable to query the version of the RandR extension being used"
 msgstr "לא יכול לתשאל גרסה של הרחבת RandR בשימוש"
 
 #: common/xfce-randr.c:573
-#: dialogs/display-settings/display-settings-wayland.c:346
+#: dialogs/display-settings/display-settings-wayland.c:360
 msgid "Laptop"
 msgstr "מחשב נייד"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "שקע מנהל הגדרות"
@@ -1225,7 +1289,7 @@ msgstr "שקע מנהל הגדרות"
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "זהות שקע"
@@ -1233,7 +1297,7 @@ msgstr "זהות שקע"
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:86
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
 msgid "Version information"
@@ -1244,7 +1308,7 @@ msgstr "מידע גרסה"
 #: dialogs/display-settings/main.c:3369 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2189 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:2433 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1253,7 +1317,7 @@ msgstr "הקלד '%s --help' לשימוש."
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1874 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3388 dialogs/keyboard-settings/main.c:105
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2208
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2452
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1262,7 +1326,7 @@ msgstr "קבוצת הפיתוח של Xfce. כל הזכויות שמורות."
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1875 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:106
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2209
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2453
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1366,11 +1430,11 @@ msgstr "‏RGB אנכי"
 msgid "Vertical BGR"
 msgstr "‏BGR אנכי"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:5
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:5
 msgid "Customize the look of your desktop"
 msgstr "התאם אישית את המראה של שולחן העבודה שלך"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:6
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:6
 msgid ""
 "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
@@ -1549,26 +1613,6 @@ msgstr "רק %s (1)"
 msgid "Only %s (2)"
 msgstr "רק %s (2)"
 
-#: dialogs/display-settings/main.c:83
-msgid "Left"
-msgstr "שמאל"
-
-#: dialogs/display-settings/main.c:84
-msgid "Inverted"
-msgstr "מהופך"
-
-#: dialogs/display-settings/main.c:85
-msgid "Right"
-msgstr "ימין"
-
-#: dialogs/display-settings/main.c:91
-msgid "Horizontal"
-msgstr "אופקי"
-
-#: dialogs/display-settings/main.c:92
-msgid "Vertical"
-msgstr "אנכי"
-
 #: dialogs/display-settings/main.c:93
 msgid "Horizontal and Vertical"
 msgstr "אופקי ואנכי"
@@ -1667,11 +1711,11 @@ msgstr "לא יכול להתחיל את הגדרות תצוגת Xfce "
 msgid "Unable to launch the proprietary driver settings"
 msgstr "לא יכול להפעיל את הגדרות מנהל ההתקן הקנייני "
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:5
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:5
 msgid "Configure screen settings and layout"
 msgstr "הגדרת סידור והגדרות מסך"
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:6
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:6
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
@@ -1684,7 +1728,7 @@ msgstr "תצוגה:"
 msgid "Resolution:"
 msgstr "רזולוציה:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1017
+#: dialogs/display-settings/display-settings-wayland.c:1031
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "נראה שהעורך שלך לא תומך בפרוטוקול wlr-output-management"
@@ -1803,11 +1847,11 @@ msgstr "הברירות מחדל של המערכת תשוחזרנה עם כניס
 msgid "Warning"
 msgstr "אזהרה"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:5
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:5
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "עריכת הגדרות מקלדת וקיצורי יישומים"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:6
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;keyboard;layout;shortcuts;"
 
@@ -2161,10 +2205,10 @@ msgstr "לא הוגדר עוזר עבור \"%s\"."
 msgid "No command specified"
 msgstr "לא צוינה פקודה."
 
-#: dialogs/mime-settings/xfce-mime-helper.c:797
-#: dialogs/mime-settings/xfce-mime-helper.c:836
-#: dialogs/mime-settings/xfce-mime-helper.c:927
-#: dialogs/mime-settings/xfce-mime-helper.c:966
+#: dialogs/mime-settings/xfce-mime-helper.c:762
+#: dialogs/mime-settings/xfce-mime-helper.c:801
+#: dialogs/mime-settings/xfce-mime-helper.c:892
+#: dialogs/mime-settings/xfce-mime-helper.c:931
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "נכשל לפתוח את %s לכתיבה"
@@ -2301,8 +2345,8 @@ msgstr "הגדרת משתמש"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:765
 #: dialogs/mime-settings/xfce-mime-window.c:932
-#: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
-#: dialogs/mouse-settings/main.c:472
+#: dialogs/mouse-settings/main.c:412 dialogs/mouse-settings/main.c:414
+#: dialogs/mouse-settings/main.c:473
 msgid "Default"
 msgstr "ברירת מחדל"
 
@@ -2613,37 +2657,37 @@ msgstr "מנהל קבצים Xfe"
 msgid "X Terminal"
 msgstr "מסוף X"
 
-#: dialogs/mouse-settings/main.c:83
+#: dialogs/mouse-settings/main.c:84
 msgid "Active device in the dialog"
 msgstr "התקן פעיל בדו שיח"
 
-#: dialogs/mouse-settings/main.c:83
+#: dialogs/mouse-settings/main.c:84
 msgid "DEVICE NAME"
 msgstr "שם התקן"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:165
+#: dialogs/mouse-settings/main.c:166
 #, c-format
 msgid "%g px"
 msgstr "%g פיקסלים"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:175
+#: dialogs/mouse-settings/main.c:176
 #, c-format
 msgid "%g ms"
 msgstr "%g אלפיות שנייה"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:186
+#: dialogs/mouse-settings/main.c:187
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f sש׳"
 
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
 msgstr "הגדר התנהגות ומראה התקן הצבעה"
 
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:6
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:6
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
@@ -2867,15 +2911,15 @@ msgstr "הגדרות"
 msgid "Unable to start \"%s\""
 msgstr "לא יכול להתחיל את \"%s\""
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:3
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:3
 msgid "Settings Manager"
 msgstr "מנהל הגדרות"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:4
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:4
 msgid "Graphical Settings Manager for Xfce"
 msgstr "מנהל הגדרות גרפי עבור Xfce"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:5
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr "control;panel;center;system;settings;personalize;hardware;"
 
