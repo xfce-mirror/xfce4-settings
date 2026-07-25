@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-06-08 00:54+0200\n"
+"POT-Creation-Date: 2026-07-25 01:02+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: heskjestad, 2024\n"
 "Language-Team: Norwegian Bokmål (http://app.transifex.com/xfce/xfce4-settings/language/nb/)\n"
@@ -39,7 +39,7 @@ msgstr "Tilgjengelighet"
 #: common/resources/minimal-display-dialog.glade:368
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
-#: common/resources/mouse-dialog.glade:195
+#: common/resources/mouse-dialog.glade:231
 #: dialogs/display-settings/main.c:3421
 #: dialogs/mime-settings/xfce-mime-window.c:184
 #: xfce4-settings-editor/main.c:185
@@ -53,7 +53,7 @@ msgstr "_Lukk"
 #: common/resources/color-dialog.glade:80
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
-#: common/resources/mouse-dialog.glade:179
+#: common/resources/mouse-dialog.glade:246
 #: dialogs/mime-settings/xfce-mime-window.c:187
 #: xfce4-settings-editor/main.c:184
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:211
@@ -262,10 +262,13 @@ msgstr "Finn peker"
 msgid "_Mouse"
 msgstr "_Mus"
 
+#. No assignment option
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
+#: common/resources/mouse-dialog.glade:126
+#: common/resources/mouse-dialog.glade:152
 #: dialogs/appearance-settings/main.c:1739 dialogs/display-settings/main.c:82
-#: dialogs/display-settings/main.c:90
+#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:951
 msgid "None"
 msgstr "Ingen"
 
@@ -306,7 +309,7 @@ msgid "2x"
 msgstr "2x"
 
 #: common/resources/appearance-dialog.glade:107
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:4
 msgid "Appearance"
 msgstr "Utseende"
 
@@ -648,7 +651,7 @@ msgid "Configure..."
 msgstr "Sett opp …"
 
 #: common/resources/display-dialog.glade:255
-#: dialogs/display-settings/xfce-display-settings.desktop.in:4
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:4
 msgid "Display"
 msgstr "Skjerm"
 
@@ -812,7 +815,7 @@ msgid "Keyboard layout selection"
 msgstr "Velg tastaturoppsett"
 
 #: common/resources/keyboard-dialog.glade:162
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:4
 msgid "Keyboard"
 msgstr "Tastatur"
 
@@ -821,8 +824,9 @@ msgid "Restore num l_ock state on startup"
 msgstr "Gjenopprett tilstand for Num L_ock ved oppstart"
 
 #: common/resources/keyboard-dialog.glade:267
-#: common/resources/mouse-dialog.glade:726
-#: common/resources/mouse-dialog.glade:953
+#: common/resources/mouse-dialog.glade:788
+#: common/resources/mouse-dialog.glade:1031
+#: common/resources/mouse-dialog.glade:1223
 msgid "General"
 msgstr "Generelt"
 
@@ -958,227 +962,287 @@ msgstr "To-fingersrulling"
 msgid "Circular scrolling"
 msgstr "Sirkulær rulling"
 
-#: common/resources/mouse-dialog.glade:126
+#: common/resources/mouse-dialog.glade:130 dialogs/display-settings/main.c:91
+msgid "Horizontal"
+msgstr "Horisontal"
+
+#: common/resources/mouse-dialog.glade:134 dialogs/display-settings/main.c:92
+msgid "Vertical"
+msgstr "Vertikal"
+
+#: common/resources/mouse-dialog.glade:138
+msgid "Both"
+msgstr "Begge"
+
+#: common/resources/mouse-dialog.glade:156 dialogs/display-settings/main.c:83
+msgid "Left"
+msgstr "Venstre"
+
+#: common/resources/mouse-dialog.glade:160 dialogs/display-settings/main.c:84
+msgid "Inverted"
+msgstr "Invertert"
+
+#: common/resources/mouse-dialog.glade:164 dialogs/display-settings/main.c:85
+msgid "Right"
+msgstr "Høyre"
+
+#: common/resources/mouse-dialog.glade:178
 msgid "Pen (absolute)"
 msgstr "Penn (absolutt)"
 
-#: common/resources/mouse-dialog.glade:130
+#: common/resources/mouse-dialog.glade:182
 msgid "Mouse (relative)"
 msgstr "Mus (relativ)"
 
-#: common/resources/mouse-dialog.glade:144
+#: common/resources/mouse-dialog.glade:196
 msgid "None (right-handed)"
 msgstr "Ingen (høyrehendt)"
 
-#: common/resources/mouse-dialog.glade:148
+#: common/resources/mouse-dialog.glade:200
 msgid "Half (left-handed)"
 msgstr "Halv (venstrehendt)"
 
-#: common/resources/mouse-dialog.glade:152
+#: common/resources/mouse-dialog.glade:204
 msgid "Clockwise"
 msgstr "Med klokken"
 
-#: common/resources/mouse-dialog.glade:156
+#: common/resources/mouse-dialog.glade:208
 msgid "Counterclockwise"
 msgstr "Mot klokken"
 
-#: common/resources/mouse-dialog.glade:162
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
+#: common/resources/mouse-dialog.glade:214
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "Mus og pekeflate"
 
-#: common/resources/mouse-dialog.glade:237
+#: common/resources/mouse-dialog.glade:289
 msgid "De_vice:"
 msgstr "En_het:"
 
-#: common/resources/mouse-dialog.glade:314
+#: common/resources/mouse-dialog.glade:366
 msgid "Le_ft-handed"
 msgstr "Ve_nstre-hendt"
 
-#: common/resources/mouse-dialog.glade:331
+#: common/resources/mouse-dialog.glade:383
 msgid "Ri_ght-handed"
 msgstr "Hø_yre-hendt"
 
-#: common/resources/mouse-dialog.glade:355
+#: common/resources/mouse-dialog.glade:407
 msgid "Reverse scroll d_irection"
 msgstr "Motsatt _rulleretning"
 
-#: common/resources/mouse-dialog.glade:359
+#: common/resources/mouse-dialog.glade:411
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Hvis i bruk vil musens hjul virke i motsatt retning"
 
-#: common/resources/mouse-dialog.glade:372
+#: common/resources/mouse-dialog.glade:424
 msgid "Allow high _resolution scrolling (experimental)"
 msgstr "Tillat _rulling med høy oppløsning (eksperimentell)"
 
-#: common/resources/mouse-dialog.glade:376
+#: common/resources/mouse-dialog.glade:428
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr "Gjelder kun noen få typer mus (typisk Logitech) og krever støtte i driver. Gjør rullingen mer presis med en støttet enhet."
 
-#: common/resources/mouse-dialog.glade:395
+#: common/resources/mouse-dialog.glade:447
 msgid "Buttons"
 msgstr "Knapper"
 
-#: common/resources/mouse-dialog.glade:428
+#: common/resources/mouse-dialog.glade:481
 msgid "_Reset to Defaults"
 msgstr "_Tilbakestill til forvalg"
 
-#: common/resources/mouse-dialog.glade:432
+#: common/resources/mouse-dialog.glade:485
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Angi akselerasjon og følsomhet for valgt enhet til forvalgte verdier"
 
-#: common/resources/mouse-dialog.glade:448
+#: common/resources/mouse-dialog.glade:501
 msgid "Sensitivit_y:"
 msgstr "Følsom_het:"
 
-#: common/resources/mouse-dialog.glade:461
+#: common/resources/mouse-dialog.glade:514
 msgid "Acceleratio_n:"
 msgstr "Akselerasj_on :"
 
-#: common/resources/mouse-dialog.glade:473
+#: common/resources/mouse-dialog.glade:526
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Faktoren som musepekeren vil øke hastigheten med når den flyttes"
 
-#: common/resources/mouse-dialog.glade:488
+#: common/resources/mouse-dialog.glade:541
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Antall piksler musepekeren må bevege seg på kort tid før den starter å akseleres"
 
-#: common/resources/mouse-dialog.glade:502
+#: common/resources/mouse-dialog.glade:555
 msgid "Adaptive pointer acceleration"
 msgstr "Adaptiv akselerasjon av peker"
 
-#: common/resources/mouse-dialog.glade:505
+#: common/resources/mouse-dialog.glade:559
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr "Veksler mellom adaptiv og flat akselerasjonsprofil. Den adaptive tar gjeldende hastighet i betraktning ved beregning av akselerasjon. Selvvalgt akselerasjonsprofil støttes ikke av xfce4-settings."
 
-#: common/resources/mouse-dialog.glade:525
+#: common/resources/mouse-dialog.glade:590
 msgid "Pointer Speed"
 msgstr "Pekerhastighet"
 
-#: common/resources/mouse-dialog.glade:544
+#: common/resources/mouse-dialog.glade:609
 msgid "B_uttons and Feedback"
 msgstr "K_napper og tilbakemelding"
 
-#: common/resources/mouse-dialog.glade:578
-#: common/resources/mouse-dialog.glade:595
+#: common/resources/mouse-dialog.glade:643
+#: common/resources/mouse-dialog.glade:660
 msgid "Disable touchpad _while typing"
 msgstr "Slå av pekeflate _når det skrives på tastaturet"
 
-#: common/resources/mouse-dialog.glade:582
-#: common/resources/mouse-dialog.glade:599
+#: common/resources/mouse-dialog.glade:647
+#: common/resources/mouse-dialog.glade:663
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Når valgt, vil pekeflaten være avslått når tastaturet er i bruk"
 
-#: common/resources/mouse-dialog.glade:624
+#: common/resources/mouse-dialog.glade:688
 msgid "Duratio_n:"
 msgstr "Varighe_t:"
 
-#: common/resources/mouse-dialog.glade:659
+#: common/resources/mouse-dialog.glade:723
 msgid "Tap touchpad to clic_k"
 msgstr "Trykk på pekeflaten for å _klikke"
 
-#: common/resources/mouse-dialog.glade:682
+#: common/resources/mouse-dialog.glade:745
 msgid "Click m_ethod:"
 msgstr "Klikkem_etode:"
 
-#: common/resources/mouse-dialog.glade:767
+#: common/resources/mouse-dialog.glade:829
 msgid "Scrolling _mode:"
 msgstr "Rulle-_modus:"
 
-#: common/resources/mouse-dialog.glade:805
+#: common/resources/mouse-dialog.glade:867
 msgid "Enable hori_zontal scrolling"
 msgstr "Slå på hori_sontal rulling"
 
-#: common/resources/mouse-dialog.glade:827
+#: common/resources/mouse-dialog.glade:889
 msgid "Scrolling"
 msgstr "Rulling"
 
-#: common/resources/mouse-dialog.glade:850
+#: common/resources/mouse-dialog.glade:912
 msgid "T_ouchpad"
 msgstr "P_ekeflate"
 
-#: common/resources/mouse-dialog.glade:888
+#: common/resources/mouse-dialog.glade:951
 msgid "Trac_king mode:"
 msgstr "_Sporingsmodus:"
 
-#: common/resources/mouse-dialog.glade:901
+#: common/resources/mouse-dialog.glade:964
 msgid "_Rotation:"
 msgstr "_Rotasjon:"
 
-#: common/resources/mouse-dialog.glade:976
+#: common/resources/mouse-dialog.glade:1054
 msgid "Tab_let"
 msgstr "Nett_brett"
 
-#: common/resources/mouse-dialog.glade:997
+#: common/resources/mouse-dialog.glade:1092
+msgid ""
+"Touchscreen devices may be mapped incorrectly in multimonitor setups. These "
+"settings can be used to manually adjust the mapping."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1117
+msgid "Assign to monitor:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1130
+msgid "Relative rotation:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1162
+msgid "Relative reflection:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1249
+msgid "Touchscreen"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1269
 msgid "_Devices"
 msgstr "_Enheter"
 
-#: common/resources/mouse-dialog.glade:1034
+#: common/resources/mouse-dialog.glade:1306
 msgid "Th_reshold:"
 msgstr "G_renseverdi:"
 
-#: common/resources/mouse-dialog.glade:1048
+#: common/resources/mouse-dialog.glade:1320
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Antall piksler musepekeren må bevege seg for at en dra-og-slipp operasjon kan starte"
 
-#: common/resources/mouse-dialog.glade:1067
+#: common/resources/mouse-dialog.glade:1339
 msgid "Drag and Drop"
 msgstr "Dra og slipp"
 
-#: common/resources/mouse-dialog.glade:1103
+#: common/resources/mouse-dialog.glade:1375
 msgid "Ti_me:"
 msgstr "Ti_d:"
 
-#: common/resources/mouse-dialog.glade:1117
+#: common/resources/mouse-dialog.glade:1389
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "To museklikk på mindre tid enn denne tiden (i millisekunder) vil bli regnet som et dobbeltklikk"
 
-#: common/resources/mouse-dialog.glade:1133
+#: common/resources/mouse-dialog.glade:1405
 msgid "D_istance:"
 msgstr "Avst_and:"
 
-#: common/resources/mouse-dialog.glade:1147
+#: common/resources/mouse-dialog.glade:1419
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Musepekeren kan ikke flytte seg mer enn denne distansen mellom to museklikk for at de skal telle som et dobbeltklikk"
 
-#: common/resources/mouse-dialog.glade:1166
+#: common/resources/mouse-dialog.glade:1438
 msgid "Double Click"
 msgstr "Dobbeltklikk"
 
-#: common/resources/mouse-dialog.glade:1188
+#: common/resources/mouse-dialog.glade:1471
+msgid "_Paste selection on middle click"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1475
+msgid ""
+"Paste the current selection (not the clipboard) using the middle mouse "
+"button."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1494
+msgid "Paste"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1516
 msgid "_Behavior"
 msgstr "O_ppførsel"
 
-#: common/resources/mouse-dialog.glade:1253
+#: common/resources/mouse-dialog.glade:1581
 msgid "Cursor si_ze:"
 msgstr "Peker_størrelse:"
 
-#: common/resources/mouse-dialog.glade:1287
+#: common/resources/mouse-dialog.glade:1615
 msgid "Size"
 msgstr "Størrelse"
 
-#: common/resources/mouse-dialog.glade:1327
+#: common/resources/mouse-dialog.glade:1655
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
-#: common/resources/mouse-dialog.glade:1356
+#: common/resources/mouse-dialog.glade:1684
 msgid "_Theme"
 msgstr "_Drakt"
 
@@ -1209,14 +1273,14 @@ msgid "Unable to query the version of the RandR extension being used"
 msgstr "Klarte ikke slå opp versjonen av RandR-utvidelsen som benyttes"
 
 #: common/xfce-randr.c:573
-#: dialogs/display-settings/display-settings-wayland.c:346
+#: dialogs/display-settings/display-settings-wayland.c:360
 msgid "Laptop"
 msgstr "Bærbar"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Innstillingsbehandlersokkel"
@@ -1224,7 +1288,7 @@ msgstr "Innstillingsbehandlersokkel"
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "SOKKEL-ID"
@@ -1232,7 +1296,7 @@ msgstr "SOKKEL-ID"
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:86
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
 msgid "Version information"
@@ -1243,7 +1307,7 @@ msgstr "Versjonsinformasjon"
 #: dialogs/display-settings/main.c:3369 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2189 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:2433 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1252,7 +1316,7 @@ msgstr "Skriv '%s --help' for bruksinstruksjoner."
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1874 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3388 dialogs/keyboard-settings/main.c:105
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2208
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2452
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1261,7 +1325,7 @@ msgstr "Xfce utviklingsteam. Alle rettigheter reservert."
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1875 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:106
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2209
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2453
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1365,11 +1429,11 @@ msgstr "Loddrett RGB"
 msgid "Vertical BGR"
 msgstr "Loddrett BGR"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:5
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:5
 msgid "Customize the look of your desktop"
 msgstr "Tilpass utseendet til skrivebordet"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:6
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:6
 msgid ""
 "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
@@ -1548,26 +1612,6 @@ msgstr "Kun %s (1)"
 msgid "Only %s (2)"
 msgstr "Kun %s (2)"
 
-#: dialogs/display-settings/main.c:83
-msgid "Left"
-msgstr "Venstre"
-
-#: dialogs/display-settings/main.c:84
-msgid "Inverted"
-msgstr "Invertert"
-
-#: dialogs/display-settings/main.c:85
-msgid "Right"
-msgstr "Høyre"
-
-#: dialogs/display-settings/main.c:91
-msgid "Horizontal"
-msgstr "Horisontal"
-
-#: dialogs/display-settings/main.c:92
-msgid "Vertical"
-msgstr "Vertikal"
-
 #: dialogs/display-settings/main.c:93
 msgid "Horizontal and Vertical"
 msgstr "Horisontal og vertikal"
@@ -1665,11 +1709,11 @@ msgstr "Kan ikke starte Xfce Skjerminnstillinger"
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Kan ikke starte innstillinger for proprietære drivere"
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:5
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:5
 msgid "Configure screen settings and layout"
 msgstr "Sett opp skjerminnstillinger"
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:6
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:6
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "skjerminnstillinger;skjermoppsett;skjerm;oppløsning;oppdateringsfrekvens;rotasjon;rotere;ekstern;prosjektor;skjerm;LCD;CRT;HiDPI;"
@@ -1682,7 +1726,7 @@ msgstr "Skjerm:"
 msgid "Resolution:"
 msgstr "Oppløsning:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1017
+#: dialogs/display-settings/display-settings-wayland.c:1031
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Komposittprogrammet støtter ikke protokollen wlr-output-management"
@@ -1801,11 +1845,11 @@ msgstr "Forvalgte verdier vil bli gjenopprettet neste gang du logger inn."
 msgid "Warning"
 msgstr "Advarsel"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:5
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:5
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "Rediger tastaturinnstillinger og programsnarveier"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:6
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;tastatur;tastaturoppsett;hurtigtaster;"
 
@@ -2158,10 +2202,10 @@ msgstr "Ingen hjelper definert for «%s»."
 msgid "No command specified"
 msgstr "Ingen kommando er angitt"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:797
-#: dialogs/mime-settings/xfce-mime-helper.c:836
-#: dialogs/mime-settings/xfce-mime-helper.c:927
-#: dialogs/mime-settings/xfce-mime-helper.c:966
+#: dialogs/mime-settings/xfce-mime-helper.c:762
+#: dialogs/mime-settings/xfce-mime-helper.c:801
+#: dialogs/mime-settings/xfce-mime-helper.c:892
+#: dialogs/mime-settings/xfce-mime-helper.c:931
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Klarte ikke å åpne %s for skriving"
@@ -2298,8 +2342,8 @@ msgstr "Angitt av bruker"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:765
 #: dialogs/mime-settings/xfce-mime-window.c:932
-#: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
-#: dialogs/mouse-settings/main.c:472
+#: dialogs/mouse-settings/main.c:412 dialogs/mouse-settings/main.c:414
+#: dialogs/mouse-settings/main.c:473
 msgid "Default"
 msgstr "Forvalgt"
 
@@ -2608,37 +2652,37 @@ msgstr "Xfe Filbehandler"
 msgid "X Terminal"
 msgstr "X Terminal"
 
-#: dialogs/mouse-settings/main.c:83
+#: dialogs/mouse-settings/main.c:84
 msgid "Active device in the dialog"
 msgstr "Aktiv enhet i vinduet"
 
-#: dialogs/mouse-settings/main.c:83
+#: dialogs/mouse-settings/main.c:84
 msgid "DEVICE NAME"
 msgstr "ENHETSNAVN"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:165
+#: dialogs/mouse-settings/main.c:166
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:175
+#: dialogs/mouse-settings/main.c:176
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:186
+#: dialogs/mouse-settings/main.c:187
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
 
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
 msgstr "Tilpass oppførsel og utseende for musepekeren"
 
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:6
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:6
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "innstillinger;knapper;rulleretning;musepeker;peker;hastighet;dobbeltklikk;musedrakt;musehjul;hjul;"
@@ -2862,15 +2906,15 @@ msgstr "Innstillinger"
 msgid "Unable to start \"%s\""
 msgstr "Klarte ikke starte «%s»"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:3
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:3
 msgid "Settings Manager"
 msgstr "Innstillingsbehandler"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:4
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:4
 msgid "Graphical Settings Manager for Xfce"
 msgstr "Grafisk innstillingsbehandler for Xfce"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:5
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr "kontrollpanel;systeminnstillinger;personalisering;maskinvare;"
 
