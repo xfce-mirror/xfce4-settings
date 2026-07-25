@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-06-08 00:54+0200\n"
+"POT-Creation-Date: 2026-07-25 01:02+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020-2026\n"
 "Language-Team: Estonian (http://app.transifex.com/xfce/xfce4-settings/language/et/)\n"
@@ -30,7 +30,7 @@ msgstr "Hõlbustus"
 #: common/resources/minimal-display-dialog.glade:368
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
-#: common/resources/mouse-dialog.glade:195
+#: common/resources/mouse-dialog.glade:231
 #: dialogs/display-settings/main.c:3421
 #: dialogs/mime-settings/xfce-mime-window.c:184
 #: xfce4-settings-editor/main.c:185
@@ -44,7 +44,7 @@ msgstr "_Sulge"
 #: common/resources/color-dialog.glade:80
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
-#: common/resources/mouse-dialog.glade:179
+#: common/resources/mouse-dialog.glade:246
 #: dialogs/mime-settings/xfce-mime-window.c:187
 #: xfce4-settings-editor/main.c:184
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:211
@@ -253,10 +253,13 @@ msgstr "Leia kursor"
 msgid "_Mouse"
 msgstr "_Hiir"
 
+#. No assignment option
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
+#: common/resources/mouse-dialog.glade:126
+#: common/resources/mouse-dialog.glade:152
 #: dialogs/appearance-settings/main.c:1739 dialogs/display-settings/main.c:82
-#: dialogs/display-settings/main.c:90
+#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:951
 msgid "None"
 msgstr "Puudub"
 
@@ -297,7 +300,7 @@ msgid "2x"
 msgstr "2x"
 
 #: common/resources/appearance-dialog.glade:107
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:4
 msgid "Appearance"
 msgstr "Välimus"
 
@@ -639,7 +642,7 @@ msgid "Configure..."
 msgstr "Seadista..."
 
 #: common/resources/display-dialog.glade:255
-#: dialogs/display-settings/xfce-display-settings.desktop.in:4
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:4
 msgid "Display"
 msgstr "Monitor"
 
@@ -803,7 +806,7 @@ msgid "Keyboard layout selection"
 msgstr "Klaviatuuripaigutuse valik"
 
 #: common/resources/keyboard-dialog.glade:162
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:4
 msgid "Keyboard"
 msgstr "Klaviatuur"
 
@@ -812,8 +815,9 @@ msgid "Restore num l_ock state on startup"
 msgstr "Taasta käivitamisel NumLock lukustusklahvi olek"
 
 #: common/resources/keyboard-dialog.glade:267
-#: common/resources/mouse-dialog.glade:726
-#: common/resources/mouse-dialog.glade:953
+#: common/resources/mouse-dialog.glade:788
+#: common/resources/mouse-dialog.glade:1031
+#: common/resources/mouse-dialog.glade:1223
 msgid "General"
 msgstr "Üldine"
 
@@ -949,227 +953,287 @@ msgstr "Kahe sõrmega kerimine"
 msgid "Circular scrolling"
 msgstr "Ringkerimine"
 
-#: common/resources/mouse-dialog.glade:126
+#: common/resources/mouse-dialog.glade:130 dialogs/display-settings/main.c:91
+msgid "Horizontal"
+msgstr "Horisontaalne"
+
+#: common/resources/mouse-dialog.glade:134 dialogs/display-settings/main.c:92
+msgid "Vertical"
+msgstr "Vertikaalne"
+
+#: common/resources/mouse-dialog.glade:138
+msgid "Both"
+msgstr "Mõlemad"
+
+#: common/resources/mouse-dialog.glade:156 dialogs/display-settings/main.c:83
+msgid "Left"
+msgstr "Pööratud vasakule"
+
+#: common/resources/mouse-dialog.glade:160 dialogs/display-settings/main.c:84
+msgid "Inverted"
+msgstr "Pööratud tagurpidi"
+
+#: common/resources/mouse-dialog.glade:164 dialogs/display-settings/main.c:85
+msgid "Right"
+msgstr "Pööratud paremale"
+
+#: common/resources/mouse-dialog.glade:178
 msgid "Pen (absolute)"
 msgstr "Pliiats (absoluutne)"
 
-#: common/resources/mouse-dialog.glade:130
+#: common/resources/mouse-dialog.glade:182
 msgid "Mouse (relative)"
 msgstr "Hiir (suhteline)"
 
-#: common/resources/mouse-dialog.glade:144
+#: common/resources/mouse-dialog.glade:196
 msgid "None (right-handed)"
 msgstr "Puudub (paremakäeline)"
 
-#: common/resources/mouse-dialog.glade:148
+#: common/resources/mouse-dialog.glade:200
 msgid "Half (left-handed)"
 msgstr "Poolik (vasakukäeline)"
 
-#: common/resources/mouse-dialog.glade:152
+#: common/resources/mouse-dialog.glade:204
 msgid "Clockwise"
 msgstr "Päripäeva"
 
-#: common/resources/mouse-dialog.glade:156
+#: common/resources/mouse-dialog.glade:208
 msgid "Counterclockwise"
 msgstr "Vastupäeva"
 
-#: common/resources/mouse-dialog.glade:162
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
+#: common/resources/mouse-dialog.glade:214
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "Hiir ja puuteplaat"
 
-#: common/resources/mouse-dialog.glade:237
+#: common/resources/mouse-dialog.glade:289
 msgid "De_vice:"
 msgstr "Sea_de:"
 
-#: common/resources/mouse-dialog.glade:314
+#: common/resources/mouse-dialog.glade:366
 msgid "Le_ft-handed"
 msgstr "_Vasakukäeline"
 
-#: common/resources/mouse-dialog.glade:331
+#: common/resources/mouse-dialog.glade:383
 msgid "Ri_ght-handed"
 msgstr "_Paremakäeline"
 
-#: common/resources/mouse-dialog.glade:355
+#: common/resources/mouse-dialog.glade:407
 msgid "Reverse scroll d_irection"
 msgstr "Pööra _kerimisratta suund"
 
-#: common/resources/mouse-dialog.glade:359
+#: common/resources/mouse-dialog.glade:411
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Kui see valik on kasutusel, siis kerimisratta suund toimib teistpidi"
 
-#: common/resources/mouse-dialog.glade:372
+#: common/resources/mouse-dialog.glade:424
 msgid "Allow high _resolution scrolling (experimental)"
 msgstr "Kasuta suure _resolutsiooniga kerimist (katseline lahendus)"
 
-#: common/resources/mouse-dialog.glade:376
+#: common/resources/mouse-dialog.glade:428
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr "Selline funktsionaalsus on toetatud vaid mõnede hiirte puhul (enamuses vaid Logitech) ning eeldab ka draiveripoolset tuge. Kui see funktsionaalsus on kasutusel, siis toetatud seadmete puhul on kerimine senisest täpsem."
 
-#: common/resources/mouse-dialog.glade:395
+#: common/resources/mouse-dialog.glade:447
 msgid "Buttons"
 msgstr "Nupud"
 
-#: common/resources/mouse-dialog.glade:428
+#: common/resources/mouse-dialog.glade:481
 msgid "_Reset to Defaults"
 msgstr "_Lähtesta vaikeseadetele"
 
-#: common/resources/mouse-dialog.glade:432
+#: common/resources/mouse-dialog.glade:485
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Lähtestab valitud seadme kiirenduse ja tundlikkuse väärtused vaikimisi väärtusteks"
 
-#: common/resources/mouse-dialog.glade:448
+#: common/resources/mouse-dialog.glade:501
 msgid "Sensitivit_y:"
 msgstr "Tundlikkus:"
 
-#: common/resources/mouse-dialog.glade:461
+#: common/resources/mouse-dialog.glade:514
 msgid "Acceleratio_n:"
 msgstr "Kiire_ndus:"
 
-#: common/resources/mouse-dialog.glade:473
+#: common/resources/mouse-dialog.glade:526
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Tegur, mil määral kursori kiirus hiire liigutamisel kasvab"
 
-#: common/resources/mouse-dialog.glade:488
+#: common/resources/mouse-dialog.glade:541
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Pikslite arv, mida kursor peab lühikese aja jooksul läbima enne kui ta kiirendama hakkab"
 
-#: common/resources/mouse-dialog.glade:502
+#: common/resources/mouse-dialog.glade:555
 msgid "Adaptive pointer acceleration"
 msgstr "Kohanduv kursori kiirendus"
 
-#: common/resources/mouse-dialog.glade:505
+#: common/resources/mouse-dialog.glade:559
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr "Selle valikuga saad valida kursori ühtlase või kohanduva kiirenduse vahel. Kohanduv profiil võtab arvesse kursoriseadme hetkekiiruse ning arvutab sellest kiirenduse. Kohandatud kiirendusprofiili ei ole toetatud xfce4 seadistuses."
 
-#: common/resources/mouse-dialog.glade:525
+#: common/resources/mouse-dialog.glade:590
 msgid "Pointer Speed"
 msgstr "Kursori kiirus"
 
-#: common/resources/mouse-dialog.glade:544
+#: common/resources/mouse-dialog.glade:609
 msgid "B_uttons and Feedback"
 msgstr "N_upud ja reageerimine"
 
-#: common/resources/mouse-dialog.glade:578
-#: common/resources/mouse-dialog.glade:595
+#: common/resources/mouse-dialog.glade:643
+#: common/resources/mouse-dialog.glade:660
 msgid "Disable touchpad _while typing"
 msgstr "Lülita puuteplaat _kirjutamise ajaks välja"
 
-#: common/resources/mouse-dialog.glade:582
-#: common/resources/mouse-dialog.glade:599
+#: common/resources/mouse-dialog.glade:647
+#: common/resources/mouse-dialog.glade:663
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Kui see valik on aktiivne, siis puuteplaat lülitatakse klaviatuuri kasutamise ajaks välja"
 
-#: common/resources/mouse-dialog.glade:624
+#: common/resources/mouse-dialog.glade:688
 msgid "Duratio_n:"
 msgstr "Kestus:"
 
-#: common/resources/mouse-dialog.glade:659
+#: common/resources/mouse-dialog.glade:723
 msgid "Tap touchpad to clic_k"
 msgstr "Hiire_klõpsu jaoks koputa puuteplaadile"
 
-#: common/resources/mouse-dialog.glade:682
+#: common/resources/mouse-dialog.glade:745
 msgid "Click m_ethod:"
 msgstr "Klõpsimise m_eetod:"
 
-#: common/resources/mouse-dialog.glade:767
+#: common/resources/mouse-dialog.glade:829
 msgid "Scrolling _mode:"
 msgstr "Kerimisrežiim:"
 
-#: common/resources/mouse-dialog.glade:805
+#: common/resources/mouse-dialog.glade:867
 msgid "Enable hori_zontal scrolling"
 msgstr "Võimalda _horisontaalset kerimist"
 
-#: common/resources/mouse-dialog.glade:827
+#: common/resources/mouse-dialog.glade:889
 msgid "Scrolling"
 msgstr "Kerimine"
 
-#: common/resources/mouse-dialog.glade:850
+#: common/resources/mouse-dialog.glade:912
 msgid "T_ouchpad"
 msgstr "P_uuteplaat"
 
-#: common/resources/mouse-dialog.glade:888
+#: common/resources/mouse-dialog.glade:951
 msgid "Trac_king mode:"
 msgstr "Jä_lgimisrežiim:"
 
-#: common/resources/mouse-dialog.glade:901
+#: common/resources/mouse-dialog.glade:964
 msgid "_Rotation:"
 msgstr "_Pööramine:"
 
-#: common/resources/mouse-dialog.glade:976
+#: common/resources/mouse-dialog.glade:1054
 msgid "Tab_let"
 msgstr "Tahve_l"
 
-#: common/resources/mouse-dialog.glade:997
+#: common/resources/mouse-dialog.glade:1092
+msgid ""
+"Touchscreen devices may be mapped incorrectly in multimonitor setups. These "
+"settings can be used to manually adjust the mapping."
+msgstr "Puuteekraaniga seadmete vastendamine ei pruugi mitme monitoriga lahenduste puhul korrektselt toimida ja siit saad seda vajadusel käsitsi kohendada."
+
+#: common/resources/mouse-dialog.glade:1117
+msgid "Assign to monitor:"
+msgstr "Määra monitorile:"
+
+#: common/resources/mouse-dialog.glade:1130
+msgid "Relative rotation:"
+msgstr "Suhteline pööramine:"
+
+#: common/resources/mouse-dialog.glade:1162
+msgid "Relative reflection:"
+msgstr "Suhteline peegeldus:"
+
+#: common/resources/mouse-dialog.glade:1249
+msgid "Touchscreen"
+msgstr "Puuteekraan"
+
+#: common/resources/mouse-dialog.glade:1269
 msgid "_Devices"
 msgstr "_Seadmed"
 
-#: common/resources/mouse-dialog.glade:1034
+#: common/resources/mouse-dialog.glade:1306
 msgid "Th_reshold:"
 msgstr "Lävi:"
 
-#: common/resources/mouse-dialog.glade:1048
+#: common/resources/mouse-dialog.glade:1320
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Et lohistamine algaks, siis peab kursor peab läbima vähemalt selle vahemaa pikslites"
 
-#: common/resources/mouse-dialog.glade:1067
+#: common/resources/mouse-dialog.glade:1339
 msgid "Drag and Drop"
 msgstr "Lohistamine"
 
-#: common/resources/mouse-dialog.glade:1103
+#: common/resources/mouse-dialog.glade:1375
 msgid "Ti_me:"
 msgstr "Aeg:"
 
-#: common/resources/mouse-dialog.glade:1117
+#: common/resources/mouse-dialog.glade:1389
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Kaks hiireklõpsu vähemas, kui märgitud ajas (millisekundites) loetakse topeltklõpsuks"
 
-#: common/resources/mouse-dialog.glade:1133
+#: common/resources/mouse-dialog.glade:1405
 msgid "D_istance:"
 msgstr "Vahemaa:"
 
-#: common/resources/mouse-dialog.glade:1147
+#: common/resources/mouse-dialog.glade:1419
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Topeltklõpsu tuvastamiseks ei tohi hiirekursor liikuda antud vahemaast kaugemale"
 
-#: common/resources/mouse-dialog.glade:1166
+#: common/resources/mouse-dialog.glade:1438
 msgid "Double Click"
 msgstr "Topeltklõps"
 
-#: common/resources/mouse-dialog.glade:1188
+#: common/resources/mouse-dialog.glade:1471
+msgid "_Paste selection on middle click"
+msgstr "_Aseta kaustad keskmise hiireklõpsuga"
+
+#: common/resources/mouse-dialog.glade:1475
+msgid ""
+"Paste the current selection (not the clipboard) using the middle mouse "
+"button."
+msgstr "Aseta hiire keskmise nupu klõpsuga praegune valik (mitte lõikelaua sisu)"
+
+#: common/resources/mouse-dialog.glade:1494
+msgid "Paste"
+msgstr "Asetamine"
+
+#: common/resources/mouse-dialog.glade:1516
 msgid "_Behavior"
 msgstr "_Käitumine"
 
-#: common/resources/mouse-dialog.glade:1253
+#: common/resources/mouse-dialog.glade:1581
 msgid "Cursor si_ze:"
 msgstr "Kursori _suurus:"
 
-#: common/resources/mouse-dialog.glade:1287
+#: common/resources/mouse-dialog.glade:1615
 msgid "Size"
 msgstr "Suurus"
 
-#: common/resources/mouse-dialog.glade:1327
+#: common/resources/mouse-dialog.glade:1655
 msgid "Preview"
 msgstr "Eelvaade"
 
-#: common/resources/mouse-dialog.glade:1356
+#: common/resources/mouse-dialog.glade:1684
 msgid "_Theme"
 msgstr "_Teema"
 
@@ -1200,14 +1264,14 @@ msgid "Unable to query the version of the RandR extension being used"
 msgstr "Ei õnnestu tuvastada missugust RandR'i versiooni kasutatakse"
 
 #: common/xfce-randr.c:573
-#: dialogs/display-settings/display-settings-wayland.c:346
+#: dialogs/display-settings/display-settings-wayland.c:360
 msgid "Laptop"
 msgstr "Rüperaal"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Seadistuste halduri sokkel"
@@ -1215,7 +1279,7 @@ msgstr "Seadistuste halduri sokkel"
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "SOKLI ID"
@@ -1223,7 +1287,7 @@ msgstr "SOKLI ID"
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:86
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
 msgid "Version information"
@@ -1234,7 +1298,7 @@ msgstr "Versiooniteave"
 #: dialogs/display-settings/main.c:3369 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2189 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:2433 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1243,7 +1307,7 @@ msgstr "Trüki „%s --help” kasutusjuhise saamiseks."
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1874 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3388 dialogs/keyboard-settings/main.c:105
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2208
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2452
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1252,7 +1316,7 @@ msgstr "Xfce arendusmeeskond. Kõik õigused kaitstud."
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1875 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:106
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2209
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2453
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1356,11 +1420,11 @@ msgstr "Vertikaalne RGB"
 msgid "Vertical BGR"
 msgstr "Vertikaalne BGR"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:5
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:5
 msgid "Customize the look of your desktop"
 msgstr "Kohanda oma töölaua välimust"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:6
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:6
 msgid ""
 "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
@@ -1539,26 +1603,6 @@ msgstr "Vaid %s (1)"
 msgid "Only %s (2)"
 msgstr "Vaid %s (2)"
 
-#: dialogs/display-settings/main.c:83
-msgid "Left"
-msgstr "Pööratud vasakule"
-
-#: dialogs/display-settings/main.c:84
-msgid "Inverted"
-msgstr "Pööratud tagurpidi"
-
-#: dialogs/display-settings/main.c:85
-msgid "Right"
-msgstr "Pööratud paremale"
-
-#: dialogs/display-settings/main.c:91
-msgid "Horizontal"
-msgstr "Horisontaalne"
-
-#: dialogs/display-settings/main.c:92
-msgid "Vertical"
-msgstr "Vertikaalne"
-
 #: dialogs/display-settings/main.c:93
 msgid "Horizontal and Vertical"
 msgstr "Horisontaalne ja vertikaalne"
@@ -1656,11 +1700,11 @@ msgstr "Xfce monitoriseadistuste käivitamine ei õnnestnud"
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Suletud draiveri seadistuste käivitamine ei õnnestunud"
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:5
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:5
 msgid "Configure screen settings and layout"
 msgstr "Seadista ekraane ja nende paigutust"
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:6
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:6
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;ekraan;ekraanid;monitor;monitorid;resolutsioon;pööramine;väline;projektorid;"
@@ -1673,7 +1717,7 @@ msgstr "Monitor:"
 msgid "Resolution:"
 msgstr "Lahutusvõime:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1017
+#: dialogs/display-settings/display-settings-wayland.c:1031
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr "Sinu kasutatav komposiitor ei tundu toetavat wlr-output-management protokolli."
@@ -1792,11 +1836,11 @@ msgstr "Süsteemi vaikeseaded taastatakse järgmisel sisselogimisel."
 msgid "Warning"
 msgstr "Hoiatus"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:5
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:5
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "Halda klaviatuuri seadistusi ning rakenduste otseteesid"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:6
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;keyboard;layout;shortcuts;otsetee;otseteed;kiirklahv:kiirklahvid;klaviatuur;paigutus;klaviatuuripaigutus"
 
@@ -2149,10 +2193,10 @@ msgstr "Aitaja määramata \"%s\" jaoks."
 msgid "No command specified"
 msgstr "Käsku pole määratud"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:797
-#: dialogs/mime-settings/xfce-mime-helper.c:836
-#: dialogs/mime-settings/xfce-mime-helper.c:927
-#: dialogs/mime-settings/xfce-mime-helper.c:966
+#: dialogs/mime-settings/xfce-mime-helper.c:762
+#: dialogs/mime-settings/xfce-mime-helper.c:801
+#: dialogs/mime-settings/xfce-mime-helper.c:892
+#: dialogs/mime-settings/xfce-mime-helper.c:931
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "Faili %s ei õnnestunud kirjutamiseks avada"
@@ -2289,8 +2333,8 @@ msgstr "Kasutaja määratud"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:765
 #: dialogs/mime-settings/xfce-mime-window.c:932
-#: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
-#: dialogs/mouse-settings/main.c:472
+#: dialogs/mouse-settings/main.c:412 dialogs/mouse-settings/main.c:414
+#: dialogs/mouse-settings/main.c:473
 msgid "Default"
 msgstr "Vaikimisi"
 
@@ -2599,37 +2643,37 @@ msgstr "Xfe failihaldur"
 msgid "X Terminal"
 msgstr "X Terminal"
 
-#: dialogs/mouse-settings/main.c:83
+#: dialogs/mouse-settings/main.c:84
 msgid "Active device in the dialog"
 msgstr "Vaates olev aktiivne seade"
 
-#: dialogs/mouse-settings/main.c:83
+#: dialogs/mouse-settings/main.c:84
 msgid "DEVICE NAME"
 msgstr "SEADME NIMI"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:165
+#: dialogs/mouse-settings/main.c:166
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:175
+#: dialogs/mouse-settings/main.c:176
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:186
+#: dialogs/mouse-settings/main.c:187
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
 
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
 msgstr "Seadista osutusseadme käitumist ja välimust"
 
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:6
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:6
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;seaded;seadistused;kerimine;suund,kursor;hiirekursor;topeltklõps;teema;ratas;hiire ratas;suund;"
@@ -2853,15 +2897,15 @@ msgstr "Seadistused"
 msgid "Unable to start \"%s\""
 msgstr "\"%s\" käivitamine ei õnnestu"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:3
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:3
 msgid "Settings Manager"
 msgstr "Seadistuste haldur"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:4
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:4
 msgid "Graphical Settings Manager for Xfce"
 msgstr "Graafiline kasutajaliides Xfce seadistuste haldamiseks"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:5
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr "control;panel;center;system;settings;personalize;hardware;riba;seadistus;seadistused;süsteem;süsteemi;sätted;eelistus;eelistused;raudvara"
 
