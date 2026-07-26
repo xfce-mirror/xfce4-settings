@@ -1465,25 +1465,24 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
         gtk_widget_set_visible (GTK_WIDGET (object), FALSE);
     }
 
+    gboolean accel_profile_available = device != NULL && xfce_device_get_accel_profile_available (device);
     object = gtk_builder_get_object (builder, "libinput-accel-profile");
-    if (device != NULL && xfce_device_get_accel_profile_available (device))
+    if (accel_profile_available)
     {
         XfceDeviceAccelProfile supported = xfce_device_get_accel_profile_supported (device);
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (object),
                                       xfce_device_get_accel_profile (device) == XFCE_DEVICE_ACCEL_PROFILE_ADAPTIVE);
         gtk_widget_set_sensitive (GTK_WIDGET (object), (supported & XFCE_DEVICE_ACCEL_PROFILE_ADAPTIVE) != 0);
-        gtk_widget_set_visible (GTK_WIDGET (object), TRUE);
     }
-    else
-    {
-        gtk_widget_set_visible (GTK_WIDGET (object), FALSE);
-    }
+    gtk_widget_set_visible (GTK_WIDGET (object), accel_profile_available);
 
     /* update acceleration scale */
     gboolean acceleration_available = device != NULL && xfce_device_get_acceleration_available (device);
     object = gtk_builder_get_object (builder, "device-acceleration-scale");
     gtk_range_set_value (GTK_RANGE (object), acceleration_available ? xfce_device_get_acceleration (device) : -1.0);
-    gtk_widget_set_sensitive (GTK_WIDGET (object), acceleration_available);
+    gtk_widget_set_visible (GTK_WIDGET (object), acceleration_available);
+    object = gtk_builder_get_object (builder, "device-acceleration-label");
+    gtk_widget_set_visible (GTK_WIDGET (object), acceleration_available);
 
     /* update threshold scale */
     gboolean threshold_available = FALSE;
@@ -1513,6 +1512,12 @@ mouse_settings_device_selection_changed (GtkBuilder *builder)
     /* the core-X pointer feedback is what the reset button restores */
     object = gtk_builder_get_object (builder, "device-reset-feedback");
     gtk_widget_set_visible (GTK_WIDGET (object), is_legacy);
+
+    // Devices that have none of these leave the frame holding nothing but its
+    // title.
+    object = gtk_builder_get_object (builder, "device-pointer-speed-frame");
+    gtk_widget_set_visible (GTK_WIDGET (object),
+                            acceleration_available || threshold_available || accel_profile_available || is_legacy);
 
     /* touchpad options */
     object = gtk_builder_get_object (builder, "synaptics-tab");
