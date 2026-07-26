@@ -185,27 +185,21 @@
   </object>
   <object class="GtkListStore" id="wacom-rotation-store">
     <columns>
-      <!-- column-name rotation -->
-      <column type="gint"/>
       <!-- column-name title -->
       <column type="gchararray"/>
     </columns>
     <data>
       <row>
-        <col id="0">0</col>
-        <col id="1" translatable="yes">None (right-handed)</col>
+        <col id="0" translatable="yes">None (right-handed)</col>
       </row>
       <row>
-        <col id="0">3</col>
-        <col id="1" translatable="yes">Half (left-handed)</col>
+        <col id="0" translatable="yes">Half (left-handed)</col>
       </row>
       <row>
-        <col id="0">1</col>
-        <col id="1" translatable="yes">Clockwise</col>
+        <col id="0" translatable="yes">Clockwise</col>
       </row>
       <row>
-        <col id="0">2</col>
-        <col id="1" translatable="yes">Counterclockwise</col>
+        <col id="0" translatable="yes">Counterclockwise</col>
       </row>
     </data>
   </object>
@@ -944,7 +938,7 @@
                                     <property name="row-spacing">6</property>
                                     <property name="column-spacing">12</property>
                                     <child>
-                                      <object class="GtkLabel" id="label9">
+                                      <object class="GtkLabel" id="wacom-mode-label">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">start</property>
@@ -957,7 +951,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="label10">
+                                      <object class="GtkLabel" id="wacom-rotation-label">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <property name="halign">start</property>
@@ -996,7 +990,7 @@
                                         <child>
                                           <object class="GtkCellRendererText" id="cellrenderertext2"/>
                                           <attributes>
-                                            <attribute name="text">1</attribute>
+                                            <attribute name="text">0</attribute>
                                           </attributes>
                                         </child>
                                       </object>
