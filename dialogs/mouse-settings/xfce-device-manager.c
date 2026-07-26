@@ -22,10 +22,18 @@
 #include <gdk/gdkx.h>
 #endif
 
+#ifdef ENABLE_WAYLAND
+#include <gdk/gdkwayland.h>
+#endif
+
 #include "xfce-device-manager.h"
 
 #ifdef ENABLE_X11
 #include "xfce-device-manager-x11.h"
+#endif
+
+#ifdef ENABLE_WAYLAND
+#include "xfce-device-manager-wayland.h"
 #endif
 
 #define GET_PRIV(manager) ((XfceDeviceManagerPrivate *) xfce_device_manager_get_instance_private (XFCE_DEVICE_MANAGER (manager)))
@@ -218,6 +226,13 @@ xfce_device_manager_new (GdkDisplay *display,
     if (GDK_IS_X11_DISPLAY (display))
     {
         return xfce_device_manager_x11_new (display, channel, error);
+    }
+#endif
+
+#ifdef ENABLE_WAYLAND
+    if (GDK_IS_WAYLAND_DISPLAY (display))
+    {
+        return xfce_device_manager_wayland_new (display, channel, error);
     }
 #endif
 
