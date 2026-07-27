@@ -6,7 +6,6 @@ dirs = [
 if enable_x11
   dirs += [
     'accessibility-settings',
-    'mouse-settings',
   ]
 endif
 
@@ -95,3 +94,5 @@ foreach dir : dirs
     )
   endif
 endforeach
+
+subdir('mouse-settings')
