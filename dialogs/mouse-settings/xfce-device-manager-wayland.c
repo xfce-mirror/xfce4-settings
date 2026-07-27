@@ -23,6 +23,7 @@
 
 #include <gdk/gdkwayland.h>
 #include <gio/gio.h>
+#include <glib/gi18n.h>
 
 struct _XfceDeviceManagerWayland
 {
@@ -115,7 +116,7 @@ xfce_device_manager_wayland_real_init (GInitable *initable,
     if (self->device_list == NULL)
     {
         g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
-                             "The compositor does not support the xfce_input_device_list_private_v1 protocol");
+                             _("The compositor does not support the xfce_input_device_list_private_v1 protocol"));
         return FALSE;
     }
     else
