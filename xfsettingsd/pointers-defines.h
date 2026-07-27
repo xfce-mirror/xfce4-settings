@@ -29,24 +29,4 @@
 #define MIN_XI_VERS_MAJOR 1
 #define MIN_XI_VERS_MINOR 4
 
-/* test if the required version of inputproto (1.4.2) is available */
-#undef DEVICE_HOTPLUGGING
-#ifdef XI_Add_DevicePresenceNotify_Major
-#if XI_Add_DevicePresenceNotify_Major >= 1 && defined(DeviceRemoved)
-#define DEVICE_HOTPLUGGING
-#else
-#undef DEVICE_HOTPLUGGING
-#endif
-#endif
-
-/* test if device properties are available */
-#undef DEVICE_PROPERTIES
-#ifdef XI_Add_DeviceProperties_Major
-#define DEVICE_PROPERTIES
-#endif
-
-#ifndef IsXExtensionPointer
-#define IsXExtensionPointer 4
-#endif
-
 #endif /* !__POINTERS_DEFINES_H__ */

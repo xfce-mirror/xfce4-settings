@@ -150,7 +150,6 @@ executable(
     x11_deps,
     libnotify,
     libxklavier,
-    xorg_libinput,
     xrandr,
     wayland_deps,
     upower_glib,

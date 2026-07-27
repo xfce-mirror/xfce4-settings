@@ -35,7 +35,6 @@ dependency_versions = {
   'libnotify': '>= 0.7.8',
   'xcursor': '>= 1.1.0',
   'xkbcommon': '>= 1.6.0',
-  'xorg-libinput': '>= 0.6.0',
   'xrandr': '>= 1.5.0',
 
   'wayland': '>= 1.20',
@@ -98,10 +97,6 @@ if enable_x11
   xcursor = dependency('xcursor', version: dependency_versions['xcursor'], required: get_option('xcursor'))
   if xcursor.found()
     feature_cflags += '-DHAVE_XCURSOR=1'
-  endif
-  xorg_libinput = dependency('xorg-libinput', version: dependency_versions['xorg-libinput'], required: get_option('xorg-libinput'))
-  if xorg_libinput.found()
-    feature_cflags += '-DHAVE_LIBINPUT=1'
   endif
   xrandr = dependency('xrandr', version: dependency_versions['xrandr'], required: get_option('xrandr'))
   if xrandr.found()
