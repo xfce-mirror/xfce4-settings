@@ -3280,6 +3280,7 @@ display_settings_show_minimal_dialog (XfceDisplaySettings *settings)
 
         /* Build the minimal dialog */
         dialog = GTK_WIDGET (gtk_builder_get_object (builder, "dialog"));
+        gtk_window_set_keep_above (GTK_WINDOW (dialog), TRUE);
         cancel = GTK_WIDGET (gtk_builder_get_object (builder, "cancel-button"));
 
         g_signal_connect (dialog, "key-press-event", G_CALLBACK (display_settings_minimal_dialog_key_press_event), NULL);
