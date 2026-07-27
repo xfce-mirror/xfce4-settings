@@ -1847,7 +1847,7 @@ main (gint argc,
     device_manager = xfce_device_manager_new (gdk_display_get_default (), pointers_channel, &error);
     if (device_manager == NULL)
     {
-        g_critical ("Failed to enumerate input devices: %s", error->message);
+        xfce_message_dialog (NULL, _("Mouse and Touchpad"), "dialog-error", _("Unable to start"), error->message, _("Quit"), GTK_RESPONSE_ACCEPT, NULL);
         g_error_free (error);
 
         g_object_unref (G_OBJECT (xsettings_channel));
