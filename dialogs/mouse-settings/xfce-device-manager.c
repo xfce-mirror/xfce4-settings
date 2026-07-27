@@ -17,6 +17,7 @@
  */
 
 #include <gio/gio.h>
+#include <glib/gi18n.h>
 
 #ifdef ENABLE_X11
 #include <gdk/gdkx.h>
@@ -237,6 +238,6 @@ xfce_device_manager_new (GdkDisplay *display,
 #endif
 
     g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
-                         "No supported windowing system available");
+                         _("No supported windowing system available"));
     return NULL;
 }
