@@ -25,6 +25,7 @@
 
 #include <gdk/gdkx.h>
 #include <gio/gio.h>
+#include <glib/gi18n.h>
 
 struct _XfceDeviceManagerX11
 {
@@ -90,7 +91,7 @@ xfce_device_manager_x11_real_init (GInitable *initable,
             XFree (version);
         }
         g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
-                             "The XInput extension is not present");
+                             _("The XInput extension is not present"));
         return FALSE;
     }
     else if (version->major_version < MIN_XI_VERS_MAJOR
@@ -98,7 +99,7 @@ xfce_device_manager_x11_real_init (GInitable *initable,
                  && version->minor_version < MIN_XI_VERS_MINOR))
     {
         g_set_error (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
-                     "XInput %d.%d is too old; %d.%d is required",
+                     _("XInput %d.%d is too old; %d.%d is required"),
                      version->major_version, version->minor_version,
                      MIN_XI_VERS_MAJOR, MIN_XI_VERS_MINOR);
         XFree (version);
