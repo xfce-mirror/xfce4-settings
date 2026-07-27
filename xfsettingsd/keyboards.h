@@ -30,16 +30,6 @@ G_BEGIN_DECLS
 #define XFCE_TYPE_KEYBOARDS_HELPER (xfce_keyboards_helper_get_type ())
 G_DECLARE_FINAL_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, XFCE, KEYBOARDS_HELPER, GObject)
 
-/* test if the required version of inputproto (1.4.2) is available */
-#undef DEVICE_HOTPLUGGING
-#ifdef XI_Add_DevicePresenceNotify_Major
-#if XI_Add_DevicePresenceNotify_Major >= 1 && defined(DeviceRemoved)
-#define DEVICE_HOTPLUGGING
-#else
-#undef DEVICE_HOTPLUGGING
-#endif
-#endif
-
 G_END_DECLS
 
 #endif /* !__KEYBOARDS_H__ */

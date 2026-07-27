@@ -52,12 +52,10 @@ static gboolean
 xfce_keyboards_helper_device_is_keyboard (XID xid);
 static void
 xfce_keyboards_helper_set_all_settings (XfceKeyboardsHelper *helper);
-#ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_keyboards_helper_event_filter (GdkXEvent *xevent,
                                     GdkEvent *gdk_event,
                                     gpointer user_data);
-#endif
 
 
 
@@ -68,10 +66,8 @@ struct _XfceKeyboardsHelper
     /* xfconf channel */
     XfconfChannel *channel;
 
-#ifdef DEVICE_HOTPLUGGING
     /* device presence event type */
     gint device_presence_event_type;
-#endif
 };
 
 
@@ -97,9 +93,7 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
     gint dummy;
     gint marjor_ver, minor_ver;
     Display *xdisplay;
-#ifdef DEVICE_HOTPLUGGING
     XEventClass event_class;
-#endif
 
     /* init */
     helper->channel = NULL;
@@ -118,7 +112,6 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
         g_signal_connect (G_OBJECT (helper->channel), "property-changed",
                           G_CALLBACK (xfce_keyboards_helper_channel_property_changed), helper);
 
-#ifdef DEVICE_HOTPLUGGING
         if (G_LIKELY (xdisplay != NULL))
         {
             /* monitor device changes */
@@ -132,7 +125,6 @@ xfce_keyboards_helper_init (XfceKeyboardsHelper *helper)
             else
                 g_warning ("Failed to create device filter");
         }
-#endif
 
         /* load keyboard settings */
         xfce_keyboards_helper_set_all_settings (helper);
@@ -308,7 +300,6 @@ xfce_keyboards_helper_set_all_settings (XfceKeyboardsHelper *helper)
 
 
 
-#ifdef DEVICE_HOTPLUGGING
 static gboolean
 xfce_keyboards_helper_device_is_keyboard (XID xid)
 {
@@ -336,11 +327,9 @@ xfce_keyboards_helper_device_is_keyboard (XID xid)
 
     return device_found;
 }
-#endif
 
 
 
-#ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_keyboards_helper_event_filter (GdkXEvent *xevent,
                                     GdkEvent *gdk_event,
@@ -364,4 +353,3 @@ xfce_keyboards_helper_event_filter (GdkXEvent *xevent,
 
     return GDK_FILTER_CONTINUE;
 }
-#endif
