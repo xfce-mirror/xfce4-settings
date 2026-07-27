@@ -48,7 +48,6 @@ foreach dir : dirs
       colord,
       xkbregistry,
       xcursor,
-      xorg_libinput,
       libm,
       xrandr,
     ],

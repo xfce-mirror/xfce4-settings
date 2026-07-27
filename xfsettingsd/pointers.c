@@ -20,18 +20,14 @@
 #include "pointers.h"
 
 #include "common/debug.h"
+#include "common/libinput-properties.h"
 #include "common/xfce-randr.h"
 
 #include <X11/extensions/Xrandr.h>
 #include <gdk/gdkx.h>
 #include <libxfce4util/libxfce4util.h>
-#include <xfconf/xfconf.h>
-
-#ifdef HAVE_LIBINPUT
-#include <libinput-properties.h>
-#endif /* HAVE_LIBINPUT */
-
 #include <locale.h>
+#include <xfconf/xfconf.h>
 
 #define MAX_DENOMINATOR (100.00)
 
@@ -63,20 +59,16 @@ xfce_pointers_helper_update_all_touchscreen_orientations (GdkDisplay *display,
                                                           XfcePointersHelper *helper);
 static gboolean
 xfce_pointers_helper_update_all_touchscreen_orientations_event (gpointer data);
-#ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_pointers_helper_event_filter (GdkXEvent *xevent,
                                    GdkEvent *gdk_event,
                                    gpointer user_data);
-#endif
-#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
 xfce_pointers_helper_change_property (XDeviceInfo *device_info,
                                       XDevice *device,
                                       Display *xdisplay,
                                       const gchar *prop_name,
                                       const GValue *value);
-#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
 
 
@@ -89,17 +81,12 @@ struct _XfcePointersHelper
     XfconfChannel *displays_channel;
     guint update_all_touchscreen_orientations_event_id;
 
-#ifdef DEVICE_PROPERTIES
     GPid syndaemon_pid;
-#endif
 
-#ifdef DEVICE_HOTPLUGGING
     /* device presence event type */
     gint device_presence_event_type;
-#endif
 };
 
-#ifdef DEVICE_PROPERTIES
 typedef struct
 {
     Display *xdisplay;
@@ -107,7 +94,6 @@ typedef struct
     XDeviceInfo *device_info;
     gsize prop_name_len;
 } XfcePointerData;
-#endif
 
 
 
@@ -130,9 +116,7 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
 {
     XExtensionVersion *version = NULL;
     Display *xdisplay;
-#ifdef DEVICE_HOTPLUGGING
     XEventClass event_class;
-#endif
     GError *error = NULL;
     XfceRandr *randr = xfce_randr_new (gdk_display_get_default (), &error);
 
@@ -195,7 +179,6 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
                                  G_CALLBACK (xfce_pointers_helper_update_all_touchscreen_orientations),
                                  helper, G_CONNECT_AFTER);
 
-#ifdef DEVICE_HOTPLUGGING
         if (G_LIKELY (xdisplay != NULL))
         {
             /* monitor device changes */
@@ -209,7 +192,6 @@ xfce_pointers_helper_init (XfcePointersHelper *helper)
             else
                 g_warning ("Failed to create device filter");
         }
-#endif
     }
 
     if (version)
@@ -232,7 +214,6 @@ xfce_pointers_helper_finalize (GObject *object)
 
 
 
-#ifdef HAVE_LIBINPUT
 static gboolean
 xfce_pointers_is_enabled (Display *xdisplay,
                           XDevice *device)
@@ -296,14 +277,12 @@ xfce_pointers_is_libinput (Display *xdisplay,
     return xfce_pointers_libinput_prop_available (xdisplay, device, LIBINPUT_PROP_LEFT_HANDED)
            || xfce_pointers_libinput_prop_available (xdisplay, device, LIBINPUT_PROP_NATURAL_SCROLL);
 }
-#endif /* HAVE_LIBINPUT */
 
 
 
 static void
 xfce_pointers_helper_syndaemon_stop (XfcePointersHelper *helper)
 {
-#ifdef DEVICE_PROPERTIES
     if (helper->syndaemon_pid != 0)
     {
         xfsettings_dbg (XFSD_DEBUG_POINTERS, "Killed syndaemon with pid %d",
@@ -313,7 +292,6 @@ xfce_pointers_helper_syndaemon_stop (XfcePointersHelper *helper)
         g_spawn_close_pid (helper->syndaemon_pid);
         helper->syndaemon_pid = 0;
     }
-#endif
 }
 
 
@@ -321,7 +299,6 @@ xfce_pointers_helper_syndaemon_stop (XfcePointersHelper *helper)
 static void
 xfce_pointers_helper_syndaemon_check (XfcePointersHelper *helper)
 {
-#ifdef DEVICE_PROPERTIES
     Display *xdisplay = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
     XDeviceInfo *device_list;
     XDevice *device;
@@ -406,7 +383,6 @@ start_stop_daemon:
         xfsettings_dbg (XFSD_DEBUG_POINTERS, "Started syndaemon with pid %d",
                         helper->syndaemon_pid);
     }
-#endif
 }
 
 
@@ -466,7 +442,6 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
     gint right_button;
     GString *readable_map;
 
-#ifdef HAVE_LIBINPUT
     if (xfce_pointers_is_libinput (xdisplay, device))
     {
         if (right_handed != -1)
@@ -493,7 +468,6 @@ xfce_pointers_helper_change_button_mapping (XDeviceInfo *device_info,
 
         return;
     }
-#endif /* HAVE_LIBINPUT */
 
     /* search the number of buttons */
     for (n = 0, ptr = device_info->inputclassinfo; n < device_info->num_classes; n++)
@@ -611,7 +585,6 @@ xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
     gint num, denom, gcd;
     gboolean found = FALSE;
 
-#ifdef HAVE_LIBINPUT
     if (xfce_pointers_is_libinput (xdisplay, device))
     {
         gdouble libinput_accel;
@@ -625,7 +598,7 @@ xfce_pointers_helper_change_feedback (XDeviceInfo *device_info,
                                               LIBINPUT_PROP_ACCEL, &value);
         return;
     }
-#endif /* HAVE_LIBINPUT */
+
     /* get the feedback states for this device */
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
     states = XGetFeedbackControl (xdisplay, device, &num_feedbacks);
@@ -1124,7 +1097,6 @@ xfce_pointers_helper_update_touchscreen_orientation (XfcePointersHelper *helper,
 
 
 
-#if defined(DEVICE_PROPERTIES) || defined(HAVE_LIBINPUT)
 static void
 xfce_pointers_helper_change_property (XDeviceInfo *device_info,
                                       XDevice *device,
@@ -1164,7 +1136,6 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
     if (prop == None)
         return;
 
-#ifdef HAVE_LIBINPUT
     /*
      * libinput cannot change properties on disabled devices
      * see: https://bugs.freedesktop.org/show_bug.cgi?id=89296
@@ -1173,7 +1144,6 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
     if (prop != XInternAtom (xdisplay, DEVICE_ENABLED, True)
         && !xfce_pointers_is_enabled (xdisplay, device))
         return;
-#endif /* HAVE_LIBINPUT */
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
     props = XListDeviceProperties (xdisplay, device, &n_props);
@@ -1312,10 +1282,8 @@ xfce_pointers_helper_change_property (XDeviceInfo *device_info,
 
     XFree (props);
 }
-#endif /* DEVICE_PROPERTIES || HAVE_LIBINPUT */
 
 
-#ifdef DEVICE_PROPERTIES
 static void
 xfce_pointers_helper_change_properties (gpointer key,
                                         gpointer value,
@@ -1329,7 +1297,6 @@ xfce_pointers_helper_change_properties (gpointer key,
                                           pointer_data->xdisplay,
                                           prop_name, value);
 }
-#endif
 
 
 
@@ -1343,6 +1310,7 @@ xfce_pointers_helper_autoassign_touchscreens (XfcePointersHelper *helper,
     gint ndevices;
     gint nprops;
     Atom touchscreen_prop;
+    Atom touchscreen_prop_legacy;
     gboolean is_touchscreen;
 
     if (randr == NULL || randr->noutput == 0)
@@ -1371,13 +1339,10 @@ xfce_pointers_helper_autoassign_touchscreens (XfcePointersHelper *helper,
         return;
     }
 
-#ifdef HAVE_LIBINPUT
     /* Device property used by libinput to map touch coordinates onto the display */
     touchscreen_prop = XInternAtom (xdisplay, "libinput Calibration Matrix", True);
-#else
     /* Used by older input stacks to expose touch axis data */
-    touchscreen_prop = XInternAtom (xdisplay, "Abs MT Position X", True);
-#endif
+    touchscreen_prop_legacy = XInternAtom (xdisplay, "Abs MT Position X", True);
 
     GPtrArray *touchscreens = g_ptr_array_new ();
 
@@ -1403,7 +1368,7 @@ xfce_pointers_helper_autoassign_touchscreens (XfcePointersHelper *helper,
         {
             for (gint j = 0; j < nprops; j++)
             {
-                if (props[j] == touchscreen_prop)
+                if (props[j] == touchscreen_prop || props[j] == touchscreen_prop_legacy)
                 {
                     is_touchscreen = TRUE;
                     break;
@@ -1460,10 +1425,8 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
     gboolean reverse_scrolling;
     gint threshold;
     gdouble acceleration;
-#ifdef DEVICE_PROPERTIES
     GHashTable *props;
     XfcePointerData pointer_data;
-#endif
 
     gdk_x11_display_error_trap_push (gdk_display_get_default ());
     device_list = XListInputDevices (xdisplay, &ndevices);
@@ -1535,7 +1498,6 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
             g_clear_pointer (&mode, g_free);
         }
 
-#ifdef DEVICE_PROPERTIES
         /* set device properties */
         g_snprintf (prop, sizeof (prop), "/%s/Properties", device_name);
         props = xfconf_channel_get_properties (helper->channel, prop);
@@ -1551,7 +1513,6 @@ xfce_pointers_helper_restore_devices (XfcePointersHelper *helper,
 
             g_hash_table_destroy (props);
         }
-#endif
 
         g_free (device_name);
         XCloseDevice (xdisplay, device);
@@ -1642,13 +1603,11 @@ xfce_pointers_helper_channel_property_changed (XfconfChannel *channel,
                     xfce_pointers_helper_change_feedback (device_info, device, xdisplay,
                                                           -2, g_value_get_double (value));
                 }
-#ifdef DEVICE_PROPERTIES
                 else if (strcmp (names[1], "Properties") == 0)
                 {
                     xfce_pointers_helper_change_property (device_info, device, xdisplay,
                                                           names[2], value);
                 }
-#endif
                 else if (strcmp (names[1], "Mode") == 0)
                 {
                     xfce_pointers_helper_change_mode (device_info, device, xdisplay,
@@ -1692,6 +1651,7 @@ xfce_pointers_helper_update_all_touchscreen_orientations_event (gpointer data)
     XDevice *device;
     gint ndevices;
     Atom touchscreen_prop;
+    Atom touchscreen_prop_legacy;
     gboolean is_touchscreen;
 
     helper->update_all_touchscreen_orientations_event_id = 0;
@@ -1703,13 +1663,10 @@ xfce_pointers_helper_update_all_touchscreen_orientations_event (gpointer data)
         return FALSE;
     }
 
-#ifdef HAVE_LIBINPUT
     /* Device property used by libinput to map touch coordinates onto the display */
     touchscreen_prop = XInternAtom (xdisplay, "libinput Calibration Matrix", True);
-#else
     /* Used by older input stacks to expose touch axis data */
-    touchscreen_prop = XInternAtom (xdisplay, "Abs MT Position X", True);
-#endif
+    touchscreen_prop_legacy = XInternAtom (xdisplay, "Abs MT Position X", True);
 
     for (gint i = 0; i < ndevices; i++)
     {
@@ -1734,7 +1691,7 @@ xfce_pointers_helper_update_all_touchscreen_orientations_event (gpointer data)
         {
             for (gint j = 0; j < nprops; j++)
             {
-                if (props[j] == touchscreen_prop)
+                if (props[j] == touchscreen_prop || props[j] == touchscreen_prop_legacy)
                 {
                     is_touchscreen = TRUE;
                     break;
@@ -1769,7 +1726,6 @@ xfce_pointers_helper_update_all_touchscreen_orientations (GdkDisplay *display,
 
 
 
-#ifdef DEVICE_HOTPLUGGING
 static GdkFilterReturn
 xfce_pointers_helper_event_filter (GdkXEvent *xevent,
                                    GdkEvent *gdk_event,
@@ -1791,4 +1747,3 @@ xfce_pointers_helper_event_filter (GdkXEvent *xevent,
 
     return GDK_FILTER_CONTINUE;
 }
-#endif
