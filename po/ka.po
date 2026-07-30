@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-06-08 00:54+0200\n"
+"POT-Creation-Date: 2026-07-30 12:55+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: ზურაბი დავითაშვილი <zurabi@tuta.io>, 2020\n"
 "Language-Team: Georgian (http://app.transifex.com/xfce/xfce4-settings/language/ka/)\n"
@@ -31,8 +31,8 @@ msgstr "ხელმისაწვდომობა"
 #: common/resources/minimal-display-dialog.glade:368
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
-#: common/resources/mouse-dialog.glade:195
-#: dialogs/display-settings/main.c:3421
+#: common/resources/mouse-dialog.glade:225
+#: dialogs/display-settings/main.c:3422
 #: dialogs/mime-settings/xfce-mime-window.c:184
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:222
@@ -45,7 +45,7 @@ msgstr "და_ხურვა"
 #: common/resources/color-dialog.glade:80
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
-#: common/resources/mouse-dialog.glade:179
+#: common/resources/mouse-dialog.glade:240
 #: dialogs/mime-settings/xfce-mime-window.c:187
 #: xfce4-settings-editor/main.c:184
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:211
@@ -254,10 +254,13 @@ msgstr "კურსორის პოვნა"
 msgid "_Mouse"
 msgstr "თ_აგუნა"
 
+#. No assignment option
 #: common/resources/appearance-dialog.glade:39
 #: common/resources/mouse-dialog.glade:63
+#: common/resources/mouse-dialog.glade:126
+#: common/resources/mouse-dialog.glade:152
 #: dialogs/appearance-settings/main.c:1739 dialogs/display-settings/main.c:82
-#: dialogs/display-settings/main.c:90
+#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:745
 msgid "None"
 msgstr "არცერთი"
 
@@ -298,7 +301,7 @@ msgid "2x"
 msgstr "2x"
 
 #: common/resources/appearance-dialog.glade:107
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:4
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:4
 msgid "Appearance"
 msgstr "გარეგნობა"
 
@@ -640,7 +643,7 @@ msgid "Configure..."
 msgstr "კონფიგურაცია..."
 
 #: common/resources/display-dialog.glade:255
-#: dialogs/display-settings/xfce-display-settings.desktop.in:4
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:4
 msgid "Display"
 msgstr "ეკრანი"
 
@@ -804,7 +807,7 @@ msgid "Keyboard layout selection"
 msgstr "კლავიატურის განლაგების შერჩევა"
 
 #: common/resources/keyboard-dialog.glade:162
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:4
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:4
 msgid "Keyboard"
 msgstr "კლავიატურა"
 
@@ -813,8 +816,9 @@ msgid "Restore num l_ock state on startup"
 msgstr "NumLock-ის მდგ_ომარეობის აღდგენა გაშვებისას"
 
 #: common/resources/keyboard-dialog.glade:267
-#: common/resources/mouse-dialog.glade:726
-#: common/resources/mouse-dialog.glade:953
+#: common/resources/mouse-dialog.glade:782
+#: common/resources/mouse-dialog.glade:1025
+#: common/resources/mouse-dialog.glade:1217
 msgid "General"
 msgstr "ზოგადი"
 
@@ -950,227 +954,287 @@ msgstr "ორი თითით აწევ-ჩამოწევა"
 msgid "Circular scrolling"
 msgstr "წრიული აწევ-ჩამოწევა"
 
-#: common/resources/mouse-dialog.glade:126
+#: common/resources/mouse-dialog.glade:130 dialogs/display-settings/main.c:91
+msgid "Horizontal"
+msgstr "ჰორიზონტალური"
+
+#: common/resources/mouse-dialog.glade:134 dialogs/display-settings/main.c:92
+msgid "Vertical"
+msgstr "ვერტიკალური"
+
+#: common/resources/mouse-dialog.glade:138
+msgid "Both"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:156 dialogs/display-settings/main.c:83
+msgid "Left"
+msgstr "მარცხენა"
+
+#: common/resources/mouse-dialog.glade:160 dialogs/display-settings/main.c:84
+msgid "Inverted"
+msgstr "შებრუნებულია"
+
+#: common/resources/mouse-dialog.glade:164 dialogs/display-settings/main.c:85
+msgid "Right"
+msgstr "მარჯვენა"
+
+#: common/resources/mouse-dialog.glade:178
 msgid "Pen (absolute)"
 msgstr "ფანქარი (აბსოლუტური)"
 
-#: common/resources/mouse-dialog.glade:130
+#: common/resources/mouse-dialog.glade:182
 msgid "Mouse (relative)"
 msgstr "თაგუნა (ფარდობით)"
 
-#: common/resources/mouse-dialog.glade:144
+#: common/resources/mouse-dialog.glade:193
 msgid "None (right-handed)"
 msgstr "არცერთი (მარჯვენა ხელით)"
 
-#: common/resources/mouse-dialog.glade:148
+#: common/resources/mouse-dialog.glade:196
 msgid "Half (left-handed)"
 msgstr "ნახევარი (ცაცია)"
 
-#: common/resources/mouse-dialog.glade:152
+#: common/resources/mouse-dialog.glade:199
 msgid "Clockwise"
 msgstr "საათის ისრის მიმართულებით"
 
-#: common/resources/mouse-dialog.glade:156
+#: common/resources/mouse-dialog.glade:202
 msgid "Counterclockwise"
 msgstr "საათის ისრის საწინააღმდეგოდ"
 
-#: common/resources/mouse-dialog.glade:162
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:4
+#: common/resources/mouse-dialog.glade:208 dialogs/mouse-settings/main.c:1853
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "თაგუნა და თაჩპედი"
 
-#: common/resources/mouse-dialog.glade:237
+#: common/resources/mouse-dialog.glade:283
 msgid "De_vice:"
 msgstr "_მოწყობილობა:"
 
-#: common/resources/mouse-dialog.glade:314
+#: common/resources/mouse-dialog.glade:360
 msgid "Le_ft-handed"
 msgstr "ცაცია"
 
-#: common/resources/mouse-dialog.glade:331
+#: common/resources/mouse-dialog.glade:377
 msgid "Ri_ght-handed"
 msgstr "მემარჯვენე"
 
-#: common/resources/mouse-dialog.glade:355
+#: common/resources/mouse-dialog.glade:401
 msgid "Reverse scroll d_irection"
 msgstr "გადახვევის მიმართულების _რევერსი"
 
-#: common/resources/mouse-dialog.glade:359
+#: common/resources/mouse-dialog.glade:405
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:372
+#: common/resources/mouse-dialog.glade:418
 msgid "Allow high _resolution scrolling (experimental)"
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:376
+#: common/resources/mouse-dialog.glade:422
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:395
+#: common/resources/mouse-dialog.glade:441
 msgid "Buttons"
 msgstr "ღილაკები"
 
-#: common/resources/mouse-dialog.glade:428
+#: common/resources/mouse-dialog.glade:475
 msgid "_Reset to Defaults"
 msgstr "ნაგულისხმევი პარამეტრების დაყენება"
 
-#: common/resources/mouse-dialog.glade:432
+#: common/resources/mouse-dialog.glade:479
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:448
+#: common/resources/mouse-dialog.glade:495
 msgid "Sensitivit_y:"
 msgstr "მგრძნობელობა:"
 
-#: common/resources/mouse-dialog.glade:461
+#: common/resources/mouse-dialog.glade:508
 msgid "Acceleratio_n:"
 msgstr "აჩ_ქარება:"
 
-#: common/resources/mouse-dialog.glade:473
+#: common/resources/mouse-dialog.glade:520
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:488
+#: common/resources/mouse-dialog.glade:535
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:502
+#: common/resources/mouse-dialog.glade:549
 msgid "Adaptive pointer acceleration"
 msgstr "ადაპტიური კურსორის აჩქარება"
 
-#: common/resources/mouse-dialog.glade:505
+#: common/resources/mouse-dialog.glade:553
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:525
+#: common/resources/mouse-dialog.glade:584
 msgid "Pointer Speed"
 msgstr "მაჩვენებლის სიჩქარე"
 
-#: common/resources/mouse-dialog.glade:544
+#: common/resources/mouse-dialog.glade:603
 msgid "B_uttons and Feedback"
 msgstr "ღილაკები და _უკუკავშირი"
 
-#: common/resources/mouse-dialog.glade:578
-#: common/resources/mouse-dialog.glade:595
+#: common/resources/mouse-dialog.glade:637
+#: common/resources/mouse-dialog.glade:654
 msgid "Disable touchpad _while typing"
 msgstr "თაჩპედის გამორთვა _კრეფისას"
 
-#: common/resources/mouse-dialog.glade:582
-#: common/resources/mouse-dialog.glade:599
+#: common/resources/mouse-dialog.glade:641
+#: common/resources/mouse-dialog.glade:657
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:624
+#: common/resources/mouse-dialog.glade:682
 msgid "Duratio_n:"
 msgstr "ხანგრძლივობა:"
 
-#: common/resources/mouse-dialog.glade:659
+#: common/resources/mouse-dialog.glade:717
 msgid "Tap touchpad to clic_k"
 msgstr "თაჩპედზე დატ_ყაპუნება წკაპისთვის"
 
-#: common/resources/mouse-dialog.glade:682
+#: common/resources/mouse-dialog.glade:739
 msgid "Click m_ethod:"
 msgstr "წკაპის მ_ეთოდი:"
 
-#: common/resources/mouse-dialog.glade:767
+#: common/resources/mouse-dialog.glade:823
 msgid "Scrolling _mode:"
 msgstr "გადახვევის რეჟი_მი:"
 
-#: common/resources/mouse-dialog.glade:805
+#: common/resources/mouse-dialog.glade:861
 msgid "Enable hori_zontal scrolling"
 msgstr "ჰორი_ზონტალური გადახვევის დაშვება"
 
-#: common/resources/mouse-dialog.glade:827
+#: common/resources/mouse-dialog.glade:883
 msgid "Scrolling"
 msgstr "აჩოჩება"
 
-#: common/resources/mouse-dialog.glade:850
+#: common/resources/mouse-dialog.glade:906
 msgid "T_ouchpad"
 msgstr "თ_აჩპედი"
 
-#: common/resources/mouse-dialog.glade:888
+#: common/resources/mouse-dialog.glade:945
 msgid "Trac_king mode:"
 msgstr "ტრე_კინგის რეჟიმი:"
 
-#: common/resources/mouse-dialog.glade:901
+#: common/resources/mouse-dialog.glade:958
 msgid "_Rotation:"
 msgstr "_შემობრუნება:"
 
-#: common/resources/mouse-dialog.glade:976
+#: common/resources/mouse-dialog.glade:1048
 msgid "Tab_let"
 msgstr "ტაბლეტი"
 
-#: common/resources/mouse-dialog.glade:997
+#: common/resources/mouse-dialog.glade:1086
+msgid ""
+"Touchscreen devices may be mapped incorrectly in multimonitor setups. These "
+"settings can be used to manually adjust the mapping."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1111
+msgid "Assign to monitor:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1124
+msgid "Relative rotation:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1156
+msgid "Relative reflection:"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1243
+msgid "Touchscreen"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1263
 msgid "_Devices"
 msgstr "_მოწყობილობები"
 
-#: common/resources/mouse-dialog.glade:1034
+#: common/resources/mouse-dialog.glade:1300
 msgid "Th_reshold:"
 msgstr "ზღვა_რი:"
 
-#: common/resources/mouse-dialog.glade:1048
+#: common/resources/mouse-dialog.glade:1314
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:1067
+#: common/resources/mouse-dialog.glade:1333
 msgid "Drag and Drop"
 msgstr "გადათრევა და გაშვება"
 
-#: common/resources/mouse-dialog.glade:1103
+#: common/resources/mouse-dialog.glade:1369
 msgid "Ti_me:"
 msgstr "დრო:"
 
-#: common/resources/mouse-dialog.glade:1117
+#: common/resources/mouse-dialog.glade:1383
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:1133
+#: common/resources/mouse-dialog.glade:1399
 msgid "D_istance:"
 msgstr "მანძ_ილი:"
 
-#: common/resources/mouse-dialog.glade:1147
+#: common/resources/mouse-dialog.glade:1413
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr ""
 
-#: common/resources/mouse-dialog.glade:1166
+#: common/resources/mouse-dialog.glade:1432
 msgid "Double Click"
 msgstr "ორმაგი დაჭერა"
 
-#: common/resources/mouse-dialog.glade:1188
+#: common/resources/mouse-dialog.glade:1465
+msgid "_Paste selection on middle click"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1469
+msgid ""
+"Paste the current selection (not the clipboard) using the middle mouse "
+"button."
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1488
+msgid "Paste"
+msgstr ""
+
+#: common/resources/mouse-dialog.glade:1510
 msgid "_Behavior"
 msgstr "ქცევა"
 
-#: common/resources/mouse-dialog.glade:1253
+#: common/resources/mouse-dialog.glade:1575
 msgid "Cursor si_ze:"
 msgstr "კურსორის _ზომა:"
 
-#: common/resources/mouse-dialog.glade:1287
+#: common/resources/mouse-dialog.glade:1609
 msgid "Size"
 msgstr "ზომა"
 
-#: common/resources/mouse-dialog.glade:1327
+#: common/resources/mouse-dialog.glade:1649
 msgid "Preview"
 msgstr "მინიატურა"
 
-#: common/resources/mouse-dialog.glade:1356
+#: common/resources/mouse-dialog.glade:1678
 msgid "_Theme"
 msgstr "_თემა"
 
@@ -1201,14 +1265,14 @@ msgid "Unable to query the version of the RandR extension being used"
 msgstr "შეუძლებელია გამოყენებული RandR გაფართოების ვერსიის გამოთხოვნა"
 
 #: common/xfce-randr.c:573
-#: dialogs/display-settings/display-settings-wayland.c:346
+#: dialogs/display-settings/display-settings-wayland.c:360
 msgid "Laptop"
 msgstr "ლეპტოპი"
 
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "პარამეტრების მმართველის სოკეტი"
@@ -1216,7 +1280,7 @@ msgstr "პარამეტრების მმართველის ს�
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:84
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "სოკეტის აიდი"
@@ -1224,7 +1288,7 @@ msgstr "სოკეტის აიდი"
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:103
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
 msgid "Version information"
@@ -1232,10 +1296,10 @@ msgstr "ინფორმაცია ვერსიის შესახე�
 
 #: dialogs/accessibility-settings/main.c:191
 #: dialogs/appearance-settings/main.c:1855 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3369 dialogs/keyboard-settings/main.c:89
+#: dialogs/display-settings/main.c:3370 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2189 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:1806 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1243,8 +1307,8 @@ msgstr "აკრიფეთ '%s --help' გამოყენებისთ�
 
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1874 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3388 dialogs/keyboard-settings/main.c:105
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2208
+#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1825
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1252,8 +1316,8 @@ msgstr "Xfce-ის განვითარების ჯგუფი. ყვ
 
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1875 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:106
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2209
+#: dialogs/display-settings/main.c:3390 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1826
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1357,11 +1421,11 @@ msgstr "ვერტიკალური RGB"
 msgid "Vertical BGR"
 msgstr "ვერტიკალური BGR"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:5
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:5
 msgid "Customize the look of your desktop"
 msgstr "მოირგეთ თქვენი სამუშაო მაგიდის გარეგნობა"
 
-#: dialogs/appearance-settings/xfce-ui-settings.desktop.in:6
+#: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:6
 msgid ""
 "themes;user interface;styles;icons;fonts;anti-aliasing;hinting;sub-"
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
@@ -1540,26 +1604,6 @@ msgstr "მხოლოდ %s (1)"
 msgid "Only %s (2)"
 msgstr "მხოლოდ %s (2)"
 
-#: dialogs/display-settings/main.c:83
-msgid "Left"
-msgstr "მარცხენა"
-
-#: dialogs/display-settings/main.c:84
-msgid "Inverted"
-msgstr "შებრუნებულია"
-
-#: dialogs/display-settings/main.c:85
-msgid "Right"
-msgstr "მარჯვენა"
-
-#: dialogs/display-settings/main.c:91
-msgid "Horizontal"
-msgstr "ჰორიზონტალური"
-
-#: dialogs/display-settings/main.c:92
-msgid "Vertical"
-msgstr "ვერტიკალური"
-
 #: dialogs/display-settings/main.c:93
 msgid "Horizontal and Vertical"
 msgstr "ჰორიზონტალური და ვერტიკალური"
@@ -1645,23 +1689,23 @@ msgstr "ეკრანის დუბლირება"
 msgid "(Disabled)"
 msgstr "(გათიშულია)"
 
-#: dialogs/display-settings/main.c:3415
+#: dialogs/display-settings/main.c:3416
 msgid "ATI Settings"
 msgstr "ATI-ის მორგება"
 
-#: dialogs/display-settings/main.c:3420
+#: dialogs/display-settings/main.c:3421
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Xfce-ის ეკრანის მორგების დაწყება შეუძლებელია"
 
-#: dialogs/display-settings/main.c:3428
+#: dialogs/display-settings/main.c:3429
 msgid "Unable to launch the proprietary driver settings"
 msgstr "დახურული დრაივერის პარამეტრების გაშვება შეუძლებელია"
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:5
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:5
 msgid "Configure screen settings and layout"
 msgstr "ეკრანის პარამეტრებისა და განლაგების მორგება"
 
-#: dialogs/display-settings/xfce-display-settings.desktop.in:6
+#: dialogs/display-settings/xfce4-display-settings.desktop.in:6
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;ეკრანი;მორგება;გაფართოება;განახლებისსიხსირე;ტრიალი;გარე;პროექტორი;"
@@ -1674,7 +1718,7 @@ msgstr "ეკრანი:"
 msgid "Resolution:"
 msgstr "გარჩევადობა:"
 
-#: dialogs/display-settings/display-settings-wayland.c:1017
+#: dialogs/display-settings/display-settings-wayland.c:1031
 msgid ""
 "Your compositor does not seem to support the wlr-output-management protocol"
 msgstr ""
@@ -1793,11 +1837,11 @@ msgstr ""
 msgid "Warning"
 msgstr "გაფრთხილება"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:5
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:5
 msgid "Edit keyboard settings and application shortcuts"
 msgstr "კლავიატურის პარამეტრების და პროგრამების მალსახმობების რედაქტირება"
 
-#: dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in:6
+#: dialogs/keyboard-settings/xfce4-keyboard-settings.desktop.in:6
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr "numlock;keyboard;layout;shortcuts;კლავიატურა;განლაგება;მალსახმობი;"
 
@@ -2150,10 +2194,10 @@ msgstr "\"%s\"-სთვის დამხმარე პროგრამა
 msgid "No command specified"
 msgstr "ბრძანება მითითებული არაა"
 
-#: dialogs/mime-settings/xfce-mime-helper.c:797
-#: dialogs/mime-settings/xfce-mime-helper.c:836
-#: dialogs/mime-settings/xfce-mime-helper.c:927
-#: dialogs/mime-settings/xfce-mime-helper.c:966
+#: dialogs/mime-settings/xfce-mime-helper.c:762
+#: dialogs/mime-settings/xfce-mime-helper.c:801
+#: dialogs/mime-settings/xfce-mime-helper.c:892
+#: dialogs/mime-settings/xfce-mime-helper.c:931
 #, c-format
 msgid "Failed to open %s for writing"
 msgstr "%s-ის ჩაწერისთვის გახსნა შეუძლებელია"
@@ -2290,8 +2334,8 @@ msgstr "მომხმარებელი დაყენებულია"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:765
 #: dialogs/mime-settings/xfce-mime-window.c:932
-#: dialogs/mouse-settings/main.c:411 dialogs/mouse-settings/main.c:413
-#: dialogs/mouse-settings/main.c:472
+#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
+#: dialogs/mouse-settings/main.c:475
 msgid "Default"
 msgstr "ნაგულისხმევი"
 
@@ -2600,37 +2644,64 @@ msgstr "Xfe-ის ფაილების მმართველი"
 msgid "X Terminal"
 msgstr "X-ის ტერმინალი"
 
-#: dialogs/mouse-settings/main.c:83
+#: dialogs/mouse-settings/main.c:101
 msgid "Active device in the dialog"
 msgstr "აქტიური მოწყობილობა დიალოგში"
 
-#: dialogs/mouse-settings/main.c:83
+#: dialogs/mouse-settings/main.c:101
 msgid "DEVICE NAME"
 msgstr "მოწყობილობის სახელი"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:165
+#: dialogs/mouse-settings/main.c:170
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:175
+#: dialogs/mouse-settings/main.c:180
 #, c-format
 msgid "%g ms"
 msgstr "%g მწმ"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:186
+#: dialogs/mouse-settings/main.c:190
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f წმ"
 
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:5
+#: dialogs/mouse-settings/main.c:1853
+msgid "Unable to start"
+msgstr ""
+
+#: dialogs/mouse-settings/main.c:1853
+msgid "Quit"
+msgstr "დატოვება"
+
+#: dialogs/mouse-settings/xfce-device-manager-wayland.c:119
+msgid ""
+"The compositor does not support the xfce_input_device_list_private_v1 "
+"protocol"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-device-manager-x11.c:94
+msgid "The XInput extension is not present"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-device-manager-x11.c:102
+#, c-format
+msgid "XInput %d.%d is too old; %d.%d is required"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-device-manager.c:241
+msgid "No supported windowing system available"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
 msgstr ""
 
-#: dialogs/mouse-settings/xfce-mouse-settings.desktop.in:6
+#: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:6
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;თაგუნა;ბორბალი;"
@@ -2854,15 +2925,15 @@ msgstr "პარამეტრები"
 msgid "Unable to start \"%s\""
 msgstr "%s-ის გაშვების შეცდომა"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:3
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:3
 msgid "Settings Manager"
 msgstr "პარამეტრების მმართველი"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:4
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:4
 msgid "Graphical Settings Manager for Xfce"
 msgstr "გრაფიკული პარამეტრების მმართველი Xfce-სთვის"
 
-#: xfce4-settings-manager/xfce-settings-manager.desktop.in:5
+#: xfce4-settings-manager/xfce4-settings-manager.desktop.in:5
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr "control;panel;center;system;settings;personalize;hardware;მართვა;პარამეტრები;ცენტრი;მორგება;აპარატურა;"
 
