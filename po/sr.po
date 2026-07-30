@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-07-25 01:02+0200\n"
+"POT-Creation-Date: 2026-07-30 12:55+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>, 2012,2014-2019,2024,2026\n"
 "Language-Team: Serbian (http://app.transifex.com/xfce/xfce4-settings/language/sr/)\n"
@@ -36,8 +36,8 @@ msgstr "Приступачност"
 #: common/resources/minimal-display-dialog.glade:368
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
-#: common/resources/mouse-dialog.glade:231
-#: dialogs/display-settings/main.c:3421
+#: common/resources/mouse-dialog.glade:225
+#: dialogs/display-settings/main.c:3422
 #: dialogs/mime-settings/xfce-mime-window.c:184
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:222
@@ -50,7 +50,7 @@ msgstr "_Затвори"
 #: common/resources/color-dialog.glade:80
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
-#: common/resources/mouse-dialog.glade:246
+#: common/resources/mouse-dialog.glade:240
 #: dialogs/mime-settings/xfce-mime-window.c:187
 #: xfce4-settings-editor/main.c:184
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:211
@@ -265,7 +265,7 @@ msgstr "_Миш"
 #: common/resources/mouse-dialog.glade:126
 #: common/resources/mouse-dialog.glade:152
 #: dialogs/appearance-settings/main.c:1739 dialogs/display-settings/main.c:82
-#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:951
+#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:745
 msgid "None"
 msgstr "Ништа"
 
@@ -821,9 +821,9 @@ msgid "Restore num l_ock state on startup"
 msgstr "Поврати стање закључавања _бројчаних дугмади при покретању"
 
 #: common/resources/keyboard-dialog.glade:267
-#: common/resources/mouse-dialog.glade:788
-#: common/resources/mouse-dialog.glade:1031
-#: common/resources/mouse-dialog.glade:1223
+#: common/resources/mouse-dialog.glade:782
+#: common/resources/mouse-dialog.glade:1025
+#: common/resources/mouse-dialog.glade:1217
 msgid "General"
 msgstr "Опште"
 
@@ -991,255 +991,255 @@ msgstr "Писаљка (потпуно)"
 msgid "Mouse (relative)"
 msgstr "Миш (односно)"
 
-#: common/resources/mouse-dialog.glade:196
+#: common/resources/mouse-dialog.glade:193
 msgid "None (right-handed)"
 msgstr "Ништа (десноруко)"
 
-#: common/resources/mouse-dialog.glade:200
+#: common/resources/mouse-dialog.glade:196
 msgid "Half (left-handed)"
 msgstr "Пола (леворуко)"
 
-#: common/resources/mouse-dialog.glade:204
+#: common/resources/mouse-dialog.glade:199
 msgid "Clockwise"
 msgstr "У смеру казаљке часовника"
 
-#: common/resources/mouse-dialog.glade:208
+#: common/resources/mouse-dialog.glade:202
 msgid "Counterclockwise"
 msgstr "Супротно од казаљке на часовнику"
 
-#: common/resources/mouse-dialog.glade:214
+#: common/resources/mouse-dialog.glade:208 dialogs/mouse-settings/main.c:1853
 #: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "Миш и додирна плочица"
 
-#: common/resources/mouse-dialog.glade:289
+#: common/resources/mouse-dialog.glade:283
 msgid "De_vice:"
 msgstr "Ур_еђај:"
 
-#: common/resources/mouse-dialog.glade:366
+#: common/resources/mouse-dialog.glade:360
 msgid "Le_ft-handed"
 msgstr "_Леворуки"
 
-#: common/resources/mouse-dialog.glade:383
+#: common/resources/mouse-dialog.glade:377
 msgid "Ri_ght-handed"
 msgstr "Десноруки"
 
-#: common/resources/mouse-dialog.glade:407
+#: common/resources/mouse-dialog.glade:401
 msgid "Reverse scroll d_irection"
 msgstr "Обрни с_мер клизања"
 
-#: common/resources/mouse-dialog.glade:411
+#: common/resources/mouse-dialog.glade:405
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Ако је одабрано, точкић миша ће радити у супротном смеру"
 
-#: common/resources/mouse-dialog.glade:424
+#: common/resources/mouse-dialog.glade:418
 msgid "Allow high _resolution scrolling (experimental)"
 msgstr "Омогући клизање високе густине тачака (опитно)"
 
-#: common/resources/mouse-dialog.glade:428
+#: common/resources/mouse-dialog.glade:422
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr "Само је подржано на неким мишевима (углавном Логитек) и захтева подршку управљачким програмима. На подржаним уређајима омогућава тачније клизање."
 
-#: common/resources/mouse-dialog.glade:447
+#: common/resources/mouse-dialog.glade:441
 msgid "Buttons"
 msgstr "Дугмад"
 
-#: common/resources/mouse-dialog.glade:481
+#: common/resources/mouse-dialog.glade:475
 msgid "_Reset to Defaults"
 msgstr "_Врати на подразумевано"
 
-#: common/resources/mouse-dialog.glade:485
+#: common/resources/mouse-dialog.glade:479
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Врати убрзање и осетљивост одабраног уређаја на подразумеване вредности"
 
-#: common/resources/mouse-dialog.glade:501
+#: common/resources/mouse-dialog.glade:495
 msgid "Sensitivit_y:"
 msgstr "_Осетљивост:"
 
-#: common/resources/mouse-dialog.glade:514
+#: common/resources/mouse-dialog.glade:508
 msgid "Acceleratio_n:"
 msgstr "_Убрзање:"
 
-#: common/resources/mouse-dialog.glade:526
+#: common/resources/mouse-dialog.glade:520
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Множилац са којим ће се брзина показивача увећати померањем миша"
 
-#: common/resources/mouse-dialog.glade:541
+#: common/resources/mouse-dialog.glade:535
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Број тачака које показивач пређе за време пре почетка његовог убрзања"
 
-#: common/resources/mouse-dialog.glade:555
+#: common/resources/mouse-dialog.glade:549
 msgid "Adaptive pointer acceleration"
 msgstr "Прилагодљива брзина показивача"
 
-#: common/resources/mouse-dialog.glade:559
+#: common/resources/mouse-dialog.glade:553
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr "Мења између прилагодљивог и непроменљивог пресека убрзања. Прилагодљив узима у обзир тренутну брзину при одлучивању о јачини убрзања. Произвољни пресек убрзања није подржан у поставкама ИксФЦЕ-а."
 
-#: common/resources/mouse-dialog.glade:590
+#: common/resources/mouse-dialog.glade:584
 msgid "Pointer Speed"
 msgstr "Брзина показивача"
 
-#: common/resources/mouse-dialog.glade:609
+#: common/resources/mouse-dialog.glade:603
 msgid "B_uttons and Feedback"
 msgstr "_Дугмад и њихов одзив"
 
-#: common/resources/mouse-dialog.glade:643
-#: common/resources/mouse-dialog.glade:660
+#: common/resources/mouse-dialog.glade:637
+#: common/resources/mouse-dialog.glade:654
 msgid "Disable touchpad _while typing"
 msgstr "Онемогући до_дирну плочицу за време куцања"
 
-#: common/resources/mouse-dialog.glade:647
-#: common/resources/mouse-dialog.glade:663
+#: common/resources/mouse-dialog.glade:641
+#: common/resources/mouse-dialog.glade:657
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Кад је одабрано, додирна плочица ће бити онемогућена док се користи тастатура"
 
-#: common/resources/mouse-dialog.glade:688
+#: common/resources/mouse-dialog.glade:682
 msgid "Duratio_n:"
 msgstr "_Трајање:"
 
-#: common/resources/mouse-dialog.glade:723
+#: common/resources/mouse-dialog.glade:717
 msgid "Tap touchpad to clic_k"
 msgstr "Т_апни додирну плочицу за клик"
 
-#: common/resources/mouse-dialog.glade:745
+#: common/resources/mouse-dialog.glade:739
 msgid "Click m_ethod:"
 msgstr "На_чин кликтања:"
 
-#: common/resources/mouse-dialog.glade:829
+#: common/resources/mouse-dialog.glade:823
 msgid "Scrolling _mode:"
 msgstr "_Начин клизања:"
 
-#: common/resources/mouse-dialog.glade:867
+#: common/resources/mouse-dialog.glade:861
 msgid "Enable hori_zontal scrolling"
 msgstr "Укључи _водоравно клизање"
 
-#: common/resources/mouse-dialog.glade:889
+#: common/resources/mouse-dialog.glade:883
 msgid "Scrolling"
 msgstr "Клизање"
 
-#: common/resources/mouse-dialog.glade:912
+#: common/resources/mouse-dialog.glade:906
 msgid "T_ouchpad"
 msgstr "Д_одирна плочица"
 
-#: common/resources/mouse-dialog.glade:951
+#: common/resources/mouse-dialog.glade:945
 msgid "Trac_king mode:"
 msgstr "Начин пр_аћења:"
 
-#: common/resources/mouse-dialog.glade:964
+#: common/resources/mouse-dialog.glade:958
 msgid "_Rotation:"
 msgstr "_Смер обртања:"
 
-#: common/resources/mouse-dialog.glade:1054
+#: common/resources/mouse-dialog.glade:1048
 msgid "Tab_let"
 msgstr "Таблица"
 
-#: common/resources/mouse-dialog.glade:1092
+#: common/resources/mouse-dialog.glade:1086
 msgid ""
 "Touchscreen devices may be mapped incorrectly in multimonitor setups. These "
 "settings can be used to manually adjust the mapping."
 msgstr "Уређаји са додирним заслонима могу бити погрешно додељени у поставкама вишеструког приказа. Ове поставке се могу употребити за ручно подешавање доделе."
 
-#: common/resources/mouse-dialog.glade:1117
+#: common/resources/mouse-dialog.glade:1111
 msgid "Assign to monitor:"
 msgstr "Додај заслону:"
 
-#: common/resources/mouse-dialog.glade:1130
+#: common/resources/mouse-dialog.glade:1124
 msgid "Relative rotation:"
 msgstr "Односна заокренутост:"
 
-#: common/resources/mouse-dialog.glade:1162
+#: common/resources/mouse-dialog.glade:1156
 msgid "Relative reflection:"
 msgstr "Односни одсјај:"
 
-#: common/resources/mouse-dialog.glade:1249
+#: common/resources/mouse-dialog.glade:1243
 msgid "Touchscreen"
 msgstr "Додирни заслон"
 
-#: common/resources/mouse-dialog.glade:1269
+#: common/resources/mouse-dialog.glade:1263
 msgid "_Devices"
 msgstr "_Уређаји"
 
-#: common/resources/mouse-dialog.glade:1306
+#: common/resources/mouse-dialog.glade:1300
 msgid "Th_reshold:"
 msgstr "За_дршка:"
 
-#: common/resources/mouse-dialog.glade:1320
+#: common/resources/mouse-dialog.glade:1314
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Број тачака које показивач пређе пре почетка радње превлачења"
 
-#: common/resources/mouse-dialog.glade:1339
+#: common/resources/mouse-dialog.glade:1333
 msgid "Drag and Drop"
 msgstr "Превуци и спусти"
 
-#: common/resources/mouse-dialog.glade:1375
+#: common/resources/mouse-dialog.glade:1369
 msgid "Ti_me:"
 msgstr "Вр_еме:"
 
-#: common/resources/mouse-dialog.glade:1389
+#: common/resources/mouse-dialog.glade:1383
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Два клика мишем за краће време (у милисекундама) ће бити схваћена као двоклик"
 
-#: common/resources/mouse-dialog.glade:1405
+#: common/resources/mouse-dialog.glade:1399
 msgid "D_istance:"
 msgstr "Р_азмак:"
 
-#: common/resources/mouse-dialog.glade:1419
+#: common/resources/mouse-dialog.glade:1413
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Показивач миша не може да се помери даље од овог растојања између два клика да би их сматрали двокликом"
 
-#: common/resources/mouse-dialog.glade:1438
+#: common/resources/mouse-dialog.glade:1432
 msgid "Double Click"
 msgstr "Двоклик"
 
-#: common/resources/mouse-dialog.glade:1471
+#: common/resources/mouse-dialog.glade:1465
 msgid "_Paste selection on middle click"
 msgstr "_Налепи означено средњим кликом"
 
-#: common/resources/mouse-dialog.glade:1475
+#: common/resources/mouse-dialog.glade:1469
 msgid ""
 "Paste the current selection (not the clipboard) using the middle mouse "
 "button."
 msgstr "Налепљује тренутно означено (не односи се на исечке) употребом средњег дугмета миша."
 
-#: common/resources/mouse-dialog.glade:1494
+#: common/resources/mouse-dialog.glade:1488
 msgid "Paste"
 msgstr "Налепи"
 
-#: common/resources/mouse-dialog.glade:1516
+#: common/resources/mouse-dialog.glade:1510
 msgid "_Behavior"
 msgstr "_Понашање"
 
-#: common/resources/mouse-dialog.glade:1581
+#: common/resources/mouse-dialog.glade:1575
 msgid "Cursor si_ze:"
 msgstr "_Величина показивача:"
 
-#: common/resources/mouse-dialog.glade:1615
+#: common/resources/mouse-dialog.glade:1609
 msgid "Size"
 msgstr "Величина"
 
-#: common/resources/mouse-dialog.glade:1655
+#: common/resources/mouse-dialog.glade:1649
 msgid "Preview"
 msgstr "Преглед"
 
-#: common/resources/mouse-dialog.glade:1684
+#: common/resources/mouse-dialog.glade:1678
 msgid "_Theme"
 msgstr "_Предмет"
 
@@ -1277,7 +1277,7 @@ msgstr "Лаптоп"
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Поставке управника утичнице"
@@ -1285,7 +1285,7 @@ msgstr "Поставке управника утичнице"
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "ЛБ УТИЧНИЦЕ"
@@ -1293,7 +1293,7 @@ msgstr "ЛБ УТИЧНИЦЕ"
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:86
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:103
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
 msgid "Version information"
@@ -1301,10 +1301,10 @@ msgstr "Подаци о издању"
 
 #: dialogs/accessibility-settings/main.c:191
 #: dialogs/appearance-settings/main.c:1855 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3369 dialogs/keyboard-settings/main.c:89
+#: dialogs/display-settings/main.c:3370 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2433 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:1806 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1312,8 +1312,8 @@ msgstr "Упишите „%s --help“ за коришћење."
 
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1874 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3388 dialogs/keyboard-settings/main.c:105
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2452
+#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1825
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1321,8 +1321,8 @@ msgstr "Развојна дружина.Иксфце-а Сва права су �
 
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1875 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:106
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2453
+#: dialogs/display-settings/main.c:3390 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1826
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1695,15 +1695,15 @@ msgstr "Пресликај заслоне"
 msgid "(Disabled)"
 msgstr "(Онемогућено)"
 
-#: dialogs/display-settings/main.c:3415
+#: dialogs/display-settings/main.c:3416
 msgid "ATI Settings"
 msgstr "Подешавања АТИ-а"
 
-#: dialogs/display-settings/main.c:3420
+#: dialogs/display-settings/main.c:3421
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Нисам успео да покренем поставке приказа Иксфце-а"
 
-#: dialogs/display-settings/main.c:3428
+#: dialogs/display-settings/main.c:3429
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Нисам успео да покренем поставке власничког управљачког програма"
 
@@ -2341,8 +2341,8 @@ msgstr "Корисничка поставка"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:765
 #: dialogs/mime-settings/xfce-mime-window.c:932
-#: dialogs/mouse-settings/main.c:412 dialogs/mouse-settings/main.c:414
-#: dialogs/mouse-settings/main.c:473
+#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
+#: dialogs/mouse-settings/main.c:475
 msgid "Default"
 msgstr "Подразумевано"
 
@@ -2653,31 +2653,58 @@ msgstr "Управник датотека Иксфе-а"
 msgid "X Terminal"
 msgstr "Икс-ов терминал"
 
-#: dialogs/mouse-settings/main.c:84
+#: dialogs/mouse-settings/main.c:101
 msgid "Active device in the dialog"
 msgstr "Радни уређај у прозорчету"
 
-#: dialogs/mouse-settings/main.c:84
+#: dialogs/mouse-settings/main.c:101
 msgid "DEVICE NAME"
 msgstr "ИМЕ УРЕЂАЈА"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:166
+#: dialogs/mouse-settings/main.c:170
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:176
+#: dialogs/mouse-settings/main.c:180
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:187
+#: dialogs/mouse-settings/main.c:190
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
+
+#: dialogs/mouse-settings/main.c:1853
+msgid "Unable to start"
+msgstr ""
+
+#: dialogs/mouse-settings/main.c:1853
+msgid "Quit"
+msgstr "Одустани"
+
+#: dialogs/mouse-settings/xfce-device-manager-wayland.c:119
+msgid ""
+"The compositor does not support the xfce_input_device_list_private_v1 "
+"protocol"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-device-manager-x11.c:94
+msgid "The XInput extension is not present"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-device-manager-x11.c:102
+#, c-format
+msgid "XInput %d.%d is too old; %d.%d is required"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-device-manager.c:241
+msgid "No supported windowing system available"
+msgstr ""
 
 #: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
