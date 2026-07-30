@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-07-25 01:02+0200\n"
+"POT-Creation-Date: 2026-07-30 12:55+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Quentin PAGÈS, 2020-2026\n"
 "Language-Team: Occitan (post 1500) (http://app.transifex.com/xfce/xfce4-settings/language/oc/)\n"
@@ -33,8 +33,8 @@ msgstr "Accessibilitat"
 #: common/resources/minimal-display-dialog.glade:368
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
-#: common/resources/mouse-dialog.glade:231
-#: dialogs/display-settings/main.c:3421
+#: common/resources/mouse-dialog.glade:225
+#: dialogs/display-settings/main.c:3422
 #: dialogs/mime-settings/xfce-mime-window.c:184
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:222
@@ -47,7 +47,7 @@ msgstr "_Tampar"
 #: common/resources/color-dialog.glade:80
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
-#: common/resources/mouse-dialog.glade:246
+#: common/resources/mouse-dialog.glade:240
 #: dialogs/mime-settings/xfce-mime-window.c:187
 #: xfce4-settings-editor/main.c:184
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:211
@@ -262,7 +262,7 @@ msgstr "_Mirga"
 #: common/resources/mouse-dialog.glade:126
 #: common/resources/mouse-dialog.glade:152
 #: dialogs/appearance-settings/main.c:1739 dialogs/display-settings/main.c:82
-#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:951
+#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:745
 msgid "None"
 msgstr "Pas cap"
 
@@ -818,9 +818,9 @@ msgid "Restore num l_ock state on startup"
 msgstr "Restablir l'estat del _varrolhatge numeric a l'aviada"
 
 #: common/resources/keyboard-dialog.glade:267
-#: common/resources/mouse-dialog.glade:788
-#: common/resources/mouse-dialog.glade:1031
-#: common/resources/mouse-dialog.glade:1223
+#: common/resources/mouse-dialog.glade:782
+#: common/resources/mouse-dialog.glade:1025
+#: common/resources/mouse-dialog.glade:1217
 msgid "General"
 msgstr "General"
 
@@ -988,255 +988,255 @@ msgstr "Estilò (absolut)"
 msgid "Mouse (relative)"
 msgstr "Mirga (relatiu)"
 
-#: common/resources/mouse-dialog.glade:196
+#: common/resources/mouse-dialog.glade:193
 msgid "None (right-handed)"
 msgstr "Pas cap (Dreitièrs)"
 
-#: common/resources/mouse-dialog.glade:200
+#: common/resources/mouse-dialog.glade:196
 msgid "Half (left-handed)"
 msgstr "Mièg (Esquerrièrs)"
 
-#: common/resources/mouse-dialog.glade:204
+#: common/resources/mouse-dialog.glade:199
 msgid "Clockwise"
 msgstr "Sens orari"
 
-#: common/resources/mouse-dialog.glade:208
+#: common/resources/mouse-dialog.glade:202
 msgid "Counterclockwise"
 msgstr "Sens antiorari"
 
-#: common/resources/mouse-dialog.glade:214
+#: common/resources/mouse-dialog.glade:208 dialogs/mouse-settings/main.c:1853
 #: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "Mirga e pavat tactil"
 
-#: common/resources/mouse-dialog.glade:289
+#: common/resources/mouse-dialog.glade:283
 msgid "De_vice:"
 msgstr "Peri_feric :"
 
-#: common/resources/mouse-dialog.glade:366
+#: common/resources/mouse-dialog.glade:360
 msgid "Le_ft-handed"
 msgstr "_Esquerrièr"
 
-#: common/resources/mouse-dialog.glade:383
+#: common/resources/mouse-dialog.glade:377
 msgid "Ri_ght-handed"
 msgstr "_Dreitièr"
 
-#: common/resources/mouse-dialog.glade:407
+#: common/resources/mouse-dialog.glade:401
 msgid "Reverse scroll d_irection"
 msgstr "In_versar lo sens de defilament"
 
-#: common/resources/mouse-dialog.glade:411
+#: common/resources/mouse-dialog.glade:405
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "Inversar lo sens de defilament de la rodeta de la mirga"
 
-#: common/resources/mouse-dialog.glade:424
+#: common/resources/mouse-dialog.glade:418
 msgid "Allow high _resolution scrolling (experimental)"
 msgstr "Permetre lo defilament a nauta _resolucion (experimental)"
 
-#: common/resources/mouse-dialog.glade:428
+#: common/resources/mouse-dialog.glade:422
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr "Solament suportat sus qualques mirgas (mai que mai Logitech) e demanda una presa en carga del pilòt. Sus de periferics suportats fa venir lo defilament mai precís."
 
-#: common/resources/mouse-dialog.glade:447
+#: common/resources/mouse-dialog.glade:441
 msgid "Buttons"
 msgstr "Botons"
 
-#: common/resources/mouse-dialog.glade:481
+#: common/resources/mouse-dialog.glade:475
 msgid "_Reset to Defaults"
 msgstr "_Restablir los paramètres per defaut"
 
-#: common/resources/mouse-dialog.glade:485
+#: common/resources/mouse-dialog.glade:479
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Definir l'acceleracion e de la sensibilitat del periferic seleccionat a las valors per defaut"
 
-#: common/resources/mouse-dialog.glade:501
+#: common/resources/mouse-dialog.glade:495
 msgid "Sensitivit_y:"
 msgstr "_Sensibilitat :"
 
-#: common/resources/mouse-dialog.glade:514
+#: common/resources/mouse-dialog.glade:508
 msgid "Acceleratio_n:"
 msgstr "_Acceleracion :"
 
-#: common/resources/mouse-dialog.glade:526
+#: common/resources/mouse-dialog.glade:520
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Lo factor d'acceleracion del puntador de la mirga en foncion de son movement"
 
-#: common/resources/mouse-dialog.glade:541
+#: common/resources/mouse-dialog.glade:535
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Lo nombre de pixèls que se deu desplaçar lo puntador dins un cort relambi de temps abans que comence d'accelerar"
 
-#: common/resources/mouse-dialog.glade:555
+#: common/resources/mouse-dialog.glade:549
 msgid "Adaptive pointer acceleration"
 msgstr "Acceleracion del puntador adaptativa"
 
-#: common/resources/mouse-dialog.glade:559
+#: common/resources/mouse-dialog.glade:553
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr "Altèrna entre perfil d'acceleracion adaptativa e plana. Adaptiva pren en compte la velocitat actuala del periferic al moment de decidir de l'acceleracion. Lo perfil d'acceleracion personalizat es pas suportat via los paramètres xfce4."
 
-#: common/resources/mouse-dialog.glade:590
+#: common/resources/mouse-dialog.glade:584
 msgid "Pointer Speed"
 msgstr "Velocitat del puntador"
 
-#: common/resources/mouse-dialog.glade:609
+#: common/resources/mouse-dialog.glade:603
 msgid "B_uttons and Feedback"
 msgstr "B_otons e retorn d'experiéncia"
 
-#: common/resources/mouse-dialog.glade:643
-#: common/resources/mouse-dialog.glade:660
+#: common/resources/mouse-dialog.glade:637
+#: common/resources/mouse-dialog.glade:654
 msgid "Disable touchpad _while typing"
 msgstr "Desactivar lo pavat tactil _pendent la quichada"
 
-#: common/resources/mouse-dialog.glade:647
-#: common/resources/mouse-dialog.glade:663
+#: common/resources/mouse-dialog.glade:641
+#: common/resources/mouse-dialog.glade:657
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "Un còp seleccionat, lo pavat tactil es desactivat quand lo clavièr es utilizat"
 
-#: common/resources/mouse-dialog.glade:688
+#: common/resources/mouse-dialog.glade:682
 msgid "Duratio_n:"
 msgstr "Durada :"
 
-#: common/resources/mouse-dialog.glade:723
+#: common/resources/mouse-dialog.glade:717
 msgid "Tap touchpad to clic_k"
 msgstr "Tocar lo pavat tactil per _clicar"
 
-#: common/resources/mouse-dialog.glade:745
+#: common/resources/mouse-dialog.glade:739
 msgid "Click m_ethod:"
 msgstr "Metòde de clic :"
 
-#: common/resources/mouse-dialog.glade:829
+#: common/resources/mouse-dialog.glade:823
 msgid "Scrolling _mode:"
 msgstr "Mòde de defi_lament :"
 
-#: common/resources/mouse-dialog.glade:867
+#: common/resources/mouse-dialog.glade:861
 msgid "Enable hori_zontal scrolling"
 msgstr "Activar lo defilament ori_zontal"
 
-#: common/resources/mouse-dialog.glade:889
+#: common/resources/mouse-dialog.glade:883
 msgid "Scrolling"
 msgstr "Defilament"
 
-#: common/resources/mouse-dialog.glade:912
+#: common/resources/mouse-dialog.glade:906
 msgid "T_ouchpad"
 msgstr "Pavat tactil"
 
-#: common/resources/mouse-dialog.glade:951
+#: common/resources/mouse-dialog.glade:945
 msgid "Trac_king mode:"
 msgstr "_Mòde de recèrca :"
 
-#: common/resources/mouse-dialog.glade:964
+#: common/resources/mouse-dialog.glade:958
 msgid "_Rotation:"
 msgstr "Ro_tacion :"
 
-#: common/resources/mouse-dialog.glade:1054
+#: common/resources/mouse-dialog.glade:1048
 msgid "Tab_let"
 msgstr "Tab_leta"
 
-#: common/resources/mouse-dialog.glade:1092
+#: common/resources/mouse-dialog.glade:1086
 msgid ""
 "Touchscreen devices may be mapped incorrectly in multimonitor setups. These "
 "settings can be used to manually adjust the mapping."
 msgstr "Los periferics amb ecran tactil se pòdon maridament juntar dins de configuracion multimonitor. Aquestes paramètres se pòdon utilizar per ajustar manualament lo juntament."
 
-#: common/resources/mouse-dialog.glade:1117
+#: common/resources/mouse-dialog.glade:1111
 msgid "Assign to monitor:"
 msgstr "Atribuir al monitor :"
 
-#: common/resources/mouse-dialog.glade:1130
+#: common/resources/mouse-dialog.glade:1124
 msgid "Relative rotation:"
 msgstr "Rotacion relativa :"
 
-#: common/resources/mouse-dialog.glade:1162
+#: common/resources/mouse-dialog.glade:1156
 msgid "Relative reflection:"
 msgstr "Rabat relatiu :"
 
-#: common/resources/mouse-dialog.glade:1249
+#: common/resources/mouse-dialog.glade:1243
 msgid "Touchscreen"
 msgstr "Ecran tactil"
 
-#: common/resources/mouse-dialog.glade:1269
+#: common/resources/mouse-dialog.glade:1263
 msgid "_Devices"
 msgstr "_Periferics"
 
-#: common/resources/mouse-dialog.glade:1306
+#: common/resources/mouse-dialog.glade:1300
 msgid "Th_reshold:"
 msgstr "_Sulhet :"
 
-#: common/resources/mouse-dialog.glade:1320
+#: common/resources/mouse-dialog.glade:1314
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Lo nombre de pixèls que lo puntador ne se deu desplaçar abans qu'una operacion de desplaçament va començar"
 
-#: common/resources/mouse-dialog.glade:1339
+#: common/resources/mouse-dialog.glade:1333
 msgid "Drag and Drop"
 msgstr "Lisar/depausar"
 
-#: common/resources/mouse-dialog.glade:1375
+#: common/resources/mouse-dialog.glade:1369
 msgid "Ti_me:"
 msgstr "_Temps :"
 
-#: common/resources/mouse-dialog.glade:1389
+#: common/resources/mouse-dialog.glade:1383
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Temps maximum (en millisegondas) entre dos clics per la deteccion d'un clic doble"
 
-#: common/resources/mouse-dialog.glade:1405
+#: common/resources/mouse-dialog.glade:1399
 msgid "D_istance:"
 msgstr "_Distància :"
 
-#: common/resources/mouse-dialog.glade:1419
+#: common/resources/mouse-dialog.glade:1413
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Lo puntador de la mirga se pòt pas desplaçar mai luènh que la distància entre dos clics per èsser considerat coma un clic doble"
 
-#: common/resources/mouse-dialog.glade:1438
+#: common/resources/mouse-dialog.glade:1432
 msgid "Double Click"
 msgstr "Clic doble"
 
-#: common/resources/mouse-dialog.glade:1471
+#: common/resources/mouse-dialog.glade:1465
 msgid "_Paste selection on middle click"
 msgstr "_Pegar la seleccion amb lo clic de la rodeta"
 
-#: common/resources/mouse-dialog.glade:1475
+#: common/resources/mouse-dialog.glade:1469
 msgid ""
 "Paste the current selection (not the clipboard) using the middle mouse "
 "button."
 msgstr "Pegar la seleccion actuala (non pas lo quichapapièrs) en utilizant lo boton de la rodeta de la mirga."
 
-#: common/resources/mouse-dialog.glade:1494
+#: common/resources/mouse-dialog.glade:1488
 msgid "Paste"
 msgstr "Pegar"
 
-#: common/resources/mouse-dialog.glade:1516
+#: common/resources/mouse-dialog.glade:1510
 msgid "_Behavior"
 msgstr "_Compòrtament"
 
-#: common/resources/mouse-dialog.glade:1581
+#: common/resources/mouse-dialog.glade:1575
 msgid "Cursor si_ze:"
 msgstr "Talha del _cursor :"
 
-#: common/resources/mouse-dialog.glade:1615
+#: common/resources/mouse-dialog.glade:1609
 msgid "Size"
 msgstr "Talha"
 
-#: common/resources/mouse-dialog.glade:1655
+#: common/resources/mouse-dialog.glade:1649
 msgid "Preview"
 msgstr "Previsualizacion"
 
-#: common/resources/mouse-dialog.glade:1684
+#: common/resources/mouse-dialog.glade:1678
 msgid "_Theme"
 msgstr "_Tèma"
 
@@ -1274,7 +1274,7 @@ msgstr "Portable"
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Socket del gestionari de paramètres"
@@ -1282,7 +1282,7 @@ msgstr "Socket del gestionari de paramètres"
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "ID SOCKET"
@@ -1290,7 +1290,7 @@ msgstr "ID SOCKET"
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:86
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:103
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
 msgid "Version information"
@@ -1298,10 +1298,10 @@ msgstr "Informacion sus la version"
 
 #: dialogs/accessibility-settings/main.c:191
 #: dialogs/appearance-settings/main.c:1855 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3369 dialogs/keyboard-settings/main.c:89
+#: dialogs/display-settings/main.c:3370 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2433 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:1806 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1309,8 +1309,8 @@ msgstr "Picatz « %s --help » per mai d'ajuda."
 
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1874 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3388 dialogs/keyboard-settings/main.c:105
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2452
+#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1825
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1318,8 +1318,8 @@ msgstr "L'equipa de desvolopament Xfce. Totes los dreits reservats."
 
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1875 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:106
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2453
+#: dialogs/display-settings/main.c:3390 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1826
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1691,15 +1691,15 @@ msgstr "Ecrans en miralh"
 msgid "(Disabled)"
 msgstr "(Desactivat)"
 
-#: dialogs/display-settings/main.c:3415
+#: dialogs/display-settings/main.c:3416
 msgid "ATI Settings"
 msgstr "Paramètres ATI"
 
-#: dialogs/display-settings/main.c:3420
+#: dialogs/display-settings/main.c:3421
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Impossible d'aviar la fenèstra de configuracion dels ecrans"
 
-#: dialogs/display-settings/main.c:3428
+#: dialogs/display-settings/main.c:3429
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Impossible d'aviar los paramètres del pilòt proprietari"
 
@@ -2336,8 +2336,8 @@ msgstr "Definit per l'utilizaire"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:765
 #: dialogs/mime-settings/xfce-mime-window.c:932
-#: dialogs/mouse-settings/main.c:412 dialogs/mouse-settings/main.c:414
-#: dialogs/mouse-settings/main.c:473
+#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
+#: dialogs/mouse-settings/main.c:475
 msgid "Default"
 msgstr "Per defaut"
 
@@ -2646,31 +2646,58 @@ msgstr "Gestionari de fichièrs Xfce"
 msgid "X Terminal"
 msgstr "Terminal X"
 
-#: dialogs/mouse-settings/main.c:84
+#: dialogs/mouse-settings/main.c:101
 msgid "Active device in the dialog"
 msgstr "Periferic actiu dins la fenèstra"
 
-#: dialogs/mouse-settings/main.c:84
+#: dialogs/mouse-settings/main.c:101
 msgid "DEVICE NAME"
 msgstr "NOM DEL PERIFERIC"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:166
+#: dialogs/mouse-settings/main.c:170
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:176
+#: dialogs/mouse-settings/main.c:180
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:187
+#: dialogs/mouse-settings/main.c:190
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
+
+#: dialogs/mouse-settings/main.c:1853
+msgid "Unable to start"
+msgstr ""
+
+#: dialogs/mouse-settings/main.c:1853
+msgid "Quit"
+msgstr "Quitar"
+
+#: dialogs/mouse-settings/xfce-device-manager-wayland.c:119
+msgid ""
+"The compositor does not support the xfce_input_device_list_private_v1 "
+"protocol"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-device-manager-x11.c:94
+msgid "The XInput extension is not present"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-device-manager-x11.c:102
+#, c-format
+msgid "XInput %d.%d is too old; %d.%d is required"
+msgstr ""
+
+#: dialogs/mouse-settings/xfce-device-manager.c:241
+msgid "No supported windowing system available"
+msgstr ""
 
 #: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
