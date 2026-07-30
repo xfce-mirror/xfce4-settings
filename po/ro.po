@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-07-25 01:02+0200\n"
+"POT-Creation-Date: 2026-07-30 12:55+0200\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: vyper <xvirusxx@gmail.com>, 2016\n"
 "Language-Team: Romanian (http://app.transifex.com/xfce/xfce4-settings/language/ro/)\n"
@@ -35,8 +35,8 @@ msgstr "Accesibilitate"
 #: common/resources/minimal-display-dialog.glade:368
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
-#: common/resources/mouse-dialog.glade:231
-#: dialogs/display-settings/main.c:3421
+#: common/resources/mouse-dialog.glade:225
+#: dialogs/display-settings/main.c:3422
 #: dialogs/mime-settings/xfce-mime-window.c:184
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:222
@@ -49,7 +49,7 @@ msgstr "_Închide"
 #: common/resources/color-dialog.glade:80
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
-#: common/resources/mouse-dialog.glade:246
+#: common/resources/mouse-dialog.glade:240
 #: dialogs/mime-settings/xfce-mime-window.c:187
 #: xfce4-settings-editor/main.c:184
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:211
@@ -264,7 +264,7 @@ msgstr "_Maus"
 #: common/resources/mouse-dialog.glade:126
 #: common/resources/mouse-dialog.glade:152
 #: dialogs/appearance-settings/main.c:1739 dialogs/display-settings/main.c:82
-#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:951
+#: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:745
 msgid "None"
 msgstr "Fără"
 
@@ -820,9 +820,9 @@ msgid "Restore num l_ock state on startup"
 msgstr "Restaurează starea tastei NumLoc_k la pornire"
 
 #: common/resources/keyboard-dialog.glade:267
-#: common/resources/mouse-dialog.glade:788
-#: common/resources/mouse-dialog.glade:1031
-#: common/resources/mouse-dialog.glade:1223
+#: common/resources/mouse-dialog.glade:782
+#: common/resources/mouse-dialog.glade:1025
+#: common/resources/mouse-dialog.glade:1217
 msgid "General"
 msgstr "Generale"
 
@@ -990,255 +990,255 @@ msgstr "Stilou (mod absolut)"
 msgid "Mouse (relative)"
 msgstr "Maus (mod relativ)"
 
-#: common/resources/mouse-dialog.glade:196
+#: common/resources/mouse-dialog.glade:193
 msgid "None (right-handed)"
 msgstr "Nimic (dreptaci)"
 
-#: common/resources/mouse-dialog.glade:200
+#: common/resources/mouse-dialog.glade:196
 msgid "Half (left-handed)"
 msgstr "Jumătate (stângaci)"
 
-#: common/resources/mouse-dialog.glade:204
+#: common/resources/mouse-dialog.glade:199
 msgid "Clockwise"
 msgstr "În sens orar"
 
-#: common/resources/mouse-dialog.glade:208
+#: common/resources/mouse-dialog.glade:202
 msgid "Counterclockwise"
 msgstr "În sens anti-orar"
 
-#: common/resources/mouse-dialog.glade:214
+#: common/resources/mouse-dialog.glade:208 dialogs/mouse-settings/main.c:1853
 #: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "Maus și touchpad"
 
-#: common/resources/mouse-dialog.glade:289
+#: common/resources/mouse-dialog.glade:283
 msgid "De_vice:"
 msgstr "Disp_ozitiv:"
 
-#: common/resources/mouse-dialog.glade:366
+#: common/resources/mouse-dialog.glade:360
 msgid "Le_ft-handed"
 msgstr "_Stângaci"
 
-#: common/resources/mouse-dialog.glade:383
+#: common/resources/mouse-dialog.glade:377
 msgid "Ri_ght-handed"
 msgstr "Dr_eptaci"
 
-#: common/resources/mouse-dialog.glade:407
+#: common/resources/mouse-dialog.glade:401
 msgid "Reverse scroll d_irection"
 msgstr "In_versează direcția rotiței de derulare"
 
-#: common/resources/mouse-dialog.glade:411
+#: common/resources/mouse-dialog.glade:405
 msgid "When selected, the scroll wheel will work in the opposite direction"
 msgstr "La activare, rotița de derulare a mausului va funcționa invers decât în mod obișnuit"
 
-#: common/resources/mouse-dialog.glade:424
+#: common/resources/mouse-dialog.glade:418
 msgid "Allow high _resolution scrolling (experimental)"
 msgstr "Permite derularea la _rezoluție mare (experimental)"
 
-#: common/resources/mouse-dialog.glade:428
+#: common/resources/mouse-dialog.glade:422
 msgid ""
 "Only supported on some mice (mostly Logitech) and requires driver support. "
 "On supported devices makes scrolling more precise."
 msgstr "Compatibil numai cu unele modele de mausuri (în special Logitech) și necesită suport pentru controlor. Pe dispozitivele acceptate face derularea mai precisă."
 
-#: common/resources/mouse-dialog.glade:447
+#: common/resources/mouse-dialog.glade:441
 msgid "Buttons"
 msgstr "Ordinea butoanelor"
 
-#: common/resources/mouse-dialog.glade:481
+#: common/resources/mouse-dialog.glade:475
 msgid "_Reset to Defaults"
 msgstr "_Reinițializare"
 
-#: common/resources/mouse-dialog.glade:485
+#: common/resources/mouse-dialog.glade:479
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr "Revenire la valorile implicite pentru accelerarea și sensibilitatea dispozitivului selectat"
 
-#: common/resources/mouse-dialog.glade:501
+#: common/resources/mouse-dialog.glade:495
 msgid "Sensitivit_y:"
 msgstr "Sensi_bilitatea:"
 
-#: common/resources/mouse-dialog.glade:514
+#: common/resources/mouse-dialog.glade:508
 msgid "Acceleratio_n:"
 msgstr "Accele_rația:"
 
-#: common/resources/mouse-dialog.glade:526
+#: common/resources/mouse-dialog.glade:520
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
 msgstr "Factorul cu care se va incrementa viteza cursorului de maus când este mișcat"
 
-#: common/resources/mouse-dialog.glade:541
+#: common/resources/mouse-dialog.glade:535
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr "Numărul de pixeli cu care mausul trebuie mișcat într-un interval scurt de timp înainte să înceapă accelerarea"
 
-#: common/resources/mouse-dialog.glade:555
+#: common/resources/mouse-dialog.glade:549
 msgid "Adaptive pointer acceleration"
 msgstr "Accelerarea adaptivă a cursorului mausului"
 
-#: common/resources/mouse-dialog.glade:559
+#: common/resources/mouse-dialog.glade:553
 msgid ""
 "Toggles between adaptive and flat acceleration profile. Adaptive takes the "
 "current speed of the device into account when deciding on acceleration. "
 "Custom acceleration profile is not supported via xfce4-settings."
 msgstr "Comută între profilul de accelerație adaptiv și cel liniar. Adaptiv ia în considerare viteza curentă a dispozitivului atunci când decide asupra accelerației. Profilul de accelerare personalizat nu este acceptat prin intermediul «xfce4-settings»."
 
-#: common/resources/mouse-dialog.glade:590
+#: common/resources/mouse-dialog.glade:584
 msgid "Pointer Speed"
 msgstr "Viteza cursorului"
 
-#: common/resources/mouse-dialog.glade:609
+#: common/resources/mouse-dialog.glade:603
 msgid "B_uttons and Feedback"
 msgstr "B_utoane și viteza de răspuns"
 
-#: common/resources/mouse-dialog.glade:643
-#: common/resources/mouse-dialog.glade:660
+#: common/resources/mouse-dialog.glade:637
+#: common/resources/mouse-dialog.glade:654
 msgid "Disable touchpad _while typing"
 msgstr "Dezacti_vează touchpad-ul în timpul tastării"
 
-#: common/resources/mouse-dialog.glade:647
-#: common/resources/mouse-dialog.glade:663
+#: common/resources/mouse-dialog.glade:641
+#: common/resources/mouse-dialog.glade:657
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr "La activare, touchpad-ul va fi dezactivat când utilizați tastatura"
 
-#: common/resources/mouse-dialog.glade:688
+#: common/resources/mouse-dialog.glade:682
 msgid "Duratio_n:"
 msgstr "D_urată:"
 
-#: common/resources/mouse-dialog.glade:723
+#: common/resources/mouse-dialog.glade:717
 msgid "Tap touchpad to clic_k"
 msgstr "Atingerea _touchpad-ului produce un clic"
 
-#: common/resources/mouse-dialog.glade:745
+#: common/resources/mouse-dialog.glade:739
 msgid "Click m_ethod:"
 msgstr "Metoda de clic:"
 
-#: common/resources/mouse-dialog.glade:829
+#: common/resources/mouse-dialog.glade:823
 msgid "Scrolling _mode:"
 msgstr "M_od de derulare:"
 
-#: common/resources/mouse-dialog.glade:867
+#: common/resources/mouse-dialog.glade:861
 msgid "Enable hori_zontal scrolling"
 msgstr "Activează derularea ori_zontală"
 
-#: common/resources/mouse-dialog.glade:889
+#: common/resources/mouse-dialog.glade:883
 msgid "Scrolling"
 msgstr "Derulare"
 
-#: common/resources/mouse-dialog.glade:912
+#: common/resources/mouse-dialog.glade:906
 msgid "T_ouchpad"
 msgstr "T_ouchpad"
 
-#: common/resources/mouse-dialog.glade:951
+#: common/resources/mouse-dialog.glade:945
 msgid "Trac_king mode:"
 msgstr "Mod de _urmărire:"
 
-#: common/resources/mouse-dialog.glade:964
+#: common/resources/mouse-dialog.glade:958
 msgid "_Rotation:"
 msgstr "_Rotație:"
 
-#: common/resources/mouse-dialog.glade:1054
+#: common/resources/mouse-dialog.glade:1048
 msgid "Tab_let"
 msgstr "Ta_bletă"
 
-#: common/resources/mouse-dialog.glade:1092
+#: common/resources/mouse-dialog.glade:1086
 msgid ""
 "Touchscreen devices may be mapped incorrectly in multimonitor setups. These "
 "settings can be used to manually adjust the mapping."
 msgstr "Dispozitivele cu ecran tactil pot fi cartografiate incorect în configurațiile cu mai multe monitoare. Aceste opțiuni pot fi utilizate pentru a regla manual cartografierea."
 
-#: common/resources/mouse-dialog.glade:1117
+#: common/resources/mouse-dialog.glade:1111
 msgid "Assign to monitor:"
 msgstr "Asignare la monitorul:"
 
-#: common/resources/mouse-dialog.glade:1130
+#: common/resources/mouse-dialog.glade:1124
 msgid "Relative rotation:"
 msgstr "Rotație relativă:"
 
-#: common/resources/mouse-dialog.glade:1162
+#: common/resources/mouse-dialog.glade:1156
 msgid "Relative reflection:"
 msgstr "Reflecție relativă:"
 
-#: common/resources/mouse-dialog.glade:1249
+#: common/resources/mouse-dialog.glade:1243
 msgid "Touchscreen"
 msgstr "Ecran tactil"
 
-#: common/resources/mouse-dialog.glade:1269
+#: common/resources/mouse-dialog.glade:1263
 msgid "_Devices"
 msgstr "_Dispozitive"
 
-#: common/resources/mouse-dialog.glade:1306
+#: common/resources/mouse-dialog.glade:1300
 msgid "Th_reshold:"
 msgstr "_Prag:"
 
-#: common/resources/mouse-dialog.glade:1320
+#: common/resources/mouse-dialog.glade:1314
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
 msgstr "Numărul de pixeli cu care mausul trebuie mișcat înainte de a declanșa acțiunea de tragere și plasare"
 
-#: common/resources/mouse-dialog.glade:1339
+#: common/resources/mouse-dialog.glade:1333
 msgid "Drag and Drop"
 msgstr "Tragere și plasare"
 
-#: common/resources/mouse-dialog.glade:1375
+#: common/resources/mouse-dialog.glade:1369
 msgid "Ti_me:"
 msgstr "Du_rată:"
 
-#: common/resources/mouse-dialog.glade:1389
+#: common/resources/mouse-dialog.glade:1383
 msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr "Două clicuri într-un interval de timp (în milisecunde) mai scurt de atât, va fi considerat un dublu-clic"
 
-#: common/resources/mouse-dialog.glade:1405
+#: common/resources/mouse-dialog.glade:1399
 msgid "D_istance:"
 msgstr "Di_stanță:"
 
-#: common/resources/mouse-dialog.glade:1419
+#: common/resources/mouse-dialog.glade:1413
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr "Cursorul de maus nu trebuie mutat mai mult de atâția pixeli între două clicuri pentru a se efectua un dublu-clic"
 
-#: common/resources/mouse-dialog.glade:1438
+#: common/resources/mouse-dialog.glade:1432
 msgid "Double Click"
 msgstr "Dublu-clic"
 
-#: common/resources/mouse-dialog.glade:1471
+#: common/resources/mouse-dialog.glade:1465
 msgid "_Paste selection on middle click"
 msgstr "Lipește selecția la clic cu butonul din mijloc al masusului"
 
-#: common/resources/mouse-dialog.glade:1475
+#: common/resources/mouse-dialog.glade:1469
 msgid ""
 "Paste the current selection (not the clipboard) using the middle mouse "
 "button."
 msgstr "Lipește selecția curentă (nu conținutul clipboard-ului) folosind butonul din mijloc al mausului."
 
-#: common/resources/mouse-dialog.glade:1494
+#: common/resources/mouse-dialog.glade:1488
 msgid "Paste"
 msgstr "Lipește"
 
-#: common/resources/mouse-dialog.glade:1516
+#: common/resources/mouse-dialog.glade:1510
 msgid "_Behavior"
 msgstr "Comportame_nt"
 
-#: common/resources/mouse-dialog.glade:1581
+#: common/resources/mouse-dialog.glade:1575
 msgid "Cursor si_ze:"
 msgstr "Mă_rimea cursorului:"
 
-#: common/resources/mouse-dialog.glade:1615
+#: common/resources/mouse-dialog.glade:1609
 msgid "Size"
 msgstr "Mărime"
 
-#: common/resources/mouse-dialog.glade:1655
+#: common/resources/mouse-dialog.glade:1649
 msgid "Preview"
 msgstr "Previzualizare"
 
-#: common/resources/mouse-dialog.glade:1684
+#: common/resources/mouse-dialog.glade:1678
 msgid "_Theme"
 msgstr "Te_mă"
 
@@ -1276,7 +1276,7 @@ msgstr "Laptop"
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
 msgid "Settings manager socket"
 msgstr "Soclul gestionarului de opțiuni"
@@ -1284,7 +1284,7 @@ msgstr "Soclul gestionarului de opțiuni"
 #: dialogs/accessibility-settings/main.c:36
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
-#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:85
+#: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
 msgid "SOCKET ID"
 msgstr "ID SOCLU"
@@ -1292,7 +1292,7 @@ msgstr "ID SOCLU"
 #: dialogs/accessibility-settings/main.c:37
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
-#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:86
+#: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:103
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
 #: xfsettingsd/main.c:94
 msgid "Version information"
@@ -1300,10 +1300,10 @@ msgstr "Detalii despre versiune"
 
 #: dialogs/accessibility-settings/main.c:191
 #: dialogs/appearance-settings/main.c:1855 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3369 dialogs/keyboard-settings/main.c:89
+#: dialogs/display-settings/main.c:3370 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:2433 xfce4-settings-editor/main.c:118
+#: dialogs/mouse-settings/main.c:1806 xfce4-settings-editor/main.c:118
 #: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
 #, c-format
 msgid "Type '%s --help' for usage."
@@ -1311,8 +1311,8 @@ msgstr "Tastați «%s --help» pentru detalii despre utilizare."
 
 #: dialogs/accessibility-settings/main.c:210
 #: dialogs/appearance-settings/main.c:1874 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3388 dialogs/keyboard-settings/main.c:105
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:2452
+#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1825
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
 #: xfsettingsd/main.c:265
 msgid "The Xfce development team. All rights reserved."
@@ -1320,8 +1320,8 @@ msgstr "Echipa de dezvoltare Xfce. Toate drepturile sunt rezervate."
 
 #: dialogs/accessibility-settings/main.c:211
 #: dialogs/appearance-settings/main.c:1875 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:106
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:2453
+#: dialogs/display-settings/main.c:3390 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1826
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
 #: xfsettingsd/main.c:266
 #, c-format
@@ -1694,15 +1694,15 @@ msgstr "Ecrane identice"
 msgid "(Disabled)"
 msgstr "(Dezactivat)"
 
-#: dialogs/display-settings/main.c:3415
+#: dialogs/display-settings/main.c:3416
 msgid "ATI Settings"
 msgstr "Opțiuni ATI"
 
-#: dialogs/display-settings/main.c:3420
+#: dialogs/display-settings/main.c:3421
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Nu se poate porni fereastra cu opțiunile Xfce pentru afișare"
 
-#: dialogs/display-settings/main.c:3428
+#: dialogs/display-settings/main.c:3429
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Nu se poate deschide programul de configurare a controlorului proprietar"
 
@@ -2340,8 +2340,8 @@ msgstr "Personalizată"
 #. sort the names but keep Default on top
 #: dialogs/mime-settings/xfce-mime-window.c:765
 #: dialogs/mime-settings/xfce-mime-window.c:932
-#: dialogs/mouse-settings/main.c:412 dialogs/mouse-settings/main.c:414
-#: dialogs/mouse-settings/main.c:473
+#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
+#: dialogs/mouse-settings/main.c:475
 msgid "Default"
 msgstr "Implicită"
 
@@ -2652,31 +2652,58 @@ msgstr "Gestionarul de fișiere Xfe"
 msgid "X Terminal"
 msgstr "Terminalul Xterm"
 
-#: dialogs/mouse-settings/main.c:84
+#: dialogs/mouse-settings/main.c:101
 msgid "Active device in the dialog"
 msgstr "Dispozitiv activ în fereastră"
 
-#: dialogs/mouse-settings/main.c:84
+#: dialogs/mouse-settings/main.c:101
 msgid "DEVICE NAME"
 msgstr "NUMELE DISPOZITIVULUI"
 
 #. pixel value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:166
+#: dialogs/mouse-settings/main.c:170
 #, c-format
 msgid "%g px"
 msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:176
+#: dialogs/mouse-settings/main.c:180
 #, c-format
 msgid "%g ms"
 msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
-#: dialogs/mouse-settings/main.c:187
+#: dialogs/mouse-settings/main.c:190
 #, c-format
 msgid "%.1f s"
 msgstr "%.1f s"
+
+#: dialogs/mouse-settings/main.c:1853
+msgid "Unable to start"
+msgstr "Nu s-a putut iniția"
+
+#: dialogs/mouse-settings/main.c:1853
+msgid "Quit"
+msgstr "Ieșire"
+
+#: dialogs/mouse-settings/xfce-device-manager-wayland.c:119
+msgid ""
+"The compositor does not support the xfce_input_device_list_private_v1 "
+"protocol"
+msgstr "Compositorul nu acceptă protocolul xfce_input_device_list_private_v1"
+
+#: dialogs/mouse-settings/xfce-device-manager-x11.c:94
+msgid "The XInput extension is not present"
+msgstr "Extensia XInput nu este prezentă"
+
+#: dialogs/mouse-settings/xfce-device-manager-x11.c:102
+#, c-format
+msgid "XInput %d.%d is too old; %d.%d is required"
+msgstr "XInput %d.%d este prea vechi; este necesară versiunea %d.%d"
+
+#: dialogs/mouse-settings/xfce-device-manager.c:241
+msgid "No supported windowing system available"
+msgstr "Nu este disponibil niciun sistem de ferestre compatibil"
 
 #: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:5
 msgid "Configure pointer device behavior and appearance"
