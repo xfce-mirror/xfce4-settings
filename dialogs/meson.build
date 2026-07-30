@@ -6,7 +6,6 @@ dirs = [
 if enable_x11
   dirs += [
     'accessibility-settings',
-    'mouse-settings',
   ]
 endif
 
@@ -49,7 +48,6 @@ foreach dir : dirs
       colord,
       xkbregistry,
       xcursor,
-      xorg_libinput,
       libm,
       xrandr,
     ],
@@ -95,3 +93,5 @@ foreach dir : dirs
     )
   endif
 endforeach
+
+subdir('mouse-settings')

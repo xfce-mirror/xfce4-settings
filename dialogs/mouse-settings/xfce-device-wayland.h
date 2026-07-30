@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
+ *  Copyright (c) 2026 Brian Tarricone <brian@tarricone.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -14,22 +14,31 @@
  *  You should have received a copy of the GNU General Public License along
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- *
- *  XKB Extension code taken from the original mcs-keyboard-plugin written
- *  by Olivier Fourdan.
  */
 
-#ifndef __KEYBOARDS_H__
-#define __KEYBOARDS_H__
+#ifndef _XFCE_DEVICE_WAYLAND_H_
+#define _XFCE_DEVICE_WAYLAND_H_
 
-#include <X11/extensions/XInput.h>
+#include "xfce-device-manager.h"
+#include "xfce-device.h"
+
 #include <glib-object.h>
 
 G_BEGIN_DECLS
 
-#define XFCE_TYPE_KEYBOARDS_HELPER (xfce_keyboards_helper_get_type ())
-G_DECLARE_FINAL_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, XFCE, KEYBOARDS_HELPER, GObject)
+struct xfce_input_device_v1;
+
+#define XFCE_TYPE_DEVICE_WAYLAND (xfce_device_wayland_get_type ())
+G_DECLARE_FINAL_TYPE (XfceDeviceWayland, xfce_device_wayland, XFCE, DEVICE_WAYLAND, XfceDevice)
+
+/* The manager is borrowed, not referenced: it owns the devices it creates, and
+ * is told through it when the compositor removes one. */
+XfceDevice *
+xfce_device_wayland_new (XfceDeviceManager *manager,
+                         struct xfce_input_device_v1 *handle,
+                         const gchar *name,
+                         XfceDeviceCapabilities capabilities);
 
 G_END_DECLS
 
-#endif /* !__KEYBOARDS_H__ */
+#endif

@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2008 Stephan Arts <stephan@xfce.org>
+ *  Copyright (c) 2026 Brian Tarricone <brian@tarricone.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -14,22 +14,27 @@
  *  You should have received a copy of the GNU General Public License along
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- *
- *  XKB Extension code taken from the original mcs-keyboard-plugin written
- *  by Olivier Fourdan.
  */
 
-#ifndef __KEYBOARDS_H__
-#define __KEYBOARDS_H__
+#ifndef _XFCE_DEVICE_MANAGER_WAYLAND_H_
+#define _XFCE_DEVICE_MANAGER_WAYLAND_H_
 
-#include <X11/extensions/XInput.h>
+#include "xfce-device-manager.h"
+
+#include <gdk/gdk.h>
 #include <glib-object.h>
+#include <xfconf/xfconf.h>
 
 G_BEGIN_DECLS
 
-#define XFCE_TYPE_KEYBOARDS_HELPER (xfce_keyboards_helper_get_type ())
-G_DECLARE_FINAL_TYPE (XfceKeyboardsHelper, xfce_keyboards_helper, XFCE, KEYBOARDS_HELPER, GObject)
+#define XFCE_TYPE_DEVICE_MANAGER_WAYLAND (xfce_device_manager_wayland_get_type ())
+G_DECLARE_FINAL_TYPE (XfceDeviceManagerWayland, xfce_device_manager_wayland, XFCE, DEVICE_MANAGER_WAYLAND, XfceDeviceManager)
+
+XfceDeviceManager *
+xfce_device_manager_wayland_new (GdkDisplay *display,
+                                 XfconfChannel *channel,
+                                 GError **error);
 
 G_END_DECLS
 
-#endif /* !__KEYBOARDS_H__ */
+#endif
