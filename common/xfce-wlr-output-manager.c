@@ -87,11 +87,11 @@ static void
 mode_finished (void *data, struct zwlr_output_mode_v1 *wl_mode);
 
 static void
-xfce_manager_head (void *data, struct xfce_output_manager_private_v1 *xfce_manager, struct xfce_output_head_private_v1 *head, const char *name);
+xfce_manager_head (void *data, struct xfce_output_management_manager_private_v1 *xfce_manager, struct xfce_output_head_private_v1 *head, const char *name);
 static void
-xfce_manager_done (void *data, struct xfce_output_manager_private_v1 *xfce_manager, uint32_t serial);
+xfce_manager_done (void *data, struct xfce_output_management_manager_private_v1 *xfce_manager, uint32_t serial);
 static void
-xfce_manager_finished (void *data, struct xfce_output_manager_private_v1 *xfce_manager);
+xfce_manager_finished (void *data, struct xfce_output_management_manager_private_v1 *xfce_manager);
 static void
 xfce_head_edid (void *data, struct xfce_output_head_private_v1 *xfce_head, int32_t fd, uint32_t size);
 static void
@@ -111,7 +111,7 @@ struct _XfceWlrOutputManager
 
     struct wl_registry *wl_registry;
     struct zwlr_output_manager_v1 *wl_manager;
-    struct xfce_output_manager_private_v1 *xfce_manager;
+    struct xfce_output_management_manager_private_v1 *xfce_manager;
 
     gboolean saw_first_wlr_done;
     gboolean saw_first_xfce_done;
@@ -156,7 +156,7 @@ static const struct zwlr_output_mode_v1_listener mode_listener = {
     .finished = mode_finished,
 };
 
-static const struct xfce_output_manager_private_v1_listener xfce_manager_listener = {
+static const struct xfce_output_management_manager_private_v1_listener xfce_manager_listener = {
     .head = xfce_manager_head,
     .done = xfce_manager_done,
     .finished = xfce_manager_finished,
@@ -309,7 +309,7 @@ xfce_wlr_output_manager_constructed (GObject *object)
     }
 
     if (manager->xfce_manager != NULL)
-        xfce_output_manager_private_v1_add_listener (manager->xfce_manager, &xfce_manager_listener, manager);
+        xfce_output_management_manager_private_v1_add_listener (manager->xfce_manager, &xfce_manager_listener, manager);
 
     if (manager->wl_manager != NULL || manager->xfce_manager != NULL)
         wl_display_roundtrip (wl_display);
@@ -325,7 +325,7 @@ xfce_wlr_output_manager_finalize (GObject *object)
     XfceWlrOutputManager *manager = XFCE_WLR_OUTPUT_MANAGER (object);
 
     if (manager->xfce_manager != NULL)
-        xfce_output_manager_private_v1_destroy (manager->xfce_manager);
+        xfce_output_management_manager_private_v1_destroy (manager->xfce_manager);
     if (manager->wl_manager != NULL)
     {
         zwlr_output_manager_v1_destroy (manager->wl_manager);
@@ -350,9 +350,9 @@ registry_global (void *data,
     if (g_strcmp0 (zwlr_output_manager_v1_interface.name, interface) == 0)
         manager->wl_manager = wl_registry_bind (manager->wl_registry, id, &zwlr_output_manager_v1_interface,
                                                 MIN ((uint32_t) zwlr_output_manager_v1_interface.version, version));
-    else if (g_strcmp0 (xfce_output_manager_private_v1_interface.name, interface) == 0)
-        manager->xfce_manager = wl_registry_bind (manager->wl_registry, id, &xfce_output_manager_private_v1_interface,
-                                                  MIN ((uint32_t) xfce_output_manager_private_v1_interface.version, version));
+    else if (g_strcmp0 (xfce_output_management_manager_private_v1_interface.name, interface) == 0)
+        manager->xfce_manager = wl_registry_bind (manager->wl_registry, id, &xfce_output_management_manager_private_v1_interface,
+                                                  MIN ((uint32_t) xfce_output_management_manager_private_v1_interface.version, version));
 }
 
 
@@ -675,7 +675,7 @@ mode_finished (void *data,
 
 static void
 xfce_manager_head (void *data,
-                   struct xfce_output_manager_private_v1 *xfce_manager,
+                   struct xfce_output_management_manager_private_v1 *xfce_manager,
                    struct xfce_output_head_private_v1 *head,
                    const char *name)
 {
@@ -700,7 +700,7 @@ xfce_manager_head (void *data,
 
 static void
 xfce_manager_done (void *data,
-                   struct xfce_output_manager_private_v1 *xfce_manager,
+                   struct xfce_output_management_manager_private_v1 *xfce_manager,
                    uint32_t serial)
 {
     XfceWlrOutputManager *manager = data;
@@ -714,10 +714,10 @@ xfce_manager_done (void *data,
 
 static void
 xfce_manager_finished (void *data,
-                       struct xfce_output_manager_private_v1 *xfce_manager)
+                       struct xfce_output_management_manager_private_v1 *xfce_manager)
 {
     XfceWlrOutputManager *manager = data;
-    g_clear_pointer (&manager->xfce_manager, xfce_output_manager_private_v1_destroy);
+    g_clear_pointer (&manager->xfce_manager, xfce_output_management_manager_private_v1_destroy);
 }
 
 
