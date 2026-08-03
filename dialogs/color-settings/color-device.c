@@ -115,7 +115,7 @@ color_device_get_title (CdDevice *device)
         g_string_append (string, tmp);
 
 out:
-    return g_string_free (string, FALSE);
+    return g_string_free_and_steal (string);
 }
 
 static const gchar *

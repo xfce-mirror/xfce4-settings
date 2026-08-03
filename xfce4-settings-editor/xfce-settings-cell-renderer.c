@@ -572,7 +572,7 @@ xfce_settings_array_to_string (const GValue *src_value,
 
     g_string_append (str, " ]");
 
-    g_value_take_string (dest_value, g_string_free (str, FALSE));
+    g_value_take_string (dest_value, g_string_free_and_steal (str));
 }
 
 
@@ -599,7 +599,7 @@ xfce_settings_strv_to_string (const GValue *src_value,
 
     g_string_append (str, " ]");
 
-    g_value_take_string (dest_value, g_string_free (str, FALSE));
+    g_value_take_string (dest_value, g_string_free_and_steal (str));
 }
 
 

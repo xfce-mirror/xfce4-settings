@@ -1006,7 +1006,7 @@ clear_bad_entry (XfceRc *rc,
                 {
                   g_string_append_printf (string, "%s;", (gchar *) item->data);
                 }
-              value = g_string_free (string, FALSE);
+              value = g_string_free_and_steal (string);
               xfce_rc_write_entry (rc, key, value);
               g_slist_free_full (list, g_free);
               g_free (value);

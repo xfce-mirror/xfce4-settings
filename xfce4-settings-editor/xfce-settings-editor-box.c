@@ -1158,7 +1158,7 @@ xfce_settings_editor_box_selected (XfceSettingsEditorBox *self,
 
                 iter = parent_iter;
             }
-            property = g_string_free (string_prop, FALSE);
+            property = g_string_free_and_steal (string_prop);
             property_real = FALSE;
         }
         else if (is_array != NULL)
