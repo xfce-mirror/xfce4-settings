@@ -1373,7 +1373,7 @@ xfce_mime_window_combo_populate (GtkCellRenderer *renderer,
   gtk_combo_box_set_model (GTK_COMBO_BOX (editable), GTK_TREE_MODEL (model));
   g_signal_connect_data (G_OBJECT (editable), "changed",
                          G_CALLBACK (xfce_mime_window_combo_changed), data,
-                         (GClosureNotify) (void (*) (void)) xfce_mime_window_combo_unref_data, 0);
+                         (GClosureNotify) (void (*) (void)) xfce_mime_window_combo_unref_data, G_CONNECT_DEFAULT);
   gtk_combo_box_set_row_separator_func (GTK_COMBO_BOX (editable),
                                         xfce_mime_window_combo_row_separator_func, NULL, NULL);
 

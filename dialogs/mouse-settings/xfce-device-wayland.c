@@ -288,7 +288,7 @@ xfce_device_wayland_constructed (GObject *object)
 
         gchar *signal_name = g_strconcat ("property-changed::", prop, NULL);
         g_signal_connect_object (channel, signal_name,
-                                 G_CALLBACK (device_rotation_property_changed), self, 0);
+                                 G_CALLBACK (device_rotation_property_changed), self, G_CONNECT_DEFAULT);
         g_free (signal_name);
         g_free (prop);
     }
