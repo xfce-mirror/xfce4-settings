@@ -1591,8 +1591,7 @@ mouse_settings_device_combobox_changed (GtkBuilder *builder)
                 g_signal_connect_swapped (G_OBJECT (selected_device), "changed",
                                           G_CALLBACK (mouse_settings_device_selection_changed), builder);
 
-            g_free (selected_device_name);
-            selected_device_name = g_strdup (xfce_device_get_name (selected_device));
+            g_set_str (&selected_device_name, xfce_device_get_name (selected_device));
         }
     }
     else
