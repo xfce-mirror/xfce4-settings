@@ -1361,10 +1361,8 @@ xfce_displays_helper_x11_free_crtc (XfceRRCrtc *crtc)
     if (crtc == NULL)
         return;
 
-    if (crtc->outputs != NULL)
-        g_free (crtc->outputs);
-    if (crtc->possible != NULL)
-        g_free (crtc->possible);
+    g_free (crtc->outputs);
+    g_free (crtc->possible);
     g_free (crtc);
 }
 
