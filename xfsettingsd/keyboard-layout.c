@@ -199,8 +199,7 @@ xfce_keyboard_layout_helper_set_model (XfceKeyboardLayoutHelper *helper)
         if (!xkbmodel || !*xkbmodel)
         {
             /* If xkb model is not set by user, we want to try to use the system default */
-            g_free (xkbmodel);
-            xkbmodel = g_strdup (helper->system_keyboard_model);
+            g_set_str (&xkbmodel, helper->system_keyboard_model);
         }
 
         if (g_strcmp0 (helper->config->model, xkbmodel) != 0)
@@ -454,8 +453,7 @@ xfce_keyboard_layout_reset_xkl_config (XklEngine *xklengine,
                we see here, don't assume it's the system default since it was us who set it
                on the previous notification.
              */
-            g_free (helper->system_keyboard_model);
-            helper->system_keyboard_model = g_strdup (helper->config->model);
+            g_set_str (&helper->system_keyboard_model, helper->config->model);
             xfsettings_dbg (XFSD_DEBUG_KEYBOARD_LAYOUT,
                             "system default keyboard model reset: %s",
                             helper->system_keyboard_model);

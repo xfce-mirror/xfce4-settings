@@ -236,11 +236,7 @@ xfce_display_settings_set_outputs (XfceDisplaySettings *settings)
 
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
 
-    if (priv->outputs != NULL)
-    {
-        g_list_free_full (priv->outputs, free_output);
-        priv->outputs = NULL;
-    }
+    g_clear_list (&priv->outputs, free_output);
 
     n_outputs = xfce_display_settings_get_n_outputs (settings);
     for (guint n = 0; n < n_outputs; n++)

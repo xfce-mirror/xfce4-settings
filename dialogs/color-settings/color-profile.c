@@ -164,7 +164,7 @@ gcm_prefs_get_profile_title (CdProfile *profile)
     tmp = g_strdup (cd_profile_get_id (profile));
     g_string_append (str, tmp);
 out:
-    return g_string_free (str, FALSE);
+    return g_string_free_and_steal (str);
 }
 
 static void

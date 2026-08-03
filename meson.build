@@ -18,11 +18,10 @@ i18n = import('i18n')
 fs = import('fs')
 
 dependency_versions = {
-  'glib': '>= 2.74.0',
+  'glib': '>= 2.80.0',
   'gtk': '>= 3.24.0',
-  'xfce4': '>= 4.18.0',
+  'xfce4': '>= 4.20.0',
   'libxfce4ui': '>= 4.21.9',
-  'xfconf': '>= 4.19.3',
 
   'fontconfig': '>= 2.6.0',
   'inputproto': '>= 2.0.0',
@@ -54,7 +53,7 @@ gtk = dependency('gtk+-3.0', version: dependency_versions['gtk'])
 libxfce4kbd = dependency('libxfce4kbd-private-3', version: dependency_versions['libxfce4ui'])
 libxfce4ui = dependency('libxfce4ui-2', version: dependency_versions['libxfce4ui'])
 libxfce4util = dependency('libxfce4util-1.0', version: dependency_versions['xfce4'])
-xfconf = dependency('libxfconf-0', version: dependency_versions['xfconf'])
+xfconf = dependency('libxfconf-0', version: dependency_versions['xfce4'])
 xkbregistry = dependency('xkbregistry', version: dependency_versions['xkbcommon'])
 
 xmllint = find_program('xmllint', required: true)

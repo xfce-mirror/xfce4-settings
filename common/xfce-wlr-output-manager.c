@@ -444,8 +444,7 @@ manager_finished (void *data,
                   struct zwlr_output_manager_v1 *wl_manager)
 {
     XfceWlrOutputManager *manager = data;
-    zwlr_output_manager_v1_destroy (manager->wl_manager);
-    manager->wl_manager = NULL;
+    g_clear_pointer (&manager->wl_manager, zwlr_output_manager_v1_destroy);
 }
 
 
@@ -456,8 +455,7 @@ head_name (void *data,
            const char *name)
 {
     XfceWlrOutput *output = data;
-    g_free (output->name);
-    output->name = g_strdup (name);
+    g_set_str (&output->name, name);
 }
 
 
@@ -468,8 +466,7 @@ head_description (void *data,
                   const char *description)
 {
     XfceWlrOutput *output = data;
-    g_free (output->description);
-    output->description = g_strdup (description);
+    g_set_str (&output->description, description);
 }
 
 
@@ -582,8 +579,7 @@ head_make (void *data,
            const char *make)
 {
     XfceWlrOutput *output = data;
-    g_free (output->manufacturer);
-    output->manufacturer = g_strdup (make);
+    g_set_str (&output->manufacturer, make);
 }
 
 
@@ -594,8 +590,7 @@ head_model (void *data,
             const char *model)
 {
     XfceWlrOutput *output = data;
-    g_free (output->model);
-    output->model = g_strdup (model);
+    g_set_str (&output->model, model);
 }
 
 
@@ -606,8 +601,7 @@ head_serial_number (void *data,
                     const char *serial_number)
 {
     XfceWlrOutput *output = data;
-    g_free (output->serial_number);
-    output->serial_number = g_strdup (serial_number);
+    g_set_str (&output->serial_number, serial_number);
 }
 
 

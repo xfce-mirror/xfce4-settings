@@ -749,7 +749,7 @@ xfce_pointers_helper_device_xfconf_name (const gchar *name)
     }
 
     /* return the new string */
-    return g_string_free (string, FALSE);
+    return g_string_free_and_steal (string);
 }
 
 

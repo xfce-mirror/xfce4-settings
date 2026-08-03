@@ -131,7 +131,7 @@ xfce_displays_helper_constructed (GObject *object)
         g_signal_connect_object (G_OBJECT (priv->channel),
                                  "property-changed",
                                  G_CALLBACK (xfce_displays_helper_channel_property_changed),
-                                 helper, 0);
+                                 helper, G_CONNECT_DEFAULT);
 
         /*  check if we can auto-enable a profile */
         matching_profile = xfce_displays_helper_get_matching_profile (helper);

@@ -313,7 +313,7 @@ xfce_device_make_xfconf_name (const gchar *name)
         }
     }
 
-    return g_string_free (string, FALSE);
+    return g_string_free_and_steal (string);
 }
 
 

@@ -1294,9 +1294,9 @@ color_settings_dialog_init (GtkBuilder *builder)
     /* use a device client array */
     settings->client = cd_client_new ();
     g_signal_connect_data (settings->client, "device-added",
-                           G_CALLBACK (color_settings_device_added_cb), settings, 0, 0);
+                           G_CALLBACK (color_settings_device_added_cb), settings, 0, G_CONNECT_DEFAULT);
     g_signal_connect_data (settings->client, "device-removed",
-                           G_CALLBACK (color_settings_device_removed_cb), settings, 0, 0);
+                           G_CALLBACK (color_settings_device_removed_cb), settings, 0, G_CONNECT_DEFAULT);
 
     /* brighten the background of the GtkPaned for better visual grouping */
     paned = gtk_builder_get_object (builder, "paned");

@@ -60,9 +60,9 @@ static void
 xfce_xsettings_helper_finalize (GObject *object);
 static void
 xfce_xsettings_helper_fc_free (XfceXSettingsHelper *helper);
-static gboolean
+static void
 xfce_xsettings_helper_fc_init (gpointer data);
-static gboolean
+static void
 xfce_xsettings_helper_notify_idle (gpointer data);
 static void
 xfce_xsettings_helper_setting_free (gpointer data);
@@ -201,7 +201,7 @@ xfce_xsettings_helper_finalize (GObject *object)
 
 
 
-static gboolean
+static void
 xfce_xsettings_helper_fc_notify (gpointer data)
 {
     XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (data);
@@ -234,13 +234,11 @@ xfce_xsettings_helper_fc_notify (gpointer data)
 
         /* schedule xsettings update */
         if (helper->notify_idle_id == 0)
-            helper->notify_idle_id = g_idle_add (xfce_xsettings_helper_notify_idle, helper);
+            helper->notify_idle_id = g_idle_add_once (xfce_xsettings_helper_notify_idle, helper);
 
         /* restart monitoring */
-        helper->fc_init_id = g_idle_add (xfce_xsettings_helper_fc_init, helper);
+        helper->fc_init_id = g_idle_add_once (xfce_xsettings_helper_fc_init, helper);
     }
-
-    return FALSE;
 }
 
 
@@ -252,8 +250,8 @@ xfce_xsettings_helper_fc_changed (XfceXSettingsHelper *helper)
     if (helper->fc_notify_timeout_id != 0)
         g_source_remove (helper->fc_notify_timeout_id);
 
-    helper->fc_notify_timeout_id = g_timeout_add_seconds (FC_TIMEOUT_SEC,
-                                                          xfce_xsettings_helper_fc_notify, helper);
+    helper->fc_notify_timeout_id = g_timeout_add_seconds_once (FC_TIMEOUT_SEC,
+                                                               xfce_xsettings_helper_fc_notify, helper);
 }
 
 
@@ -310,12 +308,12 @@ xfce_xsettings_helper_fc_monitor (XfceXSettingsHelper *helper,
 
 
 
-static gboolean
+static void
 xfce_xsettings_helper_fc_init (gpointer data)
 {
     XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (data);
 
-    g_return_val_if_fail (helper->fc_monitors == NULL, FALSE);
+    g_return_if_fail (helper->fc_monitors == NULL);
 
     helper->fc_init_id = 0;
 
@@ -330,13 +328,11 @@ xfce_xsettings_helper_fc_init (gpointer data)
         xfsettings_dbg (XFSD_DEBUG_FONTCONFIG, "monitoring %d paths",
                         helper->fc_monitors->len);
     }
-
-    return FALSE;
 }
 
 
 
-static gboolean
+static void
 xfce_xsettings_helper_notify_idle (gpointer data)
 {
     XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (data);
@@ -346,13 +342,11 @@ xfce_xsettings_helper_notify_idle (gpointer data)
         xfce_xsettings_helper_notify (helper);
 
     helper->notify_idle_id = 0;
-
-    return FALSE;
 }
 
 
 
-static gboolean
+static void
 xfce_xsettings_helper_notify_xft_idle (gpointer data)
 {
     XfceXSettingsHelper *helper = XFCE_XSETTINGS_HELPER (data);
@@ -362,8 +356,6 @@ xfce_xsettings_helper_notify_xft_idle (gpointer data)
         xfce_xsettings_helper_notify_xft (helper);
 
     helper->notify_xft_idle_id = 0;
-
-    return FALSE;
 }
 
 
@@ -478,14 +470,14 @@ xfce_xsettings_helper_prop_changed (XfconfChannel *channel,
     if (helper->notify_idle_id == 0)
     {
         /* schedule an update */
-        helper->notify_idle_id = g_idle_add (xfce_xsettings_helper_notify_idle, helper);
+        helper->notify_idle_id = g_idle_add_once (xfce_xsettings_helper_notify_idle, helper);
     }
 
     if (helper->notify_xft_idle_id == 0
         && (g_str_has_prefix (prop_name, "/Xft/")
             || g_str_has_prefix (prop_name, "/Gtk/CursorTheme")))
     {
-        helper->notify_xft_idle_id = g_idle_add (xfce_xsettings_helper_notify_xft_idle, helper);
+        helper->notify_xft_idle_id = g_idle_add_once (xfce_xsettings_helper_notify_xft_idle, helper);
     }
 }
 
@@ -1158,7 +1150,7 @@ xfce_xsettings_helper_register (XfceXSettingsHelper *helper,
         xfce_xsettings_helper_notify_xft (helper);
 
         /* startup fontconfig monitoring */
-        helper->fc_init_id = g_idle_add (xfce_xsettings_helper_fc_init, helper);
+        helper->fc_init_id = g_idle_add_once (xfce_xsettings_helper_fc_init, helper);
 
         return TRUE;
     }
