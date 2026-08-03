@@ -119,7 +119,7 @@ xfce_decorations_set_decoration_layout (XfceDecorationsHelper *helper,
         }
     }
 
-    gtk_decoration_layout = g_string_free (join, FALSE);
+    gtk_decoration_layout = g_string_free_and_steal (join);
     xfconf_channel_set_string (helper->xsettings_channel, "/Gtk/DecorationLayout", gtk_decoration_layout);
     g_free (gtk_decoration_layout);
 }

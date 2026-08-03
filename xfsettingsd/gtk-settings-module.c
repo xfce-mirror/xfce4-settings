@@ -112,7 +112,7 @@ xfconf_prop_to_gtk_setting (const gchar *prop)
             return g_strdup (property_name_fixups[i].corrected);
         }
 
-    return g_string_free (setting, FALSE);
+    return g_string_free_and_steal (setting);
 }
 
 
