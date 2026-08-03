@@ -1291,7 +1291,7 @@ on_identify_displays_toggled (GtkWidget *widget,
     return TRUE;
 }
 
-static gboolean
+static void
 show_confirmation_dialog (gpointer data)
 {
     XfceDisplaySettings *settings = data;
@@ -1315,7 +1315,6 @@ show_confirmation_dialog (gpointer data)
     xfconf_channel_reset_property (channel, "/Temp", TRUE);
 
     g_object_set_data (G_OBJECT (settings), "show-confirmation-dialog-id", GUINT_TO_POINTER (0));
-    return FALSE;
 }
 
 static void
@@ -1359,7 +1358,7 @@ display_setting_apply (GtkWidget *widget,
     xfconf_channel_set_string (xfce_display_settings_get_channel (settings), "/Schemes/Apply", "Temp");
 
     /* Run dialog after this signal handler to avoid random freeze */
-    guint id = g_idle_add (show_confirmation_dialog, settings);
+    guint id = g_idle_add_once (show_confirmation_dialog, settings);
     g_object_set_data (G_OBJECT (settings), "show-confirmation-dialog-id", GUINT_TO_POINTER (id));
 
     gtk_widget_set_sensitive (widget, FALSE);
