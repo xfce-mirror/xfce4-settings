@@ -607,8 +607,7 @@ foo_scroll_area_unrealize (GtkWidget *widget)
     if (area->priv->input_window)
     {
         gdk_window_set_user_data (area->priv->input_window, NULL);
-        gdk_window_destroy (area->priv->input_window);
-        area->priv->input_window = NULL;
+        g_clear_pointer (&area->priv->input_window, gdk_window_destroy);
     }
 
     GTK_WIDGET_CLASS (parent_class)->unrealize (widget);

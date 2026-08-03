@@ -444,8 +444,7 @@ manager_finished (void *data,
                   struct zwlr_output_manager_v1 *wl_manager)
 {
     XfceWlrOutputManager *manager = data;
-    zwlr_output_manager_v1_destroy (manager->wl_manager);
-    manager->wl_manager = NULL;
+    g_clear_pointer (&manager->wl_manager, zwlr_output_manager_v1_destroy);
 }
 
 

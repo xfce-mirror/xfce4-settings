@@ -772,8 +772,7 @@ xfce_settings_editor_box_properties_load (XfceSettingsEditorBox *self,
     {
         g_signal_handlers_block_by_func (G_OBJECT (self->props_channel),
                                          G_CALLBACK (xfce_settings_editor_box_property_changed), self);
-        g_object_unref (G_OBJECT (self->props_channel));
-        self->props_channel = NULL;
+        g_clear_object (&self->props_channel);
     }
 
     gtk_tree_store_clear (GTK_TREE_STORE (gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (self->props_store))));
