@@ -2549,6 +2549,7 @@ on_output_event (FooScrollArea *area,
     XfceOutput *output = data;
     XfceDisplaySettings *settings = g_object_get_data (G_OBJECT (area), "settings");
     MirroredState state = xfce_display_settings_get_mirrored_state (settings);
+    gchar *tooltip_text;
 
     /* If the mouse is inside the outputs, set the cursor to "you can move me".  See
      * on_canvas_event() for where we reset the cursor to the default if it
@@ -2563,7 +2564,6 @@ on_output_event (FooScrollArea *area,
     if (event->type == FOO_BUTTON_PRESS)
     {
         GrabInfo *info;
-        gchar *tooltip_text;
         GtkBuilder *builder = xfce_display_settings_get_builder (settings);
         GtkWidget *combobox = GTK_WIDGET (gtk_builder_get_object (builder, "randr-outputs"));
 
@@ -2609,7 +2609,9 @@ on_output_event (FooScrollArea *area,
             }
             else
             {
-                set_monitors_tooltip (settings, g_strdup_printf (_("(%i, %i)"), output->x, output->y));
+                tooltip_text = g_strdup_printf (_("(%i, %i)"), output->x, output->y);
+                set_monitors_tooltip (settings, tooltip_text);
+                g_free (tooltip_text);
             }
 
             foo_scroll_area_invalidate (area);
