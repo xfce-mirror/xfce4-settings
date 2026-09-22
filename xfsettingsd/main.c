@@ -106,9 +106,12 @@ start_xfsettingsd (struct t_data_set *s_data)
     if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
     {
         /* launch settings manager */
-        s_data->xsettings_helper = g_object_new (XFCE_TYPE_XSETTINGS_HELPER, NULL);
-        xfce_xsettings_helper_register (XFCE_XSETTINGS_HELPER (s_data->xsettings_helper),
-                                        gdk_display_get_default (), opt_replace);
+        if (g_getenv ("XFSETTINGSD_NO_XSETTINGS") == NULL)
+        {
+            s_data->xsettings_helper = g_object_new (XFCE_TYPE_XSETTINGS_HELPER, NULL);
+            xfce_xsettings_helper_register (XFCE_XSETTINGS_HELPER (s_data->xsettings_helper),
+                                            gdk_display_get_default (), opt_replace);
+        }
 
         /* create the sub daemons */
         s_data->pointer_helper = g_object_new (XFCE_TYPE_POINTERS_HELPER, NULL);
@@ -121,8 +124,11 @@ start_xfsettingsd (struct t_data_set *s_data)
     }
 #endif
 
-    s_data->gtk_decorations_helper = g_object_new (XFCE_TYPE_DECORATIONS_HELPER, NULL);
-    s_data->gtk_settings_helper = g_object_new (XFCE_TYPE_GTK_SETTINGS_HELPER, NULL);
+    if (g_getenv ("XFSETTINGSD_NO_GTK_SETTINGS") == NULL)
+    {
+        s_data->gtk_decorations_helper = g_object_new (XFCE_TYPE_DECORATIONS_HELPER, NULL);
+        s_data->gtk_settings_helper = g_object_new (XFCE_TYPE_GTK_SETTINGS_HELPER, NULL);
+    }
 #ifdef ENABLE_DISPLAY_SETTINGS
     s_data->displays_helper = xfce_displays_helper_new ();
 #endif
