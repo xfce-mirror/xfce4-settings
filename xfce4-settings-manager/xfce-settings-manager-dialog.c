@@ -31,7 +31,7 @@
 #include <gtk/gtkx.h>
 #endif
 
-#define TEXT_WIDTH (128)
+#define TEXT_WIDTH (256)
 #define ICON_WIDTH (48)
 
 
