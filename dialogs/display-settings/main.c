@@ -1023,6 +1023,82 @@ display_setting_output_status_populate (XfceDisplaySettings *settings,
     g_signal_handlers_unblock_by_func (check, display_setting_output_toggled, settings);
 }
 
+static gboolean
+display_settings_has_accelerometer (void)
+{
+    GDBusConnection *bus;
+    GVariant *reply;
+    gboolean has_sensor = FALSE;
+
+    bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, NULL);
+    if (bus == NULL)
+        return FALSE;
+
+    reply = g_dbus_connection_call_sync (bus,
+                                         "org.freedesktop.DBus",
+                                         "/org/freedesktop/DBus",
+                                         "org.freedesktop.DBus",
+                                         "NameHasOwner",
+                                         g_variant_new ("(s)", "net.hadess.SensorProxy"),
+                                         G_VARIANT_TYPE ("(b)"),
+                                         G_DBUS_CALL_FLAGS_NONE,
+                                         -1, NULL, NULL);
+
+    if (reply != NULL)
+    {
+        g_variant_get (reply, "(b)", &has_sensor);
+        g_variant_unref (reply);
+    }
+
+    g_object_unref (bus);
+    return has_sensor;
+}
+
+static gboolean
+display_setting_auto_rotate_toggled (GtkSwitch *widget,
+                                     gboolean auto_rotate,
+                                     XfceDisplaySettings *settings)
+{
+    guint selected_id = xfce_display_settings_get_selected_output_id (settings);
+
+    xfce_display_settings_set_auto_rotate (settings, selected_id, auto_rotate);
+
+    display_settings_changed (settings);
+
+    return FALSE;
+}
+
+static void
+display_setting_auto_rotate_populate (XfceDisplaySettings *settings,
+                                      guint selected_id)
+{
+    GtkBuilder *builder = xfce_display_settings_get_builder (settings);
+    GObject *check = gtk_builder_get_object (builder, "iio-autorotate");
+    GObject *label = gtk_builder_get_object (builder, "label-autorotate");
+    gboolean has_accelerometer = display_settings_has_accelerometer();
+
+    gtk_widget_set_visible (GTK_WIDGET(check), has_accelerometer);
+    gtk_widget_set_visible (GTK_WIDGET(label), has_accelerometer);
+    if (!has_accelerometer)
+        return;
+
+    /* disable it if output is disabled */
+    if (!xfce_display_settings_is_active (settings, selected_id))
+    {
+        gtk_widget_set_sensitive (GTK_WIDGET (check), FALSE);
+        gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
+        return;
+    }
+
+    gtk_widget_set_sensitive (GTK_WIDGET (check), TRUE);
+    gtk_widget_set_sensitive (GTK_WIDGET (label), TRUE);
+
+    /* Sync current state */
+    g_signal_handlers_block_by_func (check, display_setting_auto_rotate_toggled, settings);
+    gtk_switch_set_state (GTK_SWITCH (check), xfce_display_settings_get_auto_rotate (settings, selected_id));
+    g_signal_handlers_unblock_by_func (check, display_setting_auto_rotate_toggled, settings);
+}
+
 static void
 display_settings_combobox_selection_changed (GtkComboBox *combobox,
                                              XfceDisplaySettings *settings)
@@ -1051,6 +1127,7 @@ display_settings_combobox_selection_changed (GtkComboBox *combobox,
         display_setting_rotations_populate (settings, selected_id);
         display_setting_reflections_populate (settings, selected_id);
         display_setting_scale_populate (settings, selected_id);
+        display_setting_auto_rotate_populate (settings, selected_id);
         display_setting_mirror_displays_populate (settings);
 
         /* redraw the two (old active, new active) popups */
@@ -1566,6 +1643,7 @@ display_settings_profile_apply (GtkWidget *widget,
 
             foo_scroll_area_invalidate (FOO_SCROLL_AREA (xfce_display_settings_get_scroll_area (settings)));
         }
+        xfce_display_settings_reload (settings);
         xfce_display_settings_populate_profile_list (settings);
 
         g_free (profile_hash);
@@ -1836,6 +1914,9 @@ display_settings_dialog_new (XfceDisplaySettings *settings)
     combobox = gtk_builder_get_object (builder, "randr-rotation");
     display_settings_combo_box_create (GTK_COMBO_BOX (combobox), FALSE);
     g_signal_connect (G_OBJECT (combobox), "changed", G_CALLBACK (display_setting_rotations_changed), settings);
+
+    check = gtk_builder_get_object (builder, "iio-autorotate");
+    g_signal_connect (G_OBJECT (check), "state-set", G_CALLBACK (display_setting_auto_rotate_toggled), settings);
 
     treeview = gtk_builder_get_object (builder, "randr-profile");
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
