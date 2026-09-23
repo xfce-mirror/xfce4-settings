@@ -19,6 +19,7 @@
  */
 
 #include "displays.h"
+#include "displays-iio.h"
 
 #ifdef HAVE_UPOWERGLIB
 #include "displays-upower.h"
@@ -50,6 +51,11 @@ xfce_displays_helper_constructed (GObject *object);
 static void
 xfce_displays_helper_finalize (GObject *object);
 
+static void
+xfce_displays_helper_iio_set_enabled (XfceDisplaysHelper *helper,
+                                      gboolean enabled);
+static gboolean
+xfce_displays_helper_auto_rotate_enabled (XfceDisplaysHelper *helper);
 
 
 typedef struct _XfceDisplaysHelperPrivate
@@ -58,6 +64,8 @@ typedef struct _XfceDisplaysHelperPrivate
 #ifdef HAVE_UPOWERGLIB
     XfceDisplaysUPower *power;
 #endif
+    gulong iio_handler_id;
+    XfceDisplaysIIO *iio;
 } XfceDisplaysHelperPrivate;
 
 
@@ -84,6 +92,27 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
 
 
 
+static GHashTable *
+xfce_displays_helper_active_profile_properties (XfceDisplaysHelper *helper,
+                                                gchar **profile)
+{
+    XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
+    g_autofree gchar *name = NULL;
+    g_autofree gchar *root = NULL;
+    GHashTable *props;
+
+    name = xfconf_channel_get_string (priv->channel, ACTIVE_PROFILE, DEFAULT_SCHEME_NAME);
+    root = g_strdup_printf ("/%s", name);
+    props = xfconf_channel_get_properties (priv->channel, root);
+
+    if (profile != NULL)
+        *profile = g_steal_pointer (&name);
+
+    return props;
+}
+
+
+
 static void
 xfce_displays_helper_channel_property_changed (XfconfChannel *channel,
                                                const gchar *property_name,
@@ -96,6 +125,13 @@ xfce_displays_helper_channel_property_changed (XfconfChannel *channel,
         XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, g_value_get_string (value));
         /* remove the apply property */
         xfconf_channel_reset_property (channel, APPLY_SCHEME_PROP, FALSE);
+    }
+    else if (g_str_has_suffix (property_name, AUTO_ROTATE_SUFFIX)
+             || g_strcmp0 (property_name, ACTIVE_PROFILE) == 0)
+    {
+        /* an output of the active profile (or the profile itself) was toggled:
+         * claim the accelerometer proxy if auto-rotate is enabled on any output */
+        xfce_displays_helper_iio_set_enabled (helper, xfce_displays_helper_auto_rotate_enabled (helper));
     }
 }
 
@@ -145,6 +181,8 @@ xfce_displays_helper_constructed (GObject *object)
             XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, DEFAULT_SCHEME_NAME);
         }
         g_free (matching_profile);
+
+        xfce_displays_helper_iio_set_enabled (helper, xfce_displays_helper_auto_rotate_enabled (helper));
     }
 
     G_OBJECT_CLASS (xfce_displays_helper_parent_class)->constructed (object);
@@ -155,11 +193,15 @@ xfce_displays_helper_constructed (GObject *object)
 static void
 xfce_displays_helper_finalize (GObject *object)
 {
-#ifdef HAVE_UPOWERGLIB
     XfceDisplaysHelperPrivate *priv = get_instance_private (object);
+
+#ifdef HAVE_UPOWERGLIB
     if (priv->power != NULL)
         g_object_unref (priv->power);
 #endif
+
+    if (priv->iio != NULL)
+        g_object_unref (priv->iio);
 
     G_OBJECT_CLASS (xfce_displays_helper_parent_class)->finalize (object);
 }
@@ -241,4 +283,121 @@ XfconfChannel *
 xfce_displays_helper_get_channel (XfceDisplaysHelper *helper)
 {
     return get_instance_private (helper)->channel;
+}
+
+
+
+static gboolean
+xfce_displays_helper_auto_rotate_enabled (XfceDisplaysHelper *helper)
+{
+    GHashTable *props = xfce_displays_helper_active_profile_properties (helper, NULL);
+    GHashTableIter iter;
+    gpointer key, value;
+    gboolean enabled = FALSE;
+
+    if (props == NULL)
+        return FALSE;
+
+    g_hash_table_iter_init (&iter, props);
+    while (g_hash_table_iter_next (&iter, &key, &value))
+    {
+        const gchar *prop_key = key;
+        const GValue *val = value;
+
+        if (g_str_has_suffix (prop_key, AUTO_ROTATE_SUFFIX)
+            && G_VALUE_HOLDS_BOOLEAN (val)
+            && g_value_get_boolean (val))
+        {
+            enabled = TRUE;
+            break;
+        }
+    }
+
+    g_hash_table_destroy (props);
+
+    return enabled;
+}
+
+
+
+static void
+xfce_displays_helper_iio_set_orientation_cb (XfceDisplaysIIO *iio,
+                                             gint rotation,
+                                             gpointer user_data)
+{
+    XfceDisplaysHelper *helper = XFCE_DISPLAYS_HELPER (user_data);
+    XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
+    g_autofree gchar *profile = NULL;
+    GHashTable *props;
+    GHashTableIter iter;
+    gpointer key, value;
+    gboolean need_apply = FALSE;
+
+    g_debug ("Accelerometer reported orientation rotation: %d degrees", rotation);
+
+    props = xfce_displays_helper_active_profile_properties (helper, &profile);
+    if (props == NULL)
+        return;
+
+    g_hash_table_iter_init (&iter, props);
+    while (g_hash_table_iter_next (&iter, &key, &value))
+    {
+        const gchar *prop_key = key;
+        const GValue *val = value;
+        g_autofree gchar *output_root = NULL;
+        g_autofree gchar *rotation_prop = NULL;
+        const GValue *rotation_val;
+
+        /* only outputs that opted in to auto-rotate are rotated */
+        if (!g_str_has_suffix (prop_key, AUTO_ROTATE_SUFFIX)
+            || !G_VALUE_HOLDS_BOOLEAN (val)
+            || !g_value_get_boolean (val))
+            continue;
+
+        output_root = g_strndup (prop_key, strlen (prop_key) - strlen (AUTO_ROTATE_SUFFIX));
+        rotation_prop = g_strconcat (output_root, ROTATION_SUFFIX, NULL);
+        rotation_val = g_hash_table_lookup (props, rotation_prop);
+        if (rotation_val == NULL || !G_VALUE_HOLDS_INT (rotation_val))
+            continue;
+
+        if (g_value_get_int (rotation_val) != rotation)
+        {
+            xfconf_channel_set_int (priv->channel, rotation_prop, rotation);
+            need_apply = TRUE;
+        }
+    }
+
+    g_hash_table_destroy (props);
+
+    if (need_apply)
+        xfconf_channel_set_string (priv->channel, APPLY_SCHEME_PROP, profile);
+}
+
+
+
+static void
+xfce_displays_helper_iio_set_enabled (XfceDisplaysHelper *helper,
+                                      gboolean enabled)
+{
+    XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
+    if (enabled && priv->iio == NULL)
+    {
+        priv->iio = g_object_new (XFCE_TYPE_DISPLAYS_IIO, NULL);
+
+        priv->iio_handler_id = g_signal_connect (
+            priv->iio,
+            "orientation-changed",
+            G_CALLBACK (xfce_displays_helper_iio_set_orientation_cb),
+            helper);
+    }
+    else if (!enabled && priv->iio != NULL)
+    {
+        if (priv->iio_handler_id > 0)
+        {
+            g_signal_handler_disconnect (priv->iio, priv->iio_handler_id);
+            priv->iio_handler_id = 0;
+        }
+
+        g_clear_object (&priv->iio);
+    }
 }
