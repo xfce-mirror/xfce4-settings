@@ -15,6 +15,7 @@
  */
 
 #include "displays-iio.h"
+#include "glib.h"
 
 #include "gio/gio.h"
 
@@ -107,6 +108,9 @@ xfce_displays_iio_sensor_properties_changed (GDBusProxy *proxy,
 }
 
 static void
+xfce_displays_iio_clear (XfceDisplaysIIO *iio);
+
+static void
 xfce_displays_iio_sensor_appeared_cb (GDBusConnection *connection,
                                       const gchar *name,
                                       const gchar *name_owner,
@@ -115,6 +119,8 @@ xfce_displays_iio_sensor_appeared_cb (GDBusConnection *connection,
     XfceDisplaysIIO *iio = XFCE_DISPLAYS_IIO (user_data);
 
     g_autoptr (GError) error = NULL;
+
+    xfce_displays_iio_clear (iio);
 
     iio->iio_proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SYSTEM,
                                                     G_DBUS_PROXY_FLAGS_NONE,

@@ -56,6 +56,10 @@ xfce_displays_helper_iio_set_enabled (XfceDisplaysHelper *helper,
                                       gboolean enabled);
 static gboolean
 xfce_displays_helper_auto_rotate_enabled (XfceDisplaysHelper *helper);
+static void
+xfce_displays_helper_apply_profile (XfceDisplaysHelper *helper,
+                                    const gchar *profile,
+                                    gint rotation);
 
 
 typedef struct _XfceDisplaysHelperPrivate
@@ -66,6 +70,11 @@ typedef struct _XfceDisplaysHelperPrivate
 #endif
     gulong iio_handler_id;
     XfceDisplaysIIO *iio;
+
+    /* auto-rotate apply state: see xfce_displays_helper_apply_profile() */
+    gboolean applying;          /* a profile apply is currently in flight */
+    gboolean pending_rotation;  /* an orientation change arrived while applying */
+    gint     pending_value;     /* latest rotation requested during that apply */
 } XfceDisplaysHelperPrivate;
 
 
@@ -321,6 +330,35 @@ xfce_displays_helper_auto_rotate_enabled (XfceDisplaysHelper *helper)
 
 
 static void
+xfce_displays_helper_apply_profile (XfceDisplaysHelper *helper,
+                                    const gchar *profile,
+                                    gint rotation)
+{
+    XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
+
+    if (priv->applying)
+    {
+        priv->pending_rotation = TRUE;
+        priv->pending_value = rotation;
+        return;
+    }
+
+    priv->applying = TRUE;
+    XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, profile);
+
+    if (priv->pending_rotation)
+    {
+        priv->pending_rotation = FALSE;
+        xfce_displays_helper_apply_profile (helper, profile, priv->pending_value);
+        return;
+    }
+
+    priv->applying = FALSE;
+}
+
+
+
+static void
 xfce_displays_helper_iio_set_orientation_cb (XfceDisplaysIIO *iio,
                                              gint rotation,
                                              gpointer user_data)
@@ -370,7 +408,7 @@ xfce_displays_helper_iio_set_orientation_cb (XfceDisplaysIIO *iio,
     g_hash_table_destroy (props);
 
     if (need_apply)
-        xfconf_channel_set_string (priv->channel, APPLY_SCHEME_PROP, profile);
+        xfce_displays_helper_apply_profile (helper, profile, rotation);
 }
 
 
