@@ -71,10 +71,13 @@ typedef struct _XfceDisplaysHelperPrivate
     gulong iio_handler_id;
     XfceDisplaysIIO *iio;
 
-    /* auto-rotate apply state: see xfce_displays_helper_apply_profile() */
-    gboolean applying; /* a profile apply is currently in flight */
-    gboolean pending_rotation; /* an orientation change arrived while applying */
-    gint pending_rotation_value; /* latest rotation requested during that apply */
+    /* are we applying a profile? */
+    gboolean applying;
+
+    /* cached profile changes that need to be applied after
+       applying is complete */
+    gboolean pending_rotation;
+    gint pending_rotation_value;
 } XfceDisplaysHelperPrivate;
 
 
