@@ -17,11 +17,17 @@
 #include "displays-iio.h"
 #include "glib.h"
 
+#include "common/debug.h"
 #include "gio/gio.h"
+
 
 
 static void
 xfce_displays_iio_dispose (GObject *object);
+
+static void
+xfce_displays_iio_clear (XfceDisplaysIIO *iio);
+
 
 
 struct _XfceDisplaysIIOClass
@@ -38,6 +44,8 @@ struct _XfceDisplaysIIO
     guint iio_watch_id;
     GDBusProxy *iio_proxy;
     gulong handler;
+
+    gint target_rotation;
 };
 
 enum
@@ -48,7 +56,10 @@ enum
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
+
+
 G_DEFINE_TYPE (XfceDisplaysIIO, xfce_displays_iio, G_TYPE_OBJECT);
+
 
 
 static void
@@ -67,6 +78,8 @@ xfce_displays_iio_class_init (XfceDisplaysIIOClass *klass)
                       g_cclosure_marshal_VOID__INT,
                       G_TYPE_NONE, 1, G_TYPE_INT);
 }
+
+
 
 static void
 xfce_displays_iio_update_orientation (XfceDisplaysIIO *iio)
@@ -92,8 +105,11 @@ xfce_displays_iio_update_orientation (XfceDisplaysIIO *iio)
     else
         return;
 
-    g_signal_emit (G_OBJECT (iio), signals[ORIENTATION_CHANGED], 0, rotation);
+    iio->target_rotation = rotation;
+    g_signal_emit (G_OBJECT (iio), signals[ORIENTATION_CHANGED], 0, iio->target_rotation);
 }
+
+
 
 static void
 xfce_displays_iio_sensor_properties_changed (GDBusProxy *proxy,
@@ -107,8 +123,7 @@ xfce_displays_iio_sensor_properties_changed (GDBusProxy *proxy,
         xfce_displays_iio_update_orientation (iio);
 }
 
-static void
-xfce_displays_iio_clear (XfceDisplaysIIO *iio);
+
 
 static void
 xfce_displays_iio_sensor_appeared_cb (GDBusConnection *connection,
@@ -150,10 +165,12 @@ xfce_displays_iio_sensor_appeared_cb (GDBusConnection *connection,
         return;
     }
 
-    g_debug ("iio-sensor-proxy detected on D-Bus.");
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "iio-sensor-proxy detected on D-Bus.");
 
     xfce_displays_iio_update_orientation (iio);
 }
+
+
 
 static void
 xfce_displays_iio_clear (XfceDisplaysIIO *iio)
@@ -176,6 +193,8 @@ xfce_displays_iio_clear (XfceDisplaysIIO *iio)
     }
 }
 
+
+
 static void
 xfce_displays_iio_sensor_vanished_cb (GDBusConnection *connection,
                                       const gchar *name,
@@ -184,6 +203,8 @@ xfce_displays_iio_sensor_vanished_cb (GDBusConnection *connection,
     XfceDisplaysIIO *iio = XFCE_DISPLAYS_IIO (data);
     xfce_displays_iio_clear (iio);
 }
+
+
 
 static void
 xfce_displays_iio_init (XfceDisplaysIIO *iio)
@@ -196,6 +217,8 @@ xfce_displays_iio_init (XfceDisplaysIIO *iio)
         xfce_displays_iio_sensor_vanished_cb,
         iio, NULL);
 }
+
+
 
 static void
 xfce_displays_iio_dispose (GObject *object)

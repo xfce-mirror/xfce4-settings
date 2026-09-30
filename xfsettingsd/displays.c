@@ -72,9 +72,9 @@ typedef struct _XfceDisplaysHelperPrivate
     XfceDisplaysIIO *iio;
 
     /* auto-rotate apply state: see xfce_displays_helper_apply_profile() */
-    gboolean applying;          /* a profile apply is currently in flight */
-    gboolean pending_rotation;  /* an orientation change arrived while applying */
-    gint     pending_rotation_value;     /* latest rotation requested during that apply */
+    gboolean applying; /* a profile apply is currently in flight */
+    gboolean pending_rotation; /* an orientation change arrived while applying */
+    gint pending_rotation_value; /* latest rotation requested during that apply */
 } XfceDisplaysHelperPrivate;
 
 
