@@ -1076,7 +1076,7 @@ display_setting_auto_rotate_populate (XfceDisplaySettings *settings,
     GObject *check = gtk_builder_get_object (builder, "iio-autorotate");
     GObject *label = gtk_builder_get_object (builder, "label-autorotate");
     GObject *info_button = gtk_builder_get_object (builder, "iio-info-button");
-    gboolean has_accelerometer = !display_settings_has_accelerometer ();
+    gboolean has_accelerometer = display_settings_has_accelerometer ();
     gboolean display_settings_active = xfce_display_settings_is_active (settings, selected_id);
 
     gtk_widget_set_sensitive (GTK_WIDGET (check), has_accelerometer && display_settings_active);
