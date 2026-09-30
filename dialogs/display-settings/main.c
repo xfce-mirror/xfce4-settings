@@ -1075,23 +1075,16 @@ display_setting_auto_rotate_populate (XfceDisplaySettings *settings,
     GtkBuilder *builder = xfce_display_settings_get_builder (settings);
     GObject *check = gtk_builder_get_object (builder, "iio-autorotate");
     GObject *label = gtk_builder_get_object (builder, "label-autorotate");
-    gboolean has_accelerometer = display_settings_has_accelerometer ();
+    GObject *info_button = gtk_builder_get_object (builder, "iio-info-button");
+    gboolean has_accelerometer = !display_settings_has_accelerometer ();
+    gboolean display_settings_active = xfce_display_settings_is_active (settings, selected_id);
 
-    gtk_widget_set_visible (GTK_WIDGET (check), has_accelerometer);
-    gtk_widget_set_visible (GTK_WIDGET (label), has_accelerometer);
-    if (!has_accelerometer)
+    gtk_widget_set_sensitive (GTK_WIDGET (check), has_accelerometer && display_settings_active);
+    gtk_widget_set_sensitive (GTK_WIDGET (label), has_accelerometer && display_settings_active);
+    gtk_widget_set_visible (GTK_WIDGET (info_button), !has_accelerometer);
+
+    if (!display_settings_active || !has_accelerometer)
         return;
-
-    /* disable it if output is disabled */
-    if (!xfce_display_settings_is_active (settings, selected_id))
-    {
-        gtk_widget_set_sensitive (GTK_WIDGET (check), FALSE);
-        gtk_widget_set_sensitive (GTK_WIDGET (label), FALSE);
-        return;
-    }
-
-    gtk_widget_set_sensitive (GTK_WIDGET (check), TRUE);
-    gtk_widget_set_sensitive (GTK_WIDGET (label), TRUE);
 
     /* Sync current state */
     g_signal_handlers_block_by_func (check, display_setting_auto_rotate_toggled, settings);
