@@ -88,6 +88,8 @@ typedef struct _XfceOutput
     /* Identifiers */
     guint id;
     const gchar *friendly_name;
+    /* output name (Xfconf key), from backend */
+    const gchar *name;
 
     /* Status */
     gboolean active;
@@ -103,6 +105,7 @@ typedef struct _XfceOutput
     /* Transformation */
     RotationFlags rotation;
     gdouble scale;
+    gboolean auto_rotate;
 
     /* Modes */
     XfceMode *mode;
@@ -239,6 +242,15 @@ void
 xfce_display_settings_set_rotation (XfceDisplaySettings *settings,
                                     guint output_id,
                                     RotationFlags rotation);
+
+gboolean
+xfce_display_settings_get_auto_rotate (XfceDisplaySettings *settings,
+                                       guint output_id);
+void
+xfce_display_settings_set_auto_rotate (XfceDisplaySettings *settings,
+                                       guint output_id,
+                                       gboolean auto_rotate);
+
 RotationFlags
 xfce_display_settings_get_rotations (XfceDisplaySettings *settings,
                                      guint output_id);
