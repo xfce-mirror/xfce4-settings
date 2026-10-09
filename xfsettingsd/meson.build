@@ -146,6 +146,7 @@ executable(
     libxfce4kbd,
     libxfce4ui,
     libxfce4util,
+    libxfce4session_client,
     xfconf,
     x11_deps,
     libnotify,
