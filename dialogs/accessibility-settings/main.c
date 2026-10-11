@@ -21,19 +21,30 @@
 #include "xfce-revision.h"
 #endif
 
-#include <gdk/gdkx.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkx.h>
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
+#include <gtk/gtkx.h>
+
+#define IS_WINDOWING_X11() GDK_IS_X11_DISPLAY (gdk_display_get_default ())
+#else
+#define IS_WINDOWING_X11() FALSE
+#endif
 
 
+
+#ifdef ENABLE_X11
 static gint opt_socket_id = 0;
+#endif
 static gboolean opt_version = FALSE;
 static GOptionEntry entries[] = {
+#ifdef ENABLE_X11
     { "socket-id", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_INT, &opt_socket_id, N_ ("Settings manager socket"), N_ ("SOCKET ID") },
+#endif
     { "version", 'v', 0, G_OPTION_ARG_NONE, &opt_version, N_ ("Version information"), NULL },
     { NULL }
 };
@@ -90,65 +101,79 @@ accessibility_settings_at (GtkToggleButton *button,
 static void
 accessibility_settings_dialog_configure_widgets (GtkBuilder *builder)
 {
-    GObject *box, *object;
+    GObject *object;
 
-    /* assistive technologies */
-    object = gtk_builder_get_object (builder, "start-at");
-    xfconf_g_property_bind (session_channel, "/general/StartAssistiveTechnologies", G_TYPE_BOOLEAN, object, "active");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_at), builder);
-    accessibility_settings_at (GTK_TOGGLE_BUTTON (object), builder);
+    if (IS_WINDOWING_X11 ())
+    {
+        GObject *box;
 
-    /* Sticky keys */
-    object = gtk_builder_get_object (builder, "sticky-keys-enabled");
-    box = gtk_builder_get_object (builder, "sticky-keys-box");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
-    xfconf_g_property_bind (accessibility_channel, "/StickyKeys", G_TYPE_BOOLEAN, object, "active");
+        /* assistive technologies */
+        object = gtk_builder_get_object (builder, "start-at");
+        xfconf_g_property_bind (session_channel, "/general/StartAssistiveTechnologies", G_TYPE_BOOLEAN, object, "active");
+        g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_at), builder);
+        accessibility_settings_at (GTK_TOGGLE_BUTTON (object), builder);
 
-    object = gtk_builder_get_object (builder, "sticky-keys-latch-to-lock");
-    xfconf_g_property_bind (accessibility_channel, "/StickyKeys/LatchToLock", G_TYPE_BOOLEAN, object, "active");
+        /* Sticky keys */
+        object = gtk_builder_get_object (builder, "sticky-keys-enabled");
+        box = gtk_builder_get_object (builder, "sticky-keys-box");
+        g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
+        xfconf_g_property_bind (accessibility_channel, "/StickyKeys", G_TYPE_BOOLEAN, object, "active");
 
-    object = gtk_builder_get_object (builder, "sticky-keys-two-keys-disable");
-    xfconf_g_property_bind (accessibility_channel, "/StickyKeys/TwoKeysDisable", G_TYPE_BOOLEAN, object, "active");
+        object = gtk_builder_get_object (builder, "sticky-keys-latch-to-lock");
+        xfconf_g_property_bind (accessibility_channel, "/StickyKeys/LatchToLock", G_TYPE_BOOLEAN, object, "active");
 
-    /* Slow keys */
-    object = gtk_builder_get_object (builder, "slow-keys-enabled");
-    box = gtk_builder_get_object (builder, "slow-keys-box");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
-    xfconf_g_property_bind (accessibility_channel, "/SlowKeys", G_TYPE_BOOLEAN, object, "active");
+        object = gtk_builder_get_object (builder, "sticky-keys-two-keys-disable");
+        xfconf_g_property_bind (accessibility_channel, "/StickyKeys/TwoKeysDisable", G_TYPE_BOOLEAN, object, "active");
 
-    object = gtk_builder_get_object (builder, "slow-keys-delay");
-    xfconf_g_property_bind (accessibility_channel, "/SlowKeys/Delay", G_TYPE_INT, object, "value");
+        /* Slow keys */
+        object = gtk_builder_get_object (builder, "slow-keys-enabled");
+        box = gtk_builder_get_object (builder, "slow-keys-box");
+        g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
+        xfconf_g_property_bind (accessibility_channel, "/SlowKeys", G_TYPE_BOOLEAN, object, "active");
 
-    /* Bounce keys */
-    object = gtk_builder_get_object (builder, "bounce-keys-enabled");
-    box = gtk_builder_get_object (builder, "bounce-keys-box");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
-    xfconf_g_property_bind (accessibility_channel, "/BounceKeys", G_TYPE_BOOLEAN, object, "active");
+        object = gtk_builder_get_object (builder, "slow-keys-delay");
+        xfconf_g_property_bind (accessibility_channel, "/SlowKeys/Delay", G_TYPE_INT, object, "value");
 
-    object = gtk_builder_get_object (builder, "bounce-keys-delay");
-    xfconf_g_property_bind (accessibility_channel, "/BounceKeys/Delay", G_TYPE_INT, object, "value");
+        /* Bounce keys */
+        object = gtk_builder_get_object (builder, "bounce-keys-enabled");
+        box = gtk_builder_get_object (builder, "bounce-keys-box");
+        g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
+        xfconf_g_property_bind (accessibility_channel, "/BounceKeys", G_TYPE_BOOLEAN, object, "active");
 
-    /* Mouse keys */
-    object = gtk_builder_get_object (builder, "mouse-emulation-enabled");
-    box = gtk_builder_get_object (builder, "mouse-emulation-grid");
-    g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys", G_TYPE_BOOLEAN, object, "active");
-    gtk_widget_set_sensitive (GTK_WIDGET (box), xfconf_channel_get_bool (accessibility_channel, "/MouseKeys", TRUE));
+        object = gtk_builder_get_object (builder, "bounce-keys-delay");
+        xfconf_g_property_bind (accessibility_channel, "/BounceKeys/Delay", G_TYPE_INT, object, "value");
 
-    object = gtk_builder_get_object (builder, "mouse-emulation-delay");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Delay", G_TYPE_INT, object, "value");
+        /* Mouse keys */
+        object = gtk_builder_get_object (builder, "mouse-emulation-enabled");
+        box = gtk_builder_get_object (builder, "mouse-emulation-grid");
+        g_signal_connect (object, "toggled", G_CALLBACK (accessibility_settings_sensitivity), box);
+        xfconf_g_property_bind (accessibility_channel, "/MouseKeys", G_TYPE_BOOLEAN, object, "active");
+        gtk_widget_set_sensitive (GTK_WIDGET (box), xfconf_channel_get_bool (accessibility_channel, "/MouseKeys", TRUE));
 
-    object = gtk_builder_get_object (builder, "mouse-emulation-interval");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Interval", G_TYPE_INT, object, "value");
+        object = gtk_builder_get_object (builder, "mouse-emulation-delay");
+        xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Delay", G_TYPE_INT, object, "value");
 
-    object = gtk_builder_get_object (builder, "mouse-emulation-time-to-max");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/TimeToMax", G_TYPE_INT, object, "value");
+        object = gtk_builder_get_object (builder, "mouse-emulation-interval");
+        xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Interval", G_TYPE_INT, object, "value");
 
-    object = gtk_builder_get_object (builder, "mouse-emulation-max-speed");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/MaxSpeed", G_TYPE_INT, object, "value");
+        object = gtk_builder_get_object (builder, "mouse-emulation-time-to-max");
+        xfconf_g_property_bind (accessibility_channel, "/MouseKeys/TimeToMax", G_TYPE_INT, object, "value");
 
-    object = gtk_builder_get_object (builder, "mouse-emulation-curve");
-    xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Curve", G_TYPE_INT, object, "value");
+        object = gtk_builder_get_object (builder, "mouse-emulation-max-speed");
+        xfconf_g_property_bind (accessibility_channel, "/MouseKeys/MaxSpeed", G_TYPE_INT, object, "value");
+
+        object = gtk_builder_get_object (builder, "mouse-emulation-curve");
+        xfconf_g_property_bind (accessibility_channel, "/MouseKeys/Curve", G_TYPE_INT, object, "value");
+    }
+    else
+    {
+        object = gtk_builder_get_object (builder, "accessibility-notebook");
+        gtk_notebook_remove_page (GTK_NOTEBOOK (object), 1);
+        gtk_notebook_remove_page (GTK_NOTEBOOK (object), 0);
+
+        object = gtk_builder_get_object (builder, "mouse-emulation-frame");
+        gtk_widget_hide (GTK_WIDGET (object));
+    }
 
     object = gtk_builder_get_object (builder, "find-cursor");
     xfconf_g_property_bind (accessibility_channel, "/FindCursor", G_TYPE_BOOLEAN, object, "active");
@@ -214,12 +239,6 @@ main (gint argc,
         return EXIT_SUCCESS;
     }
 
-    if (!GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
-    {
-        g_warning ("Accessibility settings are only available on X11");
-        return EXIT_FAILURE;
-    }
-
     /* initialize xfconf */
     if (!xfconf_init (&error))
     {
@@ -245,21 +264,8 @@ main (gint argc,
         /* Configure widgets */
         accessibility_settings_dialog_configure_widgets (builder);
 
-        if (G_UNLIKELY (opt_socket_id == 0))
-        {
-            /* Get the dialog widget */
-            dialog = gtk_builder_get_object (builder, "dialog");
-
-            g_signal_connect (dialog, "response",
-                              G_CALLBACK (accessibility_settings_dialog_response), NULL);
-            gtk_window_present (GTK_WINDOW (dialog));
-
-            /* To prevent the settings dialog to be saved in the session */
-            gdk_x11_set_sm_client_id ("FAKE ID");
-
-            gtk_main ();
-        }
-        else
+#ifdef ENABLE_X11
+        if (IS_WINDOWING_X11 () && opt_socket_id != 0)
         {
             /* Create plug widget */
             plug = gtk_plug_new (opt_socket_id);
@@ -278,6 +284,26 @@ main (gint argc,
             gdk_x11_set_sm_client_id ("FAKE ID");
 
             /* Enter main loop */
+            gtk_main ();
+        }
+        else
+#endif
+        {
+            /* Get the dialog widget */
+            dialog = gtk_builder_get_object (builder, "dialog");
+
+            g_signal_connect (dialog, "response",
+                              G_CALLBACK (accessibility_settings_dialog_response), NULL);
+            gtk_window_present (GTK_WINDOW (dialog));
+
+#ifdef ENABLE_X11
+            if (IS_WINDOWING_X11 ())
+            {
+                /* To prevent the settings dialog to be saved in the session */
+                gdk_x11_set_sm_client_id ("FAKE ID");
+            }
+#endif
+
             gtk_main ();
         }
     }
