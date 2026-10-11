@@ -1,8 +1,9 @@
-if enable_wayland
-  wayland_protocols_generated_sources = []
+wayland_protocols_generated_sources = []
 
+if enable_wayland
   protocols = {
     'wlr-output-management-unstable-v1': wlr_protocols_pkgdatadir / 'unstable' / 'wlr-output-management-unstable-v1.xml',
+    'xfce-accessibility-v1': 'xfce-wayland-protocols' / 'xfce-accessibility-private-v1.xml',
     'xfce-input-device-list-v1': 'xfce-wayland-protocols' / 'xfce-input-device-list-private-v1.xml',
     'xfce-output-management-v1': 'xfce-wayland-protocols' / 'xfce-output-management-private-v1.xml',
   }

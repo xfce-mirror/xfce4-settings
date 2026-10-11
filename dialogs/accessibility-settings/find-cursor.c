@@ -16,17 +16,33 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <gdk/gdkx.h>
 #include <gtk/gtk.h>
+#include <stdlib.h>
 #include <xfconf/xfconf.h>
 
 #ifdef HAVE_MATH_H
 #include <math.h>
 #endif
 
+#ifdef ENABLE_X11
+#include <gdk/gdkx.h>
+
 /* size of the window and circles */
 #define CIRCLE_SIZE 500
 #define CIRCLE_RADIUS 250
+#endif
+
+#ifdef ENABLE_WAYLAND
+#include "protocols/xfce-accessibility-v1-client.h"
+
+#include <gdk/gdkwayland.h>
+#include <wayland-client-core.h>
+#include <wayland-client-protocol.h>
+
+#define XFCE_ACCESSIBILITY_VERSION 1
+#endif
+
+#ifdef ENABLE_X11
 
 /* global var to keep track of the circle size */
 double px = 1;
@@ -188,43 +204,15 @@ find_cursor_window_draw (GtkWidget *widget,
 }
 
 
-
-gint
-main (gint argc,
-      gchar **argv)
+static int
+show_x11 (GdkSeat *seat)
 {
-    XfconfChannel *accessibility_channel = NULL;
-    GError *error = NULL;
     GtkWidget *window;
-    GdkDisplay *display;
-    GdkSeat *seat;
-    GdkDevice *device;
     GdkScreen *screen;
+    GdkDevice *device;
     gint x, y;
     gboolean composited;
 
-    /* initialize xfconf */
-    if (!xfconf_init (&error))
-    {
-        /* print error and exit */
-        g_critical ("Failed to connect to xfconf daemon: %s.", error->message);
-        g_error_free (error);
-
-        return EXIT_FAILURE;
-    }
-
-    /* open the channels */
-    accessibility_channel = xfconf_channel_new ("accessibility");
-
-    /* don't do anything if the /FindCursor setting is not enabled */
-    if (!xfconf_channel_get_bool (accessibility_channel, "/FindCursor", TRUE))
-        return 0;
-
-    gtk_init (&argc, &argv);
-
-    /* just get the position of the mouse cursor */
-    display = gdk_display_get_default ();
-    seat = gdk_display_get_default_seat (display);
     device = gdk_seat_get_pointer (seat);
     screen = gdk_screen_get_default ();
     gdk_device_get_position (device, &screen, &x, &y);
@@ -276,7 +264,124 @@ main (gint argc,
 
     gtk_main ();
 
+    return EXIT_SUCCESS;
+}
+
+#endif /* ENABLE_X11 */
+
+#ifdef ENABLE_WAYLAND
+
+
+static void
+registry_global (void *data,
+                 struct wl_registry *registry,
+                 uint32_t name,
+                 const char *interface,
+                 uint32_t version)
+{
+    struct xfce_accessibility_manager_private_v1 **accessibility_manager = data;
+
+    if (g_strcmp0 (interface, xfce_accessibility_manager_private_v1_interface.name) == 0)
+    {
+        *accessibility_manager = wl_registry_bind (registry,
+                                                   name,
+                                                   &xfce_accessibility_manager_private_v1_interface,
+                                                   XFCE_ACCESSIBILITY_VERSION);
+    }
+}
+
+static void
+registry_global_remove (void *data,
+                        struct wl_registry *registry,
+                        uint32_t name)
+{
+}
+
+static const struct wl_registry_listener registry_listener = {
+    .global = registry_global,
+    .global_remove = registry_global_remove,
+};
+
+static int
+show_wayland (GdkDisplay *display,
+              GdkSeat *seat)
+{
+    struct wl_display *wl_display = gdk_wayland_display_get_wl_display (display);
+    struct wl_registry *registry = wl_display_get_registry (wl_display);
+
+    struct xfce_accessibility_manager_private_v1 *accessibility_manager = NULL;
+    wl_registry_add_listener (registry, &registry_listener, &accessibility_manager);
+
+    wl_display_roundtrip (wl_display);
+
+    if (accessibility_manager == NULL)
+    {
+        g_message ("Your compositor does not support the xfce-accessibility-manager-private-v1 protocol");
+    }
+    else
+    {
+        struct wl_seat *wl_seat = gdk_wayland_seat_get_wl_seat (seat);
+
+        xfce_accessibility_manager_private_v1_find_pointer (accessibility_manager, wl_seat);
+        xfce_accessibility_manager_private_v1_destroy (accessibility_manager);
+    }
+
+    wl_registry_destroy (registry);
+    gdk_display_flush (display);
+
+    return accessibility_manager != NULL ? EXIT_SUCCESS : EXIT_FAILURE;
+}
+
+#endif /* ENABLE_WAYLAND */
+
+
+gint
+main (gint argc,
+      gchar **argv)
+{
+    XfconfChannel *accessibility_channel = NULL;
+    GError *error = NULL;
+    GdkDisplay *display;
+    GdkSeat *seat;
+    int exitcode = EXIT_FAILURE;
+
+    /* initialize xfconf */
+    if (!xfconf_init (&error))
+    {
+        /* print error and exit */
+        g_critical ("Failed to connect to xfconf daemon: %s.", error->message);
+        g_error_free (error);
+
+        return EXIT_FAILURE;
+    }
+
+    /* open the channels */
+    accessibility_channel = xfconf_channel_new ("accessibility");
+
+    /* don't do anything if the /FindCursor setting is not enabled */
+    if (!xfconf_channel_get_bool (accessibility_channel, "/FindCursor", TRUE))
+        return EXIT_SUCCESS;
+
+    gtk_init (&argc, &argv);
+
+    display = gdk_display_get_default ();
+    seat = gdk_display_get_default_seat (display);
+
+#ifdef ENABLE_X11
+    if (GDK_IS_X11_DISPLAY (display))
+    {
+        exitcode = show_x11 (seat);
+    }
+#endif
+
+#ifdef ENABLE_WAYLAND
+    if (GDK_IS_WAYLAND_DISPLAY (display))
+    {
+        exitcode = show_wayland (display, seat);
+    }
+#endif
+
     xfconf_shutdown ();
 
-    return 0;
+    return exitcode;
 }
