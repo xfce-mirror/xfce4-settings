@@ -3,12 +3,6 @@ dirs = [
   'keyboard-settings',
 ]
 
-if enable_x11
-  dirs += [
-    'accessibility-settings',
-  ]
-endif
-
 if colord.found()
   dirs += [
     'color-settings',
@@ -66,25 +60,6 @@ foreach dir : dirs
     install_dir: get_option('prefix') / get_option('datadir') / 'applications',
   )
 
-  if name == 'accessibility'
-    executable(
-      'xfce4-find-cursor',
-      [dir / 'find-cursor.c'],
-      c_args: [
-        '-DG_LOG_DOMAIN="@0@"'.format('xfce4-find-cursor'),
-      ],
-      include_directories: [
-        include_directories('..'),
-      ],
-      dependencies: [
-        gtk,
-        xfconf,
-      ],
-      install: true,
-      install_dir: get_option('prefix') / get_option('bindir'),
-    )
-  endif
-
   if name == 'appearance'
     install_data(
       dir / 'appearance-install-theme',
@@ -94,4 +69,5 @@ foreach dir : dirs
   endif
 endforeach
 
+subdir('accessibility-settings')
 subdir('mouse-settings')
