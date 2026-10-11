@@ -1,13 +1,8 @@
 dirs = [
+  'accessibility-settings',
   'appearance-settings',
   'keyboard-settings',
 ]
-
-if enable_x11
-  dirs += [
-    'accessibility-settings',
-  ]
-endif
 
 if colord.found()
   dirs += [
@@ -69,7 +64,10 @@ foreach dir : dirs
   if name == 'accessibility'
     executable(
       'xfce4-find-cursor',
-      [dir / 'find-cursor.c'],
+      [
+        dir / 'find-cursor.c',
+        wayland_protocols_generated_sources,
+      ],
       c_args: [
         '-DG_LOG_DOMAIN="@0@"'.format('xfce4-find-cursor'),
       ],
@@ -79,6 +77,7 @@ foreach dir : dirs
       dependencies: [
         gtk,
         xfconf,
+        wayland_deps,
       ],
       install: true,
       install_dir: get_option('prefix') / get_option('bindir'),
