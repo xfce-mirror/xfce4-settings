@@ -88,7 +88,6 @@ typedef struct _XfceOutput
     /* Identifiers */
     guint id;
     const gchar *friendly_name;
-    /* output name (Xfconf key), from backend */
     const gchar *name;
 
     /* Status */

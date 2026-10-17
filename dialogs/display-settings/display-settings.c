@@ -17,7 +17,6 @@
  */
 
 #include "display-settings.h"
-#include "glib.h"
 #include "scrollarea.h"
 
 #ifdef ENABLE_WAYLAND

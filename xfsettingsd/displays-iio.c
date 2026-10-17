@@ -88,7 +88,7 @@ xfce_displays_iio_update_orientation (XfceDisplaysIIO *iio)
     GVariant *v = g_dbus_proxy_get_cached_property (iio->iio_proxy, "AccelerometerOrientation");
     gint rotation = 0;
 
-    if (!v)
+    if (v == NULL)
         return;
 
     orientation = g_variant_dup_string (v, NULL);
@@ -175,14 +175,9 @@ xfce_displays_iio_sensor_appeared_cb (GDBusConnection *connection,
 static void
 xfce_displays_iio_clear (XfceDisplaysIIO *iio)
 {
-    if (iio->handler > 0)
-    {
-        g_signal_handler_disconnect (G_OBJECT (iio->iio_proxy),
-                                     iio->handler);
-        iio->handler = 0;
-    }
+    g_clear_signal_handler (&iio->handler, iio->iio_proxy);
 
-    if (iio->iio_proxy)
+    if (iio->iio_proxy != NULL)
     {
         g_dbus_proxy_call (iio->iio_proxy,
                            "ReleaseAccelerometer", NULL,
@@ -225,11 +220,7 @@ xfce_displays_iio_dispose (GObject *object)
 {
     XfceDisplaysIIO *iio = XFCE_DISPLAYS_IIO (object);
 
-    if (iio->iio_watch_id > 0)
-    {
-        g_bus_unwatch_name (iio->iio_watch_id);
-        iio->iio_watch_id = 0;
-    }
+    g_clear_handle_id (&iio->iio_watch_id, g_bus_unwatch_name);
 
     xfce_displays_iio_clear (iio);
 
