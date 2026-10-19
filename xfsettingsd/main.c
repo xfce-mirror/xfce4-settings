@@ -24,6 +24,7 @@
 
 #include "gtk-decorations.h"
 #include "gtk-settings.h"
+#include "theme-schedule.h"
 
 #ifdef ENABLE_DISPLAY_SETTINGS
 #include "displays.h"
@@ -74,6 +75,7 @@ struct t_data_set
 {
     GObject *gtk_decorations_helper;
     GObject *gtk_settings_helper;
+    GObject *theme_schedule_helper;
 #ifdef ENABLE_DISPLAY_SETTINGS
     GObject *displays_helper;
 #endif
@@ -139,6 +141,8 @@ start_xfsettingsd (struct t_data_set *s_data)
     {
         s_data->gtk_settings_helper = g_object_new (XFCE_TYPE_GTK_SETTINGS_HELPER, NULL);
     }
+
+    s_data->theme_schedule_helper = g_object_new (XFCE_TYPE_THEME_SCHEDULE_HELPER, NULL);
 #ifdef ENABLE_DISPLAY_SETTINGS
     s_data->displays_helper = xfce_displays_helper_new ();
 #endif
@@ -397,6 +401,7 @@ main (gint argc,
 #endif
     UNREF_GOBJECT (s_data.gtk_decorations_helper);
     UNREF_GOBJECT (s_data.gtk_settings_helper);
+    UNREF_GOBJECT (s_data.theme_schedule_helper);
 #ifdef ENABLE_DISPLAY_SETTINGS
     UNREF_GOBJECT (s_data.displays_helper);
 #endif

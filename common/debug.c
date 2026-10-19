@@ -31,6 +31,7 @@ static const GDebugKey dbg_keys[] = {
     { "pointers", XFSD_DEBUG_POINTERS },
     { "displays", XFSD_DEBUG_DISPLAYS },
     { "gtk-settings", XFSD_DEBUG_GTK_SETTINGS },
+    { "theme-schedule", XFSD_DEBUG_THEME_SCHEDULE },
 };
 
 
