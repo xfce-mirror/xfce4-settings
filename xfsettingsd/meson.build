@@ -4,6 +4,8 @@ xfsettingsd_sources = [
   'gtk-decorations.h',
   'gtk-settings.c',
   'gtk-settings.h',
+  'theme-schedule.c',
+  'theme-schedule.h',
 ]
 
 xfsettingsd_sources += gnome.gdbus_codegen(
