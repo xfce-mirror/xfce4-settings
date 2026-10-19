@@ -460,6 +460,7 @@ xfce_display_settings_x11_get_output (XfceDisplaySettings *settings,
 
     output->id = output_id;
     output->friendly_name = randr->friendly_name[output_id];
+    output->name = xfce_randr_get_output_info_name (randr, output_id);
 
     xfce_randr_get_positions (randr, output_id, &output->x, &output->y);
     output->active = randr->mode[output_id] != None;

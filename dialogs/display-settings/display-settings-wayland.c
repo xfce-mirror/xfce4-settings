@@ -662,6 +662,7 @@ xfce_display_settings_wayland_get_output (XfceDisplaySettings *settings,
 
     output->id = output_id;
     output->friendly_name = xfce_display_settings_wayland_get_friendly_name (settings, output_id);
+    output->name = xfwl_output->name;
 
     output->x = xfwl_output->x;
     output->y = xfwl_output->y;
