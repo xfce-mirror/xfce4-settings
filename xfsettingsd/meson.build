@@ -103,6 +103,8 @@ if enable_display_settings
   xfsettingsd_sources += [
     'displays.c',
     'displays.h',
+    'displays-iio.c',
+    'displays-iio.h'
   ]
 
   if xrandr.found()
