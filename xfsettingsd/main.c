@@ -180,7 +180,7 @@ on_name_lost (GDBusConnection *connection,
 {
     g_printerr (G_LOG_DOMAIN ": %s\n", "Another instance took over. Leaving...");
 
-    struct t_data_set *s_data = *(struct t_data_set **) user_data;
+    struct t_data_set *s_data = user_data;
     if (s_data->sm_client != NULL)
     {
         xfce_session_client_discard (s_data->sm_client);
