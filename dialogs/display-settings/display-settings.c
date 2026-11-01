@@ -111,6 +111,8 @@ free_output (gpointer data)
     for (guint n = 0; n < output->n_modes; n++)
         g_free (output->modes[n]);
     g_free (output->modes);
+    if (output->free_user_data != NULL)
+        output->free_user_data (output->user_data);
     g_free (output);
 }
 
@@ -663,6 +665,8 @@ xfce_display_settings_reload (XfceDisplaySettings *settings)
         xfce_display_settings_populate_popups (settings);
         xfce_display_settings_set_popups_visible (settings, visible);
 
+        /* end any current grab to prevent use-after-free on outputs */
+        foo_scroll_area_end_grab (FOO_SCROLL_AREA (priv->scroll_area));
         foo_scroll_area_invalidate (FOO_SCROLL_AREA (priv->scroll_area));
     }
 }

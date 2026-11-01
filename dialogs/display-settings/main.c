@@ -2584,6 +2584,7 @@ on_output_event (FooScrollArea *area,
             g_free (tooltip_text);
 
             output->user_data = info;
+            output->free_user_data = g_free;
         }
 
         foo_scroll_area_invalidate (area);
