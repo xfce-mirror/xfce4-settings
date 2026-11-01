@@ -194,11 +194,11 @@ load_from_xfconf (XfceDisplaysHelperWayland *helper,
     value = g_hash_table_lookup (saved_outputs, property);
     g_free (property);
     if (!G_VALUE_HOLDS_BOOLEAN (value))
-        return;
+        goto out;
 
     output->enabled = g_value_get_boolean (value);
     if (!output->enabled)
-        return;
+        goto out;
 
     /* resolution */
     property = g_strdup_printf (RESOLUTION_PROP, scheme, output_name);
@@ -233,7 +233,7 @@ load_from_xfconf (XfceDisplaysHelperWayland *helper,
     {
         /* unsupported mode, abort for this output */
         g_warning (WARNING_MESSAGE_UNKNOWN_MODE, str_value, double_value, output_name);
-        return;
+        goto out;
     }
     else
     {
@@ -330,6 +330,7 @@ load_from_xfconf (XfceDisplaysHelperWayland *helper,
     else
         output->y = 0;
 
+out:
     g_free (output_name);
 }
 
