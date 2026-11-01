@@ -111,6 +111,7 @@ typedef struct _XfceOutput
 
     /* User Data (e.g. GrabInfo) */
     gpointer user_data;
+    GDestroyNotify free_user_data;
 } XfceOutput;
 
 struct _XfceDisplaySettingsClass
