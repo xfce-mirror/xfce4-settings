@@ -1183,18 +1183,11 @@ set_gsettings_color_scheme (GSettings *settings,
         if (g_settings_schema_has_key (schema, "color-scheme"))
         {
             gchar *str = xfconf_channel_get_string (channel, property_name, NULL);
-            if (str != NULL)
-            {
-                gchar *strdown = g_ascii_strdown (str, -1);
-                if (g_strstr_len (strdown, -1, "-dark-") || g_str_has_suffix (strdown, "-dark"))
-                    g_settings_set_string (settings, "color-scheme", "prefer-dark");
-                else
-                    g_settings_reset (settings, "color-scheme");
-                g_free (strdown);
-                g_free (str);
-            }
+            if (str != NULL && theme_variant_is_dark (str))
+                g_settings_set_string (settings, "color-scheme", "prefer-dark");
             else
                 g_settings_reset (settings, "color-scheme");
+            g_free (str);
         }
         g_settings_schema_unref (schema);
     }
@@ -2010,7 +2003,7 @@ schedule_describe_rule (GtkTreeModel *model,
         g_free (variant);
         g_free (current);
     }
-    else if (theme != NULL && *theme != '\0')
+    else if (!xfce_str_is_empty (theme))
         g_ptr_array_add (parts, g_strdup (theme));
 
     if (g_strcmp0 (color_scheme, "prefer-dark") == 0)
@@ -2020,10 +2013,10 @@ schedule_describe_rule (GtkTreeModel *model,
     else if (g_strcmp0 (color_scheme, "default") == 0)
         g_ptr_array_add (parts, g_strdup (_("default color scheme")));
 
-    n_more = (icon_theme != NULL && *icon_theme != '\0')
-             + (cursor_theme != NULL && *cursor_theme != '\0')
-             + (brightness != NULL && *brightness != '\0')
-             + (command != NULL && *command != '\0');
+    n_more = !xfce_str_is_empty (icon_theme)
+             + !xfce_str_is_empty (cursor_theme)
+             + !xfce_str_is_empty (brightness)
+             + !xfce_str_is_empty (command);
     if (n_more > 0)
         g_ptr_array_add (parts, g_strdup_printf (g_dngettext (GETTEXT_PACKAGE, "%d more action", "%d more actions", n_more), n_more));
 
@@ -2032,7 +2025,7 @@ schedule_describe_rule (GtkTreeModel *model,
         g_ptr_array_add (parts, NULL);
         text = g_strjoinv (", ", (gchar **) parts->pdata);
     }
-    else if ((theme != NULL && *theme != '\0') || (color_scheme != NULL && *color_scheme != '\0'))
+    else if (!xfce_str_is_empty (theme) || !xfce_str_is_empty (color_scheme))
         text = g_strdup (_("no change"));
 
     g_ptr_array_unref (parts);
@@ -2190,7 +2183,7 @@ schedule_load (void)
         /* rules saved before color schemes were configurable follow the theme name */
         if (i >= n_values[COLUMN_SCHEDULE_COLOR_SCHEME]
             && i < n_values[COLUMN_SCHEDULE_THEME]
-            && *values[COLUMN_SCHEDULE_THEME][i] != '\0' && *values[COLUMN_SCHEDULE_THEME][i] != ':')
+            && !xfce_str_is_empty (values[COLUMN_SCHEDULE_THEME][i]) && *values[COLUMN_SCHEDULE_THEME][i] != ':')
             gtk_list_store_set (schedule.store, &iter, COLUMN_SCHEDULE_COLOR_SCHEME,
                                 theme_variant_is_dark (values[COLUMN_SCHEDULE_THEME][i]) ? "prefer-dark" : "default",
                                 -1);
@@ -2396,9 +2389,9 @@ cb_schedule_theme_edited (GtkCellRendererText *renderer,
 
         /* a style comes with the matching color scheme */
         if (g_strcmp0 (value, ":dark") == 0
-            || (*value != '\0' && *value != ':' && theme_variant_is_dark (value)))
+            || (!xfce_str_is_empty (value) && *value != ':' && theme_variant_is_dark (value)))
             gtk_list_store_set (schedule.store, &iter, COLUMN_SCHEDULE_COLOR_SCHEME, "prefer-dark", -1);
-        else if (*value != '\0')
+        else if (!xfce_str_is_empty (value))
             gtk_list_store_set (schedule.store, &iter, COLUMN_SCHEDULE_COLOR_SCHEME, "prefer-light", -1);
 
         schedule_save ();
@@ -2685,8 +2678,8 @@ schedule_edit_more (const gchar *path_str)
     /* Xfwm4 theme, by default as the switch on the Style tab */
     xfwm4_check = gtk_check_button_new_with_mnemonic (_("Set the matching _window manager theme along with the theme"));
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (xfwm4_check),
-                                  *xfwm4 != '\0' ? g_strcmp0 (xfwm4, "true") == 0
-                                                 : xfconf_channel_get_bool (xsettings_channel, "/Xfce/SyncThemes", FALSE));
+                                  !xfce_str_is_empty (xfwm4) ? g_strcmp0 (xfwm4, "true") == 0
+                                                             : xfconf_channel_get_bool (xsettings_channel, "/Xfce/SyncThemes", FALSE));
     gtk_grid_attach (GTK_GRID (grid), xfwm4_check, 0, row++, 2, 1);
 
     /* icon theme, by default the same kind of variant as the theme */
@@ -2707,10 +2700,10 @@ schedule_edit_more (const gchar *path_str)
     }
     current = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Rodent");
     schedule_combo_set_active_id (GTK_COMBO_BOX_TEXT (icon_combo),
-                                  *icon_theme != '\0' ? icon_theme
-                                  : *theme == ':'     ? theme
-                                                      : current);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (icon_check), *icon_theme != '\0');
+                                  !xfce_str_is_empty (icon_theme) ? icon_theme
+                                  : *theme == ':'                 ? theme
+                                                                  : current);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (icon_check), !xfce_str_is_empty (icon_theme));
     g_free (current);
 
     /* cursor theme */
@@ -2722,8 +2715,8 @@ schedule_edit_more (const gchar *path_str)
     g_ptr_array_unref (cursor_themes);
     current = xfconf_channel_get_string (xsettings_channel, "/Gtk/CursorThemeName", "default");
     schedule_combo_set_active_id (GTK_COMBO_BOX_TEXT (cursor_combo),
-                                  *cursor_theme != '\0' ? cursor_theme : (*current != '\0' ? current : "default"));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cursor_check), *cursor_theme != '\0');
+                                  !xfce_str_is_empty (cursor_theme) ? cursor_theme : (!xfce_str_is_empty (current) ? current : "default"));
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cursor_check), !xfce_str_is_empty (cursor_theme));
     g_free (current);
 
     /* screen backlight, by default at its current level */
@@ -2733,19 +2726,19 @@ schedule_edit_more (const gchar *path_str)
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     brightness_spin = gtk_spin_button_new_with_range (1, 100, 5);
     gtk_spin_button_set_value (GTK_SPIN_BUTTON (brightness_spin),
-                               *brightness != '\0' ? g_ascii_strtod (brightness, NULL)
-                               : backlight != NULL ? backlight_get_percent (backlight)
-                                                   : 100);
+                               !xfce_str_is_empty (brightness) ? g_ascii_strtod (brightness, NULL)
+                               : backlight != NULL             ? backlight_get_percent (backlight)
+                                                               : 100);
     gtk_entry_set_activates_default (GTK_ENTRY (brightness_spin), TRUE);
     gtk_box_pack_start (GTK_BOX (box), brightness_spin, FALSE, FALSE, 0);
     gtk_box_pack_start (GTK_BOX (box), gtk_label_new ("%"), FALSE, FALSE, 0);
     g_object_bind_property (brightness_check, "active", box, "sensitive", G_BINDING_SYNC_CREATE);
     gtk_grid_attach (GTK_GRID (grid), box, 1, row++, 1, 1);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (brightness_check), *brightness != '\0');
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (brightness_check), !xfce_str_is_empty (brightness));
     if (backlight == NULL)
     {
         /* e.g. external monitors: keep a saved value, but do not offer it */
-        gtk_widget_set_sensitive (brightness_check, *brightness != '\0');
+        gtk_widget_set_sensitive (brightness_check, !xfce_str_is_empty (brightness));
         gtk_widget_set_tooltip_text (brightness_check, _("No screen backlight was found."));
     }
     g_free (backlight);
@@ -2837,14 +2830,14 @@ schedule_more_cell_data (GtkTreeViewColumn *column,
                         COLUMN_SCHEDULE_COMMAND, &command,
                         -1);
 
-    if (icon_theme != NULL && *icon_theme != '\0')
+    if (!xfce_str_is_empty (icon_theme))
         g_ptr_array_add (parts, g_strdup (_("icons")));
-    if (cursor_theme != NULL && *cursor_theme != '\0')
+    if (!xfce_str_is_empty (cursor_theme))
         g_ptr_array_add (parts, g_strdup (_("cursor")));
-    if (brightness != NULL && *brightness != '\0')
+    if (!xfce_str_is_empty (brightness))
         /* TRANSLATORS: the screen brightness set by a rule, in the More column, e.g. "brightness 40%" */
         g_ptr_array_add (parts, g_strdup_printf (_("brightness %s%%"), brightness));
-    if (command != NULL && *command != '\0')
+    if (!xfce_str_is_empty (command))
         g_ptr_array_add (parts, g_strdup (_("command")));
     g_ptr_array_add (parts, NULL);
 

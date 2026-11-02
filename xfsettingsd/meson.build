@@ -98,10 +98,7 @@ if enable_x11
   ]
 endif
 
-link_with = []
 if enable_display_settings
-  link_with += libsettings_common
-
   xfsettingsd_sources += [
     'displays.c',
     'displays.h',
@@ -158,7 +155,9 @@ executable(
     upower_glib,
     libm,
   ],
-  link_with: link_with,
+  link_with: [
+    libsettings_common,
+  ],
   install: true,
   install_dir: get_option('prefix') / get_option('bindir'),
 )
