@@ -17,11 +17,10 @@
  */
 
 /*
- * Shared by the appearance dialog and xfsettingsd (header only, like
- * theme-variant.h): finding the screen backlight in /sys/class/backlight.
- * Like in GNOME, firmware interfaces are preferred over platform ones and
- * those over raw ones. Writing the brightness needs root,
- * so xfsettingsd sets it through logind.
+ * Shared by the appearance dialog and xfsettingsd: finding the screen
+ * backlight in /sys/class/backlight. Like in GNOME, firmware interfaces are
+ * preferred over platform ones and those over raw ones. Writing the
+ * brightness needs root, so xfsettingsd sets it through logind.
  */
 
 #ifndef __BACKLIGHT_H__
@@ -33,77 +32,17 @@ G_BEGIN_DECLS
 
 #define BACKLIGHT_SYSFS_DIR "/sys/class/backlight"
 
-static inline guint64
+guint64
 backlight_read_value (const gchar *device,
-                      const gchar *file)
-{
-    gchar *path = g_build_filename (BACKLIGHT_SYSFS_DIR, device, file, NULL);
-    gchar *contents = NULL;
-    guint64 value = 0;
-
-    if (g_file_get_contents (path, &contents, NULL, NULL))
-        value = g_ascii_strtoull (contents, NULL, 10);
-
-    g_free (path);
-    g_free (contents);
-
-    return value;
-}
+                      const gchar *file);
 
 /* the name of the backlight device to use, or NULL if there is none */
-static inline gchar *
-backlight_find_device (void)
-{
-    static const gchar *types[] = { "firmware", "platform", "raw" };
-    GDir *dir = g_dir_open (BACKLIGHT_SYSFS_DIR, 0, NULL);
-    const gchar *entry;
-    gchar *best = NULL;
-    guint best_rank = G_N_ELEMENTS (types);
-
-    if (dir == NULL)
-        return NULL;
-
-    while ((entry = g_dir_read_name (dir)) != NULL)
-    {
-        gchar *path = g_build_filename (BACKLIGHT_SYSFS_DIR, entry, "type", NULL);
-        gchar *type = NULL;
-        guint rank = G_N_ELEMENTS (types);
-
-        if (g_file_get_contents (path, &type, NULL, NULL))
-        {
-            g_strstrip (type);
-            for (guint i = 0; i < G_N_ELEMENTS (types); i++)
-                if (g_strcmp0 (type, types[i]) == 0)
-                    rank = i;
-        }
-
-        if (rank < best_rank && backlight_read_value (entry, "max_brightness") > 0)
-        {
-            g_free (best);
-            best = g_strdup (entry);
-            best_rank = rank;
-        }
-
-        g_free (path);
-        g_free (type);
-    }
-
-    g_dir_close (dir);
-
-    return best;
-}
+gchar *
+backlight_find_device (void);
 
 /* the brightness of @device in percent, rounded */
-static inline gint
-backlight_get_percent (const gchar *device)
-{
-    guint64 max = backlight_read_value (device, "max_brightness");
-
-    if (max == 0)
-        return 0;
-
-    return (backlight_read_value (device, "brightness") * 100 + max / 2) / max;
-}
+gint
+backlight_get_percent (const gchar *device);
 
 G_END_DECLS
 

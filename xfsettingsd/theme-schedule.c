@@ -298,7 +298,7 @@ xfce_theme_schedule_resolve_theme (const gchar *value,
 {
     gchar *theme_name = NULL;
 
-    if (value == NULL || *value == '\0')
+    if (xfce_str_is_empty (value))
         return NULL;
 
     if (g_strcmp0 (value, ":dark") == 0 || g_strcmp0 (value, ":light") == 0)
@@ -451,7 +451,7 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
     g_free (current);
 
     /* Xfwm4 theme */
-    if (rule[RULE_XFWM4] == NULL || *rule[RULE_XFWM4] == '\0')
+    if (xfce_str_is_empty (rule[RULE_XFWM4]))
         xfwm4 = xfconf_channel_get_bool (helper->channel, "/Xfce/SyncThemes", FALSE);
     else
         xfwm4 = g_strcmp0 (rule[RULE_XFWM4], "true") == 0;
@@ -473,7 +473,7 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
         }
         else if (g_strcmp0 (color_scheme, "default") == 0)
             g_settings_reset (helper->desktop_interface_gsettings, "color-scheme");
-        else if (*color_scheme != '\0')
+        else if (!xfce_str_is_empty (color_scheme))
             g_settings_set_string (helper->desktop_interface_gsettings, "color-scheme", color_scheme);
     }
 
@@ -485,13 +485,13 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
     g_free (current);
 
     /* cursor theme */
-    if (rule[RULE_CURSOR_THEME] != NULL && *rule[RULE_CURSOR_THEME] != '\0')
+    if (!xfce_str_is_empty (rule[RULE_CURSOR_THEME]))
         xfconf_channel_set_string (helper->channel, "/Gtk/CursorThemeName", rule[RULE_CURSOR_THEME]);
 
-    if (rule[RULE_BRIGHTNESS] != NULL && *rule[RULE_BRIGHTNESS] != '\0')
+    if (!xfce_str_is_empty (rule[RULE_BRIGHTNESS]))
         xfce_theme_schedule_helper_set_brightness (helper, rule[RULE_BRIGHTNESS]);
 
-    if (rule[RULE_COMMAND] != NULL && *rule[RULE_COMMAND] != '\0')
+    if (!xfce_str_is_empty (rule[RULE_COMMAND]))
         xfce_theme_schedule_helper_run_command (helper, rule[RULE_COMMAND]);
 
     g_free (theme_name);
@@ -591,7 +591,7 @@ xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
         gint64 at;
 
         for (guint f = RULE_THEME; f < N_RULE_FIELDS; f++)
-            if (f != RULE_XFWM4 && i < n_fields[f] && *fields[f][i] != '\0')
+            if (f != RULE_XFWM4 && i < n_fields[f] && !xfce_str_is_empty (fields[f][i]))
                 does_something = TRUE;
 
         if (minutes < 0 || !does_something)
