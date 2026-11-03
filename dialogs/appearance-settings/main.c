@@ -2567,7 +2567,7 @@ schedule_edit_rule (gint index,
                            "variant, the theme stays."));
 
     color_scheme_combo = schedule_choice_combo_new (schedule.color_scheme_choices, rule[COLUMN_SCHEDULE_COLOR_SCHEME]);
-    schedule_grid_label (GTK_GRID (grid), row++, _("_Color scheme:"), color_scheme_combo, _("The dark or light preference of the desktop, followed by GTK 4 and libadwaita, Qt 6, "
+    schedule_grid_label (GTK_GRID (grid), row++, _("Colo_r scheme:"), color_scheme_combo, _("The dark or light preference of the desktop, followed by GTK 4 and libadwaita, Qt 6, "
                            "Firefox, Chromium and Electron applications. Firefox follows it if Website appearance "
                            "is set to Automatic, Chromium if Mode is set to Device."));
     g_signal_connect (theme_combo, "changed", G_CALLBACK (cb_schedule_dialog_theme_changed), color_scheme_combo);
@@ -2622,7 +2622,7 @@ schedule_edit_rule (gint index,
                                   : !xfce_str_is_empty (current)                          ? current
                                                                                           : "default");
     g_free (current);
-    cursor_check = schedule_grid_check (GTK_GRID (grid), row++, _("Set the mouse _cursor theme:"), cursor_combo,
+    cursor_check = schedule_grid_check (GTK_GRID (grid), row++, _("Set the mouse c_ursor theme:"), cursor_combo,
                                         !xfce_str_is_empty (rule[COLUMN_SCHEDULE_CURSOR_THEME]), _("The mouse cursor theme, as chosen in the Mouse and Touchpad settings."));
 
     /* screen backlight, by default at its current level */
