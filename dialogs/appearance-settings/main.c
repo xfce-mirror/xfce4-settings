@@ -1602,29 +1602,6 @@ appearance_settings_draw_subpixel_icon (gboolean is_rgb,
 }
 #endif
 
-/* what a change of the style affects, in a popover at the "?" button */
-static void
-cb_gtk_theme_help_clicked (GtkWidget *button)
-{
-    GtkWidget *popover, *label;
-
-    popover = gtk_popover_new (button);
-    label = gtk_label_new (_("The style is the theme of Xfce and of GTK 3 applications. A dark style also sets "
-                             "the dark color scheme, which GTK 4 and libadwaita, Qt 6, Firefox, Chromium and "
-                             "Electron applications follow; any other style resets it to the default. Firefox "
-                             "follows it if Website appearance is set to Automatic, Chromium if Mode is set to "
-                             "Device. Applications of other toolkits keep their own look.\n\n"
-                             "To change the style at set times, e.g. a dark one in the evening, see the Schedule tab."));
-    gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
-    gtk_label_set_max_width_chars (GTK_LABEL (label), 50);
-    gtk_label_set_xalign (GTK_LABEL (label), 0.0);
-    gtk_container_set_border_width (GTK_CONTAINER (popover), 12);
-    gtk_container_add (GTK_CONTAINER (popover), label);
-    g_signal_connect (popover, "closed", G_CALLBACK (gtk_widget_destroy), NULL);
-    gtk_widget_show_all (popover);
-    gtk_popover_popup (GTK_POPOVER (popover));
-}
-
 static void
 appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 {
@@ -1732,9 +1709,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "install_gtk_theme");
     g_object_set (object, "name", "Gtk", NULL);
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
-
-    object = gtk_builder_get_object (builder, "gtk_theme_help");
-    g_signal_connect (object, "clicked", G_CALLBACK (cb_gtk_theme_help_clicked), NULL);
 
     /* Switch for xfwm4 theme matching, gets hidden if xfwm4 is not installed */
     path = g_find_program_in_path ("xfwm4");
