@@ -19,29 +19,29 @@ fs = import('fs')
 
 dependency_versions = {
   'glib': '>= 2.80.0',
-  'gtk': '>= 3.24.0',
+  'gtk': '>= 3.24.41',
   'xfce4': '>= 4.20.0',
   'libxfce4ui': '>= 4.21.9',
   'libxfce4session-client': '>= 4.21.2',
 
-  'fontconfig': '>= 2.6.0',
-  'inputproto': '>= 2.0.0',
-  'libx11': '>= 1.6.7',
-  'libxext': '>= 1.0.0',
-  'libxi': '>= 1.2.0',
+  'fontconfig': '>= 2.15.0',
+  'inputproto': '>= 2.3.99.2',
+  'libx11': '>= 1.8.7',
+  'libxext': '>= 1.3.4',
+  'libxi': '>= 1.8.1',
 
-  'libxklavier': '>= 5.0',
-  'colord': '>= 1.0.2',
-  'libnotify': '>= 0.7.8',
-  'xcursor': '>= 1.1.0',
+  'libxklavier': '>= 5.4',
+  'colord': '>= 1.4.7',
+  'libnotify': '>= 0.8.3',
+  'xcursor': '>= 1.2.1',
   'xkbcommon': '>= 1.6.0',
-  'xrandr': '>= 1.5.0',
+  'xrandr': '>= 1.5.2',
 
-  'wayland': '>= 1.20',
+  'wayland': '>= 1.22',
 
-  'gtk-layer-shell': '>= 0.7.0',
+  'gtk-layer-shell': '>= 0.8.2',
 
-  'upower-glib': '>= 0.99.10',
+  'upower-glib': '>= 1.90.3',
 }
 
 garcon = dependency('garcon-1', version: dependency_versions['xfce4'])
