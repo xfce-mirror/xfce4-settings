@@ -2478,8 +2478,8 @@ schedule_edit_rule (gint index,
     GtkWidget *command_entry;
     GtkTreeIter iter;
     GPtrArray *cursor_themes;
-    gchar *current, *backlight;
-    gint minutes, row = 0;
+    gchar *current, *backlight_device;
+    gint minutes, current_brightness, row = 0;
 
     dialog = gtk_dialog_new_with_buttons (index < 0 ? _("Add Rule") : _("Edit Rule"),
                                           GTK_WINDOW (gtk_widget_get_toplevel (schedule.view)),
@@ -2575,24 +2575,25 @@ schedule_edit_rule (gint index,
                                         !xfce_str_is_empty (rule[COLUMN_SCHEDULE_CURSOR_THEME]), _("The mouse cursor theme, as chosen in the Mouse and Touchpad settings."));
 
     /* screen backlight, by default at its current level */
-    backlight = backlight_find_device ();
+    backlight_device = backlight_find_device ();
+    current_brightness = backlight_device != NULL ? backlight_get_percent (backlight_device) : -1;
     brightness_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     brightness_spin = gtk_spin_button_new_with_range (1, 100, 5);
     gtk_spin_button_set_value (GTK_SPIN_BUTTON (brightness_spin),
                                !xfce_str_is_empty (rule[COLUMN_SCHEDULE_BRIGHTNESS]) ? g_ascii_strtod (rule[COLUMN_SCHEDULE_BRIGHTNESS], NULL)
-                               : backlight != NULL                                   ? backlight_get_percent (backlight)
+                               : current_brightness >= 0                             ? MAX (current_brightness, 1)
                                                                                      : 100);
     gtk_entry_set_activates_default (GTK_ENTRY (brightness_spin), TRUE);
     gtk_box_pack_start (GTK_BOX (brightness_box), brightness_spin, FALSE, FALSE, 0);
     gtk_box_pack_start (GTK_BOX (brightness_box), gtk_label_new ("%"), FALSE, FALSE, 0);
     brightness_check = schedule_grid_check (GTK_GRID (grid), row++, _("Set the screen _brightness to:"), brightness_box,
                                             !xfce_str_is_empty (rule[COLUMN_SCHEDULE_BRIGHTNESS]),
-                                            backlight != NULL ? _("The backlight of a laptop screen.")
-                                                              : _("No screen backlight was found."));
+                                            backlight_device != NULL ? _("The backlight of a laptop screen.")
+                                                                     : _("No screen backlight was found."));
     /* e.g. external monitors: keep a saved value, but do not offer it */
-    if (backlight == NULL)
+    if (backlight_device == NULL)
         gtk_widget_set_sensitive (brightness_check, !xfce_str_is_empty (rule[COLUMN_SCHEDULE_BRIGHTNESS]));
-    g_free (backlight);
+    g_free (backlight_device);
 
     /* shell command */
     command_entry = gtk_entry_new ();

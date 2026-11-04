@@ -17,33 +17,39 @@
  */
 
 /*
- * Shared by the appearance dialog and xfsettingsd: finding the screen
- * backlight in /sys/class/backlight. Like in GNOME, firmware interfaces are
- * preferred over platform ones and those over raw ones. Writing the
- * brightness needs root, so xfsettingsd sets it through logind.
+ * The screen backlight, shared by the appearance dialog and xfsettingsd.
+ *
+ * Linux: the devices in /sys/class/backlight. Everyone may read them, but
+ * writing needs root, so the brightness is set through logind, which allows
+ * it for the user of the session.
+ *
+ * FreeBSD: the backlight(9) devices in /dev/backlight. They belong to
+ * root:video with mode 0660, so members of the video group may read and set
+ * the brightness directly.
+ *
+ * On other systems no backlight is found, and the dialog does not offer it.
  */
 
-#ifndef __BACKLIGHT_H__
-#define __BACKLIGHT_H__
+#ifndef __COMMON_BACKLIGHT_H__
+#define __COMMON_BACKLIGHT_H__
 
 #include <glib.h>
 
 G_BEGIN_DECLS
 
-#define BACKLIGHT_SYSFS_DIR "/sys/class/backlight"
-
-guint64
-backlight_read_value (const gchar *device,
-                      const gchar *file);
-
 /* the name of the backlight device to use, or NULL if there is none */
 gchar *
 backlight_find_device (void);
 
-/* the brightness of @device in percent, rounded */
+/* the brightness of @device in percent, rounded, or -1 on error */
 gint
 backlight_get_percent (const gchar *device);
 
+/* sets the brightness of @device to @percent (1-100); errors are logged */
+void
+backlight_set_percent (const gchar *device,
+                       guint percent);
+
 G_END_DECLS
 
-#endif /* !__BACKLIGHT_H__ */
+#endif /* !__COMMON_BACKLIGHT_H__ */

@@ -332,36 +332,13 @@ xfce_theme_schedule_helper_set_xfwm4_theme (XfceThemeScheduleHelper *helper,
 
 
 
-static void
-xfce_theme_schedule_set_brightness_done (GObject *source,
-                                         GAsyncResult *result,
-                                         gpointer user_data)
-{
-    GVariant *ret;
-    GError *error = NULL;
-
-    ret = g_dbus_connection_call_finish (G_DBUS_CONNECTION (source), result, &error);
-    if (ret != NULL)
-        g_variant_unref (ret);
-    else
-    {
-        g_warning ("Failed to set the brightness: %s", error->message);
-        g_error_free (error);
-    }
-}
-
-
-
-/* sets the screen backlight to @percent of its maximum through logind, which
- * lets the user of the session do so without root */
+/* sets the screen backlight to @percent of its maximum */
 static void
 xfce_theme_schedule_helper_set_brightness (XfceThemeScheduleHelper *helper,
                                            const gchar *percent)
 {
-    guint64 value, max;
-    gchar *device, *end;
-    GDBusConnection *bus;
-    GError *error = NULL;
+    guint64 value;
+    gchar *backlight_device, *end;
 
     value = g_ascii_strtoull (percent, &end, 10);
     if (*end != '\0' || value < 1 || value > 100)
@@ -370,32 +347,15 @@ xfce_theme_schedule_helper_set_brightness (XfceThemeScheduleHelper *helper,
         return;
     }
 
-    device = backlight_find_device ();
-    if (device == NULL)
+    backlight_device = backlight_find_device ();
+    if (backlight_device == NULL)
     {
         xfsettings_dbg (XFSD_DEBUG_THEME_SCHEDULE, "No screen backlight found, keeping the brightness");
         return;
     }
 
-    bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);
-    if (bus != NULL)
-    {
-        max = backlight_read_value (device, "max_brightness");
-        value = MAX ((max * value + 50) / 100, 1);
-        g_dbus_connection_call (bus, "org.freedesktop.login1", "/org/freedesktop/login1/session/auto",
-                                "org.freedesktop.login1.Session", "SetBrightness",
-                                g_variant_new ("(ssu)", "backlight", device, (guint32) value),
-                                NULL, G_DBUS_CALL_FLAGS_NONE, -1, NULL,
-                                xfce_theme_schedule_set_brightness_done, NULL);
-        g_object_unref (bus);
-    }
-    else
-    {
-        g_warning ("Failed to set the brightness: %s", error->message);
-        g_error_free (error);
-    }
-
-    g_free (device);
+    backlight_set_percent (backlight_device, value);
+    g_free (backlight_device);
 }
 
 
