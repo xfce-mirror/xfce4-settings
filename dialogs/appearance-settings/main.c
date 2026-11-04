@@ -1466,13 +1466,14 @@ cb_gtk_theme_info_clicked (GtkWidget *button)
     GtkWidget *popover, *label;
 
     popover = gtk_popover_new (button);
-    label = gtk_label_new (_("The style is the theme of Xfce and of GTK 3 applications. A dark style also sets "
-                             "the dark color scheme, which GTK 4 and libadwaita, Qt 6, Firefox, Chromium and "
-                             "Electron applications follow; any other style resets it to the default. Firefox "
-                             "follows it if Website appearance is set to Automatic, Chromium if Mode is set to "
-                             "Device. Applications of other toolkits keep their own look."));
+    label = gtk_label_new (_("The theme used for Xfce and other GTK applications. Some themes only affect GTK2/GTK3 "
+                             "applications, other themes as well affect GTK4 applications. Additional themes e.g. "
+                             "can be installed by the package manager of your distribution.\n\n"
+                             "Choosing a dark theme will set a GTK \"prefer-dark\" setting. Foreign applications "
+                             "can follow that setting, though not all of them will do so, depending on the used "
+                             "toolkit and the application preferences."));
     gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
-    gtk_label_set_max_width_chars (GTK_LABEL (label), 50);
+    gtk_label_set_max_width_chars (GTK_LABEL (label), 40);
     gtk_label_set_xalign (GTK_LABEL (label), 0.0);
     gtk_container_set_border_width (GTK_CONTAINER (popover), 12);
     gtk_container_add (GTK_CONTAINER (popover), label);
