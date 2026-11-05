@@ -1459,6 +1459,29 @@ install_theme (GtkWidget *widget,
     }
 }
 
+/* what a change of the style affects, in a popover at the info button */
+static void
+cb_gtk_theme_info_clicked (GtkWidget *button)
+{
+    GtkWidget *popover, *label;
+
+    popover = gtk_popover_new (button);
+    label = gtk_label_new (_("The theme used for Xfce and other GTK applications. Some themes only affect GTK2/GTK3 "
+                             "applications, other themes as well affect GTK4 applications. Additional themes e.g. "
+                             "can be installed by the package manager of your distribution.\n\n"
+                             "Choosing a dark theme will set a GTK \"prefer-dark\" setting. Foreign applications "
+                             "can follow that setting, though not all of them will do so, depending on the used "
+                             "toolkit and the application preferences."));
+    gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
+    gtk_label_set_max_width_chars (GTK_LABEL (label), 40);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+    gtk_container_set_border_width (GTK_CONTAINER (popover), 12);
+    gtk_container_add (GTK_CONTAINER (popover), label);
+    g_signal_connect (popover, "closed", G_CALLBACK (gtk_widget_destroy), NULL);
+    gtk_widget_show_all (popover);
+    gtk_popover_popup (GTK_POPOVER (popover));
+}
+
 static void
 appearance_settings_install_theme_cb (GtkButton *widget,
                                       GtkBuilder *builder)
@@ -1662,6 +1685,8 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
     object = gtk_builder_get_object (builder, "install_gtk_theme");
     g_object_set (object, "name", "Gtk", NULL);
     g_signal_connect (G_OBJECT (object), "clicked", G_CALLBACK (appearance_settings_install_theme_cb), builder);
+    object = gtk_builder_get_object (builder, "gtk_theme_info");
+    g_signal_connect (object, "clicked", G_CALLBACK (cb_gtk_theme_info_clicked), NULL);
 
     /* Switch for xfwm4 theme matching, gets hidden if xfwm4 is not installed */
     path = g_find_program_in_path ("xfwm4");
