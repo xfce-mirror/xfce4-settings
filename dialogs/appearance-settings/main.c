@@ -21,6 +21,9 @@
 #include "xfce-revision.h"
 #endif
 
+#include "common/backlight.h"
+#include "common/theme-variant.h"
+
 #include <cairo-gobject.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
@@ -65,6 +68,45 @@ enum
 
 enum
 {
+    COLUMN_SCHEDULE_TIME,
+    COLUMN_SCHEDULE_THEME,
+    COLUMN_SCHEDULE_COLOR_SCHEME,
+    COLUMN_SCHEDULE_XFWM4,
+    COLUMN_SCHEDULE_ICON_THEME,
+    COLUMN_SCHEDULE_CURSOR_THEME,
+    COLUMN_SCHEDULE_BRIGHTNESS,
+    COLUMN_SCHEDULE_COMMAND,
+    N_SCHEDULE_COLUMNS
+};
+
+/* the settings of a rule follow the standard columns of its list */
+#define SCHEDULE_COLUMN(column) (XFCE_ITEM_LIST_MODEL_COLUMN_USER + (column))
+
+/* the choices of the Theme and Color scheme of a rule */
+enum
+{
+    COLUMN_CHOICE_LABEL,
+    COLUMN_CHOICE_VALUE,
+    N_CHOICE_COLUMNS
+};
+
+/* Theme schedule, applied by xfsettingsd */
+#define SCHEDULE_ENABLED_PROP "/Xfce/ThemeSchedule/Enabled"
+
+/* the rules are stored as one string array per column, see xfsettingsd/theme-schedule.c */
+static const gchar *schedule_props[N_SCHEDULE_COLUMNS] = {
+    "/Xfce/ThemeSchedule/Times",
+    "/Xfce/ThemeSchedule/Themes",
+    "/Xfce/ThemeSchedule/ColorSchemes",
+    "/Xfce/ThemeSchedule/Xfwm4",
+    "/Xfce/ThemeSchedule/IconThemes",
+    "/Xfce/ThemeSchedule/CursorThemes",
+    "/Xfce/ThemeSchedule/Brightness",
+    "/Xfce/ThemeSchedule/Commands",
+};
+
+enum
+{
     COLOR_FG,
     COLOR_BG,
     COLOR_SELECTED_BG,
@@ -96,6 +138,18 @@ static GOptionEntry option_entries[] = {
 static XfconfChannel *xsettings_channel;
 static GSettings *desktop_interface_gsettings;
 static GSettings *xapps_portal_gsettings;
+
+static struct
+{
+    XfceItemListStore *store; /* the rules, see SCHEDULE_COLUMN */
+    GtkTreeModel *themes; /* the Gtk theme list of the Style tab */
+    GtkTreeModel *icon_themes; /* the list of the Icons tab */
+    GtkListStore *theme_choices;
+    GtkListStore *color_scheme_choices;
+    guint theme_choices_idle_id;
+    GtkWidget *view;
+    GtkWidget *status_label;
+} schedule;
 
 typedef struct
 {
@@ -1126,18 +1180,11 @@ set_gsettings_color_scheme (GSettings *settings,
         if (g_settings_schema_has_key (schema, "color-scheme"))
         {
             gchar *str = xfconf_channel_get_string (channel, property_name, NULL);
-            if (str != NULL)
-            {
-                gchar *strdown = g_ascii_strdown (str, -1);
-                if (g_strstr_len (strdown, -1, "-dark-") || g_str_has_suffix (strdown, "-dark"))
-                    g_settings_set_string (settings, "color-scheme", "prefer-dark");
-                else
-                    g_settings_reset (settings, "color-scheme");
-                g_free (strdown);
-                g_free (str);
-            }
+            if (str != NULL && theme_variant_is_dark (str))
+                g_settings_set_string (settings, "color-scheme", "prefer-dark");
             else
                 g_settings_reset (settings, "color-scheme");
+            g_free (str);
         }
         g_settings_schema_unref (schema);
     }
@@ -1848,6 +1895,1326 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 #endif
 }
 
+/* "HH:MM" -> minutes since midnight, or -1 if invalid */
+static gint
+schedule_parse_time (const gchar *str)
+{
+    guint64 hours, minutes;
+    gchar *end;
+
+    if (str == NULL || !g_ascii_isdigit (*str))
+        return -1;
+
+    hours = g_ascii_strtoull (str, &end, 10);
+    if (*end != ':' || !g_ascii_isdigit (end[1]))
+        return -1;
+
+    minutes = g_ascii_strtoull (end + 1, &end, 10);
+    if (*end != '\0' || hours > 23 || minutes > 59)
+        return -1;
+
+    return hours * 60 + minutes;
+}
+
+/* the theme in @user_data, a model of installed themes, whose name matches @name
+ * case-insensitively, or NULL */
+static gchar *
+schedule_find_theme (const gchar *name,
+                     gpointer user_data)
+{
+    GtkTreeModel *model = user_data;
+    GtkTreeIter iter;
+    gchar *found = NULL;
+
+    if (gtk_tree_model_get_iter_first (model, &iter))
+    {
+        do
+        {
+            gchar *theme;
+
+            gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &theme, -1);
+            if (theme != NULL && g_ascii_strcasecmp (theme, name) == 0)
+                found = g_steal_pointer (&theme);
+            g_free (theme);
+        } while (found == NULL && gtk_tree_model_iter_next (model, &iter));
+    }
+
+    return found;
+}
+
+/* the value of setting @column of the rule at @index, never NULL */
+static gchar *
+schedule_get_value (gint index,
+                    gint column)
+{
+    GValue value = G_VALUE_INIT;
+    gchar *str;
+
+    xfce_item_list_model_get_item_value (XFCE_ITEM_LIST_MODEL (schedule.store), index, SCHEDULE_COLUMN (column), &value);
+    str = g_value_dup_string (&value);
+    g_value_unset (&value);
+
+    return str != NULL ? str : g_strdup ("");
+}
+
+/* the settings of the rule at @index, N_SCHEDULE_COLUMNS strings */
+static gchar **
+schedule_get_rule (gint index)
+{
+    gchar **rule = g_new0 (gchar *, N_SCHEDULE_COLUMNS + 1);
+
+    for (guint c = 0; c < N_SCHEDULE_COLUMNS; c++)
+        rule[c] = schedule_get_value (index, c);
+
+    return rule;
+}
+
+/* how long before @minutes the rule at @index takes effect, 1 to 24 * 60 minutes */
+static gint
+schedule_minutes_before (gint minutes,
+                         gint index)
+{
+    gchar *time_str = schedule_get_value (index, COLUMN_SCHEDULE_TIME);
+    gint distance = (minutes - schedule_parse_time (time_str) + 24 * 60) % (24 * 60);
+
+    g_free (time_str);
+
+    return distance > 0 ? distance : 24 * 60;
+}
+
+static gint
+schedule_compare_before (gconstpointer a,
+                         gconstpointer b,
+                         gpointer user_data)
+{
+    gint minutes = GPOINTER_TO_INT (user_data);
+
+    return schedule_minutes_before (minutes, GPOINTER_TO_INT (*(gpointer *) a))
+           - schedule_minutes_before (minutes, GPOINTER_TO_INT (*(gpointer *) b));
+}
+
+/* the theme of setting @column (theme or icon theme) in use before a rule at @minutes, as the
+ * earlier rules set it; the rule at @except_index (may be -1) is left out */
+static gchar *
+schedule_theme_before (gint minutes,
+                       gint except_index,
+                       gint column,
+                       const gchar *property,
+                       const gchar *fallback,
+                       GtkTreeModel *themes)
+{
+    gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
+    GPtrArray *earlier = g_ptr_array_new ();
+    GPtrArray *variants = g_ptr_array_new_with_free_func (g_free);
+    gchar *theme = NULL;
+
+    /* the earlier rules, latest first and across midnight, back to one with a fixed theme */
+    for (gint i = 0; i < n_items; i++)
+        if (i != except_index)
+            g_ptr_array_add (earlier, GINT_TO_POINTER (i));
+    g_ptr_array_sort_with_data (earlier, schedule_compare_before, GINT_TO_POINTER (minutes));
+
+    for (guint i = 0; i < earlier->len && theme == NULL; i++)
+    {
+        gchar *value = schedule_get_value (GPOINTER_TO_INT (g_ptr_array_index (earlier, i)), column);
+
+        if (*value == ':')
+            g_ptr_array_add (variants, value);
+        else if (*value != '\0')
+            theme = value;
+        else
+            g_free (value);
+    }
+
+    if (theme == NULL)
+        theme = xfconf_channel_get_string (xsettings_channel, property, fallback);
+
+    /* then the variants the rules in between switch to; without one the theme stays */
+    for (guint i = variants->len; i > 0; i--)
+    {
+        const gchar *value = g_ptr_array_index (variants, i - 1);
+        gchar *variant = theme_variant_find (theme, value[1] == 'd', schedule_find_theme, themes);
+
+        if (variant != NULL)
+        {
+            g_free (theme);
+            theme = variant;
+        }
+    }
+
+    g_ptr_array_unref (variants);
+    g_ptr_array_unref (earlier);
+
+    return theme;
+}
+
+/* the theme that the value of setting @column (theme or icon theme) of @rule sets: a theme name
+ * itself, or for ":dark" and ":light" the variant of the theme in use before; that is the theme
+ * the earlier rules set if @index is the rule's index, the current theme in @property if -1.
+ * NULL if there is no such variant, then @before (may be NULL) tells the theme that stays */
+static gchar *
+schedule_resolve_theme (gchar **rule,
+                        gint index,
+                        gint column,
+                        const gchar *property,
+                        const gchar *fallback,
+                        GtkTreeModel *themes,
+                        gchar **before)
+{
+    const gchar *value = rule[column];
+    gchar *theme, *variant;
+
+    if (*value != ':')
+        return g_strdup (value);
+
+    if (index >= 0)
+        theme = schedule_theme_before (schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]), index, column, property, fallback, themes);
+    else
+        theme = xfconf_channel_get_string (xsettings_channel, property, fallback);
+
+    variant = theme_variant_find (theme, value[1] == 'd', schedule_find_theme, themes);
+    if (before != NULL)
+        *before = g_steal_pointer (&theme);
+    g_free (theme);
+
+    return variant;
+}
+
+/* whether @rule changes anything at all */
+static gboolean
+schedule_rule_is_empty (gchar **rule)
+{
+    return xfce_str_is_empty (rule[COLUMN_SCHEDULE_THEME])
+           && xfce_str_is_empty (rule[COLUMN_SCHEDULE_COLOR_SCHEME])
+           && xfce_str_is_empty (rule[COLUMN_SCHEDULE_ICON_THEME])
+           && xfce_str_is_empty (rule[COLUMN_SCHEDULE_CURSOR_THEME])
+           && xfce_str_is_empty (rule[COLUMN_SCHEDULE_BRIGHTNESS])
+           && xfce_str_is_empty (rule[COLUMN_SCHEDULE_COMMAND]);
+}
+
+/* a short summary of what @rule does, most important first: for the list if @index is its index,
+ * or for the status line if -1, which leaves out a theme already in use; NULL if the rule does
+ * nothing */
+static gchar *
+schedule_describe_rule (gchar **rule,
+                        gint index)
+{
+    gboolean status = index < 0;
+    GPtrArray *parts;
+    const gchar *theme = rule[COLUMN_SCHEDULE_THEME];
+    const gchar *color_scheme = rule[COLUMN_SCHEDULE_COLOR_SCHEME];
+    gboolean dark_theme = FALSE;
+    gchar *text;
+
+    if (schedule_rule_is_empty (rule))
+        return NULL;
+
+    parts = g_ptr_array_new_with_free_func (g_free);
+
+    if (!xfce_str_is_empty (theme))
+    {
+        gchar *before = NULL;
+        gchar *name = schedule_resolve_theme (rule, index, COLUMN_SCHEDULE_THEME, "/Net/ThemeName", "Default", schedule.themes, &before);
+        gchar *current = xfconf_channel_get_string (xsettings_channel, "/Net/ThemeName", "Default");
+
+        if (name == NULL)
+            g_ptr_array_add (parts, g_strdup_printf (theme[1] == 'd' ? _("no dark variant of %s")
+                                                                     : _("no light variant of %s"),
+                                                     before));
+        else if (!status || g_strcmp0 (name, current) != 0)
+            g_ptr_array_add (parts, g_strdup (name));
+
+        dark_theme = theme_variant_is_dark (name != NULL ? name : before);
+        g_free (name);
+        g_free (before);
+        g_free (current);
+    }
+
+    /* the color scheme usually goes with the theme, so it is only shown if it does not */
+    if (!xfce_str_is_empty (color_scheme)
+        && (xfce_str_is_empty (theme) || dark_theme != (g_strcmp0 (color_scheme, "prefer-dark") == 0)))
+    {
+        if (g_strcmp0 (color_scheme, "prefer-dark") == 0)
+            g_ptr_array_add (parts, g_strdup (_("dark color scheme")));
+        else if (g_strcmp0 (color_scheme, "prefer-light") == 0)
+            g_ptr_array_add (parts, g_strdup (_("light color scheme")));
+        else
+            g_ptr_array_add (parts, g_strdup (_("default color scheme")));
+    }
+
+    if (!xfce_str_is_empty (rule[COLUMN_SCHEDULE_BRIGHTNESS]))
+        /* TRANSLATORS: the screen brightness a rule sets, in percent */
+        g_ptr_array_add (parts, g_strdup_printf (_("brightness %s%%"), rule[COLUMN_SCHEDULE_BRIGHTNESS]));
+
+    if (!xfce_str_is_empty (rule[COLUMN_SCHEDULE_ICON_THEME]))
+    {
+        gchar *before = NULL;
+        gchar *name = schedule_resolve_theme (rule, index, COLUMN_SCHEDULE_ICON_THEME, "/Net/IconThemeName", "Rodent", schedule.icon_themes, &before);
+
+        if (name != NULL)
+            /* TRANSLATORS: the icon theme a rule sets */
+            g_ptr_array_add (parts, g_strdup_printf (_("icons: %s"), name));
+        else
+            g_ptr_array_add (parts, g_strdup_printf (rule[COLUMN_SCHEDULE_ICON_THEME][1] == 'd' ? _("no dark variant of icons %s")
+                                                                                                : _("no light variant of icons %s"),
+                                                     before));
+        g_free (name);
+        g_free (before);
+    }
+
+    if (!xfce_str_is_empty (rule[COLUMN_SCHEDULE_CURSOR_THEME]))
+        /* TRANSLATORS: the mouse cursor theme a rule sets */
+        g_ptr_array_add (parts, g_strdup_printf (_("cursor: %s"), rule[COLUMN_SCHEDULE_CURSOR_THEME]));
+
+    if (!xfce_str_is_empty (rule[COLUMN_SCHEDULE_COMMAND]))
+        /* TRANSLATORS: a rule runs a shell command, its text is in the tooltip */
+        g_ptr_array_add (parts, g_strdup (_("command")));
+
+    if (parts->len > 0)
+    {
+        g_ptr_array_add (parts, NULL);
+        text = g_strjoinv (", ", (gchar **) parts->pdata);
+    }
+    else
+        text = g_strdup (_("no change"));
+
+    g_ptr_array_unref (parts);
+
+    return text;
+}
+
+/* everything @rule does, one setting per line, for its tooltip; NULL if it does nothing */
+static gchar *
+schedule_rule_tooltip (gchar **rule,
+                       gint index)
+{
+    GString *text;
+    const gchar *theme = rule[COLUMN_SCHEDULE_THEME];
+    const gchar *color_scheme = rule[COLUMN_SCHEDULE_COLOR_SCHEME];
+    const gchar *icon_theme = rule[COLUMN_SCHEDULE_ICON_THEME];
+
+    if (schedule_rule_is_empty (rule))
+        return NULL;
+
+    text = g_string_new (NULL);
+
+    if (!xfce_str_is_empty (theme))
+    {
+        gchar *before = NULL;
+        gchar *name = schedule_resolve_theme (rule, index, COLUMN_SCHEDULE_THEME, "/Net/ThemeName", "Default", schedule.themes, &before);
+
+        if (*theme != ':')
+            g_string_append_printf (text, _("Theme: %s"), theme);
+        else if (name != NULL)
+            g_string_append_printf (text, theme[1] == 'd' ? _("Theme: %s (dark variant)") : _("Theme: %s (light variant)"), name);
+        else
+            g_string_append_printf (text, theme[1] == 'd' ? _("Theme: %s stays, it has no dark variant") : _("Theme: %s stays, it has no light variant"), before);
+        if (g_strcmp0 (rule[COLUMN_SCHEDULE_XFWM4], "true") == 0)
+            g_string_append_printf (text, "\n%s", _("Window manager theme: the matching one"));
+        g_free (name);
+        g_free (before);
+    }
+
+    if (!xfce_str_is_empty (color_scheme))
+    {
+        if (text->len > 0)
+            g_string_append_c (text, '\n');
+        g_string_append_printf (text, _("Color scheme: %s"),
+                                g_strcmp0 (color_scheme, "prefer-dark") == 0    ? _("Dark")
+                                : g_strcmp0 (color_scheme, "prefer-light") == 0 ? _("Light")
+                                                                                : _("Default"));
+    }
+
+    if (!xfce_str_is_empty (rule[COLUMN_SCHEDULE_BRIGHTNESS]))
+    {
+        if (text->len > 0)
+            g_string_append_c (text, '\n');
+        g_string_append_printf (text, _("Screen brightness: %s%%"), rule[COLUMN_SCHEDULE_BRIGHTNESS]);
+    }
+
+    if (!xfce_str_is_empty (icon_theme))
+    {
+        gchar *before = NULL;
+        gchar *name = schedule_resolve_theme (rule, index, COLUMN_SCHEDULE_ICON_THEME, "/Net/IconThemeName", "Rodent", schedule.icon_themes, &before);
+
+        if (text->len > 0)
+            g_string_append_c (text, '\n');
+        if (*icon_theme != ':')
+            g_string_append_printf (text, _("Icon theme: %s"), icon_theme);
+        else if (name != NULL)
+            g_string_append_printf (text, icon_theme[1] == 'd' ? _("Icon theme: %s (dark variant)") : _("Icon theme: %s (light variant)"), name);
+        else
+            g_string_append_printf (text, icon_theme[1] == 'd' ? _("Icon theme: %s stays, it has no dark variant") : _("Icon theme: %s stays, it has no light variant"), before);
+        g_free (name);
+        g_free (before);
+    }
+
+    if (!xfce_str_is_empty (rule[COLUMN_SCHEDULE_CURSOR_THEME]))
+    {
+        if (text->len > 0)
+            g_string_append_c (text, '\n');
+        g_string_append_printf (text, _("Mouse cursor theme: %s"), rule[COLUMN_SCHEDULE_CURSOR_THEME]);
+    }
+
+    if (!xfce_str_is_empty (rule[COLUMN_SCHEDULE_COMMAND]))
+    {
+        if (text->len > 0)
+            g_string_append_c (text, '\n');
+        g_string_append_printf (text, _("Command: %s"), rule[COLUMN_SCHEDULE_COMMAND]);
+    }
+
+    return g_string_free (text, FALSE);
+}
+
+/* shows the rule at @index like the lists of the Style and Icons tabs: time in bold, what the
+ * rule does below, and everything in the tooltip */
+static void
+schedule_show_rule (gint index)
+{
+    gchar **rule = schedule_get_rule (index);
+    gchar *summary, *tooltip, *markup;
+
+    summary = schedule_describe_rule (rule, index);
+    tooltip = schedule_rule_tooltip (rule, index);
+    markup = g_markup_printf_escaped ("<b>%s</b>\n%s", rule[COLUMN_SCHEDULE_TIME], summary != NULL ? summary : _("No change"));
+    xfce_item_list_store_set (schedule.store, index,
+                              XFCE_ITEM_LIST_MODEL_COLUMN_NAME, markup,
+                              XFCE_ITEM_LIST_MODEL_COLUMN_TOOLTIP, tooltip,
+                              XFCE_ITEM_LIST_MODEL_COLUMN_EDITABLE, TRUE,
+                              -1);
+
+    g_free (markup);
+    g_free (tooltip);
+    g_free (summary);
+    g_strfreev (rule);
+}
+
+/* adds @rule to the list, which is sorted by time; returns its index */
+static gint
+schedule_insert_rule (gchar **rule)
+{
+    gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
+    gint minutes = schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]);
+    gint index;
+
+    for (index = 0; index < n_items; index++)
+    {
+        gchar *time_str = schedule_get_value (index, COLUMN_SCHEDULE_TIME);
+        gboolean later = schedule_parse_time (time_str) > minutes;
+
+        g_free (time_str);
+        if (later)
+            break;
+    }
+
+    xfce_item_list_store_insert (schedule.store, index);
+    for (guint c = 0; c < N_SCHEDULE_COLUMNS; c++)
+        xfce_item_list_store_set (schedule.store, index, SCHEDULE_COLUMN (c), rule[c] != NULL ? rule[c] : "", -1);
+
+    return index;
+}
+
+/* the variants shown for a rule depend on the other rules and on the current theme */
+static void
+schedule_refresh_rules (void)
+{
+    gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
+
+    for (gint i = 0; i < n_items; i++)
+        schedule_show_rule (i);
+}
+
+static void
+schedule_update_status (void)
+{
+    gint n_items;
+    GDateTime *now;
+    gint now_minutes;
+    gint next_minutes = -1, first_minutes = -1;
+    gchar *next_rule = NULL, *first_rule = NULL;
+    gchar *text;
+
+    /* not built yet */
+    if (schedule.status_label == NULL)
+        return;
+
+    if (!xfconf_channel_get_bool (xsettings_channel, SCHEDULE_ENABLED_PROP, FALSE))
+    {
+        gtk_label_set_text (GTK_LABEL (schedule.status_label), "");
+        return;
+    }
+
+    now = g_date_time_new_now_local ();
+    now_minutes = g_date_time_get_hour (now) * 60 + g_date_time_get_minute (now);
+    g_date_time_unref (now);
+
+    /* next rule after now, or the first rule of tomorrow */
+    n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
+    for (gint i = 0; i < n_items; i++)
+    {
+        gchar **rule = schedule_get_rule (i);
+        gint minutes = schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]);
+        gchar *description = schedule_describe_rule (rule, -1);
+
+        if (minutes >= 0 && description != NULL)
+        {
+            if (minutes > now_minutes && (next_minutes < 0 || minutes < next_minutes))
+            {
+                next_minutes = minutes;
+                g_set_str (&next_rule, description);
+            }
+            if (first_minutes < 0 || minutes < first_minutes)
+            {
+                first_minutes = minutes;
+                g_set_str (&first_rule, description);
+            }
+        }
+
+        g_free (description);
+        g_strfreev (rule);
+    }
+
+    if (next_minutes < 0)
+    {
+        next_minutes = first_minutes;
+        next_rule = g_steal_pointer (&first_rule);
+    }
+
+    if (next_minutes < 0)
+        text = g_strdup (_("Add a rule to switch the style at a given time."));
+    else
+        text = g_strdup_printf (_("Next switch at %02d:%02d: %s"), next_minutes / 60, next_minutes % 60, next_rule);
+
+    gtk_label_set_text (GTK_LABEL (schedule.status_label), text);
+    gtk_widget_set_tooltip_text (schedule.status_label, text);
+
+    g_free (text);
+    g_free (next_rule);
+    g_free (first_rule);
+}
+
+static gboolean
+schedule_status_timeout (gpointer user_data)
+{
+    schedule_update_status ();
+    return G_SOURCE_CONTINUE;
+}
+
+static void
+schedule_save (void)
+{
+    gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
+    GPtrArray *values[N_SCHEDULE_COLUMNS];
+
+    for (guint c = 0; c < N_SCHEDULE_COLUMNS; c++)
+    {
+        values[c] = g_ptr_array_new_with_free_func (g_free);
+        for (gint i = 0; i < n_items; i++)
+            g_ptr_array_add (values[c], schedule_get_value (i, c));
+    }
+
+    for (guint c = 0; c < N_SCHEDULE_COLUMNS; c++)
+    {
+        if (values[c]->len == 0)
+            xfconf_channel_reset_property (xsettings_channel, schedule_props[c], FALSE);
+        else
+        {
+            g_ptr_array_add (values[c], NULL);
+            xfconf_channel_set_string_list (xsettings_channel, schedule_props[c], (const gchar *const *) values[c]->pdata);
+        }
+        g_ptr_array_unref (values[c]);
+    }
+
+    schedule_refresh_rules ();
+    schedule_update_status ();
+}
+
+static void
+schedule_load (void)
+{
+    gchar **values[N_SCHEDULE_COLUMNS];
+    guint n_values[N_SCHEDULE_COLUMNS];
+
+    for (guint c = 0; c < N_SCHEDULE_COLUMNS; c++)
+    {
+        values[c] = xfconf_channel_get_string_list (xsettings_channel, schedule_props[c]);
+        n_values[c] = values[c] != NULL ? g_strv_length (values[c]) : 0;
+    }
+
+    for (guint i = 0; i < n_values[COLUMN_SCHEDULE_TIME]; i++)
+    {
+        gchar *rule[N_SCHEDULE_COLUMNS + 1] = { NULL };
+
+        for (guint c = 0; c < N_SCHEDULE_COLUMNS; c++)
+            rule[c] = i < n_values[c] ? values[c][i] : "";
+
+        /* rules saved before color schemes were configurable follow the theme name */
+        if (i >= n_values[COLUMN_SCHEDULE_COLOR_SCHEME]
+            && !xfce_str_is_empty (rule[COLUMN_SCHEDULE_THEME]) && *rule[COLUMN_SCHEDULE_THEME] != ':')
+            rule[COLUMN_SCHEDULE_COLOR_SCHEME] = theme_variant_is_dark (rule[COLUMN_SCHEDULE_THEME]) ? "prefer-dark" : "default";
+
+        schedule_insert_rule (rule);
+    }
+
+    for (guint c = 0; c < N_SCHEDULE_COLUMNS; c++)
+        g_strfreev (values[c]);
+
+    schedule_refresh_rules ();
+}
+
+/* whether a rule other than the one at @except_index (may be -1) is at @minutes */
+static gboolean
+schedule_time_taken (gint minutes,
+                     gint except_index)
+{
+    gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
+    gboolean taken = FALSE;
+
+    for (gint i = 0; i < n_items && !taken; i++)
+    {
+        gchar *time_str = schedule_get_value (i, COLUMN_SCHEDULE_TIME);
+
+        taken = i != except_index && schedule_parse_time (time_str) == minutes;
+        g_free (time_str);
+    }
+
+    return taken;
+}
+
+/* two digits also for the hours, like in the list */
+static gboolean
+cb_schedule_time_spin_output (GtkSpinButton *spin)
+{
+    gchar *text = g_strdup_printf ("%02d", gtk_spin_button_get_value_as_int (spin));
+
+    gtk_entry_set_text (GTK_ENTRY (spin), text);
+    g_free (text);
+
+    return TRUE;
+}
+
+static GtkWidget *
+schedule_time_spin_new (gint max)
+{
+    GtkWidget *spin = gtk_spin_button_new_with_range (0, max, 1);
+
+    gtk_spin_button_set_wrap (GTK_SPIN_BUTTON (spin), TRUE);
+    gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spin), TRUE);
+    gtk_spin_button_set_increments (GTK_SPIN_BUTTON (spin), 1, max == 59 ? 10 : 6);
+    gtk_entry_set_width_chars (GTK_ENTRY (spin), 2);
+    gtk_entry_set_activates_default (GTK_ENTRY (spin), TRUE);
+    g_signal_connect (spin, "output", G_CALLBACK (cb_schedule_time_spin_output), NULL);
+
+    return spin;
+}
+
+static gboolean
+schedule_fill_theme_choices (gpointer user_data)
+{
+    GtkTreeIter iter;
+
+    schedule.theme_choices_idle_id = 0;
+
+    gtk_list_store_clear (schedule.theme_choices);
+    gtk_list_store_insert_with_values (schedule.theme_choices, NULL, -1,
+                                       COLUMN_CHOICE_LABEL, _("Dark variant"),
+                                       COLUMN_CHOICE_VALUE, ":dark", -1);
+    gtk_list_store_insert_with_values (schedule.theme_choices, NULL, -1,
+                                       COLUMN_CHOICE_LABEL, _("Light variant"),
+                                       COLUMN_CHOICE_VALUE, ":light", -1);
+    gtk_list_store_insert_with_values (schedule.theme_choices, NULL, -1,
+                                       COLUMN_CHOICE_LABEL, _("No change"),
+                                       COLUMN_CHOICE_VALUE, "", -1);
+
+    if (gtk_tree_model_get_iter_first (schedule.themes, &iter))
+    {
+        do
+        {
+            gchar *theme;
+
+            gtk_tree_model_get (schedule.themes, &iter, COLUMN_THEME_NAME, &theme, -1);
+            if (theme != NULL)
+                gtk_list_store_insert_with_values (schedule.theme_choices, NULL, -1,
+                                                   COLUMN_CHOICE_LABEL, theme,
+                                                   COLUMN_CHOICE_VALUE, theme, -1);
+            g_free (theme);
+        } while (gtk_tree_model_iter_next (schedule.themes, &iter));
+    }
+
+    /* the variants are looked up in the theme list */
+    schedule_refresh_rules ();
+    schedule_update_status ();
+
+    return G_SOURCE_REMOVE;
+}
+
+/* the Style tab (re)loads its theme list in idle callbacks */
+static void
+cb_schedule_themes_changed (void)
+{
+    if (schedule.theme_choices_idle_id == 0)
+        schedule.theme_choices_idle_id = g_idle_add (schedule_fill_theme_choices, NULL);
+}
+
+static gint
+schedule_compare_names (gconstpointer a,
+                        gconstpointer b)
+{
+    return g_utf8_collate (*(const gchar **) a, *(const gchar **) b);
+}
+
+/* the installed cursor themes, sorted */
+static GPtrArray *
+schedule_list_cursor_themes (void)
+{
+    GPtrArray *themes = g_ptr_array_new_with_free_func (g_free);
+    gchar **dirs;
+
+    xfce_resource_push_path (XFCE_RESOURCE_ICONS, DATADIR G_DIR_SEPARATOR_S "icons");
+    dirs = xfce_resource_dirs (XFCE_RESOURCE_ICONS);
+    xfce_resource_pop_path (XFCE_RESOURCE_ICONS);
+
+    for (guint i = 0; dirs[i] != NULL; i++)
+    {
+        GDir *dir = g_dir_open (dirs[i], 0, NULL);
+        const gchar *entry;
+
+        if (dir == NULL)
+            continue;
+
+        while ((entry = g_dir_read_name (dir)) != NULL)
+        {
+            gchar *path = g_build_filename (dirs[i], entry, "cursors", NULL);
+
+            if (g_file_test (path, G_FILE_TEST_IS_DIR)
+                && !g_ptr_array_find_with_equal_func (themes, entry, g_str_equal, NULL))
+                g_ptr_array_add (themes, g_strdup (entry));
+            g_free (path);
+        }
+
+        g_dir_close (dir);
+    }
+
+    g_strfreev (dirs);
+    g_ptr_array_sort (themes, schedule_compare_names);
+
+    return themes;
+}
+
+/* selects @id in @combo, adding it if it is not listed (e.g. uninstalled) */
+static void
+schedule_combo_set_active_id (GtkComboBoxText *combo,
+                              const gchar *id)
+{
+    if (!gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), id))
+    {
+        gtk_combo_box_text_append (combo, id, id);
+        gtk_combo_box_set_active_id (GTK_COMBO_BOX (combo), id);
+    }
+}
+
+/* a text combo that pops up a list below itself; in the default menu
+ * mode GTK 3 places the active item over the combo, which leaves a big
+ * empty space above long lists like the installed themes */
+static GtkWidget *
+schedule_combo_new (void)
+{
+    GtkWidget *combo = gtk_combo_box_text_new ();
+    GtkCssProvider *provider = gtk_css_provider_new ();
+
+    gtk_css_provider_load_from_data (provider, "combobox { -GtkComboBox-appears-as-list: 1; }", -1, NULL);
+    gtk_style_context_add_provider (gtk_widget_get_style_context (combo), GTK_STYLE_PROVIDER (provider),
+                                    GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    g_object_unref (provider);
+    gtk_widget_set_hexpand (combo, TRUE);
+
+    return combo;
+}
+
+/* a combo with the choices of @choices */
+static GtkWidget *
+schedule_choice_combo_new (GtkListStore *choices,
+                           const gchar *active)
+{
+    GtkWidget *combo = schedule_combo_new ();
+    GtkTreeModel *model = GTK_TREE_MODEL (choices);
+    GtkTreeIter iter;
+
+    if (gtk_tree_model_get_iter_first (model, &iter))
+    {
+        do
+        {
+            gchar *label, *value;
+
+            gtk_tree_model_get (model, &iter, COLUMN_CHOICE_LABEL, &label, COLUMN_CHOICE_VALUE, &value, -1);
+            gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo), value, label);
+            g_free (label);
+            g_free (value);
+        } while (gtk_tree_model_iter_next (model, &iter));
+    }
+
+    schedule_combo_set_active_id (GTK_COMBO_BOX_TEXT (combo), active);
+
+    return combo;
+}
+
+/* a label in the first column of the rule dialog */
+static GtkWidget *
+schedule_grid_label (GtkGrid *grid,
+                     gint row,
+                     const gchar *text,
+                     GtkWidget *widget,
+                     const gchar *tooltip)
+{
+    GtkWidget *label = gtk_label_new_with_mnemonic (text);
+
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
+    gtk_widget_set_tooltip_text (label, tooltip);
+    gtk_widget_set_tooltip_text (widget, tooltip);
+    gtk_grid_attach (grid, label, 0, row, 1, 1);
+    gtk_grid_attach (grid, widget, 1, row, 1, 1);
+
+    return label;
+}
+
+/* a check button that enables a widget next to it */
+static GtkWidget *
+schedule_grid_check (GtkGrid *grid,
+                     gint row,
+                     const gchar *text,
+                     GtkWidget *widget,
+                     gboolean active,
+                     const gchar *tooltip)
+{
+    GtkWidget *check = gtk_check_button_new_with_mnemonic (text);
+
+    gtk_widget_set_tooltip_text (check, tooltip);
+    gtk_widget_set_tooltip_text (widget, tooltip);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check), active);
+    g_object_bind_property (check, "active", widget, "sensitive", G_BINDING_SYNC_CREATE);
+    gtk_grid_attach (grid, check, 0, row, 1, 1);
+    gtk_grid_attach (grid, widget, 1, row, 1, 1);
+
+    return check;
+}
+
+/* a style comes with the matching color scheme */
+static void
+cb_schedule_dialog_theme_changed (GtkComboBox *theme_combo,
+                                  GtkComboBox *color_scheme_combo)
+{
+    const gchar *theme = gtk_combo_box_get_active_id (theme_combo);
+
+    if (g_strcmp0 (theme, ":dark") == 0
+        || (!xfce_str_is_empty (theme) && *theme != ':' && theme_variant_is_dark (theme)))
+        gtk_combo_box_set_active_id (color_scheme_combo, "prefer-dark");
+    else if (!xfce_str_is_empty (theme))
+        gtk_combo_box_set_active_id (color_scheme_combo, "prefer-light");
+}
+
+typedef struct
+{
+    gint index;
+    GtkWidget *hour_spin, *minute_spin;
+    GtkWidget *theme_combo, *theme_warning;
+    GtkWidget *icon_check, *icon_combo, *icon_warning;
+} ScheduleDialog;
+
+/* shows @warning if @value is a variant that the theme in use before the rule does not have */
+static void
+schedule_update_variant_warning (ScheduleDialog *sd,
+                                 GtkWidget *warning,
+                                 const gchar *value,
+                                 gint column,
+                                 const gchar *property,
+                                 const gchar *fallback,
+                                 GtkTreeModel *themes)
+{
+    gchar *theme, *variant, *text = NULL;
+    gboolean dark;
+    gint minutes;
+
+    if (value == NULL || *value != ':' || themes == NULL)
+    {
+        gtk_widget_hide (warning);
+        return;
+    }
+
+    minutes = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (sd->hour_spin)) * 60
+              + gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (sd->minute_spin));
+    theme = schedule_theme_before (minutes, sd->index, column, property, fallback, themes);
+    dark = value[1] == 'd';
+    variant = theme_variant_find (theme, dark, schedule_find_theme, themes);
+
+    if (variant == NULL && column == COLUMN_SCHEDULE_THEME)
+        text = g_strdup_printf (dark ? _("%s has no dark variant, so the theme will stay.")
+                                     : _("%s has no light variant, so the theme will stay."),
+                                theme);
+    else if (variant == NULL)
+        text = g_strdup_printf (dark ? _("%s has no dark variant, so the icon theme will stay.")
+                                     : _("%s has no light variant, so the icon theme will stay."),
+                                theme);
+
+    if (text != NULL)
+    {
+        gtk_label_set_text (GTK_LABEL (g_object_get_data (G_OBJECT (warning), "label")), text);
+        gtk_widget_show (warning);
+    }
+    else
+        gtk_widget_hide (warning);
+
+    g_free (text);
+    g_free (variant);
+    g_free (theme);
+}
+
+static void
+cb_schedule_dialog_update_warnings (GtkWidget *widget,
+                                    ScheduleDialog *sd)
+{
+    schedule_update_variant_warning (sd, sd->theme_warning,
+                                     gtk_combo_box_get_active_id (GTK_COMBO_BOX (sd->theme_combo)),
+                                     COLUMN_SCHEDULE_THEME, "/Net/ThemeName", "Adwaita", schedule.themes);
+    schedule_update_variant_warning (sd, sd->icon_warning,
+                                     gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (sd->icon_check))
+                                         ? gtk_combo_box_get_active_id (GTK_COMBO_BOX (sd->icon_combo))
+                                         : NULL,
+                                     COLUMN_SCHEDULE_ICON_THEME, "/Net/IconThemeName", "Rodent", schedule.icon_themes);
+}
+
+/* a hidden warning row below the widget in @row; its label is the "label" data */
+static GtkWidget *
+schedule_grid_warning (GtkGrid *grid,
+                       gint row)
+{
+    GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    GtkWidget *label = gtk_label_new (NULL);
+
+    gtk_box_pack_start (GTK_BOX (box), gtk_image_new_from_icon_name ("dialog-warning-symbolic", GTK_ICON_SIZE_BUTTON), FALSE, FALSE, 0);
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+    gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
+    gtk_label_set_max_width_chars (GTK_LABEL (label), 40);
+    gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
+    g_object_set_data (G_OBJECT (box), "label", label);
+    gtk_widget_show_all (box);
+    gtk_widget_set_no_show_all (box, TRUE);
+    gtk_grid_attach (grid, box, 1, row, 1, 1);
+
+    return box;
+}
+
+/* the dialog of the rule at @index, or of a new rule if -1 */
+static void
+schedule_edit_rule (gint index,
+                    gchar **rule)
+{
+    GtkWidget *dialog, *grid, *box, *label, *error_label;
+    GtkWidget *hour_spin, *minute_spin, *theme_combo, *color_scheme_combo, *xfwm4_check;
+    GtkWidget *icon_check, *icon_combo, *cursor_check, *cursor_combo, *brightness_check, *brightness_box, *brightness_spin;
+    GtkWidget *command_entry;
+    ScheduleDialog sd = { index };
+    GtkTreeIter iter;
+    GPtrArray *cursor_themes;
+    gchar *current, *backlight_device;
+    gint minutes, current_brightness, row = 0;
+
+    dialog = gtk_dialog_new_with_buttons (index < 0 ? _("Add Rule") : _("Edit Rule"),
+                                          GTK_WINDOW (gtk_widget_get_toplevel (schedule.view)),
+                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_OK"), GTK_RESPONSE_OK, NULL);
+    gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+
+    grid = gtk_grid_new ();
+    gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
+    gtk_grid_set_column_spacing (GTK_GRID (grid), 12);
+    gtk_container_set_border_width (GTK_CONTAINER (grid), 12);
+    gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), grid, TRUE, TRUE, 0);
+
+    /* time */
+    minutes = MAX (schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]), 0);
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    hour_spin = schedule_time_spin_new (23);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (hour_spin), minutes / 60);
+    gtk_box_pack_start (GTK_BOX (box), hour_spin, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (box), gtk_label_new (":"), FALSE, FALSE, 0);
+    minute_spin = schedule_time_spin_new (59);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (minute_spin), minutes % 60);
+    gtk_box_pack_start (GTK_BOX (box), minute_spin, FALSE, FALSE, 0);
+    label = schedule_grid_label (GTK_GRID (grid), row++, _("_Time:"), box, _("The rule takes effect when the clock reaches this time. Its settings stay until the "
+                           "next rule, also those changed by hand in the meantime. A switch missed while you were "
+                           "logged out is made at login."));
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), hour_spin);
+
+    /* theme and color scheme */
+    theme_combo = schedule_choice_combo_new (schedule.theme_choices, rule[COLUMN_SCHEDULE_THEME]);
+    schedule_grid_label (GTK_GRID (grid), row++, _("T_heme:"), theme_combo, _("The theme of Xfce and GTK 3 applications. \"Dark variant\" and \"Light variant\" are "
+                           "looked up from the theme in use at the time of the switch, e.g. Greybird becomes "
+                           "Greybird-dark, Orchis-Compact becomes Orchis-Dark-Compact. If there is no such "
+                           "variant, the theme stays."));
+    sd.theme_warning = schedule_grid_warning (GTK_GRID (grid), row++);
+
+    color_scheme_combo = schedule_choice_combo_new (schedule.color_scheme_choices, rule[COLUMN_SCHEDULE_COLOR_SCHEME]);
+    schedule_grid_label (GTK_GRID (grid), row++, _("Colo_r scheme:"), color_scheme_combo, _("The dark or light preference of the desktop, followed by GTK 4 and libadwaita, Qt 6, "
+                           "Firefox, Chromium and Electron applications. Firefox follows it if Website appearance "
+                           "is set to Automatic, Chromium if Mode is set to Device."));
+    g_signal_connect (theme_combo, "changed", G_CALLBACK (cb_schedule_dialog_theme_changed), color_scheme_combo);
+
+    /* Xfwm4 theme, by default as the switch on the Style tab */
+    xfwm4_check = gtk_check_button_new_with_mnemonic (_("Set the matching _window manager theme along with the theme"));
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (xfwm4_check),
+                                  !xfce_str_is_empty (rule[COLUMN_SCHEDULE_XFWM4])
+                                      ? g_strcmp0 (rule[COLUMN_SCHEDULE_XFWM4], "true") == 0
+                                      : xfconf_channel_get_bool (xsettings_channel, "/Xfce/SyncThemes", FALSE));
+    gtk_widget_set_tooltip_text (xfwm4_check, _("The window manager theme of the same name as the theme, "
+                                                "like the switch on the Style tab does."));
+    gtk_widget_set_margin_top (xfwm4_check, 6);
+    gtk_grid_attach (GTK_GRID (grid), xfwm4_check, 0, row++, 2, 1);
+
+    /* icon theme, by default the same kind of variant as the theme */
+    icon_combo = schedule_combo_new ();
+    gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (icon_combo), ":dark", _("Dark variant"));
+    gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (icon_combo), ":light", _("Light variant"));
+    if (schedule.icon_themes != NULL && gtk_tree_model_get_iter_first (schedule.icon_themes, &iter))
+    {
+        do
+        {
+            gchar *name;
+
+            gtk_tree_model_get (schedule.icon_themes, &iter, COLUMN_THEME_NAME, &name, -1);
+            if (name != NULL)
+                gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (icon_combo), name, name);
+            g_free (name);
+        } while (gtk_tree_model_iter_next (schedule.icon_themes, &iter));
+    }
+    current = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Rodent");
+    schedule_combo_set_active_id (GTK_COMBO_BOX_TEXT (icon_combo),
+                                  !xfce_str_is_empty (rule[COLUMN_SCHEDULE_ICON_THEME]) ? rule[COLUMN_SCHEDULE_ICON_THEME]
+                                  : *rule[COLUMN_SCHEDULE_THEME] == ':'                 ? rule[COLUMN_SCHEDULE_THEME]
+                                                                                        : current);
+    g_free (current);
+    icon_check = schedule_grid_check (GTK_GRID (grid), row++, _("Set the _icon theme:"), icon_combo,
+                                      !xfce_str_is_empty (rule[COLUMN_SCHEDULE_ICON_THEME]), _("\"Dark variant\" and \"Light variant\" are looked up from the icon theme "
+                                        "in use, like for the theme."));
+    sd.icon_warning = schedule_grid_warning (GTK_GRID (grid), row++);
+
+    /* cursor theme */
+    cursor_combo = schedule_combo_new ();
+    cursor_themes = schedule_list_cursor_themes ();
+    for (guint i = 0; i < cursor_themes->len; i++)
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (cursor_combo),
+                                   g_ptr_array_index (cursor_themes, i), g_ptr_array_index (cursor_themes, i));
+    g_ptr_array_unref (cursor_themes);
+    current = xfconf_channel_get_string (xsettings_channel, "/Gtk/CursorThemeName", "default");
+    schedule_combo_set_active_id (GTK_COMBO_BOX_TEXT (cursor_combo),
+                                  !xfce_str_is_empty (rule[COLUMN_SCHEDULE_CURSOR_THEME]) ? rule[COLUMN_SCHEDULE_CURSOR_THEME]
+                                  : !xfce_str_is_empty (current)                          ? current
+                                                                                          : "default");
+    g_free (current);
+    cursor_check = schedule_grid_check (GTK_GRID (grid), row++, _("Set the mouse c_ursor theme:"), cursor_combo,
+                                        !xfce_str_is_empty (rule[COLUMN_SCHEDULE_CURSOR_THEME]), _("The mouse cursor theme, as chosen in the Mouse and Touchpad settings."));
+
+    /* screen backlight, by default at its current level */
+    backlight_device = backlight_find_device ();
+    current_brightness = backlight_device != NULL ? backlight_get_percent (backlight_device) : -1;
+    brightness_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    brightness_spin = gtk_spin_button_new_with_range (1, 100, 5);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (brightness_spin),
+                               !xfce_str_is_empty (rule[COLUMN_SCHEDULE_BRIGHTNESS]) ? g_ascii_strtod (rule[COLUMN_SCHEDULE_BRIGHTNESS], NULL)
+                               : current_brightness >= 0                             ? MAX (current_brightness, 1)
+                                                                                     : 100);
+    gtk_entry_set_activates_default (GTK_ENTRY (brightness_spin), TRUE);
+    gtk_box_pack_start (GTK_BOX (brightness_box), brightness_spin, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (brightness_box), gtk_label_new ("%"), FALSE, FALSE, 0);
+    brightness_check = schedule_grid_check (GTK_GRID (grid), row++, _("Set the screen _brightness to:"), brightness_box,
+                                            !xfce_str_is_empty (rule[COLUMN_SCHEDULE_BRIGHTNESS]),
+                                            backlight_device != NULL ? _("The backlight of a laptop screen.")
+                                                                     : _("No screen backlight was found."));
+    /* e.g. external monitors: keep a saved value, but do not offer it */
+    if (backlight_device == NULL)
+        gtk_widget_set_sensitive (brightness_check, !xfce_str_is_empty (rule[COLUMN_SCHEDULE_BRIGHTNESS]));
+    g_free (backlight_device);
+
+    /* shell command */
+    command_entry = gtk_entry_new ();
+    gtk_entry_set_text (GTK_ENTRY (command_entry), rule[COLUMN_SCHEDULE_COMMAND]);
+    gtk_entry_set_placeholder_text (GTK_ENTRY (command_entry), "notify-send \"$XFCE_SCHEDULE_GTK_THEME\"");
+    gtk_entry_set_activates_default (GTK_ENTRY (command_entry), TRUE);
+    gtk_widget_set_hexpand (command_entry, TRUE);
+    schedule_grid_label (GTK_GRID (grid), row++, _("Run co_mmand:"), command_entry, _("The command runs with /bin/sh after switching. The new settings are in "
+                           "$XFCE_SCHEDULE_GTK_THEME, $XFCE_SCHEDULE_ICON_THEME and $XFCE_SCHEDULE_COLOR_SCHEME."));
+
+    error_label = gtk_label_new (NULL);
+    gtk_label_set_xalign (GTK_LABEL (error_label), 0.0);
+    gtk_style_context_add_class (gtk_widget_get_style_context (error_label), GTK_STYLE_CLASS_ERROR);
+    gtk_grid_attach (GTK_GRID (grid), error_label, 0, row++, 2, 1);
+
+    /* warn about a variant that the theme in use before the rule does not have */
+    sd.hour_spin = hour_spin;
+    sd.minute_spin = minute_spin;
+    sd.theme_combo = theme_combo;
+    sd.icon_check = icon_check;
+    sd.icon_combo = icon_combo;
+    g_signal_connect (hour_spin, "value-changed", G_CALLBACK (cb_schedule_dialog_update_warnings), &sd);
+    g_signal_connect (minute_spin, "value-changed", G_CALLBACK (cb_schedule_dialog_update_warnings), &sd);
+    g_signal_connect (theme_combo, "changed", G_CALLBACK (cb_schedule_dialog_update_warnings), &sd);
+    g_signal_connect (icon_check, "toggled", G_CALLBACK (cb_schedule_dialog_update_warnings), &sd);
+    g_signal_connect (icon_combo, "changed", G_CALLBACK (cb_schedule_dialog_update_warnings), &sd);
+
+    gtk_widget_show_all (grid);
+    gtk_widget_hide (error_label);
+    cb_schedule_dialog_update_warnings (NULL, &sd);
+    gtk_widget_grab_focus (hour_spin);
+
+    while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
+    {
+        gchar *new_rule[N_SCHEDULE_COLUMNS + 1] = { NULL };
+        gchar *time_str, *brightness = NULL, *command;
+        GtkTreePath *path;
+
+        gtk_spin_button_update (GTK_SPIN_BUTTON (hour_spin));
+        gtk_spin_button_update (GTK_SPIN_BUTTON (minute_spin));
+        minutes = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (hour_spin)) * 60
+                  + gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (minute_spin));
+        time_str = g_strdup_printf ("%02d:%02d", minutes / 60, minutes % 60);
+
+        if (schedule_time_taken (minutes, index))
+        {
+            gchar *text = g_strdup_printf (_("There is already a rule at %s."), time_str);
+
+            gtk_label_set_text (GTK_LABEL (error_label), text);
+            gtk_widget_show (error_label);
+            gtk_widget_error_bell (dialog);
+            gtk_widget_grab_focus (hour_spin);
+            g_free (text);
+            g_free (time_str);
+            continue;
+        }
+
+        if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (brightness_check)))
+        {
+            gtk_spin_button_update (GTK_SPIN_BUTTON (brightness_spin));
+            brightness = g_strdup_printf ("%d", gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (brightness_spin)));
+        }
+        command = g_strstrip (g_strdup (gtk_entry_get_text (GTK_ENTRY (command_entry))));
+
+        new_rule[COLUMN_SCHEDULE_TIME] = time_str;
+        new_rule[COLUMN_SCHEDULE_THEME] = (gchar *) gtk_combo_box_get_active_id (GTK_COMBO_BOX (theme_combo));
+        new_rule[COLUMN_SCHEDULE_COLOR_SCHEME] = (gchar *) gtk_combo_box_get_active_id (GTK_COMBO_BOX (color_scheme_combo));
+        new_rule[COLUMN_SCHEDULE_XFWM4] = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (xfwm4_check)) ? "true" : "false";
+        new_rule[COLUMN_SCHEDULE_ICON_THEME] = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (icon_check))
+                                                   ? (gchar *) gtk_combo_box_get_active_id (GTK_COMBO_BOX (icon_combo))
+                                                   : "";
+        new_rule[COLUMN_SCHEDULE_CURSOR_THEME] = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (cursor_check))
+                                                     ? (gchar *) gtk_combo_box_get_active_id (GTK_COMBO_BOX (cursor_combo))
+                                                     : "";
+        new_rule[COLUMN_SCHEDULE_BRIGHTNESS] = brightness != NULL ? brightness : "";
+        new_rule[COLUMN_SCHEDULE_COMMAND] = command;
+
+        /* the rule moves to the place of its time */
+        if (index >= 0)
+            xfce_item_list_model_remove (XFCE_ITEM_LIST_MODEL (schedule.store), index);
+        index = schedule_insert_rule (new_rule);
+        schedule_save ();
+
+        path = gtk_tree_path_new_from_indices (index, -1);
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW (xfce_item_list_view_get_tree_view (XFCE_ITEM_LIST_VIEW (schedule.view))),
+                                  path, NULL, FALSE);
+        gtk_tree_path_free (path);
+
+        g_free (time_str);
+        g_free (brightness);
+        g_free (command);
+        break;
+    }
+
+    gtk_widget_destroy (dialog);
+}
+
+static gboolean
+cb_schedule_edit_item (XfceItemListView *view,
+                       gint index)
+{
+    gchar **rule = schedule_get_rule (index);
+
+    schedule_edit_rule (index, rule);
+    g_strfreev (rule);
+
+    return TRUE;
+}
+
+static gboolean
+cb_schedule_add_item (XfceItemListView *view)
+{
+    GDateTime *now;
+    gchar *time_str;
+    gint start, minutes = -1;
+
+    /* the first free full hour from the next one on, else the first free minute */
+    now = g_date_time_new_now_local ();
+    start = ((g_date_time_get_hour (now) + 1) % 24) * 60;
+    g_date_time_unref (now);
+
+    for (gint i = 0; i < 24 * 60 && minutes < 0; i += 60)
+        if (!schedule_time_taken ((start + i) % (24 * 60), -1))
+            minutes = (start + i) % (24 * 60);
+    for (gint i = 0; i < 24 * 60 && minutes < 0; i++)
+        if (!schedule_time_taken ((start + i) % (24 * 60), -1))
+            minutes = (start + i) % (24 * 60);
+
+    if (minutes < 0)
+    {
+        gtk_widget_error_bell (GTK_WIDGET (view));
+        return TRUE;
+    }
+
+    /* the typical evening rule: dark variant of the current style, dark colors */
+    time_str = g_strdup_printf ("%02d:%02d", minutes / 60, minutes % 60);
+    {
+        gchar *rule[N_SCHEDULE_COLUMNS + 1] = { NULL };
+
+        rule[COLUMN_SCHEDULE_TIME] = time_str;
+        rule[COLUMN_SCHEDULE_THEME] = ":dark";
+        rule[COLUMN_SCHEDULE_COLOR_SCHEME] = "prefer-dark";
+        rule[COLUMN_SCHEDULE_XFWM4] = "";
+        rule[COLUMN_SCHEDULE_ICON_THEME] = "";
+        rule[COLUMN_SCHEDULE_CURSOR_THEME] = "";
+        rule[COLUMN_SCHEDULE_BRIGHTNESS] = "";
+        rule[COLUMN_SCHEDULE_COMMAND] = "";
+        schedule_edit_rule (-1, rule);
+    }
+    g_free (time_str);
+
+    return TRUE;
+}
+
+static gboolean
+cb_schedule_remove_items (XfceItemListView *view,
+                          gint *items,
+                          gint n_items)
+{
+    for (gint i = n_items - 1; i >= 0; i--)
+        xfce_item_list_model_remove (XFCE_ITEM_LIST_MODEL (schedule.store), items[i]);
+    schedule_save ();
+
+    return TRUE;
+}
+
+static void
+cb_schedule_enabled_changed (GObject *object,
+                             GParamSpec *pspec)
+{
+    schedule_update_status ();
+}
+
+static void
+cb_schedule_current_theme_changed (XfconfChannel *channel,
+                                   const gchar *property,
+                                   const GValue *value)
+{
+    schedule_refresh_rules ();
+    schedule_update_status ();
+}
+
+static void
+appearance_settings_dialog_configure_schedule (GtkBuilder *builder)
+{
+    GtkWidget *page, *box, *label, *toggle, *rules_box;
+    GtkTreeViewColumn *column;
+    GObject *notebook;
+
+    schedule.themes = gtk_tree_view_get_model (GTK_TREE_VIEW (gtk_builder_get_object (builder, "gtk_theme_treeview")));
+    schedule.icon_themes = gtk_tree_view_get_model (GTK_TREE_VIEW (gtk_builder_get_object (builder, "icon_theme_treeview")));
+
+    schedule.store = xfce_item_list_store_new (SCHEDULE_COLUMN (N_SCHEDULE_COLUMNS),
+                                               G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
+                                               G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+    G_STATIC_ASSERT (N_SCHEDULE_COLUMNS == 8);
+    g_object_set (schedule.store, "list-flags",
+                  XFCE_ITEM_LIST_MODEL_ADDABLE | XFCE_ITEM_LIST_MODEL_REMOVABLE | XFCE_ITEM_LIST_MODEL_EDITABLE, NULL);
+
+    schedule.theme_choices = gtk_list_store_new (N_CHOICE_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
+    schedule_fill_theme_choices (NULL);
+    g_signal_connect (schedule.themes, "row-inserted", G_CALLBACK (cb_schedule_themes_changed), NULL);
+    g_signal_connect (schedule.themes, "row-changed", G_CALLBACK (cb_schedule_themes_changed), NULL);
+    g_signal_connect (schedule.themes, "row-deleted", G_CALLBACK (cb_schedule_themes_changed), NULL);
+    /* icon variants are looked up in the icon theme list, which is filled later */
+    g_signal_connect (schedule.icon_themes, "row-inserted", G_CALLBACK (cb_schedule_themes_changed), NULL);
+    g_signal_connect (schedule.icon_themes, "row-deleted", G_CALLBACK (cb_schedule_themes_changed), NULL);
+
+    schedule.color_scheme_choices = gtk_list_store_new (N_CHOICE_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
+    gtk_list_store_insert_with_values (schedule.color_scheme_choices, NULL, -1,
+                                       COLUMN_CHOICE_LABEL, _("Dark"),
+                                       COLUMN_CHOICE_VALUE, "prefer-dark", -1);
+    gtk_list_store_insert_with_values (schedule.color_scheme_choices, NULL, -1,
+                                       COLUMN_CHOICE_LABEL, _("Light"),
+                                       COLUMN_CHOICE_VALUE, "prefer-light", -1);
+    gtk_list_store_insert_with_values (schedule.color_scheme_choices, NULL, -1,
+                                       COLUMN_CHOICE_LABEL, _("Default"),
+                                       COLUMN_CHOICE_VALUE, "default", -1);
+    gtk_list_store_insert_with_values (schedule.color_scheme_choices, NULL, -1,
+                                       COLUMN_CHOICE_LABEL, _("No change"),
+                                       COLUMN_CHOICE_VALUE, "", -1);
+
+    schedule_load ();
+
+    page = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_container_set_border_width (GTK_CONTAINER (page), 12);
+
+    /* Enable switch */
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
+    label = gtk_label_new_with_mnemonic (_("Change the style automatica_lly at set times"));
+    gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+    gtk_widget_set_hexpand (label, TRUE);
+    gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
+    toggle = gtk_switch_new ();
+    gtk_widget_set_valign (toggle, GTK_ALIGN_CENTER);
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), toggle);
+    gtk_box_pack_end (GTK_BOX (box), toggle, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (page), box, FALSE, FALSE, 0);
+
+    xfconf_g_property_bind (xsettings_channel, SCHEDULE_ENABLED_PROP, G_TYPE_BOOLEAN, G_OBJECT (toggle), "active");
+    g_signal_connect (toggle, "notify::active", G_CALLBACK (cb_schedule_enabled_changed), NULL);
+
+    /* Rules, one per row with its time and what it does; a rule is edited
+     * in a dialog of its own */
+    rules_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    g_object_bind_property (toggle, "active", rules_box, "sensitive", G_BINDING_SYNC_CREATE);
+    gtk_box_pack_start (GTK_BOX (page), rules_box, TRUE, TRUE, 0);
+
+    schedule.view = xfce_item_list_view_new (XFCE_ITEM_LIST_MODEL (schedule.store));
+    g_object_unref (schedule.store);
+    xfce_item_list_view_set_label_visibility (XFCE_ITEM_LIST_VIEW (schedule.view), TRUE);
+    gtk_widget_set_vexpand (schedule.view, TRUE);
+    g_signal_connect (schedule.view, "add-item", G_CALLBACK (cb_schedule_add_item), NULL);
+    g_signal_connect (schedule.view, "edit-item", G_CALLBACK (cb_schedule_edit_item), NULL);
+    g_signal_connect (schedule.view, "remove-items", G_CALLBACK (cb_schedule_remove_items), NULL);
+    gtk_box_pack_start (GTK_BOX (rules_box), schedule.view, TRUE, TRUE, 0);
+
+    /* the rules have no icons */
+    column = gtk_tree_view_get_column (GTK_TREE_VIEW (xfce_item_list_view_get_tree_view (XFCE_ITEM_LIST_VIEW (schedule.view))),
+                                       XFCE_ITEM_LIST_VIEW_COLUMN_ICON);
+    gtk_tree_view_column_set_visible (column, FALSE);
+
+    schedule.status_label = gtk_label_new (NULL);
+    gtk_label_set_xalign (GTK_LABEL (schedule.status_label), 0.0);
+    gtk_label_set_ellipsize (GTK_LABEL (schedule.status_label), PANGO_ELLIPSIZE_END);
+    gtk_box_pack_start (GTK_BOX (rules_box), schedule.status_label, FALSE, FALSE, 0);
+
+    notebook = gtk_builder_get_object (builder, "plug-child");
+    gtk_widget_show_all (page);
+    gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, gtk_label_new_with_mnemonic (_("_Schedule")));
+
+    /* the variants in the list and the status line depend on the current theme */
+    g_signal_connect (xsettings_channel, "property-changed::/Net/ThemeName",
+                      G_CALLBACK (cb_schedule_current_theme_changed), NULL);
+    g_signal_connect (xsettings_channel, "property-changed::/Net/IconThemeName",
+                      G_CALLBACK (cb_schedule_current_theme_changed), NULL);
+
+    schedule_update_status ();
+    g_timeout_add_seconds (30, schedule_status_timeout, NULL);
+}
+
 static void
 appearance_settings_dialog_response (GtkWidget *dialog,
                                      gint response_id)
@@ -1950,6 +3317,7 @@ main (gint argc,
                               G_CALLBACK (appearance_settings_dialog_channel_property_changed), builder);
 
             appearance_settings_dialog_configure_widgets (builder);
+            appearance_settings_dialog_configure_schedule (builder);
 
 #ifdef ENABLE_X11
             if (opt_socket_id != 0 && GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
