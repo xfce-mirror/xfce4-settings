@@ -21,7 +21,7 @@
 #include "xfce-revision.h"
 #endif
 
-#include "common/theme-variant.h"
+#include "common/theme-utils.h"
 
 #include <cairo-gobject.h>
 #include <gio/gio.h>
@@ -318,7 +318,6 @@ theme_selection_changed (GtkTreeSelection *selection,
 {
     GtkTreeModel *model;
     gboolean has_selection;
-    gboolean has_xfwm4;
     gchar *name;
     GtkTreeIter iter;
 
@@ -326,10 +325,8 @@ theme_selection_changed (GtkTreeSelection *selection,
     has_selection = gtk_tree_selection_get_selected (selection, &model, &iter);
     if (G_LIKELY (has_selection))
     {
-        has_xfwm4 = FALSE;
-
-        /* Get the theme name and whether there is a xfwm4 theme as well */
-        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, COLUMN_THEME_WARNING, &has_xfwm4, -1);
+        /* Get the theme name */
+        gtk_tree_model_get (model, &iter, COLUMN_THEME_NAME, &name, -1);
 
         /* Store the new theme */
         xfconf_channel_set_string (xsettings_channel, property, name);
@@ -338,14 +335,7 @@ theme_selection_changed (GtkTreeSelection *selection,
          * the xfconf setting is on, and a matching theme is available */
         if (xfconf_channel_get_bool (xsettings_channel, "/Xfce/SyncThemes", FALSE)
             && strcmp (property, "/Net/ThemeName") == 0)
-        {
-            if (!has_xfwm4)
-                xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", name);
-
-            /* Use the default theme if Adwaita is selected */
-            else if (strcmp (name, "Adwaita") == 0 || strcmp (name, "Adwaita-dark") == 0)
-                xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", "Default");
-        }
+            theme_utils_set_matching_xfwm4_theme (name);
 
         /* Cleanup */
         g_free (name);
@@ -952,9 +942,7 @@ appearance_settings_load_icon_themes (gpointer user_data)
     itpd->active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Rodent");
 
     /* Determine directories to look in for icon themes */
-    xfce_resource_push_path (XFCE_RESOURCE_ICONS, DATADIR G_DIR_SEPARATOR_S "icons");
-    icon_theme_dirs = xfce_resource_dirs (XFCE_RESOURCE_ICONS);
-    xfce_resource_pop_path (XFCE_RESOURCE_ICONS);
+    icon_theme_dirs = theme_utils_get_theme_dirs (XFCE_RESOURCE_ICONS, "icons");
 
     itpd->pool = g_thread_pool_new (load_icon_theme_preview, NULL, 1, TRUE, &error);
     if (itpd->pool == NULL)
@@ -1018,9 +1006,7 @@ appearance_settings_load_ui_themes (gpointer user_data)
     active_theme_name = xfconf_channel_get_string (xsettings_channel, "/Net/ThemeName", "Default");
 
     /* Determine directories to look in for ui themes */
-    xfce_resource_push_path (XFCE_RESOURCE_THEMES, DATADIR G_DIR_SEPARATOR_S "themes");
-    ui_theme_dirs = xfce_resource_dirs (XFCE_RESOURCE_THEMES);
-    xfce_resource_pop_path (XFCE_RESOURCE_THEMES);
+    ui_theme_dirs = theme_utils_get_theme_dirs (XFCE_RESOURCE_THEMES, "themes");
 
     /* Iterate over all base directories */
     for (i = 0; ui_theme_dirs[i] != NULL; ++i)
@@ -1166,7 +1152,7 @@ set_gsettings_color_scheme (GSettings *settings,
         if (g_settings_schema_has_key (schema, "color-scheme"))
         {
             gchar *str = xfconf_channel_get_string (channel, property_name, NULL);
-            if (str != NULL && theme_variant_is_dark (str))
+            if (str != NULL && theme_utils_theme_is_dark (str))
                 g_settings_set_string (settings, "color-scheme", "prefer-dark");
             else
                 g_settings_reset (settings, "color-scheme");
@@ -2141,7 +2127,7 @@ schedule_load (void)
         /* rules saved before color schemes were configurable follow the theme name */
         if (i >= n_values[COLUMN_SCHEDULE_COLOR_SCHEME]
             && !xfce_str_is_empty (rule[COLUMN_SCHEDULE_THEME]))
-            rule[COLUMN_SCHEDULE_COLOR_SCHEME] = theme_variant_is_dark (rule[COLUMN_SCHEDULE_THEME]) ? "prefer-dark" : "default";
+            rule[COLUMN_SCHEDULE_COLOR_SCHEME] = theme_utils_theme_is_dark (rule[COLUMN_SCHEDULE_THEME]) ? "prefer-dark" : "default";
 
         schedule_insert_rule (rule);
     }
@@ -2211,9 +2197,7 @@ schedule_list_cursor_themes (void)
     GPtrArray *themes = g_ptr_array_new_with_free_func (g_free);
     gchar **dirs;
 
-    xfce_resource_push_path (XFCE_RESOURCE_ICONS, DATADIR G_DIR_SEPARATOR_S "icons");
-    dirs = xfce_resource_dirs (XFCE_RESOURCE_ICONS);
-    xfce_resource_pop_path (XFCE_RESOURCE_ICONS);
+    dirs = theme_utils_get_theme_dirs (XFCE_RESOURCE_ICONS, "icons");
 
     for (guint i = 0; dirs[i] != NULL; i++)
     {
@@ -2341,7 +2325,7 @@ cb_schedule_dialog_theme_changed (GtkComboBox *theme_combo,
 {
     const gchar *theme = gtk_combo_box_get_active_id (theme_combo);
 
-    if (!xfce_str_is_empty (theme) && theme_variant_is_dark (theme))
+    if (!xfce_str_is_empty (theme) && theme_utils_theme_is_dark (theme))
         gtk_combo_box_set_active_id (color_scheme_combo, "prefer-dark");
     else if (!xfce_str_is_empty (theme))
         gtk_combo_box_set_active_id (color_scheme_combo, "prefer-light");
@@ -2545,7 +2529,7 @@ cb_schedule_add_item (XfceItemListView *view)
 
     rule[COLUMN_SCHEDULE_TIME] = time_str;
     rule[COLUMN_SCHEDULE_THEME] = theme;
-    rule[COLUMN_SCHEDULE_COLOR_SCHEME] = theme_variant_is_dark (theme) ? "prefer-dark" : "prefer-light";
+    rule[COLUMN_SCHEDULE_COLOR_SCHEME] = theme_utils_theme_is_dark (theme) ? "prefer-dark" : "prefer-light";
     rule[COLUMN_SCHEDULE_XFWM4] = "";
     rule[COLUMN_SCHEDULE_ICON_THEME] = "";
     rule[COLUMN_SCHEDULE_CURSOR_THEME] = "";
