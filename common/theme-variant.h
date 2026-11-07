@@ -17,10 +17,7 @@
  */
 
 /*
- * Shared by the appearance dialog and xfsettingsd: finding the dark or light
- * variant of a theme. Theme authors spell the variant as "-dark", "-Dark", in
- * the middle of the name ("Orchis-Dark-Compact") or as a "-light" counterpart
- * ("Materia-light"), so names are compared case-insensitively, part by part.
+ * Shared by the appearance dialog and xfsettingsd: whether a theme is a dark one.
  */
 
 #ifndef __THEME_VARIANT_H__
@@ -30,23 +27,8 @@
 
 G_BEGIN_DECLS
 
-/* returns the installed spelling of @name (case-insensitive match) or NULL */
-typedef gchar *(*ThemeVariantLookupFunc) (const gchar *name,
-                                          gpointer user_data);
-
-/* whether @theme_name is a dark variant ("-dark" at the end or in the middle) */
 gboolean
 theme_variant_is_dark (const gchar *theme_name);
-
-/*
- * The installed dark (@dark is TRUE) or light variant of @theme_name, @theme_name
- * itself if it is that variant already, or NULL if there is none.
- */
-gchar *
-theme_variant_find (const gchar *theme_name,
-                    gboolean dark,
-                    ThemeVariantLookupFunc lookup,
-                    gpointer user_data);
 
 G_END_DECLS
 
