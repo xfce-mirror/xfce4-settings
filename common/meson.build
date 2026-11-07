@@ -1,6 +1,8 @@
 libsettings_common_sources = [
   'debug.c',
   'debug.h',
+  'theme-variant.c',
+  'theme-variant.h',
 ]
 
 if enable_display_settings
