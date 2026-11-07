@@ -184,7 +184,6 @@ endforeach
 
 headers = [
   'math.h',
-  'sys/backlight.h',
   'sys/wait.h',
 ]
 foreach header : headers

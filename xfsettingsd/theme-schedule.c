@@ -33,8 +33,6 @@
  *                                     follow /Xfce/SyncThemes
  *   /Xfce/ThemeSchedule/IconThemes    like Themes, for the icon theme
  *   /Xfce/ThemeSchedule/CursorThemes  cursor theme name, "" to keep it
- *   /Xfce/ThemeSchedule/Brightness    screen backlight in percent (1-100),
- *                                     "" to keep it
  *   /Xfce/ThemeSchedule/Commands      shell command run after switching, with
  *                                     the new values in XFCE_SCHEDULE_GTK_THEME,
  *                                     XFCE_SCHEDULE_ICON_THEME and
@@ -51,7 +49,6 @@
 
 #include "theme-schedule.h"
 
-#include "common/backlight.h"
 #include "common/debug.h"
 #include "common/theme-variant.h"
 
@@ -72,7 +69,6 @@ enum
     RULE_XFWM4,
     RULE_ICON_THEME,
     RULE_CURSOR_THEME,
-    RULE_BRIGHTNESS,
     RULE_COMMAND,
     N_RULE_FIELDS
 };
@@ -84,7 +80,6 @@ static const gchar *rule_props[N_RULE_FIELDS] = {
     SCHEDULE_PROP_PREFIX "Xfwm4",
     SCHEDULE_PROP_PREFIX "IconThemes",
     SCHEDULE_PROP_PREFIX "CursorThemes",
-    SCHEDULE_PROP_PREFIX "Brightness",
     SCHEDULE_PROP_PREFIX "Commands",
 };
 
@@ -332,34 +327,6 @@ xfce_theme_schedule_helper_set_xfwm4_theme (XfceThemeScheduleHelper *helper,
 
 
 
-/* sets the screen backlight to @percent of its maximum */
-static void
-xfce_theme_schedule_helper_set_brightness (XfceThemeScheduleHelper *helper,
-                                           const gchar *percent)
-{
-    guint64 value;
-    gchar *backlight_device, *end;
-
-    value = g_ascii_strtoull (percent, &end, 10);
-    if (*end != '\0' || value < 1 || value > 100)
-    {
-        g_warning ("Invalid scheduled brightness '%s'", percent);
-        return;
-    }
-
-    backlight_device = backlight_find_device ();
-    if (backlight_device == NULL)
-    {
-        xfsettings_dbg (XFSD_DEBUG_THEME_SCHEDULE, "No screen backlight found, keeping the brightness");
-        return;
-    }
-
-    backlight_set_percent (backlight_device, value);
-    g_free (backlight_device);
-}
-
-
-
 static void
 xfce_theme_schedule_helper_run_command (XfceThemeScheduleHelper *helper,
                                         const gchar *command)
@@ -447,9 +414,6 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
     /* cursor theme */
     if (!xfce_str_is_empty (rule[RULE_CURSOR_THEME]))
         xfconf_channel_set_string (helper->channel, "/Gtk/CursorThemeName", rule[RULE_CURSOR_THEME]);
-
-    if (!xfce_str_is_empty (rule[RULE_BRIGHTNESS]))
-        xfce_theme_schedule_helper_set_brightness (helper, rule[RULE_BRIGHTNESS]);
 
     if (!xfce_str_is_empty (rule[RULE_COMMAND]))
         xfce_theme_schedule_helper_run_command (helper, rule[RULE_COMMAND]);
