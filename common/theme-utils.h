@@ -17,19 +17,33 @@
  */
 
 /*
- * Shared by the appearance dialog and xfsettingsd: whether a theme is a dark one.
+ * Shared by the appearance dialog and xfsettingsd: where the themes are
+ * installed, the matching xfwm4 theme and whether a theme is a dark one.
  */
 
-#ifndef __THEME_VARIANT_H__
-#define __THEME_VARIANT_H__
+#ifndef __THEME_UTILS_H__
+#define __THEME_UTILS_H__
 
-#include <glib.h>
+#include <libxfce4util/libxfce4util.h>
 
 G_BEGIN_DECLS
 
+gchar **
+theme_utils_get_theme_dirs (XfceResourceType type,
+                            const gchar *themes_directory);
+
 gboolean
-theme_variant_is_dark (const gchar *theme_name);
+theme_utils_theme_has_file (XfceResourceType type,
+                            const gchar *themes_directory,
+                            const gchar *theme_name,
+                            const gchar *file_in_theme);
+
+void
+theme_utils_set_matching_xfwm4_theme (const gchar *theme_name);
+
+gboolean
+theme_utils_theme_is_dark (const gchar *theme_name);
 
 G_END_DECLS
 
-#endif /* !__THEME_VARIANT_H__ */
+#endif /* !__THEME_UTILS_H__ */
