@@ -84,7 +84,7 @@ enum
 #define SCHEDULE_ENABLED_PROP "/Xfce/ThemeSchedule/Enabled"
 
 /* the rules are stored as one string array per column, see xfsettingsd/theme-schedule.c */
-static const gchar *schedule_props[N_SCHEDULE_COLUMNS] = {
+static const gchar *schedule_xfconf_properties[N_SCHEDULE_COLUMNS] = {
     "/Xfce/ThemeSchedule/Times",
     "/Xfce/ThemeSchedule/Themes",
     "/Xfce/ThemeSchedule/ColorSchemes",
@@ -1969,13 +1969,15 @@ static gint
 schedule_insert_rule (gchar **rule)
 {
     gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
-    gint minutes = schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]);
+    gint minutes_since_midnight = schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]);
     gint index;
 
+    /* Place the new rule into the correct time spot: before the first rule
+     * that is later in the day */
     for (index = 0; index < n_items; index++)
     {
         gchar *time_str = schedule_get_value (index, COLUMN_SCHEDULE_TIME);
-        gboolean later = schedule_parse_time (time_str) > minutes;
+        gboolean later = schedule_parse_time (time_str) > minutes_since_midnight;
 
         g_free (time_str);
         if (later)
@@ -1989,12 +1991,12 @@ schedule_insert_rule (gchar **rule)
 }
 
 static void
-schedule_update_status (void)
+schedule_update_status_label (void)
 {
     gint n_items;
     GDateTime *now;
-    gint now_minutes;
-    gint next_minutes = -1, first_minutes = -1;
+    gint now_minutes_since_midnight;
+    gint next_minutes_since_midnight = -1, first_minutes_since_midnight = -1;
     gchar *next_rule = NULL, *first_rule = NULL;
     gchar *text;
 
@@ -2009,7 +2011,7 @@ schedule_update_status (void)
     }
 
     now = g_date_time_new_now_local ();
-    now_minutes = g_date_time_get_hour (now) * 60 + g_date_time_get_minute (now);
+    now_minutes_since_midnight = g_date_time_get_hour (now) * 60 + g_date_time_get_minute (now);
     g_date_time_unref (now);
 
     /* next rule after now, or the first rule of tomorrow */
@@ -2017,19 +2019,20 @@ schedule_update_status (void)
     for (gint i = 0; i < n_items; i++)
     {
         gchar **rule = schedule_get_rule (i);
-        gint minutes = schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]);
+        gint minutes_since_midnight = schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]);
         gchar *description = schedule_describe_rule (rule);
 
-        if (minutes >= 0 && description != NULL)
+        if (minutes_since_midnight >= 0 && description != NULL)
         {
-            if (minutes > now_minutes && (next_minutes < 0 || minutes < next_minutes))
+            if (minutes_since_midnight > now_minutes_since_midnight
+                && (next_minutes_since_midnight < 0 || minutes_since_midnight < next_minutes_since_midnight))
             {
-                next_minutes = minutes;
+                next_minutes_since_midnight = minutes_since_midnight;
                 g_set_str (&next_rule, description);
             }
-            if (first_minutes < 0 || minutes < first_minutes)
+            if (first_minutes_since_midnight < 0 || minutes_since_midnight < first_minutes_since_midnight)
             {
-                first_minutes = minutes;
+                first_minutes_since_midnight = minutes_since_midnight;
                 g_set_str (&first_rule, description);
             }
         }
@@ -2038,19 +2041,18 @@ schedule_update_status (void)
         g_strfreev (rule);
     }
 
-    if (next_minutes < 0)
+    if (next_minutes_since_midnight < 0)
     {
-        next_minutes = first_minutes;
+        next_minutes_since_midnight = first_minutes_since_midnight;
         next_rule = g_steal_pointer (&first_rule);
     }
 
-    if (next_minutes < 0)
+    if (next_minutes_since_midnight < 0)
         text = g_strdup (_("Add a rule to switch the style at a given time."));
     else
-        text = g_strdup_printf (_("Next switch at %02d:%02d: %s"), next_minutes / 60, next_minutes % 60, next_rule);
+        text = g_strdup_printf (_("Next switch at %02d:%02d: %s"), next_minutes_since_midnight / 60, next_minutes_since_midnight % 60, next_rule);
 
     gtk_label_set_text (GTK_LABEL (schedule.status_label), text);
-    gtk_widget_set_tooltip_text (schedule.status_label, text);
 
     g_free (text);
     g_free (next_rule);
@@ -2060,7 +2062,7 @@ schedule_update_status (void)
 static gboolean
 schedule_status_timeout (gpointer user_data)
 {
-    schedule_update_status ();
+    schedule_update_status_label ();
     return G_SOURCE_CONTINUE;
 }
 
@@ -2080,16 +2082,16 @@ schedule_save (void)
     for (guint c = 0; c < N_SCHEDULE_COLUMNS; c++)
     {
         if (values[c]->len == 0)
-            xfconf_channel_reset_property (xsettings_channel, schedule_props[c], FALSE);
+            xfconf_channel_reset_property (xsettings_channel, schedule_xfconf_properties[c], FALSE);
         else
         {
             g_ptr_array_add (values[c], NULL);
-            xfconf_channel_set_string_list (xsettings_channel, schedule_props[c], (const gchar *const *) values[c]->pdata);
+            xfconf_channel_set_string_list (xsettings_channel, schedule_xfconf_properties[c], (const gchar *const *) values[c]->pdata);
         }
         g_ptr_array_unref (values[c]);
     }
 
-    schedule_update_status ();
+    schedule_update_status_label ();
 }
 
 static void
@@ -2100,7 +2102,7 @@ schedule_load (void)
 
     for (guint c = 0; c < N_SCHEDULE_COLUMNS; c++)
     {
-        values[c] = xfconf_channel_get_string_list (xsettings_channel, schedule_props[c]);
+        values[c] = xfconf_channel_get_string_list (xsettings_channel, schedule_xfconf_properties[c]);
         n_values[c] = values[c] != NULL ? g_strv_length (values[c]) : 0;
     }
 
@@ -2123,9 +2125,10 @@ schedule_load (void)
         g_strfreev (values[c]);
 }
 
-/* whether a rule other than the one at @except_index (may be -1) is at @minutes */
+/* whether a rule other than the one at @except_index (may be -1) is at
+ * @minutes_since_midnight (hours * 60 + minutes) */
 static gboolean
-schedule_time_taken (gint minutes,
+schedule_time_taken (gint minutes_since_midnight,
                      gint except_index)
 {
     gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
@@ -2135,7 +2138,7 @@ schedule_time_taken (gint minutes,
     {
         gchar *time_str = schedule_get_value (i, COLUMN_SCHEDULE_TIME);
 
-        taken = i != except_index && schedule_parse_time (time_str) == minutes;
+        taken = i != except_index && schedule_parse_time (time_str) == minutes_since_midnight;
         g_free (time_str);
     }
 
@@ -2330,7 +2333,7 @@ schedule_edit_rule (gint index,
     GtkWidget *command_entry;
     GPtrArray *cursor_themes;
     gchar *current;
-    gint minutes, row = 0;
+    gint minutes_since_midnight, row = 0;
 
     dialog = gtk_dialog_new_with_buttons (index < 0 ? _("Add Rule") : _("Edit Rule"),
                                           GTK_WINDOW (gtk_widget_get_toplevel (schedule.view)),
@@ -2345,18 +2348,17 @@ schedule_edit_rule (gint index,
     gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), grid, TRUE, TRUE, 0);
 
     /* time */
-    minutes = MAX (schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]), 0);
+    minutes_since_midnight = MAX (schedule_parse_time (rule[COLUMN_SCHEDULE_TIME]), 0);
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     hour_spin = schedule_time_spin_new (23);
-    gtk_spin_button_set_value (GTK_SPIN_BUTTON (hour_spin), minutes / 60);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (hour_spin), minutes_since_midnight / 60);
     gtk_box_pack_start (GTK_BOX (box), hour_spin, FALSE, FALSE, 0);
     gtk_box_pack_start (GTK_BOX (box), gtk_label_new (":"), FALSE, FALSE, 0);
     minute_spin = schedule_time_spin_new (59);
-    gtk_spin_button_set_value (GTK_SPIN_BUTTON (minute_spin), minutes % 60);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (minute_spin), minutes_since_midnight % 60);
     gtk_box_pack_start (GTK_BOX (box), minute_spin, FALSE, FALSE, 0);
-    label = schedule_grid_label (GTK_GRID (grid), row++, _("_Time:"), box, _("The rule takes effect when the clock reaches this time. Its settings stay until the "
-                           "next rule, also those changed by hand in the meantime. A switch missed while you were "
-                           "logged out is made at login."));
+    label = schedule_grid_label (GTK_GRID (grid), row++, _("_Time:"), box, _("The rule applies all its settings when the clock reaches this time. A switch missed "
+                           "while you were logged out or the computer was asleep is made at login or on waking up."));
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), hour_spin);
 
     /* theme and color scheme */
@@ -2417,7 +2419,6 @@ schedule_edit_rule (gint index,
     /* shell command */
     command_entry = gtk_entry_new ();
     gtk_entry_set_text (GTK_ENTRY (command_entry), rule[COLUMN_SCHEDULE_COMMAND]);
-    gtk_entry_set_placeholder_text (GTK_ENTRY (command_entry), "notify-send \"$XFCE_SCHEDULE_GTK_THEME\"");
     gtk_entry_set_activates_default (GTK_ENTRY (command_entry), TRUE);
     gtk_widget_set_hexpand (command_entry, TRUE);
     schedule_grid_label (GTK_GRID (grid), row++, _("Run co_mmand:"), command_entry, _("The command runs with /bin/sh after switching. The new settings are in "
@@ -2440,17 +2441,16 @@ schedule_edit_rule (gint index,
 
         gtk_spin_button_update (GTK_SPIN_BUTTON (hour_spin));
         gtk_spin_button_update (GTK_SPIN_BUTTON (minute_spin));
-        minutes = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (hour_spin)) * 60
-                  + gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (minute_spin));
-        time_str = g_strdup_printf ("%02d:%02d", minutes / 60, minutes % 60);
+        minutes_since_midnight = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (hour_spin)) * 60
+                                 + gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (minute_spin));
+        time_str = g_strdup_printf ("%02d:%02d", minutes_since_midnight / 60, minutes_since_midnight % 60);
 
-        if (schedule_time_taken (minutes, index))
+        if (schedule_time_taken (minutes_since_midnight, index))
         {
             gchar *text = g_strdup_printf (_("There is already a rule at %s."), time_str);
 
             gtk_label_set_text (GTK_LABEL (error_label), text);
             gtk_widget_show (error_label);
-            gtk_widget_error_bell (dialog);
             gtk_widget_grab_focus (hour_spin);
             g_free (text);
             g_free (time_str);
@@ -2505,43 +2505,30 @@ cb_schedule_edit_item (XfceItemListView *view,
 static gboolean
 cb_schedule_add_item (XfceItemListView *view)
 {
+    gchar *rule[N_SCHEDULE_COLUMNS + 1] = { NULL };
     GDateTime *now;
-    gchar *time_str, *theme;
-    gint start, minutes = -1;
+    gchar *time_str, *theme, *message, *command;
 
-    /* the first free full hour from the next one on, else the first free minute */
+    /* now, with the current style and the matching color scheme; the
+     * notification tells when the rule was applied */
     now = g_date_time_new_now_local ();
-    start = ((g_date_time_get_hour (now) + 1) % 24) * 60;
+    time_str = g_date_time_format (now, "%H:%M");
     g_date_time_unref (now);
-
-    for (gint i = 0; i < 24 * 60 && minutes < 0; i += 60)
-        if (!schedule_time_taken ((start + i) % (24 * 60), -1))
-            minutes = (start + i) % (24 * 60);
-    for (gint i = 0; i < 24 * 60 && minutes < 0; i++)
-        if (!schedule_time_taken ((start + i) % (24 * 60), -1))
-            minutes = (start + i) % (24 * 60);
-
-    if (minutes < 0)
-    {
-        gtk_widget_error_bell (GTK_WIDGET (view));
-        return TRUE;
-    }
-
-    /* the current style, with the matching color scheme */
-    time_str = g_strdup_printf ("%02d:%02d", minutes / 60, minutes % 60);
     theme = xfconf_channel_get_string (xsettings_channel, "/Net/ThemeName", "Default");
-    {
-        gchar *rule[N_SCHEDULE_COLUMNS + 1] = { NULL };
+    message = g_shell_quote (_("Scheduled style changes applied"));
+    command = g_strconcat ("notify-send ", message, NULL);
 
-        rule[COLUMN_SCHEDULE_TIME] = time_str;
-        rule[COLUMN_SCHEDULE_THEME] = theme;
-        rule[COLUMN_SCHEDULE_COLOR_SCHEME] = theme_variant_is_dark (theme) ? "prefer-dark" : "prefer-light";
-        rule[COLUMN_SCHEDULE_XFWM4] = "";
-        rule[COLUMN_SCHEDULE_ICON_THEME] = "";
-        rule[COLUMN_SCHEDULE_CURSOR_THEME] = "";
-        rule[COLUMN_SCHEDULE_COMMAND] = "";
-        schedule_edit_rule (-1, rule);
-    }
+    rule[COLUMN_SCHEDULE_TIME] = time_str;
+    rule[COLUMN_SCHEDULE_THEME] = theme;
+    rule[COLUMN_SCHEDULE_COLOR_SCHEME] = theme_variant_is_dark (theme) ? "prefer-dark" : "prefer-light";
+    rule[COLUMN_SCHEDULE_XFWM4] = "";
+    rule[COLUMN_SCHEDULE_ICON_THEME] = "";
+    rule[COLUMN_SCHEDULE_CURSOR_THEME] = "";
+    rule[COLUMN_SCHEDULE_COMMAND] = command;
+    schedule_edit_rule (-1, rule);
+
+    g_free (command);
+    g_free (message);
     g_free (theme);
     g_free (time_str);
 
@@ -2564,7 +2551,7 @@ static void
 cb_schedule_enabled_changed (GObject *object,
                              GParamSpec *pspec)
 {
-    schedule_update_status ();
+    schedule_update_status_label ();
 }
 
 static void
@@ -2626,14 +2613,14 @@ appearance_settings_dialog_configure_schedule (GtkBuilder *builder)
 
     schedule.status_label = gtk_label_new (NULL);
     gtk_label_set_xalign (GTK_LABEL (schedule.status_label), 0.0);
-    gtk_label_set_ellipsize (GTK_LABEL (schedule.status_label), PANGO_ELLIPSIZE_END);
+    gtk_label_set_line_wrap (GTK_LABEL (schedule.status_label), TRUE);
     gtk_box_pack_start (GTK_BOX (rules_box), schedule.status_label, FALSE, FALSE, 0);
 
     notebook = gtk_builder_get_object (builder, "plug-child");
     gtk_widget_show_all (page);
     gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, gtk_label_new_with_mnemonic (_("_Schedule")));
 
-    schedule_update_status ();
+    schedule_update_status_label ();
     g_timeout_add_seconds (30, schedule_status_timeout, NULL);
 }
 

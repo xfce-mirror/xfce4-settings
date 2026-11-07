@@ -378,10 +378,16 @@ xfce_theme_schedule_helper_timeout (gpointer user_data)
 
 
 
-/* Unix time of the last occurrence of @minutes (since midnight) not after @now */
+/*
+ * The last time the clock showed the rule time @minutes_since_midnight
+ * (hours * 60 + minutes) up to @now, as Unix time: today at that time if it
+ * is not later than @now, else yesterday at that time. E.g. for a rule at
+ * 21:00, at 22:30 it is 21:00 today and at 08:00 it is 21:00 yesterday.
+ * Returns 0 if neither of the two exists in the local time zone.
+ */
 static gint64
 xfce_theme_schedule_last_occurrence (GDateTime *now,
-                                     gint minutes)
+                                     gint minutes_since_midnight)
 {
     GDateTime *date, *at;
     gint64 result;
@@ -390,7 +396,8 @@ xfce_theme_schedule_last_occurrence (GDateTime *now,
     for (gint days = 0; days < 2; days++)
     {
         at = g_date_time_new_local (g_date_time_get_year (date), g_date_time_get_month (date),
-                                    g_date_time_get_day_of_month (date), minutes / 60, minutes % 60, 0);
+                                    g_date_time_get_day_of_month (date),
+                                    minutes_since_midnight / 60, minutes_since_midnight % 60, 0);
         if (at != NULL && g_date_time_compare (at, now) <= 0)
         {
             result = g_date_time_to_unix (at);
@@ -451,7 +458,7 @@ xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
     best_unix = checked;
     for (guint i = 0; i < n_fields[RULE_TIME]; i++)
     {
-        gint minutes = xfce_theme_schedule_parse_time (fields[RULE_TIME][i]);
+        gint minutes_since_midnight = xfce_theme_schedule_parse_time (fields[RULE_TIME][i]);
         gboolean does_something = FALSE;
         gint64 at;
 
@@ -459,10 +466,10 @@ xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
             if (f != RULE_XFWM4 && i < n_fields[f] && !xfce_str_is_empty (fields[f][i]))
                 does_something = TRUE;
 
-        if (minutes < 0 || !does_something)
+        if (minutes_since_midnight < 0 || !does_something)
             continue;
 
-        at = xfce_theme_schedule_last_occurrence (now, minutes);
+        at = xfce_theme_schedule_last_occurrence (now, minutes_since_midnight);
         if (at > best_unix)
         {
             best = i;
