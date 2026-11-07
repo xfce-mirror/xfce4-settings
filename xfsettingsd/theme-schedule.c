@@ -23,15 +23,14 @@
  *
  *   /Xfce/ThemeSchedule/Enabled       bool
  *   /Xfce/ThemeSchedule/Times         "HH:MM"
- *   /Xfce/ThemeSchedule/Themes        theme name, ":dark" or ":light" for that
- *                                     variant of the current theme, "" to keep it
+ *   /Xfce/ThemeSchedule/Themes        Gtk theme name, "" to keep it
  *   /Xfce/ThemeSchedule/ColorSchemes  "prefer-dark", "prefer-light", "default",
  *                                     "" to keep it; if missing, it follows the
  *                                     theme name like in the appearance dialog
  *   /Xfce/ThemeSchedule/Xfwm4         "true" or "false" to set the matching Xfwm4
  *                                     theme along with the Gtk theme, "" to
  *                                     follow /Xfce/SyncThemes
- *   /Xfce/ThemeSchedule/IconThemes    like Themes, for the icon theme
+ *   /Xfce/ThemeSchedule/IconThemes    icon theme name, "" to keep it
  *   /Xfce/ThemeSchedule/CursorThemes  cursor theme name, "" to keep it
  *   /Xfce/ThemeSchedule/Commands      shell command run after switching, with
  *                                     the new values in XFCE_SCHEDULE_GTK_THEME,
@@ -82,17 +81,6 @@ static const gchar *rule_props[N_RULE_FIELDS] = {
     SCHEDULE_PROP_PREFIX "CursorThemes",
     SCHEDULE_PROP_PREFIX "Commands",
 };
-
-/* where to look up a theme of some kind */
-typedef struct
-{
-    XfceResourceType type;
-    const gchar *datadir_path; /* also searched, below DATADIR */
-    const gchar *required_file; /* inside the theme's directory */
-} ThemeKind;
-
-static const ThemeKind gtk_theme_kind = { XFCE_RESOURCE_THEMES, "themes", "gtk-3.0" };
-static const ThemeKind icon_theme_kind = { XFCE_RESOURCE_ICONS, "icons", "index.theme" };
 
 
 
@@ -204,16 +192,18 @@ xfce_theme_schedule_parse_time (const gchar *str)
 
 
 
+/* the directories with themes of @type, the same as the appearance dialog
+ * searches: those of xfce_resource_dirs() and DATADIR/@themes_directory */
 static gchar **
-xfce_theme_schedule_theme_dirs (const ThemeKind *kind)
+xfce_theme_schedule_get_theme_dirs (XfceResourceType type,
+                                    const gchar *themes_directory)
 {
     gchar **theme_dirs, *path;
 
-    /* same lookup as the appearance dialog */
-    path = g_build_filename (DATADIR, kind->datadir_path, NULL);
-    xfce_resource_push_path (kind->type, path);
-    theme_dirs = xfce_resource_dirs (kind->type);
-    xfce_resource_pop_path (kind->type);
+    path = g_build_filename (DATADIR, themes_directory, NULL);
+    xfce_resource_push_path (type, path);
+    theme_dirs = xfce_resource_dirs (type);
+    xfce_resource_pop_path (type);
     g_free (path);
 
     return theme_dirs;
@@ -221,17 +211,20 @@ xfce_theme_schedule_theme_dirs (const ThemeKind *kind)
 
 
 
-/* whether @theme_name (with @relative_path inside it, if non-NULL) is installed */
+/* whether the theme @theme_name of @type is installed with @file_in_theme
+ * inside its directory, e.g. "gtk-3.0" for a Gtk theme */
 static gboolean
-xfce_theme_schedule_find_theme_file (const gchar *theme_name,
-                                     const gchar *relative_path)
+xfce_theme_schedule_theme_has_file (XfceResourceType type,
+                                    const gchar *themes_directory,
+                                    const gchar *theme_name,
+                                    const gchar *file_in_theme)
 {
-    gchar **theme_dirs = xfce_theme_schedule_theme_dirs (&gtk_theme_kind);
+    gchar **theme_dirs = xfce_theme_schedule_get_theme_dirs (type, themes_directory);
     gboolean found = FALSE;
 
     for (guint i = 0; theme_dirs[i] != NULL && !found; i++)
     {
-        gchar *path = g_build_filename (theme_dirs[i], theme_name, relative_path, NULL);
+        gchar *path = g_build_filename (theme_dirs[i], theme_name, file_in_theme, NULL);
         found = g_file_test (path, G_FILE_TEST_EXISTS);
         g_free (path);
     }
@@ -243,73 +236,17 @@ xfce_theme_schedule_find_theme_file (const gchar *theme_name,
 
 
 
-/* the installed theme of the ThemeKind @user_data whose name matches @name
- * case-insensitively, or NULL */
-static gchar *
-xfce_theme_schedule_lookup_theme (const gchar *name,
-                                  gpointer user_data)
+/* sets @property of the xsettings channel to @value, unless it has it already */
+static void
+xfce_theme_schedule_helper_set_string (XfceThemeScheduleHelper *helper,
+                                       const gchar *property,
+                                       const gchar *value)
 {
-    const ThemeKind *kind = user_data;
-    gchar **theme_dirs = xfce_theme_schedule_theme_dirs (kind);
-    gchar *found = NULL;
+    gchar *current = xfconf_channel_get_string (helper->channel, property, NULL);
 
-    for (guint i = 0; theme_dirs[i] != NULL && found == NULL; i++)
-    {
-        GDir *dir = g_dir_open (theme_dirs[i], 0, NULL);
-        const gchar *entry;
-
-        if (dir == NULL)
-            continue;
-
-        while (found == NULL && (entry = g_dir_read_name (dir)) != NULL)
-        {
-            gchar *path;
-
-            if (g_ascii_strcasecmp (entry, name) != 0)
-                continue;
-
-            path = g_build_filename (theme_dirs[i], entry, kind->required_file, NULL);
-            if (g_file_test (path, G_FILE_TEST_EXISTS))
-                found = g_strdup (entry);
-            g_free (path);
-        }
-
-        g_dir_close (dir);
-    }
-
-    g_strfreev (theme_dirs);
-
-    return found;
-}
-
-
-
-/* the theme a rule's @value (name, ":dark" or ":light") resolves to with
- * @current in use, or NULL to keep @current */
-static gchar *
-xfce_theme_schedule_resolve_theme (const gchar *value,
-                                   const gchar *current,
-                                   const ThemeKind *kind)
-{
-    gchar *theme_name = NULL;
-
-    if (xfce_str_is_empty (value))
-        return NULL;
-
-    if (g_strcmp0 (value, ":dark") == 0 || g_strcmp0 (value, ":light") == 0)
-    {
-        theme_name = theme_variant_find (current, value[1] == 'd', xfce_theme_schedule_lookup_theme, (gpointer) kind);
-        if (theme_name == NULL)
-            xfsettings_dbg (XFSD_DEBUG_THEME_SCHEDULE, "Theme '%s' has no %s variant, keeping it", current, value + 1);
-    }
-    else
-    {
-        theme_name = xfce_theme_schedule_lookup_theme (value, (gpointer) kind);
-        if (theme_name == NULL)
-            g_warning ("Scheduled theme '%s' is not installed", value);
-    }
-
-    return theme_name;
+    if (g_strcmp0 (current, value) != 0)
+        xfconf_channel_set_string (helper->channel, property, value);
+    g_free (current);
 }
 
 
@@ -319,7 +256,7 @@ xfce_theme_schedule_helper_set_xfwm4_theme (XfceThemeScheduleHelper *helper,
                                             const gchar *theme_name)
 {
     /* same rules as the "Set matching Xfwm4 theme" switch of the appearance dialog */
-    if (xfce_theme_schedule_find_theme_file (theme_name, "xfwm4" G_DIR_SEPARATOR_S "themerc"))
+    if (xfce_theme_schedule_theme_has_file (XFCE_RESOURCE_THEMES, "themes", theme_name, "xfwm4" G_DIR_SEPARATOR_S "themerc"))
         xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", theme_name);
     else if (g_strcmp0 (theme_name, "Adwaita") == 0 || g_strcmp0 (theme_name, "Adwaita-dark") == 0)
         xfconf_channel_set_string (xfconf_channel_get ("xfwm4"), "/general/theme", "Default");
@@ -367,15 +304,20 @@ static void
 xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
                                   const gchar **rule)
 {
-    gchar *current, *theme_name, *icon_theme_name;
+    const gchar *theme_name = NULL;
     gboolean xfwm4;
 
     /* Gtk theme */
-    current = xfconf_channel_get_string (helper->channel, "/Net/ThemeName", "Default");
-    theme_name = xfce_theme_schedule_resolve_theme (rule[RULE_THEME], current, &gtk_theme_kind);
-    if (theme_name != NULL && g_strcmp0 (theme_name, current) != 0)
-        xfconf_channel_set_string (helper->channel, "/Net/ThemeName", theme_name);
-    g_free (current);
+    if (!xfce_str_is_empty (rule[RULE_THEME]))
+    {
+        if (xfce_theme_schedule_theme_has_file (XFCE_RESOURCE_THEMES, "themes", rule[RULE_THEME], "gtk-3.0"))
+        {
+            theme_name = rule[RULE_THEME];
+            xfce_theme_schedule_helper_set_string (helper, "/Net/ThemeName", theme_name);
+        }
+        else
+            g_warning ("Scheduled theme '%s' is not installed", rule[RULE_THEME]);
+    }
 
     /* Xfwm4 theme */
     if (xfce_str_is_empty (rule[RULE_XFWM4]))
@@ -405,11 +347,13 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
     }
 
     /* icon theme */
-    current = xfconf_channel_get_string (helper->channel, "/Net/IconThemeName", "Rodent");
-    icon_theme_name = xfce_theme_schedule_resolve_theme (rule[RULE_ICON_THEME], current, &icon_theme_kind);
-    if (icon_theme_name != NULL && g_strcmp0 (icon_theme_name, current) != 0)
-        xfconf_channel_set_string (helper->channel, "/Net/IconThemeName", icon_theme_name);
-    g_free (current);
+    if (!xfce_str_is_empty (rule[RULE_ICON_THEME]))
+    {
+        if (xfce_theme_schedule_theme_has_file (XFCE_RESOURCE_ICONS, "icons", rule[RULE_ICON_THEME], "index.theme"))
+            xfce_theme_schedule_helper_set_string (helper, "/Net/IconThemeName", rule[RULE_ICON_THEME]);
+        else
+            g_warning ("Scheduled icon theme '%s' is not installed", rule[RULE_ICON_THEME]);
+    }
 
     /* cursor theme */
     if (!xfce_str_is_empty (rule[RULE_CURSOR_THEME]))
@@ -417,9 +361,6 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
 
     if (!xfce_str_is_empty (rule[RULE_COMMAND]))
         xfce_theme_schedule_helper_run_command (helper, rule[RULE_COMMAND]);
-
-    g_free (theme_name);
-    g_free (icon_theme_name);
 }
 
 
