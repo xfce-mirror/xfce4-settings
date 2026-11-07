@@ -1,6 +1,4 @@
 libsettings_common_sources = [
-  'backlight.c',
-  'backlight.h',
   'debug.c',
   'debug.h',
   'theme-variant.c',
