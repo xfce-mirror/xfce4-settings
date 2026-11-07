@@ -1,6 +1,10 @@
 libsettings_common_sources = [
+  'backlight.c',
+  'backlight.h',
   'debug.c',
   'debug.h',
+  'theme-variant.c',
+  'theme-variant.h',
 ]
 
 if enable_display_settings
