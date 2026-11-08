@@ -374,7 +374,7 @@ xfce_displays_helper_iio_set_orientation_cb (XfceDisplaysIIO *iio,
     gpointer key, value;
     gboolean need_apply = FALSE;
 
-    g_debug ("Accelerometer reported orientation rotation: %d degrees", rotation);
+    xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Accelerometer reported orientation rotation: %d degrees", rotation);
 
     props = xfce_displays_helper_active_profile_properties (helper, &profile);
     if (props == NULL)

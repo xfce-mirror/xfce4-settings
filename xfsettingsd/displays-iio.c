@@ -1,4 +1,7 @@
 /*
+ *  Copyright (c) John Williams 2026 <john@mooseandlemur.com>
+ *  using draft by Matias De Lellis
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -27,6 +30,17 @@ xfce_displays_iio_dispose (GObject *object);
 
 static void
 xfce_displays_iio_clear (XfceDisplaysIIO *iio);
+
+static void
+xfce_displays_iio_sensor_appeared_cb (GDBusConnection *connection,
+                                      const gchar *name,
+                                      const gchar *name_owner,
+                                      gpointer user_data);
+
+static void
+xfce_displays_iio_sensor_vanished_cb (GDBusConnection *connection,
+                                      const gchar *name,
+                                      gpointer data);
 
 
 
@@ -77,6 +91,34 @@ xfce_displays_iio_class_init (XfceDisplaysIIOClass *klass)
                       NULL, NULL,
                       g_cclosure_marshal_VOID__INT,
                       G_TYPE_NONE, 1, G_TYPE_INT);
+}
+
+
+
+static void
+xfce_displays_iio_init (XfceDisplaysIIO *iio)
+{
+    iio->iio_watch_id = g_bus_watch_name (
+        G_BUS_TYPE_SYSTEM,
+        "net.hadess.SensorProxy",
+        G_BUS_NAME_WATCHER_FLAGS_NONE,
+        xfce_displays_iio_sensor_appeared_cb,
+        xfce_displays_iio_sensor_vanished_cb,
+        iio, NULL);
+}
+
+
+
+static void
+xfce_displays_iio_finalize (GObject *object)
+{
+    XfceDisplaysIIO *iio = XFCE_DISPLAYS_IIO (object);
+
+    g_clear_handle_id (&iio->iio_watch_id, g_bus_unwatch_name);
+
+    xfce_displays_iio_clear (iio);
+
+    G_OBJECT_CLASS (xfce_displays_iio_parent_class)->dispose (object);
 }
 
 
@@ -197,32 +239,4 @@ xfce_displays_iio_sensor_vanished_cb (GDBusConnection *connection,
 {
     XfceDisplaysIIO *iio = XFCE_DISPLAYS_IIO (data);
     xfce_displays_iio_clear (iio);
-}
-
-
-
-static void
-xfce_displays_iio_init (XfceDisplaysIIO *iio)
-{
-    iio->iio_watch_id = g_bus_watch_name (
-        G_BUS_TYPE_SYSTEM,
-        "net.hadess.SensorProxy",
-        G_BUS_NAME_WATCHER_FLAGS_NONE,
-        xfce_displays_iio_sensor_appeared_cb,
-        xfce_displays_iio_sensor_vanished_cb,
-        iio, NULL);
-}
-
-
-
-static void
-xfce_displays_iio_dispose (GObject *object)
-{
-    XfceDisplaysIIO *iio = XFCE_DISPLAYS_IIO (object);
-
-    g_clear_handle_id (&iio->iio_watch_id, g_bus_unwatch_name);
-
-    xfce_displays_iio_clear (iio);
-
-    G_OBJECT_CLASS (xfce_displays_iio_parent_class)->dispose (object);
 }

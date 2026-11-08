@@ -232,8 +232,6 @@ xfce_display_settings_set_outputs (XfceDisplaySettings *settings)
 {
     XfceDisplaySettingsPrivate *priv = get_instance_private (settings);
     guint n_outputs;
-    gchar *prop;
-    gchar *profile;
     gint x = 0, y = 0;
 
     g_return_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings));
@@ -248,11 +246,11 @@ xfce_display_settings_set_outputs (XfceDisplaySettings *settings)
     }
     priv->outputs = g_list_reverse (priv->outputs);
 
-    profile = xfconf_channel_get_string (priv->channel, "/ActiveProfile", "Default");
+    gchar *profile = xfconf_channel_get_string (priv->channel, "/ActiveProfile", "Default");
     for (GList *lp = priv->outputs; lp != NULL; lp = lp->next)
     {
         XfceOutput *output = lp->data;
-        prop = g_strdup_printf ("/%s/%s/AutoRotate", profile, output->name);
+        gchar *prop = g_strdup_printf ("/%s/%s/AutoRotate", profile, output->name);
         output->auto_rotate = xfconf_channel_get_bool (priv->channel, prop, FALSE);
         g_free (prop);
     }
@@ -842,7 +840,7 @@ xfce_display_settings_get_auto_rotate (XfceDisplaySettings *settings,
                                        guint output_id)
 {
     g_return_val_if_fail (XFCE_IS_DISPLAY_SETTINGS (settings), FALSE);
-    XfceOutput *output = g_list_nth (get_instance_private (settings)->outputs, output_id)->data;
+    XfceOutput *output = g_list_nth_data (get_instance_private (settings)->outputs, output_id);
     return output->auto_rotate;
 }
 
@@ -1056,7 +1054,6 @@ xfce_display_settings_save (XfceDisplaySettings *settings,
     xfconf_channel_reset_property (get_instance_private (settings)->channel, prop, TRUE);
 
     XFCE_DISPLAY_SETTINGS_GET_CLASS (settings)->save (settings, scheme);
-
     if (profile_name != NULL)
         xfconf_channel_set_string (get_instance_private (settings)->channel, prop, profile_name);
 
