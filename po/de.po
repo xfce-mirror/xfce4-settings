@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-07-30 12:55+0200\n"
+"POT-Creation-Date: 2026-11-06 00:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Andreas Eitel <github-aneitel@online.de>, 2018-2026\n"
 "Language-Team: German (http://app.transifex.com/xfce/xfce4-settings/language/de/)\n"
@@ -38,14 +38,14 @@ msgid "Accessibility"
 msgstr "Barrierefreiheit"
 
 #: common/resources/accessibility-dialog.glade:85
-#: common/resources/appearance-dialog.glade:142
+#: common/resources/appearance-dialog.glade:147
 #: common/resources/color-dialog.glade:65
 #: common/resources/display-dialog.glade:290
 #: common/resources/minimal-display-dialog.glade:368
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:225
-#: dialogs/display-settings/main.c:3422
+#: dialogs/display-settings/main.c:3424
 #: dialogs/mime-settings/xfce-mime-window.c:184
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:222
@@ -54,7 +54,7 @@ msgstr "S_chließen"
 
 #. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
 #: common/resources/accessibility-dialog.glade:100
-#: common/resources/appearance-dialog.glade:126
+#: common/resources/appearance-dialog.glade:131
 #: common/resources/color-dialog.glade:80
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
@@ -268,58 +268,58 @@ msgid "_Mouse"
 msgstr "_Maus"
 
 #. No assignment option
-#: common/resources/appearance-dialog.glade:39
+#: common/resources/appearance-dialog.glade:44
 #: common/resources/mouse-dialog.glade:63
 #: common/resources/mouse-dialog.glade:126
 #: common/resources/mouse-dialog.glade:152
-#: dialogs/appearance-settings/main.c:1739 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1764 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:745
 msgid "None"
 msgstr "Keine"
 
-#: common/resources/appearance-dialog.glade:42
+#: common/resources/appearance-dialog.glade:47
 msgid "Slight"
 msgstr "Gering"
 
-#: common/resources/appearance-dialog.glade:45
+#: common/resources/appearance-dialog.glade:50
 msgid "Medium"
 msgstr "Mittel"
 
-#: common/resources/appearance-dialog.glade:48
+#: common/resources/appearance-dialog.glade:53
 msgid "Full"
 msgstr "Stark"
 
-#: common/resources/appearance-dialog.glade:59
+#: common/resources/appearance-dialog.glade:64
 msgid "Icons"
 msgstr "Symbole"
 
-#: common/resources/appearance-dialog.glade:62
+#: common/resources/appearance-dialog.glade:67
 msgid "Text"
 msgstr "Text"
 
-#: common/resources/appearance-dialog.glade:65
+#: common/resources/appearance-dialog.glade:70
 msgid "Text under icons"
 msgstr "Text unterhalb der Symbole"
 
-#: common/resources/appearance-dialog.glade:68
+#: common/resources/appearance-dialog.glade:73
 msgid "Text next to icons"
 msgstr "Text neben den Symbolen"
 
-#: common/resources/appearance-dialog.glade:82
+#: common/resources/appearance-dialog.glade:87
 msgid "1x (no scaling)"
 msgstr "1x (keine Skalierung)"
 
-#: common/resources/appearance-dialog.glade:86
+#: common/resources/appearance-dialog.glade:91
 msgid "2x"
 msgstr "2x"
 
-#: common/resources/appearance-dialog.glade:107
+#: common/resources/appearance-dialog.glade:112
 #: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:4
 msgid "Appearance"
 msgstr "Erscheinungsbild"
 
-#: common/resources/appearance-dialog.glade:205
-#: common/resources/appearance-dialog.glade:315
+#: common/resources/appearance-dialog.glade:210
+#: common/resources/appearance-dialog.glade:339
 #: common/resources/color-dialog.glade:374
 #: common/resources/keyboard-dialog.glade:636
 #: common/resources/keyboard-dialog.glade:970
@@ -327,174 +327,182 @@ msgstr "Erscheinungsbild"
 msgid "_Add"
 msgstr "_Hinzufügen"
 
-#: common/resources/appearance-dialog.glade:238
+#: common/resources/appearance-dialog.glade:229
+msgid "What the style changes"
+msgstr "Was der Stil verändert"
+
+#: common/resources/appearance-dialog.glade:233
+msgid "Further Information"
+msgstr "Weitere Informationen"
+
+#: common/resources/appearance-dialog.glade:262
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
 msgstr "Passendes <a href=\"xfwm4-settings:\">Xfwm4-Theme</a> einstellen, wenn es eines gibt"
 
-#: common/resources/appearance-dialog.glade:272
+#: common/resources/appearance-dialog.glade:296
 msgid "St_yle"
 msgstr "_Oberfläche"
 
-#: common/resources/appearance-dialog.glade:348
+#: common/resources/appearance-dialog.glade:372
 msgid "_Icons"
 msgstr "_Symbole"
 
-#: common/resources/appearance-dialog.glade:388
+#: common/resources/appearance-dialog.glade:412
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "Diese Schriftart wird als Standardschriftart in grafischen Schnittstellen verwendet"
 
-#: common/resources/appearance-dialog.glade:390
+#: common/resources/appearance-dialog.glade:414
 msgid "Select a default font"
 msgstr "Standardschrift auswählen"
 
-#: common/resources/appearance-dialog.glade:399
+#: common/resources/appearance-dialog.glade:423
 msgid "Default Fon_t"
 msgstr "_Vorgabeschrift"
 
-#: common/resources/appearance-dialog.glade:431
+#: common/resources/appearance-dialog.glade:455
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr "Diese Schrift wird als die vorgegebene nichtproportionale Schrift verwendet, z.B. im Terminal"
 
-#: common/resources/appearance-dialog.glade:433
+#: common/resources/appearance-dialog.glade:457
 msgid "Select a default monospace font"
 msgstr "Bitte die nichtproportionale Schrift zur Vorgabe auswählen"
 
-#: common/resources/appearance-dialog.glade:442
+#: common/resources/appearance-dialog.glade:466
 msgid "Default _Monospace Font"
 msgstr "_Vorgegebene nichtproportionale Schrift"
 
-#: common/resources/appearance-dialog.glade:477
+#: common/resources/appearance-dialog.glade:501
 msgid "_Enable anti-aliasing"
 msgstr "_Kantenglättung verwenden"
 
-#: common/resources/appearance-dialog.glade:481
+#: common/resources/appearance-dialog.glade:505
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "Kantenglättung oder Schriftglättung kann die Darstellung von Text auf dem Bildschirm verbessern."
 
-#: common/resources/appearance-dialog.glade:509
+#: common/resources/appearance-dialog.glade:533
 msgid "Hintin_g:"
 msgstr "_Hinting:"
 
-#: common/resources/appearance-dialog.glade:521
+#: common/resources/appearance-dialog.glade:545
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "Viele Schriftarten enthalten zusätzliche Informationen, wie sie am besten darzustellen sind. Bitte wählen Sie, was Ihnen am besten gefällt."
 
-#: common/resources/appearance-dialog.glade:541
+#: common/resources/appearance-dialog.glade:565
 msgid "Sub-_pixel order:"
 msgstr "_Farbreihenfolge innerhalb eines Pixels:"
 
-#: common/resources/appearance-dialog.glade:553
+#: common/resources/appearance-dialog.glade:577
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "Falls Sie einen TFT- oder LCD-Monitor haben, können Sie die Darstellungsqualität der Schriften erheblich steigern, indem Sie die richtige Reihenfolge der Farben innerhalb eines Pixels angeben"
 
-#: common/resources/appearance-dialog.glade:591
+#: common/resources/appearance-dialog.glade:615
 msgid "Rendering"
 msgstr "Darstellung"
 
-#: common/resources/appearance-dialog.glade:623
+#: common/resources/appearance-dialog.glade:647
 msgid "Custom _DPI setting:"
 msgstr "Eigener _DPI-Wert:"
 
-#: common/resources/appearance-dialog.glade:627
+#: common/resources/appearance-dialog.glade:651
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "Die Bildschirmauflösung von Hand einstellen, falls Zeichen zu groß oder zu klein vorkommen."
 
-#: common/resources/appearance-dialog.glade:664
+#: common/resources/appearance-dialog.glade:688
 msgid "DPI"
 msgstr "DPI"
 
-#: common/resources/appearance-dialog.glade:690
+#: common/resources/appearance-dialog.glade:714
 msgid "_Fonts"
 msgstr "Sc_hriften"
 
-#: common/resources/appearance-dialog.glade:733
+#: common/resources/appearance-dialog.glade:757
 msgid "Show images on _buttons"
 msgstr "Symbole auf _Knöpfen anzeigen"
 
-#: common/resources/appearance-dialog.glade:737
+#: common/resources/appearance-dialog.glade:761
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "Einstellen, ob Symbole neben dem Text, in Knöpfen, angezeigt werden sollen"
 
-#: common/resources/appearance-dialog.glade:750
+#: common/resources/appearance-dialog.glade:774
 msgid "Show images in _menus"
 msgstr "Symbole in _Menüs anzeigen"
 
-#: common/resources/appearance-dialog.glade:754
+#: common/resources/appearance-dialog.glade:778
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "Einstellen, ob Symbole in Menüs angezeigt werden sollen"
 
-#: common/resources/appearance-dialog.glade:767
+#: common/resources/appearance-dialog.glade:791
 msgid "Enable e_ditable accelerators"
 msgstr "Menükürzel _veränderbar machen"
 
-#: common/resources/appearance-dialog.glade:771
+#: common/resources/appearance-dialog.glade:795
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "Wenn ausgewählt ist, kann die Tastenkombination für Menüeinträge geändert werden, indem man die Maus über den Eintrag hält und die neue Kombination drückt."
 
-#: common/resources/appearance-dialog.glade:784
+#: common/resources/appearance-dialog.glade:808
 msgid "Enable header bars in dialo_gs"
 msgstr "Kopfleisten in dialo_gs aktivieren"
 
-#: common/resources/appearance-dialog.glade:788
+#: common/resources/appearance-dialog.glade:812
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr "Legt fest, ob GTK-Dialoge Widgets wie Knöpfe in der Kopfleiste des Dialogs platzieren dürfen. Betrifft die Gestaltung auf Client-Seite und nur neu geöffnete Dialoge."
 
-#: common/resources/appearance-dialog.glade:807
+#: common/resources/appearance-dialog.glade:831
 msgid "Menus and Buttons"
 msgstr "Menüs und Knöpfe"
 
-#: common/resources/appearance-dialog.glade:839
+#: common/resources/appearance-dialog.glade:863
 msgid "Enable _event sounds"
 msgstr "_Ereignisklänge aktivieren"
 
-#: common/resources/appearance-dialog.glade:843
+#: common/resources/appearance-dialog.glade:867
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "Ereignisklänge global aktivieren oder deaktivieren (benötigt Unterstützung für »Canberra«)"
 
-#: common/resources/appearance-dialog.glade:856
+#: common/resources/appearance-dialog.glade:880
 msgid "Enable input feedbac_k sounds"
 msgstr "_Akustische Rückmeldungen aktivieren"
 
-#: common/resources/appearance-dialog.glade:860
+#: common/resources/appearance-dialog.glade:884
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "Einstellen, ob Mausklicks und andere Eingaben Klänge auslösen können sollen."
 
-#: common/resources/appearance-dialog.glade:878
+#: common/resources/appearance-dialog.glade:902
 msgid "Sound _theme:"
 msgstr "Sound-_Thema:"
 
-#: common/resources/appearance-dialog.glade:902
+#: common/resources/appearance-dialog.glade:926
 msgid "Event sounds"
 msgstr "Ereignisklänge"
 
-#: common/resources/appearance-dialog.glade:931
+#: common/resources/appearance-dialog.glade:955
 msgid "Adjust the system-wide display scaling"
 msgstr "Die Systemweite Bildschirmskalierung anpassen"
 
-#: common/resources/appearance-dialog.glade:949
+#: common/resources/appearance-dialog.glade:973
 msgid "_Window Scaling"
 msgstr "_Fensterskalierung"
 
-#: common/resources/appearance-dialog.glade:977
+#: common/resources/appearance-dialog.glade:1001
 msgid "Setti_ngs"
 msgstr "_Einstellungen"
 
@@ -561,7 +569,7 @@ msgstr "Profil zum Gerät hinzufügen"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1478 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1501 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:102
 #: dialogs/keyboard-settings/command-dialog.c:265
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:419
@@ -637,7 +645,7 @@ msgid "The primary display can be configured to show:"
 msgstr "Der Hauptbildschirm kann so konfiguriert werden, dass er Folgendes anzeigt:"
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1673
 msgid "Xfce Panel"
 msgstr "Xfce Leiste"
 
@@ -1015,7 +1023,7 @@ msgstr "Im Uhrzeigersinn"
 msgid "Counterclockwise"
 msgstr "Gegen den Uhrzeigersinn"
 
-#: common/resources/mouse-dialog.glade:208 dialogs/mouse-settings/main.c:1853
+#: common/resources/mouse-dialog.glade:208 dialogs/mouse-settings/main.c:1852
 #: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "Maus und Touchpad"
@@ -1282,7 +1290,7 @@ msgstr "Die verwendete Version der RandR-Erweiterung konnte nicht festgestellt w
 msgid "Laptop"
 msgstr "Laptop"
 
-#: dialogs/accessibility-settings/main.c:36
+#: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
@@ -1290,7 +1298,7 @@ msgstr "Laptop"
 msgid "Settings manager socket"
 msgstr "Socket für den Einstellungsdialog"
 
-#: dialogs/accessibility-settings/main.c:36
+#: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
@@ -1298,41 +1306,41 @@ msgstr "Socket für den Einstellungsdialog"
 msgid "SOCKET ID"
 msgstr "SOCKET-NUMMER"
 
-#: dialogs/accessibility-settings/main.c:37
+#: dialogs/accessibility-settings/main.c:48
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:103
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:94
+#: xfsettingsd/main.c:95
 msgid "Version information"
 msgstr "Versionsinformation"
 
-#: dialogs/accessibility-settings/main.c:191
-#: dialogs/appearance-settings/main.c:1855 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3370 dialogs/keyboard-settings/main.c:89
+#: dialogs/accessibility-settings/main.c:214
+#: dialogs/appearance-settings/main.c:1880 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:1806 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
+#: dialogs/mouse-settings/main.c:1805 xfce4-settings-editor/main.c:118
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:271
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "»%s --help« eingeben, um Informationen über die Verwendung zu erhalten."
 
-#: dialogs/accessibility-settings/main.c:210
-#: dialogs/appearance-settings/main.c:1874 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:105
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1825
+#: dialogs/accessibility-settings/main.c:233
+#: dialogs/appearance-settings/main.c:1899 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3391 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1824
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:265
+#: xfsettingsd/main.c:287
 msgid "The Xfce development team. All rights reserved."
 msgstr "Die Entwicklungsmannschaft von Xfce. Alle Rechte vorbehalten."
 
-#: dialogs/accessibility-settings/main.c:211
-#: dialogs/appearance-settings/main.c:1875 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3390 dialogs/keyboard-settings/main.c:106
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1826
+#: dialogs/accessibility-settings/main.c:234
+#: dialogs/appearance-settings/main.c:1900 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3392 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1825
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:266
+#: xfsettingsd/main.c:288
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Fehler bitte an <%s> melden."
@@ -1407,30 +1415,37 @@ msgstr "Ein unbekannter Fehler ist aufgetreten, der Rückgabewert ist %d"
 msgid "Failed to install theme"
 msgstr "Das Thema konnte nicht installiert werden"
 
-#: dialogs/appearance-settings/main.c:1476
+#: dialogs/appearance-settings/main.c:1469
+msgid ""
+"The theme used for Xfce and other GTK applications. Some themes only affect GTK2/GTK3 applications, other themes as well affect GTK4 applications. Additional themes e.g. can be installed by the package manager of your distribution.\n"
+"\n"
+"Choosing a dark theme will set a GTK \"prefer-dark\" setting. Foreign applications can follow that setting, though not all of them will do so, depending on the used toolkit and the application preferences."
+msgstr "Das für Xfce und andere GTK-Anwendungen verwendete Design. Einige Designs wirken sich nur auf GTK2-/GTK3-Anwendungen aus, andere auch auf GTK4-Anwendungen. Weitere Designs können beispielsweise über denPaketmanager Ihrer Distribution installiert werden.\n\nWenn Sie ein dunkles Design auswählen, wird die GTK-Einstellung \"prefer-dark\" gesetzt. Externe Anwendungen können dieser Einstellung folgen, was jedoch nicht bei allen der Fall ist – dies hängt vom verwendeten Toolkit und den Anwendungseinstellungen ab."
+
+#: dialogs/appearance-settings/main.c:1499
 #, c-format
 msgid "Install %s theme"
 msgstr "Installiere Thema %s"
 
-#: dialogs/appearance-settings/main.c:1479
+#: dialogs/appearance-settings/main.c:1502
 #: dialogs/keyboard-settings/command-dialog.c:266
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:420
 msgid "_Open"
 msgstr "Ö_ffnen"
 
-#: dialogs/appearance-settings/main.c:1743
+#: dialogs/appearance-settings/main.c:1768
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1747
+#: dialogs/appearance-settings/main.c:1772
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1751
+#: dialogs/appearance-settings/main.c:1776
 msgid "Vertical RGB"
 msgstr "RGB (senkrecht)"
 
-#: dialogs/appearance-settings/main.c:1755
+#: dialogs/appearance-settings/main.c:1780
 msgid "Vertical BGR"
 msgstr "BGR (senkrecht)"
 
@@ -1647,20 +1662,20 @@ msgstr "Die letzte, noch aktivierte Ausgabe darf nicht abgeschaltet werden, da d
 msgid "Selected output not disabled"
 msgstr "Ausgewählte Ausgabe nicht abgeschaltet"
 
-#: dialogs/display-settings/main.c:1610
+#: dialogs/display-settings/main.c:1609
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "Möchten Sie das Bildschirmprofil '%s' löschen?"
 
-#: dialogs/display-settings/main.c:1613
+#: dialogs/display-settings/main.c:1612
 msgid "Delete Profile"
 msgstr "Profil löschen"
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1613
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "Sobald ein Bildschirmprofil gelöscht wurde, kann es nicht mehr wiederhergestellt werden."
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1613
 #: dialogs/mime-settings/xfce-mime-chooser.c:126
 #: dialogs/mime-settings/xfce-mime-chooser.c:371
 #: dialogs/mime-settings/xfce-mime-window.c:1289
@@ -1668,24 +1683,24 @@ msgstr "Sobald ein Bildschirmprofil gelöscht wurde, kann es nicht mehr wiederhe
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1614
 msgid "Delete"
 msgstr "Löschen"
 
-#: dialogs/display-settings/main.c:1700
+#: dialogs/display-settings/main.c:1699
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
 msgstr[0] "%d Xfce Leiste"
 msgstr[1] "%d Xfce Leisten"
 
-#: dialogs/display-settings/main.c:2484
+#: dialogs/display-settings/main.c:2483
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "Bitte einen Monitor auswählen, um seine Eigenschaften zu ändern; ihn ziehen, um seine Platzierung zu ändern."
 
-#: dialogs/display-settings/main.c:2583 dialogs/display-settings/main.c:2613
+#: dialogs/display-settings/main.c:2582 dialogs/display-settings/main.c:2613
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1694,23 +1709,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2830
+#: dialogs/display-settings/main.c:2832
 msgid "Mirror Screens"
 msgstr "Spiegelbildschirme"
 
-#: dialogs/display-settings/main.c:2880
+#: dialogs/display-settings/main.c:2882
 msgid "(Disabled)"
 msgstr "(Deaktiviert)"
 
-#: dialogs/display-settings/main.c:3416
+#: dialogs/display-settings/main.c:3418
 msgid "ATI Settings"
 msgstr "Einstellungen (ATI)"
 
-#: dialogs/display-settings/main.c:3421
+#: dialogs/display-settings/main.c:3423
 msgid "Unable to start the Xfce Display Settings"
 msgstr "Die Xfce-Anzeigeeinstellungen können nicht gestartet werden"
 
-#: dialogs/display-settings/main.c:3429
+#: dialogs/display-settings/main.c:3431
 msgid "Unable to launch the proprietary driver settings"
 msgstr "Die proprietären Treibereinstellungen können nicht geladen werden"
 
@@ -1723,11 +1738,11 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "Anzeige;Einstellungen;Bildschirm;Auflösung;Bildwiederholung;Geschwindigkeit;Rotation;extern;Projektoren;Monitore;LCD;CRT;HiDPI;"
 
-#: dialogs/display-settings/display-settings.c:459
+#: dialogs/display-settings/display-settings.c:457
 msgid "Display:"
 msgstr "Anzeige:"
 
-#: dialogs/display-settings/display-settings.c:467
+#: dialogs/display-settings/display-settings.c:465
 msgid "Resolution:"
 msgstr "Auflösung:"
 
@@ -2683,11 +2698,11 @@ msgstr "%g Millisekunden"
 msgid "%.1f s"
 msgstr "%.1f s"
 
-#: dialogs/mouse-settings/main.c:1853
+#: dialogs/mouse-settings/main.c:1852
 msgid "Unable to start"
 msgstr "Kann nicht starten"
 
-#: dialogs/mouse-settings/main.c:1853
+#: dialogs/mouse-settings/main.c:1852
 msgid "Quit"
 msgstr "Beenden"
 
@@ -2753,8 +2768,8 @@ msgid "Edit selected property"
 msgstr "Ausgewählte Eigenschaft bearbeiten"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:381
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1067
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1589
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1066
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1588
 msgid "_Reset"
 msgstr "_Zurückstellen"
 
@@ -2792,54 +2807,54 @@ msgstr "Boolesch"
 msgid "Double"
 msgstr "Gleitkommazahl"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:842
+#: xfce4-settings-editor/xfce-settings-editor-box.c:841
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "Zurückstellen des Kanals wird diese benutzerdefinierten Einstellungen dauerhaft löschen."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:850
+#: xfce4-settings-editor/xfce-settings-editor-box.c:849
 msgid "_Reset Channel"
 msgstr "Kanal zu_rückstellen"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:851
+#: xfce4-settings-editor/xfce-settings-editor-box.c:850
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "Sind Sie sicher, dass Sie die den Kanal »%s« und alle zugehörigen Eigenschaften zurückstellen möchten?"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:926
+#: xfce4-settings-editor/xfce-settings-editor-box.c:925
 msgid "reset"
 msgstr "Zurückstellen"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:983
+#: xfce4-settings-editor/xfce-settings-editor-box.c:982
 #, c-format
 msgid "Monitor %s"
 msgstr "%s überwachen"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:991
+#: xfce4-settings-editor/xfce-settings-editor-box.c:990
 msgid "Clear"
 msgstr "Leeren"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:991
+#: xfce4-settings-editor/xfce-settings-editor-box.c:990
 msgid "Close"
 msgstr "Schließen"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1024
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1023
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "Überwachung des Kanals »%s« starten "
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1073
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1072
 msgid "_Monitor"
 msgstr "_Überwachung"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1083
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1082
 msgid "Refresh"
 msgstr "Auffrischen"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1586
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1585
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "Beim Zurückstellen der Eigenschaften werden diese benutzerdefinierten Einstellungen dauerhaft gelöscht."
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1590
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1589
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "Sind Sie sicher, dass Sie die Eigenschaft »%s« zurückstellen wollen?"
@@ -2991,19 +3006,19 @@ msgstr "Zurückschnellende Tasten"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Tastenkürzel »%s« konnte nicht gestartet werden"
 
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:96
 msgid "Fork to the background"
 msgstr "Prozess in den Hintergrund abspalten"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:97
 msgid "Do not wait for a window manager on startup"
 msgstr "Beim Starten nicht auf eine Fensterverwaltung warten"
 
-#: xfsettingsd/main.c:97
+#: xfsettingsd/main.c:98
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Ersetzen laufender XSETTINGS-Dienste erzwingen (falls vorhanden)"
 
-#: xfsettingsd/main.c:98
+#: xfsettingsd/main.c:99
 msgid "Allow xfsettingsd to start even if another instance is running"
 msgstr "xfsettingsd selbst dann starten, wenn bereits eine andere Instanz läuft"
 
