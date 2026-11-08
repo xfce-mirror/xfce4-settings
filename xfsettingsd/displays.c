@@ -433,11 +433,7 @@ xfce_displays_helper_iio_set_enabled (XfceDisplaysHelper *helper,
     }
     else if (!enabled && priv->iio != NULL)
     {
-        if (priv->iio_handler_id > 0)
-        {
-            g_signal_handler_disconnect (priv->iio, priv->iio_handler_id);
-            priv->iio_handler_id = 0;
-        }
+        g_clear_signal_handler (&priv->iio_handler_id, priv->iio);
 
         g_clear_object (&priv->iio);
     }
