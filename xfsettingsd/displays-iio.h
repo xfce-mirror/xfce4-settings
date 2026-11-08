@@ -1,4 +1,7 @@
 /*
+ *  Copyright (c) John Williams 2026 <john@mooseandlemur.com>
+ *  using implementation from Matias De Lellis
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -21,19 +24,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _XfceDisplaysIIOClass XfceDisplaysIIOClass;
-typedef struct _XfceDisplaysIIO XfceDisplaysIIO;
-
 #define XFCE_TYPE_DISPLAYS_IIO (xfce_displays_iio_get_type ())
-#define XFCE_DISPLAYS_IIO(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_DISPLAYS_IIO, XfceDisplaysIIO))
-#define XFCE_DISPLAYS_IIO_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_DISPLAYS_IIO, XfceDisplaysIIOClass))
-#define XFCE_IS_DISPLAYS_IIO(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_DISPLAYS_IIO))
-#define XFCE_IS_DISPLAYS_IIO_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_DISPLAYS_IIO))
-#define XFCE_DISPLAYS_IIO_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_DISPLAYS_IIO, XfceDisplaysIIOClass))
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceDisplaysIIO, g_object_unref)
-
-GType
-xfce_displays_iio_get_type (void);
+G_DECLARE_FINAL_TYPE (XfceDisplaysIIO, xfce_displays_iio, XFCE, DISPLAYS_IIO, GObject)
 
 G_END_DECLS
 
