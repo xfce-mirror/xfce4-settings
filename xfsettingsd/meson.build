@@ -118,13 +118,6 @@ if enable_display_settings
       'displays-wayland.h',
     ]
   endif
-
-  if upower_glib.found()
-    xfsettingsd_sources += [
-      'displays-upower.c',
-      'displays-upower.h',
-    ]
-  endif
 endif
 
 executable(
@@ -153,7 +146,6 @@ executable(
     libxklavier,
     xrandr,
     wayland_deps,
-    upower_glib,
     libm,
   ],
   link_with: link_with,

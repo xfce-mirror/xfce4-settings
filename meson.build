@@ -40,8 +40,6 @@ dependency_versions = {
   'wayland': '>= 1.22',
 
   'gtk-layer-shell': '>= 0.8.2',
-
-  'upower-glib': '>= 1.90.3',
 }
 
 garcon = dependency('garcon-1', version: dependency_versions['xfce4'])
@@ -146,14 +144,8 @@ endif
 if enable_wayland or xrandr.found()
   enable_display_settings = true
   feature_cflags += '-DENABLE_DISPLAY_SETTINGS=1'
-
-  upower_glib = dependency('upower-glib', version: dependency_versions['upower-glib'], required: get_option('upower'))
-  if upower_glib.found()
-    feature_cflags += '-DHAVE_UPOWERGLIB=1'
-  endif
 else
   enable_display_settings = false
-  upower_glib = dependency('', required: false)
 endif
 
 colord = dependency('colord', version: dependency_versions['colord'], required: get_option('colord'))
