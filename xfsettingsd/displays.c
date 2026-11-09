@@ -66,11 +66,6 @@ typedef struct _XfceDisplaysHelperPrivate
 #endif
     gulong iio_handler_id;
     XfceDisplaysIIO *iio;
-
-    /* are we applying a profile? */
-    gboolean applying;
-    /* did we request a profile apply while already applying? */
-    gboolean pending_apply;
 } XfceDisplaysHelperPrivate;
 
 
@@ -321,15 +316,6 @@ xfce_displays_helper_auto_rotate_enabled (XfceDisplaysHelper *helper)
     g_hash_table_destroy (props);
 
     return enabled;
-}
-
-
-
-static void
-xfce_displays_helper_apply_profile (XfceDisplaysHelper *helper,
-                                    const gchar *profile)
-{
-    XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, profile);
 }
 
 
