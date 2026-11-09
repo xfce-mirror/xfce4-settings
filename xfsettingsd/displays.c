@@ -20,10 +20,6 @@
 
 #include "displays.h"
 
-#ifdef HAVE_UPOWERGLIB
-#include "displays-upower.h"
-#endif
-
 #ifdef HAVE_XRANDR
 #include "displays-x11.h"
 
@@ -55,9 +51,6 @@ xfce_displays_helper_finalize (GObject *object);
 typedef struct _XfceDisplaysHelperPrivate
 {
     XfconfChannel *channel;
-#ifdef HAVE_UPOWERGLIB
-    XfceDisplaysUPower *power;
-#endif
 } XfceDisplaysHelperPrivate;
 
 
@@ -113,14 +106,6 @@ xfce_displays_helper_constructed (GObject *object)
         gchar *matching_profile;
         gint mode;
 
-#ifdef HAVE_UPOWERGLIB
-        priv->power = g_object_new (XFCE_TYPE_DISPLAYS_UPOWER, NULL);
-        g_signal_connect (G_OBJECT (priv->power),
-                          "lid-changed",
-                          G_CALLBACK (XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->toggle_internal),
-                          helper);
-#endif
-
         /* open the channel */
         priv->channel = display_settings_profiles_channel_get ();
 
@@ -155,12 +140,6 @@ xfce_displays_helper_constructed (GObject *object)
 static void
 xfce_displays_helper_finalize (GObject *object)
 {
-#ifdef HAVE_UPOWERGLIB
-    XfceDisplaysHelperPrivate *priv = get_instance_private (object);
-    if (priv->power != NULL)
-        g_object_unref (priv->power);
-#endif
-
     G_OBJECT_CLASS (xfce_displays_helper_parent_class)->finalize (object);
 }
 
