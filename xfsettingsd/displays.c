@@ -56,10 +56,6 @@ xfce_displays_helper_iio_set_enabled (XfceDisplaysHelper *helper,
                                       gboolean enabled);
 static gboolean
 xfce_displays_helper_auto_rotate_enabled (XfceDisplaysHelper *helper);
-static void
-xfce_displays_helper_apply_profile (XfceDisplaysHelper *helper,
-                                    const gchar *profile,
-                                    gint rotation);
 
 
 typedef struct _XfceDisplaysHelperPrivate
@@ -73,11 +69,8 @@ typedef struct _XfceDisplaysHelperPrivate
 
     /* are we applying a profile? */
     gboolean applying;
-
-    /* cached profile changes that need to be applied after
-       applying is complete */
-    gboolean pending_rotation;
-    gint pending_rotation_value;
+    /* did we request a profile apply while already applying? */
+    gboolean pending_apply;
 } XfceDisplaysHelperPrivate;
 
 
@@ -105,7 +98,7 @@ xfce_displays_helper_init (XfceDisplaysHelper *helper)
 
 
 static GHashTable *
-xfce_displays_helper_active_profile_properties (XfceDisplaysHelper *helper,
+xfce_displays_helper_get_active_profile_properties (XfceDisplaysHelper *helper,
                                                 gchar **profile)
 {
     XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
@@ -302,7 +295,7 @@ xfce_displays_helper_get_channel (XfceDisplaysHelper *helper)
 static gboolean
 xfce_displays_helper_auto_rotate_enabled (XfceDisplaysHelper *helper)
 {
-    GHashTable *props = xfce_displays_helper_active_profile_properties (helper, NULL);
+    GHashTable *props = xfce_displays_helper_get_active_profile_properties (helper, NULL);
     GHashTableIter iter;
     gpointer key, value;
     gboolean enabled = FALSE;
@@ -334,29 +327,9 @@ xfce_displays_helper_auto_rotate_enabled (XfceDisplaysHelper *helper)
 
 static void
 xfce_displays_helper_apply_profile (XfceDisplaysHelper *helper,
-                                    const gchar *profile,
-                                    gint rotation)
+                                    const gchar *profile)
 {
-    XfceDisplaysHelperPrivate *priv = get_instance_private (helper);
-
-    if (priv->applying)
-    {
-        priv->pending_rotation = TRUE;
-        priv->pending_rotation_value = rotation;
-        return;
-    }
-
-    priv->applying = TRUE;
     XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, profile);
-
-    if (priv->pending_rotation)
-    {
-        priv->pending_rotation = FALSE;
-        xfce_displays_helper_apply_profile (helper, profile, priv->pending_rotation_value);
-        return;
-    }
-
-    priv->applying = FALSE;
 }
 
 
@@ -376,7 +349,7 @@ xfce_displays_helper_iio_set_orientation_cb (XfceDisplaysIIO *iio,
 
     xfsettings_dbg (XFSD_DEBUG_DISPLAYS, "Accelerometer reported orientation rotation: %d degrees", rotation);
 
-    props = xfce_displays_helper_active_profile_properties (helper, &profile);
+    props = xfce_displays_helper_get_active_profile_properties (helper, &profile);
     if (props == NULL)
         return;
 
@@ -411,7 +384,7 @@ xfce_displays_helper_iio_set_orientation_cb (XfceDisplaysIIO *iio,
     g_hash_table_destroy (props);
 
     if (need_apply)
-        xfce_displays_helper_apply_profile (helper, profile, rotation);
+        XFCE_DISPLAYS_HELPER_GET_CLASS (helper)->channel_apply (helper, profile);
 }
 
 
