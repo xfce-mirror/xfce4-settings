@@ -20,6 +20,16 @@
 
 #include <xfconf/xfconf.h>
 
+const gchar *const theme_schedule_properties[N_THEME_SCHEDULE_FIELDS] = {
+    THEME_SCHEDULE_PROP_PREFIX "Times",
+    THEME_SCHEDULE_PROP_PREFIX "Themes",
+    THEME_SCHEDULE_PROP_PREFIX "ColorSchemes",
+    THEME_SCHEDULE_PROP_PREFIX "Xfwm4",
+    THEME_SCHEDULE_PROP_PREFIX "IconThemes",
+    THEME_SCHEDULE_PROP_PREFIX "CursorThemes",
+    THEME_SCHEDULE_PROP_PREFIX "Commands",
+};
+
 /* the directories with themes of @type, as the Style and Icons tabs search
  * them: those of xfce_resource_dirs() and DATADIR/@themes_directory, where
  * @themes_directory is "themes" or "icons"; free with g_strfreev() */

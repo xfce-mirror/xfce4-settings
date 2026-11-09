@@ -44,6 +44,27 @@ theme_utils_set_matching_xfwm4_theme (const gchar *theme_name);
 gboolean
 theme_utils_theme_is_dark (const gchar *theme_name);
 
+/* The theme schedule of the Style tab, applied by xfsettingsd. The rules are
+ * stored in the xsettings channel as one string array per field, see
+ * xfsettingsd/theme-schedule.c */
+#define THEME_SCHEDULE_PROP_PREFIX "/Xfce/ThemeSchedule/"
+#define THEME_SCHEDULE_ENABLED_PROP THEME_SCHEDULE_PROP_PREFIX "Enabled"
+#define THEME_SCHEDULE_CHECKED_PROP THEME_SCHEDULE_PROP_PREFIX "CheckedUntil"
+
+typedef enum
+{
+    THEME_SCHEDULE_TIME,
+    THEME_SCHEDULE_THEME,
+    THEME_SCHEDULE_COLOR_SCHEME,
+    THEME_SCHEDULE_XFWM4,
+    THEME_SCHEDULE_ICON_THEME,
+    THEME_SCHEDULE_CURSOR_THEME,
+    THEME_SCHEDULE_COMMAND,
+    N_THEME_SCHEDULE_FIELDS
+} ThemeScheduleField;
+
+extern const gchar *const theme_schedule_properties[N_THEME_SCHEDULE_FIELDS];
+
 G_END_DECLS
 
 #endif /* !__THEME_UTILS_H__ */
