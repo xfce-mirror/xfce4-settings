@@ -1865,41 +1865,105 @@ schedule_get_rule (gint index)
     return rule;
 }
 
-/* what @rule does, for the status line, or NULL if nothing */
+/* whether @rule changes anything at all */
+static gboolean
+schedule_rule_is_empty (gchar **rule)
+{
+    return xfce_str_is_empty (rule[THEME_SCHEDULE_THEME])
+           && xfce_str_is_empty (rule[THEME_SCHEDULE_COLOR_SCHEME])
+           && xfce_str_is_empty (rule[THEME_SCHEDULE_ICON_THEME])
+           && xfce_str_is_empty (rule[THEME_SCHEDULE_CURSOR_THEME])
+           && xfce_str_is_empty (rule[THEME_SCHEDULE_COMMAND]);
+}
+
+/* a short summary of what @rule does, most important first, for the list and
+ * the status line; NULL if the rule does nothing */
 static gchar *
 schedule_describe_rule (gchar **rule)
 {
-    GPtrArray *parts = g_ptr_array_new_with_free_func (g_free);
+    GPtrArray *parts;
     const gchar *theme = rule[THEME_SCHEDULE_THEME];
     const gchar *color_scheme = rule[THEME_SCHEDULE_COLOR_SCHEME];
-    gint n_more;
-    gchar *text = NULL;
+    gchar *text;
+
+    if (schedule_rule_is_empty (rule))
+        return NULL;
+
+    parts = g_ptr_array_new_with_free_func (g_free);
 
     if (!xfce_str_is_empty (theme))
         g_ptr_array_add (parts, g_strdup (theme));
 
-    if (g_strcmp0 (color_scheme, "prefer-dark") == 0)
-        g_ptr_array_add (parts, g_strdup (_("dark color scheme")));
-    else if (g_strcmp0 (color_scheme, "prefer-light") == 0)
-        g_ptr_array_add (parts, g_strdup (_("light color scheme")));
-    else if (g_strcmp0 (color_scheme, "default") == 0)
-        g_ptr_array_add (parts, g_strdup (_("default color scheme")));
-
-    n_more = !xfce_str_is_empty (rule[THEME_SCHEDULE_ICON_THEME])
-             + !xfce_str_is_empty (rule[THEME_SCHEDULE_CURSOR_THEME])
-             + !xfce_str_is_empty (rule[THEME_SCHEDULE_COMMAND]);
-    if (n_more > 0)
-        g_ptr_array_add (parts, g_strdup_printf (g_dngettext (GETTEXT_PACKAGE, "%d more action", "%d more actions", n_more), n_more));
-
-    if (parts->len > 0)
+    /* the color scheme usually goes with the theme, so it is only shown if it does not */
+    if (!xfce_str_is_empty (color_scheme)
+        && (xfce_str_is_empty (theme)
+            || theme_utils_theme_is_dark (theme) != (g_strcmp0 (color_scheme, "prefer-dark") == 0)))
     {
-        g_ptr_array_add (parts, NULL);
-        text = g_strjoinv (", ", (gchar **) parts->pdata);
+        if (g_strcmp0 (color_scheme, "prefer-dark") == 0)
+            g_ptr_array_add (parts, g_strdup (_("dark color scheme")));
+        else if (g_strcmp0 (color_scheme, "prefer-light") == 0)
+            g_ptr_array_add (parts, g_strdup (_("light color scheme")));
+        else
+            g_ptr_array_add (parts, g_strdup (_("default color scheme")));
     }
-    else if (!xfce_str_is_empty (theme) || !xfce_str_is_empty (color_scheme))
-        text = g_strdup (_("no change"));
 
+    if (!xfce_str_is_empty (rule[THEME_SCHEDULE_ICON_THEME]))
+        /* TRANSLATORS: the icon theme a rule sets */
+        g_ptr_array_add (parts, g_strdup_printf (_("icons: %s"), rule[THEME_SCHEDULE_ICON_THEME]));
+
+    if (!xfce_str_is_empty (rule[THEME_SCHEDULE_CURSOR_THEME]))
+        /* TRANSLATORS: the mouse cursor theme a rule sets */
+        g_ptr_array_add (parts, g_strdup_printf (_("cursor: %s"), rule[THEME_SCHEDULE_CURSOR_THEME]));
+
+    if (!xfce_str_is_empty (rule[THEME_SCHEDULE_COMMAND]))
+        /* TRANSLATORS: a rule runs a shell command, its text is in the tooltip */
+        g_ptr_array_add (parts, g_strdup (_("command")));
+
+    g_ptr_array_add (parts, NULL);
+    text = g_strjoinv (", ", (gchar **) parts->pdata);
     g_ptr_array_unref (parts);
+
+    return text;
+}
+
+/* all settings of @rule, one per line, for its tooltip; NULL if the rule does nothing */
+static gchar *
+schedule_rule_tooltip (gchar **rule)
+{
+    GPtrArray *lines;
+    const gchar *color_scheme = rule[THEME_SCHEDULE_COLOR_SCHEME];
+    gchar *text;
+
+    if (schedule_rule_is_empty (rule))
+        return NULL;
+
+    lines = g_ptr_array_new_with_free_func (g_free);
+
+    if (!xfce_str_is_empty (rule[THEME_SCHEDULE_THEME]))
+    {
+        g_ptr_array_add (lines, g_strdup_printf (_("Theme: %s"), rule[THEME_SCHEDULE_THEME]));
+        if (g_strcmp0 (rule[THEME_SCHEDULE_XFWM4], "true") == 0)
+            g_ptr_array_add (lines, g_strdup (_("Window manager theme: the matching one")));
+    }
+
+    if (!xfce_str_is_empty (color_scheme))
+        g_ptr_array_add (lines, g_strdup_printf (_("Color scheme: %s"),
+                                                 g_strcmp0 (color_scheme, "prefer-dark") == 0    ? _("Dark")
+                                                 : g_strcmp0 (color_scheme, "prefer-light") == 0 ? _("Light")
+                                                                                                 : _("Default")));
+
+    if (!xfce_str_is_empty (rule[THEME_SCHEDULE_ICON_THEME]))
+        g_ptr_array_add (lines, g_strdup_printf (_("Icon theme: %s"), rule[THEME_SCHEDULE_ICON_THEME]));
+
+    if (!xfce_str_is_empty (rule[THEME_SCHEDULE_CURSOR_THEME]))
+        g_ptr_array_add (lines, g_strdup_printf (_("Mouse cursor theme: %s"), rule[THEME_SCHEDULE_CURSOR_THEME]));
+
+    if (!xfce_str_is_empty (rule[THEME_SCHEDULE_COMMAND]))
+        g_ptr_array_add (lines, g_strdup_printf (_("Command: %s"), rule[THEME_SCHEDULE_COMMAND]));
+
+    g_ptr_array_add (lines, NULL);
+    text = g_strjoinv ("\n", (gchar **) lines->pdata);
+    g_ptr_array_unref (lines);
 
     return text;
 }
@@ -1909,20 +1973,25 @@ static void
 schedule_set_rule (gint index,
                    gchar **rule)
 {
-    gchar *markup;
+    gchar *summary, *tooltip, *markup;
 
     for (guint c = 0; c < N_THEME_SCHEDULE_FIELDS; c++)
         xfce_item_list_store_set (schedule.store, index, SCHEDULE_COLUMN (c), rule[c] != NULL ? rule[c] : "", -1);
 
-    /* like the lists of the Style and Icons tabs: time in bold, theme below */
-    markup = g_markup_printf_escaped ("<b>%s</b>\n%s", rule[THEME_SCHEDULE_TIME],
-                                      !xfce_str_is_empty (rule[THEME_SCHEDULE_THEME]) ? rule[THEME_SCHEDULE_THEME] : _("No change"));
+    /* like the lists of the Style and Icons tabs: time in bold, what the rule does below,
+     * and everything in the tooltip */
+    summary = schedule_describe_rule (rule);
+    tooltip = schedule_rule_tooltip (rule);
+    markup = g_markup_printf_escaped ("<b>%s</b>\n%s", rule[THEME_SCHEDULE_TIME], summary != NULL ? summary : _("No change"));
     xfce_item_list_store_set (schedule.store, index,
                               XFCE_ITEM_LIST_MODEL_COLUMN_NAME, markup,
+                              XFCE_ITEM_LIST_MODEL_COLUMN_TOOLTIP, tooltip,
                               XFCE_ITEM_LIST_MODEL_COLUMN_EDITABLE, TRUE,
                               -1);
 
     g_free (markup);
+    g_free (tooltip);
+    g_free (summary);
 }
 
 /* adds @rule to the list, which is sorted by time; returns its index */
