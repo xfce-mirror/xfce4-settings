@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-07-30 12:55+0200\n"
+"POT-Creation-Date: 2026-11-06 00:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>, 2014,2016-2026\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/xfce/xfce4-settings/language/zh_CN/)\n"
@@ -38,14 +38,14 @@ msgid "Accessibility"
 msgstr "辅助功能"
 
 #: common/resources/accessibility-dialog.glade:85
-#: common/resources/appearance-dialog.glade:142
+#: common/resources/appearance-dialog.glade:147
 #: common/resources/color-dialog.glade:65
 #: common/resources/display-dialog.glade:290
 #: common/resources/minimal-display-dialog.glade:368
 #: common/resources/profile-changed-dialog.glade:34
 #: common/resources/keyboard-dialog.glade:181
 #: common/resources/mouse-dialog.glade:225
-#: dialogs/display-settings/main.c:3422
+#: dialogs/display-settings/main.c:3424
 #: dialogs/mime-settings/xfce-mime-window.c:184
 #: xfce4-settings-editor/main.c:185
 #: xfce4-settings-manager/xfce-settings-manager-dialog.c:222
@@ -54,7 +54,7 @@ msgstr "关闭(_C)"
 
 #. Add a buttonbox (Help, All Settings, Close) at bottom of the main box
 #: common/resources/accessibility-dialog.glade:100
-#: common/resources/appearance-dialog.glade:126
+#: common/resources/appearance-dialog.glade:131
 #: common/resources/color-dialog.glade:80
 #: common/resources/display-dialog.glade:274
 #: common/resources/keyboard-dialog.glade:196
@@ -268,58 +268,58 @@ msgid "_Mouse"
 msgstr "鼠标(_M)"
 
 #. No assignment option
-#: common/resources/appearance-dialog.glade:39
+#: common/resources/appearance-dialog.glade:44
 #: common/resources/mouse-dialog.glade:63
 #: common/resources/mouse-dialog.glade:126
 #: common/resources/mouse-dialog.glade:152
-#: dialogs/appearance-settings/main.c:1739 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1764 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:745
 msgid "None"
 msgstr "无"
 
-#: common/resources/appearance-dialog.glade:42
+#: common/resources/appearance-dialog.glade:47
 msgid "Slight"
 msgstr "略微"
 
-#: common/resources/appearance-dialog.glade:45
+#: common/resources/appearance-dialog.glade:50
 msgid "Medium"
 msgstr "中度"
 
-#: common/resources/appearance-dialog.glade:48
+#: common/resources/appearance-dialog.glade:53
 msgid "Full"
 msgstr "全部"
 
-#: common/resources/appearance-dialog.glade:59
+#: common/resources/appearance-dialog.glade:64
 msgid "Icons"
 msgstr "图标"
 
-#: common/resources/appearance-dialog.glade:62
+#: common/resources/appearance-dialog.glade:67
 msgid "Text"
 msgstr "文字"
 
-#: common/resources/appearance-dialog.glade:65
+#: common/resources/appearance-dialog.glade:70
 msgid "Text under icons"
 msgstr "文字在图标下"
 
-#: common/resources/appearance-dialog.glade:68
+#: common/resources/appearance-dialog.glade:73
 msgid "Text next to icons"
 msgstr "文字在图标旁"
 
-#: common/resources/appearance-dialog.glade:82
+#: common/resources/appearance-dialog.glade:87
 msgid "1x (no scaling)"
 msgstr "1x (无缩放)"
 
-#: common/resources/appearance-dialog.glade:86
+#: common/resources/appearance-dialog.glade:91
 msgid "2x"
 msgstr "2x"
 
-#: common/resources/appearance-dialog.glade:107
+#: common/resources/appearance-dialog.glade:112
 #: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:4
 msgid "Appearance"
 msgstr "外观"
 
-#: common/resources/appearance-dialog.glade:205
-#: common/resources/appearance-dialog.glade:315
+#: common/resources/appearance-dialog.glade:210
+#: common/resources/appearance-dialog.glade:339
 #: common/resources/color-dialog.glade:374
 #: common/resources/keyboard-dialog.glade:636
 #: common/resources/keyboard-dialog.glade:970
@@ -327,174 +327,182 @@ msgstr "外观"
 msgid "_Add"
 msgstr "添加(_A)"
 
-#: common/resources/appearance-dialog.glade:238
+#: common/resources/appearance-dialog.glade:229
+msgid "What the style changes"
+msgstr "样式发生了什么变化"
+
+#: common/resources/appearance-dialog.glade:233
+msgid "Further Information"
+msgstr "更多信息"
+
+#: common/resources/appearance-dialog.glade:262
 msgid "Set matching <a href=\"xfwm4-settings:\">Xfwm4 theme</a> if there is one"
 msgstr "如有则设置其匹配 <a href=\"xfwm4-settings:\">Xfwm4 主题</a>"
 
-#: common/resources/appearance-dialog.glade:272
+#: common/resources/appearance-dialog.glade:296
 msgid "St_yle"
 msgstr "样式(_Y)"
 
-#: common/resources/appearance-dialog.glade:348
+#: common/resources/appearance-dialog.glade:372
 msgid "_Icons"
 msgstr "图标(_I)"
 
-#: common/resources/appearance-dialog.glade:388
+#: common/resources/appearance-dialog.glade:412
 msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr "此字体将作为绘制用户界面文字所用的默认字体"
 
-#: common/resources/appearance-dialog.glade:390
+#: common/resources/appearance-dialog.glade:414
 msgid "Select a default font"
 msgstr "选择默认字体"
 
-#: common/resources/appearance-dialog.glade:399
+#: common/resources/appearance-dialog.glade:423
 msgid "Default Fon_t"
 msgstr "默认字体(_T)"
 
-#: common/resources/appearance-dialog.glade:431
+#: common/resources/appearance-dialog.glade:455
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr "此字体将用作默认等宽字体，比如用于终端仿真器。"
 
-#: common/resources/appearance-dialog.glade:433
+#: common/resources/appearance-dialog.glade:457
 msgid "Select a default monospace font"
 msgstr "选择默认等宽字体"
 
-#: common/resources/appearance-dialog.glade:442
+#: common/resources/appearance-dialog.glade:466
 msgid "Default _Monospace Font"
 msgstr "默认等宽字体(_M)"
 
-#: common/resources/appearance-dialog.glade:477
+#: common/resources/appearance-dialog.glade:501
 msgid "_Enable anti-aliasing"
 msgstr "启用抗锯齿(_E)"
 
-#: common/resources/appearance-dialog.glade:481
+#: common/resources/appearance-dialog.glade:505
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
 msgstr "抗锯齿或平滑字体会改善屏幕上文字的外观"
 
-#: common/resources/appearance-dialog.glade:509
+#: common/resources/appearance-dialog.glade:533
 msgid "Hintin_g:"
 msgstr "微调(_G)："
 
-#: common/resources/appearance-dialog.glade:521
+#: common/resources/appearance-dialog.glade:545
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr "许多字体包含提供如何最好绘制此字体的额外提示；可以根据自己的喜好挑选最好看的"
 
-#: common/resources/appearance-dialog.glade:541
+#: common/resources/appearance-dialog.glade:565
 msgid "Sub-_pixel order:"
 msgstr "次像素次序(_P)："
 
-#: common/resources/appearance-dialog.glade:553
+#: common/resources/appearance-dialog.glade:577
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr "TFT 或 LCD 显示屏上的字体质量能通过选择适当的屏幕次像素次序极大地改善"
 
-#: common/resources/appearance-dialog.glade:591
+#: common/resources/appearance-dialog.glade:615
 msgid "Rendering"
 msgstr "渲染"
 
-#: common/resources/appearance-dialog.glade:623
+#: common/resources/appearance-dialog.glade:647
 msgid "Custom _DPI setting:"
 msgstr "自定义 DPI 设置(_D)："
 
-#: common/resources/appearance-dialog.glade:627
+#: common/resources/appearance-dialog.glade:651
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr "如果字体太大或太小则忽略显示器的分辨率"
 
-#: common/resources/appearance-dialog.glade:664
+#: common/resources/appearance-dialog.glade:688
 msgid "DPI"
 msgstr "DPI"
 
-#: common/resources/appearance-dialog.glade:690
+#: common/resources/appearance-dialog.glade:714
 msgid "_Fonts"
 msgstr "字体(_F)"
 
-#: common/resources/appearance-dialog.glade:733
+#: common/resources/appearance-dialog.glade:757
 msgid "Show images on _buttons"
 msgstr "在按钮上显示图片(_B)"
 
-#: common/resources/appearance-dialog.glade:737
+#: common/resources/appearance-dialog.glade:761
 msgid "Specify whether icons should be displayed next to text in buttons"
 msgstr "指定是否在按钮中文字的旁边显示图标"
 
-#: common/resources/appearance-dialog.glade:750
+#: common/resources/appearance-dialog.glade:774
 msgid "Show images in _menus"
 msgstr "在菜单中显示图片(_M)"
 
-#: common/resources/appearance-dialog.glade:754
+#: common/resources/appearance-dialog.glade:778
 msgid "Specify whether icons should be displayed next to items in menus"
 msgstr "指定是否在菜单中项目的旁边显示图标"
 
-#: common/resources/appearance-dialog.glade:767
+#: common/resources/appearance-dialog.glade:791
 msgid "Enable e_ditable accelerators"
 msgstr "启用可编辑快捷键(_D)"
 
-#: common/resources/appearance-dialog.glade:771
+#: common/resources/appearance-dialog.glade:795
 msgid ""
 "If selected, keyboard shortcuts for menu items can be changed by hovering "
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr "选中后，将鼠标停在菜单项目上然后按新的按键组合可更改此菜单项目的键盘快捷键"
 
-#: common/resources/appearance-dialog.glade:784
+#: common/resources/appearance-dialog.glade:808
 msgid "Enable header bars in dialo_gs"
 msgstr "在对话框中启用标题栏(_G)"
 
-#: common/resources/appearance-dialog.glade:788
+#: common/resources/appearance-dialog.glade:812
 msgid ""
 "Defines whether GTK dialogs may place widgets such as buttons in the "
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr "定义 GTK 对话方块是否可在对话框的标题栏里放置如按钮等的控制元件。隐含在客户端装饰中。仅影响新开启的对话框。"
 
-#: common/resources/appearance-dialog.glade:807
+#: common/resources/appearance-dialog.glade:831
 msgid "Menus and Buttons"
 msgstr "菜单和按钮"
 
-#: common/resources/appearance-dialog.glade:839
+#: common/resources/appearance-dialog.glade:863
 msgid "Enable _event sounds"
 msgstr "启用事件声音(_E)"
 
-#: common/resources/appearance-dialog.glade:843
+#: common/resources/appearance-dialog.glade:867
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr "全局启用或禁用事件声音(需要 “Canberra” 支持)"
 
-#: common/resources/appearance-dialog.glade:856
+#: common/resources/appearance-dialog.glade:880
 msgid "Enable input feedbac_k sounds"
 msgstr "启用输入回声(_K)"
 
-#: common/resources/appearance-dialog.glade:860
+#: common/resources/appearance-dialog.glade:884
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr "指定在鼠标点击和其它用户输入时是否播放事件声音"
 
-#: common/resources/appearance-dialog.glade:878
+#: common/resources/appearance-dialog.glade:902
 msgid "Sound _theme:"
 msgstr "声音主题(_T):"
 
-#: common/resources/appearance-dialog.glade:902
+#: common/resources/appearance-dialog.glade:926
 msgid "Event sounds"
 msgstr "事件声音"
 
-#: common/resources/appearance-dialog.glade:931
+#: common/resources/appearance-dialog.glade:955
 msgid "Adjust the system-wide display scaling"
 msgstr "调整系统全局显示缩放"
 
-#: common/resources/appearance-dialog.glade:949
+#: common/resources/appearance-dialog.glade:973
 msgid "_Window Scaling"
 msgstr "窗口缩放(_W)"
 
-#: common/resources/appearance-dialog.glade:977
+#: common/resources/appearance-dialog.glade:1001
 msgid "Setti_ngs"
 msgstr "设置(_N)"
 
@@ -561,7 +569,7 @@ msgstr "添加配置文件到设备"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1478 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1501 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:102
 #: dialogs/keyboard-settings/command-dialog.c:265
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:419
@@ -637,7 +645,7 @@ msgid "The primary display can be configured to show:"
 msgstr "主显示器可以配置为显示："
 
 #: common/resources/display-dialog.glade:171
-#: dialogs/display-settings/main.c:1674
+#: dialogs/display-settings/main.c:1673
 msgid "Xfce Panel"
 msgstr "Xfce 面板"
 
@@ -1015,7 +1023,7 @@ msgstr "顺时针"
 msgid "Counterclockwise"
 msgstr "逆时针"
 
-#: common/resources/mouse-dialog.glade:208 dialogs/mouse-settings/main.c:1853
+#: common/resources/mouse-dialog.glade:208 dialogs/mouse-settings/main.c:1852
 #: dialogs/mouse-settings/xfce4-mouse-settings.desktop.in:4
 msgid "Mouse and Touchpad"
 msgstr "鼠标和触摸板"
@@ -1282,7 +1290,7 @@ msgstr "未能查询正在使用的 RandR 扩展的版本"
 msgid "Laptop"
 msgstr "笔记本电脑"
 
-#: dialogs/accessibility-settings/main.c:36
+#: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
@@ -1290,7 +1298,7 @@ msgstr "笔记本电脑"
 msgid "Settings manager socket"
 msgstr "设置管理器套接字"
 
-#: dialogs/accessibility-settings/main.c:36
+#: dialogs/accessibility-settings/main.c:46
 #: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
@@ -1298,41 +1306,41 @@ msgstr "设置管理器套接字"
 msgid "SOCKET ID"
 msgstr "套接字 ID"
 
-#: dialogs/accessibility-settings/main.c:37
+#: dialogs/accessibility-settings/main.c:48
 #: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:103
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:94
+#: xfsettingsd/main.c:95
 msgid "Version information"
 msgstr "版本信息"
 
-#: dialogs/accessibility-settings/main.c:191
-#: dialogs/appearance-settings/main.c:1855 dialogs/color-settings/main.c:1463
-#: dialogs/display-settings/main.c:3370 dialogs/keyboard-settings/main.c:89
+#: dialogs/accessibility-settings/main.c:214
+#: dialogs/appearance-settings/main.c:1880 dialogs/color-settings/main.c:1463
+#: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
-#: dialogs/mouse-settings/main.c:1806 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:249
+#: dialogs/mouse-settings/main.c:1805 xfce4-settings-editor/main.c:118
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:271
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "输入 ‘%s --help’ 获取用法。"
 
-#: dialogs/accessibility-settings/main.c:210
-#: dialogs/appearance-settings/main.c:1874 dialogs/color-settings/main.c:1482
-#: dialogs/display-settings/main.c:3389 dialogs/keyboard-settings/main.c:105
-#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1825
+#: dialogs/accessibility-settings/main.c:233
+#: dialogs/appearance-settings/main.c:1899 dialogs/color-settings/main.c:1482
+#: dialogs/display-settings/main.c:3391 dialogs/keyboard-settings/main.c:105
+#: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1824
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:265
+#: xfsettingsd/main.c:287
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce 开发团队。保留所有权利。"
 
-#: dialogs/accessibility-settings/main.c:211
-#: dialogs/appearance-settings/main.c:1875 dialogs/color-settings/main.c:1483
-#: dialogs/display-settings/main.c:3390 dialogs/keyboard-settings/main.c:106
-#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1826
+#: dialogs/accessibility-settings/main.c:234
+#: dialogs/appearance-settings/main.c:1900 dialogs/color-settings/main.c:1483
+#: dialogs/display-settings/main.c:3392 dialogs/keyboard-settings/main.c:106
+#: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1825
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:266
+#: xfsettingsd/main.c:288
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "请向 <%s> 报告缺陷。"
@@ -1407,30 +1415,37 @@ msgstr "未知错误，退出代码是 %d"
 msgid "Failed to install theme"
 msgstr "无法安装主题"
 
-#: dialogs/appearance-settings/main.c:1476
+#: dialogs/appearance-settings/main.c:1469
+msgid ""
+"The theme used for Xfce and other GTK applications. Some themes only affect GTK2/GTK3 applications, other themes as well affect GTK4 applications. Additional themes e.g. can be installed by the package manager of your distribution.\n"
+"\n"
+"Choosing a dark theme will set a GTK \"prefer-dark\" setting. Foreign applications can follow that setting, though not all of them will do so, depending on the used toolkit and the application preferences."
+msgstr "用于 Xfce 和其他 GTK 应用程序的主题。有些主题只影响 GTK2/GTK3 应用程序，其他主题也影响 GTK4 应用程序。使用您的发行版的包管理器也可以安装其他主题。\n\n选择深色主题将设置 GTK “偏好深色” 设置。外部应用程序可以遵循该设置，但并非所有应用程序都会这样做，具体取决于使用的工具包和应用程序首选项。"
+
+#: dialogs/appearance-settings/main.c:1499
 #, c-format
 msgid "Install %s theme"
 msgstr "安装 %s 主题"
 
-#: dialogs/appearance-settings/main.c:1479
+#: dialogs/appearance-settings/main.c:1502
 #: dialogs/keyboard-settings/command-dialog.c:266
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:420
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: dialogs/appearance-settings/main.c:1743
+#: dialogs/appearance-settings/main.c:1768
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1747
+#: dialogs/appearance-settings/main.c:1772
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1751
+#: dialogs/appearance-settings/main.c:1776
 msgid "Vertical RGB"
 msgstr "竖直 RGB"
 
-#: dialogs/appearance-settings/main.c:1755
+#: dialogs/appearance-settings/main.c:1780
 msgid "Vertical BGR"
 msgstr "竖直 BGR"
 
@@ -1647,20 +1662,20 @@ msgstr "绝不能禁用上一个活动输出，否则系统将不可用。"
 msgid "Selected output not disabled"
 msgstr "未禁用选中的输出"
 
-#: dialogs/display-settings/main.c:1610
+#: dialogs/display-settings/main.c:1609
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
 msgstr "您真的要删除显示配置文件 '%s'吗?"
 
-#: dialogs/display-settings/main.c:1613
+#: dialogs/display-settings/main.c:1612
 msgid "Delete Profile"
 msgstr "删除配置文件"
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1613
 msgid "Once a display profile is deleted it cannot be restored."
 msgstr "一旦删除显示配置文件后，将无法恢复。"
 
-#: dialogs/display-settings/main.c:1614
+#: dialogs/display-settings/main.c:1613
 #: dialogs/mime-settings/xfce-mime-chooser.c:126
 #: dialogs/mime-settings/xfce-mime-chooser.c:371
 #: dialogs/mime-settings/xfce-mime-window.c:1289
@@ -1668,23 +1683,23 @@ msgstr "一旦删除显示配置文件后，将无法恢复。"
 msgid "Cancel"
 msgstr "取消"
 
-#: dialogs/display-settings/main.c:1615
+#: dialogs/display-settings/main.c:1614
 msgid "Delete"
 msgstr "删除"
 
-#: dialogs/display-settings/main.c:1700
+#: dialogs/display-settings/main.c:1699
 #, c-format
 msgid "%d Xfce Panel"
 msgid_plural "%d Xfce Panels"
 msgstr[0] "%dXfce 面板"
 
-#: dialogs/display-settings/main.c:2484
+#: dialogs/display-settings/main.c:2483
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr "选取一个屏幕以改变其属性；拖曳以重新排列其位置。"
 
-#: dialogs/display-settings/main.c:2583 dialogs/display-settings/main.c:2613
+#: dialogs/display-settings/main.c:2582 dialogs/display-settings/main.c:2613
 #, c-format
 msgid "(%i, %i)"
 msgstr "(%i, %i)"
@@ -1693,23 +1708,23 @@ msgstr "(%i, %i)"
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
 #. * used as an adjective, not as a verb.  For example, the Spanish
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
-#: dialogs/display-settings/main.c:2830
+#: dialogs/display-settings/main.c:2832
 msgid "Mirror Screens"
 msgstr "镜像屏幕"
 
-#: dialogs/display-settings/main.c:2880
+#: dialogs/display-settings/main.c:2882
 msgid "(Disabled)"
 msgstr "(已停用)"
 
-#: dialogs/display-settings/main.c:3416
+#: dialogs/display-settings/main.c:3418
 msgid "ATI Settings"
 msgstr "ATI 设置"
 
-#: dialogs/display-settings/main.c:3421
+#: dialogs/display-settings/main.c:3423
 msgid "Unable to start the Xfce Display Settings"
 msgstr "未能启动 Xfce 显示设置"
 
-#: dialogs/display-settings/main.c:3429
+#: dialogs/display-settings/main.c:3431
 msgid "Unable to launch the proprietary driver settings"
 msgstr "未能启动非自由驱动设置"
 
@@ -1722,11 +1737,11 @@ msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;显示;设置;屏幕;分辨率;刷新;速率;旋转;外部;投影仪;显示器;"
 
-#: dialogs/display-settings/display-settings.c:459
+#: dialogs/display-settings/display-settings.c:457
 msgid "Display:"
 msgstr "显示:"
 
-#: dialogs/display-settings/display-settings.c:467
+#: dialogs/display-settings/display-settings.c:465
 msgid "Resolution:"
 msgstr "分辨率："
 
@@ -2679,11 +2694,11 @@ msgstr "%g 毫秒"
 msgid "%.1f s"
 msgstr "%.1f s"
 
-#: dialogs/mouse-settings/main.c:1853
+#: dialogs/mouse-settings/main.c:1852
 msgid "Unable to start"
 msgstr "未能启动"
 
-#: dialogs/mouse-settings/main.c:1853
+#: dialogs/mouse-settings/main.c:1852
 msgid "Quit"
 msgstr "退出"
 
@@ -2749,8 +2764,8 @@ msgid "Edit selected property"
 msgstr "编辑选中的属性"
 
 #: xfce4-settings-editor/xfce-settings-editor-box.c:381
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1067
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1589
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1066
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1588
 msgid "_Reset"
 msgstr "重置(_R)"
 
@@ -2788,54 +2803,54 @@ msgstr "真假值"
 msgid "Double"
 msgstr "双精度"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:842
+#: xfce4-settings-editor/xfce-settings-editor-box.c:841
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr "重置频道会永远移除那些自定义设置。"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:850
+#: xfce4-settings-editor/xfce-settings-editor-box.c:849
 msgid "_Reset Channel"
 msgstr "重置频道(_R)"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:851
+#: xfce4-settings-editor/xfce-settings-editor-box.c:850
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
 msgstr "您确定要重置 “%s” 频道和它的所有属性吗？"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:926
+#: xfce4-settings-editor/xfce-settings-editor-box.c:925
 msgid "reset"
 msgstr "重置"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:983
+#: xfce4-settings-editor/xfce-settings-editor-box.c:982
 #, c-format
 msgid "Monitor %s"
 msgstr "显示器 %s"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:991
+#: xfce4-settings-editor/xfce-settings-editor-box.c:990
 msgid "Clear"
 msgstr "清除"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:991
+#: xfce4-settings-editor/xfce-settings-editor-box.c:990
 msgid "Close"
 msgstr "关闭"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1024
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1023
 #, c-format
 msgid "start monitoring channel \"%s\""
 msgstr "开始监视频道 “%s”"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1073
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1072
 msgid "_Monitor"
 msgstr "显示器(_M)"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1083
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1082
 msgid "Refresh"
 msgstr "刷新"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1586
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1585
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr "重置属性会永远移除那些自定义设置。"
 
-#: xfce4-settings-editor/xfce-settings-editor-box.c:1590
+#: xfce4-settings-editor/xfce-settings-editor-box.c:1589
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
 msgstr "您确定要重置属性 “%s” 吗？"
@@ -2987,19 +3002,19 @@ msgstr "反弹键"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "无法启动 “%s” 快捷键"
 
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:96
 msgid "Fork to the background"
 msgstr "转入后台"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:97
 msgid "Do not wait for a window manager on startup"
 msgstr "启动时不要等待窗口管理器"
 
-#: xfsettingsd/main.c:97
+#: xfsettingsd/main.c:98
 msgid "Replace running xsettings daemon (if any)"
 msgstr "取代正在运行的 xsettings 守护进程(如果有)"
 
-#: xfsettingsd/main.c:98
+#: xfsettingsd/main.c:99
 msgid "Allow xfsettingsd to start even if another instance is running"
 msgstr "即使有另一个 xfsettingsd 实例运行时，也能启动"
 
