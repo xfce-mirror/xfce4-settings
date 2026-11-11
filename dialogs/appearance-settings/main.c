@@ -105,8 +105,6 @@ static GSettings *xapps_portal_gsettings;
 static struct
 {
     XfceItemListStore *store; /* the rules, see SCHEDULE_COLUMN */
-    GtkTreeModel *themes; /* the Gtk theme list of the Style tab */
-    GtkTreeModel *icon_themes; /* the list of the Icons tab */
     GtkWidget *view;
     GtkWidget *status_label;
 } schedule;
@@ -2158,49 +2156,6 @@ schedule_time_spin_new (gint max)
     return spin;
 }
 
-static gint
-schedule_compare_names (gconstpointer a,
-                        gconstpointer b)
-{
-    return g_utf8_collate (*(const gchar **) a, *(const gchar **) b);
-}
-
-/* the installed cursor themes, sorted */
-static GPtrArray *
-schedule_list_cursor_themes (void)
-{
-    GPtrArray *themes = g_ptr_array_new_with_free_func (g_free);
-    gchar **dirs;
-
-    dirs = theme_utils_get_theme_dirs (XFCE_RESOURCE_ICONS, "icons");
-
-    for (guint i = 0; dirs[i] != NULL; i++)
-    {
-        GDir *dir = g_dir_open (dirs[i], 0, NULL);
-        const gchar *entry;
-
-        if (dir == NULL)
-            continue;
-
-        while ((entry = g_dir_read_name (dir)) != NULL)
-        {
-            gchar *path = g_build_filename (dirs[i], entry, "cursors", NULL);
-
-            if (g_file_test (path, G_FILE_TEST_IS_DIR)
-                && !g_ptr_array_find_with_equal_func (themes, entry, g_str_equal, NULL))
-                g_ptr_array_add (themes, g_strdup (entry));
-            g_free (path);
-        }
-
-        g_dir_close (dir);
-    }
-
-    g_strfreev (dirs);
-    g_ptr_array_sort (themes, schedule_compare_names);
-
-    return themes;
-}
-
 /* selects @id in @combo, adding it if it is not listed (e.g. uninstalled) */
 static void
 schedule_combo_set_active_id (GtkComboBoxText *combo,
@@ -2308,7 +2263,8 @@ cb_schedule_dialog_theme_changed (GtkComboBox *theme_combo,
 
 /* the dialog of the rule at @index, or of a new rule if -1 */
 static void
-schedule_edit_rule (gint index,
+schedule_edit_rule (GtkBuilder *builder,
+                    gint index,
                     gchar **rule)
 {
     GtkWidget *dialog, *grid, *box, *label, *error_label;
@@ -2348,7 +2304,8 @@ schedule_edit_rule (gint index,
     /* theme and color scheme */
     theme_combo = schedule_combo_new ();
     gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (theme_combo), "", _("No change"));
-    schedule_combo_append_themes (GTK_COMBO_BOX_TEXT (theme_combo), schedule.themes);
+    schedule_combo_append_themes (GTK_COMBO_BOX_TEXT (theme_combo),
+                                  gtk_tree_view_get_model (GTK_TREE_VIEW (gtk_builder_get_object (builder, "gtk_theme_treeview"))));
     schedule_combo_set_active_id (GTK_COMBO_BOX_TEXT (theme_combo), rule[THEME_SCHEDULE_THEME]);
     schedule_grid_label (GTK_GRID (grid), row++, _("T_heme:"), theme_combo, _("The theme of Xfce and GTK 3 applications, as on the Style tab."));
 
@@ -2376,7 +2333,8 @@ schedule_edit_rule (gint index,
 
     /* icon theme, by default the current one */
     icon_combo = schedule_combo_new ();
-    schedule_combo_append_themes (GTK_COMBO_BOX_TEXT (icon_combo), schedule.icon_themes);
+    schedule_combo_append_themes (GTK_COMBO_BOX_TEXT (icon_combo),
+                                  gtk_tree_view_get_model (GTK_TREE_VIEW (gtk_builder_get_object (builder, "icon_theme_treeview"))));
     current = xfconf_channel_get_string (xsettings_channel, "/Net/IconThemeName", "Rodent");
     schedule_combo_set_active_id (GTK_COMBO_BOX_TEXT (icon_combo),
                                   !xfce_str_is_empty (rule[THEME_SCHEDULE_ICON_THEME]) ? rule[THEME_SCHEDULE_ICON_THEME] : current);
@@ -2386,7 +2344,7 @@ schedule_edit_rule (gint index,
 
     /* cursor theme */
     cursor_combo = schedule_combo_new ();
-    cursor_themes = schedule_list_cursor_themes ();
+    cursor_themes = theme_utils_list_cursor_themes ();
     for (guint i = 0; i < cursor_themes->len; i++)
         gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (cursor_combo),
                                    g_ptr_array_index (cursor_themes, i), g_ptr_array_index (cursor_themes, i));
@@ -2476,18 +2434,20 @@ schedule_edit_rule (gint index,
 
 static gboolean
 cb_schedule_edit_item (XfceItemListView *view,
-                       gint index)
+                       gint index,
+                       GtkBuilder *builder)
 {
     gchar **rule = schedule_get_rule (index);
 
-    schedule_edit_rule (index, rule);
+    schedule_edit_rule (builder, index, rule);
     g_strfreev (rule);
 
     return TRUE;
 }
 
 static gboolean
-cb_schedule_add_item (XfceItemListView *view)
+cb_schedule_add_item (XfceItemListView *view,
+                      GtkBuilder *builder)
 {
     gchar *rule[N_THEME_SCHEDULE_FIELDS + 1] = { NULL };
     GDateTime *now;
@@ -2509,7 +2469,7 @@ cb_schedule_add_item (XfceItemListView *view)
     rule[THEME_SCHEDULE_ICON_THEME] = "";
     rule[THEME_SCHEDULE_CURSOR_THEME] = "";
     rule[THEME_SCHEDULE_COMMAND] = command;
-    schedule_edit_rule (-1, rule);
+    schedule_edit_rule (builder, -1, rule);
 
     g_free (command);
     g_free (message);
@@ -2544,9 +2504,6 @@ appearance_settings_dialog_configure_schedule (GtkBuilder *builder)
     GtkWidget *page, *box, *label, *toggle, *rules_box;
     GtkTreeViewColumn *column;
     GObject *notebook;
-
-    schedule.themes = gtk_tree_view_get_model (GTK_TREE_VIEW (gtk_builder_get_object (builder, "gtk_theme_treeview")));
-    schedule.icon_themes = gtk_tree_view_get_model (GTK_TREE_VIEW (gtk_builder_get_object (builder, "icon_theme_treeview")));
 
     schedule.store = xfce_item_list_store_new (SCHEDULE_COLUMN (N_THEME_SCHEDULE_FIELDS),
                                                G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
@@ -2585,8 +2542,8 @@ appearance_settings_dialog_configure_schedule (GtkBuilder *builder)
     g_object_unref (schedule.store);
     xfce_item_list_view_set_label_visibility (XFCE_ITEM_LIST_VIEW (schedule.view), TRUE);
     gtk_widget_set_vexpand (schedule.view, TRUE);
-    g_signal_connect (schedule.view, "add-item", G_CALLBACK (cb_schedule_add_item), NULL);
-    g_signal_connect (schedule.view, "edit-item", G_CALLBACK (cb_schedule_edit_item), NULL);
+    g_signal_connect (schedule.view, "add-item", G_CALLBACK (cb_schedule_add_item), builder);
+    g_signal_connect (schedule.view, "edit-item", G_CALLBACK (cb_schedule_edit_item), builder);
     g_signal_connect (schedule.view, "remove-items", G_CALLBACK (cb_schedule_remove_items), NULL);
     gtk_box_pack_start (GTK_BOX (rules_box), schedule.view, TRUE, TRUE, 0);
 

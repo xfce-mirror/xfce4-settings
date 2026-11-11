@@ -99,3 +99,50 @@ theme_utils_theme_is_dark (const gchar *theme_name)
 
     return dark;
 }
+
+
+
+static gint
+theme_utils_compare_names (gconstpointer a,
+                           gconstpointer b)
+{
+    return g_utf8_collate (*(const gchar **) a, *(const gchar **) b);
+}
+
+
+
+/* the names of the installed cursor themes, sorted; free with g_ptr_array_unref() */
+GPtrArray *
+theme_utils_list_cursor_themes (void)
+{
+    GPtrArray *themes = g_ptr_array_new_with_free_func (g_free);
+    gchar **dirs;
+
+    dirs = theme_utils_get_theme_dirs (XFCE_RESOURCE_ICONS, "icons");
+
+    for (guint i = 0; dirs[i] != NULL; i++)
+    {
+        GDir *dir = g_dir_open (dirs[i], 0, NULL);
+        const gchar *entry;
+
+        if (dir == NULL)
+            continue;
+
+        while ((entry = g_dir_read_name (dir)) != NULL)
+        {
+            gchar *path = g_build_filename (dirs[i], entry, "cursors", NULL);
+
+            if (g_file_test (path, G_FILE_TEST_IS_DIR)
+                && !g_ptr_array_find_with_equal_func (themes, entry, g_str_equal, NULL))
+                g_ptr_array_add (themes, g_strdup (entry));
+            g_free (path);
+        }
+
+        g_dir_close (dir);
+    }
+
+    g_strfreev (dirs);
+    g_ptr_array_sort (themes, theme_utils_compare_names);
+
+    return themes;
+}

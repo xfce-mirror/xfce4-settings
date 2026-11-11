@@ -18,7 +18,8 @@
 
 /*
  * Shared by the appearance dialog and xfsettingsd: where the themes are
- * installed, the matching xfwm4 theme and whether a theme is a dark one.
+ * installed, the matching xfwm4 theme, whether a theme is a dark one and
+ * the installed cursor themes.
  */
 
 #ifndef __THEME_UTILS_H__
@@ -43,6 +44,9 @@ theme_utils_set_matching_xfwm4_theme (const gchar *theme_name);
 
 gboolean
 theme_utils_theme_is_dark (const gchar *theme_name);
+
+GPtrArray *
+theme_utils_list_cursor_themes (void);
 
 /* The theme schedule of the Style tab, applied by xfsettingsd. The rules are
  * stored in the xsettings channel as one string array per field, see
