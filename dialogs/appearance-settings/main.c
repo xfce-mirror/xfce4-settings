@@ -1840,27 +1840,6 @@ appearance_settings_dialog_configure_widgets (GtkBuilder *builder)
 #endif
 }
 
-/* "HH:MM" -> minutes since midnight, or -1 if invalid */
-static gint
-schedule_parse_time (const gchar *str)
-{
-    guint64 hours, minutes;
-    gchar *end;
-
-    if (str == NULL || !g_ascii_isdigit (*str))
-        return -1;
-
-    hours = g_ascii_strtoull (str, &end, 10);
-    if (*end != ':' || !g_ascii_isdigit (end[1]))
-        return -1;
-
-    minutes = g_ascii_strtoull (end + 1, &end, 10);
-    if (*end != '\0' || hours > 23 || minutes > 59)
-        return -1;
-
-    return hours * 60 + minutes;
-}
-
 /* the value of setting @column of the rule at @index, never NULL */
 static gchar *
 schedule_get_value (gint index,
@@ -1953,7 +1932,7 @@ static gint
 schedule_insert_rule (gchar **rule)
 {
     gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
-    gint minutes_since_midnight = schedule_parse_time (rule[THEME_SCHEDULE_TIME]);
+    gint minutes_since_midnight = theme_utils_parse_schedule_time (rule[THEME_SCHEDULE_TIME]);
     gint index;
 
     /* Place the new rule into the correct time spot: before the first rule
@@ -1961,7 +1940,7 @@ schedule_insert_rule (gchar **rule)
     for (index = 0; index < n_items; index++)
     {
         gchar *time_str = schedule_get_value (index, THEME_SCHEDULE_TIME);
-        gboolean later = schedule_parse_time (time_str) > minutes_since_midnight;
+        gboolean later = theme_utils_parse_schedule_time (time_str) > minutes_since_midnight;
 
         g_free (time_str);
         if (later)
@@ -2003,7 +1982,7 @@ schedule_update_status_label (void)
     for (gint i = 0; i < n_items; i++)
     {
         gchar **rule = schedule_get_rule (i);
-        gint minutes_since_midnight = schedule_parse_time (rule[THEME_SCHEDULE_TIME]);
+        gint minutes_since_midnight = theme_utils_parse_schedule_time (rule[THEME_SCHEDULE_TIME]);
         gchar *description = schedule_describe_rule (rule);
 
         if (minutes_since_midnight >= 0 && description != NULL)
@@ -2122,7 +2101,7 @@ schedule_time_taken (gint minutes_since_midnight,
     {
         gchar *time_str = schedule_get_value (i, THEME_SCHEDULE_TIME);
 
-        taken = i != except_index && schedule_parse_time (time_str) == minutes_since_midnight;
+        taken = i != except_index && theme_utils_parse_schedule_time (time_str) == minutes_since_midnight;
         g_free (time_str);
     }
 
@@ -2288,7 +2267,7 @@ schedule_edit_rule (GtkBuilder *builder,
     gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), grid, TRUE, TRUE, 0);
 
     /* time */
-    minutes_since_midnight = MAX (schedule_parse_time (rule[THEME_SCHEDULE_TIME]), 0);
+    minutes_since_midnight = MAX (theme_utils_parse_schedule_time (rule[THEME_SCHEDULE_TIME]), 0);
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     hour_spin = schedule_time_spin_new (23);
     gtk_spin_button_set_value (GTK_SPIN_BUTTON (hour_spin), minutes_since_midnight / 60);

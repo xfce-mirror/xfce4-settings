@@ -146,3 +146,26 @@ theme_utils_list_cursor_themes (void)
 
     return themes;
 }
+
+
+
+/* the time of a schedule rule, "HH:MM", in minutes since midnight, or -1 if invalid */
+gint
+theme_utils_parse_schedule_time (const gchar *str)
+{
+    guint64 hours, minutes;
+    gchar *end;
+
+    if (str == NULL || !g_ascii_isdigit (*str))
+        return -1;
+
+    hours = g_ascii_strtoull (str, &end, 10);
+    if (*end != ':' || !g_ascii_isdigit (end[1]))
+        return -1;
+
+    minutes = g_ascii_strtoull (end + 1, &end, 10);
+    if (*end != '\0' || hours > 23 || minutes > 59)
+        return -1;
+
+    return hours * 60 + minutes;
+}

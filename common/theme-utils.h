@@ -69,6 +69,9 @@ typedef enum
 
 extern const gchar *const theme_schedule_properties[N_THEME_SCHEDULE_FIELDS];
 
+gint
+theme_utils_parse_schedule_time (const gchar *str);
+
 G_END_DECLS
 
 #endif /* !__THEME_UTILS_H__ */

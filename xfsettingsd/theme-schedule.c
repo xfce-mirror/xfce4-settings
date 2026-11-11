@@ -153,44 +153,6 @@ xfce_theme_schedule_helper_finalize (GObject *object)
 
 
 
-/* "HH:MM" -> minutes since midnight, or -1 if invalid */
-static gint
-xfce_theme_schedule_parse_time (const gchar *str)
-{
-    guint64 hours, minutes;
-    gchar *end;
-
-    if (str == NULL || !g_ascii_isdigit (*str))
-        return -1;
-
-    hours = g_ascii_strtoull (str, &end, 10);
-    if (*end != ':' || !g_ascii_isdigit (end[1]))
-        return -1;
-
-    minutes = g_ascii_strtoull (end + 1, &end, 10);
-    if (*end != '\0' || hours > 23 || minutes > 59)
-        return -1;
-
-    return hours * 60 + minutes;
-}
-
-
-
-/* sets @property of the xsettings channel to @value, unless it has it already */
-static void
-xfce_theme_schedule_helper_set_string (XfceThemeScheduleHelper *helper,
-                                       const gchar *property,
-                                       const gchar *value)
-{
-    gchar *current = xfconf_channel_get_string (helper->channel, property, NULL);
-
-    if (g_strcmp0 (current, value) != 0)
-        xfconf_channel_set_string (helper->channel, property, value);
-    g_free (current);
-}
-
-
-
 /* sets the preferred color scheme, or resets it if @color_scheme is NULL */
 static void
 xfce_theme_schedule_helper_set_color_scheme (XfceThemeScheduleHelper *helper,
@@ -251,7 +213,7 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
 {
     const gchar *theme_name = NULL;
     const gchar *color_scheme;
-    gboolean xfwm4;
+    gboolean sync_xfwm4_theme;
 
     /* Gtk theme */
     if (!xfce_str_is_empty (rule[THEME_SCHEDULE_THEME]))
@@ -259,7 +221,7 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
         if (theme_utils_theme_has_file (XFCE_RESOURCE_THEMES, "themes", rule[THEME_SCHEDULE_THEME], "gtk-3.0"))
         {
             theme_name = rule[THEME_SCHEDULE_THEME];
-            xfce_theme_schedule_helper_set_string (helper, "/Net/ThemeName", theme_name);
+            xfconf_channel_set_string (helper->channel, "/Net/ThemeName", theme_name);
         }
         else
             g_warning ("Scheduled theme '%s' is not installed", rule[THEME_SCHEDULE_THEME]);
@@ -267,10 +229,10 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
 
     /* Xfwm4 theme */
     if (xfce_str_is_empty (rule[THEME_SCHEDULE_XFWM4]))
-        xfwm4 = xfconf_channel_get_bool (helper->channel, "/Xfce/SyncThemes", FALSE);
+        sync_xfwm4_theme = xfconf_channel_get_bool (helper->channel, "/Xfce/SyncThemes", FALSE);
     else
-        xfwm4 = g_strcmp0 (rule[THEME_SCHEDULE_XFWM4], "true") == 0;
-    if (xfwm4 && theme_name != NULL)
+        sync_xfwm4_theme = g_strcmp0 (rule[THEME_SCHEDULE_XFWM4], "true") == 0;
+    if (sync_xfwm4_theme && theme_name != NULL)
         theme_utils_set_matching_xfwm4_theme (theme_name);
 
     /* the preferred color scheme for GTK4, libadwaita and the settings portals */
@@ -290,7 +252,7 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
     if (!xfce_str_is_empty (rule[THEME_SCHEDULE_ICON_THEME]))
     {
         if (theme_utils_theme_has_file (XFCE_RESOURCE_ICONS, "icons", rule[THEME_SCHEDULE_ICON_THEME], "index.theme"))
-            xfce_theme_schedule_helper_set_string (helper, "/Net/IconThemeName", rule[THEME_SCHEDULE_ICON_THEME]);
+            xfconf_channel_set_string (helper->channel, "/Net/IconThemeName", rule[THEME_SCHEDULE_ICON_THEME]);
         else
             g_warning ("Scheduled icon theme '%s' is not installed", rule[THEME_SCHEDULE_ICON_THEME]);
     }
@@ -305,15 +267,13 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
 
 
 
-static gboolean
+static void
 xfce_theme_schedule_helper_timeout (gpointer user_data)
 {
     XfceThemeScheduleHelper *helper = user_data;
 
     helper->timer_id = 0;
     xfce_theme_schedule_helper_update (helper, FALSE);
-
-    return G_SOURCE_REMOVE;
 }
 
 
@@ -442,7 +402,7 @@ xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
     passed = g_array_new (FALSE, FALSE, sizeof (PassedRule));
     for (guint i = 0; i < n_fields[THEME_SCHEDULE_TIME]; i++)
     {
-        gint minutes_since_midnight = xfce_theme_schedule_parse_time (fields[THEME_SCHEDULE_TIME][i]);
+        gint minutes_since_midnight = theme_utils_parse_schedule_time (fields[THEME_SCHEDULE_TIME][i]);
         gboolean does_something = FALSE;
         gint64 at;
 
@@ -482,8 +442,8 @@ xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
 
     /* re-check at the start of the next minute; this also copes with clock
      * changes, DST and suspend without tracking them explicitly */
-    helper->timer_id = g_timeout_add_seconds (60 - g_date_time_get_second (now),
-                                              xfce_theme_schedule_helper_timeout, helper);
+    helper->timer_id = g_timeout_add_seconds_once (60 - g_date_time_get_second (now),
+                                                   xfce_theme_schedule_helper_timeout, helper);
 
     g_date_time_unref (now);
     for (guint f = 0; f < N_THEME_SCHEDULE_FIELDS; f++)
@@ -492,15 +452,13 @@ xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
 
 
 
-static gboolean
+static void
 xfce_theme_schedule_helper_rules_changed (gpointer user_data)
 {
     XfceThemeScheduleHelper *helper = user_data;
 
     helper->rules_changed_id = 0;
     xfce_theme_schedule_helper_update (helper, TRUE);
-
-    return G_SOURCE_REMOVE;
 }
 
 
@@ -515,6 +473,6 @@ xfce_theme_schedule_helper_channel_property_changed (XfconfChannel *channel,
         && g_strcmp0 (property, THEME_SCHEDULE_CHECKED_PROP) != 0)
     {
         g_clear_handle_id (&helper->rules_changed_id, g_source_remove);
-        helper->rules_changed_id = g_timeout_add (RULES_CHANGED_DELAY_MS, xfce_theme_schedule_helper_rules_changed, helper);
+        helper->rules_changed_id = g_timeout_add_once (RULES_CHANGED_DELAY_MS, xfce_theme_schedule_helper_rules_changed, helper);
     }
 }
