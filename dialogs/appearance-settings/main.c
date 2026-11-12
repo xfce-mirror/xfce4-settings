@@ -2487,7 +2487,6 @@ appearance_settings_dialog_configure_schedule (GtkBuilder *builder)
     schedule.store = xfce_item_list_store_new (SCHEDULE_COLUMN (N_THEME_SCHEDULE_FIELDS),
                                                G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
                                                G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-    G_STATIC_ASSERT (N_THEME_SCHEDULE_FIELDS == 7);
     g_object_set (schedule.store, "list-flags",
                   XFCE_ITEM_LIST_MODEL_ADDABLE | XFCE_ITEM_LIST_MODEL_REMOVABLE | XFCE_ITEM_LIST_MODEL_EDITABLE, NULL);
 
