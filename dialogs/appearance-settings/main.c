@@ -2240,6 +2240,41 @@ cb_schedule_dialog_theme_changed (GtkComboBox *theme_combo,
         gtk_combo_box_set_active_id (color_scheme_combo, "prefer-light");
 }
 
+/* a dark style comes with the "-dark" variant of the icon theme and a
+ * light one without it, if installed; the check button stays as it is */
+static void
+cb_schedule_dialog_theme_changed_icons (GtkComboBox *theme_combo,
+                                        GtkComboBox *icon_combo)
+{
+    const gchar *theme = gtk_combo_box_get_active_id (theme_combo);
+    const gchar *icon_theme = gtk_combo_box_get_active_id (icon_combo);
+    gchar *base, *strdown;
+
+    if (xfce_str_is_empty (theme) || xfce_str_is_empty (icon_theme))
+        return;
+
+    base = g_strdup (icon_theme);
+    strdown = g_ascii_strdown (base, -1);
+    if (g_str_has_suffix (strdown, "-dark"))
+        base[strlen (base) - strlen ("-dark")] = '\0';
+    g_free (strdown);
+
+    if (theme_utils_theme_is_dark (theme))
+    {
+        gchar *dark = g_strconcat (base, "-dark", NULL);
+        gchar *dark_capital = g_strconcat (base, "-Dark", NULL);
+
+        if (!gtk_combo_box_set_active_id (icon_combo, dark))
+            gtk_combo_box_set_active_id (icon_combo, dark_capital);
+        g_free (dark);
+        g_free (dark_capital);
+    }
+    else
+        gtk_combo_box_set_active_id (icon_combo, base);
+
+    g_free (base);
+}
+
 /* the dialog of the rule at @index, or of a new rule if -1 */
 static void
 schedule_edit_rule (GtkBuilder *builder,
@@ -2320,6 +2355,7 @@ schedule_edit_rule (GtkBuilder *builder,
     g_free (current);
     icon_check = schedule_grid_check (GTK_GRID (grid), row++, _("Set the _icon theme:"), icon_combo,
                                       !xfce_str_is_empty (rule[THEME_SCHEDULE_ICON_THEME]), _("The icon theme, as on the Icons tab."));
+    g_signal_connect (theme_combo, "changed", G_CALLBACK (cb_schedule_dialog_theme_changed_icons), icon_combo);
 
     /* cursor theme */
     cursor_combo = schedule_combo_new ();
