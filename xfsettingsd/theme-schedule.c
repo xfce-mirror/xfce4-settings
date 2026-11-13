@@ -18,11 +18,13 @@
 
 /*
  * Switches the Gtk theme, the preferred color scheme and more at fixed times
- * of the day. The rules live in the xsettings channel as parallel string
- * arrays, where a missing entry counts as "":
+ * of the day or at sunrise and sunset. The rules live in the xsettings
+ * channel as parallel string arrays, where a missing entry counts as "":
  *
  *   /Xfce/ThemeSchedule/Enabled       bool
- *   /Xfce/ThemeSchedule/Times         "HH:MM"
+ *   /Xfce/ThemeSchedule/Times         "HH:MM", or "sunrise" or "sunset" with
+ *                                     an optional offset in minutes, e.g.
+ *                                     "sunset-30"
  *   /Xfce/ThemeSchedule/Themes        Gtk theme name, "" to keep it
  *   /Xfce/ThemeSchedule/ColorSchemes  "prefer-dark", "prefer-light", "default",
  *                                     "" to keep it; if missing, it follows the
@@ -279,15 +281,17 @@ xfce_theme_schedule_helper_timeout (gpointer user_data)
 
 
 /*
- * The last time the clock showed the rule time @minutes_since_midnight
- * (hours * 60 + minutes) up to @now, as Unix time: today at that time if it
- * is not later than @now, else yesterday at that time. E.g. for a rule at
- * 21:00, at 22:30 it is 21:00 today and at 08:00 it is 21:00 yesterday.
- * Returns 0 if neither of the two exists in the local time zone.
+ * The last time the clock showed the rule time @time_str up to @now, as
+ * Unix time: today at that time if it is not later than @now, else
+ * yesterday at that time. E.g. for a rule at 21:00, at 22:30 it is 21:00
+ * today and at 08:00 it is 21:00 yesterday. A rule at sunrise or sunset
+ * has the time of that day. Returns 0 if the rule has no such time on
+ * either day: the time falls into a DST gap, the sun does not rise or set
+ * that day, or the time zone has no location.
  */
 static gint64
 xfce_theme_schedule_last_occurrence (GDateTime *now,
-                                     gint minutes_since_midnight)
+                                     const gchar *time_str)
 {
     GDateTime *date, *at;
     gint64 result;
@@ -295,9 +299,17 @@ xfce_theme_schedule_last_occurrence (GDateTime *now,
     date = g_date_time_ref (now);
     for (gint days = 0; days < 2; days++)
     {
-        at = g_date_time_new_local (g_date_time_get_year (date), g_date_time_get_month (date),
-                                    g_date_time_get_day_of_month (date),
-                                    minutes_since_midnight / 60, minutes_since_midnight % 60, 0);
+        gint minutes_since_midnight = theme_utils_get_schedule_time (time_str, date);
+
+        at = NULL;
+        if (minutes_since_midnight >= 0)
+            at = g_date_time_new_local (g_date_time_get_year (date), g_date_time_get_month (date),
+                                        g_date_time_get_day_of_month (date),
+                                        minutes_since_midnight / 60, minutes_since_midnight % 60, 0);
+        else
+            xfsettings_dbg (XFSD_DEBUG_THEME_SCHEDULE, "Rule at \"%s\" has no time on %d-%02d-%02d",
+                            time_str, g_date_time_get_year (date), g_date_time_get_month (date),
+                            g_date_time_get_day_of_month (date));
         if (at != NULL && g_date_time_compare (at, now) <= 0)
         {
             result = g_date_time_to_unix (at);
@@ -402,7 +414,6 @@ xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
     passed = g_array_new (FALSE, FALSE, sizeof (PassedRule));
     for (guint i = 0; i < n_fields[THEME_SCHEDULE_TIME]; i++)
     {
-        gint minutes_since_midnight = theme_utils_parse_schedule_time (fields[THEME_SCHEDULE_TIME][i]);
         gboolean does_something = FALSE;
         gint64 at;
 
@@ -410,10 +421,10 @@ xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
             if (f != THEME_SCHEDULE_XFWM4 && i < n_fields[f] && !xfce_str_is_empty (fields[f][i]))
                 does_something = TRUE;
 
-        if (minutes_since_midnight < 0 || !does_something)
+        if (!does_something)
             continue;
 
-        at = xfce_theme_schedule_last_occurrence (now, minutes_since_midnight);
+        at = xfce_theme_schedule_last_occurrence (now, fields[THEME_SCHEDULE_TIME][i]);
         if (at > checked)
         {
             PassedRule passed_rule = { at, i };

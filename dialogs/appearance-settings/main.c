@@ -21,6 +21,7 @@
 #include "xfce-revision.h"
 #endif
 
+#include "common/sun-times.h"
 #include "common/theme-utils.h"
 
 #include <cairo-gobject.h>
@@ -107,6 +108,7 @@ static struct
     XfceItemListStore *store; /* the rules, see SCHEDULE_COLUMN */
     GtkWidget *view;
     GtkWidget *status_label;
+    gint day_of_year; /* the day whose sunrise and sunset times the list shows */
 } schedule;
 
 typedef struct
@@ -1973,21 +1975,53 @@ schedule_rule_tooltip (gchar **rule)
     return text;
 }
 
+/* the time of a rule as shown to the user: "21:00", or for a rule at
+ * sunrise or sunset also its time today, e.g. "Sunset +30 min (17:09)" */
+static gchar *
+schedule_format_time (const gchar *time_str)
+{
+    SunTimesEvent event;
+    gint offset_minutes, minutes_since_midnight;
+    GDateTime *now;
+    gchar *name, *text;
+
+    if (!sun_times_parse (time_str, &event, &offset_minutes))
+        return g_strdup (time_str);
+
+    if (offset_minutes == 0)
+        name = g_strdup (event == SUN_TIMES_SUNRISE ? _("Sunrise") : _("Sunset"));
+    else
+        name = g_strdup_printf (event == SUN_TIMES_SUNRISE ? _("Sunrise %+d min") : _("Sunset %+d min"), offset_minutes);
+
+    now = g_date_time_new_now_local ();
+    minutes_since_midnight = sun_times_get_minutes_since_midnight (now, event, offset_minutes);
+    g_date_time_unref (now);
+
+    if (minutes_since_midnight < 0)
+        return name;
+
+    text = g_strdup_printf ("%s (%02d:%02d)", name, minutes_since_midnight / 60, minutes_since_midnight % 60);
+    g_free (name);
+
+    return text;
+}
+
 /* the settings of the rule at @index and how it is shown */
 static void
 schedule_set_rule (gint index,
                    gchar **rule)
 {
-    gchar *summary, *tooltip, *markup;
+    gchar *time_str, *summary, *tooltip, *markup;
 
     for (guint c = 0; c < N_THEME_SCHEDULE_FIELDS; c++)
         xfce_item_list_store_set (schedule.store, index, SCHEDULE_COLUMN (c), rule[c] != NULL ? rule[c] : "", -1);
 
     /* like the lists of the Style and Icons tabs: time in bold, what the rule does below,
      * and everything in the tooltip */
+    time_str = schedule_format_time (rule[THEME_SCHEDULE_TIME]);
     summary = schedule_describe_rule (rule);
     tooltip = schedule_rule_tooltip (rule);
-    markup = g_markup_printf_escaped ("<b>%s</b>\n%s", rule[THEME_SCHEDULE_TIME], summary != NULL ? summary : _("No change"));
+    markup = g_markup_printf_escaped ("<b>%s</b>\n%s", time_str, summary != NULL ? summary : _("No change"));
     xfce_item_list_store_set (schedule.store, index,
                               XFCE_ITEM_LIST_MODEL_COLUMN_NAME, markup,
                               XFCE_ITEM_LIST_MODEL_COLUMN_TOOLTIP, tooltip,
@@ -1997,6 +2031,7 @@ schedule_set_rule (gint index,
     g_free (markup);
     g_free (tooltip);
     g_free (summary);
+    g_free (time_str);
 }
 
 /* adds @rule to the list, which is sorted by time; returns its index */
@@ -2004,20 +2039,25 @@ static gint
 schedule_insert_rule (gchar **rule)
 {
     gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
-    gint minutes_since_midnight = theme_utils_parse_schedule_time (rule[THEME_SCHEDULE_TIME]);
+    GDateTime *now = g_date_time_new_now_local ();
+    gint minutes_since_midnight = theme_utils_get_schedule_time (rule[THEME_SCHEDULE_TIME], now);
     gint index;
 
     /* Place the new rule into the correct time spot: before the first rule
-     * that is later in the day */
-    for (index = 0; index < n_items; index++)
+     * that is later in the day, today for rules at sunrise or sunset. Rules
+     * without a time today, e.g. at sunset during the polar day, go last. */
+    for (index = minutes_since_midnight < 0 ? n_items : 0; index < n_items; index++)
     {
         gchar *time_str = schedule_get_value (index, THEME_SCHEDULE_TIME);
-        gboolean later = theme_utils_parse_schedule_time (time_str) > minutes_since_midnight;
+        gint index_minutes_since_midnight = theme_utils_get_schedule_time (time_str, now);
+        gboolean later = index_minutes_since_midnight > minutes_since_midnight || index_minutes_since_midnight < 0;
 
         g_free (time_str);
         if (later)
             break;
     }
+
+    g_date_time_unref (now);
 
     xfce_item_list_store_insert (schedule.store, index);
     schedule_set_rule (index, rule);
@@ -2029,9 +2069,10 @@ static void
 schedule_update_status_label (void)
 {
     gint n_items;
-    GDateTime *now;
+    GDateTime *now, *tomorrow;
     gint now_minutes_since_midnight;
     gint next_minutes_since_midnight = -1, first_minutes_since_midnight = -1;
+    gboolean has_rules = FALSE;
     gchar *next_rule = NULL, *first_rule = NULL;
     gchar *text;
 
@@ -2046,28 +2087,31 @@ schedule_update_status_label (void)
     }
 
     now = g_date_time_new_now_local ();
+    tomorrow = g_date_time_add_days (now, 1);
     now_minutes_since_midnight = g_date_time_get_hour (now) * 60 + g_date_time_get_minute (now);
-    g_date_time_unref (now);
 
     /* next rule after now, or the first rule of tomorrow */
     n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
     for (gint i = 0; i < n_items; i++)
     {
         gchar **rule = schedule_get_rule (i);
-        gint minutes_since_midnight = theme_utils_parse_schedule_time (rule[THEME_SCHEDULE_TIME]);
+        gint minutes_since_midnight = theme_utils_get_schedule_time (rule[THEME_SCHEDULE_TIME], now);
+        gint minutes_since_midnight_tomorrow = theme_utils_get_schedule_time (rule[THEME_SCHEDULE_TIME], tomorrow);
         gchar *description = schedule_describe_rule (rule);
 
-        if (minutes_since_midnight >= 0 && description != NULL)
+        if (description != NULL)
         {
+            has_rules = TRUE;
             if (minutes_since_midnight > now_minutes_since_midnight
                 && (next_minutes_since_midnight < 0 || minutes_since_midnight < next_minutes_since_midnight))
             {
                 next_minutes_since_midnight = minutes_since_midnight;
                 g_set_str (&next_rule, description);
             }
-            if (first_minutes_since_midnight < 0 || minutes_since_midnight < first_minutes_since_midnight)
+            if (minutes_since_midnight_tomorrow >= 0
+                && (first_minutes_since_midnight < 0 || minutes_since_midnight_tomorrow < first_minutes_since_midnight))
             {
-                first_minutes_since_midnight = minutes_since_midnight;
+                first_minutes_since_midnight = minutes_since_midnight_tomorrow;
                 g_set_str (&first_rule, description);
             }
         }
@@ -2082,13 +2126,18 @@ schedule_update_status_label (void)
         next_rule = g_steal_pointer (&first_rule);
     }
 
-    if (next_minutes_since_midnight < 0)
+    /* rules at sunrise or sunset have no time on polar days and nights */
+    if (next_minutes_since_midnight < 0 && has_rules)
+        text = g_strdup (_("No switch today or tomorrow."));
+    else if (next_minutes_since_midnight < 0)
         text = g_strdup (_("Add a rule to switch the style at a given time."));
     else
         text = g_strdup_printf (_("Next switch at %02d:%02d: %s"), next_minutes_since_midnight / 60, next_minutes_since_midnight % 60, next_rule);
 
     gtk_label_set_text (GTK_LABEL (schedule.status_label), text);
 
+    g_date_time_unref (tomorrow);
+    g_date_time_unref (now);
     g_free (text);
     g_free (next_rule);
     g_free (first_rule);
@@ -2097,7 +2146,32 @@ schedule_update_status_label (void)
 static gboolean
 schedule_status_timeout (gpointer user_data)
 {
+    GDateTime *now = g_date_time_new_now_local ();
+    gint day_of_year = g_date_time_get_day_of_year (now);
+
+    g_date_time_unref (now);
+
+    /* after midnight, the rules at sunrise or sunset show the times of the
+     * new day and move to their places */
+    if (day_of_year != schedule.day_of_year)
+    {
+        gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
+        GPtrArray *rules = g_ptr_array_new_with_free_func ((GDestroyNotify) g_strfreev);
+
+        for (gint i = n_items - 1; i >= 0; i--)
+        {
+            g_ptr_array_add (rules, schedule_get_rule (i));
+            xfce_item_list_model_remove (XFCE_ITEM_LIST_MODEL (schedule.store), i);
+        }
+        for (guint i = 0; i < rules->len; i++)
+            schedule_insert_rule (g_ptr_array_index (rules, i));
+
+        g_ptr_array_unref (rules);
+        schedule.day_of_year = day_of_year;
+    }
+
     schedule_update_status_label ();
+
     return G_SOURCE_CONTINUE;
 }
 
@@ -2134,6 +2208,10 @@ schedule_load (void)
 {
     gchar **values[N_THEME_SCHEDULE_FIELDS];
     guint n_values[N_THEME_SCHEDULE_FIELDS];
+    GDateTime *now = g_date_time_new_now_local ();
+
+    schedule.day_of_year = g_date_time_get_day_of_year (now);
+    g_date_time_unref (now);
 
     for (guint c = 0; c < N_THEME_SCHEDULE_FIELDS; c++)
     {
@@ -2161,19 +2239,30 @@ schedule_load (void)
 }
 
 /* whether a rule other than the one at @except_index (may be -1) is at
- * @minutes_since_midnight (hours * 60 + minutes) */
+ * @new_time_str, e.g. "21:00" or "sunset+30", also if it is written another
+ * way, e.g. "9:00" for "09:00" */
 static gboolean
-schedule_time_taken (gint minutes_since_midnight,
+schedule_time_taken (const gchar *new_time_str,
                      gint except_index)
 {
     gint n_items = xfce_item_list_model_get_n_items (XFCE_ITEM_LIST_MODEL (schedule.store));
+    SunTimesEvent new_event, event;
+    gint new_offset_minutes, offset_minutes;
+    gboolean new_at_sun = sun_times_parse (new_time_str, &new_event, &new_offset_minutes);
+    gint new_minutes_since_midnight = theme_utils_parse_schedule_time (new_time_str);
     gboolean taken = FALSE;
 
     for (gint i = 0; i < n_items && !taken; i++)
     {
         gchar *time_str = schedule_get_value (i, THEME_SCHEDULE_TIME);
 
-        taken = i != except_index && theme_utils_parse_schedule_time (time_str) == minutes_since_midnight;
+        if (i == except_index)
+            taken = FALSE;
+        else if (new_at_sun)
+            taken = sun_times_parse (time_str, &event, &offset_minutes)
+                    && event == new_event && offset_minutes == new_offset_minutes;
+        else
+            taken = theme_utils_parse_schedule_time (time_str) == new_minutes_since_midnight;
         g_free (time_str);
     }
 
@@ -2312,19 +2401,36 @@ cb_schedule_dialog_theme_changed (GtkComboBox *theme_combo,
         gtk_combo_box_set_active_id (color_scheme_combo, "prefer-light");
 }
 
+/* shows the hour and minute spins for a time of the day, the offset spin
+ * for sunrise or sunset */
+static void
+cb_schedule_dialog_time_mode_changed (GtkComboBox *time_mode_combo,
+                                      GtkStack *time_stack)
+{
+    if (g_strcmp0 (gtk_combo_box_get_active_id (time_mode_combo), "clock") == 0)
+        gtk_stack_set_visible_child_name (time_stack, "clock");
+    else
+        gtk_stack_set_visible_child_name (time_stack, "offset");
+}
+
 /* the dialog of the rule at @index, or of a new rule if -1 */
 static void
 schedule_edit_rule (GtkBuilder *builder,
                     gint index,
                     gchar **rule)
 {
-    GtkWidget *dialog, *grid, *box, *label, *error_label;
-    GtkWidget *hour_spin, *minute_spin, *theme_combo, *color_scheme_combo, *xfwm4_check;
+    GtkWidget *dialog, *grid, *time_box, *time_stack, *clock_box, *offset_box, *label, *error_label;
+    GtkWidget *time_mode_combo, *hour_spin, *minute_spin, *offset_spin;
+    GtkWidget *theme_combo, *color_scheme_combo, *xfwm4_check;
     GtkWidget *icon_check, *icon_combo, *cursor_check, *cursor_combo;
     GtkWidget *command_entry;
     GPtrArray *cursor_themes;
     gchar *current;
-    gint minutes_since_midnight, row = 0;
+    GDateTime *now;
+    SunTimesEvent event;
+    const gchar *time_mode;
+    gint minutes_since_midnight, offset_minutes = 0, row = 0;
+    gboolean at_sun = sun_times_parse (rule[THEME_SCHEDULE_TIME], &event, &offset_minutes);
 
     dialog = gtk_dialog_new_with_buttons (index < 0 ? _("Add Rule") : _("Edit Rule"),
                                           GTK_WINDOW (gtk_widget_get_toplevel (schedule.view)),
@@ -2338,19 +2444,53 @@ schedule_edit_rule (GtkBuilder *builder,
     gtk_container_set_border_width (GTK_CONTAINER (grid), 12);
     gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), grid, TRUE, TRUE, 0);
 
-    /* time */
-    minutes_since_midnight = MAX (theme_utils_parse_schedule_time (rule[THEME_SCHEDULE_TIME]), 0);
-    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    /* time: at a time of the day, or at sunrise or sunset with an offset */
+    time_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    time_mode_combo = gtk_combo_box_text_new ();
+    gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (time_mode_combo), "clock", _("At"));
+    gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (time_mode_combo), "sunrise", _("At sunrise"));
+    gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (time_mode_combo), "sunset", _("At sunset"));
+    if (!at_sun)
+        time_mode = "clock";
+    else if (event == SUN_TIMES_SUNRISE)
+        time_mode = "sunrise";
+    else
+        time_mode = "sunset";
+    gtk_combo_box_set_active_id (GTK_COMBO_BOX (time_mode_combo), time_mode);
+    gtk_box_pack_start (GTK_BOX (time_box), time_mode_combo, FALSE, FALSE, 0);
+
+    /* for a rule at sunrise or sunset, today's time, in case it is changed
+     * to a time of the day */
+    now = g_date_time_new_now_local ();
+    minutes_since_midnight = MAX (theme_utils_get_schedule_time (rule[THEME_SCHEDULE_TIME], now), 0);
+    g_date_time_unref (now);
+    clock_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     hour_spin = schedule_time_spin_new (23);
     gtk_spin_button_set_value (GTK_SPIN_BUTTON (hour_spin), minutes_since_midnight / 60);
-    gtk_box_pack_start (GTK_BOX (box), hour_spin, FALSE, FALSE, 0);
-    gtk_box_pack_start (GTK_BOX (box), gtk_label_new (":"), FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (clock_box), hour_spin, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (clock_box), gtk_label_new (":"), FALSE, FALSE, 0);
     minute_spin = schedule_time_spin_new (59);
     gtk_spin_button_set_value (GTK_SPIN_BUTTON (minute_spin), minutes_since_midnight % 60);
-    gtk_box_pack_start (GTK_BOX (box), minute_spin, FALSE, FALSE, 0);
-    label = schedule_grid_label (GTK_GRID (grid), row++, _("_Time:"), box, _("The rule applies all its settings when the clock reaches this time. A switch missed "
-                           "while you were logged out or the computer was asleep is made at login or on waking up."));
-    gtk_label_set_mnemonic_widget (GTK_LABEL (label), hour_spin);
+    gtk_box_pack_start (GTK_BOX (clock_box), minute_spin, FALSE, FALSE, 0);
+
+    offset_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    offset_spin = gtk_spin_button_new_with_range (-SUN_TIMES_MAX_OFFSET_MINUTES, SUN_TIMES_MAX_OFFSET_MINUTES, 5);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (offset_spin), offset_minutes);
+    gtk_entry_set_activates_default (GTK_ENTRY (offset_spin), TRUE);
+    gtk_widget_set_tooltip_text (offset_spin, _("Minutes after sunrise or sunset, or before if negative."));
+    gtk_box_pack_start (GTK_BOX (offset_box), offset_spin, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (offset_box), gtk_label_new (_("min")), FALSE, FALSE, 0);
+
+    time_stack = gtk_stack_new ();
+    gtk_stack_add_named (GTK_STACK (time_stack), clock_box, "clock");
+    gtk_stack_add_named (GTK_STACK (time_stack), offset_box, "offset");
+    gtk_box_pack_start (GTK_BOX (time_box), time_stack, FALSE, FALSE, 0);
+
+    label = schedule_grid_label (GTK_GRID (grid), row++, _("_Time:"), time_box, _("The rule applies all its settings when the clock reaches this time. A switch missed "
+                           "while you were logged out or the computer was asleep is made at login or on waking up. "
+                           "Sunrise and sunset are those at the location of the system time zone."));
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), time_mode_combo);
+    g_signal_connect (time_mode_combo, "changed", G_CALLBACK (cb_schedule_dialog_time_mode_changed), time_stack);
 
     /* theme and color scheme */
     theme_combo = schedule_combo_new ();
@@ -2424,7 +2564,8 @@ schedule_edit_rule (GtkBuilder *builder,
 
     gtk_widget_show_all (grid);
     gtk_widget_hide (error_label);
-    gtk_widget_grab_focus (hour_spin);
+    cb_schedule_dialog_time_mode_changed (GTK_COMBO_BOX (time_mode_combo), GTK_STACK (time_stack));
+    gtk_widget_grab_focus (at_sun ? offset_spin : hour_spin);
 
     while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
     {
@@ -2434,18 +2575,38 @@ schedule_edit_rule (GtkBuilder *builder,
 
         gtk_spin_button_update (GTK_SPIN_BUTTON (hour_spin));
         gtk_spin_button_update (GTK_SPIN_BUTTON (minute_spin));
-        minutes_since_midnight = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (hour_spin)) * 60
-                                 + gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (minute_spin));
-        time_str = g_strdup_printf ("%02d:%02d", minutes_since_midnight / 60, minutes_since_midnight % 60);
-
-        if (schedule_time_taken (minutes_since_midnight, index))
+        gtk_spin_button_update (GTK_SPIN_BUTTON (offset_spin));
+        time_mode = gtk_combo_box_get_active_id (GTK_COMBO_BOX (time_mode_combo));
+        if (g_strcmp0 (time_mode, "clock") == 0)
         {
-            gchar *text = g_strdup_printf (_("There is already a rule at %s."), time_str);
+            minutes_since_midnight = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (hour_spin)) * 60
+                                     + gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (minute_spin));
+            time_str = g_strdup_printf ("%02d:%02d", minutes_since_midnight / 60, minutes_since_midnight % 60);
+        }
+        else
+        {
+            time_str = sun_times_to_string (g_strcmp0 (time_mode, "sunrise") == 0 ? SUN_TIMES_SUNRISE : SUN_TIMES_SUNSET,
+                                            gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (offset_spin)));
+
+            if (!sun_times_has_location ())
+            {
+                gtk_label_set_text (GTK_LABEL (error_label), _("Sunrise and sunset are unknown: the system time zone has no location."));
+                gtk_widget_show (error_label);
+                g_free (time_str);
+                continue;
+            }
+        }
+
+        if (schedule_time_taken (time_str, index))
+        {
+            gchar *time_text = schedule_format_time (time_str);
+            gchar *text = g_strdup_printf (_("There is already a rule at %s."), time_text);
 
             gtk_label_set_text (GTK_LABEL (error_label), text);
             gtk_widget_show (error_label);
-            gtk_widget_grab_focus (hour_spin);
+            gtk_widget_grab_focus (g_strcmp0 (time_mode, "clock") == 0 ? hour_spin : offset_spin);
             g_free (text);
+            g_free (time_text);
             g_free (time_str);
             continue;
         }
