@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-11-06 00:55+0100\n"
+"POT-Creation-Date: 2026-11-13 00:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Emanuele Petriglia <inbox@emanuelepetriglia.com>, 2026\n"
 "Language-Team: Italian (http://app.transifex.com/xfce/xfce4-settings/language/it/)\n"
@@ -267,7 +267,7 @@ msgstr "_Mouse"
 #: common/resources/mouse-dialog.glade:63
 #: common/resources/mouse-dialog.glade:126
 #: common/resources/mouse-dialog.glade:152
-#: dialogs/appearance-settings/main.c:1764 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1756 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:745
 msgid "None"
 msgstr "Nessuno"
@@ -564,7 +564,8 @@ msgstr "Aggiungo profilo al dispositivo"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1501 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1493
+#: dialogs/appearance-settings/main.c:2331 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:102
 #: dialogs/keyboard-settings/command-dialog.c:265
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:419
@@ -575,6 +576,7 @@ msgstr "A_nnulla"
 
 #: common/resources/color-dialog.glade:543
 #: common/resources/keyboard-dialog.glade:86
+#: dialogs/appearance-settings/main.c:2331
 #: dialogs/keyboard-settings/command-dialog.c:106
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:571
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:102
@@ -1286,7 +1288,7 @@ msgid "Laptop"
 msgstr "Portatile"
 
 #: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/appearance-settings/main.c:95 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
@@ -1294,7 +1296,7 @@ msgid "Settings manager socket"
 msgstr "Socket del gestore delle impostazioni"
 
 #: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/appearance-settings/main.c:95 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
@@ -1302,40 +1304,40 @@ msgid "SOCKET ID"
 msgstr "SOCKET ID"
 
 #: dialogs/accessibility-settings/main.c:48
-#: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
+#: dialogs/appearance-settings/main.c:96 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:103
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:97
 msgid "Version information"
 msgstr "Informazioni di versione"
 
 #: dialogs/accessibility-settings/main.c:214
-#: dialogs/appearance-settings/main.c:1880 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:2647 dialogs/color-settings/main.c:1463
 #: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:1805 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:271
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:275
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Digitare \"%s --help\" per le informazioni d'uso."
 
 #: dialogs/accessibility-settings/main.c:233
-#: dialogs/appearance-settings/main.c:1899 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:2666 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3391 dialogs/keyboard-settings/main.c:105
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1824
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:287
+#: xfsettingsd/main.c:291
 msgid "The Xfce development team. All rights reserved."
 msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
 
 #: dialogs/accessibility-settings/main.c:234
-#: dialogs/appearance-settings/main.c:1900 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:2667 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3392 dialogs/keyboard-settings/main.c:106
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1825
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:288
+#: xfsettingsd/main.c:292
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Segnalare i problemi a <%s>."
@@ -1350,18 +1352,18 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "assistive;technologies;keys;sticky;bounce;emulation;screen readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 
-#: dialogs/appearance-settings/main.c:338
+#: dialogs/appearance-settings/main.c:367
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Impossibile mostrare Impostazioni di Xfwm4"
 
-#: dialogs/appearance-settings/main.c:578
+#: dialogs/appearance-settings/main.c:607
 msgid ""
 "No sound themes found. Install themes in /usr/share/sounds or "
 "~/.local/share/sounds"
 msgstr "Nessun tema suono trovato. Si possono installare i temi in /usr/share/sounds o in ~/.local/share/sounds "
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:756
+#: dialogs/appearance-settings/main.c:785
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1370,79 +1372,269 @@ msgstr "Attenzione: questo tema delle icone non ha un file di cache. È possibil
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:763
+#: dialogs/appearance-settings/main.c:792
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Attenzione: questo tema delle icone è incompleto. Alcune icone saranno mancanti."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:768
+#: dialogs/appearance-settings/main.c:797
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Attenzione: questo tema delle icone è incompleto. Fornisce solo un insieme base di icone da cui altri temi possono ereditare."
 
-#: dialogs/appearance-settings/main.c:1390
+#: dialogs/appearance-settings/main.c:1382
 msgid "File is too large, installation aborted"
 msgstr "Il file è troppo grande, installazione annullata"
 
-#: dialogs/appearance-settings/main.c:1395
+#: dialogs/appearance-settings/main.c:1387
 msgid "Failed to create temporary directory"
 msgstr "Impossibile creare la cartella temporanea"
 
-#: dialogs/appearance-settings/main.c:1400
+#: dialogs/appearance-settings/main.c:1392
 msgid "Failed to extract archive"
 msgstr "Impossibile estrarre l'archivio"
 
-#: dialogs/appearance-settings/main.c:1405
+#: dialogs/appearance-settings/main.c:1397
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Formato sconosciuto; sono supportati solo archivi e cartelle"
 
-#: dialogs/appearance-settings/main.c:1410
+#: dialogs/appearance-settings/main.c:1402
 msgid "Not a valid theme package"
 msgstr "Pacchetto tema non valido"
 
-#: dialogs/appearance-settings/main.c:1415
+#: dialogs/appearance-settings/main.c:1407
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Errore sconosciuto; codice di uscita %d"
 
-#: dialogs/appearance-settings/main.c:1422
+#: dialogs/appearance-settings/main.c:1414
 msgid "Failed to install theme"
 msgstr "Impossibile installare il tema"
 
-#: dialogs/appearance-settings/main.c:1469
+#: dialogs/appearance-settings/main.c:1461
 msgid ""
 "The theme used for Xfce and other GTK applications. Some themes only affect GTK2/GTK3 applications, other themes as well affect GTK4 applications. Additional themes e.g. can be installed by the package manager of your distribution.\n"
 "\n"
 "Choosing a dark theme will set a GTK \"prefer-dark\" setting. Foreign applications can follow that setting, though not all of them will do so, depending on the used toolkit and the application preferences."
 msgstr "Il tema utilizzato per Xfce e per le altre applicazioni GTK. Alcuni temi influiscono solo sulle applicazioni GTK2/GTK3, altri anche su quelle GTK4. È possibile installare temi aggiuntivi, a esempio, tramite il gestore di pacchetti della propria distribuzione.\n\nScegliendo un tema scuro verrà attivata l’impostazione GTK \"prefer-dark\". Le applicazioni esterne possono rispettare tale impostazione, ma non tutte lo faranno, a seconda del toolkit utilizzato e delle preferenze dell'applicazione."
 
-#: dialogs/appearance-settings/main.c:1499
+#: dialogs/appearance-settings/main.c:1491
 #, c-format
 msgid "Install %s theme"
 msgstr "Installa il tema %s"
 
-#: dialogs/appearance-settings/main.c:1502
+#: dialogs/appearance-settings/main.c:1494
 #: dialogs/keyboard-settings/command-dialog.c:266
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:420
 msgid "_Open"
 msgstr "_Apri"
 
-#: dialogs/appearance-settings/main.c:1768
+#: dialogs/appearance-settings/main.c:1760
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1772
+#: dialogs/appearance-settings/main.c:1764
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1776
+#: dialogs/appearance-settings/main.c:1768
 msgid "Vertical RGB"
 msgstr "RGB verticale"
 
-#: dialogs/appearance-settings/main.c:1780
+#: dialogs/appearance-settings/main.c:1772
 msgid "Vertical BGR"
 msgstr "BGR verticale"
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1906
+msgid "dark color scheme"
+msgstr "schema colori scuro"
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1909
+msgid "light color scheme"
+msgstr "schema colori chiaro"
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1912
+msgid "default color scheme"
+msgstr "schema colori predefinito"
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1917
+#, c-format
+msgid "icons: %s"
+msgstr "icone: %s"
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1921
+#, c-format
+msgid "cursor: %s"
+msgstr "cursore: %s"
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1925
+msgid "command"
+msgstr "comando"
+
+#: dialogs/appearance-settings/main.c:1949
+#, c-format
+msgid "Theme: %s"
+msgstr "Tema: %s"
+
+#: dialogs/appearance-settings/main.c:1951
+msgid "Window manager theme: matching"
+msgstr "Tema del gestore delle finestre: abbinato"
+
+#: dialogs/appearance-settings/main.c:1955
+#, c-format
+msgid "Color scheme: %s"
+msgstr "Schema colori: %s"
+
+#: dialogs/appearance-settings/main.c:1956
+#: dialogs/appearance-settings/main.c:2364
+msgid "Dark"
+msgstr "Scuro"
+
+#: dialogs/appearance-settings/main.c:1957
+#: dialogs/appearance-settings/main.c:2365
+msgid "Light"
+msgstr "Chiaro"
+
+#. sort the names but keep Default on top
+#: dialogs/appearance-settings/main.c:1958
+#: dialogs/appearance-settings/main.c:2366
+#: dialogs/mime-settings/xfce-mime-window.c:765
+#: dialogs/mime-settings/xfce-mime-window.c:932
+#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
+#: dialogs/mouse-settings/main.c:475
+msgid "Default"
+msgstr "Predefinito"
+
+#: dialogs/appearance-settings/main.c:1961
+#, c-format
+msgid "Icon theme: %s"
+msgstr "Tema icone: %s"
+
+#: dialogs/appearance-settings/main.c:1964
+#, c-format
+msgid "Mouse cursor theme: %s"
+msgstr "Tema del cursore del mouse: %s"
+
+#: dialogs/appearance-settings/main.c:1967
+#, c-format
+msgid "Command: %s"
+msgstr "Comando: %s"
+
+#: dialogs/appearance-settings/main.c:1990
+#: dialogs/appearance-settings/main.c:2357
+#: dialogs/appearance-settings/main.c:2367
+msgid "No change"
+msgstr "Non cambiare"
+
+#: dialogs/appearance-settings/main.c:2086
+msgid "Add a rule to switch the style at a given time."
+msgstr "Aggiungi una regola per cambiare lo stile a un certo orario."
+
+#: dialogs/appearance-settings/main.c:2088
+#, c-format
+msgid "Next switch at %02d:%02d: %s"
+msgstr "Prossimo cambio alle %02d:%02d: %s"
+
+#: dialogs/appearance-settings/main.c:2329
+msgid "Add Rule"
+msgstr "Aggiungi regola"
+
+#: dialogs/appearance-settings/main.c:2329
+msgid "Edit Rule"
+msgstr "Modifica regola"
+
+#: dialogs/appearance-settings/main.c:2351
+msgid "_Time:"
+msgstr "_Orario:"
+
+#: dialogs/appearance-settings/main.c:2351
+msgid ""
+"The rule applies all its settings when the clock reaches this time. A switch"
+" missed while you were logged out or the computer was asleep is made at "
+"login or on waking up."
+msgstr "La regola si applica in tutte le impostazioni quando l'orologio raggiunge questo orario. Il cambio verrà svolto all'autenticazione o al risveglio del computer quando si è sloggati o il computer è in ibernazione."
+
+#: dialogs/appearance-settings/main.c:2361
+msgid "T_heme:"
+msgstr "Tema:"
+
+#: dialogs/appearance-settings/main.c:2361
+msgid "The theme of Xfce and GTK 3 applications, as on the Style tab."
+msgstr "Il tema di Xfce e delle applicazioni GTK 3, come nella scheda Tema."
+
+#: dialogs/appearance-settings/main.c:2369
+msgid "Colo_r scheme:"
+msgstr "Schema colo_ri:"
+
+#: dialogs/appearance-settings/main.c:2369
+msgid ""
+"The dark or light preference of the desktop, followed by GTK 4 and "
+"libadwaita, Qt 6, Firefox, Chromium and Electron applications. Firefox "
+"follows it if Website appearance is set to Automatic, Chromium if Mode is "
+"set to Device."
+msgstr "La preferenza per il tema scuro o chiaro del desktop, seguita dalle applicazioni GTK 4 e libadwaita, Qt 6, Firefox, Chromium ed Electron. Firefox segue questa impostazione se l'aspetto del sito web è impostato su \"Automatico\", Chromium se la modalità è impostata su \"Dispositivo\"."
+
+#. Xfwm4 theme, by default as the switch on the Style tab
+#: dialogs/appearance-settings/main.c:2375
+msgid "Set the matching _window manager theme along with the theme"
+msgstr "Imposta il tema corrispondente del gestore di finestre insieme al tema"
+
+#: dialogs/appearance-settings/main.c:2380
+msgid ""
+"The window manager theme of the same name as the theme, like the switch on "
+"the Style tab does."
+msgstr "Il tema del gestore delle finestre con lo stesso nome del tema, proprio come avviene con l'interruttore nella scheda Stile."
+
+#: dialogs/appearance-settings/main.c:2393
+msgid "Set the _icon theme:"
+msgstr "Imposta il tema _icone:"
+
+#: dialogs/appearance-settings/main.c:2394
+msgid "The icon theme, as on the Icons tab."
+msgstr "Il tema delle icone, come nella scheda Icone."
+
+#: dialogs/appearance-settings/main.c:2409
+msgid "Set the mouse c_ursor theme:"
+msgstr "Imposta il tema del c_ursore del mouse:"
+
+#: dialogs/appearance-settings/main.c:2410
+msgid "The mouse cursor theme, as chosen in the Mouse and Touchpad settings."
+msgstr "Il tema del cursore del mouse, come selezionato nelle impostazioni di Mouse e touchpad."
+
+#: dialogs/appearance-settings/main.c:2417
+msgid "Run co_mmand:"
+msgstr "Esegui co_mando:"
+
+#: dialogs/appearance-settings/main.c:2417
+msgid ""
+"The command runs with /bin/sh after switching. The new settings are in "
+"$XFCE_SCHEDULE_GTK_THEME, $XFCE_SCHEDULE_ICON_THEME and "
+"$XFCE_SCHEDULE_COLOR_SCHEME."
+msgstr "Dopo la modifica, il comando viene eseguito con /bin/sh. Le nuove impostazioni sono contenute nelle variabili $XFCE_SCHEDULE_GTK_THEME, $XFCE_SCHEDULE_ICON_THEME e $XFCE_SCHEDULE_COLOR_SCHEME."
+
+#: dialogs/appearance-settings/main.c:2443
+#, c-format
+msgid "There is already a rule at %s."
+msgstr "È già presente una regola in %s."
+
+#: dialogs/appearance-settings/main.c:2513
+msgid "Scheduled style changes applied"
+msgstr "Modifiche di stile pianificate applicate"
+
+#: dialogs/appearance-settings/main.c:2572
+msgid "Change the style automatica_lly at set times"
+msgstr "Modifica lo stile automaticamente a orari prestabi_liti."
+
+#: dialogs/appearance-settings/main.c:2612
+msgid "_Schedule"
+msgstr "_Programma"
 
 #: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:5
 msgid "Customize the look of your desktop"
@@ -2356,14 +2548,6 @@ msgstr "Applicazione predefinita"
 msgid "User Set"
 msgstr "Impostato dall'utente"
 
-#. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:765
-#: dialogs/mime-settings/xfce-mime-window.c:932
-#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
-#: dialogs/mouse-settings/main.c:475
-msgid "Default"
-msgstr "Predefinito"
-
 #: dialogs/mime-settings/xfce-mime-window.c:855
 #, c-format
 msgid "%d MIME type found"
@@ -3005,19 +3189,19 @@ msgstr "Tasti elastici"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Impossibile avviare la scorciatoia \"%s\""
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:98
 msgid "Fork to the background"
 msgstr "Esegue il fork in background"
 
-#: xfsettingsd/main.c:97
+#: xfsettingsd/main.c:99
 msgid "Do not wait for a window manager on startup"
 msgstr "Non attendere un gestore delle finestre all'avvio"
 
-#: xfsettingsd/main.c:98
+#: xfsettingsd/main.c:100
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Sostituisci il demone xsettings in esecuzione (se lo è)"
 
-#: xfsettingsd/main.c:99
+#: xfsettingsd/main.c:101
 msgid "Allow xfsettingsd to start even if another instance is running"
 msgstr "Permetti l'avvio di xfsettingsd anche se un'altra istanza è in esecuzione"
 
