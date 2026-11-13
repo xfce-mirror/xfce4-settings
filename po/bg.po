@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-11-06 00:55+0100\n"
+"POT-Creation-Date: 2026-11-13 00:55+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>, 2014-2026\n"
 "Language-Team: Bulgarian (http://app.transifex.com/xfce/xfce4-settings/language/bg/)\n"
@@ -263,7 +263,7 @@ msgstr "Мишка"
 #: common/resources/mouse-dialog.glade:63
 #: common/resources/mouse-dialog.glade:126
 #: common/resources/mouse-dialog.glade:152
-#: dialogs/appearance-settings/main.c:1764 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1756 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:745
 msgid "None"
 msgstr "Няма"
@@ -560,7 +560,8 @@ msgstr "Добавяне на профил към устройството"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1501 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1493
+#: dialogs/appearance-settings/main.c:2331 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:102
 #: dialogs/keyboard-settings/command-dialog.c:265
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:419
@@ -571,6 +572,7 @@ msgstr "_Отказ"
 
 #: common/resources/color-dialog.glade:543
 #: common/resources/keyboard-dialog.glade:86
+#: dialogs/appearance-settings/main.c:2331
 #: dialogs/keyboard-settings/command-dialog.c:106
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:571
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:102
@@ -1282,7 +1284,7 @@ msgid "Laptop"
 msgstr "Лаптоп"
 
 #: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/appearance-settings/main.c:95 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
@@ -1290,7 +1292,7 @@ msgid "Settings manager socket"
 msgstr "Гнездо на управлението на настройките"
 
 #: dialogs/accessibility-settings/main.c:46
-#: dialogs/appearance-settings/main.c:90 dialogs/color-settings/main.c:40
+#: dialogs/appearance-settings/main.c:95 dialogs/color-settings/main.c:40
 #: dialogs/display-settings/main.c:103 dialogs/keyboard-settings/main.c:51
 #: dialogs/mime-settings/main.c:40 dialogs/mouse-settings/main.c:102
 #: xfce4-settings-editor/main.c:44
@@ -1298,40 +1300,40 @@ msgid "SOCKET ID"
 msgstr "Гнездо ID"
 
 #: dialogs/accessibility-settings/main.c:48
-#: dialogs/appearance-settings/main.c:91 dialogs/color-settings/main.c:41
+#: dialogs/appearance-settings/main.c:96 dialogs/color-settings/main.c:41
 #: dialogs/display-settings/main.c:104 dialogs/keyboard-settings/main.c:52
 #: dialogs/mime-settings/main.c:41 dialogs/mouse-settings/main.c:103
 #: xfce4-settings-editor/main.c:45 xfce4-settings-manager/main.c:39
-#: xfsettingsd/main.c:95
+#: xfsettingsd/main.c:97
 msgid "Version information"
 msgstr "Сведения за изданието"
 
 #: dialogs/accessibility-settings/main.c:214
-#: dialogs/appearance-settings/main.c:1880 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:2647 dialogs/color-settings/main.c:1463
 #: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
 #: dialogs/mouse-settings/main.c:1805 xfce4-settings-editor/main.c:118
-#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:271
+#: xfce4-settings-manager/main.c:60 xfsettingsd/main.c:275
 #, c-format
 msgid "Type '%s --help' for usage."
 msgstr "Напишете „%s --help“ за показване на потребителско ръководство"
 
 #: dialogs/accessibility-settings/main.c:233
-#: dialogs/appearance-settings/main.c:1899 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:2666 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3391 dialogs/keyboard-settings/main.c:105
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1824
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
-#: xfsettingsd/main.c:287
+#: xfsettingsd/main.c:291
 msgid "The Xfce development team. All rights reserved."
 msgstr "Екипът по разрабоката на Xfce. Всички права са запазени."
 
 #: dialogs/accessibility-settings/main.c:234
-#: dialogs/appearance-settings/main.c:1900 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:2667 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3392 dialogs/keyboard-settings/main.c:106
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1825
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
-#: xfsettingsd/main.c:288
+#: xfsettingsd/main.c:292
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Моля, докладвайте грешки на <%s>."
@@ -1346,18 +1348,18 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "спомагателни;технологии;клавиши;лепкави;отскачане;емулация;екранен четец;луши;a11y;i18n;l10n;AT-SPI;ATK;намаляване;"
 
-#: dialogs/appearance-settings/main.c:338
+#: dialogs/appearance-settings/main.c:367
 msgid "Failed to display Xfwm4 Settings"
 msgstr "Неуспешно показване на настройките на Xfwm4"
 
-#: dialogs/appearance-settings/main.c:578
+#: dialogs/appearance-settings/main.c:607
 msgid ""
 "No sound themes found. Install themes in /usr/share/sounds or "
 "~/.local/share/sounds"
 msgstr "Няма намерени звукови теми. Инсталирайте теми в /usr/share/sounds или ~/.local/share/sounds"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:756
+#: dialogs/appearance-settings/main.c:785
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1366,79 +1368,269 @@ msgstr "Предупреждение: Тази тема с икони няма �
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:763
+#: dialogs/appearance-settings/main.c:792
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Предупреждение: тази тема с икони е незавършена. Някои икони ще липсват."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:768
+#: dialogs/appearance-settings/main.c:797
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Предупреждение: тази тема с икони е незавършена. Тя предоставя само основен набор от икони, които други теми могат да получат."
 
-#: dialogs/appearance-settings/main.c:1390
+#: dialogs/appearance-settings/main.c:1382
 msgid "File is too large, installation aborted"
 msgstr "Файлът е твърде голям, инсталацията е прекъсната"
 
-#: dialogs/appearance-settings/main.c:1395
+#: dialogs/appearance-settings/main.c:1387
 msgid "Failed to create temporary directory"
 msgstr "Неуспех при създаване на временна директория"
 
-#: dialogs/appearance-settings/main.c:1400
+#: dialogs/appearance-settings/main.c:1392
 msgid "Failed to extract archive"
 msgstr "Неуспех при извличане на архив"
 
-#: dialogs/appearance-settings/main.c:1405
+#: dialogs/appearance-settings/main.c:1397
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Неизвестен формат. Поддържат се само архиви и директории"
 
-#: dialogs/appearance-settings/main.c:1410
+#: dialogs/appearance-settings/main.c:1402
 msgid "Not a valid theme package"
 msgstr "Не е валиден пакет с тема"
 
-#: dialogs/appearance-settings/main.c:1415
+#: dialogs/appearance-settings/main.c:1407
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Неизвестна грешка, изходен код %d"
 
-#: dialogs/appearance-settings/main.c:1422
+#: dialogs/appearance-settings/main.c:1414
 msgid "Failed to install theme"
 msgstr "Неуспех при инсталирането на тема"
 
-#: dialogs/appearance-settings/main.c:1469
+#: dialogs/appearance-settings/main.c:1461
 msgid ""
 "The theme used for Xfce and other GTK applications. Some themes only affect GTK2/GTK3 applications, other themes as well affect GTK4 applications. Additional themes e.g. can be installed by the package manager of your distribution.\n"
 "\n"
 "Choosing a dark theme will set a GTK \"prefer-dark\" setting. Foreign applications can follow that setting, though not all of them will do so, depending on the used toolkit and the application preferences."
 msgstr "Тема, използвана за Xfce и други GTK приложения. Някои теми засягат само GTK2/GTK3 приложения, докато други обхващат и GTK4 приложения. Допълнителни теми могат да бъдат инсталирани, например, чрез мениджъра на пакети на вашата дистрибуция.\n\nИзборът на тъмна тема активира настройката „prefer-dark“ - предпочитане на тъмен режим в GTK. Други приложения могат да се съобразят с тази настройка, макар че не всички го правят – това зависи от използвания инструментариум и настройките на самото приложение."
 
-#: dialogs/appearance-settings/main.c:1499
+#: dialogs/appearance-settings/main.c:1491
 #, c-format
 msgid "Install %s theme"
 msgstr "Инсталиране на %s тема"
 
-#: dialogs/appearance-settings/main.c:1502
+#: dialogs/appearance-settings/main.c:1494
 #: dialogs/keyboard-settings/command-dialog.c:266
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:420
 msgid "_Open"
 msgstr "_Отваряне"
 
-#: dialogs/appearance-settings/main.c:1768
+#: dialogs/appearance-settings/main.c:1760
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1772
+#: dialogs/appearance-settings/main.c:1764
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1776
+#: dialogs/appearance-settings/main.c:1768
 msgid "Vertical RGB"
 msgstr "Вертикален RGB"
 
-#: dialogs/appearance-settings/main.c:1780
+#: dialogs/appearance-settings/main.c:1772
 msgid "Vertical BGR"
 msgstr "Вертикален BGR"
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1906
+msgid "dark color scheme"
+msgstr ""
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1909
+msgid "light color scheme"
+msgstr ""
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1912
+msgid "default color scheme"
+msgstr ""
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1917
+#, c-format
+msgid "icons: %s"
+msgstr ""
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1921
+#, c-format
+msgid "cursor: %s"
+msgstr ""
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1925
+msgid "command"
+msgstr "команда"
+
+#: dialogs/appearance-settings/main.c:1949
+#, c-format
+msgid "Theme: %s"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1951
+msgid "Window manager theme: matching"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1955
+#, c-format
+msgid "Color scheme: %s"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1956
+#: dialogs/appearance-settings/main.c:2364
+msgid "Dark"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1957
+#: dialogs/appearance-settings/main.c:2365
+msgid "Light"
+msgstr ""
+
+#. sort the names but keep Default on top
+#: dialogs/appearance-settings/main.c:1958
+#: dialogs/appearance-settings/main.c:2366
+#: dialogs/mime-settings/xfce-mime-window.c:765
+#: dialogs/mime-settings/xfce-mime-window.c:932
+#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
+#: dialogs/mouse-settings/main.c:475
+msgid "Default"
+msgstr "Стандартен"
+
+#: dialogs/appearance-settings/main.c:1961
+#, c-format
+msgid "Icon theme: %s"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1964
+#, c-format
+msgid "Mouse cursor theme: %s"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1967
+#, c-format
+msgid "Command: %s"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:1990
+#: dialogs/appearance-settings/main.c:2357
+#: dialogs/appearance-settings/main.c:2367
+msgid "No change"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2086
+msgid "Add a rule to switch the style at a given time."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2088
+#, c-format
+msgid "Next switch at %02d:%02d: %s"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2329
+msgid "Add Rule"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2329
+msgid "Edit Rule"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2351
+msgid "_Time:"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2351
+msgid ""
+"The rule applies all its settings when the clock reaches this time. A switch"
+" missed while you were logged out or the computer was asleep is made at "
+"login or on waking up."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2361
+msgid "T_heme:"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2361
+msgid "The theme of Xfce and GTK 3 applications, as on the Style tab."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2369
+msgid "Colo_r scheme:"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2369
+msgid ""
+"The dark or light preference of the desktop, followed by GTK 4 and "
+"libadwaita, Qt 6, Firefox, Chromium and Electron applications. Firefox "
+"follows it if Website appearance is set to Automatic, Chromium if Mode is "
+"set to Device."
+msgstr ""
+
+#. Xfwm4 theme, by default as the switch on the Style tab
+#: dialogs/appearance-settings/main.c:2375
+msgid "Set the matching _window manager theme along with the theme"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2380
+msgid ""
+"The window manager theme of the same name as the theme, like the switch on "
+"the Style tab does."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2393
+msgid "Set the _icon theme:"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2394
+msgid "The icon theme, as on the Icons tab."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2409
+msgid "Set the mouse c_ursor theme:"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2410
+msgid "The mouse cursor theme, as chosen in the Mouse and Touchpad settings."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2417
+msgid "Run co_mmand:"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2417
+msgid ""
+"The command runs with /bin/sh after switching. The new settings are in "
+"$XFCE_SCHEDULE_GTK_THEME, $XFCE_SCHEDULE_ICON_THEME and "
+"$XFCE_SCHEDULE_COLOR_SCHEME."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2443
+#, c-format
+msgid "There is already a rule at %s."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2513
+msgid "Scheduled style changes applied"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2572
+msgid "Change the style automatica_lly at set times"
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2612
+msgid "_Schedule"
+msgstr ""
 
 #: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:5
 msgid "Customize the look of your desktop"
@@ -2350,14 +2542,6 @@ msgstr "Стандартна програма"
 msgid "User Set"
 msgstr "Потребителски"
 
-#. sort the names but keep Default on top
-#: dialogs/mime-settings/xfce-mime-window.c:765
-#: dialogs/mime-settings/xfce-mime-window.c:932
-#: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
-#: dialogs/mouse-settings/main.c:475
-msgid "Default"
-msgstr "Стандартен"
-
 #: dialogs/mime-settings/xfce-mime-window.c:855
 #, c-format
 msgid "%d MIME type found"
@@ -2997,19 +3181,19 @@ msgstr "Прескачащи клавиши"
 msgid "Failed to launch shortcut \"%s\""
 msgstr "Неуспешно задействане на клавишно съчетание „%s“"
 
-#: xfsettingsd/main.c:96
+#: xfsettingsd/main.c:98
 msgid "Fork to the background"
 msgstr "Преминаване във фонов режим"
 
-#: xfsettingsd/main.c:97
+#: xfsettingsd/main.c:99
 msgid "Do not wait for a window manager on startup"
 msgstr "Не чакайте управлението на прозорците да стартира"
 
-#: xfsettingsd/main.c:98
+#: xfsettingsd/main.c:100
 msgid "Replace running xsettings daemon (if any)"
 msgstr "Замяна на стартиране услуга xsettings (ако е налична)"
 
-#: xfsettingsd/main.c:99
+#: xfsettingsd/main.c:101
 msgid "Allow xfsettingsd to start even if another instance is running"
 msgstr "Разрешаване на xfsettingsd да стартира, дори, ако работи друг екземпляр"
 
