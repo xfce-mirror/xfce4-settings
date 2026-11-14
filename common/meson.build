@@ -1,6 +1,8 @@
 libsettings_common_sources = [
   'debug.c',
   'debug.h',
+  'sun-times.c',
+  'sun-times.h',
   'theme-utils.c',
   'theme-utils.h',
 ]
