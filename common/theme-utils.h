@@ -63,6 +63,7 @@ typedef enum
     THEME_SCHEDULE_XFWM4,
     THEME_SCHEDULE_ICON_THEME,
     THEME_SCHEDULE_CURSOR_THEME,
+    THEME_SCHEDULE_BRIGHTNESS,
     THEME_SCHEDULE_COMMAND,
     N_THEME_SCHEDULE_FIELDS
 } ThemeScheduleField;
@@ -71,6 +72,9 @@ extern const gchar *const theme_schedule_properties[N_THEME_SCHEDULE_FIELDS];
 
 gint
 theme_utils_parse_schedule_time (const gchar *str);
+
+gint
+theme_utils_parse_schedule_brightness (const gchar *str);
 
 G_END_DECLS
 

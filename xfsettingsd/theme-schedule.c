@@ -32,6 +32,8 @@
  *                                     follow /Xfce/SyncThemes
  *   /Xfce/ThemeSchedule/IconThemes    icon theme name, "" to keep it
  *   /Xfce/ThemeSchedule/CursorThemes  cursor theme name, "" to keep it
+ *   /Xfce/ThemeSchedule/Brightness    screen brightness in percent (0-100),
+ *                                     set by xfce4-power-manager, "" to keep it
  *   /Xfce/ThemeSchedule/Commands      shell command run after switching, with
  *                                     the new values in XFCE_SCHEDULE_GTK_THEME,
  *                                     XFCE_SCHEDULE_ICON_THEME and
@@ -71,6 +73,8 @@ xfce_theme_schedule_helper_channel_property_changed (XfconfChannel *channel,
 static void
 xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
                                    gboolean rules_changed);
+static void
+xfce_theme_schedule_helper_send_brightness (XfceThemeScheduleHelper *helper);
 
 
 
@@ -86,6 +90,11 @@ struct _XfceThemeScheduleHelper
 
     guint timer_id;
     guint rules_changed_id;
+
+    /* the scheduled brightness until xfce4-power-manager has set it, e.g. once
+     * it is running after login, or -1 */
+    gint brightness;
+    guint power_manager_watch_id;
 };
 
 
@@ -125,6 +134,8 @@ xfce_theme_schedule_helper_init (XfceThemeScheduleHelper *helper)
         }
     }
 
+    helper->brightness = -1;
+
     helper->channel = xfconf_channel_get ("xsettings");
     g_signal_connect (helper->channel, "property-changed",
                       G_CALLBACK (xfce_theme_schedule_helper_channel_property_changed), helper);
@@ -144,6 +155,7 @@ xfce_theme_schedule_helper_finalize (GObject *object)
 
     g_clear_handle_id (&helper->timer_id, g_source_remove);
     g_clear_handle_id (&helper->rules_changed_id, g_source_remove);
+    g_clear_handle_id (&helper->power_manager_watch_id, g_bus_unwatch_name);
 
     for (guint i = 0; i < G_N_ELEMENTS (helper->color_scheme_gsettings); i++)
         g_clear_object (&helper->color_scheme_gsettings[i]);
@@ -206,6 +218,86 @@ xfce_theme_schedule_helper_run_command (XfceThemeScheduleHelper *helper,
 
 
 
+static void
+xfce_theme_schedule_helper_power_manager_appeared (GDBusConnection *connection,
+                                                   const gchar *name,
+                                                   const gchar *name_owner,
+                                                   gpointer user_data)
+{
+    XfceThemeScheduleHelper *helper = user_data;
+
+    g_clear_handle_id (&helper->power_manager_watch_id, g_bus_unwatch_name);
+    xfce_theme_schedule_helper_send_brightness (helper);
+}
+
+
+
+static void
+xfce_theme_schedule_helper_brightness_sent (GObject *source,
+                                            GAsyncResult *result,
+                                            gpointer user_data)
+{
+    XfceThemeScheduleHelper *helper = user_data;
+    GError *error = NULL;
+    GVariant *reply = g_dbus_connection_call_finish (G_DBUS_CONNECTION (source), result, &error);
+
+    if (reply != NULL)
+    {
+        g_variant_unref (reply);
+        helper->brightness = -1;
+    }
+    else if (g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_SERVICE_UNKNOWN)
+             || g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_NAME_HAS_NO_OWNER))
+    {
+        /* xfce4-power-manager is not running yet, e.g. at login: set the
+         * brightness once it is */
+        if (helper->power_manager_watch_id == 0)
+            helper->power_manager_watch_id = g_bus_watch_name (G_BUS_TYPE_SESSION, "org.xfce.PowerManager",
+                                                               G_BUS_NAME_WATCHER_FLAGS_NONE,
+                                                               xfce_theme_schedule_helper_power_manager_appeared,
+                                                               NULL, helper, NULL);
+    }
+    else
+    {
+        g_warning ("Failed to set the scheduled brightness: %s", error->message);
+        helper->brightness = -1;
+    }
+
+    g_clear_error (&error);
+    g_object_unref (helper);
+}
+
+
+
+/* the brightness is set by xfce4-power-manager, so that it knows the new
+ * level, e.g. to restore it after dimming the screen */
+static void
+xfce_theme_schedule_helper_send_brightness (XfceThemeScheduleHelper *helper)
+{
+    GDBusConnection *connection;
+    GError *error = NULL;
+
+    if (helper->brightness < 0)
+        return;
+
+    connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+    if (connection == NULL)
+    {
+        g_warning ("Failed to set the scheduled brightness: %s", error->message);
+        g_error_free (error);
+        helper->brightness = -1;
+        return;
+    }
+
+    g_dbus_connection_call (connection, "org.xfce.PowerManager", "/org/xfce/PowerManager",
+                            "org.xfce.Power.Manager", "SetBrightness", g_variant_new ("(i)", helper->brightness),
+                            NULL, G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, NULL,
+                            xfce_theme_schedule_helper_brightness_sent, g_object_ref (helper));
+    g_object_unref (connection);
+}
+
+
+
 /* @rule holds the fields of a rule, NULL where missing */
 static void
 xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
@@ -260,6 +352,12 @@ xfce_theme_schedule_helper_apply (XfceThemeScheduleHelper *helper,
     /* cursor theme */
     if (!xfce_str_is_empty (rule[THEME_SCHEDULE_CURSOR_THEME]))
         xfconf_channel_set_string (helper->channel, "/Gtk/CursorThemeName", rule[THEME_SCHEDULE_CURSOR_THEME]);
+
+    if (!xfce_str_is_empty (rule[THEME_SCHEDULE_BRIGHTNESS]))
+    {
+        helper->brightness = theme_utils_parse_schedule_brightness (rule[THEME_SCHEDULE_BRIGHTNESS]);
+        xfce_theme_schedule_helper_send_brightness (helper);
+    }
 
     if (!xfce_str_is_empty (rule[THEME_SCHEDULE_COMMAND]))
         xfce_theme_schedule_helper_run_command (helper, rule[THEME_SCHEDULE_COMMAND]);
@@ -395,6 +493,13 @@ xfce_theme_schedule_helper_update (XfceThemeScheduleHelper *helper,
         fields[f] = xfconf_channel_get_string_list (helper->channel, theme_schedule_properties[f]);
         n_fields[f] = fields[f] != NULL ? g_strv_length (fields[f]) : 0;
     }
+
+    /* an invalid brightness, e.g. set with xfconf-query, counts as unset, so
+     * that it neither replaces a valid one of an earlier rule nor makes a rule
+     * do something */
+    for (guint i = 0; i < n_fields[THEME_SCHEDULE_BRIGHTNESS]; i++)
+        if (theme_utils_parse_schedule_brightness (fields[THEME_SCHEDULE_BRIGHTNESS][i]) < 0)
+            fields[THEME_SCHEDULE_BRIGHTNESS][i][0] = '\0';
 
     /* the rules whose time passed since the last check, e.g. several while
      * logged out, are merged in the order of their times and applied once,

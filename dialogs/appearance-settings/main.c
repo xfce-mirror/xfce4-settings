@@ -133,6 +133,14 @@ typedef struct
 
 typedef struct
 {
+    GtkWidget *check;
+    GtkWidget *box;
+    GtkWidget *spin;
+    gboolean has_value;
+} schedule_brightness_data;
+
+typedef struct
+{
     icon_theme_preview_data *itpd;
     gchar *icon_theme_name;
     GtkTreeRowReference *row;
@@ -1875,6 +1883,7 @@ schedule_rule_is_empty (gchar **rule)
            && xfce_str_is_empty (rule[THEME_SCHEDULE_COLOR_SCHEME])
            && xfce_str_is_empty (rule[THEME_SCHEDULE_ICON_THEME])
            && xfce_str_is_empty (rule[THEME_SCHEDULE_CURSOR_THEME])
+           && xfce_str_is_empty (rule[THEME_SCHEDULE_BRIGHTNESS])
            && xfce_str_is_empty (rule[THEME_SCHEDULE_COMMAND]);
 }
 
@@ -1920,6 +1929,10 @@ schedule_describe_rule (gchar **rule)
         /* TRANSLATORS: keep this lowercase, it is part of a list */
         g_ptr_array_add (parts, g_strdup_printf (_("cursor: %s"), rule[THEME_SCHEDULE_CURSOR_THEME]));
 
+    if (theme_utils_parse_schedule_brightness (rule[THEME_SCHEDULE_BRIGHTNESS]) >= 0)
+        /* TRANSLATORS: keep this lowercase, it is part of a list */
+        g_ptr_array_add (parts, g_strdup_printf (_("brightness: %d%%"), theme_utils_parse_schedule_brightness (rule[THEME_SCHEDULE_BRIGHTNESS])));
+
     if (!xfce_str_is_empty (rule[THEME_SCHEDULE_COMMAND]))
         /* TRANSLATORS: keep this lowercase, it is part of a list */
         g_ptr_array_add (parts, g_strdup (_("command")));
@@ -1962,6 +1975,9 @@ schedule_rule_tooltip (gchar **rule)
 
     if (!xfce_str_is_empty (rule[THEME_SCHEDULE_CURSOR_THEME]))
         g_ptr_array_add (lines, g_strdup_printf (_("Mouse cursor theme: %s"), rule[THEME_SCHEDULE_CURSOR_THEME]));
+
+    if (theme_utils_parse_schedule_brightness (rule[THEME_SCHEDULE_BRIGHTNESS]) >= 0)
+        g_ptr_array_add (lines, g_strdup_printf (_("Screen brightness: %d%%"), theme_utils_parse_schedule_brightness (rule[THEME_SCHEDULE_BRIGHTNESS])));
 
     if (!xfce_str_is_empty (rule[THEME_SCHEDULE_COMMAND]))
         g_ptr_array_add (lines, g_strdup_printf (_("Command: %s"), rule[THEME_SCHEDULE_COMMAND]));
@@ -2357,6 +2373,40 @@ cb_schedule_dialog_theme_changed_icons (GtkComboBox *theme_combo,
     }
 }
 
+/* the reply of xfce4-power-manager to GetBrightness: the brightness can be
+ * scheduled, and a new setting starts at the current level */
+static void
+cb_schedule_dialog_brightness (GObject *source,
+                               GAsyncResult *result,
+                               gpointer user_data)
+{
+    schedule_brightness_data *brightness = user_data;
+    GError *error = NULL;
+    GVariant *reply;
+
+    reply = g_dbus_connection_call_finish (G_DBUS_CONNECTION (source), result, &error);
+    if (reply != NULL)
+    {
+        gint32 percent;
+        g_variant_get (reply, "(i)", &percent);
+        g_variant_unref (reply);
+        if (!brightness->has_value)
+            gtk_spin_button_set_value (GTK_SPIN_BUTTON (brightness->spin), percent);
+        gtk_widget_set_sensitive (brightness->check, TRUE);
+    }
+    else
+    {
+        if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+        {
+            gtk_widget_set_tooltip_text (brightness->check, _("The power manager found no screen backlight."));
+            gtk_widget_set_tooltip_text (brightness->box, _("The power manager found no screen backlight."));
+        }
+        g_error_free (error);
+    }
+
+    g_free (brightness);
+}
+
 /* the dialog of the rule at @index, or of a new rule if -1 */
 static void
 schedule_edit_rule (GtkBuilder *builder,
@@ -2366,10 +2416,14 @@ schedule_edit_rule (GtkBuilder *builder,
     GtkWidget *dialog, *grid, *box, *label, *error_label;
     GtkWidget *hour_spin, *minute_spin, *theme_combo, *color_scheme_combo, *xfwm4_check;
     GtkWidget *icon_check, *icon_combo, *cursor_check, *cursor_combo;
+    GtkWidget *brightness_check, *brightness_box, *brightness_spin;
     GtkWidget *command_entry;
     GPtrArray *cursor_themes;
+    GDBusConnection *connection;
+    GCancellable *cancellable;
+    schedule_brightness_data *brightness;
     gchar *current;
-    gint minutes_since_midnight, row = 0;
+    gint minutes_since_midnight, saved_brightness, row = 0;
 
     dialog = gtk_dialog_new_with_buttons (index < 0 ? _("Add Rule") : _("Edit Rule"),
                                           GTK_WINDOW (gtk_widget_get_toplevel (schedule.view)),
@@ -2455,6 +2509,36 @@ schedule_edit_rule (GtkBuilder *builder,
     cursor_check = schedule_grid_check (GTK_GRID (grid), row++, _("Set the mouse c_ursor theme:"), cursor_combo,
                                         !xfce_str_is_empty (rule[THEME_SCHEDULE_CURSOR_THEME]), _("The mouse cursor theme, as chosen in the Mouse and Touchpad settings."));
 
+    /* screen brightness, offered once xfce4-power-manager tells the current
+     * level; an invalid saved value is dropped */
+    saved_brightness = theme_utils_parse_schedule_brightness (rule[THEME_SCHEDULE_BRIGHTNESS]);
+    brightness_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    brightness_spin = gtk_spin_button_new_with_range (0, 100, 5);
+    gtk_spin_button_set_value (GTK_SPIN_BUTTON (brightness_spin), saved_brightness >= 0 ? saved_brightness : 100);
+    gtk_entry_set_activates_default (GTK_ENTRY (brightness_spin), TRUE);
+    gtk_box_pack_start (GTK_BOX (brightness_box), brightness_spin, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (brightness_box), gtk_label_new ("%"), FALSE, FALSE, 0);
+    brightness_check = schedule_grid_check (GTK_GRID (grid), row++, _("Set the screen _brightness to:"), brightness_box,
+                                            saved_brightness >= 0, _("The backlight of a laptop screen, set by the power manager."));
+    /* a saved value can always be changed or turned off */
+    gtk_widget_set_sensitive (brightness_check, saved_brightness >= 0);
+    cancellable = g_cancellable_new ();
+    /* a late reply must not touch the destroyed widgets */
+    g_signal_connect_swapped (dialog, "destroy", G_CALLBACK (g_cancellable_cancel), cancellable);
+    connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+    if (connection != NULL)
+    {
+        brightness = g_new0 (schedule_brightness_data, 1);
+        brightness->check = brightness_check;
+        brightness->box = brightness_box;
+        brightness->spin = brightness_spin;
+        brightness->has_value = saved_brightness >= 0;
+        g_dbus_connection_call (connection, "org.xfce.PowerManager", "/org/xfce/PowerManager",
+                                "org.xfce.Power.Manager", "GetBrightness", NULL, G_VARIANT_TYPE ("(i)"),
+                                G_DBUS_CALL_FLAGS_NO_AUTO_START, -1, cancellable, cb_schedule_dialog_brightness, brightness);
+        g_object_unref (connection);
+    }
+
     /* shell command */
     command_entry = gtk_entry_new ();
     gtk_entry_set_text (GTK_ENTRY (command_entry), rule[THEME_SCHEDULE_COMMAND]);
@@ -2475,7 +2559,7 @@ schedule_edit_rule (GtkBuilder *builder,
     while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
     {
         gchar *new_rule[N_THEME_SCHEDULE_FIELDS + 1] = { NULL };
-        gchar *time_str, *command;
+        gchar *time_str, *brightness_str = NULL, *command;
         GtkTreePath *path;
 
         gtk_spin_button_update (GTK_SPIN_BUTTON (hour_spin));
@@ -2496,6 +2580,11 @@ schedule_edit_rule (GtkBuilder *builder,
             continue;
         }
 
+        if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (brightness_check)))
+        {
+            gtk_spin_button_update (GTK_SPIN_BUTTON (brightness_spin));
+            brightness_str = g_strdup_printf ("%d", gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (brightness_spin)));
+        }
         command = g_strstrip (g_strdup (gtk_entry_get_text (GTK_ENTRY (command_entry))));
 
         new_rule[THEME_SCHEDULE_TIME] = time_str;
@@ -2508,6 +2597,7 @@ schedule_edit_rule (GtkBuilder *builder,
         new_rule[THEME_SCHEDULE_CURSOR_THEME] = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (cursor_check))
                                                     ? (gchar *) gtk_combo_box_get_active_id (GTK_COMBO_BOX (cursor_combo))
                                                     : "";
+        new_rule[THEME_SCHEDULE_BRIGHTNESS] = brightness_str != NULL ? brightness_str : "";
         new_rule[THEME_SCHEDULE_COMMAND] = command;
 
         /* the rule moves to the place of its time */
@@ -2522,11 +2612,13 @@ schedule_edit_rule (GtkBuilder *builder,
         gtk_tree_path_free (path);
 
         g_free (time_str);
+        g_free (brightness_str);
         g_free (command);
         break;
     }
 
     gtk_widget_destroy (dialog);
+    g_object_unref (cancellable);
 }
 
 static gboolean
@@ -2565,6 +2657,7 @@ cb_schedule_add_item (XfceItemListView *view,
     rule[THEME_SCHEDULE_XFWM4] = "";
     rule[THEME_SCHEDULE_ICON_THEME] = "";
     rule[THEME_SCHEDULE_CURSOR_THEME] = "";
+    rule[THEME_SCHEDULE_BRIGHTNESS] = "";
     rule[THEME_SCHEDULE_COMMAND] = command;
     schedule_edit_rule (builder, -1, rule);
 
@@ -2604,7 +2697,7 @@ appearance_settings_dialog_configure_schedule (GtkBuilder *builder)
 
     schedule.store = xfce_item_list_store_new (SCHEDULE_COLUMN (N_THEME_SCHEDULE_FIELDS),
                                                G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
-                                               G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+                                               G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
     g_object_set (schedule.store, "list-flags",
                   XFCE_ITEM_LIST_MODEL_ADDABLE | XFCE_ITEM_LIST_MODEL_REMOVABLE | XFCE_ITEM_LIST_MODEL_EDITABLE, NULL);
 
