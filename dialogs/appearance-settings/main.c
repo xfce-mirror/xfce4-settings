@@ -2609,6 +2609,7 @@ appearance_settings_dialog_configure_schedule (GtkBuilder *builder)
 
     notebook = gtk_builder_get_object (builder, "plug-child");
     gtk_widget_show_all (page);
+    /* TRANSLATORS: a 'Schedule' here is a table of start-times (hh:mm) on which e.g. theme changes will be triggered */
     gtk_notebook_append_page (GTK_NOTEBOOK (notebook), page, gtk_label_new_with_mnemonic (_("_Schedule")));
 
     schedule_update_status_label ();
