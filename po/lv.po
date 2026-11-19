@@ -7,6 +7,7 @@
 # Gatis Kalniņš <>, 2022
 # Xfce Bot <transifex@xfce.org>, 2022
 # Nick Schermer <nick@xfce.org>, 2022
+# Rihards Priedītis <rprieditis@gmail.com>, 2026
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-30 00:50+0200\n"
 "PO-Revision-Date: 2022-12-22 11:33+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>, 2022\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>, 2026\n"
 "Language-Team: Latvian (https://app.transifex.com/xfce/teams/16840/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr "Nezināms"
 #: ../common/xfce-randr.c:299 ../dialogs/display-settings/main.c:4391
 #, c-format
 msgid "Unable to query the version of the RandR extension being used"
-msgstr "Neizdevās vaicāt izmantoto versiju RandR paplašinājumam"
+msgstr "Neizdevās noskaidrot izmantotā RandR paplašinājuma versiju"
 
 #. 1.2 is required
 #: ../common/xfce-randr.c:307
@@ -43,6 +44,8 @@ msgid ""
 "This system is using RandR %d.%d. For the display settings to work version "
 "1.2 is required at least"
 msgstr ""
+"Šī sistēma izmanto RandR %d.%d. Lai displeja iestatījumi darbotos, vajadzīga"
+" vismaz versija 1.2"
 
 #: ../common/xfce-randr.c:597
 msgid "Laptop"
@@ -99,26 +102,28 @@ msgid ""
 "When enabled, the session manager will start the required applications for "
 "screen readers and magnifiers."
 msgstr ""
+"Ja iespējots, sesiju pārvaldnieks palaidīs ekrāna lasītājiem un "
+"palielinātājiem vajadzīgās lietotnes."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:5
 msgid "_Enable assistive technologies"
-msgstr ""
+msgstr "_Ieslēgt palīgtehnoloģijas"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:6
 msgid "Start With Session"
-msgstr ""
+msgstr "Startēt kopā ar sesiju"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:7
 msgid "Assistive technologies will be available the next time you login"
-msgstr ""
+msgstr "Palīgtehnoloģijas būs pieejamas nākamajā pieteikšanās reizē"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:8
 msgid "No AT-SPI provider was found on your system"
-msgstr ""
+msgstr "Sistēmā netika atrasts neviens AT-SPI nodrošinātājs"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:9
 msgid "Assistive _Technologies"
-msgstr ""
+msgstr "Palīg_tehnoloģijas"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:10
 msgid ""
@@ -126,34 +131,37 @@ msgid ""
 " be held down (they can be pressed and then released) when multiple keys "
 "would normally need to be pressed at the same time."
 msgstr ""
+"Ja iespējots, modificētājtaustiņi (piemēram, Control, Alt un Shift) nav "
+"jātur nospiesti (tos var nospiest un atlaist), kad parasti vairāki taustiņi "
+"jānospiež vienlaikus."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:11
 msgid "_Use sticky keys"
-msgstr ""
+msgstr "_Izmantot lipīgos taustiņus"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:12
 msgid "_Lock sticky keys"
-msgstr "S_lēgt lipīgos taustiņus"
+msgstr "_Bloķēt lipīgos taustiņus"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:13
 msgid ""
 "When selected, modifier keys (such as Control, Alt, and Shift) will remain "
 "locked in the pressed state until pressed again"
 msgstr ""
-"Kad atlasīts, modicētāja taustiņi (tādi kā Control, Alt un Shift) paliks "
-"slēgti, nospiestā stāvoklī, kamēr netiks nospiesti atkal"
+"Ja atzīmēts, modificētājtaustiņi (piemēram, Control, Alt un Shift) paliek "
+"nofiksēti nospiestā stāvoklī, līdz tos nospiež vēlreiz"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:14
 msgid "Disable sticky keys if two keys are _pressed"
-msgstr ""
+msgstr "Atspējot lipīgos taustiņus, ja _nospiesti divi taustiņi"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:15
 msgid ""
 "When selected, the \"sticky keys\" feature will be disabled if two keys are "
 "pressed simultaneously"
 msgstr ""
-"Kad atlasīts, \"lipīgo taustiņu\" iespēja tiks izslēgta, ja divi taustiņi "
-"tiek nospiesti vienlaicīgi"
+"Ja atzīmēts, „lipīgo taustiņu” iespēja tiek atspējota, ja vienlaikus "
+"nospiesti divi taustiņi"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:16
 msgid "Sticky Keys"
@@ -164,6 +172,8 @@ msgid ""
 "To help prevent accidental keystrokes, slow keys requires that a key is held"
 " for a certain minimum amount of time before the keystroke will be accepted."
 msgstr ""
+"Lai novērstu nejaušus taustiņu nospiedienus, lēno taustiņu režīmā taustiņš "
+"jātur nospiests noteiktu minimālo laiku, līdz nospiediens tiek pieņemts."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:18
 msgid "Use slow _keys"
@@ -178,7 +188,7 @@ msgid ""
 "The amount of time, in milliseconds, that must elapse before a keystroke "
 "will be accepted"
 msgstr ""
-"Laika daudzums, milisekundēs, kam jāpaiet starp taustiņsitiens tiek pieņemts"
+"Laiks milisekundēs, kam jāpaiet, līdz taustiņa nospiediens tiek pieņemts"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:21
 msgid "Slow Keys"
@@ -189,22 +199,24 @@ msgid ""
 "To help prevent accidental multiple keystrokes, bounce keys imposes a "
 "minimum delay between keystrokes."
 msgstr ""
+"Lai novērstu nejaušus atkārtotus taustiņu nospiedienus, atlecošo taustiņu "
+"režīmā starp nospiedieniem jābūt minimālai aizturei."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:23
 msgid "Use _bounce keys"
-msgstr "Izmantot _lecošos taustiņus"
+msgstr "Izmantot _atlecošos taustiņus"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:24
 msgid "K_eystroke delay:"
-msgstr "Taustiņsiti_ena aizture:"
+msgstr "Nospied_ienu aizture:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:25
 msgid "The amount of time, in milliseconds, required between keystrokes"
-msgstr "Laika daudzums, milisekundēs, kas nepieciešams starp taustiņsitieniem"
+msgstr "Vajadzīgais laiks milisekundēs starp taustiņu nospiedieniem"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:26
 msgid "Bounce Keys"
-msgstr "Lecošie taustiņi"
+msgstr "Atlecošie taustiņi"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:27
 msgid "Keyboa_rd"
@@ -214,30 +226,29 @@ msgstr "Tastatū_ra"
 msgid ""
 "When enabled, the mouse pointer can be controlled using the keyboard number "
 "pad."
-msgstr ""
+msgstr "Ja iespējots, peles rādītāju var vadīt ar tastatūras ciparbloku."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:29
 msgid "_Use mouse emulation"
-msgstr "Izmantot peles em_ulāciju"
+msgstr "Izmantot peles _atdarināšanu"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:30
 msgid ""
 "When selected, the mouse pointer can be controlled using the keyboard number"
 " pad"
-msgstr ""
-"Kad izvēlēts, peles kursors var tikt kontrolēts izmantojot cipartastatūru"
+msgstr "Ja atzīmēts, peles rādītāju var vadīt ar tastatūras ciparbloku"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:31
 msgid "msec"
-msgstr "msec"
+msgstr "ms"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:32
 msgid ""
 "The time, in milliseconds, between the initial key press and first repeated "
 "motion event"
 msgstr ""
-"Laiks, milisekundēs starp sākotnējo taustiņu nospiešanu un pirmo atkārtoto "
-"kustību notikumu"
+"Laiks milisekundēs starp taustiņa sākotnējo nospiedienu un pirmo atkārtoto "
+"kustības notikumu"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:33
 msgid "_Acceleration delay:"
@@ -249,53 +260,55 @@ msgstr "A_tkārtošanas intervāls:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:35
 msgid "The time, in milliseconds, between repeated motion events"
-msgstr "Laiks, milisekundēs, starp atkārtotiem kustību notikumiem"
+msgstr "Laiks milisekundēs starp atkārtotiem kustības notikumiem"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:36
 msgid "Acceleration t_ime:"
-msgstr ""
+msgstr "Paātrinājuma _laiks:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:37
 msgid "The time, in milliseconds, to get to maximum speed"
-msgstr "Laiks, milisekundēs, lai iegūtu maksimālo ātrumu"
+msgstr "Laiks milisekundēs, līdz tiek sasniegts maksimālais ātrums"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:38
 msgid "Ma_ximum speed:"
-msgstr ""
+msgstr "Ma_ksimālais ātrums:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:39
 msgid "The maximum pointer speed after acceleration"
-msgstr "Maksimālā kursora ātruma akselerācija"
+msgstr "Maksimālais rādītāja ātrums pēc paātrināšanās"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:40
 msgid "pixels/sec"
-msgstr "pikseļi/sec"
+msgstr "pikseļi/s"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:41
 msgid "Acceleration _profile:"
-msgstr "Paātrinājums _profils:"
+msgstr "Paātrinājuma _profils:"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:42
 msgid "The ramp used to reach maximum pointer speed"
-msgstr "Rampa, kuru izmanto, lai sasniegtu maksimālo kursora ātrumu"
+msgstr "Līkne, pa kuru tiek sasniegts maksimālais rādītāja ātrums"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:43
 msgid "Mouse Emulation"
-msgstr "Peles emulācija"
+msgstr "Peles atdarināšana"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:44
 msgid ""
 "Bind a keyboard shortcut to xfce4-find-cursor to get visual feedback of the "
 "mouse pointer's current location."
 msgstr ""
+"Piesaistiet xfce4-find-cursor īsinājumtaustiņu, lai vizuāli redzētu peles "
+"rādītāja pašreizējo atrašanās vietu."
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:45
 msgid "Show location of pointer on keypress"
-msgstr ""
+msgstr "Rādīt rādītāja atrašanās vietu, nospiežot taustiņu"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:46
 msgid "Find Cursor"
-msgstr ""
+msgstr "Atrast kursoru"
 
 #: ../dialogs/accessibility-settings/accessibility-dialog.glade.h:47
 msgid "_Mouse"
@@ -315,7 +328,7 @@ msgstr "Iestatījumu pārvaldnieka ligzda"
 #: ../dialogs/keyboard-settings/main.c:40 ../dialogs/mime-settings/main.c:44
 #: ../dialogs/mouse-settings/main.c:88 ../xfce4-settings-editor/main.c:49
 msgid "SOCKET ID"
-msgstr "SOKETA ID"
+msgstr "LIGZDAS ID"
 
 #: ../dialogs/accessibility-settings/main.c:47
 #: ../dialogs/appearance-settings/main.c:105
@@ -337,7 +350,7 @@ msgstr "Versijas informācija"
 #: ../xfsettingsd/main.c:280
 #, c-format
 msgid "Type '%s --help' for usage."
-msgstr "Ievadiet \"%s --help\", lai iegūtu lietošanas informāciju"
+msgstr "Lai uzzinātu, kā lietot, ievadiet „%s --help”."
 
 #: ../dialogs/accessibility-settings/main.c:219
 #: ../dialogs/appearance-settings/main.c:1415
@@ -347,7 +360,7 @@ msgstr "Ievadiet \"%s --help\", lai iegūtu lietošanas informāciju"
 #: ../dialogs/mouse-settings/main.c:1908 ../xfce4-settings-editor/main.c:139
 #: ../xfce4-settings-manager/main.c:80 ../xfsettingsd/main.c:258
 msgid "The Xfce development team. All rights reserved."
-msgstr "Xfce izstrādes komanda. Visas tiesības paturētas."
+msgstr "Xfce izstrādātāju komanda. Visas tiesības paturētas."
 
 #: ../dialogs/accessibility-settings/main.c:220
 #: ../dialogs/appearance-settings/main.c:1416
@@ -358,7 +371,7 @@ msgstr "Xfce izstrādes komanda. Visas tiesības paturētas."
 #: ../xfce4-settings-manager/main.c:81 ../xfsettingsd/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Lūdzu ziņojiet par kļūdām uz <%s>."
+msgstr "Lūdzu, ziņojiet par kļūdām <%s>."
 
 #: ../dialogs/accessibility-settings/xfce4-accessibility-settings.desktop.in.h:2
 msgid "Improve keyboard and mouse accessibility"
@@ -369,17 +382,20 @@ msgid ""
 "assistive;technologies;keys;sticky;bounce;emulation;screen "
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr ""
+"palīgtehnoloģijas;taustiņi;lipīgie;atlecošie;atdarināšana;ekrāna "
+"lasītāji;palielinātāji;pieejamība;assistive;technologies;keys;sticky;bounce;emulation;screen"
+" readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:1
 #: ../dialogs/appearance-settings/main.c:1271
 #: ../dialogs/display-settings/main.c:107
 #: ../dialogs/display-settings/main.c:118
 msgid "None"
-msgstr "Nekas"
+msgstr "Nav"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:2
 msgid "Slight"
-msgstr "Nedaudz"
+msgstr "Neliels"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:3
 msgid "Medium"
@@ -399,20 +415,20 @@ msgstr "Teksts"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:7
 msgid "Text under icons"
-msgstr ""
+msgstr "Teksts zem ikonām"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:8
 msgid "Text next to icons"
-msgstr ""
+msgstr "Teksts blakus ikonām"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:9
 msgid "1x (no scaling)"
-msgstr ""
+msgstr "1x (bez mērogošanas)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:10
 #: ../dialogs/display-settings/display-dialog.glade.h:4
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:11
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:1
@@ -424,11 +440,11 @@ msgstr "Izskats"
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:24
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:354
 msgid "_Add"
-msgstr ""
+msgstr "_Pievienot"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:15
 msgid "Set matching Xfwm4 theme if there is one"
-msgstr ""
+msgstr "Iestatīt atbilstošu Xfwm4 motīvu, ja tāds ir"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:16
 msgid "St_yle"
@@ -443,89 +459,89 @@ msgid ""
 "This font will be used as the default font used when drawing user interface "
 "text"
 msgstr ""
-"Šis fonts tiks izmantots, kā noklusētais fonts, kad zīmēs lietotāja "
-"interfeisa tekstu"
+"Šis fonts tiks izmantots kā noklusējuma fonts lietotāja saskarnes teksta "
+"zīmēšanai"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:19
 msgid "Select a default font"
-msgstr "Norādiet noklusēto fontu"
+msgstr "Izvēlieties noklusējuma fontu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:20
 msgid "Default Fon_t"
-msgstr ""
+msgstr "Noklusējuma fon_ts"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:21
 msgid ""
 "This font will be used as the default monospace font, for example by "
 "terminal emulators."
 msgstr ""
+"Šis fonts tiks izmantots kā noklusējuma vienplatuma fonts, piemēram, "
+"termināļa emulatoros."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:22
 msgid "Select a default monospace font"
-msgstr ""
+msgstr "Izvēlieties noklusējuma vienplatuma fontu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:23
 msgid "Default _Monospace Font"
-msgstr ""
+msgstr "Noklusējuma _vienplatuma fonts"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:24
 msgid "_Enable anti-aliasing"
-msgstr ""
+msgstr "_Ieslēgt nogludināšanu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:25
 msgid ""
 "Anti-aliasing, or font smoothing, can improve the look of text on the screen"
-msgstr ""
-"Priekšāteikšana, vai fontu izlīdzināšana, var uzlabot teksta izskatu uz "
-"ekrāna"
+msgstr "Nogludināšana jeb fontu gludināšana var uzlabot teksta izskatu ekrānā"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:26
 msgid "Hintin_g:"
-msgstr ""
+msgstr "_Norādes (hinting):"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:27
 msgid ""
 "Many fonts contain information that provides extra hints as to how best draw"
 " the font; pick whichever looks best according to personal preference"
 msgstr ""
-"Daudzi fonti satur informāciju, kas sniedz papildus padomus, kā labāk zīmēt "
-"fontu, izvēlieties kurš izskatās labāk, pēc jūsu gaumes"
+"Daudzos fontos ir informācija ar papildu norādēm, kā fontu vislabāk zīmēt; "
+"izvēlieties to, kas pēc jūsu gaumes izskatās vislabāk"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:28
 msgid "Sub-_pixel order:"
-msgstr "Apakš-_pikseļu secība:"
+msgstr "Sub_pikseļu secība:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:29
 msgid ""
 "Font quality on a TFT or LCD screen can be greatly improved by choosing the "
 "correct sub-pixel order of the screen"
 msgstr ""
-"Fontu kvalitāte uz TFT vai LCD ekrāniem var lieli palielināt izvēloties "
-"pareizo apakš-pikseļu secību ekrānā"
+"Fontu kvalitāti TFT vai LCD ekrānā var ievērojami uzlabot, izvēloties "
+"pareizu ekrāna subpikseļu secību"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:30
 msgid "Rendering"
-msgstr ""
+msgstr "Renderēšana"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:31
 msgid "Custom _DPI setting:"
-msgstr "Pielāgotie _DPI iestatījumi:"
+msgstr "Pielāgots _DPI iestatījums:"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:32
 msgid ""
 "Override the detected monitor resolution if fonts look too large or too "
 "small"
 msgstr ""
-"Pāriestatīt noteikto monitoru izšķirtspēju, ja fonti izskatās pārāk mazi vai"
-" lieli"
+"Ignorēt noteikto monitora izšķirtspēju, ja fonti izskatās pārāk lieli vai "
+"pārāk mazi"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:33
 msgid "DPI"
-msgstr ""
+msgstr "DPI"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:34
 msgid "_Fonts"
-msgstr "_Fonts"
+msgstr "_Fonti"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:35
 msgid "Show images on _buttons"
@@ -545,7 +561,7 @@ msgstr "Norādiet, vai ikonas vajadzētu rādīt blakus vienumiem izvēlnēs"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:39
 msgid "Enable e_ditable accelerators"
-msgstr "Ieslēgt re_diģējamos paātrinātājus"
+msgstr "Iespējot _rediģējamus īsinājumtaustiņus"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:40
 msgid ""
@@ -553,13 +569,12 @@ msgid ""
 "the mouse over the menu item and pressing the new key combination for the "
 "shortcut"
 msgstr ""
-"Ja atlasīts, klaviatūras īsceļi priekš izvēlnes vienumiem var tikt mainīti, "
-"pārvietojot peles kursoru pāri izvēlnes vienumam un nospiežot jauno īsceļa "
-"taustiņa kombināciju"
+"Ja atzīmēts, izvēlnes vienumu īsinājumtaustiņus var mainīt, novietojot peli "
+"virs izvēlnes vienuma un nospiežot jauno taustiņu kombināciju"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:41
 msgid "Enable header bars in dialo_gs"
-msgstr ""
+msgstr "Iespējot galvenes joslas _dialoglodziņos"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:42
 msgid ""
@@ -567,48 +582,50 @@ msgid ""
 "dialog's header bar. Implies in Client Side Decoration. Only affects newly "
 "opened dialogs."
 msgstr ""
+"Nosaka, vai GTK dialoglodziņi drīkst izvietot logdaļas, piemēram, pogas, "
+"dialoglodziņa galvenes joslā. Nozīmē klienta puses noformējumu. Ietekmē "
+"tikai no jauna atvērtos dialoglodziņus."
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:43
 msgid "Menus and Buttons"
-msgstr ""
+msgstr "Izvēlnes un pogas"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:44
 msgid "Enable _event sounds"
-msgstr "Ieslēgt _notikumu skaņas"
+msgstr "Iespējot _notikumu skaņas"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:45
 msgid "Enable or disable event sounds globally (requires \"Canberra\" support)"
 msgstr ""
-"Ieslēgt vai izslēgt notikumu skaņas globāli (nepieciešamas \"Canberra\" "
-"atbalsts)"
+"Iespējot vai atspējot notikumu skaņas visur (vajadzīgs „Canberra” atbalsts)"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:46
 msgid "Enable input feedbac_k sounds"
-msgstr ""
+msgstr "Iespējot ievades _atgriezeniskās saites skaņas"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:47
 msgid ""
 "Specify whether mouse clicks and other user input will cause event sounds to"
 " play"
 msgstr ""
-"Norādiet, vai peles klikšķiem un citiem lietotāja ievadiem, vajadzētu "
-"izraisīt skaņas spēlēšanas notikumu"
+"Norādiet, vai peles klikšķiem un citai lietotāja ievadei jāizraisa notikumu "
+"skaņas"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:48
 msgid "Event sounds"
-msgstr ""
+msgstr "Notikumu skaņas"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:49
 msgid "Adjust the system-wide display scaling"
-msgstr ""
+msgstr "Pielāgot visas sistēmas displeja mērogošanu"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:50
 msgid "_Window Scaling"
-msgstr ""
+msgstr "_Logu mērogošana"
 
 #: ../dialogs/appearance-settings/appearance-dialog.glade.h:51
 msgid "Setti_ngs"
-msgstr "_Iestatījumi"
+msgstr "Ie_statījumi"
 
 #: ../dialogs/appearance-settings/main.c:481
 #, c-format
@@ -616,41 +633,43 @@ msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
 "<i>gtk-update-icon-cache %s/%s/</i> in a terminal emulator."
 msgstr ""
+"Brīdinājums: šim ikonu motīvam nav kešatmiņas faila. To var izveidot, "
+"termināļa emulatorā palaižot <i>gtk-update-icon-cache %s/%s/</i>."
 
 #: ../dialogs/appearance-settings/main.c:968
 #, c-format
 msgid "File is too large, installation aborted"
-msgstr ""
+msgstr "Fails ir pārāk liels, instalēšana pārtraukta"
 
 #: ../dialogs/appearance-settings/main.c:973
 msgid "Failed to create temporary directory"
-msgstr "Neizdevās izveidot pagaidu direktoriju"
+msgstr "Neizdevās izveidot pagaidu mapi"
 
 #: ../dialogs/appearance-settings/main.c:978
 msgid "Failed to extract archive"
-msgstr ""
+msgstr "Neizdevās atspiest arhīvu"
 
 #: ../dialogs/appearance-settings/main.c:983
 msgid "Unknown format, only archives and directories are supported"
-msgstr ""
+msgstr "Nezināms formāts, atbalstīti tikai arhīvi un mapes"
 
 #: ../dialogs/appearance-settings/main.c:988
 msgid "Not a valid theme package"
-msgstr ""
+msgstr "Nav derīga motīva pakotne"
 
 #: ../dialogs/appearance-settings/main.c:993
 #, c-format
 msgid "An unknown error, exit code is %d"
-msgstr ""
+msgstr "Nezināma kļūda, izejas kods ir %d"
 
 #: ../dialogs/appearance-settings/main.c:1000
 msgid "Failed to install theme"
-msgstr ""
+msgstr "Neizdevās instalēt motīvu"
 
 #: ../dialogs/appearance-settings/main.c:1054
 #, c-format
 msgid "Install %s theme"
-msgstr ""
+msgstr "Instalēt motīvu %s"
 
 #. Create cancel button
 #: ../dialogs/appearance-settings/main.c:1058
@@ -681,11 +700,11 @@ msgstr "BGR"
 
 #: ../dialogs/appearance-settings/main.c:1283
 msgid "Vertical RGB"
-msgstr "Vertikālais RGB"
+msgstr "Vertikāls RGB"
 
 #: ../dialogs/appearance-settings/main.c:1287
 msgid "Vertical BGR"
-msgstr "Vertikālais BGR"
+msgstr "Vertikāls BGR"
 
 #: ../dialogs/appearance-settings/xfce-ui-settings.desktop.in.h:2
 msgid "Customize the look of your desktop"
@@ -697,74 +716,80 @@ msgid ""
 "pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu accelerators;keyboard "
 "shortcuts;event;sounds;window scaling;HiDPI;Retina display;"
 msgstr ""
+"motīvi;lietotāja "
+"saskarne;stili;ikonas;fonti;nogludināšana;norādes;subpikseļi;renderēšana;īsinājumtaustiņi;notikumi;skaņas;logu"
+" mērogošana;themes;user interface;styles;icons;fonts;anti-"
+"aliasing;hinting;sub-pixel;subpixel;rendering;ClearType;DPI;RGB;BGR;menu "
+"accelerators;keyboard shortcuts;event;sounds;window scaling;HiDPI;Retina "
+"display;"
 
 #. TRANSLATORS: a flatbed scanner device, e.g. 'Epson Scanner'
 #: ../dialogs/color-settings/color-device.c:68
 msgid "Scanner"
-msgstr ""
+msgstr "Skeneris"
 
 #. TRANSLATORS: a camera device, e.g. 'Nikon D60 Camera'
 #: ../dialogs/color-settings/color-device.c:71
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #. TRANSLATORS: a printer device, e.g. 'Epson Photosmart Printer'
 #: ../dialogs/color-settings/color-device.c:74
 msgid "Printer"
-msgstr ""
+msgstr "Printeris"
 
 #. TRANSLATORS: a webcam device, e.g. 'Philips HiDef Camera'
 #: ../dialogs/color-settings/color-device.c:77
 msgid "Webcam"
-msgstr ""
+msgstr "Tīmekļa kamera"
 
 #. TRANSLATORS: This refers to the TFT display on a laptop
 #: ../dialogs/color-settings/color-device.c:94
 msgid "Laptop Screen"
-msgstr ""
+msgstr "Klēpjdatora ekrāns"
 
 #. TRANSLATORS: This refers to the embedded webcam on a laptop
 #: ../dialogs/color-settings/color-device.c:102
 msgid "Built-in Webcam"
-msgstr ""
+msgstr "Iebūvētā tīmekļa kamera"
 
 #: ../dialogs/color-settings/color-device.c:195
 #, c-format
 msgid "Enable color management for %s"
-msgstr ""
+msgstr "Iespējot krāsu pārvaldību ierīcei %s"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:1
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:1
 msgid "Color Profiles"
-msgstr ""
+msgstr "Krāsu profili"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:4
 msgid "<b>No devices found.</b>"
-msgstr ""
+msgstr "<b>Nav atrasta neviena ierīce.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:5
 msgid "Model:"
-msgstr ""
+msgstr "Modelis:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:6
 msgid "Colorspace:"
-msgstr ""
+msgstr "Krāsu telpa:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:7
 msgid "Vendor:"
-msgstr ""
+msgstr "Ražotājs:"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:8
 msgid "Calibrate"
-msgstr ""
+msgstr "Kalibrēt"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:9
 msgid "<b>No profiles for the selected device.</b>"
-msgstr ""
+msgstr "<b>Atlasītajai ierīcei nav profilu.</b>"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:11
 msgid "Add a profile to the currently selected device"
-msgstr ""
+msgstr "Pievienot profilu pašlaik atlasītajai ierīcei"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:12
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:26
@@ -773,23 +798,23 @@ msgstr "_Noņemt"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:13
 msgid "Delete the currently selected profile"
-msgstr ""
+msgstr "Dzēst pašlaik atlasīto profilu"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:14
 msgid "Show detailed information about the selected profile"
-msgstr ""
+msgstr "Rādīt sīkāku informāciju par atlasīto profilu"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:15
 msgid "Enable"
-msgstr ""
+msgstr "Iespējot"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:16
 msgid "Enable the selected profile"
-msgstr ""
+msgstr "Iespējot atlasīto profilu"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:17
 msgid "Add Profile to Device"
-msgstr ""
+msgstr "Pievienot ierīcei profilu"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:19
 #: ../dialogs/keyboard-settings/command-dialog.c:120
@@ -801,19 +826,19 @@ msgstr "_Labi"
 
 #: ../dialogs/color-settings/color-dialog.glade.h:20
 msgid "Import color profile files (*.icc)"
-msgstr ""
+msgstr "Importēt krāsu profilu failus (*.icc)"
 
 #. TRANSLATORS: standard spaces are well known colorspaces like
 #. * sRGB, AdobeRGB and ProPhotoRGB
 #: ../dialogs/color-settings/color-profile.c:94
 msgid "Standard Space"
-msgstr ""
+msgstr "Standarta telpa"
 
 #. TRANSLATORS: test profiles do things like changing the screen
 #. * a different color, or swap the red and green channels
 #: ../dialogs/color-settings/color-profile.c:99
 msgid "Test Profile"
-msgstr ""
+msgstr "Testa profils"
 
 #. TRANSLATORS: automatic profiles are generated automatically
 #. * by the color management system based on manufacturing data,
@@ -822,7 +847,7 @@ msgstr ""
 #: ../dialogs/color-settings/color-profile.c:106
 msgctxt "Automatically generated profile"
 msgid "Automatic"
-msgstr "Automātiska"
+msgstr "Automātisks"
 
 #. TRANSLATORS: the profile quality - low quality profiles take
 #. * much less time to generate but may be a poor reflection of the
@@ -830,13 +855,13 @@ msgstr "Automātiska"
 #: ../dialogs/color-settings/color-profile.c:115
 msgctxt "Profile quality"
 msgid "Low Quality"
-msgstr ""
+msgstr "Zema kvalitāte"
 
 #. TRANSLATORS: the profile quality
 #: ../dialogs/color-settings/color-profile.c:119
 msgctxt "Profile quality"
 msgid "Medium Quality"
-msgstr ""
+msgstr "Vidēja kvalitāte"
 
 #. TRANSLATORS: the profile quality - high quality profiles take
 #. * a *long* time, and have the best calibration and
@@ -844,42 +869,42 @@ msgstr ""
 #: ../dialogs/color-settings/color-profile.c:125
 msgctxt "Profile quality"
 msgid "High Quality"
-msgstr ""
+msgstr "Augsta kvalitāte"
 
 #. TRANSLATORS: this default RGB space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:140
 msgctxt "Colorspace fallback"
 msgid "Default RGB"
-msgstr ""
+msgstr "Noklusējuma RGB"
 
 #. TRANSLATORS: this default CMYK space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:146
 msgctxt "Colorspace fallback"
 msgid "Default CMYK"
-msgstr ""
+msgstr "Noklusējuma CMYK"
 
 #. TRANSLATORS: this default gray space is used for printers that
 #. * do not have additional printer profiles specified in the PPD
 #: ../dialogs/color-settings/color-profile.c:152
 msgctxt "Colorspace fallback"
 msgid "Default Gray"
-msgstr ""
+msgstr "Noklusējuma pelēktoņu"
 
 #. TRANSLATORS: an ICC profile is a file containing colorspace data
 #: ../dialogs/color-settings/main.c:128
 msgid "Select ICC Profile File"
-msgstr ""
+msgstr "Izvēlieties ICC profila failu"
 
 #: ../dialogs/color-settings/main.c:131
 msgid "_Import"
-msgstr ""
+msgstr "_Importēt"
 
 #. TRANSLATORS: filter name on the file->open dialog
 #: ../dialogs/color-settings/main.c:142
 msgid "Supported ICC profiles"
-msgstr ""
+msgstr "Atbalstītie ICC profili"
 
 #. TRANSLATORS: filter name on the file->open dialog
 #: ../dialogs/color-settings/main.c:149
@@ -890,23 +915,23 @@ msgstr "Visi faili"
 #. * profile has been auto-generated for this hardware
 #: ../dialogs/color-settings/main.c:191
 msgid "Default: "
-msgstr ""
+msgstr "Noklusējuma: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile his a standard space like AdobeRGB
 #: ../dialogs/color-settings/main.c:197
 msgid "Colorspace: "
-msgstr ""
+msgstr "Krāsu telpa: "
 
 #. TRANSLATORS: this is a profile prefix to signify the
 #. * profile is a test profile
 #: ../dialogs/color-settings/main.c:203
 msgid "Test profile: "
-msgstr ""
+msgstr "Testa profils: "
 
 #: ../dialogs/color-settings/main.c:238
 msgid "Compatible Profiles"
-msgstr ""
+msgstr "Saderīgi profili"
 
 #: ../dialogs/color-settings/main.c:825 ../dialogs/color-settings/main.c:826
 #: ../dialogs/color-settings/main.c:827
@@ -915,81 +940,85 @@ msgstr "Nezināms"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:2
 msgid "Set color profiles"
-msgstr ""
+msgstr "Iestatīt krāsu profilus"
 
 #: ../dialogs/color-settings/xfce4-color-settings.desktop.in.h:3
 msgid "color;settings;management;display;monitors;printers;webcams;scanners;"
 msgstr ""
+"krāsa;iestatījumi;pārvaldība;displejs;monitori;printeri;tīmekļa "
+"kameras;skeneri;color;settings;management;display;monitors;printers;webcams;scanners;"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:1
 msgid "<b><big>Would you like to keep this configuration?</big></b>"
-msgstr ""
+msgstr "<b><big>Vai vēlaties paturēt šo konfigurāciju?</big></b>"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:2
 msgid ""
 "The previous configuration will be restored in <b>10 seconds</b> if you do "
 "not reply to this question."
 msgstr ""
+"Ja uz šo jautājumu neatbildēsiet, pēc <b>10 sekundēm</b> tiks atjaunota "
+"iepriekšējā konfigurācija."
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:3
 msgid "Keep this configuration"
-msgstr ""
+msgstr "Paturēt šo konfigurāciju"
 
 #: ../dialogs/display-settings/confirmation-dialog.glade.h:4
 msgid "Restore the previous configuration"
-msgstr ""
+msgstr "Atjaunot iepriekšējo konfigurāciju"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:1
 msgid "1.25x"
-msgstr ""
+msgstr "1.25x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:2
 msgid "1.5x"
-msgstr ""
+msgstr "1.5x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:3
 msgid "1.75x"
-msgstr ""
+msgstr "1.75x"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:5
 msgid "Custom:"
-msgstr ""
+msgstr "Pielāgots:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:6
 msgid "Do nothing"
-msgstr ""
+msgstr "Neko nedarīt"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:7
 msgid "Show dialog"
-msgstr ""
+msgstr "Rādīt dialoglodziņu"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:8
 msgid "Mirror"
-msgstr ""
+msgstr "Dublēt"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:9
 msgid "Extend"
-msgstr ""
+msgstr "Paplašināt"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:10
 msgid "The primary display is currently configured to show:"
-msgstr ""
+msgstr "Galvenajā displejā pašlaik iestatīts rādīt:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:11
 msgid "Xfce Panel"
-msgstr ""
+msgstr "Xfce panelis"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:12
 msgid "Desktop icons"
-msgstr ""
+msgstr "Darbvirsmas ikonas"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:13
 msgid "Notifications"
-msgstr ""
+msgstr "Paziņojumi"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:14
 msgid "Configure..."
-msgstr ""
+msgstr "Iestatīt..."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:15
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:1
@@ -998,11 +1027,11 @@ msgstr "Displejs"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:18
 msgid "_Mirror displays"
-msgstr ""
+msgstr "_Dublēt displejus"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:19
 msgid "Primary Display:"
-msgstr ""
+msgstr "Galvenais displejs:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:20
 msgid "R_esolution:"
@@ -1010,139 +1039,141 @@ msgstr "I_zšķirtspēja:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:21
 msgid "Refresh _rate:"
-msgstr "Atsvaidzināšanas āt_rums:"
+msgstr "Atsvaidzes _frekvence:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:22
 msgid "Ro_tation:"
-msgstr "Ro_tācija:"
+msgstr "_Pagriešana:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:23
 msgid "Ref_lection:"
-msgstr ""
+msgstr "_Atspoguļošana:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:24
 msgid "A_pply"
-msgstr ""
+msgstr "_Lietot"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:25
 msgid "_Scale:"
-msgstr ""
+msgstr "_Mērogs:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:26
 msgid "X:"
-msgstr ""
+msgstr "X:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:27
 msgid "Y:"
-msgstr ""
+msgstr "Y:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:28
 msgid "_General"
-msgstr "_Vsipārēji"
+msgstr "_Vispārīgi"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:29
 msgid "<b>Profiles</b>"
-msgstr ""
+msgstr "<b>Profili</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:30
 msgid "<b>Connecting Displays</b>"
-msgstr ""
+msgstr "<b>Displeju pievienošana</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:31
 msgid "Delete the currently selected display profile."
-msgstr ""
+msgstr "Dzēst pašlaik atlasīto displeja profilu."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:32
 msgid "Apply"
-msgstr ""
+msgstr "Lietot"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:33
 msgid "Apply the currently selected display profile."
-msgstr ""
+msgstr "Lietot pašlaik atlasīto displeja profilu."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:34
 msgid "Create a new display profile."
-msgstr ""
+msgstr "Izveidot jaunu displeja profilu."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:35
 msgid "Update an existing profile."
-msgstr ""
+msgstr "Atjaunināt esošu profilu."
 
 #: ../dialogs/display-settings/display-dialog.glade.h:36
 msgid "Automatically enable profiles when new display is connected"
-msgstr ""
+msgstr "Automātiski iespējot profilus, kad pievienots jauns displejs"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:37
 msgid "When new displays are connected:"
-msgstr ""
+msgstr "Kad pievienoti jauni displeji:"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:38
 msgid "Show popup windows to identify displays"
-msgstr ""
+msgstr "Rādīt uznirstošus logus displeju identificēšanai"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:39
 msgid "<b>Identifying Displays</b>"
-msgstr ""
+msgstr "<b>Displeju identificēšana</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:40
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:6
 msgid "_Advanced"
-msgstr ""
+msgstr "_Papildu"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:41
 msgid "<b>Profile Name</b>"
-msgstr ""
+msgstr "<b>Profila nosaukums</b>"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:42
 msgid "Create"
-msgstr ""
+msgstr "Izveidot"
 
 #: ../dialogs/display-settings/display-dialog.glade.h:43
 msgid "A profile of this name already exists."
-msgstr ""
+msgstr "Profils ar šādu nosaukumu jau eksistē."
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:1
 msgid "Displays"
-msgstr ""
+msgstr "Displeji"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:2
 msgid "Only Display 1"
-msgstr ""
+msgstr "Tikai 1. displejs"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:3
 msgid "Mirror Displays"
-msgstr ""
+msgstr "Dublēt displejus"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:4
 msgid "Extend to the right"
-msgstr ""
+msgstr "Paplašināt pa labi"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:5
 msgid "Only Display 2"
-msgstr ""
+msgstr "Tikai 2. displejs"
 
 #: ../dialogs/display-settings/minimal-display-dialog.glade.h:7
 msgid "radiobutton"
-msgstr ""
+msgstr "radiopoga"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:1
 msgid "Update Display Profile"
-msgstr ""
+msgstr "Atjaunināt displeja profilu"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:3
 msgid "_Update"
-msgstr ""
+msgstr "_Atjaunināt"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:4
 msgid ""
 "<big><b>You have made changes to your previously active profile</b></big>"
-msgstr ""
+msgstr "<big><b>Jūs mainījāt iepriekš aktīvo profilu</b></big>"
 
 #: ../dialogs/display-settings/profile-changed-dialog.glade.h:5
 msgid ""
 "If you don't update the profile your changes will be lost upon restarting "
 "your session or disconnecting or connecting a display."
 msgstr ""
+"Ja profilu neatjaunināsiet, izmaiņas tiks zaudētas, pārstartējot sesiju vai "
+"pievienojot vai atvienojot displeju."
 
 #: ../dialogs/display-settings/main.c:108
 msgid "Left"
@@ -1150,7 +1181,7 @@ msgstr "Pa kreisi"
 
 #: ../dialogs/display-settings/main.c:109
 msgid "Inverted"
-msgstr "Invertēts"
+msgstr "Apgriezts"
 
 #: ../dialogs/display-settings/main.c:110
 msgid "Right"
@@ -1166,11 +1197,11 @@ msgstr "Vertikāls"
 
 #: ../dialogs/display-settings/main.c:121
 msgid "Horizontal and Vertical"
-msgstr ""
+msgstr "Horizontāli un vertikāli"
 
 #: ../dialogs/display-settings/main.c:142
 msgid "Minimal interface to set up an external output"
-msgstr ""
+msgstr "Minimāla saskarne ārējās izvades iestatīšanai"
 
 #: ../dialogs/display-settings/main.c:324
 #, c-format
@@ -1178,56 +1209,59 @@ msgid ""
 "The previous configuration will be restored in <b>%i seconds</b> if you do "
 "not reply to this question."
 msgstr ""
+"Ja uz šo jautājumu neatbildēsiet, pēc <b>%i s</b> tiks atjaunota iepriekšējā"
+" konfigurācija."
 
 #. Insert the mode
 #: ../dialogs/display-settings/main.c:783
 #, c-format
 msgid "%.2f Hz"
-msgstr ""
+msgstr "%.2f Hz"
 
 #: ../dialogs/display-settings/main.c:1181
 msgid "Display:"
-msgstr ""
+msgstr "Displejs:"
 
 #: ../dialogs/display-settings/main.c:1186
 msgid "Resolution:"
-msgstr ""
+msgstr "Izšķirtspēja:"
 
 #: ../dialogs/display-settings/main.c:1466
 msgid ""
 "The last active output must not be disabled, the system would be unusable."
 msgstr ""
+"Pēdējo aktīvo izvadi nedrīkst atspējot, citādi sistēmu nevarētu lietot."
 
 #: ../dialogs/display-settings/main.c:1468
 msgid "Selected output not disabled"
-msgstr ""
+msgstr "Atlasītā izvade netika atspējota"
 
 #: ../dialogs/display-settings/main.c:1645
 msgid "Profiles matching the currently connected displays"
-msgstr ""
+msgstr "Profili, kas atbilst pašlaik pievienotajiem displejiem"
 
 #: ../dialogs/display-settings/main.c:1851
 #, c-format
 msgid "Update changed display profile '%s'?"
-msgstr ""
+msgstr "Vai atjaunināt mainīto displeja profilu „%s”?"
 
 #: ../dialogs/display-settings/main.c:1856
 #, c-format
 msgid "_Update '%s'"
-msgstr ""
+msgstr "_Atjaunināt „%s”"
 
 #: ../dialogs/display-settings/main.c:2144
 #, c-format
 msgid "Do you want to delete the display profile '%s'?"
-msgstr ""
+msgstr "Vai vēlaties dzēst displeja profilu „%s”?"
 
 #: ../dialogs/display-settings/main.c:2146
 msgid "Delete Profile"
-msgstr ""
+msgstr "Dzēst profilu"
 
 #: ../dialogs/display-settings/main.c:2149
 msgid "Once a display profile is deleted it cannot be restored."
-msgstr ""
+msgstr "Izdzēstu displeja profilu nevar atjaunot."
 
 #: ../dialogs/display-settings/main.c:2150
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:134
@@ -1239,24 +1273,26 @@ msgstr "Atcelt"
 
 #: ../dialogs/display-settings/main.c:2151
 msgid "Delete"
-msgstr ""
+msgstr "Dzēst"
 
 #: ../dialogs/display-settings/main.c:2256
 #, c-format
 msgid "%d Xfce Panels"
-msgstr ""
+msgstr "Xfce paneļi: %d"
 
 #: ../dialogs/display-settings/main.c:3293
 msgid ""
 "Select a monitor to change its properties; drag it to rearrange its "
 "placement."
 msgstr ""
+"Atlasiet monitoru, lai mainītu tā īpašības; velciet to, lai mainītu tā "
+"izvietojumu."
 
 #: ../dialogs/display-settings/main.c:3336
 #: ../dialogs/display-settings/main.c:3412
 #, c-format
 msgid "(%i, %i)"
-msgstr ""
+msgstr "(%i, %i)"
 
 #. Translators:  this is the feature where what you see on your laptop's
 #. * screen is the same as your external monitor.  Here, "Mirror" is being
@@ -1264,26 +1300,26 @@ msgstr ""
 #. * translation could be "Pantallas en Espejo", *not* "Espejar Pantallas".
 #: ../dialogs/display-settings/main.c:3627
 msgid "Mirror Screens"
-msgstr ""
+msgstr "Dublēt ekrānus"
 
 #: ../dialogs/display-settings/main.c:3677
 msgid "(Disabled)"
-msgstr ""
+msgstr "(Atspējots)"
 
 #: ../dialogs/display-settings/main.c:4196
 #, c-format
 msgid "Only %s (1)"
-msgstr ""
+msgstr "Tikai %s (1)"
 
 #: ../dialogs/display-settings/main.c:4207
 #, c-format
 msgid "Only %s (2)"
-msgstr ""
+msgstr "Tikai %s (2)"
 
 #: ../dialogs/display-settings/main.c:4392
 #: ../dialogs/display-settings/main.c:4429
 msgid "Unable to start the Xfce Display Settings"
-msgstr ""
+msgstr "Neizdevās startēt Xfce displeja iestatījumus"
 
 #: ../dialogs/display-settings/main.c:4424
 msgid "ATI Settings"
@@ -1291,7 +1327,7 @@ msgstr "ATI iestatījumi"
 
 #: ../dialogs/display-settings/main.c:4439
 msgid "Unable to launch the proprietary driver settings"
-msgstr "Neizdevās palaist īpašniekdraivera iestatījumus"
+msgstr "Neizdevās palaist patentētā draivera iestatījumus"
 
 #: ../dialogs/display-settings/xfce-display-settings.desktop.in.h:2
 msgid "Configure screen settings and layout"
@@ -1301,20 +1337,21 @@ msgstr "Konfigurēt ekrāna iestatījumus un izkārtojumu"
 msgid ""
 "display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 msgstr ""
+"displejs;iestatījumi;ekrāns;izšķirtspēja;atsvaidze;frekvence;pagriešana;ārējs;projektori;monitori;display;settings;screen;resolution;refresh;rate;rotation;external;projectors;monitors;LCD;CRT;HiDPI;"
 
 #. Set dialog title and icon
 #: ../dialogs/keyboard-settings/command-dialog.c:110
 msgid "Shortcut Command"
-msgstr "Īsceļu komanda"
+msgstr "Īsinājumtaustiņa komanda"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:142
 msgid "Enter the command you want to trigger with a shortcut."
-msgstr ""
+msgstr "Ievadiet komandu, ko vēlaties izpildīt ar īsinājumtaustiņu."
 
 #. We are editing an existing shortcut
 #: ../dialogs/keyboard-settings/command-dialog.c:160
 msgid "Shortcut:"
-msgstr "Īsceļš:"
+msgstr "Īsinājumtaustiņš:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:185
 msgid "Comm_and:"
@@ -1322,15 +1359,15 @@ msgstr "Kom_anda:"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:210
 msgid "Use _startup notification"
-msgstr "Izmantot _sāknēšanas paziņošanu"
+msgstr "Izmantot _startēšanas paziņojumu"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:257
 msgid "The command may not be empty."
-msgstr "Komanda nevar palikt tukša."
+msgstr "Komanda nedrīkst būt tukša."
 
 #: ../dialogs/keyboard-settings/command-dialog.c:277
 msgid "Select command"
-msgstr "Norādiet komandu"
+msgstr "Izvēlieties komandu"
 
 #: ../dialogs/keyboard-settings/command-dialog.c:285
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:389
@@ -1370,7 +1407,7 @@ msgstr "Čaulas skripti"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:1
 msgid "Keyboard layout selection"
-msgstr "Tastatūras izkārtojuma atlase"
+msgstr "Tastatūras izkārtojuma izvēle"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:4
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:1
@@ -1379,12 +1416,12 @@ msgstr "Tastatūra"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:7
 msgid "Restore num l_ock state on startup"
-msgstr ""
+msgstr "Startējot atjaunot _NumLock stāvokli"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:8
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:32
 msgid "General"
-msgstr "Vispārēji"
+msgstr "Vispārīgi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:9
 msgid "_Enable key repeat"
@@ -1395,29 +1432,30 @@ msgid ""
 "When selected, pressing and holding down a key emits the same character over"
 " and over again"
 msgstr ""
-"Kad atlasīts, nospiežot un turot taustiņu, tiek izmesta nepārtraukti viena "
-"un tā pati rakstzīme"
+"Ja atzīmēts, nospiežot un turot taustiņu, viena un tā pati rakstzīme tiek "
+"ievadīta atkārtoti"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:11
 msgid "_Repeat delay:"
-msgstr "Atkā_rtotošanas aizture:"
+msgstr "Atkā_rtošanas aizture:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:12
 msgid "The time, in milliseconds, before a pressed key begins repeating"
-msgstr "Laiks, milisekundēs, pirms taustiņa nospiešanas jāsāk atkārtot"
+msgstr "Laiks milisekundēs, pēc kura nospiests taustiņš sāk atkārtoties"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:13
 msgid "Repe_at speed:"
-msgstr ""
+msgstr "Atkārtošanas ā_trums:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:14
 msgid "The rate at which keystrokes are generated while a key is pressed"
 msgstr ""
-"Ātrums, ar kādu taustiņsitieni tiek ģenerēti, kamēr nospiest taustiņš  "
+"Ātrums, ar kādu tiek ģenerēti taustiņu nospiedieni, kamēr taustiņš ir "
+"nospiests"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:15
 msgid "Typing Settings"
-msgstr ""
+msgstr "Rakstīšanas iestatījumi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:16
 msgid "Show _blinking"
@@ -1425,7 +1463,7 @@ msgstr "Rādīt _mirgošanu"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:17
 msgid "Specify whether or not the text cursor blinks"
-msgstr "Norāda vai teksta kursors mirgo, vai nē"
+msgstr "Norāda, vai teksta kursors mirgo"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:18
 msgid "Blink _delay:"
@@ -1433,23 +1471,23 @@ msgstr "Mirgošanas _aizture:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:19
 msgid "The delay, in milliseconds, between successive blinks of the cursor"
-msgstr "Aizture, milisekundēs, starp diviem kursora mirgojumiem"
+msgstr "Aizture milisekundēs starp secīgiem kursora mirgojumiem"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:20
 msgid "Cursor"
-msgstr ""
+msgstr "Kursors"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:21
 msgid "_Test area:"
-msgstr ""
+msgstr "_Testa apgabals:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:22
 msgid "Beha_vior"
-msgstr ""
+msgstr "_Uzvedība"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:23
 msgid "Define shortcuts for la_unching applications:"
-msgstr ""
+msgstr "Definēt _lietotņu palaišanas īsinājumtaustiņus:"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:25
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:367
@@ -1458,15 +1496,15 @@ msgstr "_Rediģēt"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:27
 msgid "Reset to _Defaults"
-msgstr ""
+msgstr "Atiestatīt uz _noklusējumu"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:28
 msgid "A_pplication Shortcuts"
-msgstr ""
+msgstr "_Lietotņu īsinājumtaustiņi"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:29
 msgid "<b>Use system defaults</b>"
-msgstr ""
+msgstr "<b>Izmantot sistēmas noklusējumus</b>"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:30
 msgid "_Keyboard model"
@@ -1474,23 +1512,23 @@ msgstr "_Tastatūras modelis"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:31
 msgid "Change la_yout option"
-msgstr ""
+msgstr "Mainīt _izkārtojuma opciju"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:32
 msgid "Co_mpose key"
-msgstr ""
+msgstr "_Compose taustiņš"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:33
 msgid "Move currently selected item up by one row"
-msgstr ""
+msgstr "Pārvietot pašlaik atlasīto vienumu par vienu rindu augšup"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:34
 msgid "Move currently selected item down by one row"
-msgstr ""
+msgstr "Pārvietot pašlaik atlasīto vienumu par vienu rindu lejup"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:35
 msgid "Key_board layout"
-msgstr ""
+msgstr "_Tastatūras izkārtojums"
 
 #: ../dialogs/keyboard-settings/keyboard-dialog.glade.h:36
 msgid "_Layout"
@@ -1498,16 +1536,16 @@ msgstr "I_zkārtojums"
 
 #: ../dialogs/keyboard-settings/main.c:84
 msgid "Unable to initialize GTK+."
-msgstr "Nevarēja inicializēt GTK+."
+msgstr "Neizdevās inicializēt GTK+."
 
 #: ../dialogs/keyboard-settings/main.c:104
 #, c-format
 msgid "Failed to connect to xfconf daemon. Reason: %s"
-msgstr "Neizdevās savienoties ar xconf dēmonu. Iemesls: %s"
+msgstr "Neizdevās savienoties ar xfconf dēmonu. Iemesls: %s"
 
 #: ../dialogs/keyboard-settings/main.c:115
 msgid "Could not create the settings dialog."
-msgstr "Neizdevās izveidot iestatījumu dialoga logu."
+msgstr "Neizdevās izveidot iestatījumu dialoglodziņu."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:399
 msgid "Command"
@@ -1515,7 +1553,7 @@ msgstr "Komanda"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:407
 msgid "Shortcut"
-msgstr "Īsceļš"
+msgstr "Īsinājumtaustiņš"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:484
 msgid "Layout"
@@ -1528,64 +1566,66 @@ msgstr "Variants"
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1252
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1253
 msgid "Reset to Defaults"
-msgstr "Atstatīt uz noklusētajiem"
+msgstr "Atiestatīt uz noklusējumu"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1254
 msgid ""
 "This will reset all shortcuts to their default values. Do you really want to"
 " do this?"
 msgstr ""
-"Šis atstatīs visus īsceļus uz noklusētajām vērtībām. Vai tiešām vēlaties "
-"turpināt?"
+"Visi īsinājumtaustiņi tiks atiestatīti uz noklusējuma vērtībām. Vai tiešām "
+"vēlaties to darīt?"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1256
 msgid "No"
-msgstr ""
+msgstr "Nē"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1257
 msgid "Yes"
-msgstr ""
+msgstr "Jā"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1333
 msgid "The system defaults will be restored next time you log in."
 msgstr ""
-"Sistēmas noklusētās vērtības tiks atjaunotas nākam reiz, kad pieteiksities."
+"Sistēmas noklusējuma vērtības tiks atjaunotas nākamajā pieteikšanās reizē."
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.c:1335
 msgid "Warning"
-msgstr "Uzmanību"
+msgstr "Brīdinājums"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:2
 msgid "Edit keyboard settings and application shortcuts"
-msgstr "Rediģēt tastatūras iestatījumus un lietotņu īsceļus"
+msgstr "Rediģēt tastatūras iestatījumus un lietotņu īsinājumtaustiņus"
 
 #: ../dialogs/keyboard-settings/xfce-keyboard-settings.desktop.in.h:3
 msgid "numlock;keyboard;layout;shortcuts;"
 msgstr ""
+"numlock;tastatūra;izkārtojums;īsinājumtaustiņi;keyboard;layout;shortcuts;"
 
 #: ../dialogs/mime-settings/main.c:120
 msgid "Could not create the mime dialog."
-msgstr ""
+msgstr "Neizdevās izveidot MIME dialoglodziņu."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:128
 msgid "Select Application"
-msgstr ""
+msgstr "Izvēlieties lietotni"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:136
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:383
 msgid "Open"
-msgstr ""
+msgstr "Atvērt"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:205
 msgid "Use a c_ustom command:"
-msgstr ""
+msgstr "Izmantot _pielāgotu komandu:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:206
 msgid ""
 "Use a custom command for an application that is not available from the above"
 " application list."
 msgstr ""
-"Izmantot pielāgotu komandu lietotnei, kura nav pieejama lietotņu sarakstā."
+"Izmantot pielāgotu komandu lietotnei, kuras nav augstāk redzamajā lietotņu "
+"sarakstā."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:224
 msgid "_Browse..."
@@ -1593,11 +1633,11 @@ msgstr "Pā_rlūkot..."
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:379
 msgid "Select an Application"
-msgstr "Norādiet lietotni"
+msgstr "Izvēlieties lietotni"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:529
 msgid "None available"
-msgstr "Neviens nav pieejams"
+msgstr "Nav pieejamu"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:576
 msgid "Recommended Applications"
@@ -1610,17 +1650,17 @@ msgstr "Citas lietotnes"
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:614
 #, c-format
 msgid "Open <i>%s</i> and other files of type \"%s\" with:"
-msgstr "Atvērt <i>%s</i> un citus failus ar tipu\"%s\":"
+msgstr "Atvērt <i>%s</i> un citus „%s” tipa failus ar:"
 
 #: ../dialogs/mime-settings/xfce-mime-chooser.c:650
 #, c-format
 msgid "Failed to add new application \"%s\""
-msgstr "Neizdevās pievienot jaunu lietotni \"%s\""
+msgstr "Neizdevās pievienot jaunu lietotni „%s”"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:143
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:150
 msgid "Press left mouse button to change the selected application."
-msgstr "Nospiediet kreiso peles taustiņu, lai mainītu izvēlēto lietotni."
+msgstr "Nospiediet peles kreiso pogu, lai mainītu atlasīto lietotni."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:149
 msgid "Application Chooser Button"
@@ -1628,23 +1668,23 @@ msgstr "Lietotņu izvēles poga"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:336
 msgid "No application selected"
-msgstr "Nav norādīta neviena lietotne"
+msgstr "Nav atlasīta neviena lietotne"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:352
 msgid "Failed to set default Web Browser"
-msgstr "Neizdevās uzstādīt noklusēto tīmekļa pārlūku"
+msgstr "Neizdevās iestatīt noklusējuma tīmekļa pārlūku"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:353
 msgid "Failed to set default Mail Reader"
-msgstr "Neizdevās uzstādīt noklusēto pasta lasītāju"
+msgstr "Neizdevās iestatīt noklusējuma pasta lasītāju"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:354
 msgid "Failed to set default File Manager"
-msgstr "Neizdevās uzstādīt noklusēto failu pārvaldnieku"
+msgstr "Neizdevās iestatīt noklusējuma failu pārvaldnieku"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:355
 msgid "Failed to set default Terminal Emulator"
-msgstr "Neizdevās uzstādīt noklusēto termināla emulatoru"
+msgstr "Neizdevās iestatīt noklusējuma termināļa emulatoru"
 
 #. allocate the chooser
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:425
@@ -1653,55 +1693,55 @@ msgstr "Norādiet lietotni"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:538
 msgid "Choose a custom Web Browser"
-msgstr "Norādiet tīmekļa pārlūku"
+msgstr "Izvēlieties pielāgotu tīmekļa pārlūku"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:539
 msgid "Choose a custom Mail Reader"
-msgstr "Norādiet pasta lasītāju"
+msgstr "Izvēlieties pielāgotu pasta lasītāju"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:540
 msgid "Choose a custom File Manager"
-msgstr "Norādiet pielāgoto failu pārvaldnieku"
+msgstr "Izvēlieties pielāgotu failu pārvaldnieku"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:541
 msgid "Choose a custom Terminal Emulator"
-msgstr "Norādiet termināla emulatoru"
+msgstr "Izvēlieties pielāgotu termināļa emulatoru"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:546
 msgid ""
 "Specify the application you want to use\n"
 "as default Web Browser for Xfce:"
 msgstr ""
-"Norādiet lietotni, kuru vēlaties izmantot,\n"
-"kā noklusēto tīmekļa pārlūku:"
+"Norādiet lietotni, ko vēlaties izmantot\n"
+"kā Xfce noklusējuma tīmekļa pārlūku:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:547
 msgid ""
 "Specify the application you want to use\n"
 "as default Mail Reader for Xfce:"
 msgstr ""
-"Norādiet lietotni, kuru vēlaties izmantot,\n"
-"kā noklusēto pasta lasītāju:"
+"Norādiet lietotni, ko vēlaties izmantot\n"
+"kā Xfce noklusējuma pasta lasītāju:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:548
 msgid ""
 "Specify the application you want to use\n"
 "as default File Manager for Xfce:"
 msgstr ""
-"Norādiet lietotni, kuru vēlaties izmantot,\n"
-"kā noklusēto failu pārvaldnieku:"
+"Norādiet lietotni, ko vēlaties izmantot\n"
+"kā Xfce noklusējuma failu pārvaldnieku:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:549
 msgid ""
 "Specify the application you want to use\n"
 "as default Terminal Emulator for Xfce:"
 msgstr ""
-"Norādiet lietotni, kuru vēlaties izmantot,\n"
-"kā noklusēto termināla emulatoru:"
+"Norādiet lietotni, ko vēlaties izmantot\n"
+"kā Xfce noklusējuma termināļa emulatoru:"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:613
 msgid "Browse the file system to choose a custom command."
-msgstr "Pārlūkot faila sistēmu, lai norādītu izmantojamo komandu."
+msgstr "Pārlūkot failu sistēmu, lai izvēlētos pielāgotu komandu."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:749
 msgid "_Other..."
@@ -1709,64 +1749,65 @@ msgstr "_Cits..."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-chooser.c:750
 msgid "Use a custom application which is not included in the above list."
-msgstr "Izmantot lietotni, kura nav iekļauta sarakstā."
+msgstr ""
+"Izmantot pielāgotu lietotni, kas nav iekļauta augstāk redzamajā sarakstā."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:111
 msgid "Choose Preferred Application"
-msgstr "Norādiet vēlamo lietotni"
+msgstr "Izvēlieties vēlamo lietotni"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:249
 msgid ""
 "Please choose your preferred Web\n"
 "Browser now and click OK to proceed."
 msgstr ""
-"Lūdzu norādiet savu vēlamo tīmekļa\n"
-"pārlūku un apstipriniet, lai turpinātu."
+"Lūdzu, izvēlieties vēlamo tīmekļa\n"
+"pārlūku un noklikšķiniet uz „Labi”, lai turpinātu."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:251
 msgid ""
 "Please choose your preferred Mail Reader\n"
 "now and click OK to proceed."
 msgstr ""
-"Lūdzu norādiet savu vēlamo pasta lasītāju\n"
-"un apstipriniet, lai turpinātu."
+"Lūdzu, izvēlieties vēlamo pasta\n"
+"lasītāju un noklikšķiniet uz „Labi”, lai turpinātu."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:253
 msgid ""
 "Please choose your preferred File Manager\n"
 "now and click OK to proceed."
 msgstr ""
-"Lūdzu norādiet savu vēlamo failu pārvaldnieku\n"
-"un apstipriniet, lai turpinātu."
+"Lūdzu, izvēlieties vēlamo failu\n"
+"pārvaldnieku un noklikšķiniet uz „Labi”, lai turpinātu."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:255
 msgid ""
 "Please choose your preferred Terminal\n"
 "Emulator now and click OK to proceed."
 msgstr ""
-"Lūdzu norādiet savu vēlamo termināla\n"
-"emulatoru un apstipriniet, lai turpinātu."
+"Lūdzu, izvēlieties vēlamo termināļa\n"
+"emulatoru un noklikšķiniet uz „Labi”, lai turpinātu."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:41
 msgid "Failed to execute default Web Browser"
-msgstr "Neizdevās izpildīt noklusēto Tīmekļa pārlūku"
+msgstr "Neizdevās palaist noklusējuma tīmekļa pārlūku"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:42
 msgid "Failed to execute default Mail Reader"
-msgstr "Neizdevās izpildīt noklusēto Pasta lasītāju"
+msgstr "Neizdevās palaist noklusējuma pasta lasītāju"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:43
 msgid "Failed to execute default File Manager"
-msgstr "Neizdevās izpildīt noklusēto Failu pārvaldnieku"
+msgstr "Neizdevās palaist noklusējuma failu pārvaldnieku"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:44
 msgid "Failed to execute default Terminal Emulator"
-msgstr "Neizdevās izpildīt noklusēto Termināla emulatoru"
+msgstr "Neizdevās palaist noklusējuma termināļa emulatoru"
 
 #. Enable permanently dismissing this error.
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:86
 msgid "Do _not show this message again"
-msgstr ""
+msgstr "_Vairs nerādīt šo ziņojumu"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:116
 msgid "Print version information and exit"
@@ -1777,18 +1818,20 @@ msgid ""
 "Launch the default helper of TYPE with the optional PARAMETER, where TYPE is"
 " one of the following values."
 msgstr ""
-"Palaist noklusēto palīdzības TIPU ar neobligātajiem PARAMETRIEM, kur TIPS ir"
-" viena no sekojošām vērtībām."
+"Palaist TIPA noklusējuma palīglietotni ar neobligātu PARAMETRU, kur TIPS ir "
+"viena no turpmāk minētajām vērtībām."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:117
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:118
 msgid "TYPE [PARAMETER]"
-msgstr "TIPS [PARAMETRI]"
+msgstr "TIPS [PARAMETRS]"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:118
 msgid ""
 "Query the default helper of TYPE, where TYPE is one of the following values."
 msgstr ""
+"Noskaidrot TIPA noklusējuma palīglietotni, kur TIPS ir viena no turpmāk "
+"minētajām vērtībām."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:148
 msgid ""
@@ -1799,12 +1842,18 @@ msgid ""
 "  FileManager      - The preferred File Manager.\n"
 "  TerminalEmulator - The preferred Terminal Emulator."
 msgstr ""
+"Komandas --launch un --query atbalsta šādus TIPUS:\n"
+"\n"
+"  WebBrowser       - vēlamais tīmekļa pārlūks.\n"
+"  MailReader       - vēlamais pasta lasītājs.\n"
+"  FileManager      - vēlamais failu pārvaldnieks.\n"
+"  TerminalEmulator - vēlamais termināļa emulators."
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:183
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:256
 #, c-format
 msgid "Invalid helper type \"%s\""
-msgstr "Nederīgs palīdzības tips \"%s\""
+msgstr "Nederīgs palīglietotnes tips „%s”"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:240
 #, c-format
@@ -1825,16 +1874,16 @@ msgstr ""
 "Autortiesības (c) 2003-2006\n"
 "        os-cillation e.K. Visas tiesības paturētas.\n"
 "\n"
-"Autors Benedikt Meurer <benny@xfce.org>.\n"
+"Autors: Benedikt Meurer <benny@xfce.org>.\n"
 "\n"
-"Būvēts ar Gtk+-%d.%d.%d, skrien Gtk+-%d.%d.%d.\n"
+"Būvēts ar Gtk+-%d.%d.%d, darbojas ar Gtk+-%d.%d.%d.\n"
 "\n"
-"Lūdzu, ziņojiet par kļūdām uz <%s>.\n"
+"Lūdzu, ziņojiet par kļūdām <%s>.\n"
 
 #: ../dialogs/mime-settings/xfce-mime-helper-main.c:266
 #, c-format
 msgid "No helper defined for \"%s\"."
-msgstr ""
+msgstr "„%s” nav definēta palīglietotne."
 
 #: ../dialogs/mime-settings/xfce-mime-helper.c:453
 #, c-format
@@ -1852,12 +1901,12 @@ msgstr "Neizdevās atvērt %s rakstīšanai"
 #: ../dialogs/mime-settings/xfce-mime-window.c:184
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:1
 msgid "Default Applications"
-msgstr ""
+msgstr "Noklusējuma lietotnes"
 
 #. Internet
 #: ../dialogs/mime-settings/xfce-mime-window.c:208
 msgid "_Internet"
-msgstr ""
+msgstr "_Internets"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:221
 #: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:1
@@ -1869,6 +1918,8 @@ msgid ""
 "The default Web Browser will be used to open hyperlinks and display help "
 "contents."
 msgstr ""
+"Noklusējuma tīmekļa pārlūks tiks izmantots hipersaišu atvēršanai un "
+"palīdzības satura rādīšanai."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:247
 #: ../dialogs/mime-settings/xfce4-mail-reader.desktop.in.h:1
@@ -1880,11 +1931,13 @@ msgid ""
 "The default Mail Reader will be used to compose emails when you click on "
 "email addresses."
 msgstr ""
+"Noklusējuma pasta lasītājs tiks izmantots e-pasta vēstuļu rakstīšanai, kad "
+"noklikšķināt uz e-pasta adresēm."
 
 #. Utilities
 #: ../dialogs/mime-settings/xfce-mime-window.c:269
 msgid "_Utilities"
-msgstr ""
+msgstr "_Utilītas"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:282
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:1
@@ -1895,34 +1948,37 @@ msgstr "Failu pārvaldnieks"
 msgid ""
 "The default File Manager will be used to browse the contents of folders."
 msgstr ""
+"Noklusējuma failu pārvaldnieks tiks izmantots mapju satura pārlūkošanai."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:308
 #: ../dialogs/mime-settings/xfce4-terminal-emulator.desktop.in.h:1
 msgid "Terminal Emulator"
-msgstr "Termināla emulators"
+msgstr "Termināļa emulators"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:316
 msgid ""
 "The default Terminal Emulator will be used to run commands that require a "
 "CLI environment."
 msgstr ""
+"Noklusējuma termināļa emulators tiks izmantots komandām, kurām vajadzīga "
+"komandrindas vide."
 
 #. Mimes
 #: ../dialogs/mime-settings/xfce-mime-window.c:330
 msgid "_Others"
-msgstr ""
+msgstr "_Citi"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:340
 msgid "_Filter:"
-msgstr ""
+msgstr "_Filtrs:"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:348
 msgid "Clear filter"
-msgstr ""
+msgstr "Notīrīt filtru"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:378
 msgid "Open with..."
-msgstr ""
+msgstr "Atvērt ar..."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:425
 msgid "MIME Type"
@@ -1930,16 +1986,16 @@ msgstr "MIME tips"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:453
 msgid "Status"
-msgstr ""
+msgstr "Statuss"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:473
 msgid "Default Application"
-msgstr ""
+msgstr "Noklusējuma lietotne"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:648
 #: ../dialogs/mime-settings/xfce-mime-window.c:812
 msgid "User Set"
-msgstr ""
+msgstr "Lietotāja iestatīts"
 
 #. sort the names but keep Default on top
 #: ../dialogs/mime-settings/xfce-mime-window.c:650
@@ -1947,25 +2003,26 @@ msgstr ""
 #: ../dialogs/mouse-settings/main.c:398 ../dialogs/mouse-settings/main.c:400
 #: ../dialogs/mouse-settings/main.c:463
 msgid "Default"
-msgstr "Noklusētais"
+msgstr "Noklusējums"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:736
 #, c-format
 msgid "%d MIME type found"
 msgid_plural "%d MIME types found"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Atrasts %d MIME tips"
+msgstr[1] "Atrasti %d MIME tipi"
+msgstr[2] "Atrasts %d MIME tipu"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:857
 #, c-format
 msgid "Failed to set application \"%s\" for mime type \"%s\"."
-msgstr ""
+msgstr "Neizdevās iestatīt lietotni „%s” MIME tipam „%s”."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1120
 #, c-format
 msgid "Are you sure you want to reset content type \"%s\" to its default value?"
 msgstr ""
+"Vai tiešām vēlaties atiestatīt satura tipu „%s” uz noklusējuma vērtību?"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1124
 msgid "Question"
@@ -1976,25 +2033,31 @@ msgid ""
 "This will remove your custom mime-association and restore the system-wide "
 "default."
 msgstr ""
+"Tiks noņemta jūsu pielāgotā MIME piesaiste un atjaunots visas sistēmas "
+"noklusējums."
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1131
 #: ../dialogs/mime-settings/xfce-mime-window.c:1202
 msgid "Reset to Default"
-msgstr ""
+msgstr "Atiestatīt uz noklusējumu"
 
 #: ../dialogs/mime-settings/xfce-mime-window.c:1197
 msgid "Choose Application..."
-msgstr ""
+msgstr "Izvēlēties lietotni..."
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:2
 msgid "Associate preferred applications with MIME types"
-msgstr ""
+msgstr "Piesaistīt vēlamās lietotnes MIME tipiem"
 
 #: ../dialogs/mime-settings/xfce4-mime-settings.desktop.in.h:3
 msgid ""
 "file;type;extension;association;open with;web browser;mail reader;file "
 "manager;terminal emulator;"
 msgstr ""
+"fails;tips;paplašinājums;piesaiste;atvērt ar;tīmekļa pārlūks;pasta "
+"lasītājs;failu pārvaldnieks;termināļa "
+"emulators;file;type;extension;association;open with;web browser;mail "
+"reader;file manager;terminal emulator;"
 
 #: ../dialogs/mime-settings/xfce4-file-manager.desktop.in.h:2
 msgid "Browse the file system"
@@ -2010,11 +2073,11 @@ msgstr "Izmantot komandrindu"
 
 #: ../dialogs/mime-settings/xfce4-web-browser.desktop.in.h:2
 msgid "Browse the web"
-msgstr "Pārlūkot Tīmekli"
+msgstr "Pārlūkot tīmekli"
 
 #: ../dialogs/mime-settings/helpers/alacritty.desktop.in.in.h:1
 msgid "Alacritty"
-msgstr ""
+msgstr "Alacritty"
 
 #: ../dialogs/mime-settings/helpers/aterm.desktop.in.in.h:1
 msgid "aterm"
@@ -2026,11 +2089,11 @@ msgstr "Balsa"
 
 #: ../dialogs/mime-settings/helpers/brave.desktop.in.in.h:1
 msgid "Brave"
-msgstr ""
+msgstr "Brave"
 
 #: ../dialogs/mime-settings/helpers/caja.desktop.in.in.h:1
 msgid "Caja File Manager"
-msgstr ""
+msgstr "Caja failu pārvaldnieks"
 
 #: ../dialogs/mime-settings/helpers/chromium.desktop.in.in.h:1
 msgid "Chromium"
@@ -2042,11 +2105,11 @@ msgstr "Debian Sensible pārlūks"
 
 #: ../dialogs/mime-settings/helpers/debian-x-terminal-emulator.desktop.in.in.h:1
 msgid "Debian X Terminal Emulator"
-msgstr "Debian X termināla emulators"
+msgstr "Debian X termināļa emulators"
 
 #: ../dialogs/mime-settings/helpers/dillo.desktop.in.in.h:1
 msgid "Dillo"
-msgstr ""
+msgstr "Dillo"
 
 #: ../dialogs/mime-settings/helpers/encompass.desktop.in.in.h:1
 msgid "Encompass"
@@ -2058,7 +2121,7 @@ msgstr "Epiphany tīmekļa pārlūks"
 
 #: ../dialogs/mime-settings/helpers/eterm.desktop.in.in.h:1
 msgid "Enlightened Terminal Emulator"
-msgstr "Enlightened termināla emulators"
+msgstr "Enlightened termināļa emulators"
 
 #: ../dialogs/mime-settings/helpers/evolution.desktop.in.in.h:1
 msgid "Evolution"
@@ -2074,19 +2137,19 @@ msgstr "Galeon tīmekļa pārlūks"
 
 #: ../dialogs/mime-settings/helpers/geary.desktop.in.in.h:1
 msgid "Geary"
-msgstr ""
+msgstr "Geary"
 
 #: ../dialogs/mime-settings/helpers/google-chrome.desktop.in.in.h:1
 msgid "Google Chrome"
-msgstr ""
+msgstr "Google Chrome"
 
 #: ../dialogs/mime-settings/helpers/gnome-terminal.desktop.in.in.h:1
 msgid "GNOME Terminal"
-msgstr "GNOME termināls"
+msgstr "GNOME terminālis"
 
 #: ../dialogs/mime-settings/helpers/icecat.desktop.in.in.h:1
 msgid "Icecat"
-msgstr ""
+msgstr "Icecat"
 
 #: ../dialogs/mime-settings/helpers/icedove.desktop.in.in.h:1
 msgid "Icedove"
@@ -2098,11 +2161,11 @@ msgstr "Iceweasel"
 
 #: ../dialogs/mime-settings/helpers/jumanji.desktop.in.in.h:1
 msgid "Jumanji"
-msgstr ""
+msgstr "Jumanji"
 
 #: ../dialogs/mime-settings/helpers/kitty.desktop.in.in.h:1
 msgid "kitty"
-msgstr ""
+msgstr "kitty"
 
 #: ../dialogs/mime-settings/helpers/kmail.desktop.in.in.h:1
 msgid "KMail"
@@ -2150,7 +2213,7 @@ msgstr "NXterm"
 
 #: ../dialogs/mime-settings/helpers/opera-browser.desktop.in.in.h:1
 msgid "Opera Browser"
-msgstr "Opera Browser"
+msgstr "Opera pārlūks"
 
 #: ../dialogs/mime-settings/helpers/pcmanfm.desktop.in.in.h:1
 msgid "PCMan File Manager"
@@ -2158,35 +2221,35 @@ msgstr "PCMan failu pārvaldnieks"
 
 #: ../dialogs/mime-settings/helpers/pcmanfm-qt.desktop.in.in.h:1
 msgid "PCManFM-Qt File Manager"
-msgstr ""
+msgstr "PCManFM-Qt failu pārvaldnieks"
 
 #: ../dialogs/mime-settings/helpers/qterminal.desktop.in.in.h:1
 msgid "QTerminal"
-msgstr ""
+msgstr "QTerminal"
 
 #: ../dialogs/mime-settings/helpers/qtfm.desktop.in.in.h:1
 msgid "qtFM"
-msgstr ""
+msgstr "qtFM"
 
 #: ../dialogs/mime-settings/helpers/qupzilla.desktop.in.in.h:1
 msgid "QupZilla"
-msgstr ""
+msgstr "QupZilla"
 
 #: ../dialogs/mime-settings/helpers/rodent.desktop.in.in.h:1
 msgid "Rodent File Manager"
-msgstr ""
+msgstr "Rodent failu pārvaldnieks"
 
 #: ../dialogs/mime-settings/helpers/rox-filer.desktop.in.in.h:1
 msgid "ROX-Filer"
-msgstr ""
+msgstr "ROX-Filer"
 
 #: ../dialogs/mime-settings/helpers/sakura.desktop.in.in.h:1
 msgid "Sakura"
-msgstr ""
+msgstr "Sakura"
 
 #: ../dialogs/mime-settings/helpers/surf.desktop.in.in.h:1
 msgid "Surf"
-msgstr ""
+msgstr "Surf"
 
 #: ../dialogs/mime-settings/helpers/sylpheed.desktop.in.in.h:1
 msgid "Sylpheed"
@@ -2198,7 +2261,7 @@ msgstr "Claws Mail"
 
 #: ../dialogs/mime-settings/helpers/terminator.desktop.in.in.h:1
 msgid "Terminator"
-msgstr ""
+msgstr "Terminator"
 
 #: ../dialogs/mime-settings/helpers/thunar.desktop.in.in.h:1
 msgid "Thunar"
@@ -2214,7 +2277,7 @@ msgstr "RXVT Unicode"
 
 #: ../dialogs/mime-settings/helpers/vimprobable2.desktop.in.in.h:1
 msgid "Vimprobable2"
-msgstr ""
+msgstr "Vimprobable2"
 
 #: ../dialogs/mime-settings/helpers/w3m.desktop.in.in.h:1
 msgid "W3M Text Browser"
@@ -2222,11 +2285,11 @@ msgstr "W3M teksta pārlūks"
 
 #: ../dialogs/mime-settings/helpers/xfce4-terminal.desktop.in.in.h:1
 msgid "Xfce Terminal"
-msgstr "Xfce termināls"
+msgstr "Xfce terminālis"
 
 #: ../dialogs/mime-settings/helpers/xfe.desktop.in.in.h:1
 msgid "Xfe File Manager"
-msgstr ""
+msgstr "Xfe failu pārvaldnieks"
 
 #: ../dialogs/mime-settings/helpers/xterm.desktop.in.in.h:1
 msgid "X Terminal"
@@ -2234,203 +2297,202 @@ msgstr "X terminālis"
 
 #: ../dialogs/mouse-settings/main.c:87
 msgid "Active device in the dialog"
-msgstr "Aktīva ierīce dialogā"
+msgstr "Aktīvā ierīce dialoglodziņā"
 
 #: ../dialogs/mouse-settings/main.c:87
 msgid "DEVICE NAME"
-msgstr "IERĪCES NOSAUKUMS"
+msgstr "IERĪCES_NOSAUKUMS"
 
 #. pixel value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:145
 #, c-format
 msgid "%g px"
-msgstr ""
+msgstr "%g px"
 
 #. miliseconds value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:155
 #, c-format
 msgid "%g ms"
-msgstr ""
+msgstr "%g ms"
 
 #. seconds value for some of the scales in the dialog
 #: ../dialogs/mouse-settings/main.c:166
 #, c-format
 msgid "%.1f s"
-msgstr ""
+msgstr "%.1f s"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:1
 msgid "Disabled"
-msgstr "Izslēgts"
+msgstr "Atspējots"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:2
 msgid "Edge scrolling"
-msgstr ""
+msgstr "Ritināšana gar malu"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:3
 msgid "Two-finger scrolling"
-msgstr ""
+msgstr "Ritināšana ar diviem pirkstiem"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:4
 msgid "Circular scrolling"
-msgstr ""
+msgstr "Apļveida ritināšana"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:5
 msgid "Pen (absolute)"
-msgstr ""
+msgstr "Pildspalva (absolūti)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:6
 msgid "Mouse (relative)"
-msgstr ""
+msgstr "Pele (relatīvi)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:7
 msgid "None (right-handed)"
-msgstr ""
+msgstr "Nav (labrocim)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:8
 msgid "Half (left-handed)"
-msgstr ""
+msgstr "Puse (kreilim)"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:9
 msgid "Clockwise"
-msgstr ""
+msgstr "Pulksteņrādītāja virzienā"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:10
 msgid "Counterclockwise"
-msgstr ""
+msgstr "Pretēji pulksteņrādītāja virzienam"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:11
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:1
 msgid "Mouse and Touchpad"
-msgstr ""
+msgstr "Pele un skārienpaliktnis"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:14
 msgid "De_vice:"
-msgstr ""
+msgstr "_Ierīce:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:15
 msgid "Le_ft-handed"
-msgstr ""
+msgstr "_Kreilim"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:16
 msgid "Ri_ght-handed"
-msgstr ""
+msgstr "_Labrocim"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:17
 msgid "Reverse scroll d_irection"
-msgstr ""
+msgstr "Apgriezt ritināšanas _virzienu"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:18
 msgid "When selected, the scroll wheel will work in the opposite direction"
-msgstr "Kad atlasīta, ritināšanas ritenītis strādās pretējā virzienā"
+msgstr "Ja atzīmēts, ritināšanas ritenītis darbojas pretējā virzienā"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:19
 msgid "Buttons"
-msgstr ""
+msgstr "Pogas"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:20
 msgid "_Reset to Defaults"
-msgstr "_Atiestatīt uz noklusētajiem"
+msgstr "_Atiestatīt uz noklusējumu"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:21
 msgid ""
 "Set the acceleration and sensitivity for the selected device to the default "
 "values"
 msgstr ""
+"Iestatīt atlasītās ierīces paātrinājumu un jutību uz noklusējuma vērtībām"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:22
 msgid "Sensitivit_y:"
-msgstr ""
+msgstr "_Jutība:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:23
 msgid "Acceleratio_n:"
-msgstr ""
+msgstr "Paātrināju_ms:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:24
 msgid ""
 "The factor at which the pointer's speed will increase as the mouse is moved"
-msgstr ""
-"Faktors, kurš nosaka kursora ātruma palielinājumu pie peles pārvietošanas"
+msgstr "Koeficients, ar kādu palielinās rādītāja ātrums, kustinot peli"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:25
 msgid ""
 "The number of pixels the pointer must move in a short time before it starts "
 "accelerating"
 msgstr ""
-"Pikseļu skaits, ko peles kursoram jāpārvietojas īsa laikā, lai sāktos "
-"akselerācija"
+"Pikseļu skaits, par kādu rādītājam īsā laikā jāpārvietojas, lai sāktos "
+"paātrināšanās"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:26
 msgid "Pointer Speed"
-msgstr ""
+msgstr "Rādītāja ātrums"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:27
 msgid "B_uttons and Feedback"
-msgstr ""
+msgstr "_Pogas un atgriezeniskā saite"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:28
 msgid "Disable touchpad _while typing"
-msgstr ""
+msgstr "Rakstot _atspējot skārienpaliktni"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:29
 msgid ""
 "When selected, the touchpad will be disabled when the keyboard is being used"
 msgstr ""
+"Ja atzīmēts, skārienpaliktnis tiek atspējots, kamēr tiek lietota tastatūra"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:30
 msgid "Duratio_n:"
-msgstr ""
+msgstr "_Ilgums:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:31
 msgid "Tap touchpad to clic_k"
-msgstr ""
+msgstr "Pieskarties skārienpaliktnim, lai _noklikšķinātu"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:33
 msgid "Scrolling _mode:"
-msgstr ""
+msgstr "Ritināšanas _režīms:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:34
 msgid "Enable hori_zontal scrolling"
-msgstr ""
+msgstr "Iespējot _horizontālo ritināšanu"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:35
 msgid "Scrolling"
-msgstr ""
+msgstr "Ritināšana"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:36
 msgid "T_ouchpad"
-msgstr ""
+msgstr "_Skārienpaliktnis"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:37
 msgid "Trac_king mode:"
-msgstr ""
+msgstr "_Izsekošanas režīms:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:38
 msgid "_Rotation:"
-msgstr ""
+msgstr "_Pagriešana:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:39
 msgid "Tab_let"
-msgstr ""
+msgstr "_Planšete"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:40
 msgid "_Devices"
-msgstr ""
+msgstr "_Ierīces"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:41
 msgid "Th_reshold:"
-msgstr ""
+msgstr "_Slieksnis:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:42
 msgid ""
 "The number of pixels the pointer must move before a drag operation will "
 "start"
-msgstr ""
-"Pikseļu skaits, ko peles kursoram jāpārvietojas, pirms vilkšanas operācija "
-"var sākties"
+msgstr "Pikseļu skaits, par kādu rādītājam jāpārvietojas, lai sāktos vilkšana"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:43
 msgid "Drag and Drop"
-msgstr ""
+msgstr "Vilkšana un nomešana"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:44
 msgid "Ti_me:"
@@ -2441,24 +2503,24 @@ msgid ""
 "Two mouse clicks in less than this length of time (in milliseconds) will be "
 "considered a double click"
 msgstr ""
-"Divi peles klikšķi ātrāk nekā norādītajā laikā (milisekundēs) tiks uzskatīti"
-" par dubltklikšķi"
+"Divi peles klikšķi, kas notiek īsākā laikā par šo (milisekundēs), tiek "
+"uzskatīti par dubultklikšķi"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:46
 msgid "D_istance:"
-msgstr ""
+msgstr "_Attālums:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:47
 msgid ""
 "The mouse pointer cannot move farther than this distance between two clicks "
 "for them to be considered a double click"
 msgstr ""
-"Peles kursors nevar pārvietoties tālāk par attālumu starp diviem klikšķiem, "
-"lai uzskatītu šo klikšķi, par dubultklikšķi"
+"Lai divus klikšķus uzskatītu par dubultklikšķi, peles rādītājs starp tiem "
+"nedrīkst pārvietoties tālāk par šo attālumu"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:48
 msgid "Double Click"
-msgstr ""
+msgstr "Dubultklikšķis"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:49
 msgid "_Behavior"
@@ -2466,7 +2528,7 @@ msgstr "_Uzvedība"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:50
 msgid "Cursor si_ze:"
-msgstr ""
+msgstr "Kursora _izmērs:"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:51
 msgid "Size"
@@ -2478,16 +2540,18 @@ msgstr "Priekšskatījums"
 
 #: ../dialogs/mouse-settings/mouse-dialog.glade.h:53
 msgid "_Theme"
-msgstr ""
+msgstr "_Motīvs"
 
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:2
 msgid "Configure pointer device behavior and appearance"
-msgstr "Konfigurēt kursora ierīču uzvedību un izskatu"
+msgstr "Konfigurēt rādītājierīču uzvedību un izskatu"
 
 #: ../dialogs/mouse-settings/xfce-mouse-settings.desktop.in.h:3
 msgid ""
 "settings;buttons;scroll;direction;pointer;speed;double click;theme;wheel;"
 msgstr ""
+"iestatījumi;pogas;ritināšana;virziens;rādītājs;ātrums;dubultklikšķis;motīvs;ritenītis;settings;buttons;scroll;direction;pointer;speed;double"
+" click;theme;wheel;"
 
 #: ../xfce4-settings-editor/main.c:163
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:1
@@ -2508,7 +2572,7 @@ msgstr "Tips"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:332
 msgid "Locked"
-msgstr "Slēgts"
+msgstr "Bloķēts"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:339
 msgid "Value"
@@ -2520,17 +2584,17 @@ msgstr "Jauna īpašība"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:372
 msgid "Edit selected property"
-msgstr ""
+msgstr "Rediģēt atlasīto īpašību"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:380
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1070
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1576
 msgid "_Reset"
-msgstr ""
+msgstr "_Atiestatīt"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:385
 msgid "Reset selected property"
-msgstr ""
+msgstr "Atiestatīt atlasīto īpašību"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:492
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:585
@@ -2541,48 +2605,49 @@ msgstr "Tukšs"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:495
 msgid "Array"
-msgstr ""
+msgstr "Masīvs"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:500
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:90
 msgid "String"
-msgstr ""
+msgstr "Virkne"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:508
 msgid "Integer"
-msgstr ""
+msgstr "Vesels skaitlis"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:511
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:91
 msgid "Boolean"
-msgstr ""
+msgstr "Būla"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:514
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:93
 msgid "Double"
-msgstr ""
+msgstr "Double"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:851
 msgid "_Reset Channel"
-msgstr ""
+msgstr "_Atiestatīt kanālu"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:852
 msgid "Resetting a channel will permanently remove those custom settings."
 msgstr ""
+"Atiestatot kanālu, šie pielāgotie iestatījumi tiks neatgriezeniski noņemti."
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:853
 #, c-format
 msgid "Are you sure you want to reset channel \"%s\" and all its properties?"
-msgstr ""
+msgstr "Vai tiešām vēlaties atiestatīt kanālu „%s” un visas tā īpašības?"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:928
 msgid "reset"
-msgstr ""
+msgstr "atiestatīt"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:985
 #, c-format
 msgid "Monitor %s"
-msgstr ""
+msgstr "Uzraudzīt %s"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:993
 msgid "Clear"
@@ -2595,56 +2660,57 @@ msgstr "Aizvērt"
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1027
 #, c-format
 msgid "start monitoring channel \"%s\""
-msgstr ""
+msgstr "sākt uzraudzīt kanālu „%s”"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1076
 msgid "_Monitor"
-msgstr ""
+msgstr "_Uzraudzīt"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1086
 msgid "Refresh"
-msgstr ""
+msgstr "Atsvaidzināt"
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1577
 msgid "Resetting a property will permanently remove those custom settings."
 msgstr ""
+"Atiestatot īpašību, šie pielāgotie iestatījumi tiks neatgriezeniski noņemti."
 
 #: ../xfce4-settings-editor/xfce-settings-editor-box.c:1578
 #, c-format
 msgid "Are you sure you want to reset property \"%s\"?"
-msgstr ""
+msgstr "Vai tiešām vēlaties atiestatīt īpašību „%s”?"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:92
 msgid "Int"
-msgstr ""
+msgstr "Int"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:94
 msgid "Unsigned Int"
-msgstr ""
+msgstr "Unsigned Int"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:95
 msgid "Int64"
-msgstr ""
+msgstr "Int64"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:96
 msgid "Unsigned Int64"
-msgstr ""
+msgstr "Unsigned Int64"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:141
 msgid "New Property"
-msgstr ""
+msgstr "Jauna īpašība"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:145
 msgid "Save"
-msgstr ""
+msgstr "Saglabāt"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:160
 msgid "_Property:"
-msgstr ""
+msgstr "Ī_pašība:"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:174
 msgid "_Type:"
-msgstr ""
+msgstr "_Tips:"
 
 #. strings
 #. integers
@@ -2653,17 +2719,17 @@ msgstr ""
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:213
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:224
 msgid "_Value:"
-msgstr ""
+msgstr "_Vērtība:"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:381
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Īpašības nosaukumam jāsākas ar \"/\" rakstzīmi"
+msgstr "Īpašības nosaukumam jāsākas ar rakstzīmi „/”"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:392
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "Saknes elements (\"/\") nav derīgs īpašības nosaukums"
+msgstr "Saknes elements („/”) nav derīgs īpašības nosaukums"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:409
 #, c-format
@@ -2672,34 +2738,35 @@ msgid ""
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
 msgstr ""
+"Īpašību nosaukumos var būt tikai ASCII rakstzīmes A-Z, a-z, 0-9, „_”, „-”, "
+"„:”, „.”, „,”, „[”, „]”, „{”, „}”, „<” un „>”, kā arī „/” kā atdalītājs"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:423
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
-"Īpašības nosaukumi nevar saturēt divas, vai vairāk, pēc kārtas, \"/\" "
-"rakstzīmes "
+"Īpašību nosaukumos nedrīkst būt divas vai vairāk rakstzīmes „/” pēc kārtas"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:437
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Īpašības nosaukums nevar beigties ar \"/\" rakstzīmi"
+msgstr "Īpašības nosaukums nedrīkst beigties ar rakstzīmi „/”"
 
 #: ../xfce4-settings-editor/xfce-settings-prop-dialog.c:650
 msgid "Edit Property"
-msgstr "Rediģēt īpašībās"
+msgstr "Rediģēt īpašību"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:2
 msgid "Graphical settings editor for Xfconf"
-msgstr "Grafiskais iestatījumu redaktors priekš Xfconf"
+msgstr "Xfconf grafiskais iestatījumu redaktors"
 
 #: ../xfce4-settings-editor/xfce4-settings-editor.desktop.in.h:3
 msgid "registry;regedit;configuration file;"
-msgstr ""
+msgstr "reģistrs;konfigurācijas fails;registry;regedit;configuration file;"
 
 #: ../xfce4-settings-manager/main.c:44
 msgid "Settings dialog to show"
-msgstr "Kurus uzstādījumu dialogus rādīt"
+msgstr "Rādāmais iestatījumu dialoglodziņš"
 
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:225
 msgid "All _Settings"
@@ -2713,7 +2780,7 @@ msgstr "Iestatījumi"
 #: ../xfce4-settings-manager/xfce-settings-manager-dialog.c:928
 #, c-format
 msgid "Unable to start \"%s\""
-msgstr "Neizdevās palaist \"%s\""
+msgstr "Neizdevās startēt „%s”"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:1
 msgid "Settings Manager"
@@ -2721,19 +2788,20 @@ msgstr "Iestatījumu pārvaldnieks"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:2
 msgid "Graphical Settings Manager for Xfce"
-msgstr ""
+msgstr "Xfce grafiskais iestatījumu pārvaldnieks"
 
 #: ../xfce4-settings-manager/xfce-settings-manager.desktop.in.h:3
 msgid "control;panel;center;system;settings;personalize;hardware;"
 msgstr ""
+"vadības;panelis;centrs;sistēma;iestatījumi;personalizēt;aparatūra;control;panel;center;system;settings;personalize;hardware;"
 
 #: ../xfsettingsd/accessibility.c:412
 msgid "Sticky keys are enabled"
-msgstr "Lipīgie taustiņi ir ieslēgti"
+msgstr "Lipīgie taustiņi ir iespējoti"
 
 #: ../xfsettingsd/accessibility.c:414
 msgid "Sticky keys are disabled"
-msgstr "Lipīgie taustiņi ir izslēgti"
+msgstr "Lipīgie taustiņi ir atspējoti"
 
 #: ../xfsettingsd/accessibility.c:416
 msgid "Sticky keys"
@@ -2741,11 +2809,11 @@ msgstr "Lipīgie taustiņi"
 
 #: ../xfsettingsd/accessibility.c:421
 msgid "Slow keys are enabled"
-msgstr "Lēnie taustiņi ir ieslēgti"
+msgstr "Lēnie taustiņi ir iespējoti"
 
 #: ../xfsettingsd/accessibility.c:423
 msgid "Slow keys are disabled"
-msgstr "Lēnie taustiņi ir izslēgti"
+msgstr "Lēnie taustiņi ir atspējoti"
 
 #: ../xfsettingsd/accessibility.c:425
 msgid "Slow keys"
@@ -2753,42 +2821,42 @@ msgstr "Lēnie taustiņi"
 
 #: ../xfsettingsd/accessibility.c:430
 msgid "Bounce keys are enabled"
-msgstr "Lecošie taustiņi ir ieslēgti"
+msgstr "Atlecošie taustiņi ir iespējoti"
 
 #: ../xfsettingsd/accessibility.c:432
 msgid "Bounce keys are disabled"
-msgstr "Lecošie taustiņi ir ieslēgti"
+msgstr "Atlecošie taustiņi ir atspējoti"
 
 #: ../xfsettingsd/accessibility.c:434
 msgid "Bounce keys"
-msgstr "Lecošie taustiņi"
+msgstr "Atlecošie taustiņi"
 
 #: ../xfsettingsd/keyboard-shortcuts.c:242
 #, c-format
 msgid "Failed to launch shortcut \"%s\""
-msgstr ""
+msgstr "Neizdevās palaist īsinājumtaustiņu „%s”"
 
 #: ../xfsettingsd/main.c:103
 msgid "Fork to the background"
-msgstr ""
+msgstr "Pārslēgties uz fonu"
 
 #: ../xfsettingsd/main.c:104
 msgid "Do not wait for a window manager on startup"
-msgstr "Negaidīt uz logu menedžeri startēšanās laikā"
+msgstr "Startējot negaidīt logu pārvaldnieku"
 
 #: ../xfsettingsd/main.c:105
 msgid "Replace running xsettings daemon (if any)"
-msgstr "Aizvietot skrejošo xsettings dēmonu (ja kāds ir)"
+msgstr "Aizstāt darbojošos xsettings dēmonu (ja tāds ir)"
 
 #. value in xfconf isn't a string, so make a default one
 #: ../xfsettingsd/workspaces.c:333 ../xfsettingsd/workspaces.c:390
 #, c-format
 msgid "Workspace %d"
-msgstr "Darbavieta %d"
+msgstr "Darba vieta %d"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:1
 msgid "Xfce Settings Daemon"
-msgstr ""
+msgstr "Xfce iestatījumu dēmons"
 
 #: ../xfsettingsd/xfsettingsd.desktop.in.h:2
 msgid "The Xfce Settings Daemon"
