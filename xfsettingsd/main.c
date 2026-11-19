@@ -87,9 +87,10 @@ struct t_data_set
     GObject *shortcuts_helper;
     GObject *keyboard_layout_helper;
     GObject *xsettings_helper;
-    GObject *clipboard_daemon;
     GObject *workspaces_helper;
 #endif
+    GObject *clipboard_daemon;
+    GDBusConnection *dbus_connection;
 };
 
 
@@ -162,19 +163,25 @@ start_xfsettingsd (struct t_data_set *s_data)
         g_clear_error (&error);
     }
 
-#ifdef ENABLE_X11
-    if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+    if (g_getenv ("XFSETTINGSD_NO_CLIPBOARD") == NULL)
     {
-        if (g_getenv ("XFSETTINGSD_NO_CLIPBOARD") == NULL)
+        s_data->clipboard_daemon = G_OBJECT (xfce_clipboard_manager_new (opt_replace));
+        if (s_data->clipboard_daemon == NULL)
         {
-            s_data->clipboard_daemon = G_OBJECT (xfce_clipboard_manager_new (opt_replace));
-            if (s_data->clipboard_daemon == NULL)
+            g_warning ("Failed to start clipboard manager (another one may already be running).");
+        }
+        else if (G_LIKELY (s_data->dbus_connection != NULL))
+        {
+            gboolean success = xfce_clipboard_manager_register_dbus_object (XFCE_CLIPBOARD_MANAGER (s_data->clipboard_daemon),
+                                                                            s_data->dbus_connection,
+                                                                            &error);
+            if (!success)
             {
-                g_warning ("Another clipboard manager is already running.");
+                g_warning ("Failed to register clipboard manager on D-Bus: %s", error->message);
+                g_clear_error (&error);
             }
         }
     }
-#endif
 }
 
 static void
@@ -326,6 +333,7 @@ main (gint argc,
     dbus_connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
     if (G_LIKELY (!error))
     {
+        s_data.dbus_connection = dbus_connection;
         g_object_set (G_OBJECT (dbus_connection), "exit-on-close", TRUE, NULL);
 
         name_owned_variant = g_dbus_connection_call_sync (dbus_connection,
@@ -397,8 +405,8 @@ main (gint argc,
     UNREF_GOBJECT (s_data.shortcuts_helper);
     UNREF_GOBJECT (s_data.keyboard_layout_helper);
     UNREF_GOBJECT (s_data.workspaces_helper);
-    UNREF_GOBJECT (s_data.clipboard_daemon);
 #endif
+    UNREF_GOBJECT (s_data.clipboard_daemon);
     UNREF_GOBJECT (s_data.gtk_decorations_helper);
     UNREF_GOBJECT (s_data.gtk_settings_helper);
     UNREF_GOBJECT (s_data.theme_schedule_helper);
