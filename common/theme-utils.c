@@ -17,6 +17,7 @@
  */
 
 #include "theme-utils.h"
+#include "sun-times.h"
 
 #include <xfconf/xfconf.h>
 
@@ -168,4 +169,23 @@ theme_utils_parse_schedule_time (const gchar *str)
         return -1;
 
     return hours * 60 + minutes;
+}
+
+
+
+/* the time of a schedule rule on the local day of @day, in minutes since
+ * midnight: the same every day for "HH:MM", that of the sunrise or sunset
+ * that day for a rule like "sunset+30"; -1 if @str is invalid or the rule
+ * has no time that day, see sun_times_get_minutes_since_midnight() */
+gint
+theme_utils_get_schedule_time (const gchar *str,
+                               GDateTime *day)
+{
+    SunTimesEvent event;
+    gint offset_minutes;
+
+    if (sun_times_parse (str, &event, &offset_minutes))
+        return sun_times_get_minutes_since_midnight (day, event, offset_minutes);
+
+    return theme_utils_parse_schedule_time (str);
 }
