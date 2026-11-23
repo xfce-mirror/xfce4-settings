@@ -27,6 +27,7 @@ const gchar *const theme_schedule_properties[N_THEME_SCHEDULE_FIELDS] = {
     THEME_SCHEDULE_PROP_PREFIX "Xfwm4",
     THEME_SCHEDULE_PROP_PREFIX "IconThemes",
     THEME_SCHEDULE_PROP_PREFIX "CursorThemes",
+    THEME_SCHEDULE_PROP_PREFIX "Brightness",
     THEME_SCHEDULE_PROP_PREFIX "Commands",
 };
 
@@ -168,4 +169,18 @@ theme_utils_parse_schedule_time (const gchar *str)
         return -1;
 
     return hours * 60 + minutes;
+}
+
+
+
+/* the screen brightness of a schedule rule in percent, or -1 if unset or invalid */
+gint
+theme_utils_parse_schedule_brightness (const gchar *str)
+{
+    gint64 percent;
+
+    if (str == NULL || !g_ascii_string_to_signed (str, 10, 0, 100, &percent, NULL))
+        return -1;
+
+    return percent;
 }
