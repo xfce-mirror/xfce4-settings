@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-settings\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-11-13 00:55+0100\n"
+"POT-Creation-Date: 2026-11-24 00:56+0100\n"
 "PO-Revision-Date: 2013-07-02 20:47+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2020-2026\n"
 "Language-Team: Albanian (http://app.transifex.com/xfce/xfce4-settings/language/sq/)\n"
@@ -259,7 +259,7 @@ msgstr "_Mi"
 #: common/resources/mouse-dialog.glade:63
 #: common/resources/mouse-dialog.glade:126
 #: common/resources/mouse-dialog.glade:152
-#: dialogs/appearance-settings/main.c:1756 dialogs/display-settings/main.c:82
+#: dialogs/appearance-settings/main.c:1764 dialogs/display-settings/main.c:82
 #: dialogs/display-settings/main.c:90 dialogs/mouse-settings/main.c:745
 msgid "None"
 msgstr "Asnjë"
@@ -556,8 +556,8 @@ msgstr "Shtoni Profil te Pajisje"
 #. Create cancel button
 #: common/resources/color-dialog.glade:529
 #: common/resources/keyboard-dialog.glade:71
-#: dialogs/appearance-settings/main.c:1493
-#: dialogs/appearance-settings/main.c:2331 dialogs/color-settings/main.c:126
+#: dialogs/appearance-settings/main.c:1501
+#: dialogs/appearance-settings/main.c:2430 dialogs/color-settings/main.c:126
 #: dialogs/keyboard-settings/command-dialog.c:102
 #: dialogs/keyboard-settings/command-dialog.c:265
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:419
@@ -568,7 +568,7 @@ msgstr "_Anuloje"
 
 #: common/resources/color-dialog.glade:543
 #: common/resources/keyboard-dialog.glade:86
-#: dialogs/appearance-settings/main.c:2331
+#: dialogs/appearance-settings/main.c:2430
 #: dialogs/keyboard-settings/command-dialog.c:106
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:571
 #: dialogs/mime-settings/xfce-mime-helper-launcher-dialog.c:102
@@ -1305,7 +1305,7 @@ msgid "Version information"
 msgstr "Të dhëna versioni"
 
 #: dialogs/accessibility-settings/main.c:214
-#: dialogs/appearance-settings/main.c:2647 dialogs/color-settings/main.c:1463
+#: dialogs/appearance-settings/main.c:2787 dialogs/color-settings/main.c:1463
 #: dialogs/display-settings/main.c:3372 dialogs/keyboard-settings/main.c:89
 #: dialogs/mime-settings/main.c:78
 #: dialogs/mime-settings/xfce-mime-helper-main.c:153
@@ -1316,7 +1316,7 @@ msgid "Type '%s --help' for usage."
 msgstr "Për përdorimin, shtypni '%s --help'."
 
 #: dialogs/accessibility-settings/main.c:233
-#: dialogs/appearance-settings/main.c:2666 dialogs/color-settings/main.c:1482
+#: dialogs/appearance-settings/main.c:2806 dialogs/color-settings/main.c:1482
 #: dialogs/display-settings/main.c:3391 dialogs/keyboard-settings/main.c:105
 #: dialogs/mime-settings/main.c:97 dialogs/mouse-settings/main.c:1824
 #: xfce4-settings-editor/main.c:137 xfce4-settings-manager/main.c:76
@@ -1325,7 +1325,7 @@ msgid "The Xfce development team. All rights reserved."
 msgstr "Ekipi i zhvillimit të Xfce-së. Tërë të drejtat të rezervuara."
 
 #: dialogs/accessibility-settings/main.c:234
-#: dialogs/appearance-settings/main.c:2667 dialogs/color-settings/main.c:1483
+#: dialogs/appearance-settings/main.c:2807 dialogs/color-settings/main.c:1483
 #: dialogs/display-settings/main.c:3392 dialogs/keyboard-settings/main.c:106
 #: dialogs/mime-settings/main.c:98 dialogs/mouse-settings/main.c:1825
 #: xfce4-settings-editor/main.c:138 xfce4-settings-manager/main.c:77
@@ -1344,18 +1344,18 @@ msgid ""
 "readers;magnifiers;a11y;i18n;l10n;AT-SPI;ATK;impairment;"
 msgstr "asistive;teknologji;taste;ngjitës;bounce;emulim;lexues ekrani;zmadhues;a11y;i18n;l10n;AT-SPI;ATK;dobësim;"
 
-#: dialogs/appearance-settings/main.c:367
+#: dialogs/appearance-settings/main.c:375
 msgid "Failed to display Xfwm4 Settings"
 msgstr "S’u arrit të shfaqen Rregullime Xfwm4"
 
-#: dialogs/appearance-settings/main.c:607
+#: dialogs/appearance-settings/main.c:615
 msgid ""
 "No sound themes found. Install themes in /usr/share/sounds or "
 "~/.local/share/sounds"
 msgstr "S’u gjetën tema tingujsh. Instalojini temat te /usr/share/sounds ose ~/.local/share/sounds"
 
 #. If the theme has no cache, mention this in the tooltip
-#: dialogs/appearance-settings/main.c:785
+#: dialogs/appearance-settings/main.c:793
 #, c-format
 msgid ""
 "Warning: this icon theme has no cache file. You can create this by running "
@@ -1364,139 +1364,145 @@ msgstr "Kujdes: kjo temë ikonash s’ka kartelë fshehtine. Mund ta krijoni duk
 
 #. If the theme is known to be incomplete (does not follow fd.org standards),
 #. mention this in the tooltip
-#: dialogs/appearance-settings/main.c:792
+#: dialogs/appearance-settings/main.c:800
 msgid "Warning: this icon theme is incomplete. Some icons will be missing."
 msgstr "Kujdes: kjo temë ikonash është e paplotë. Do të mungojnë disa ikona."
 
 #. These actually are no full themes by purpose
-#: dialogs/appearance-settings/main.c:797
+#: dialogs/appearance-settings/main.c:805
 msgid ""
 "Warning: this icon theme is incomplete. It only provides a base set of icons"
 " from which other themes can inherit."
 msgstr "Kujdes: kjo temë ikonash është e paplotë. Furnizon vetëm një grup bazë ikonash prej nga mund të trashëgojnë tema të tjera."
 
-#: dialogs/appearance-settings/main.c:1382
+#: dialogs/appearance-settings/main.c:1390
 msgid "File is too large, installation aborted"
 msgstr "Kartela është shumë e madhe, instalimi u ndërpre"
 
-#: dialogs/appearance-settings/main.c:1387
+#: dialogs/appearance-settings/main.c:1395
 msgid "Failed to create temporary directory"
 msgstr "S’u arrit të krijohej drejtori e përkohshme"
 
-#: dialogs/appearance-settings/main.c:1392
+#: dialogs/appearance-settings/main.c:1400
 msgid "Failed to extract archive"
 msgstr "S’u arrit të përftohej arkiv"
 
-#: dialogs/appearance-settings/main.c:1397
+#: dialogs/appearance-settings/main.c:1405
 msgid "Unknown format, only archives and directories are supported"
 msgstr "Format i panjohur, mbulohen vetëm arkiva dhe drejtori"
 
-#: dialogs/appearance-settings/main.c:1402
+#: dialogs/appearance-settings/main.c:1410
 msgid "Not a valid theme package"
 msgstr "S’është paketë e vlefshme teme"
 
-#: dialogs/appearance-settings/main.c:1407
+#: dialogs/appearance-settings/main.c:1415
 #, c-format
 msgid "An unknown error, exit code is %d"
 msgstr "Një gabim i panjohur, kodi i daljes është %d"
 
-#: dialogs/appearance-settings/main.c:1414
+#: dialogs/appearance-settings/main.c:1422
 msgid "Failed to install theme"
 msgstr "S’u arrit të instalohej temë"
 
-#: dialogs/appearance-settings/main.c:1461
+#: dialogs/appearance-settings/main.c:1469
 msgid ""
 "The theme used for Xfce and other GTK applications. Some themes only affect GTK2/GTK3 applications, other themes as well affect GTK4 applications. Additional themes e.g. can be installed by the package manager of your distribution.\n"
 "\n"
 "Choosing a dark theme will set a GTK \"prefer-dark\" setting. Foreign applications can follow that setting, though not all of them will do so, depending on the used toolkit and the application preferences."
 msgstr "Tema e përdorur për aplikacioni Xfce dhe GTK. Disa tema prekin vetëm aplikacione GTK2/GTK3, tema të tjera edhe aplikacionet GTK4. Tema shtesë mund të instalohen, për shembull, nga përgjegjësi i paketave të shpërndarjes tuaj.\n\nZgjedhja e një teme të errët do të ujdisë një rregullim GTK \"prefer-dark\". Aplikacione të jashtëm për sistemin mund të ndjekin këtë rregullim, edhe pse jo të tërë do të bëjnë kështu, në varësi të grupit të mjeteve grafike të përdorur dhe të parapëlqimeve të aplikacionit."
 
-#: dialogs/appearance-settings/main.c:1491
+#: dialogs/appearance-settings/main.c:1499
 #, c-format
 msgid "Install %s theme"
 msgstr "Instalo temën %s"
 
-#: dialogs/appearance-settings/main.c:1494
+#: dialogs/appearance-settings/main.c:1502
 #: dialogs/keyboard-settings/command-dialog.c:266
 #: dialogs/mime-settings/xfce-mime-helper-chooser.c:420
 msgid "_Open"
 msgstr "_Hape"
 
-#: dialogs/appearance-settings/main.c:1760
+#: dialogs/appearance-settings/main.c:1768
 msgid "RGB"
 msgstr "RGB"
 
-#: dialogs/appearance-settings/main.c:1764
+#: dialogs/appearance-settings/main.c:1772
 msgid "BGR"
 msgstr "BGR"
 
-#: dialogs/appearance-settings/main.c:1768
+#: dialogs/appearance-settings/main.c:1776
 msgid "Vertical RGB"
 msgstr "RGB Vertikale"
 
-#: dialogs/appearance-settings/main.c:1772
+#: dialogs/appearance-settings/main.c:1780
 msgid "Vertical BGR"
 msgstr "BGR Vertikale"
 
 #. TRANSLATORS: keep this lowercase, it is part of a list
-#: dialogs/appearance-settings/main.c:1906
+#: dialogs/appearance-settings/main.c:1915
 msgid "dark color scheme"
 msgstr "skemë e errët ngjyrash"
 
 #. TRANSLATORS: keep this lowercase, it is part of a list
-#: dialogs/appearance-settings/main.c:1909
+#: dialogs/appearance-settings/main.c:1918
 msgid "light color scheme"
 msgstr "skemë e çelët ngjyrash"
 
 #. TRANSLATORS: keep this lowercase, it is part of a list
-#: dialogs/appearance-settings/main.c:1912
+#: dialogs/appearance-settings/main.c:1921
 msgid "default color scheme"
 msgstr "skemë parazgjedhje ngjyrash"
 
 #. TRANSLATORS: keep this lowercase, it is part of a list
-#: dialogs/appearance-settings/main.c:1917
+#: dialogs/appearance-settings/main.c:1926
 #, c-format
 msgid "icons: %s"
 msgstr "ikona: %s"
 
 #. TRANSLATORS: keep this lowercase, it is part of a list
-#: dialogs/appearance-settings/main.c:1921
+#: dialogs/appearance-settings/main.c:1930
 #, c-format
 msgid "cursor: %s"
 msgstr "kursor: %s"
 
 #. TRANSLATORS: keep this lowercase, it is part of a list
-#: dialogs/appearance-settings/main.c:1925
+#: dialogs/appearance-settings/main.c:1934
+#, c-format
+msgid "brightness: %d%%"
+msgstr "ndriçim: %d%%"
+
+#. TRANSLATORS: keep this lowercase, it is part of a list
+#: dialogs/appearance-settings/main.c:1938
 msgid "command"
 msgstr "urdhër"
 
-#: dialogs/appearance-settings/main.c:1949
+#: dialogs/appearance-settings/main.c:1962
 #, c-format
 msgid "Theme: %s"
 msgstr "Temë: %s"
 
-#: dialogs/appearance-settings/main.c:1951
+#: dialogs/appearance-settings/main.c:1964
 msgid "Window manager theme: matching"
 msgstr "Temë përgjegjësi dritaresh: me përkim"
 
-#: dialogs/appearance-settings/main.c:1955
+#: dialogs/appearance-settings/main.c:1968
 #, c-format
 msgid "Color scheme: %s"
 msgstr "Skemë ngjyrash: %s"
 
-#: dialogs/appearance-settings/main.c:1956
-#: dialogs/appearance-settings/main.c:2364
+#: dialogs/appearance-settings/main.c:1969
+#: dialogs/appearance-settings/main.c:2463
 msgid "Dark"
 msgstr "E errët"
 
-#: dialogs/appearance-settings/main.c:1957
-#: dialogs/appearance-settings/main.c:2365
+#: dialogs/appearance-settings/main.c:1970
+#: dialogs/appearance-settings/main.c:2464
 msgid "Light"
 msgstr "E çelët"
 
 #. sort the names but keep Default on top
-#: dialogs/appearance-settings/main.c:1958
-#: dialogs/appearance-settings/main.c:2366
+#: dialogs/appearance-settings/main.c:1971
+#: dialogs/appearance-settings/main.c:2465
 #: dialogs/mime-settings/xfce-mime-window.c:765
 #: dialogs/mime-settings/xfce-mime-window.c:932
 #: dialogs/mouse-settings/main.c:414 dialogs/mouse-settings/main.c:416
@@ -1504,129 +1510,149 @@ msgstr "E çelët"
 msgid "Default"
 msgstr "Parazgjedhje"
 
-#: dialogs/appearance-settings/main.c:1961
+#: dialogs/appearance-settings/main.c:1974
 #, c-format
 msgid "Icon theme: %s"
 msgstr "Temë ikonash: %s"
 
-#: dialogs/appearance-settings/main.c:1964
+#: dialogs/appearance-settings/main.c:1977
 #, c-format
 msgid "Mouse cursor theme: %s"
 msgstr "Temë kursori miu: %s"
 
-#: dialogs/appearance-settings/main.c:1967
+#: dialogs/appearance-settings/main.c:1980
+#, c-format
+msgid "Screen brightness: %d%%"
+msgstr "Ndriçim ekrani: %d%%"
+
+#: dialogs/appearance-settings/main.c:1983
 #, c-format
 msgid "Command: %s"
 msgstr "Urdhër: %s"
 
-#: dialogs/appearance-settings/main.c:1990
-#: dialogs/appearance-settings/main.c:2357
-#: dialogs/appearance-settings/main.c:2367
+#: dialogs/appearance-settings/main.c:2006
+#: dialogs/appearance-settings/main.c:2456
+#: dialogs/appearance-settings/main.c:2466
 msgid "No change"
 msgstr "Pa ndryshim"
 
-#: dialogs/appearance-settings/main.c:2086
+#: dialogs/appearance-settings/main.c:2102
 msgid "Add a rule to switch the style at a given time."
 msgstr "Shtoni një rregull për këmbim stili në një kohë të dhënë."
 
-#: dialogs/appearance-settings/main.c:2088
+#: dialogs/appearance-settings/main.c:2104
 #, c-format
 msgid "Next switch at %02d:%02d: %s"
 msgstr "Këmbimi i ardhshëm më %02d:%02d: %s"
 
-#: dialogs/appearance-settings/main.c:2329
+#: dialogs/appearance-settings/main.c:2401
+#: dialogs/appearance-settings/main.c:2402
+msgid "The power manager found no screen backlight."
+msgstr ""
+
+#: dialogs/appearance-settings/main.c:2428
 msgid "Add Rule"
 msgstr "Shtoni Rregull"
 
-#: dialogs/appearance-settings/main.c:2329
+#: dialogs/appearance-settings/main.c:2428
 msgid "Edit Rule"
 msgstr "Përpunoni Rregull"
 
-#: dialogs/appearance-settings/main.c:2351
+#: dialogs/appearance-settings/main.c:2450
 msgid "_Time:"
 msgstr "_Kohë:"
 
-#: dialogs/appearance-settings/main.c:2351
+#: dialogs/appearance-settings/main.c:2450
 msgid ""
 "The rule applies all its settings when the clock reaches this time. A switch"
 " missed while you were logged out or the computer was asleep is made at "
 "login or on waking up."
 msgstr "Rregulli aplikon krejt rregullimet e veta kur sahati mbërrin në këtë kohë. Një këmbim i humbur, teksa patët dalë nga llogaria, ose kompjuteri qe në gjumë, kryhet pas hyrjes në llogari, ose gjatë zgjimit të kompjuterit."
 
-#: dialogs/appearance-settings/main.c:2361
+#: dialogs/appearance-settings/main.c:2460
 msgid "T_heme:"
 msgstr "_Temë:"
 
-#: dialogs/appearance-settings/main.c:2361
+#: dialogs/appearance-settings/main.c:2460
 msgid "The theme of Xfce and GTK 3 applications, as on the Style tab."
 msgstr "Tema e aplikacioneve Xfce dhe GTK 3, sipas skedës Stile."
 
-#: dialogs/appearance-settings/main.c:2369
+#: dialogs/appearance-settings/main.c:2468
 msgid "Colo_r scheme:"
 msgstr "Skemë ngjy_rash:"
 
-#: dialogs/appearance-settings/main.c:2369
+#: dialogs/appearance-settings/main.c:2468
 msgid ""
 "The dark or light preference of the desktop, followed by GTK 4 and "
 "libadwaita, Qt 6, Firefox, Chromium and Electron applications. Firefox "
 "follows it if Website appearance is set to Automatic, Chromium if Mode is "
 "set to Device."
-msgstr ""
+msgstr "Parapëlqimi i errët, ose i çelët i desktopit, ndjekur nga GTK 4 dhe aplikacione libadwaita, Qt 6, Firefox, Chromium dhe Electron. Firefox-i e ndjek nëse dukja për Sajtet është vënë si Automatike, Chromium-i nëse Mode është vënë si Device."
 
 #. Xfwm4 theme, by default as the switch on the Style tab
-#: dialogs/appearance-settings/main.c:2375
+#: dialogs/appearance-settings/main.c:2474
 msgid "Set the matching _window manager theme along with the theme"
-msgstr ""
+msgstr "Cakton tok me temën edhe temë përgjegjësi përkatës _dritaresh"
 
-#: dialogs/appearance-settings/main.c:2380
+#: dialogs/appearance-settings/main.c:2479
 msgid ""
 "The window manager theme of the same name as the theme, like the switch on "
 "the Style tab does."
-msgstr ""
+msgstr "Tema e përgjegjësit të dritareve e të njëjtit emër si tema, ashtu siç bën çelësi te skeda Stile."
 
-#: dialogs/appearance-settings/main.c:2393
+#: dialogs/appearance-settings/main.c:2492
 msgid "Set the _icon theme:"
-msgstr ""
+msgstr "Caktoni temën e _ikonave:"
 
-#: dialogs/appearance-settings/main.c:2394
+#: dialogs/appearance-settings/main.c:2493
 msgid "The icon theme, as on the Icons tab."
-msgstr ""
+msgstr "Tema e ikonave, si te skeda Ikona."
 
-#: dialogs/appearance-settings/main.c:2409
+#: dialogs/appearance-settings/main.c:2509
 msgid "Set the mouse c_ursor theme:"
-msgstr ""
+msgstr "Caktoni temën e k_ursorit të miut:"
 
-#: dialogs/appearance-settings/main.c:2410
+#: dialogs/appearance-settings/main.c:2510
 msgid "The mouse cursor theme, as chosen in the Mouse and Touchpad settings."
+msgstr "Tema për kursorin e miut, siç është zgjedhur te rregullime për Miun dhe Touchpad-in."
+
+#: dialogs/appearance-settings/main.c:2521
+msgid "Set the screen _brightness to:"
+msgstr "Vëreni ndriçimin e _ekranit në:"
+
+#: dialogs/appearance-settings/main.c:2522
+msgid "The backlight of a laptop screen, set by the power manager."
 msgstr ""
 
-#: dialogs/appearance-settings/main.c:2417
+#: dialogs/appearance-settings/main.c:2547
 msgid "Run co_mmand:"
-msgstr ""
+msgstr "Xhiro _urdhrin:"
 
-#: dialogs/appearance-settings/main.c:2417
+#: dialogs/appearance-settings/main.c:2547
 msgid ""
 "The command runs with /bin/sh after switching. The new settings are in "
 "$XFCE_SCHEDULE_GTK_THEME, $XFCE_SCHEDULE_ICON_THEME and "
 "$XFCE_SCHEDULE_COLOR_SCHEME."
-msgstr ""
+msgstr "Pas ndërrimit, urdhri xhiron me /bin/sh. Rregullimet e reja gjenden te $XFCE_SCHEDULE_GTK_THEME, $XFCE_SCHEDULE_ICON_THEME dhe $XFCE_SCHEDULE_COLOR_SCHEME."
 
-#: dialogs/appearance-settings/main.c:2443
+#: dialogs/appearance-settings/main.c:2573
 #, c-format
 msgid "There is already a rule at %s."
-msgstr ""
+msgstr "Ka tashmë një rregull te %s."
 
-#: dialogs/appearance-settings/main.c:2513
+#: dialogs/appearance-settings/main.c:2651
 msgid "Scheduled style changes applied"
-msgstr ""
+msgstr "U aplikuan ndryshime të planifikuara stili"
 
-#: dialogs/appearance-settings/main.c:2572
+#: dialogs/appearance-settings/main.c:2711
 msgid "Change the style automatica_lly at set times"
-msgstr ""
+msgstr "Ndryshoje au_tomatikisht stilin në kohët e caktuara"
 
-#: dialogs/appearance-settings/main.c:2612
+#. TRANSLATORS: a 'Schedule' here is a table of start-times (hh:mm) on which
+#. e.g. theme changes will be triggered
+#: dialogs/appearance-settings/main.c:2752
 msgid "_Schedule"
-msgstr ""
+msgstr "_Plan"
 
 #: dialogs/appearance-settings/xfce4-appearance-settings.desktop.in:5
 msgid "Customize the look of your desktop"
