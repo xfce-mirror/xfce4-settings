@@ -21,7 +21,7 @@ dependency_versions = {
   'glib': '>= 2.80.0',
   'gtk': '>= 3.24.41',
   'xfce4': '>= 4.20.0',
-  'libxfce4ui': '>= 4.21.9',
+  'libxfce4ui': '>= 4.21.10',
   'libxfce4session-client': '>= 4.21.2',
 
   'fontconfig': '>= 2.15.0',
