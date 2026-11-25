@@ -592,7 +592,7 @@ manager_listener (XfceWlrOutputManager *manager,
         }
 
         /* start the display dialog according to the user preferences */
-        if (action == ACTION_ON_NEW_OUTPUT_SHOW_DIALOG)
+        if (action == ACTION_ON_NEW_OUTPUT_SHOW_DIALOG && helper->previous_n_outputs > 0)
         {
             const gchar *cmd = outputs->len <= 2 ? "xfce4-display-settings -m" : "xfce4-display-settings";
             xfce_spawn_command_line (NULL, cmd, FALSE, FALSE, TRUE, NULL);
